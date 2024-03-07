@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895129544275",
+    "project_id": "take-my-tym",
+    "storage_bucket": "take-my-tym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895129544275:android:a93d789cfb2a9506efc8a6",
+        "android_client_info": {
+          "package_name": "com.dayproduction.take_my_tym"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMVzzgxwyRpeE_8B8DMZQIdB-QjQ6xlPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

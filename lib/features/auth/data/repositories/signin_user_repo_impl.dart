@@ -9,8 +9,7 @@ class SignInRepoImpl implements SignInRepo{
 
   @override
   Future<AuthUserModel> authenticateUser(String email, String password) {
-    // TODO: implement authenticateUser
-    throw UnimplementedError();
+   return _remoteDataSource.authenticateUser(email, password);
   }
 
   

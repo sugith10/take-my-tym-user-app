@@ -1,8 +1,9 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/features/auth/domain/usecases/signin_usecases.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -12,7 +13,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<AuthSignInEvent>((event, emit) async {
       emit(LoadingState());
       try{
+        SignInUseCase signInUseCase = 
+          GetIt.instance<SignInUseCase>();
         
+        AuthUserModel authUserModel = await signInUseCase
+        .authenticateUser(event.email, event.password);
+
+        emit(SignedSuccessState(authUserModel));
       }catch(e){
         log(e.toString());
         emit(ErrorState(e.toString()));

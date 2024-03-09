@@ -17,8 +17,10 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   String? _errorMsg;
   final _formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+    final SignInBloc _bloc = SignInBloc();
 
   @override
   void initState() {
@@ -27,26 +29,29 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
-    emailController;
-    passwordController;
+    _emailController;
+    _passwordController;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignInBloc, SignInState>(
+    return BlocListener(
+      bloc: _bloc,
       listener: (context, state) {
-       
-        if (state is LoadingState) {}
-        if(state is SignedInState){
+        if (state is LoadingState) {
+          print("succes");
+        }
+        if(state is SignedSuccessState){
           Navigator.push(context, 
           MaterialPageRoute(builder: 
-          (context)=> const HomePage())
+          (context)=> HomePage(user: state.userModel,))
           );
         }
       },
       
       child: BlocBuilder<SignInBloc, SignInState>(
+        bloc: _bloc,
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(),
@@ -65,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: SignTextField(
-                            controller: emailController,
+                            controller: _emailController,
                             hintText: "Email",
                             obsecureText: false,
                             errorMsg: _errorMsg,
@@ -85,7 +90,7 @@ class _SignInPageState extends State<SignInPage> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: SignTextField(
-                            controller: passwordController,
+                            controller: _passwordController,
                             hintText: "Password",
                             obsecureText: true,
                             errorMsg: _errorMsg,
@@ -106,12 +111,10 @@ class _SignInPageState extends State<SignInPage> {
                         ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                log(emailController.text);
-                                log(passwordController.text);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => const HomePage()));
+                                log(_emailController.text);
+                                log(_passwordController.text);
+
+                                submitCredentials();
                               } else {
                                 log("not validated");
                               }
@@ -127,5 +130,10 @@ class _SignInPageState extends State<SignInPage> {
         },
       ),
     );
+  }
+
+  void submitCredentials() {
+    log("submited data to bloc");
+    _bloc.add(AuthSignInEvent(email: _emailController.text ,password:  _passwordController.text));
   }
 }

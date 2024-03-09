@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/navigation/app_router.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
 
 class MyAppView extends StatelessWidget {
@@ -7,8 +8,9 @@ class MyAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+      title: "Take My Tym",
       home: WelcomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

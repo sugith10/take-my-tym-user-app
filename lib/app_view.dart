@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/navigation/app_router.dart';
+import 'package:take_my_tym/core/utils/app_theme.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
 
 class MyAppView extends StatelessWidget {
@@ -7,9 +7,10 @@ class MyAppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Take My Tym",
-      home: WelcomePage(),
+      home: const WelcomePage(),
+      darkTheme: MyAppDarkTheme().darkTheme,
       debugShowCheckedModeBanner: false,
     );
   }

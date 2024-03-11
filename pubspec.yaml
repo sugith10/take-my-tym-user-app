@@ -19,11 +19,10 @@ dependencies:
   flutter_bloc: ^8.1.4
   equatable: ^2.0.5
   
-  firebase_auth: ^4.17.7
+  firebase_auth: ^4.17.8
   firebase_core: ^2.26.0
 
   loading_indicator: ^3.1.1
-
 
 dev_dependencies:
   flutter_test:

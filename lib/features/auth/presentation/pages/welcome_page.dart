@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/welcome_message_widget.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

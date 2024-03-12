@@ -47,9 +47,8 @@ class SignTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Colors.transparent),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide:
-              BorderSide(color: Theme.of(context).colorScheme.secondary),
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.yellow),
         ),
         fillColor: Colors.grey.shade200,
         filled: true,

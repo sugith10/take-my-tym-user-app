@@ -39,11 +39,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - asset/img/onboarding/Saly-1.svg
+    - asset/img/auth/google.png
     - asset/img/TAKEMYTYM.svg
-    - asset/img/Group 483300.png
-    - asset/json/
-    - asset/font/
 
 
   fonts:

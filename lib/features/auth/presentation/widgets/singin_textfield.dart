@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 
 class SignTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -30,31 +31,39 @@ class SignTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: validator,
-      controller: controller,
-      obscureText: obsecureText,
-      keyboardType: keyboardType,
-      focusNode: focusNode,
-      onTap: onTap,
-      textInputAction: TextInputAction.next,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.transparent),
+    return FadeInDown(
+      delay: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 800),
+      child: TextFormField(
+        validator: validator,
+        controller: controller,
+        obscureText: obsecureText,
+        keyboardType: keyboardType,
+        focusNode: focusNode,
+        onTap: onTap,
+        textInputAction: TextInputAction.next,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide:
+                const BorderSide(color: Color.fromARGB(255, 22, 127, 19)),
+          ),
+          fillColor: Colors.grey.shade200,
+          filled: true,
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey[500]),
+          errorText: errorMsg,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.yellow),
+        style: TextStyle(
+          fontSize: Theme.of(context).textTheme.headlineMedium!.fontSize,
         ),
-        fillColor: Colors.grey.shade200,
-        filled: true,
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        errorText: errorMsg,
       ),
     );
   }

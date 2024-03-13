@@ -50,7 +50,7 @@ final class MyAppDarkTheme {
          fontSize: 14.sp,
       ),
       labelMedium: TextStyle(
-        
+        color: _color.secondaryText,
          fontSize: 14.sp,
       ),
       labelSmall: TextStyle(
@@ -58,6 +58,10 @@ final class MyAppDarkTheme {
         decorationColor: _color.secondaryText,
          fontSize: 12.sp,
       ),
+    ),
+ 
+    dividerTheme: DividerThemeData(
+      color: _color.secondaryText
     )
   );
 }

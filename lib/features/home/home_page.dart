@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   'Hi, Sugith...',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                CustomToggle(onChanged: (value){},value: true,)
+                // CustomToggle(onChanged: (value){},value: true,)
               ],
             ),
           )

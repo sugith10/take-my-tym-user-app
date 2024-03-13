@@ -26,6 +26,9 @@ class _CustomToggleState extends State<CustomToggle> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedToggleSwitch.dual();
+    return AnimatedToggleSwitch.dual(
+      first: Icon(Icons.circle),second:  Icon(Icons.circle),
+      current: Icon(Icons.circle),
+    );
   }
 }

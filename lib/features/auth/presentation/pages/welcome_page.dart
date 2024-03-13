@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -22,7 +23,7 @@ class WelcomePage extends StatelessWidget {
                 left: MyAppPadding.padding, right: MyAppPadding.padding),
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                SizedBox(height: 40.h),
                 Text(
                   "Where Time Meets Oppurtunity",
                   style: TextStyle(fontSize: 17.sp),
@@ -33,8 +34,12 @@ class WelcomePage extends StatelessWidget {
                   height: 40,
                 ),
                 const Spacer(),
-                Lottie.asset('asset/json/onboarding_animation_1.json'),
+                 Transform.scale(
+                  scale: 1.5, 
+                  child: Lottie.asset(MyAppImages().onboardingLottie, fit: BoxFit.cover),
+                ),
                const Spacer(),
+               SizedBox(height: 20.h),
                 SignButtonWidget(
                   title: 'Login',
                   function: () {

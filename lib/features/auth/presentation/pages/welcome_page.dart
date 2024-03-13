@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
@@ -32,6 +33,8 @@ class WelcomePage extends StatelessWidget {
                   height: 40,
                 ),
                 const Spacer(),
+                Lottie.asset('asset/json/onboarding_animation_1.json'),
+               const Spacer(),
                 SignButtonWidget(
                   title: 'Login',
                   function: () {

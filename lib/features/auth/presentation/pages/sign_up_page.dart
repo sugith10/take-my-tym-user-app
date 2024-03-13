@@ -74,10 +74,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     const Align(
                       alignment: Alignment.bottomLeft,
+                
                       child: SignInWelcome(
-                        firstLine: 'Let\'s Sign You In',
-                        secondLine: 'Welcome back.',
-                        thirdLine: 'You\'ve been missed!',
+                        firstLine: 'Welcome to the market!',
+                        secondLine: 'Excited to have you as',
+                        thirdLine: 'Part of our community',
                       ),
                     ),
                     Form(
@@ -119,41 +120,28 @@ class _SignUpPageState extends State<SignUpPage> {
                               return null;
                             },
                           ),
-                          SizedBox(height: 15.h),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: ForgotPasswordWidget(
-                              function: () {},
-                            ),
-                          ),
-                          SizedBox(height: 25.h),
-                          FadeInDown(
-                            delay: const Duration(milliseconds: 600),
-                            duration: const Duration(milliseconds: 700),
-                            child: SignButtonWidget(
-                              title: 'Create Account',
-                              function: () {
-                                if (_formKey.currentState!.validate()) {
-                                  log(_emailController.text);
-                                  log(_passwordController.text);
-
-                                  submitCredentials();
-                                } else {
-                                  log("not validated");
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 50.h),
-                          SocialAuthWidget(
-                            function: (){},
-                          ),
+                      
+                          
                           SizedBox(height: 40.h),
-                          //  const Spacer(),
-                          NavigationText(
-                            leadingText: 'By proceeding, I ac',
-                            buttonText: 'Register',
+                          SignButtonWidget(
+                            title: 'Create Account',
                             function: () {
+                              if (_formKey.currentState!.validate()) {
+                                log(_emailController.text);
+                                log(_passwordController.text);
+                          
+                                submitCredentials();
+                              } else {
+                                log("not validated");
+                              }
+                            },
+                          ),
+                          SizedBox(height: 15.h),
+                          NavigationText(
+                            leadingText: 'Have an account?',
+                            buttonText: 'Login',
+                            function: () {
+                              print('hello');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -162,6 +150,36 @@ class _SignUpPageState extends State<SignUpPage> {
                               );
                             },
                           ),
+                          SizedBox(height: 35.h),
+                          SocialAuthWidget(
+                            function: (){},
+                          ),
+                          SizedBox(height: 40.h),
+                          //  const Spacer(),
+                          NavigationText(
+                  leadingText: "By proceeding, I accept TakeMyTym's",
+                  buttonText: 'T&C',
+                  function: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignInPage(),
+                      ),
+                    );
+                  },
+                ),
+                NavigationText(
+                  leadingText: "and",
+                  buttonText: 'Privacy Policy.',
+                  function: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignInPage(),
+                      ),
+                    );
+                  },
+                ),
                           SizedBox(height: 40.h),
                         ],
                       ),

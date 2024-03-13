@@ -76,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     const Align(
                       alignment: Alignment.bottomLeft,
-                      child: SignInWelcome(
+                            child: SignInWelcome(
                         firstLine: 'Let\'s Sign You In',
                         secondLine: 'Welcome back.',
                         thirdLine: 'You\'ve been missed!',

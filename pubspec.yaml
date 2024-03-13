@@ -26,6 +26,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   animate_do: ^3.3.4
   iconly: ^1.0.1
+  lottie: ^3.1.0
   
 
 dev_dependencies:
@@ -41,6 +42,8 @@ flutter:
   assets:
     - asset/img/auth/google.png
     - asset/img/TAKEMYTYM.svg
+    - asset/json/onboarding_animation.json
+    - asset/json/onboarding_animation_1.json
 
 
   fonts:

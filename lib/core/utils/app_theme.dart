@@ -22,46 +22,48 @@ final class MyAppDarkTheme {
         animationDuration: const Duration(milliseconds: 200),
       ),
     ),
-    textTheme:  TextTheme(
+    textTheme: TextTheme(
       bodyLarge: TextStyle(
-         fontSize: 24.sp,
+        color: _color.primaryText,
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600
       ),
       bodyMedium: TextStyle(
         color: _color.primaryText,
-         fontSize: 22.sp,
+        fontSize: 22.sp,
       ),
       bodySmall: TextStyle(
-         fontSize: 20.sp,
+        fontSize: 20.sp,
       ),
       headlineLarge: TextStyle(
-        
-         fontSize: 18.sp,
+        fontSize: 18.sp,
       ),
       headlineMedium: TextStyle(
-        
-         fontSize: 18.sp,
+        fontSize: 18.sp,
       ),
       headlineSmall: TextStyle(
-        
-         fontSize: 16.sp,
+        fontSize: 16.sp,
       ),
       labelLarge: TextStyle(
-        
-         fontSize: 14.sp,
+        fontSize: 14.sp,
       ),
       labelMedium: TextStyle(
         color: _color.secondaryText,
-         fontSize: 14.sp,
+        fontSize: 14.sp,
       ),
       labelSmall: TextStyle(
         color: _color.secondaryText,
         decorationColor: _color.secondaryText,
-         fontSize: 12.sp,
+        fontSize: 12.sp,
       ),
     ),
- 
-    dividerTheme: DividerThemeData(
-      color: _color.secondaryText
-    )
+    dividerTheme: DividerThemeData(color: _color.secondaryText),
+    appBarTheme: AppBarTheme(
+      
+      scrolledUnderElevation: 0,
+      elevation: 0,
+      backgroundColor: Colors.grey,
+      foregroundColor: _color.primaryText,
+    ),
   );
 }

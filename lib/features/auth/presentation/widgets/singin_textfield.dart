@@ -58,12 +58,13 @@ class SignTextField extends StatelessWidget {
           fillColor: Colors.grey.shade200,
           filled: true,
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey[500]),
+          hintStyle: TextStyle(
+            color: Colors.grey[500],
+            fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+          ),
           errorText: errorMsg,
         ),
-        style: TextStyle(
-          fontSize: Theme.of(context).textTheme.headlineMedium!.fontSize,
-        ),
+        style: Theme.of(context).textTheme.headlineSmall
       ),
     );
   }

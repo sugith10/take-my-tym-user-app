@@ -18,9 +18,10 @@ interface class AppColor {
 class MyAppDarkColor extends AppColor {
   MyAppDarkColor()
       : super(
-            background: const Color(0xFF121212),
-            primaryText: const Color.fromARGB(255, 255, 255, 255),
-            secondaryText: const Color.fromARGB(222, 160, 160, 160),
-            buttonBackground: const Color.fromRGBO(255, 255, 255, 1),
-            buttonForground: const Color.fromRGBO(0, 0, 0, 1));
+          background: const Color(0xFF121212),
+          primaryText: const Color.fromARGB(255, 255, 255, 255),
+          secondaryText: const Color.fromARGB(222, 160, 160, 160),
+          buttonBackground: const Color.fromRGBO(255, 255, 255, 1),
+          buttonForground: const Color.fromRGBO(0, 0, 0, 1),
+        );
 }

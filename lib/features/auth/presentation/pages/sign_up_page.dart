@@ -1,16 +1,15 @@
 import 'dart:developer';
-import 'package:animate_do/animate_do.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
+import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_in_widget.dart/sigin_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
 import 'package:take_my_tym/features/home/home_page.dart';
@@ -25,9 +24,12 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String? _errorMsg;
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final SignInBloc _bloc = SignInBloc();
+  final _firstNameCntrl = TextEditingController();
+  final _lastNameCntrl = TextEditingController();
+  final _emailCntrl = TextEditingController();
+  final _passwordCntrl = TextEditingController();
+  final _confirmPasswordCntrl = TextEditingController();
+  final SignUpBloc _bloc = SignUpBloc();
 
   @override
   void initState() {
@@ -36,8 +38,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
-    _emailController;
-    _passwordController;
+    _firstNameCntrl;
+    _lastNameCntrl;
+    _emailCntrl;
+    _passwordCntrl;
+    _confirmPasswordCntrl;
     super.dispose();
   }
 
@@ -49,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (state is LoadingState) {
           print("succes");
         }
-        if (state is SignedSuccessState) {
+        if (state is SignUpSuccessState) {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -60,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         }
       },
-      child: BlocBuilder<SignInBloc, SignInState>(
+      child: BlocBuilder<SignUpBloc, SignUpState>(
         bloc: _bloc,
         builder: (context, state) {
           return Scaffold(
@@ -72,27 +77,63 @@ class _SignUpPageState extends State<SignUpPage> {
                     left: MyAppPadding.padding, right: MyAppPadding.padding),
                 child: Column(
                   children: [
+                    SizedBox(height: 10.h),
                     const Align(
                       alignment: Alignment.bottomLeft,
-                
-                      child: SignInWelcome(
-                        firstLine: 'Welcome to the market!',
-                        secondLine: 'Excited to have you as',
-                        thirdLine: 'Part of our community',
-                      ),
+                      child: SignBackButton(),
                     ),
+                    SizedBox(height: 25.h),
                     Form(
                       key: _formKey,
                       child: Column(
                         children: [
-                          SizedBox(height: 40.h),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: SignTextField(
+                                  controller: _firstNameCntrl,
+                                  hintText: "Last Name",
+                                  obsecureText: false,
+                                  errorMsg: _errorMsg,
+                                  keyboardType: TextInputType.name,
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
+                                      return "Please fill in this Field";
+                                    } else if (!nameRexExp.hasMatch(val)) {
+                                      return "Please enter a valid email";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 10.w),
+                              Expanded(
+                                child: SignTextField(
+                                  controller: _lastNameCntrl,
+                                  hintText: "Last Name",
+                                  obsecureText: false,
+                                  errorMsg: _errorMsg,
+                                  keyboardType: TextInputType.name,
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
+                                      return "Please fill in this Field";
+                                    } else if (!nameRexExp.hasMatch(val)) {
+                                      return "Please enter a valid email";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.h),
                           SignTextField(
-                            controller: _emailController,
+                            controller: _emailCntrl,
+                            prefixIcon: const Icon(Icons.mail_outline_rounded),
                             hintText: "Email",
                             obsecureText: false,
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.emailAddress,
-                            prefixIcon: const Icon(Icons.mail_outline_rounded),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Please fill in this Field";
@@ -102,9 +143,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               return null;
                             },
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: 10.h),
                           SignTextField(
-                            controller: _passwordController,
+                            controller: _passwordCntrl,
                             hintText: "Password",
                             obsecureText: true,
                             errorMsg: _errorMsg,
@@ -120,16 +161,36 @@ class _SignUpPageState extends State<SignUpPage> {
                               return null;
                             },
                           ),
-                      
-                          
-                          SizedBox(height: 40.h),
+                          SizedBox(height: 10.h),
+                          SignTextField(
+                            controller: _confirmPasswordCntrl,
+                            hintText: "Confirm Password",
+                            obsecureText: true,
+                            errorMsg: _errorMsg,
+                            keyboardType: TextInputType.visiblePassword,
+                            prefixIcon: const Icon(Icons.password_rounded),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                log(val);
+                                return "Please fill in this Field.";
+                              } else if (val.length < 6) {
+                                return "Password should be at least 6 characters long.";
+                              } else if (val != _passwordCntrl.text) {
+                                return "Password not matched.";
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 25.h),
                           SignButtonWidget(
                             title: 'Create Account',
                             function: () {
                               if (_formKey.currentState!.validate()) {
-                                log(_emailController.text);
-                                log(_passwordController.text);
-                          
+                                log(_firstNameCntrl.text);
+                                log(_lastNameCntrl.text);
+                                log(_emailCntrl.text);
+                                log(_passwordCntrl.text);
+
                                 submitCredentials();
                               } else {
                                 log("not validated");
@@ -152,34 +213,27 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 35.h),
                           SocialAuthWidget(
-                            function: (){},
+                            function: () {},
                           ),
                           SizedBox(height: 40.h),
                           //  const Spacer(),
                           NavigationText(
-                  leadingText: "By proceeding, I accept TakeMyTym's",
-                  buttonText: 'T&C',
-                  function: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignInPage(),
-                      ),
-                    );
-                  },
-                ),
-                NavigationText(
-                  leadingText: "and",
-                  buttonText: 'Privacy Policy.',
-                  function: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignInPage(),
-                      ),
-                    );
-                  },
-                ),
+                            leadingText: "By proceeding, I accept TakeMyTym's",
+                            buttonText: 'T&C',
+                            function: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignInPage(),
+                                ),
+                              );
+                            },
+                          ),
+                          NavigationText(
+                            leadingText: "and",
+                            buttonText: 'Privacy Policy.',
+                            function: () {},
+                          ),
                           SizedBox(height: 40.h),
                         ],
                       ),
@@ -196,7 +250,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void submitCredentials() {
     log("submited data to bloc");
-    _bloc.add(AuthSignInEvent(
-        email: _emailController.text, password: _passwordController.text));
+    _bloc.add(CreateUser(
+      firstName: _firstNameCntrl.text,
+      lastName: _lastNameCntrl.text,
+      email: _emailCntrl.text,
+      password: _passwordCntrl.text,
+    ));
   }
 }

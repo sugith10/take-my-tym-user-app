@@ -30,7 +30,10 @@ function();
               TextSpan(
                 text: buttonText,
                 style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyMedium!.color),
+                    color: Theme.of(context).textTheme.bodyMedium!.color,
+                    decoration: TextDecoration.underline,
+                    ),
+                    
               )
             ],
           ),

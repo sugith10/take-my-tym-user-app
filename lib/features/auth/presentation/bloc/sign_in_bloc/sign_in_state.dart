@@ -11,9 +11,9 @@ final class SignInInitial extends SignInState{}
 
 final class LoadingState extends SignInState{}
 
-final class SignedSuccessState extends SignInState{
+final class SignInSuccessState extends SignInState{
   final AuthUserModel userModel;
-  const SignedSuccessState(this.userModel);
+  const SignInSuccessState(this.userModel);
 }
 
 final class ErrorState extends SignInState{

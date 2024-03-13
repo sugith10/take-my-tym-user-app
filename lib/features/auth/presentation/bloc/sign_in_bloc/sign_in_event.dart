@@ -11,8 +11,13 @@ class AuthSignInEvent extends SignInEvent {
   final String email;
   final String password;
 
- const AuthSignInEvent({
+  const AuthSignInEvent({
     required this.email,
     required this.password,
   });
+}
+
+class PasswordReset extends SignInEvent {
+  final String email;
+  const PasswordReset({required this.email});
 }

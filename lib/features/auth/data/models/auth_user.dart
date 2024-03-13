@@ -7,16 +7,16 @@ class AuthUserModel extends Equatable {
   final int? expiresIn;
   final String? id;
   final String? email;
-  // final String? name;
-  // final String? picture;
+  final String? name;
+  final String? picture;
 
   const AuthUserModel({
     this.token,
     this.expiresIn,
     this.id,
     this.email,
-    // required this.name,
-    // this.picture,
+    this.name,
+    this.picture,
   });
 
   factory AuthUserModel.fromMap(Map<String, dynamic> data) {

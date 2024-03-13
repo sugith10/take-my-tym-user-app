@@ -1,8 +1,5 @@
 import 'dart:developer';
-import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -12,7 +9,7 @@ import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_in_widget.dart/sigin_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
 import 'package:take_my_tym/features/home/home_page.dart';
@@ -51,7 +48,7 @@ class _SignInPageState extends State<SignInPage> {
         if (state is LoadingState) {
           print("succes");
         }
-        if (state is SignedSuccessState) {
+        if (state is SignInSuccessState) {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -76,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     const Align(
                       alignment: Alignment.bottomLeft,
-                            child: SignInWelcome(
+                            child: WelcomeTextWidget(
                         firstLine: 'Let\'s Sign You In',
                         secondLine: 'Welcome back.',
                         thirdLine: 'You\'ve been missed!',

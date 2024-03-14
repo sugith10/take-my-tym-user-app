@@ -32,19 +32,24 @@ final class MyAppDarkTheme {
         fontSize: 22.sp,
       ),
       bodySmall: TextStyle(
+        color: _color.primaryText,
         fontSize: 20.sp,
       ),
       headlineLarge: TextStyle(
-        fontSize: 18.sp,
+        color: _color.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 19.sp,
       ),
       headlineMedium: TextStyle(
+        color: _color.primaryText,
         fontSize: 18.sp,
       ),
       headlineSmall: TextStyle(
+        color: _color.primaryText,
         fontSize: 16.sp,
       ),
       labelLarge: TextStyle(
-        fontSize: 14.sp,
+        fontSize: 15.sp,
       ),
       labelMedium: TextStyle(
         color: _color.secondaryText,

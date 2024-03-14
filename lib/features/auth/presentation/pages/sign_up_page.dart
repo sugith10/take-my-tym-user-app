@@ -51,9 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocListener(
       bloc: _bloc,
       listener: (context, state) {
-        if (state is LoadingState) {
-          print("succes");
-        }
+        if (state is LoadingState) {}
         if (state is SignUpSuccessState) {
           Navigator.push(
             context,
@@ -91,6 +89,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             children: [
                               Expanded(
                                 child: SignTextField(
+                                  fadeInDelay: 800,
+                                  fadeInDuration: 900,
                                   controller: _firstNameCntrl,
                                   hintText: "Last Name",
                                   obsecureText: false,
@@ -109,6 +109,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(width: 10.w),
                               Expanded(
                                 child: SignTextField(
+                                  fadeInDelay: 800,
+                                  fadeInDuration: 900,
                                   controller: _lastNameCntrl,
                                   hintText: "Last Name",
                                   obsecureText: false,
@@ -128,6 +130,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
+                            fadeInDelay: 700,
+                            fadeInDuration: 800,
                             controller: _emailCntrl,
                             prefixIcon: const Icon(Icons.mail_outline_rounded),
                             hintText: "Email",
@@ -145,6 +149,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
+                             fadeInDelay: 650,
+                            fadeInDuration: 750,
                             controller: _passwordCntrl,
                             hintText: "Password",
                             obsecureText: true,
@@ -163,6 +169,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
+                              fadeInDelay: 625,
+                            fadeInDuration: 725,
                             controller: _confirmPasswordCntrl,
                             hintText: "Confirm Password",
                             obsecureText: true,
@@ -202,7 +210,6 @@ class _SignUpPageState extends State<SignUpPage> {
                             leadingText: 'Have an account?',
                             buttonText: 'Login',
                             function: () {
-                              print('hello');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

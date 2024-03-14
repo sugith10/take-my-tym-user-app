@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
 import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
@@ -30,19 +28,18 @@ class WelcomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 17.sp),
                 ),
                 const SizedBox(height: 20),
-              const  SVGImageWidget(
+                const SVGImageWidget(
                   asset: MyAppImages.onboarding,
                   height: 40,
                 ),
                 const Spacer(),
-                 Transform.scale(
-                  scale: 1.5, 
-                  child: Lottie.asset(MyAppImages.onboardingLottie, fit: BoxFit.cover),
+                Transform.scale(
+                  scale: 1.5,
+                  child: Lottie.asset(MyAppImages.onboardingLottie,
+                      fit: BoxFit.cover),
                 ),
-               
-               
-               const Spacer(),
-               SizedBox(height: 20.h),
+                const Spacer(),
+                SizedBox(height: 20.h),
                 SignButtonWidget(
                   title: 'Login',
                   function: () {

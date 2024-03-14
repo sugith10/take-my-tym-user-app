@@ -75,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     const Align(
                       alignment: Alignment.bottomLeft,
-                            child: WelcomeTextWidget(
+                      child: WelcomeTextWidget(
                         firstLine: 'Let\'s Sign You In',
                         secondLine: 'Welcome back.',
                         thirdLine: 'You\'ve been missed!',
@@ -87,6 +87,8 @@ class _SignInPageState extends State<SignInPage> {
                         children: [
                           SizedBox(height: 40.h),
                           SignTextField(
+                            fadeInDelay: 700,
+                            fadeInDuration: 800,
                             controller: _emailController,
                             hintText: "Email",
                             obsecureText: false,
@@ -104,6 +106,8 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           SizedBox(height: 20.h),
                           SignTextField(
+                             fadeInDelay: 650,
+                            fadeInDuration: 750,
                             controller: _passwordController,
                             hintText: "Password",
                             obsecureText: true,
@@ -134,23 +138,26 @@ class _SignInPageState extends State<SignInPage> {
                               // if (_formKey.currentState!.validate()) {
                               //   log(_emailController.text);
                               //   log(_passwordController.text);
-                          
+
                               //   submitCredentials();
                               // } else {
                               //   log("not validated");
-                              // }               
+                              // }
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
                               //     builder: (context) => const HomePage(user:  AuthUserModel(email: 'sugith')),
                               //   ),
                               // );
-                              Navigator.push(context, MaterialPageRoute(builder: (_)=> const NavigationMenu()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const NavigationMenu()));
                             },
                           ),
                           SizedBox(height: 50.h),
                           SocialAuthWidget(
-                            function: (){
+                            function: () {
                               log("social log");
                             },
                           ),
@@ -160,7 +167,6 @@ class _SignInPageState extends State<SignInPage> {
                             leadingText: 'Don\'t have an account?',
                             buttonText: 'Register',
                             function: () {
-                              print('hello');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

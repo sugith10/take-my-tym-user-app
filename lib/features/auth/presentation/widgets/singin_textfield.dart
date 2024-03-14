@@ -13,12 +13,16 @@ class SignTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final String? errorMsg;
   final String? Function(String?)? onChanged;
+  final int fadeInDelay;
+  final int fadeInDuration;
 
   const SignTextField({
     required this.controller,
     required this.hintText,
     required this.obsecureText,
     required this.keyboardType,
+    this.fadeInDelay = 0,
+    this.fadeInDuration = 0,
     this.suffixIcon,
     this.onTap,
     this.prefixIcon,
@@ -32,8 +36,8 @@ class SignTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeInDown(
-      delay: const Duration(milliseconds: 700),
-      duration: const Duration(milliseconds: 800),
+      delay: Duration(milliseconds: fadeInDelay),
+      duration: Duration(milliseconds: fadeInDuration),
       child: TextFormField(
         validator: validator,
         controller: controller,

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
+import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
@@ -12,7 +13,8 @@ import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_b
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
-import 'package:take_my_tym/features/home/home_page.dart';
+import 'package:take_my_tym/features/bottom_navigation/navigation_menu.dart';
+import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -129,14 +131,21 @@ class _SignInPageState extends State<SignInPage> {
                           SignButtonWidget(
                             title: 'Log In',
                             function: () {
-                              if (_formKey.currentState!.validate()) {
-                                log(_emailController.text);
-                                log(_passwordController.text);
+                              // if (_formKey.currentState!.validate()) {
+                              //   log(_emailController.text);
+                              //   log(_passwordController.text);
                           
-                                submitCredentials();
-                              } else {
-                                log("not validated");
-                              }
+                              //   submitCredentials();
+                              // } else {
+                              //   log("not validated");
+                              // }               
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const HomePage(user:  AuthUserModel(email: 'sugith')),
+                              //   ),
+                              // );
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=> const NavigationMenu()));
                             },
                           ),
                           SizedBox(height: 50.h),

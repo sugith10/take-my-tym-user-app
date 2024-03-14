@@ -52,7 +52,7 @@ class SocialAuthWidget extends StatelessWidget {
                         color: const Color.fromRGBO(238, 238, 238, 1)),
                     child: Center(
                       child: Image.asset(
-                        MyAppImages().google,
+                        MyAppImages.google,
                         height: 35,
                       ),
                     ),

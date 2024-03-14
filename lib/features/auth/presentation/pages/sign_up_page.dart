@@ -12,7 +12,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_b
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
-import 'package:take_my_tym/features/home/home_page.dart';
+import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

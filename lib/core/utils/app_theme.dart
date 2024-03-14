@@ -24,10 +24,9 @@ final class MyAppDarkTheme {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        color: _color.primaryText,
-        fontSize: 28.sp,
-        fontWeight: FontWeight.w600
-      ),
+          color: _color.primaryText,
+          fontSize: 28.sp,
+          fontWeight: FontWeight.w600),
       bodyMedium: TextStyle(
         color: _color.primaryText,
         fontSize: 22.sp,
@@ -56,14 +55,53 @@ final class MyAppDarkTheme {
         decorationColor: _color.secondaryText,
         fontSize: 12.sp,
       ),
+      titleLarge: TextStyle(
+        color: _color.primaryText,
+        fontSize: 12.sp,
+      ),
+      titleMedium: TextStyle(
+        color: _color.primaryText,
+        fontSize: 11.sp,
+      ),
+      titleSmall: TextStyle(
+        color: _color.primaryText,
+        fontSize: 10.sp,
+      ),
     ),
     dividerTheme: DividerThemeData(color: _color.secondaryText),
     appBarTheme: AppBarTheme(
-      
       scrolledUnderElevation: 0,
       elevation: 0,
-      backgroundColor: Colors.grey,
+      backgroundColor: _color.background,
       foregroundColor: _color.primaryText,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: _color.bottomNavigationBarBackground,
+        elevation: 0,
+        labelTextStyle: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return TextStyle(color: _color.primaryText, fontSize: 14.sp);
+          } else {
+            return TextStyle(
+              color: _color.secondaryText,
+              fontSize: 14.sp,
+            );
+          }
+        }),
+        iconTheme: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return IconThemeData(
+              color: _color.background,
+            );
+          } else {
+            return IconThemeData(
+              color: _color.secondaryText,
+            );
+          }
+        }),
+        indicatorColor: _color.primaryText),
+    // iconTheme: IconThemeData(
+    //   color: _color.background
+    // )
   );
 }

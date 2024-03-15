@@ -25,9 +25,10 @@ final class MyAppDarkTheme {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-          color: _color.primaryText,
-          fontSize: 28.sp,
-          fontWeight: FontWeight.w600),
+        color: _color.primaryText,
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600,
+      ),
       bodyMedium: TextStyle(
         color: _color.primaryText,
         fontSize: 22.sp,
@@ -122,8 +123,8 @@ final class MyAppDarkTheme {
         borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
       ),
     ),
-    iconTheme: IconThemeData( color: Colors.white, ),
-    
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    ),
   );
-  
 }

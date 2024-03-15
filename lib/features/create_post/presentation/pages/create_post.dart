@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/features/bottom_navigation/navigation_menu.dart';
 
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});
@@ -19,11 +19,17 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NavigationMenu()));
+            },
+            icon: const Icon(IconlyLight.arrow_left)),
         actions: [],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
               right: MyAppPadding.paddingTwo, left: MyAppPadding.paddingTwo),
           child: Column(
             children: [
@@ -46,24 +52,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
               //     ),
               //   ],
               // )
-
-              SizedBox(
-                child: CupertinoContextMenu(
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    color: Colors.white,
-                  ),
-                  actions: <Widget>[
-                    CupertinoContextMenuAction(child: const Text('Remote'), onPressed: (){
-                      log('remote');
-                    },),
-                     CupertinoContextMenuAction(child: const Text('Local'), onPressed: () {
-                       log('local');
-                     },),
-                  ],
-                ),
-              )
             ],
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 
 class NavigationMenu extends StatefulWidget {
+
   const NavigationMenu({super.key});
 
   @override
@@ -26,43 +27,48 @@ class _NavigationMenuState extends State<NavigationMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(child: screens[index]),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: index,
-          onDestinationSelected: (value) {
-            setState(() {
-              index = value;
-            });
-          },
-          destinations: [
-            NavigationDestination(
-                icon: Icon(index == 0 ? IconlyBold.home : IconlyLight.home),
-                label: 'Home'),
-            NavigationDestination(
-              icon: Icon(
-                index == 1 ? IconlyBold.message : IconlyLight.message,
-              ),
-              label: 'Message',
+      body: SafeArea(child: screens[index]),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: index,
+        onDestinationSelected: (value) {
+          setState(() {
+            if(value == 2){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const CreatePostPage()));
+            }
+            index = value;
+          });
+        },
+        destinations: [
+          NavigationDestination(
+              icon: Icon(index == 0 ? IconlyBold.home : IconlyLight.home),
+              label: 'Home'),
+          NavigationDestination(
+            icon: Icon(
+              index == 1 ? IconlyBold.message : IconlyLight.message,
             ),
-            NavigationDestination(
-              icon: Icon(
-                index == 2
-                    ? Icons.add_circle_rounded
-                    : Icons.add_circle_outline_rounded,
-              ),
-              label: 'Create',
+            label: 'Message',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              index == 2
+                  ? Icons.add_circle_rounded
+                  : Icons.add_circle_outline_rounded,
             ),
-            NavigationDestination(
-                icon: Icon(
-                  index == 3 ? IconlyBold.wallet : IconlyLight.wallet,
-                ),
-                label: 'Money'),
-            NavigationDestination(
-                icon: Icon(
-                  index == 4 ? IconlyBold.profile : IconlyLight.profile,
-                ),
-                label: 'Profile'),
-          ],
-        ));
+            label: 'Create',
+          ),
+          NavigationDestination(
+              icon: Icon(
+                index == 3 ? IconlyBold.wallet : IconlyLight.wallet,
+              ),
+              label: 'Money'),
+          NavigationDestination(
+              icon: Icon(
+                index == 4 ? IconlyBold.profile : IconlyLight.profile,
+              ),
+              label: 'Profile'),
+        ],
+      ),
+      drawer: index == 0 ? const Drawer(child: Text('Drawer Content')) : null,
+    );
   }
 }

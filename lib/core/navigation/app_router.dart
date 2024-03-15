@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:take_my_tym/core/navigation/route_const.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
+
 
   final GoRouter router = GoRouter(
     routes: [

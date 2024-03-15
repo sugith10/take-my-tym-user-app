@@ -40,18 +40,34 @@ class RemoteDataSource {
     required String password,
   }) async {
     try {
-      log('$email, $password, $firstName$lastName');
-      return AuthUserModel(
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
-        name: firstName,
+        password: password,
       );
-    } catch (e) {
+      return AuthUserModel(email: credential.user?.email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        log('The password provided is too weak.');
+        throw const MyAppException(
+            title: 'user-not-found',
+            message: 'The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        log('The account already exists for that email.');
+        throw const MyAppException(
+            title: 'user-not-found',
+            message: 'The password provided is too weak.');
+      }else{
+          log('excpetion occured');
+        log(e.toString());
+        throw const MyAppException(
+            title: 'check firebase exception',
+            message: 'Check RemoteDataSource');
+      }
+    } on Exception catch (e) {
       log(e.toString());
+      throw const MyAppException(
+          title: 'Something went wrong', message: 'Check RemoteDataSource');
     }
-     return AuthUserModel(
-        email: email,
-        name: firstName,
-      );
   }
-  
 }

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/features/profile/presentation/widgets/profile_option_button.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/star_icon.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -16,104 +17,279 @@ class ProfilePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(
               left: MyAppPadding.paddingTwo, right: MyAppPadding.paddingTwo),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50.h,
-              ),
-              //profile section begin
-              SizedBox(
-                child: Row(
-                  children: [
-                    Container(
-                      color: Colors.green,
-                      height: 200,
-                      width: MediaQuery.of(context).size.width / 2 -
-                          MyAppPadding.paddingTwo,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sugith K',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          SizedBox(height: 10.h),
-                          //star begin
-                          Container(
-                            width: 100.h,
-                            height: 25.h,
-                            decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                border: Border.all(
-                                  color: Colors.yellow,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                    MyAppPadding.borderRadius)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                StarIcon(),
-                                StarIcon(),
-                                StarIcon(),
-                                StarIcon(),
-                                StarIcon(),
-                              ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50.h,
+                ),
+                //profile section begin
+                SizedBox(
+                  child: Row(
+                    children: [
+                      Container(
+                        // color: Colors.green,
+                        height: 200,
+                        width: MediaQuery.of(context).size.width / 2 -
+                            MyAppPadding.paddingTwo,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Sugith K',
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
-                          )
-                          //star end
-                          ,
-                          SizedBox(height: 10.h),
-                          //location start
-                          Text(
-                            'Calicut, Kerala, India',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(
-                                  fontSize: 15.5.sp,
+                            SizedBox(height: 10.h),
+                            //star begin
+                            Container(
+                              height: 25.h,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  border: Border.all(
+                                    color: Colors.yellow,
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                      MyAppPadding.borderRadius)),
+                              child: IntrinsicWidth(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(width: 2.w),
+                                    StarIcon(),
+                                    StarIcon(),
+                                    StarIcon(),
+                                    StarIcon(),
+                                    StarIcon(),
+                                    SizedBox(width: 2.w),
+                                  ],
                                 ),
-                          ),
-                          //location end
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.amber,
-                      height: 200,
-                      width: MediaQuery.of(context).size.width / 2 -
-                          MyAppPadding.paddingTwo,
-                      child: Padding(
-                        padding: const EdgeInsets.all(00.0),
-                        child: Container(
-                          width: 25,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color.fromARGB(255, 80, 80, 80)
-                                    .withOpacity(0.2),
-                                spreadRadius: 5,
-                                blurRadius: 10,
-                                offset: const Offset(0, 3),
                               ),
-                            ],
-                            borderRadius: BorderRadius.circular(10),
-                          
-                          ),
-                          child: ClipRRect(
-                            child: Image.asset(MyAppImages.testProfile, fit: BoxFit.cover,),
-                          ),
+                            )
+                            //star end
+                            ,
+                            SizedBox(height: 10.h),
+                            //location start
+                            Text(
+                              'Calicut, Kerala, India',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge!
+                                  .copyWith(
+                                      fontSize: 15.5.sp, color: Colors.grey),
+                            ),
+                            //location end
+                          ],
                         ),
                       ),
+                      //Photo begin
+                      Container(
+                        // color: Colors.amber,
+                        height: 200,
+                        width: MediaQuery.of(context).size.width / 2 -
+                            MyAppPadding.paddingTwo,
+                        child: Padding(
+                          padding: const EdgeInsets.all(00.0),
+                          child: Container(
+                            width: 25,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(255, 80, 80, 80)
+                                      .withOpacity(0.2),
+                                  spreadRadius: 5,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child: Image.asset(
+                                MyAppImages.testProfile,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      //photo ends
+                      ,
+                    ],
+                  ),
+                ), // pofile section ends here
+                SizedBox(height: 20.h),
+
+                //about section
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "About",
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        "Hey there! I'm Sugith K, a 25-year-old Mobile App Developer from the bustling city of Mumbai. I’m all about bringing ideas to life through vibrant and meaningful designs. Creativity runs through my veins, and I'm committed to making every project a visual masterpiece.",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
+                              fontSize: 15.5.sp,
+                            ),
+                        // maxLines: 5,
+                        textAlign: TextAlign.justify,
+                      )
+                    ],
+                  ),
+                )
+                //about section ends here
+                ,
+                SizedBox(
+                  height: 20.h,
+                ),
+                const Row(
+                  children: [
+                    ProfileOptionButton(
+                      action: 'Edit Profile',
+                    ),
+                    Spacer(),
+                    ProfileOptionButton(
+                      action: 'Share Profile',
+                    ),
+                    Spacer(),
+                    ProfileOptionButton(
+                      action: 'Contact',
                     )
                   ],
+                )
+                //about section ends here
+                ,
+                SizedBox(
+                  height: 20.h,
                 ),
-              )
-            ],
+                const Divider(),
+                const SizedBox(
+                  height: 20,
+                )
+                //advertisement
+                ,
+                const ToggleButton(),
+                const SizedBox(
+                  height: 20,
+                ),
+
+                ListView.builder(
+                    shrinkWrap: true,
+                    //  physics: NeverScrollableScrollPhysics(),
+                    primary: false,
+                    itemCount: 5,
+                    itemBuilder: ((context, index) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.only(bottom: MyAppPadding.paddingTwo),
+                        child: PostedContent(
+                          service: 'Remote',
+                          title: 'Timeless beauty of moments captured',
+                          image: MyAppImages.testOne,
+                        ),
+                      );
+                    }))
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+class PostedContent extends StatelessWidget {
+  final String? image;
+  final String service;
+  final String title;
+  const PostedContent({
+    this.image,
+    required this.service,
+    required this.title,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 40, 40, 40),
+        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(MyAppPadding.borderRadius),
+        child: Column(children: [
+          SizedBox(
+            child: image != null
+                ? Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(MyAppPadding.borderRadius),
+                        child: Image.asset(
+                          image!,
+                          fit: BoxFit.fill,
+                          width: MediaQuery.of(context).size.width,
+                          height: 120.h,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  )
+                : const SizedBox.shrink(),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'Service Tyep: $service',
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+          const SizedBox(height: 15),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+          ), const SizedBox(height: 5),
+        ],),
+      ),
+    );
+  }
+}
+
+class ToggleButton extends StatelessWidget {
+  const ToggleButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Container(
+        height: 40,
+        width: 200,
+        color: Colors.yellowAccent,
+      ),
+    );
+  }
+}
+
+

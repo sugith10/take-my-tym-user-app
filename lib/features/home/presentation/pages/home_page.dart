@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/features/home/presentation/pages/nav_bar.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/posted_content_widget.dart';
@@ -36,11 +37,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
+          
           SliverAppBar(
             floating: true,
             automaticallyImplyLeading: false,
             leading: IconButton(
                 onPressed: () {}, icon: const Icon(Icons.density_medium)),
+
             actions: [
               LocationWidget(
                 function: () {},

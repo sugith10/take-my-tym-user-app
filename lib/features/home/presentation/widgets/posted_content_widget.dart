@@ -56,7 +56,7 @@ class PostedContent extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
           )
         ]),

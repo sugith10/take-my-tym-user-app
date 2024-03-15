@@ -50,15 +50,7 @@ class SignTextField extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.transparent),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide:
-                const BorderSide(color: Color.fromARGB(255, 22, 127, 19)),
-          ),
+       
           fillColor: Colors.grey.shade200,
           filled: true,
           hintText: hintText,

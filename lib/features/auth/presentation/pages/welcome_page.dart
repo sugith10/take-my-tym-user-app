@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/widgets/app_logo.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
-import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_button.dart';
 
@@ -23,15 +23,8 @@ class WelcomePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 40.h),
-                Text(
-                  "Where Time Meets Oppurtunity",
-                  style: TextStyle(fontSize: 17.sp),
-                ),
-                const SizedBox(height: 20),
-                const SVGImageWidget(
-                  asset: MyAppImages.onboarding,
-                  height: 40,
-                ),
+               const AppLogo(),
+              
                 const Spacer(),
                 Transform.scale(
                   scale: 1.5,
@@ -85,3 +78,4 @@ class WelcomePage extends StatelessWidget {
     );
   }
 }
+

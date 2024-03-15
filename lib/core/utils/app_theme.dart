@@ -115,11 +115,11 @@ final class MyAppDarkTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: _color.primaryText),
+        borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: _color.primaryText),
+        borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
       ),
     ),

@@ -61,9 +61,7 @@ class _SearchPageState extends State<SearchPage> {
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
-            const Center(
-              child: Text('Search'),
-            )
+           
           ],
         ),
       ),

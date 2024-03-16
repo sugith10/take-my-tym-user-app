@@ -148,16 +148,15 @@ class _SignInPageState extends State<SignInPage> {
                               if (_formKey.currentState!.validate()) {
                                 log(_emailController.text);
                                 log(_passwordController.text);
-
-                                submitCredentials();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            const NavigationMenu()));
+                                // submitCredentials();
                               } else {
                                 log("not validated");
                               }
-
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (_) => const NavigationMenu()));
                             },
                           ),
                           SizedBox(height: 50.h),

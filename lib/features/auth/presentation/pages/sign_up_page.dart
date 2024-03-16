@@ -12,7 +12,9 @@ import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_b
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
+import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -68,9 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(
-                user: state.userModel,
-              ),
+              builder: (context) => const NavigationMenu()
             ),
           );
         }
@@ -91,9 +91,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
                   children: [
                     SizedBox(height: 10.h),
-                    const Align(
+                   const Align(
                       alignment: Alignment.bottomLeft,
-                      child: SignBackButton(),
+                      child: WelcomeTextWidget(
+                        firstLine: 'Let\'s Sign You In',
+                        secondLine: 'Welcome back.',
+                        thirdLine: 'You\'ve been missed!',
+                      ),
                     ),
                     SizedBox(height: 25.h),
                     Form(
@@ -107,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   fadeInDelay: 800,
                                   fadeInDuration: 900,
                                   controller: _firstNameCntrl,
-                                  hintText: "Last Name",
+                                  hintText: "First Name",
                                   obsecureText: false,
                                   errorMsg: _errorMsg,
                                   keyboardType: TextInputType.name,

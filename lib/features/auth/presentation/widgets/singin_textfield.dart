@@ -39,29 +39,30 @@ class SignTextField extends StatelessWidget {
       delay: Duration(milliseconds: fadeInDelay),
       duration: Duration(milliseconds: fadeInDuration),
       child: TextFormField(
-        validator: validator,
-        controller: controller,
-        obscureText: obsecureText,
-        keyboardType: keyboardType,
-        focusNode: focusNode,
-        onTap: onTap,
-        textInputAction: TextInputAction.next,
-        onChanged: onChanged,
-        decoration: InputDecoration(
-          suffixIcon: suffixIcon,
-          prefixIcon: prefixIcon,
-       
-          fillColor: Colors.grey.shade200,
-          filled: true,
-          hintText: hintText,
-          hintStyle: TextStyle(
-            color: Colors.grey[500],
-            fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+        cursorColor: errorMsg != null ? Colors.red : Colors.black,
+          validator: validator,
+          controller: controller,
+          obscureText: obsecureText,
+          keyboardType: keyboardType,
+          focusNode: focusNode,
+          onTap: onTap,
+          textInputAction: TextInputAction.next,
+          onChanged: onChanged,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            hintText: hintText,
+            hintStyle: TextStyle(
+              color: Colors.grey[500],
+              fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+            ),
+            errorText: errorMsg,
+            errorStyle: Theme.of(context).textTheme.titleLarge,
+            
           ),
-          errorText: errorMsg,
-        ),
-        style: Theme.of(context).textTheme.headlineSmall
-      ),
+          style: Theme.of(context).textTheme.headlineSmall),
     );
   }
 }

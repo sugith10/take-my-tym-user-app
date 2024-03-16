@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
 import 'package:take_my_tym/features/oboarding/presentation/pages/onboarding_page/oboarding_page.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class SplashPage extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => OnboardingPage(),
+          builder: (_) => const WelcomePage(),
         ),
       );
     });

@@ -51,7 +51,19 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocListener(
       bloc: _bloc,
       listener: (context, state) {
-        if (state is LoadingState) {}
+        if (state is LoadingState) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
+              );
+            },
+          );
+        }
         if (state is SignUpSuccessState) {
           Navigator.push(
             context,
@@ -61,6 +73,9 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
           );
+        }
+        if (state is ErrorState) {
+          Navigator.pop(context);
         }
       },
       child: BlocBuilder<SignUpBloc, SignUpState>(
@@ -149,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
-                             fadeInDelay: 650,
+                            fadeInDelay: 650,
                             fadeInDuration: 750,
                             controller: _passwordCntrl,
                             hintText: "Password",
@@ -169,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
-                              fadeInDelay: 625,
+                            fadeInDelay: 625,
                             fadeInDuration: 725,
                             controller: _confirmPasswordCntrl,
                             hintText: "Confirm Password",
@@ -257,6 +272,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void submitCredentials() {
     log("submited data to bloc");
+
     _bloc.add(CreateUser(
       firstName: _firstNameCntrl.text,
       lastName: _lastNameCntrl.text,

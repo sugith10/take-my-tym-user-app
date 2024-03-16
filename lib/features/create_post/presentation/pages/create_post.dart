@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/features/bottom_navigation/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
 
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});

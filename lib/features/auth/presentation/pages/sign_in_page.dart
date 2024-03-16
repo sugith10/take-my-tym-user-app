@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/sign_button.dart';
+import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
@@ -12,7 +13,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_b
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
-import 'package:take_my_tym/features/bottom_navigation/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -47,17 +48,27 @@ class _SignInPageState extends State<SignInPage> {
       bloc: _bloc,
       listener: (context, state) {
         if (state is LoadingState) {
-          print("succes");
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
+              );
+            },
+          );
         }
         if (state is SignInSuccessState) {
+          log('succes');
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(
-                user: state.userModel,
-              ),
-            ),
+            MaterialPageRoute(builder: (context) => const NavigationMenu()),
           );
+        }
+        if (state is ErrorState) {
+          Navigator.pop(context);
         }
       },
       child: BlocBuilder<SignInBloc, SignInState>(
@@ -105,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           SizedBox(height: 20.h),
                           SignTextField(
-                             fadeInDelay: 650,
+                            fadeInDelay: 650,
                             fadeInDuration: 750,
                             controller: _passwordController,
                             hintText: "Password",
@@ -134,24 +145,19 @@ class _SignInPageState extends State<SignInPage> {
                           SignButtonWidget(
                             title: 'Log In',
                             function: () {
-                              // if (_formKey.currentState!.validate()) {
-                              //   log(_emailController.text);
-                              //   log(_passwordController.text);
+                              if (_formKey.currentState!.validate()) {
+                                log(_emailController.text);
+                                log(_passwordController.text);
 
-                              //   submitCredentials();
-                              // } else {
-                              //   log("not validated");
-                              // }
+                                submitCredentials();
+                              } else {
+                                log("not validated");
+                              }
+
                               // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => const HomePage(user:  AuthUserModel(email: 'sugith')),
-                              //   ),
-                              // );
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => const NavigationMenu()));
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (_) => const NavigationMenu()));
                             },
                           ),
                           SizedBox(height: 50.h),
@@ -190,7 +196,10 @@ class _SignInPageState extends State<SignInPage> {
 
   void submitCredentials() {
     log("submited data to bloc");
+
     _bloc.add(AuthSignInEvent(
-        email: _emailController.text, password: _passwordController.text));
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
   }
 }

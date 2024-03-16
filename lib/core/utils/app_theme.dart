@@ -122,9 +122,19 @@ final class MyAppDarkTheme {
         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
       ),
+      errorBorder: OutlineInputBorder(
+         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+      ),
+      focusedErrorBorder: OutlineInputBorder( 
+         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+
+      )
     ),
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
+    
   );
 }

@@ -11,7 +11,7 @@ class WelcomeUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Hi, $user...',
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Theme.of(context).textTheme.displayLarge,
     );
   }
 }

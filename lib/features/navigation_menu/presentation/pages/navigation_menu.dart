@@ -3,6 +3,7 @@ import 'package:take_my_tym/features/create_post/presentation/pages/create_post.
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/messages_page.dart';
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/drawer_navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,17 @@ class _NavigationMenuState extends State<NavigationMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: const Drawer(),
+      drawer: const DrawerNavBar(),
       body: SafeArea(child: screens[index]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
         onDestinationSelected: (value) {
           setState(() {
             if (value == 2) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreatePostPage()));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => const CreatePostPage()));
             }
             index = value;
           });

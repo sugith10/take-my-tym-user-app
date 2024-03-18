@@ -27,10 +27,7 @@ class WelcomeTextWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 900),
           child: Text(
             firstLine,
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w600,
-            ),
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
         SizedBox(height: 10.h),
@@ -39,10 +36,7 @@ class WelcomeTextWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 800),
           child: Text(
             secondLine,
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
         SizedBox(height: 10.h),
@@ -51,10 +45,7 @@ class WelcomeTextWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 700),
           child: Text(
             thirdLine,
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
       ],

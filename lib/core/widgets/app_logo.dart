@@ -13,7 +13,7 @@ class AppLogo extends StatelessWidget {
     return Column(children: [ 
         Text(
       "Where Time Meets Oppurtunity",
-      style: TextStyle(fontSize: 17.sp),
+      style: Theme.of(context).textTheme.titleSmall,
     ),
     const SizedBox(height: 20),
     const SVGImageWidget(

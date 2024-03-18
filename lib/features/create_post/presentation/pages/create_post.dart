@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
-import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
 class CreatePostPage extends StatefulWidget {
   const CreatePostPage({super.key});
@@ -50,7 +50,9 @@ class _CreatePostPageState extends State<CreatePostPage> {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-                right: MyAppPadding.paddingTwo, left: MyAppPadding.paddingTwo),
+              right: MyAppPadding.homePadding,
+              left: MyAppPadding.homePadding,
+            ),
             child: Column(
               children: [
                 Align(

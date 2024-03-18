@@ -29,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(MyAppPadding.padding),
+              padding: const EdgeInsets.all(MyAppPadding.homePadding),
               child: TextField(
                 keyboardType: TextInputType.text,
                 controller: _searchEditingController,

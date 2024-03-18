@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,13 +7,13 @@ import 'package:take_my_tym/core/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_button.dart';
+import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
-import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -87,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: MyAppPadding.padding, right: MyAppPadding.padding),
+                    left: MyAppPadding.authPadding, right: MyAppPadding.authPadding),
                 child: Column(
                   children: [
                     SizedBox(height: 10.h),
@@ -176,6 +175,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
+                            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -196,6 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
+                            suffixIcon:  IconButton(onPressed: (){}, icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -260,7 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             buttonText: 'Privacy Policy.',
                             function: () {},
                           ),
-                          SizedBox(height: 40.h),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),

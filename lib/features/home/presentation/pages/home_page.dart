@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
+import 'package:take_my_tym/features/home/presentation/widgets/posted_content_widget.dart';
 
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
@@ -59,8 +61,8 @@ class _HomePageState extends State<HomePage> {
               [
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: MyAppPadding.paddingTwo,
-                    right: MyAppPadding.paddingTwo,
+                    left: MyAppPadding.homePadding,
+                    right: MyAppPadding.homePadding,
                   ),
                   child: SizedBox(
                       child: Column(
@@ -102,21 +104,21 @@ class _HomePageState extends State<HomePage> {
                         title: "Look's Interesting",
                       ),
                       SizedBox(height: 20.h),
-                      // const PostedContent(
-                      //   service: 'Remote',
-                      //   title: 'Timeless beauty of moments captured',
-                      //   image: MyAppImages.testOne,
-                      // ),
+                      const PostedContent(
+                        service: 'Remote',
+                        title: 'Timeless beauty of moments captured',
+                        image: MyAppImages.testOne,
+                      ),
                       SizedBox(height: 30.h),
                       const CategoryTitleWidget(
                         title: "Latest Offerings",
                       ),
                       SizedBox(height: 20.h),
-                      // const PostedContent(
-                      //   service: 'Local',
-                      //   title: 'Timeless beauty of moments captured',
-                      //   image: MyAppImages.testOne,
-                      // ),
+                      const PostedContent(
+                        service: 'Local',
+                        title: 'Timeless beauty of moments captured',
+                        image: MyAppImages.testOne,
+                      ),
                     ],
                   )),
                 )

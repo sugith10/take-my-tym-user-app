@@ -20,7 +20,7 @@ class LocationWidget extends StatelessWidget {
         icon: Row(
           children: [
             const SizedBox(
-                child: CustomIcon(
+                child: CoustomImageIcon(
               image: MyAppImages.locationIcon,
               height: 28,
               width: 28,
@@ -32,10 +32,13 @@ class LocationWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Calicut",
-                      style: Theme.of(context).textTheme.titleLarge),
+                      style: Theme.of(context).textTheme.labelMedium),
                   Text(
                     "Kerala, Indaia",
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall!
+                        .copyWith(fontSize: 11.sp),
                   ),
                 ],
               ),

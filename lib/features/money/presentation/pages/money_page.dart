@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class MoneyPage extends StatelessWidget {
   const MoneyPage({super.key});
@@ -11,12 +12,13 @@ class MoneyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: MyAppPadding.paddingTwo,
+        padding: const EdgeInsets.only(left: MyAppPadding.homePadding,
         
-      right:   MyAppPadding.paddingTwo
+      right:   MyAppPadding.homePadding
         ),
         child: Column(
           children: [
+        
             const SizedBox(height: 20),
             Container(
               height: 200,
@@ -24,7 +26,7 @@ class MoneyPage extends StatelessWidget {
               decoration:const BoxDecoration(
                   color: Color(0xff184047),
                   borderRadius: BorderRadius.all(
-                      Radius.circular(MyAppPadding.borderRadius))),
+                      Radius.circular(MyAppRadius.borderRadius))),
               child: Column(
                 children: [
                   const SizedBox(height: 25),

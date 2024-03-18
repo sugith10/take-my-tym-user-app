@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
 
 final MyAppDarkColor _color = MyAppDarkColor();
 
@@ -24,60 +24,81 @@ final class MyAppDarkTheme {
       ),
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(
+      displayLarge: TextStyle(
         color: _color.primaryText,
-        fontSize: 28.sp,
         fontWeight: FontWeight.w600,
+        fontSize: 28.sp,
       ),
-      bodyMedium: TextStyle(
+      displayMedium: TextStyle(
         color: _color.primaryText,
-        fontSize: 22.sp,
+        fontWeight: FontWeight.w600,
+        letterSpacing: .5,
+        fontSize: 25.sp,
       ),
-      bodySmall: TextStyle(
+      displaySmall: TextStyle(
         color: _color.primaryText,
-        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        fontSize: 23.sp,
       ),
+
       headlineLarge: TextStyle(
         color: _color.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 19.sp,
+        fontSize: 22.sp,
       ),
       headlineMedium: TextStyle(
         color: _color.primaryText,
-        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        fontSize: 20.sp,
       ),
       //LoginPage TextField
       headlineSmall: TextStyle(
-        color: _color.background,
-        fontWeight: FontWeight.w500,
-        fontSize: 16.sp,
-      ),
-      //PostedContents
-      labelLarge: TextStyle(
         color: _color.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 16.sp,
+        fontSize: 19.sp,
+        
       ),
-      labelMedium: TextStyle(
-        color: _color.secondaryText,
-        fontSize: 14.sp,
-      ),
-      labelSmall: TextStyle(
-        color: _color.secondaryText,
-        decorationColor: _color.secondaryText,
-        fontSize: 12.sp,
-      ),
+
       titleLarge: TextStyle(
         color: _color.primaryText,
-        fontSize: 12.sp,
+        fontSize: 18.sp,
+        
       ),
       titleMedium: TextStyle(
         color: _color.primaryText,
-        fontSize: 11.sp,
+        fontSize: 17.sp,
       ),
       titleSmall: TextStyle(
         color: _color.primaryText,
-        fontSize: 10.sp,
+        fontSize: 16.sp,
+      ),
+
+      labelLarge: TextStyle(
+        color: _color.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 15.sp,
+      ),
+      labelMedium: TextStyle(
+        color: _color.primaryText,
+        fontSize: 14.sp,
+      ),
+      labelSmall: TextStyle(
+        color: _color.primaryText,
+        fontSize: 13.sp,
+      ),
+
+      bodyLarge: TextStyle(
+        color: _color.secondaryText,
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      bodyMedium: TextStyle(
+        color: _color.secondaryText,
+        fontSize: 14.sp,
+      ),
+      bodySmall: TextStyle(
+        color: _color.secondaryText,
+        fontSize: 13.sp,
       ),
     ),
     dividerTheme: DividerThemeData(color: _color.secondaryText),
@@ -116,24 +137,30 @@ final class MyAppDarkTheme {
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
       ),
       errorBorder: OutlineInputBorder(
-         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+        borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
       ),
-      focusedErrorBorder: OutlineInputBorder( 
-         borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
-
-      )
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+      ),
     ),
     iconTheme: IconThemeData(
-      color: Colors.white,
+      color: _color.iconColor,
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: _color.background,
+      surfaceTintColor: Colors.transparent,
+    ),
+    listTileTheme: ListTileThemeData(
+      iconColor: _color.iconColor,
     ),
     
   );

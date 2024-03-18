@@ -7,6 +7,7 @@ interface class AppColor {
   final Color buttonBackground;
   final Color buttonForground;
   final Color bottomNavigationBarBackground;
+  final Color iconColor;
   AppColor({
     required this.background,
     required this.primaryText,
@@ -14,10 +15,11 @@ interface class AppColor {
     required this.buttonBackground,
     required this.buttonForground,
     required this.bottomNavigationBarBackground,
+    required this.iconColor,
   });
 }
 
-class MyAppDarkColor extends AppColor {
+final class MyAppDarkColor extends AppColor {
   MyAppDarkColor()
       : super(
           background: const Color(0xFF121212),
@@ -26,5 +28,6 @@ class MyAppDarkColor extends AppColor {
           buttonBackground: const Color.fromRGBO(255, 255, 255, 1),
           buttonForground: const Color.fromRGBO(0, 0, 0, 1),
           bottomNavigationBarBackground: const Color.fromRGBO(35, 35, 35, 35),
+          iconColor: const Color.fromARGB(255, 255, 255, 255),
         );
 }

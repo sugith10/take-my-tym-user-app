@@ -45,7 +45,8 @@ flutter:
     - asset/img/auth/
     - asset/img/
     - asset/json/
-    - asset/img/test/           
+    - asset/img/test/    
+    - asset/img/icons/       
 
 
   fonts:

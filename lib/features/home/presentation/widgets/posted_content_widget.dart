@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class PostedContent extends StatelessWidget {
   final String? image;
@@ -20,10 +20,10 @@ class PostedContent extends StatelessWidget {
       width: 300,
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 40, 40, 40),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(MyAppPadding.borderRadius),
+        padding: const EdgeInsets.all(MyAppRadius.borderRadius),
         child: Column(children: [
           SizedBox(
             child: image != null
@@ -31,7 +31,7 @@ class PostedContent extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius:
-                            BorderRadius.circular(MyAppPadding.borderRadius),
+                            BorderRadius.circular(MyAppRadius.borderRadius),
                         child: Image.asset(
                           image!,
                           fit: BoxFit.fill,
@@ -48,7 +48,7 @@ class PostedContent extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Text(
               'Service Tyep: $service',
-              style: Theme.of(context).textTheme.labelSmall,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
           const SizedBox(height: 15),
@@ -56,7 +56,7 @@ class PostedContent extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.labelLarge,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           )
         ]),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+
+import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class ProfileOptionButton extends StatelessWidget {
   final String action;
@@ -13,7 +14,7 @@ class ProfileOptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius - 5),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 5),
         color: Colors.grey.withOpacity(0.3),
       ),
       child: Padding(

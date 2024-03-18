@@ -19,8 +19,8 @@ class NavigationText extends StatelessWidget {
       delay: const Duration(milliseconds: 800),
       duration: const Duration(milliseconds: 900),
       child: GestureDetector(
-        onTap: (){
-function();
+        onTap: () {
+          function();
         },
         child: RichText(
           text: TextSpan(
@@ -28,13 +28,11 @@ function();
             style: Theme.of(context).textTheme.labelSmall,
             children: [
               TextSpan(
-                text: buttonText,
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                    decoration: TextDecoration.underline,
-                    ),
-                    
-              )
+                  text: buttonText,
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        decorationColor: const Color.fromRGBO(255, 255, 255, 1),
+                        decoration: TextDecoration.underline,
+                      ))
             ],
           ),
         ),

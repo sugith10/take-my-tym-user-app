@@ -56,13 +56,16 @@ class SignTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: TextStyle(
               color: Colors.grey[500],
-              fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+              fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
             ),
             errorText: errorMsg,
-            errorStyle: Theme.of(context).textTheme.titleLarge,
+            errorStyle: Theme.of(context).textTheme.labelSmall,
             
           ),
-          style: Theme.of(context).textTheme.headlineSmall),
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),),
     );
   }
 }

@@ -9,11 +9,11 @@ import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/navigation_taxt_button.dart';
+import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
-import 'package:take_my_tym/features/navigation_menu/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -80,7 +80,9 @@ class _SignInPageState extends State<SignInPage> {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: MyAppPadding.padding, right: MyAppPadding.padding),
+                  left: MyAppPadding.authPadding,
+                  right: MyAppPadding.authPadding,
+                ),
                 child: Column(
                   children: [
                     const Align(
@@ -124,6 +126,8 @@ class _SignInPageState extends State<SignInPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
+                            suffixIcon:  IconButton(onPressed: (){}, icon: const 
+                            Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -145,18 +149,18 @@ class _SignInPageState extends State<SignInPage> {
                           SignButtonWidget(
                             title: 'Log In',
                             function: () {
-                              if (_formKey.currentState!.validate()) {
-                                log(_emailController.text);
-                                log(_passwordController.text);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            const NavigationMenu()));
-                                // submitCredentials();
-                              } else {
-                                log("not validated");
-                              }
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const NavigationMenu()));
+                              // if (_formKey.currentState!.validate()) {
+                              //   log(_emailController.text);
+                              //   log(_passwordController.text);
+
+                              //   // submitCredentials();
+                              // } else {
+                              //   log("not validated");
+                              // }
                             },
                           ),
                           SizedBox(height: 50.h),

@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/widgets/circle_profile_picture.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_option_button.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/star_icon.dart';
 
@@ -16,7 +18,9 @@ class ProfilePage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
-              left: MyAppPadding.paddingTwo, right: MyAppPadding.paddingTwo),
+            left: MyAppPadding.homePadding,
+            right: MyAppPadding.homePadding,
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -31,7 +35,7 @@ class ProfilePage extends StatelessWidget {
                         // color: Colors.green,
                         height: 200,
                         width: MediaQuery.of(context).size.width / 2 -
-                            MyAppPadding.paddingTwo,
+                            MyAppPadding.homePadding,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                                     color: Colors.yellow,
                                   ),
                                   borderRadius: BorderRadius.circular(
-                                      MyAppPadding.borderRadius)),
+                                      MyAppRadius.borderRadius)),
                               child: IntrinsicWidth(
                                 child: Row(
                                   mainAxisAlignment:
@@ -84,40 +88,9 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       //Photo begin
-                      Container(
-                        // color: Colors.amber,
-                        height: 200,
-                        width: MediaQuery.of(context).size.width / 2 -
-                            MyAppPadding.paddingTwo,
-                        child: Padding(
-                          padding: const EdgeInsets.all(00.0),
-                          child: Container(
-                            width: 25,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 80, 80, 80)
-                                      .withOpacity(0.2),
-                                  spreadRadius: 5,
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 3),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(200),
-                              child: Image.asset(
-                                MyAppImages.testProfile,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
+                     const CircleProfilePicture(height: 150,width: 150,image:  MyAppImages.testProfile,),
                       //photo ends
-                      ,
+                      
                     ],
                   ),
                 ), // pofile section ends here
@@ -194,7 +167,7 @@ class ProfilePage extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return const Padding(
                         padding:
-                            EdgeInsets.only(bottom: MyAppPadding.paddingTwo),
+                            EdgeInsets.only(bottom: MyAppPadding.homePadding),
                         child: PostedContent(
                           service: 'Remote',
                           title: 'Timeless beauty of moments captured',
@@ -225,50 +198,52 @@ class PostedContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 40, 40, 40),
-        borderRadius: BorderRadius.circular(MyAppPadding.borderRadius),
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(MyAppPadding.borderRadius),
-        child: Column(children: [
-          SizedBox(
-            child: image != null
-                ? Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(MyAppPadding.borderRadius),
-                        child: Image.asset(
-                          image!,
-                          fit: BoxFit.fill,
-                          width: MediaQuery.of(context).size.width,
-                          height: 120.h,
+        padding: const EdgeInsets.all(MyAppRadius.borderRadius),
+        child: Column(
+          children: [
+            SizedBox(
+              child: image != null
+                  ? Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(MyAppRadius.borderRadius),
+                          child: Image.asset(
+                            image!,
+                            fit: BoxFit.fill,
+                            width: MediaQuery.of(context).size.width,
+                            height: 120.h,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  )
-                : const SizedBox.shrink(),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              'Service Tyep: $service',
-              style: Theme.of(context).textTheme.labelSmall,
+                        const SizedBox(height: 20),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
             ),
-          ),
-          const SizedBox(height: 15),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.labelLarge,
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Service Tyep: $service',
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
             ),
-          ), const SizedBox(height: 5),
-        ],),
+            const SizedBox(height: 15),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+            ),
+            const SizedBox(height: 5),
+          ],
+        ),
       ),
     );
   }
@@ -291,5 +266,3 @@ class ToggleButton extends StatelessWidget {
     );
   }
 }
-
-

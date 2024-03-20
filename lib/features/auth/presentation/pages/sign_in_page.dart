@@ -64,7 +64,7 @@ class _SignInPageState extends State<SignInPage> {
           log('succes');
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NavigationMenu()),
+            MaterialPageRoute(builder: (context) => NavigationMenu()),
           );
         }
         if (state is ErrorState) {
@@ -152,7 +152,7 @@ class _SignInPageState extends State<SignInPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => const NavigationMenu()));
+                                      builder: (_) =>  NavigationMenu()));
                               // if (_formKey.currentState!.validate()) {
                               //   log(_emailController.text);
                               //   log(_passwordController.text);

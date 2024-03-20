@@ -21,18 +21,15 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return PopScope(
       canPop: false,
       onPopInvoked: (bool didPop) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const NavigationMenu()));
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (_) => const NavigationMenu()));
       },
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NavigationMenu()));
+              Navigator.pop(context);
             },
             icon: const Icon(IconlyLight.arrow_left),
           ),

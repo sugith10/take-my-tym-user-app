@@ -10,7 +10,7 @@ class MyAppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Take My Tym",
-      home: const NavigationMenu(),
+      home: NavigationMenu(),
       darkTheme: MyAppDarkTheme().darkTheme,
       debugShowCheckedModeBanner: false,
     );

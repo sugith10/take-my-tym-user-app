@@ -14,62 +14,70 @@ class WalletCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height:150.h,
-      width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-          color: Color(0xff184047),
-          borderRadius: BorderRadius.all(
-              Radius.circular(MyAppRadius.borderRadius))),
-      child: Column(
-        children: [
-          const Spacer(),
-          Text(
-            'Main Balance',
-            style: Theme.of(context).textTheme.labelSmall,
-          ),
-          const SizedBox(height: 5),
-          Text(
-            '₹${balance.toString()}',
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TransactionButton(
-                icon: IconlyLight.arrow_up,
-                title: 'Top up',
-                function: () {
-                  log('Top up');
-                },
-              ),
-              SizedBox(
-                height: 20.h,
-                child: const VerticalDivider(),
-              ),
-              TransactionButton(
-                icon: IconlyLight.arrow_down,
-                title: 'Withdraw',
-                function: () {
-                  log('Withdraw');
-                },
-              ),
-              SizedBox(
-                height: 20.h,
-                child: const VerticalDivider(),
-              ),
-              TransactionButton(
-                icon: IconlyLight.swap,
-                title: 'Transfer',
-                function: () {
-                  log('transfer');
-                },
-              )
-            ],
-          ),
-          const Spacer()
-        ],
+    return ConstrainedBox(
+      constraints:  BoxConstraints(
+        minWidth: 300.h,
+        maxWidth: 600.h,
+        // minHeight: 150.h,
+        // maxHeight: 300.h,
+      ),
+      child: Container(
+        height: 150.h,
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
+            color: Color(0xff184047),
+            borderRadius:
+                BorderRadius.all(Radius.circular(MyAppRadius.borderRadius))),
+        child: Column(
+          children: [
+            const Spacer(),
+            Text(
+              'Main Balance',
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+            const SizedBox(height: 5),
+            Text(
+              '₹${balance.toString()}',
+              style: Theme.of(context).textTheme.displayLarge,
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TransactionButton(
+                  icon: IconlyLight.arrow_up,
+                  title: 'Top up',
+                  function: () {
+                    log('Top up');
+                  },
+                ),
+                SizedBox(
+                  height: 20.h,
+                  child: const VerticalDivider(),
+                ),
+                TransactionButton(
+                  icon: IconlyLight.arrow_down,
+                  title: 'Withdraw',
+                  function: () {
+                    log('Withdraw');
+                  },
+                ),
+                SizedBox(
+                  height: 20.h,
+                  child: const VerticalDivider(),
+                ),
+                TransactionButton(
+                  icon: IconlyLight.swap,
+                  title: 'Transfer',
+                  function: () {
+                    log('transfer');
+                  },
+                )
+              ],
+            ),
+            const Spacer()
+          ],
+        ),
       ),
     );
   }

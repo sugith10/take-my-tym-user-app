@@ -1,7 +1,5 @@
-import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
@@ -32,19 +30,27 @@ class MoneyPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
-                  itemCount: 25,
-                  itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: TransactionWidget(
-                        name: 'Fletcher',
-                        image: MyAppImages.testProfile,
-                        time: '15 Dec, 5:00 PM',
-                        amount: '15,000',
-                      ),
-                    );
-                  }),
+              child: ConstrainedBox(
+                constraints: BoxConstraints( 
+                  
+          minWidth: 400.h,
+        maxWidth: 800.h,
+    
+                ),
+                child: ListView.builder(
+                    itemCount: 25,
+                    itemBuilder: (context, index) {
+                      return const Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: TransactionWidget(
+                          name: 'Fletcher',
+                          image: MyAppImages.testProfile,
+                          time: '15 Dec, 5:00 PM',
+                          amount: '15,000',
+                        ),
+                      );
+                    }),
+              ),
             ),
           ],
         ),

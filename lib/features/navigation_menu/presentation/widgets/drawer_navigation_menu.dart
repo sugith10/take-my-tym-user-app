@@ -72,7 +72,7 @@ class DrawerNavBar extends StatelessWidget {
             Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '© 2024 DayProduction® v2.15',
+                '© 2024 DayProduction® v1.0.0',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),

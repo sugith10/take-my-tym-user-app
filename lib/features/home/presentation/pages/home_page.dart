@@ -6,18 +6,14 @@ import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/posted_content_widget.dart';
-
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
 import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
 
-
-
-
 class HomePage extends StatefulWidget {
   final AuthUserModel user;
- 
-  const HomePage({ required this.user, super.key});
+
+  const HomePage({required this.user, super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -56,6 +52,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(width: 10)
             ],
           ),
+       
           SliverList(
             delegate: SliverChildListDelegate(
               [
@@ -65,61 +62,63 @@ class _HomePageState extends State<HomePage> {
                     right: MyAppPadding.homePadding,
                   ),
                   child: SizedBox(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20.h),
-                      const WelcomeUser(
-                        user: 'Sugith',
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      SizedBox(
-                        child: Row(
-                          children: [
-                            //togle switch start
-                            // CustomToggle(onChanged: (value){},value: true,)
-                            Container(
-                              width: 150,
-                              height: 20,
-                              color: Colors.amber,
-                            ),
-                            //togle switch start
-                            SearchButton(
-                              function: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const SearchPage(),
-                                  ),
-                                );
-                              },
-                            )
-                          ],
+                      child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20.h),
+                        const WelcomeUser(
+                          user: 'Sugith',
                         ),
-                      ),
-                      SizedBox(height: 30.h),
-                      const CategoryTitleWidget(
-                        title: "Look's Interesting",
-                      ),
-                      SizedBox(height: 20.h),
-                      const PostedContent(
-                        service: 'Remote',
-                        title: 'Timeless beauty of moments captured',
-                        image: MyAppImages.testOne,
-                      ),
-                      SizedBox(height: 30.h),
-                      const CategoryTitleWidget(
-                        title: "Latest Offerings",
-                      ),
-                      SizedBox(height: 20.h),
-                      const PostedContent(
-                        service: 'Local',
-                        title: 'Timeless beauty of moments captured',
-                        image: MyAppImages.testOne,
-                      ),
-                    ],
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        SizedBox(
+                          child: Row(
+                            children: [
+                              //togle switch start
+                              // CustomToggle(onChanged: (value){},value: true,)
+                              Container(
+                                width: 150,
+                                height: 20,
+                                color: Colors.amber,
+                              ),
+                              //togle switch start
+                              SearchButton(
+                                function: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const SearchPage(),
+                                    ),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30.h),
+                        const CategoryTitleWidget(
+                          title: "Look's Interesting",
+                        ),
+                        SizedBox(height: 20.h),
+                        const PostedContent(
+                          service: 'Remote',
+                          title: 'Timeless beauty of moments captured',
+                          image: MyAppImages.testOne,
+                        ),
+                        SizedBox(height: 30.h),
+                        const CategoryTitleWidget(
+                          title: "Latest Offerings",
+                        ),
+                        SizedBox(height: 20.h),
+                        const PostedContent(
+                          service: 'Local',
+                          title: 'Timeless beauty of moments captured',
+                          image: MyAppImages.testOne,
+                        ),
+                      ],
+                    ),
                   )),
                 )
               ],
@@ -127,7 +126,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      //  bottomNavigationBar: ,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -20,7 +21,7 @@ class TransactionWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-        color: const Color.fromRGBO(255, 255, 255, 1).withOpacity(0.06),
+        color: MyAppDarkColor().secondaryBackground ,
       ),
       child: ListTile(
         leading: ClipRRect(

@@ -24,7 +24,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   final screen = [
-    const HomePage(user: AuthUserModel(email: 'shsh')),
+    const HomePage(),
     const MessagePage(),
     const CreatePostPage(),
     const MoneyPage(),
@@ -41,7 +41,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
       child: Scaffold(
         key: scaffoldKey,
         drawer: const DrawerNavBar(),
-        // body: SafeArea(child: screen[_index]),
         body: BlocBuilder<NavigationCubit, NavigationState>(
           builder: (context, state) {
             if (state.navbarItem == NavbarItem.home) {

@@ -5,6 +5,15 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/wallet_card/widgets/transaction_button.dart';
 
+ const LinearGradient _myGradient = LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: [
+    Color.fromARGB(255, 11, 30, 26),
+    Color.fromARGB(255, 27, 82, 60),
+  ],
+);
+
 class WalletCard extends StatelessWidget {
   final double balance;
   const WalletCard({
@@ -25,7 +34,7 @@ class WalletCard extends StatelessWidget {
         height: 150.h,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-            color: Color(0xff184047),
+            gradient: _myGradient,
             borderRadius:
                 BorderRadius.all(Radius.circular(MyAppRadius.borderRadius))),
         child: Column(

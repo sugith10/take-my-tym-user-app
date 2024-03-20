@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_padding.dart';
 
 class WelcomeUser extends StatelessWidget {
   final String user;
@@ -9,9 +10,12 @@ class WelcomeUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Hi, $user...',
-      style: Theme.of(context).textTheme.displayLarge,
+    return Padding(
+      padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
+      child: Text(
+        'Hi, $user...',
+        style: Theme.of(context).textTheme.displayLarge,
+      ),
     );
   }
 }

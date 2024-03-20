@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,13 +24,13 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 50.h,
+                  height: 20.h,
                 ),
                 //profile section begin
                 SizedBox(
                   child: Row(
                     children: [
-                      Container(
+                      SizedBox(
                         // color: Colors.green,
                         height: 200,
                         width: MediaQuery.of(context).size.width / 2 -
@@ -42,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             Text(
                               'Sugith K',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.displayMedium,
                             ),
                             SizedBox(height: 10.h),
                             //star begin
@@ -61,11 +60,15 @@ class ProfilePage extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     SizedBox(width: 2.w),
-                                    StarIcon(),
-                                    StarIcon(),
-                                    StarIcon(),
-                                    StarIcon(),
-                                    StarIcon(),
+                                    const StarIcon(
+                                      fill: true,
+                                    ),
+                                    const StarIcon(fill: true),
+                                    const StarIcon(fill: true),
+                                    const StarIcon(fill: true),
+                                    const StarIcon(
+                                      fill: false,
+                                    ),
                                     SizedBox(width: 2.w),
                                   ],
                                 ),
@@ -77,24 +80,23 @@ class ProfilePage extends StatelessWidget {
                             //location start
                             Text(
                               'Calicut, Kerala, India',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .copyWith(
-                                      fontSize: 15.5.sp, color: Colors.grey),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             //location end
                           ],
                         ),
                       ),
                       //Photo begin
-                     const CircleProfilePicture(height: 150,width: 150,image:  MyAppImages.testProfile,),
+                      const CircleProfilePicture(
+                        height: 150,
+                        width: 150,
+                        image: MyAppImages.testProfile,
+                      ),
                       //photo ends
-                      
                     ],
                   ),
                 ), // pofile section ends here
-                SizedBox(height: 20.h),
+                SizedBox(height: 10.h),
 
                 //about section
                 SizedBox(
@@ -104,19 +106,14 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Text(
                         "About",
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       SizedBox(
                         height: 10.h,
                       ),
                       Text(
                         "Hey there! I'm Sugith K, a 25-year-old Mobile App Developer from the bustling city of Mumbai. I’m all about bringing ideas to life through vibrant and meaningful designs. Creativity runs through my veins, and I'm committed to making every project a visual masterpiece.",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                              fontSize: 15.5.sp,
-                            ),
+                        style: Theme.of(context).textTheme.labelMedium,
                         // maxLines: 5,
                         textAlign: TextAlign.justify,
                       )

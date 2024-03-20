@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class SVGImageWidget extends StatelessWidget {
   final String asset;
   final double height;

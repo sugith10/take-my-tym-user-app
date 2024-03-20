@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -23,16 +22,15 @@ class ProfilePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: 20.h,
-                ),
                 //profile section begin
                 SizedBox(
+                  height: 200,
                   child: Row(
                     children: [
+                      const Spacer(),
                       SizedBox(
                         // color: Colors.green,
-                        height: 200,
+
                         width: MediaQuery.of(context).size.width / 2 -
                             MyAppPadding.homePadding,
                         child: Column(
@@ -87,17 +85,25 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       //Photo begin
-                      const CircleProfilePicture(
-                        height: 150,
-                        width: 150,
-                        image: MyAppImages.testProfile,
+                      const Spacer(),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 2.5,
+                            ),
+                            shape: BoxShape.circle),
+                        child: const CircleProfilePicture(
+                          height: 100,
+                          width: 100,
+                          image: MyAppImages.testProfile,
+                        ),
                       ),
+                      const Spacer(),
                       //photo ends
                     ],
                   ),
                 ), // pofile section ends here
-                SizedBox(height: 10.h),
-
                 //about section
                 SizedBox(
                   width: MediaQuery.of(context).size.width,

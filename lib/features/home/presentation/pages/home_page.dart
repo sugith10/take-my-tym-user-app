@@ -4,7 +4,7 @@ import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/posted_content_widget.dart';
+import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testTwo,
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Latest Offerings",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Local',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testTwo,
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testOne,
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testOne,
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testOne,
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testOne,
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Look's Interesting",
                 ),
                 SizedBox(height: 20.h),
-                const PostedContent(
+                const GenerateFeedWidget(
                   service: 'Remote',
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testOne,

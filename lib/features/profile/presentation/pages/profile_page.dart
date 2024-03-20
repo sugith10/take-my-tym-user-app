@@ -4,6 +4,7 @@ import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture.dart';
+import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_option_button.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/star_icon.dart';
 
@@ -163,21 +164,25 @@ class ProfilePage extends StatelessWidget {
                 ),
 
                 ListView.builder(
-                    shrinkWrap: true,
-                    //  physics: NeverScrollableScrollPhysics(),
-                    primary: false,
-                    itemCount: 5,
-                    itemBuilder: ((context, index) {
-                      return const Padding(
-                        padding:
-                            EdgeInsets.only(bottom: MyAppPadding.homePadding),
-                        child: PostedContent(
-                          service: 'Remote',
-                          title: 'Timeless beauty of moments captured',
-                          image: MyAppImages.testOne,
-                        ),
-                      );
-                    }))
+                  shrinkWrap: true,
+                  //  physics: NeverScrollableScrollPhysics(),
+                  primary: false,
+                  itemCount: 5,
+                  itemBuilder: ((context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: MyAppPadding.homePadding),
+                      child: PostedContentWidget(
+                        service: 'Remote',
+                        title: 'Timeless beauty of moments captured',
+                        image: MyAppImages.testOne,
+                        subtitle:
+                            'Timeless beauty of moments capturedTimeless beauty of moments capturedTimeless beauty of moments capturedTimeless beauty of moments captured',
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                    );
+                  }),
+                )
               ],
             ),
           ),
@@ -187,70 +192,6 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class PostedContent extends StatelessWidget {
-  final String? image;
-  final String service;
-  final String title;
-  const PostedContent({
-    this.image,
-    required this.service,
-    required this.title,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 40, 40, 40),
-        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(MyAppRadius.borderRadius),
-        child: Column(
-          children: [
-            SizedBox(
-              child: image != null
-                  ? Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(MyAppRadius.borderRadius),
-                          child: Image.asset(
-                            image!,
-                            fit: BoxFit.fill,
-                            width: MediaQuery.of(context).size.width,
-                            height: 120.h,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    )
-                  : const SizedBox.shrink(),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                'Service Tyep: $service',
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-            ),
-            const SizedBox(height: 15),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                title,
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-            ),
-            const SizedBox(height: 5),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class ToggleButton extends StatelessWidget {
   const ToggleButton({

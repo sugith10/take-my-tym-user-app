@@ -88,7 +88,7 @@ final class MyAppDarkTheme {
       bodyLarge: TextStyle(
         color: _color.secondaryText,
         fontSize: 14.sp,
-        fontWeight: FontWeight.w600,
+        // fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         color: _color.secondaryText,

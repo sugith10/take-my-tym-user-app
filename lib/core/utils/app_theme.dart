@@ -56,13 +56,11 @@ final class MyAppDarkTheme {
         color: _color.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 19.sp,
-        
       ),
 
       titleLarge: TextStyle(
         color: _color.primaryText,
         fontSize: 18.sp,
-        
       ),
       titleMedium: TextStyle(
         color: _color.primaryText,
@@ -89,16 +87,16 @@ final class MyAppDarkTheme {
 
       bodyLarge: TextStyle(
         color: _color.secondaryText,
-        fontSize: 15.sp,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         color: _color.secondaryText,
-        fontSize: 14.sp,
+        fontSize: 13.sp,
       ),
       bodySmall: TextStyle(
         color: _color.secondaryText,
-        fontSize: 13.sp,
+        fontSize: 12.sp,
       ),
     ),
     dividerTheme: DividerThemeData(color: _color.secondaryText),
@@ -162,6 +160,5 @@ final class MyAppDarkTheme {
     listTileTheme: ListTileThemeData(
       iconColor: _color.iconColor,
     ),
-    
   );
 }

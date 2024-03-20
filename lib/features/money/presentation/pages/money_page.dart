@@ -1,9 +1,13 @@
 import 'dart:developer';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
+import 'package:flutter/widgets.dart';
+import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/features/money/presentation/widgets/transaction_view_cntrl_widget.dart';
+import 'package:take_my_tym/features/money/presentation/widgets/transaction_widget.dart';
+import 'package:take_my_tym/features/money/presentation/widgets/wallet_card/wallet_card_widget.dart';
 
 class MoneyPage extends StatelessWidget {
   const MoneyPage({super.key});
@@ -12,114 +16,38 @@ class MoneyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: MyAppPadding.homePadding,
-        
-      right:   MyAppPadding.homePadding
-        ),
+        padding: const EdgeInsets.only(
+            left: MyAppPadding.homePadding, right: MyAppPadding.homePadding),
         child: Column(
           children: [
-        
             const SizedBox(height: 20),
-            Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              decoration:const BoxDecoration(
-                  color: Color(0xff184047),
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(MyAppRadius.borderRadius))),
-              child: Column(
-                children: [
-                  const SizedBox(height: 25),
-                  Text(
-                    'Main Balance',
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    '14,235.35',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TransactionButton(
-                        icon: IconlyLight.arrow_up,
-                        title: 'Top up',
-                        function: () {
-                          log('Top up');
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                        child: const VerticalDivider(),
-                      ),
-                      TransactionButton(
-                        icon: IconlyLight.arrow_down,
-                        title: 'Withdraw',
-                        function: () {
-                          log('Withdraw');
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                        child: const VerticalDivider(),
-                      ),
-                      TransactionButton(
-                        icon: IconlyLight.swap,
-                        title: 'Transfer',
-                        function: () {
-                          log('transfer');
-                        },
-                      )
-                    ],
-                  ),
-                  const Spacer()
-                ],
-              ),
+            const WalletCard(
+              balance: 14235.34,
             ),
             const SizedBox(height: 20),
             const Divider(),
             const SizedBox(height: 20),
-            Row( children: [ 
-              Text('Last Transactions', 
-              style: Theme.of(context).textTheme.titleLarge,),
-              const Spacer(),
-              Text('View all' ,style:  Theme.of(context).textTheme.titleLarge)
-            ],)
+            TransactionViewCntrlWidget(
+              function: () {},
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 25,
+                  itemBuilder: (context, index) {
+                    return const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: TransactionWidget(
+                        name: 'Fletcher',
+                        image: MyAppImages.testProfile,
+                        time: '15 Dec, 5:00 PM',
+                        amount: '15,000',
+                      ),
+                    );
+                  }),
+            ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class TransactionButton extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Function function;
-  const TransactionButton({
-    required this.icon,
-    required this.title,
-    required this.function,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        function();
-      },
-      child: Column(
-        children: [
-          Icon(icon),
-          SizedBox(height: 5),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge,
-          )
-        ],
       ),
     );
   }

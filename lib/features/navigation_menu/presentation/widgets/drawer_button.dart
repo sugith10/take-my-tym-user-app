@@ -24,7 +24,7 @@ class DrawerCustomButton extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );

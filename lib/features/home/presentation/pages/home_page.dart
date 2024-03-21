@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
               LocationWidget(
                 function: () {},
               ),
-              // const SizedBox(width: 5)
             ],
           ),
           SliverList(

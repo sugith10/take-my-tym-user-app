@@ -5,6 +5,8 @@ import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
+import 'package:take_my_tym/features/message/presentation/widgets/chat_divider.dart';
+import 'package:take_my_tym/features/message/presentation/widgets/chat_tile_widget.dart';
 
 class MessagePage extends StatefulWidget {
   const MessagePage({super.key});
@@ -32,51 +34,18 @@ class _MessagePageState extends State<MessagePage> {
             delegate: SliverChildListDelegate(
               addAutomaticKeepAlives: true,
               [
-                ListTile(
-                  leading: const CircleProfilePicWidget(
-                    height: 50,
-                    width: 50,
-                    image: MyAppImages.testProfile,
-                  ),
-                  title: Text(
-                    'Sugith',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  subtitle: Text(
-                    'hello sugith',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  trailing: Text(
-                    '12:24 pm',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
+               const ChatTileWidget(
+                  personName: 'Sugith',
+                  lastMessage: 'hello world!',
+                  lastMsgTime: '12:24 pm',
                 ),
-               const Padding(
-                  padding: EdgeInsets.only(
-                    left: MyAppPadding.homePadding,
-                    right: MyAppPadding.homePadding,
-                  ),
-                  child: Divider(),
+                const ChatDivider(),
+                 const ChatTileWidget(
+                  personName: 'Sugith',
+                  lastMessage: 'hello world!',
+                  lastMsgTime: '12:24 pm',
                 ),
-                ListTile(
-                  leading: const CircleProfilePicWidget(
-                    height: 50,
-                    width: 50,
-                    image: MyAppImages.testProfile,
-                  ),
-                  title: Text(
-                    'Sugith',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  subtitle: Text(
-                    'hello sugith',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  trailing: Text(
-                    '12:24 pm',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ),
+                const ChatDivider(),
               ],
             ),
           )

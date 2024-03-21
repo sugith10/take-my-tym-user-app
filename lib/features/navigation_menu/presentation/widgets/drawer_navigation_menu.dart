@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture.dart';
+import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer_button.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/profile_widget.dart';
 

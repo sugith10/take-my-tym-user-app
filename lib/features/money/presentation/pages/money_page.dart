@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/widgets/app_bar_title.dart';
+import 'package:take_my_tym/core/widgets/settings_button.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/transaction_view_cntrl_widget.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/transaction_widget.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/wallet_card/wallet_card_widget.dart';
@@ -12,12 +14,22 @@ class MoneyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const AppBarTitle(
+          title: 'Money',
+        ),
+        actions: [
+          SettingsButton(
+            callback: () {},
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.only(
             left: MyAppPadding.homePadding, right: MyAppPadding.homePadding),
         child: Column(
           children: [
-            const SizedBox(height: 20),
             const WalletCard(
               balance: 14235.34,
             ),
@@ -30,11 +42,9 @@ class MoneyPage extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: ConstrainedBox(
-                constraints: BoxConstraints( 
-                  
-          minWidth: 400.h,
-        maxWidth: 800.h,
-    
+                constraints: BoxConstraints(
+                  minWidth: 400.h,
+                  maxWidth: 800.h,
                 ),
                 child: ListView.builder(
                     itemCount: 25,

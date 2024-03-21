@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture.dart';
+import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String name;
@@ -21,7 +18,7 @@ class ProfileWidget extends StatelessWidget {
       child: SizedBox(
         child: Row(
           children: [
-            CircleProfilePicture(
+            CircleProfilePicWidget(
               height: 80,
               width: 80,
               image: picture,

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture.dart';
+import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_option_button.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/star_icon.dart';
@@ -94,7 +94,7 @@ class ProfilePage extends StatelessWidget {
                               width: 2.5,
                             ),
                             shape: BoxShape.circle),
-                        child: const CircleProfilePicture(
+                        child: const CircleProfilePicWidget(
                           height: 100,
                           width: 100,
                           image: MyAppImages.testProfile,

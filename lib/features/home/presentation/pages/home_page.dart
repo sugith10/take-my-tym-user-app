@@ -6,7 +6,7 @@ import 'package:take_my_tym/features/home/presentation/widgets/category_title_wi
 import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/switch_category_widget.dart';
+import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
 import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
 
@@ -55,10 +55,8 @@ class _HomePageState extends State<HomePage> {
                         const EdgeInsets.only(left: MyAppPadding.homePadding),
                     child: Row(
                       children: [
-                        //togle switch start
-                        // CustomToggle(onChanged: (value){},value: true,)
                         const SwitchCategoryWidget(),
-                        //togle switch start
+                        SizedBox(width: 5.w),
                         SearchButton(
                           function: () {
                             Navigator.push(

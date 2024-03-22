@@ -15,65 +15,49 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: MyAppPadding.homePadding,
-          right: MyAppPadding.homePadding,
-        ),
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              floating: true,
-              automaticallyImplyLeading: false,
-              title: const AppBarTitle(title: 'My Tym'),
-              actions: [SettingsButton(callback: () {})],
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                const ProfileCard(),
-                const AboutWidget(),
-                SizedBox(
-                  height: 20.h,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            automaticallyImplyLeading: false,
+            title: const AppBarTitle(title: 'My Tym'),
+            actions: [SettingsButton(callback: () {})],
+          ),
+          //  left: MyAppPadding.homePadding,
+          // right: MyAppPadding.homePadding,
+          SliverList(
+            delegate: SliverChildListDelegate(
+              
+              [
+              const ProfileCard(),
+              const AboutWidget(),
+              SizedBox(
+                height: 20.h,
+              ),
+              const ProfileOptionsWidget(),
+              SizedBox(
+                height: 20.h,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 20,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: MyAppPadding.homePadding,
+                  right: MyAppPadding.homePadding,
                 ),
-                const ProfileOptionsWidget(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: MyAppPadding.homePadding,
-                    right: MyAppPadding.homePadding,
-                  ),
-                  child: SwitchCategoryWidget(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const MyPosts()
-              ]),
-            ),
-          ],
-        ),
+                child: SwitchCategoryWidget(),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const MyPosts()
+            ]),
+          ),
+        ],
       ),
     );
   }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [],
-      ),
-    );
-  }
-}

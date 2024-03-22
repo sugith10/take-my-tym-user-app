@@ -18,6 +18,11 @@ dependencies:
   get_it: ^7.6.7
   flutter_bloc: ^8.1.4
   equatable: ^2.0.5
+
+  image_picker: ^1.0.7
+  permission_handler:
+  emoji_picker_flutter: ^2.1.1
+  back_button_interceptor: ^5.0.2
   
   firebase_auth: ^4.17.8
   firebase_core: ^2.26.0
@@ -28,6 +33,7 @@ dependencies:
   iconly: ^1.0.1
   lottie: ^3.1.0
   animated_toggle_switch: ^0.8.2
+
   
 
 dev_dependencies:
@@ -45,7 +51,7 @@ flutter:
     - asset/img/
     - asset/json/
     - asset/img/test/    
-    - asset/img/icons/       
+    - asset/img/icons/     
 
 
   fonts:

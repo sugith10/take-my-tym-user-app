@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 class SearchButton extends StatelessWidget {
-  final Function function;
+  final VoidCallback function;
   const SearchButton({
     required this.function,
     super.key,

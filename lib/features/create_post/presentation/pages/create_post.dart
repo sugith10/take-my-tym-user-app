@@ -1,11 +1,10 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_page_action_button.dart';
@@ -42,12 +41,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(IconlyLight.arrow_left),
-        ),
+        leading: const BackNavigationButton(),
         actions: [
           ActionButton(
             voidCallback: () {},
@@ -134,6 +128,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 const SizedBox(width: 10),
                 const Spacer(),
                 const SwitchCategoryWidget(),
+               
               ],
             ),
           ),

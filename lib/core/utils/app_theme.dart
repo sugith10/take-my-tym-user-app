@@ -70,10 +70,9 @@ final class MyAppDarkTheme {
         color: _color.primaryText,
         fontSize: 16.sp,
       ),
-
       labelLarge: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w500,
+        // fontWeight: FontWeight.w500,
         fontSize: 15.sp,
       ),
       labelMedium: TextStyle(

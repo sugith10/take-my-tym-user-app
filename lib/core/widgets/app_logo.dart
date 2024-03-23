@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
 

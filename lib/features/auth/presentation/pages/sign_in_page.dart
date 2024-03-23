@@ -37,8 +37,10 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
-    _emailController;
-    _passwordController;
+    _formKey;
+    _emailController.dispose();
+    _passwordController.dispose();
+    _bloc;
     super.dispose();
   }
 

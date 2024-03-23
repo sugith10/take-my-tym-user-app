@@ -9,6 +9,9 @@ interface class AppColor {
   final Color buttonForground;
   final Color bottomNavigationBarBackground;
   final Color iconColor;
+  final Color gradientPrimary;
+  final Color gradientSecondary;
+  final Color boxShadow;
   AppColor({
     required this.background,
     required this.secondaryBackground,
@@ -18,6 +21,9 @@ interface class AppColor {
     required this.buttonForground,
     required this.bottomNavigationBarBackground,
     required this.iconColor,
+    required this.gradientPrimary,
+    required this.gradientSecondary,
+    required this.boxShadow,
   });
 }
 
@@ -32,5 +38,8 @@ final class MyAppDarkColor extends AppColor {
           buttonForground: const Color.fromRGBO(0, 0, 0, 1),
           bottomNavigationBarBackground: const Color.fromRGBO(35, 35, 35, 35),
           iconColor: const Color.fromARGB(255, 255, 255, 255),
+          gradientPrimary: const Color.fromRGBO(78, 78, 78, 1),
+          gradientSecondary: const Color.fromRGBO(0, 0, 0, 1),
+          boxShadow: const Color.fromARGB(66, 255, 255, 255)
         );
 }

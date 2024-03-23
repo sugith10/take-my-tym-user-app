@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:take_my_tym/core/utils/my_app_exception.dart';
+import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

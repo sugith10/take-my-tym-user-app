@@ -1,5 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class SwitchCategoryWidget extends StatefulWidget {
   const SwitchCategoryWidget({
@@ -15,34 +16,35 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
   int? nullableValue;
   bool positive = false;
   bool loading = false;
+  final MyAppDarkColor _myAppDarkColor = MyAppDarkColor();
 
   @override
   Widget build(BuildContext context) {
     return AnimatedToggleSwitch<bool>.dual(
       customStyleBuilder: (context, local, global) {
-        return const ToggleStyle(
+        return ToggleStyle(
           borderColor: Colors.transparent,
           backgroundGradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 78, 78, 78),
-              Color.fromRGBO(0, 0, 0, 1),
+              _myAppDarkColor.gradientPrimary,
+              _myAppDarkColor.gradientSecondary,
             ],
           ),
-          indicatorColor: Color.fromRGBO(255, 255, 255, 1),
+          indicatorColor: const Color.fromRGBO(255, 255, 255, 1),
         );
       },
       current: positive,
       first: false,
       second: true,
       spacing: 50.0,
-      style: const ToggleStyle(
+      style: ToggleStyle(
         borderColor: Colors.transparent,
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(66, 255, 255, 255),
+            color: _myAppDarkColor.boxShadow,
             spreadRadius: 1,
             blurRadius: 1,
-            offset: Offset(0, 1.5),
+            offset: const Offset(0, 1.5),
           ),
         ],
       ),

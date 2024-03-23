@@ -39,11 +39,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
-    _firstNameCntrl;
-    _lastNameCntrl;
-    _emailCntrl;
-    _passwordCntrl;
-    _confirmPasswordCntrl;
+    _firstNameCntrl.dispose();
+    _lastNameCntrl.dispose();
+    _emailCntrl.dispose();
+    _passwordCntrl.dispose();
+    _confirmPasswordCntrl.dispose();
+    _bloc;
     super.dispose();
   }
 

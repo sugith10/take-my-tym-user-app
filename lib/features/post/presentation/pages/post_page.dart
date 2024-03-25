@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/chat_floating_action_button.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/post_category_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_description_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_owner_info_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_service_widget.dart';

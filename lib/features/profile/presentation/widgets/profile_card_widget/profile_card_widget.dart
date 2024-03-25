@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/rating_widget/rating_widget.dart';
+import 'package:take_my_tym/core/widgets/home_padding.dart';
+import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/profile_location_widget.dart';
+import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/rating_widget.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -12,59 +14,70 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //Section 1
-          SizedBox(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Sugith K',
-                  style: Theme.of(context).textTheme.displayMedium,
-                  overflow: TextOverflow.clip,
-                  maxLines: 2,
-                ),
-                SizedBox(height: 10.h),
+      height: 200,
+      child: HomePadding(
+        child: Row(
+          children: [
+            SizedBox(width: 15.h),
+            //Section 1 begin
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 const ProfileNameWidget(name:  'Sugith K'),
+                  SizedBox(height: 10.h),
 
-                const RatingWidget(
-                  firstStar: true,
-                  secondStar: true,
-                  thirdStar: true,
-                  fourthStar: true,
-                  fifthStar: true,
-                ),
-                SizedBox(height: 10.h),
-                //location start
-                Text(
-                  'Calicut, Kerala, India',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                //location end
-              ],
+                  const RatingWidget(
+                    firstStar: true,
+                    secondStar: true,
+                    thirdStar: true,
+                    fourthStar: true,
+                    fifthStar: true,
+                  ),
+                  SizedBox(height: 10.h),
+                  //location start
+
+                  const ProfileLocationWidget(
+                    location: 'Calicut, Kerala',
+                  ),
+                  //location end
+                ],
+              ),
             ),
-          ),
-
-          //Section 2
-
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2.5,
-                ),
-                shape: BoxShape.circle),
-            child: const CircleProfilePicWidget(
+            //Section 1 ends
+            const Spacer(),
+            //Section 2 begin
+            const CircleProfilePicWidget(
               height: 100,
               width: 100,
               image: MyAppImages.testProfile,
             ),
-          ),
-        ],
+
+            //Section 2 ends
+            SizedBox(width: 20.h),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class ProfileNameWidget extends StatelessWidget {
+  final String name;
+  const ProfileNameWidget({
+    required this.name,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+     name,
+      style: Theme.of(context).textTheme.displayMedium,
+      overflow: TextOverflow.fade,
+      maxLines: 2,
     );
   }
 }

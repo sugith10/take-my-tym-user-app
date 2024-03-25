@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/rating_widget/widgets/star_icon.dart';
 
 class RatingWidget extends StatelessWidget {
   final bool firstStar;
@@ -27,17 +26,17 @@ class RatingWidget extends StatelessWidget {
           border: Border.all(
             color: const Color.fromRGBO(255, 235, 59, 1),
           ),
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius)),
+          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),),
       child: IntrinsicWidth(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(width: 2.w),
-            StarIcon(fill: firstStar),
-            StarIcon(fill: secondStar),
-            StarIcon(fill: thirdStar),
-            StarIcon(fill: fourthStar),
-            StarIcon(fill: fifthStar),
+            _StarIcon(fill: firstStar),
+            _StarIcon(fill: secondStar),
+            _StarIcon(fill: thirdStar),
+            _StarIcon(fill: fourthStar),
+            _StarIcon(fill: fifthStar),
             SizedBox(width: 2.w),
           ],
         ),
@@ -46,3 +45,24 @@ class RatingWidget extends StatelessWidget {
   }
 }
 
+class _StarIcon extends StatelessWidget {
+  final bool fill;
+  const _StarIcon({
+    required this.fill,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return fill
+        ? Icon(
+            Icons.star_rate_rounded,
+            color: Colors.yellow,
+            size: 15.h,
+          )
+        : Icon(
+            Icons.star_border_rounded,
+            color: Colors.yellow,
+            size: 15.h,
+          );
+  }
+}

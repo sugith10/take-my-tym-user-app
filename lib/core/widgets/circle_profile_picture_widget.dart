@@ -14,15 +14,24 @@ class CircleProfilePicWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-      ),
-      child: ClipOval(
-        child: Image.asset(
-         image,
-          fit: BoxFit.cover,
+      decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white,
+                  width: 2.5,
+                ),
+                shape: BoxShape.circle,
+              ),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+        ),
+        child: ClipOval(
+          child: Image.asset(
+           image,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

@@ -18,32 +18,37 @@ class TransactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-        color: MyAppDarkColor().secondaryBackground ,
-      ),
-      child: ListTile(
-        leading: ClipRRect(
+    return GestureDetector(
+      onTap: (){
+        AlertDialog();
+      },
+      child: Container(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-          child: Image.asset(
-            image,
-            height: 50,
-            width: 50,
-            fit: BoxFit.cover,
+          color: MyAppDarkColor().secondaryBackground ,
+        ),
+        child: ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+            child: Image.asset(
+              image,
+              height: 50,
+              width: 50,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        title: Text(
-          name,
-          style: Theme.of(context).textTheme.labelLarge,
-        ),
-        subtitle: Text(
-          time,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        trailing: Text(
-          '₹$amount',
-          style: Theme.of(context).textTheme.titleLarge,
+          title: Text(
+            name,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          subtitle: Text(
+            time,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          trailing: Text(
+            '₹$amount',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
         ),
       ),
     );

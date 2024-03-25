@@ -4,16 +4,11 @@ import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_category_widget.dart';
 
-  List<String> _skillList = [
-    'Skills and Expertise',
-    'Skills and Expertise',
-    'Skills and Expertise',
-    'Skills and Expertise',
-    'Skills and Expertise',
-  ];
-class SkillsWidget extends StatelessWidget {
 
- const SkillsWidget({
+class SkillsWidget extends StatelessWidget {
+  final List<String> skillList;
+  const SkillsWidget({
+    required this.skillList,
     super.key,
   });
 
@@ -24,12 +19,14 @@ class SkillsWidget extends StatelessWidget {
       children: [
         const PostCategoryTitle(title: 'Skills and Expertise'),
         SizedBox(height: 15.h),
-        Wrap( 
+        Wrap(
           spacing: MyAppPadding.homePadding,
           runSpacing: MyAppPadding.homePadding,
-          children: List.generate(_skillList.length, (index) => const _SkillTypeWidget(skill: 'Skills and Expertise'),),
+          children: List.generate(
+            skillList.length,
+            (index) => const _SkillTypeWidget(skill: 'Skills and Expertise'),
+          ),
         ),
-        
       ],
     );
   }

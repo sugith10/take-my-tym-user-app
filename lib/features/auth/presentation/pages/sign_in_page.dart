@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/sign_button.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
@@ -128,8 +128,9 @@ class _SignInPageState extends State<SignInPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon:  IconButton(onPressed: (){}, icon: const 
-                            Icon(Icons.remove_red_eye)),
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -154,7 +155,7 @@ class _SignInPageState extends State<SignInPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) =>  NavigationMenu()));
+                                      builder: (_) => NavigationMenu()));
                               // if (_formKey.currentState!.validate()) {
                               //   log(_emailController.text);
                               //   log(_passwordController.text);
@@ -164,7 +165,7 @@ class _SignInPageState extends State<SignInPage> {
                               //   log("not validated");
                               // }
                             },
-                          ),
+                            ),
                           SizedBox(height: 50.h),
                           SocialAuthWidget(
                             function: () {

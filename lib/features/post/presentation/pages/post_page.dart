@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
@@ -7,6 +6,7 @@ import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/chat_floating_action_button.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_category_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_description_widget.dart';
@@ -15,6 +15,16 @@ import 'package:take_my_tym/features/post/presentation/widgets/post_service_widg
 import 'package:take_my_tym/features/post/presentation/widgets/post_specifications_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_title_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/skills_widget.dart';
+import 'package:take_my_tym/features/post/presentation/widgets/submit_button.dart';
+
+
+List<String> skillList = [
+  'Skills and Expertise',
+  'Skills and Expertise',
+  'Skills and Expertise',
+  'Skills and Expertise',
+  'Skills and Expertise',
+];
 
 class PostPage extends StatelessWidget {
   const PostPage({super.key});
@@ -41,8 +51,9 @@ class PostPage extends StatelessWidget {
                         const ServiceTypeWidget(type: "Remote"),
                         SizedBox(height: 15.h),
                         const PostTitleWidget(
-                            title:
-                                'Elevate Your Brand with Graphic Design Expertise'),
+                          title:
+                              'Elevate Your Brand with Graphic Design Expertise',
+                        ),
                         SizedBox(height: 20.h),
                         const PostOwnerInfoWidget(
                           name: 'Dilshad D',
@@ -60,7 +71,7 @@ class PostPage extends StatelessWidget {
                   SizedBox(height: 20.h),
                   const Divider(),
                   SizedBox(height: 20.h),
-                  const HomePadding(child: SkillsWidget()),
+                  HomePadding(child: SkillsWidget(skillList: skillList,)),
                   SizedBox(height: 20.h),
                   const Divider(),
                   SizedBox(height: 20.h),
@@ -82,7 +93,9 @@ class PostPage extends StatelessWidget {
       floatingActionButton: ChatFloatingActionButton(
         callBack: () {},
       ),
+      bottomNavigationBar: SubmitButton(
+        callback: () {},
+      ),
     );
   }
 }
-

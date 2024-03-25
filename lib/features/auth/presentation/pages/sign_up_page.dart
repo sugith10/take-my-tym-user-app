@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/sign_button.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
@@ -69,9 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (state is SignUpSuccessState) {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) =>  NavigationMenu()
-            ),
+            MaterialPageRoute(builder: (context) => NavigationMenu()),
           );
         }
         if (state is ErrorState) {
@@ -87,11 +85,12 @@ class _SignUpPageState extends State<SignUpPage> {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: MyAppPadding.authPadding, right: MyAppPadding.authPadding),
+                    left: MyAppPadding.authPadding,
+                    right: MyAppPadding.authPadding),
                 child: Column(
                   children: [
                     SizedBox(height: 10.h),
-                   const Align(
+                    const Align(
                       alignment: Alignment.bottomLeft,
                       child: WelcomeTextWidget(
                         firstLine: 'Let\'s Sign You In',
@@ -176,7 +175,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon: IconButton(onPressed: (){}, icon: const Icon(Icons.remove_red_eye)),
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -197,7 +198,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon:  IconButton(onPressed: (){}, icon: const Icon(Icons.remove_red_eye)),
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TransactionViewCntrlWidget extends StatelessWidget {
+class TransactionsViewSetupWidget extends StatelessWidget {
   final Function function;
-  const TransactionViewCntrlWidget({
+  const TransactionsViewSetupWidget({
     required this.function,
     super.key,
   });

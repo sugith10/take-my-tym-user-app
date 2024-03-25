@@ -71,7 +71,7 @@ class PostPage extends StatelessWidget {
                   const Divider(),
                   SizedBox(height: 20.h),
                   const HomePadding(
-                    child: PostSpecificationsWidget(
+                    child: PostConstraintsWidget(
                       location: "Kozhikode",
                       level: "Intermediate",
                       amount: 15000,

@@ -1,14 +1,17 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/features/money/presentation/widgets/transaction_dialog.dart';
 
-class TransactionWidget extends StatelessWidget {
+class TransactionTile extends StatelessWidget {
+  final String amount;
   final String name;
   final String time;
-  final String amount;
+
   final String image;
-  const TransactionWidget({
+  const TransactionTile({
     required this.name,
     required this.time,
     required this.amount,
@@ -19,13 +22,23 @@ class TransactionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        AlertDialog();
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return TransactionDialog(
+                amount: amount,
+                from: name,
+                image: image,
+                time: time,
+              );
+            });
+        log('GlassMorphism');
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-          color: MyAppDarkColor().secondaryBackground ,
+          color: MyAppDarkColor().secondaryBackground,
         ),
         child: ListTile(
           leading: ClipRRect(

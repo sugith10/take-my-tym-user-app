@@ -4,13 +4,13 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_category_widget.dart';
 
 
-class PostSpecificationsWidget extends StatefulWidget {
+class PostConstraintsWidget extends StatefulWidget {
   final String location;
   final String level;
   final double amount;
   final bool flexible;
 
-  const PostSpecificationsWidget({
+  const PostConstraintsWidget({
     required this.location,
     required this.level,
     required this.amount,
@@ -19,11 +19,11 @@ class PostSpecificationsWidget extends StatefulWidget {
   });
 
   @override
-  State<PostSpecificationsWidget> createState() =>
-      _PostSpecificationsWidgetState();
+  State<PostConstraintsWidget> createState() =>
+      _PostConstraintsWidgetState();
 }
 
-class _PostSpecificationsWidgetState extends State<PostSpecificationsWidget> {
+class _PostConstraintsWidgetState extends State<PostConstraintsWidget> {
   late String _flexible;
 
   @override

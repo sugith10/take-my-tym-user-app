@@ -71,6 +71,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 15.h),
+                
+                //Category One
                 const CategoryTitleWidget(
                   title: "Look's Interesting",
                 ),
@@ -81,6 +83,20 @@ class _HomePageState extends State<HomePage> {
                   image: MyAppImages.testTwo,
                 ),
                 SizedBox(height: 30.h),
+
+                //Category Two
+                const CategoryTitleWidget(
+                  title: "Look's Interesting",
+                ),
+                SizedBox(height: 20.h),
+                const GenerateFeedWidget(
+                  service: 'Remote',
+                  title: 'Timeless beauty of moments captured',
+                  image: MyAppImages.testTwo,
+                ),
+                SizedBox(height: 30.h),
+
+                //Category Three
                 const CategoryTitleWidget(
                   title: "Latest Offerings",
                 ),
@@ -91,50 +107,8 @@ class _HomePageState extends State<HomePage> {
                   image: MyAppImages.testTwo,
                 ),
                 SizedBox(height: 30.h),
-                const CategoryTitleWidget(
-                  title: "Look's Interesting",
-                ),
-                SizedBox(height: 20.h),
-                const GenerateFeedWidget(
-                  service: 'Remote',
-                  title: 'Timeless beauty of moments captured',
-                  image: MyAppImages.testOne,
-                ),
-                SizedBox(height: 30.h),
-                SizedBox(height: 30.h),
-                const CategoryTitleWidget(
-                  title: "Look's Interesting",
-                ),
-                SizedBox(height: 20.h),
-                const GenerateFeedWidget(
-                  service: 'Remote',
-                  title: 'Timeless beauty of moments captured',
-                  image: MyAppImages.testOne,
-                ),
-                SizedBox(height: 30.h),
-                SizedBox(height: 30.h),
-                const CategoryTitleWidget(
-                  title: "Look's Interesting",
-                ),
-                SizedBox(height: 20.h),
-                const GenerateFeedWidget(
-                  service: 'Remote',
-                  title: 'Timeless beauty of moments captured',
-                  image: MyAppImages.testOne,
-                ),
-                SizedBox(height: 30.h),
-                SizedBox(height: 30.h),
-                const CategoryTitleWidget(
-                  title: "Look's Interesting",
-                ),
-                SizedBox(height: 20.h),
-                const GenerateFeedWidget(
-                  service: 'Remote',
-                  title: 'Timeless beauty of moments captured',
-                  image: MyAppImages.testOne,
-                ),
-                SizedBox(height: 30.h),
-                SizedBox(height: 30.h),
+
+                //Category Four
                 const CategoryTitleWidget(
                   title: "Look's Interesting",
                 ),

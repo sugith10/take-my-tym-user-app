@@ -12,37 +12,45 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: MyAppPadding.authPadding,
-              right: MyAppPadding.authPadding,
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 40.h),
-                const AppLogo(),
-                const Spacer(),
-                const WelcomePageAnimation(),
-                const Spacer(),
-                SizedBox(height: 20.h),
-                SignButtonWidget(
-                  title: 'Login',
-                  function: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const SignInPage()));
-                  },
+        resizeToAvoidBottomInset: false,
+        body: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: MyAppPadding.authPadding,
+                  right: MyAppPadding.authPadding,
                 ),
-                const SizedBox(height: 30),
-                const TermsAndConditons(),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                child: Column(
+                  children: [
+                    SizedBox(height: 40.h),
+                    const AppLogo(),
+                    const Spacer(flex: 2),
+                    const WelcomePageAnimation(),
+                    const Spacer(
+                      flex: 2,
+                    ),
+                    SizedBox(height: 20.h),
+                    SignButtonWidget(
+                      title: 'Login',
+                      function: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => const SignInPage(),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 30),
+                    const TermsAndConditons(),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

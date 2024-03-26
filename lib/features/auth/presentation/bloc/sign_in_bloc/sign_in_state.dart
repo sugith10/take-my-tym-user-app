@@ -17,6 +17,6 @@ final class SignInSuccessState extends SignInState{
 }
 
 final class ErrorState extends SignInState{
-  final String title;
-  const ErrorState(this.title);
+  final String error;
+  const ErrorState(this.error);
 }

@@ -15,12 +15,12 @@ class CircleProfilePicWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2.5,
-                ),
-                shape: BoxShape.circle,
-              ),
+        border: Border.all(
+          color: Colors.white,
+          width: 2.5,
+        ),
+        shape: BoxShape.circle,
+      ),
       child: Container(
         width: width,
         height: height,
@@ -29,7 +29,7 @@ class CircleProfilePicWidget extends StatelessWidget {
         ),
         child: ClipOval(
           child: Image.asset(
-           image,
+            image,
             fit: BoxFit.cover,
           ),
         ),

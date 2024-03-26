@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 
 class SearchPage extends StatefulWidget {
@@ -34,6 +32,7 @@ class _SearchPageState extends State<SearchPage> {
                 keyboardType: TextInputType.text,
                 controller: _searchEditingController,
                 autofocus: true,
+                cursorColor: Colors.white,
                 decoration: InputDecoration(
                   suffixIcon: InkWell(
                     onTap: () {

@@ -14,22 +14,36 @@ class RemoteDataSource {
       if (e.code == 'user-not-found') {
         log('No user found for that email.');
         throw const MyAppException(
-            title: 'user-not-found', message: 'Check RemoteDataSource');
+          title: 'user-not-found',
+          message: 'Check RemoteDataSource',
+        );
       } else if (e.code == 'wrong-password') {
         log('Wrong password provided for that user.');
         throw const MyAppException(
-            title: 'wrong-password', message: 'Check RemoteDataSource');
-      } else {
-        log('excpetion occured');
-        log(e.toString());
+          title: 'wrong-password',
+          message: 'Check RemoteDataSource',
+        );
+      }else if (e.code == 'invalid-credential') {
         throw const MyAppException(
-            title: 'check firebase exception',
-            message: 'Check RemoteDataSource');
+          title: 'The supplied auth credential is incorrect, malformed or has expired',
+          message: 'malformed or has expired',
+        );
+      }
+      
+       else {
+        log(e.code);
+        log(e.toString());
+        throw MyAppException(
+          title: e.code,
+          message: 'Check RemoteDataSource',
+        );
       }
     } on Exception catch (e) {
       log(e.toString());
       throw const MyAppException(
-          title: 'Something went wrong', message: 'Check RemoteDataSource');
+        title: 'Something went wrong',
+        message: 'Check RemoteDataSource',
+      );
     }
   }
 
@@ -57,8 +71,8 @@ class RemoteDataSource {
         throw const MyAppException(
             title: 'user-not-found',
             message: 'The password provided is too weak.');
-      }else{
-          log('excpetion occured');
+      } else {
+        log('excpetion occured');
         log(e.toString());
         throw const MyAppException(
             title: 'check firebase exception',

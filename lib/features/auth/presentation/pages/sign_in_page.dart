@@ -1,8 +1,16 @@
 import 'dart:developer';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/widgets/snack_bar_content_widget.dart';
+import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
@@ -44,38 +52,51 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
+  void submitCredentials() {
+    log("submited data to bloc");
+    _bloc.add(AuthSignInEvent(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      bloc: _bloc,
-      listener: (context, state) {
-        if (state is LoadingState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                ),
-              );
-            },
-          );
-        }
-        if (state is SignInSuccessState) {
-          log('succes');
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NavigationMenu()),
-          );
-        }
-        if (state is ErrorState) {
-          Navigator.pop(context);
-        }
-      },
-      child: BlocBuilder<SignInBloc, SignInState>(
+    return BlocConsumer<SignInBloc, SignInState>(
         bloc: _bloc,
-        builder: (context, state) {
+        listener: (ctx, state) {
+          if (state is LoadingState) {
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (context) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                );
+              },
+            );
+          }
+          if (state is SignInSuccessState) {
+            log('succes');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NavigationMenu()),
+            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const NavigationMenu()),
+                (route) => false);
+          }
+          if (state is ErrorState) {
+            Navigator.pop(context);
+            print(state.error);
+            SnackBarMessenger()
+                .showSnackBar(context: context, msg: state.error);
+          }
+        },
+        builder: (ctx, state) {
           return Scaffold(
             body: SafeArea(
                 child: SingleChildScrollView(
@@ -152,24 +173,19 @@ class _SignInPageState extends State<SignInPage> {
                           SignButtonWidget(
                             title: 'Log In',
                             function: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => NavigationMenu()));
-                              // if (_formKey.currentState!.validate()) {
-                              //   log(_emailController.text);
-                              //   log(_passwordController.text);
-
-                              //   // submitCredentials();
-                              // } else {
-                              //   log("not validated");
-                              // }
+                              FocusScope.of(context).unfocus();
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                submitCredentials();
+                              } else {
+                                log("not validated");
+                              }
                             },
-                            ),
+                          ),
                           SizedBox(height: 50.h),
                           SocialAuthWidget(
                             function: () {
-                              log("social log");
+                              // log("social log");
                             },
                           ),
                           SizedBox(height: 40.h),
@@ -195,17 +211,6 @@ class _SignInPageState extends State<SignInPage> {
               ),
             )),
           );
-        },
-      ),
-    );
-  }
-
-  void submitCredentials() {
-    log("submited data to bloc");
-
-    _bloc.add(AuthSignInEvent(
-      email: _emailController.text,
-      password: _passwordController.text,
-    ));
+        });
   }
 }

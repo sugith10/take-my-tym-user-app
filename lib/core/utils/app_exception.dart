@@ -5,6 +5,6 @@ final class MyAppException implements Exception {
 
   @override
   String toString() {
-    return 'errror -> title: $title, message: $message';
+    return title;
   }
 }

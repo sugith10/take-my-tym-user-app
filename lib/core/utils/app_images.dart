@@ -11,6 +11,10 @@ final class MyAppImages{
   static const String profileIcon = 'asset/img/icons/user.png';
   static const String emojiIcon = 'asset/img/icons/happy-face.png';
   static const String galleryIcon = 'asset/img/icons/add-image.png';
+  // snackbar
+  static const String snackBarBubbles =  'asset/img/icons/bubbles.svg';
+  static const String snackBarClose = 'asset/img/icons/close.svg';
+  static const String snackBarFail = 'asset/img/icons/fail.svg';
   //test
   static const String testOne = 'asset/img/test/designers_1.png';
   static const String testTwo = "asset/img/test/shoot-portrait-photography-in-toronto (1).jpg";

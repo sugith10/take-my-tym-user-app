@@ -7,7 +7,8 @@ class AuthUserModel extends Equatable {
   final int? expiresIn;
   final String? id;
   final String? email;
-  final String? name;
+  final String? firstName;
+  final String? lastName;
   final String? picture;
 
   const AuthUserModel({
@@ -15,7 +16,8 @@ class AuthUserModel extends Equatable {
     this.expiresIn,
     this.id,
     this.email,
-    this.name,
+    this.firstName,
+    this.lastName,
     this.picture,
   });
 
@@ -25,13 +27,15 @@ class AuthUserModel extends Equatable {
       expiresIn: data['expiresIn'] as int?,
       id: data['id'] as String?,
       email: data['email'] as String?,
-      // name: data['']
+      firstName: data['firstName'] as String?,
+      lastName: data['lastName'] as String?,
+      picture: data['picture'] as String?,
     );
   }
 
   @override
   String toString() {
-    return "";
+    return "AuthUserModel -> $expiresIn $id $email $firstName $lastName $picture";
   }
 
   @override

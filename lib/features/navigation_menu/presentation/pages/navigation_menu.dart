@@ -1,13 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/create_post/presentation/pages/create_post.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/messages_page.dart';
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/cubit/navigation_cubit.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/utils/nav_bar_item.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer_navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
@@ -28,7 +25,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     const MessagePage(),
     const CreatePostPage(),
     const MoneyPage(),
-    const ProfilePage()
+    const ProfilePage(),
   ];
 
   int _index = 0;
@@ -37,29 +34,33 @@ class _NavigationMenuState extends State<NavigationMenu> {
   Widget build(BuildContext context) {
     log('build');
     return BlocProvider(
-      create: (context) => NavigationCubit(),
+      create: (context) => NavigationBloc(),
       child: Scaffold(
         key: scaffoldKey,
         drawer: const DrawerNavBar(),
-        body: BlocBuilder<NavigationCubit, NavigationState>(
+        body: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
-            if (state.navbarItem == NavbarItem.home) {
-              return SafeArea(child: screen[0]);
-            } else if (state.navbarItem == NavbarItem.message) {
-              return SafeArea(child: screen[1]);
-            } else if (state.navbarItem == NavbarItem.money) {
-              return SafeArea(child: screen[3]);
-            } else if (state.navbarItem == NavbarItem.profile) {
-              return SafeArea(child: screen[4]);
+            switch (state) {
+              case HomeState():
+                return SafeArea(child: screen[0]);
+              case MessageState():
+                return SafeArea(child: screen[1]);
+              case MoneyState():
+                return SafeArea(child: screen[3]);
+              case ProfileState():
+                return SafeArea(child: screen[4]);
+
+              default:
+                return SafeArea(child: screen[0]);
             }
-            return const SizedBox();
           },
         ),
-        bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
+        bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationState>(
             builder: (context, state) {
           return NavigationBar(
-            selectedIndex: state.index,
+            selectedIndex: _index,
             onDestinationSelected: (value) {
+              final navigationBloc = BlocProvider.of<NavigationBloc>(context);
               if (value == 2) {
                 Navigator.push(
                     context,
@@ -68,24 +69,18 @@ class _NavigationMenuState extends State<NavigationMenu> {
               }
               if (value == 0) {
                 _index = value;
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.home);
+                navigationBloc.add(HomePageNavigation());
               } else if (value == 1) {
                 _index = value;
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.message);
+                navigationBloc.add(MessagePageNavigation());
               } else if (value == 2) {
                 _index = value;
-                // BlocProvider.of<NavigationCubit>(context)
-                //     .getNavBarItem(NavbarItem.create);
               } else if (value == 3) {
                 _index = value;
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.money);
+                navigationBloc.add(MoneyPageNavigation());
               } else if (value == 4) {
                 _index = value;
-                BlocProvider.of<NavigationCubit>(context)
-                    .getNavBarItem(NavbarItem.profile);
+                navigationBloc.add(ProfilePageNavigation());
               }
             },
             destinations: [

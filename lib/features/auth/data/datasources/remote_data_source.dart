@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,14 +24,13 @@ class RemoteDataSource {
           title: 'wrong-password',
           message: 'Check RemoteDataSource',
         );
-      }else if (e.code == 'invalid-credential') {
+      } else if (e.code == 'invalid-credential') {
         throw const MyAppException(
-          title: 'The supplied auth credential is incorrect, malformed or has expired',
+          title:
+              'The supplied auth credential is incorrect, malformed or has expired',
           message: 'malformed or has expired',
         );
-      }
-      
-       else {
+      } else {
         log(e.code);
         log(e.toString());
         throw MyAppException(
@@ -59,6 +59,18 @@ class RemoteDataSource {
         email: email,
         password: password,
       );
+
+      final user = FirebaseFirestore.instance.collection('Users');
+      final Map<String, dynamic> data = {
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+      };
+      user.add(data).whenComplete(
+        () {
+          log('user adding compleated');
+        },
+      );
       return AuthUserModel(email: credential.user?.email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -69,8 +81,9 @@ class RemoteDataSource {
       } else if (e.code == 'email-already-in-use') {
         log('The account already exists for that email.');
         throw const MyAppException(
-            title: 'user-not-found',
-            message: 'The password provided is too weak.');
+          title: 'user-not-found',
+          message: 'The password provided is too weak.',
+        );
       } else {
         log('excpetion occured');
         log(e.toString());

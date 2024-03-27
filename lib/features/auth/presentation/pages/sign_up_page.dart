@@ -93,9 +93,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: WelcomeTextWidget(
-                        firstLine: 'Let\'s Sign You In',
-                        secondLine: 'Welcome back.',
-                        thirdLine: 'You\'ve been missed!',
+                        firstLine: 'New Here?',
+                        secondLine: 'Welcome aboard.',
+                        thirdLine: 'Let\'s get started!',
                       ),
                     ),
                     SizedBox(height: 25.h),
@@ -107,8 +107,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             children: [
                               Expanded(
                                 child: SignTextField(
-                                  fadeInDelay: 800,
-                                  fadeInDuration: 900,
+                                  fadeInDelay: 700,
+                                  fadeInDuration: 800,
                                   controller: _firstNameCntrl,
                                   hintText: "First Name",
                                   obsecureText: false,
@@ -127,8 +127,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(width: 10.w),
                               Expanded(
                                 child: SignTextField(
-                                  fadeInDelay: 800,
-                                  fadeInDuration: 900,
+                                  fadeInDelay: 700,
+                                  fadeInDuration: 800,
                                   controller: _lastNameCntrl,
                                   hintText: "Last Name",
                                   obsecureText: false,
@@ -148,8 +148,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.h),
                           SignTextField(
-                            fadeInDelay: 700,
-                            fadeInDuration: 800,
+                            fadeInDelay: 675,
+                            fadeInDuration: 750,
                             controller: _emailCntrl,
                             prefixIcon: const Icon(Icons.mail_outline_rounded),
                             hintText: "Email",

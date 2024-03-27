@@ -26,9 +26,14 @@ class RemoteDataSource {
         );
       } else if (e.code == 'invalid-credential') {
         throw const MyAppException(
-          title:
-              'The supplied auth credential is incorrect, malformed or has expired',
-          message: 'malformed or has expired',
+          title: 'Invalid credentials.',
+          message: 'Please check your username and password and try again.',
+        );
+      } else if (e.code == 'too-many-requests') {
+        throw const MyAppException(
+          title: 'Too Many Requests',
+          message:
+              'We\'re experiencing a high volume of requests. Please try again later...',
         );
       } else {
         log(e.code);
@@ -54,24 +59,33 @@ class RemoteDataSource {
     required String password,
   }) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
 
-      final user = FirebaseFirestore.instance.collection('Users');
-      final Map<String, dynamic> data = {
-        "email": email,
-        "firstName": firstName,
-        "lastName": lastName,
-      };
-      user.add(data).whenComplete(
-        () {
-          log('user adding compleated');
-        },
-      );
-      return AuthUserModel(email: credential.user?.email);
+      final user = credential.user;
+
+      if (user == null) {
+        throw const MyAppException(
+          title: 'Sign Up Failed',
+          message: 'An error occurred during user creation. Please try again.',
+        );
+      }
+
+      final userDocRef =
+          FirebaseFirestore.instance.collection('users').doc(user.uid);
+
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        transaction.set(
+            userDocRef,
+            AuthUserModel(
+                    uid: user.uid,
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName)
+                .toJson());
+      });
+
+      return AuthUserModel(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         log('The password provided is too weak.');
@@ -94,7 +108,9 @@ class RemoteDataSource {
     } on Exception catch (e) {
       log(e.toString());
       throw const MyAppException(
-          title: 'Something went wrong', message: 'Check RemoteDataSource');
+        title: 'Something went wrong',
+        message: 'Check RemoteDataSource',
+      );
     }
   }
 }

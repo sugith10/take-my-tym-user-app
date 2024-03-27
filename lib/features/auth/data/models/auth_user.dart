@@ -3,18 +3,14 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class AuthUserModel extends Equatable {
-  final String? token;
-  final int? expiresIn;
-  final String? id;
+  final String? uid;
   final String? email;
   final String? firstName;
   final String? lastName;
   final String? picture;
 
   const AuthUserModel({
-    this.token,
-    this.expiresIn,
-    this.id,
+    this.uid,
     this.email,
     this.firstName,
     this.lastName,
@@ -23,9 +19,7 @@ class AuthUserModel extends Equatable {
 
   factory AuthUserModel.fromMap(Map<String, dynamic> data) {
     return AuthUserModel(
-      token: data['token'] as String?,
-      expiresIn: data['expiresIn'] as int?,
-      id: data['id'] as String?,
+      uid: data['uid'] as String?,
       email: data['email'] as String?,
       firstName: data['firstName'] as String?,
       lastName: data['lastName'] as String?,
@@ -33,12 +27,22 @@ class AuthUserModel extends Equatable {
     );
   }
 
+  Map<String,dynamic> toJson(){
+    return {
+        'uid': uid, 
+        'email': email,
+        'firstName': firstName,
+        'lastName': lastName,
+        'picture': picture,
+    };
+  }
+
+
   @override
   String toString() {
-    return "AuthUserModel -> $expiresIn $id $email $firstName $lastName $picture";
+    return "AuthUserModel -> $uid $email $firstName $lastName $picture";
   }
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [uid,email];
 }

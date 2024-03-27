@@ -63,7 +63,11 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
               'Buy Tym',
               style: Theme.of(context).textTheme.labelMedium,
             )),
+            //  iconBuilder: (value) => value
+            //         ? Icon(Icons.handshake_outlined , color: Colors.black,)
+            //         : Icon(Icons.tag_faces_rounded ,color: Colors.black,),
       indicatorSize: const Size.fromWidth(30.0),
+      
     );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
+import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signin_usecases.dart';
 
@@ -12,18 +14,25 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
     on<AuthSignInEvent>((event, emit) async {
       emit(LoadingState());
-      try{
-        SignInUseCase signInUseCase = 
-          GetIt.instance<SignInUseCase>();
-        
-        AuthUserModel authUserModel = await signInUseCase
-        .authenticateUser(event.email, event.password);
+      try {
+        SignInUseCase signInUseCase = GetIt.instance<SignInUseCase>();
+
+        AuthUserModel authUserModel =
+            await signInUseCase.authenticateUser(event.email, event.password);
 
         emit(SignInSuccessState(authUserModel));
-      }catch(e){
+      } on MyAppException catch (e) {
+        emit(
+          ErrorState(errorMessage: e.title, errorDescription: e.message),
+        );
+      } catch (e) {
         log(e.toString());
-        print('errorrrrr');
-        emit(ErrorState(e.toString()));
+        emit(
+          const ErrorState(
+            errorMessage: MyAppErrorMsg.errorMessage,
+            errorDescription: MyAppErrorMsg.errorDescription,
+          ),
+        );
       }
     });
   }

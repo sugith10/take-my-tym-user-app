@@ -71,6 +71,14 @@ class _SignInPageState extends State<SignInPage> {
               },
             );
           }
+          if (state is ErrorState) {
+            Navigator.pop(context);
+            SnackBarMessenger().showSnackBar(
+              context: context,
+              errorMessage: state.errorMessage,
+              errorDescription: state.errorDescription,
+            );
+          }
           if (state is SignInSuccessState) {
             Navigator.pushAndRemoveUntil(
               context,

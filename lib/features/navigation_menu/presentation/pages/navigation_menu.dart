@@ -49,7 +49,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 return SafeArea(child: screen[3]);
               case ProfileState():
                 return SafeArea(child: screen[4]);
-
               default:
                 return SafeArea(child: screen[0]);
             }
@@ -61,12 +60,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
             selectedIndex: _index,
             onDestinationSelected: (value) {
               final navigationBloc = BlocProvider.of<NavigationBloc>(context);
-              if (value == 2) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CreatePostPage()));
-              }
+
               if (value == 0) {
                 _index = value;
                 navigationBloc.add(HomePageNavigation());
@@ -74,7 +68,10 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 _index = value;
                 navigationBloc.add(MessagePageNavigation());
               } else if (value == 2) {
-                _index = value;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreatePostPage()));
               } else if (value == 3) {
                 _index = value;
                 navigationBloc.add(MoneyPageNavigation());
@@ -103,15 +100,17 @@ class _NavigationMenuState extends State<NavigationMenu> {
                 label: 'Create',
               ),
               NavigationDestination(
-                  icon: Icon(
-                    _index == 3 ? IconlyBold.wallet : IconlyLight.wallet,
-                  ),
-                  label: 'Money'),
+                icon: Icon(
+                  _index == 3 ? IconlyBold.wallet : IconlyLight.wallet,
+                ),
+                label: 'Money',
+              ),
               NavigationDestination(
-                  icon: Icon(
-                    _index == 4 ? IconlyBold.profile : IconlyLight.profile,
-                  ),
-                  label: 'Profile'),
+                icon: Icon(
+                  _index == 4 ? IconlyBold.profile : IconlyLight.profile,
+                ),
+                label: 'Profile',
+              ),
             ],
           );
         }),

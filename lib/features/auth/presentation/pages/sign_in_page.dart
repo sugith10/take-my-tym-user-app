@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +9,7 @@ import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
@@ -44,7 +44,6 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void submitCredentials() {
-    log("submited data to bloc");
     _bloc.add(
       LogInEvent(
         email: _emailController.text,
@@ -116,6 +115,7 @@ class _SignInPageState extends State<SignInPage> {
                             controller: _emailController,
                             hintText: "Email",
                             obsecureText: false,
+                            showSuffixIcon: false,
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.emailAddress,
                             prefixIcon: const Icon(Icons.mail_outline_rounded),
@@ -138,12 +138,9 @@ class _SignInPageState extends State<SignInPage> {
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.remove_red_eye)),
+                            showSuffixIcon: true,
                             validator: (val) {
                               if (val!.isEmpty) {
-                                log(val);
                                 return "Please fill in this Field.";
                               } else if (val.length < 6) {
                                 return "Password should be at least 6 characters long.";
@@ -166,14 +163,10 @@ class _SignInPageState extends State<SignInPage> {
                               if (_formKey.currentState!.validate()) {
                                 FocusScope.of(context).unfocus();
                                 submitCredentials();
-                              } else {
-                                log("not validated");
                               }
                             },
                           ),
-                          SizedBox(height: 50.h),
-                          const SocialAuthWidget(),
-                          SizedBox(height: 35.h),
+                          SizedBox(height: 15.h),
                           NavigationText(
                             leadingText: 'Don\'t have an account?',
                             buttonText: 'Register',
@@ -186,7 +179,11 @@ class _SignInPageState extends State<SignInPage> {
                               );
                             },
                           ),
-                          SizedBox(height: 40.h),
+                          SizedBox(height: 50.h),
+                          const SocialAuthWidget(),
+                          SizedBox(height: 25.h),
+                          const TermsAndConditionsWidget(),
+                          SizedBox(height: 20.h),
                         ],
                       ),
                     ),

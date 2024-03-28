@@ -1,9 +1,10 @@
 part of 'social_auth_bloc.dart';
 
-sealed class SocialAuthEvent  {
+sealed class SocialAuthEvent extends Equatable {
   const SocialAuthEvent();
 
- 
+   @override
+  List<Object> get props => [];
 }
 
-final class GoogleSignInEvent extends SocialAuthEvent {}
+final class GoogleSignEvent extends SocialAuthEvent {}

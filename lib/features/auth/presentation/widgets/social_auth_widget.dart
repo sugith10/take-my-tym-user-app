@@ -81,7 +81,7 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                     }
                     return GestureDetector(
                       onTap: () {
-                      _bloc.add(GoogleSignInEvent());
+                      _bloc.add(GoogleSignEvent());
                       },
                       child: Container(
                         height: 65,

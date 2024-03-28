@@ -11,6 +11,7 @@ import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
@@ -47,12 +48,21 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
+    void _submitCredentials() {
+    _bloc.add(CreateUser(
+      firstName: _firstNameCntrl.text,
+      lastName: _lastNameCntrl.text,
+      email: _emailCntrl.text,
+      password: _passwordCntrl.text,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: _bloc,
       listener: (context, state) {
-        if (state is LoadingState) {
+        if (state is SignUpLoadingState) {
           showDialog(
             barrierDismissible: false,
             context: context,
@@ -114,11 +124,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   controller: _firstNameCntrl,
                                   hintText: "First Name",
                                   obsecureText: false,
+                                  showSuffixIcon: false,
                                   errorMsg: _errorMsg,
                                   keyboardType: TextInputType.name,
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return "Please fill in this Field";
+                                      return "Please fill in this field";
                                     } else if (!nameRexExp.hasMatch(val)) {
                                       return "Please enter a valid email";
                                     }
@@ -134,11 +145,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   controller: _lastNameCntrl,
                                   hintText: "Last Name",
                                   obsecureText: false,
+                                  showSuffixIcon: false,
                                   errorMsg: _errorMsg,
                                   keyboardType: TextInputType.name,
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return "Please fill in this Field";
+                                      return "Please fill in this field";
                                     } else if (!nameRexExp.hasMatch(val)) {
                                       return "Please enter a valid email";
                                     }
@@ -156,6 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             prefixIcon: const Icon(Icons.mail_outline_rounded),
                             hintText: "Email",
                             obsecureText: false,
+                            showSuffixIcon: false,
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
@@ -174,15 +187,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: _passwordCntrl,
                             hintText: "Password",
                             obsecureText: true,
+                            showSuffixIcon: true,
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                log(val);
                                 return "Please fill in this Field.";
                               } else if (val.length < 6) {
                                 return "Password should be at least 6 characters long.";
@@ -197,12 +207,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: _confirmPasswordCntrl,
                             hintText: "Confirm Password",
                             obsecureText: true,
+                            showSuffixIcon: true,
                             errorMsg: _errorMsg,
                             keyboardType: TextInputType.visiblePassword,
                             prefixIcon: const Icon(Icons.password_rounded),
-                            suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.remove_red_eye)),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 log(val);
@@ -220,15 +228,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             title: 'Create Account',
                             function: () {
                               if (_formKey.currentState!.validate()) {
-                                log(_firstNameCntrl.text);
-                                log(_lastNameCntrl.text);
-                                log(_emailCntrl.text);
-                                log(_passwordCntrl.text);
-
-                                submitCredentials();
-                              } else {
-                                log("not validated");
+                                _submitCredentials();
                               }
+                              
                             },
                           ),
                           SizedBox(height: 15.h),
@@ -246,25 +248,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 35.h),
                           const SocialAuthWidget(),
-                          SizedBox(height: 25.h),
-                          NavigationText(
-                            leadingText: "By proceeding, I accept TakeMyTym's",
-                            buttonText: 'T&C',
-                            function: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignInPage(),
-                                ),
-                              );
-                            },
-                          ),
-                          NavigationText(
-                            leadingText: "and",
-                            buttonText: 'Privacy Policy.',
-                            function: () {},
-                          ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20.h),
+                          const TermsAndConditionsWidget(),
+                          SizedBox(height: 20.h),
                         ],
                       ),
                     ),
@@ -278,14 +264,4 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void submitCredentials() {
-    log("submited data to bloc");
-
-    _bloc.add(CreateUser(
-      firstName: _firstNameCntrl.text,
-      lastName: _lastNameCntrl.text,
-      email: _emailCntrl.text,
-      password: _passwordCntrl.text,
-    ));
-  }
 }

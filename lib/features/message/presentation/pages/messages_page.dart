@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_divider.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_tile_widget.dart';

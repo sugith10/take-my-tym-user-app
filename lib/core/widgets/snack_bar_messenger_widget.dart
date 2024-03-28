@@ -82,9 +82,9 @@ class _SnackBarContentWidget extends StatelessWidget {
               MyAppImages.snackBarBubbles,
               height: 48,
               width: 40,
+              // ignore: deprecated_member_use
               color: const Color(0xFF801336),
-            ),
-          ),
+            ),          ),
         ),
         Positioned(
           top: -8,

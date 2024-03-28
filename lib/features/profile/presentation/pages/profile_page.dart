@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/about_widget.dart';

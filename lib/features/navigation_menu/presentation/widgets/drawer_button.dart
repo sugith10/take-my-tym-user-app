@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DrawerCustomButton extends StatelessWidget {
   final String title;
   final Function function;
-  final  icon;
+  final IconData  icon;
   const DrawerCustomButton({
     required this.icon,
     required this.title,

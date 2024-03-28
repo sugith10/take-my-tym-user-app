@@ -1,7 +1,5 @@
-
-
 import 'dart:developer';
-
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
@@ -14,7 +12,7 @@ part 'social_auth_state.dart';
 
 class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
   SocialAuthBloc() : super(SocialAuthInitial()) {
-    on<GoogleSignInEvent>((event, emit) async{
+    on<GoogleSignEvent>((event, emit) async{
       emit((SocialAuthLoading()));
       try {
         SocialAuthUseCase socialAuthUseCase = GetIt.instance<SocialAuthUseCase>();

@@ -12,7 +12,7 @@ part 'sign_up_state.dart';
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc() : super(SignUpInitial()) {
     on<CreateUser>((event, emit) async {
-      emit(LoadingState());
+      emit(SignUpLoadingState());
       try {
         SignUpUseCase signUpUseCase = GetIt.instance<SignUpUseCase>();
 

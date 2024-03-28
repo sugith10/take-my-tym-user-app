@@ -26,7 +26,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
   final TextEditingController _contentController = TextEditingController();
   final _emojiController = TextEditingController();
   final _scrollController = ScrollController();
-  bool _emojiShowing = false;
+ final bool _emojiShowing = false;
 
   @override
   void dispose() {

@@ -9,7 +9,7 @@ sealed class SignUpState extends Equatable {
 
 final class SignUpInitial extends SignUpState {}
 
-final class LoadingState extends SignUpState {}
+final class SignUpLoadingState extends SignUpState {}
 
 final class SignUpSuccessState extends SignUpState {
   final AuthUserModel userModel;

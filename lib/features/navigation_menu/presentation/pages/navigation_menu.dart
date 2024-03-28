@@ -5,7 +5,7 @@ import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/messages_page.dart';
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer_navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/drawer_navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class NavigationMenu extends StatefulWidget {
 class _NavigationMenuState extends State<NavigationMenu> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  final screen = [
+  final _screen = [
     const HomePage(),
     const MessagePage(),
     const CreatePostPage(),
@@ -42,15 +42,15 @@ class _NavigationMenuState extends State<NavigationMenu> {
           builder: (context, state) {
             switch (state) {
               case HomeState():
-                return SafeArea(child: screen[0]);
+                return SafeArea(child: _screen[0]);
               case MessageState():
-                return SafeArea(child: screen[1]);
+                return SafeArea(child: _screen[1]);
               case MoneyState():
-                return SafeArea(child: screen[3]);
+                return SafeArea(child: _screen[3]);
               case ProfileState():
-                return SafeArea(child: screen[4]);
+                return SafeArea(child: _screen[4]);
               default:
-                return SafeArea(child: screen[0]);
+                return SafeArea(child: _screen[0]);
             }
           },
         ),
@@ -94,8 +94,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
               NavigationDestination(
                 icon: Icon(
                   _index == 2
-                      ? Icons.add_circle_rounded
-                      : Icons.add_circle_outline_rounded,
+                      ? IconlyBold.plus
+                      : IconlyLight.plus,
                 ),
                 label: 'Create',
               ),

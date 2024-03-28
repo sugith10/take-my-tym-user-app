@@ -138,12 +138,20 @@ class RemoteDataSource {
           await FirebaseAuth.instance.signInWithCredential(credential);
       AuthUserModel userModel =
           AuthUserModel(email: userCredential.user?.email);
-      // log("firebase result: - ${userCredential.toString()}");
-      // log('');
-      // log(userModel.toString());
       return userModel;
     } catch (e) {
       log(e.toString());
+      throw const MyAppException(
+        title: 'Something Went Wrong',
+        message: 'Google auth went wrong',
+      );
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
       throw const MyAppException(
         title: 'Something Went Wrong',
         message: 'Google auth went wrong',

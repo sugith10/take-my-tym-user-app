@@ -33,7 +33,7 @@ class PostPage extends StatelessWidget {
             const SliverAppBar(
               automaticallyImplyLeading: false,
               floating: true,
-              leading: BackNavigationButton(),
+              leading: BackButtonWidget(),
             ),
             SliverList(
               delegate: SliverChildListDelegate(

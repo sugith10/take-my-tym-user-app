@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-class BackNavigationButton extends StatelessWidget {
-  const BackNavigationButton({
+class BackButtonWidget extends StatelessWidget {
+  const BackButtonWidget({
     super.key,
   });
 

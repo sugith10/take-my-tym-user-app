@@ -41,7 +41,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: const BackNavigationButton(),
+        leading: const BackButtonWidget(),
         actions: [
           ActionButton(
             voidCallback: () {},

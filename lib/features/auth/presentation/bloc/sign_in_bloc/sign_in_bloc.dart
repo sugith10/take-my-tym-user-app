@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
-import 'package:take_my_tym/features/auth/domain/usecases/signin_usecases.dart';
+import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';

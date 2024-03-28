@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer_button.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/widgets/profile_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/pages/account_page.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/widgets/drawer_button.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/widgets/drawer_profile_widget.dart';
 
 class DrawerNavBar extends StatelessWidget {
   const DrawerNavBar({super.key});
@@ -24,8 +26,13 @@ class DrawerNavBar extends StatelessWidget {
                 shrinkWrap: true,
                 children: [
                   DrawerCustomButton(
-                    title: 'Profile',
-                    function: () {},
+                    title: 'Account Info',
+                    function: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const AccountInfoPage()));
+                    },
                     icon: IconlyLight.profile,
                   ),
                   DrawerCustomButton(

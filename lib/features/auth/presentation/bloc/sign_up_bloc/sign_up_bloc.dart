@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
-import 'package:take_my_tym/features/auth/domain/usecases/signup_usecases.dart';
+import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

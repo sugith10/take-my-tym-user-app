@@ -1,6 +1,6 @@
 import 'package:take_my_tym/features/auth/data/datasources/remote_data_source.dart';
 import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
-import 'package:take_my_tym/features/auth/domain/repositories/signup_user_repo.dart';
+import 'package:take_my_tym/features/auth/domain/repositories/signup_repo.dart';
 
 class SignUpRepoImpl implements SignUpRepo {
   final RemoteDataSource _remoteDataSource;

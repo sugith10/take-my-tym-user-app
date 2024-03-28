@@ -159,5 +159,8 @@ final class MyAppDarkTheme {
     listTileTheme: ListTileThemeData(
       iconColor: _color.iconColor,
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData( 
+      color: _color.progressIndicatorColor,
+    )
   );
 }

@@ -9,17 +9,17 @@ sealed class SignInState extends Equatable {
 
 final class SignInInitial extends SignInState {}
 
-final class LoadingState extends SignInState {}
+final class SignInLoadingState extends SignInState {}
 
 final class SignInSuccessState extends SignInState {
   final AuthUserModel userModel;
   const SignInSuccessState(this.userModel);
 }
 
-final class ErrorState extends SignInState {
+final class SignInErrorState extends SignInState {
   final String errorMessage;
   final String errorDescription;
-  const ErrorState({
+  const SignInErrorState({
     required this.errorMessage,
     required this.errorDescription,
   });

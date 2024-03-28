@@ -46,7 +46,7 @@ class _SignInPageState extends State<SignInPage> {
   void submitCredentials() {
     log("submited data to bloc");
     _bloc.add(
-      AuthSignInEvent(
+      LogInEvent(
         email: _emailController.text,
         password: _passwordController.text,
       ),
@@ -58,20 +58,18 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<SignInBloc, SignInState>(
         bloc: _bloc,
         listener: (ctx, state) {
-          if (state is LoadingState) {
+          if (state is SignInLoadingState) {
             showDialog(
               barrierDismissible: false,
               context: context,
               builder: (context) {
                 return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
+                  child: CircularProgressIndicator(),
                 );
               },
             );
           }
-          if (state is ErrorState) {
+          if (state is SignInErrorState) {
             Navigator.pop(context);
             SnackBarMessenger().showSnackBar(
               context: context,
@@ -174,13 +172,8 @@ class _SignInPageState extends State<SignInPage> {
                             },
                           ),
                           SizedBox(height: 50.h),
-                          SocialAuthWidget(
-                            function: () {
-                              // log("social log");
-                            },
-                          ),
-                          SizedBox(height: 40.h),
-                          //  const Spacer(),
+                          const SocialAuthWidget(),
+                          SizedBox(height: 35.h),
                           NavigationText(
                             leadingText: 'Don\'t have an account?',
                             buttonText: 'Register',

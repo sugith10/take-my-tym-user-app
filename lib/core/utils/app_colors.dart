@@ -12,6 +12,7 @@ interface class AppColor {
   final Color gradientPrimary;
   final Color gradientSecondary;
   final Color boxShadow;
+  final Color progressIndicatorColor;
   AppColor({
     required this.background,
     required this.secondaryBackground,
@@ -24,6 +25,7 @@ interface class AppColor {
     required this.gradientPrimary,
     required this.gradientSecondary,
     required this.boxShadow,
+    required this.progressIndicatorColor,
   });
 }
 
@@ -40,6 +42,7 @@ final class MyAppDarkColor extends AppColor {
           iconColor: const Color.fromARGB(255, 255, 255, 255),
           gradientPrimary: const Color.fromRGBO(78, 78, 78, 1),
           gradientSecondary: const Color.fromRGBO(0, 0, 0, 1),
-          boxShadow: const Color.fromARGB(66, 255, 255, 255)
+          boxShadow: const Color.fromARGB(66, 255, 255, 255),
+          progressIndicatorColor: const Color.fromRGBO(255, 255, 255, 1),
         );
 }

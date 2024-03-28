@@ -7,6 +7,7 @@ import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RemoteDataSource {
+  ///EMAIL SIGNIN
   Future<AuthUserModel> authenticateUser(String email, String password) async {
     try {
       final credential = await FirebaseAuth.instance
@@ -53,6 +54,7 @@ class RemoteDataSource {
     }
   }
 
+  ///EMAIL SIGNUP
   Future<AuthUserModel> createUser({
     required String firstName,
     required String lastName,
@@ -77,13 +79,14 @@ class RemoteDataSource {
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         transaction.set(
-            userDocRef,
-            AuthUserModel(
-                    uid: user.uid,
-                    email: email,
-                    firstName: firstName,
-                    lastName: lastName)
-                .toJson());
+          userDocRef,
+          AuthUserModel(
+                  uid: user.uid,
+                  email: email,
+                  firstName: firstName,
+                  lastName: lastName)
+              .toJson(),
+        );
       });
 
       return AuthUserModel(email: email);
@@ -115,21 +118,36 @@ class RemoteDataSource {
     }
   }
 
+  ///GOOGLE SIGNIN
+  Future<AuthUserModel> signInWithGoogle() async {
+    log('one socail auth');
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-Future<UserCredential> signInWithGoogle() async {
-  // Trigger the authentication flow
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
-
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      AuthUserModel userModel =
+          AuthUserModel(email: userCredential.user?.email);
+      // log("firebase result: - ${userCredential.toString()}");
+      // log('');
+      // log(userModel.toString());
+      return userModel;
+    } catch (e) {
+      log(e.toString());
+      throw const MyAppException(
+        title: 'Something Went Wrong',
+        message: 'Google auth went wrong',
+      );
+    }
+  }
 }

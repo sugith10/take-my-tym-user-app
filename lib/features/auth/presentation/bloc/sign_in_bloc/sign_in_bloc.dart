@@ -12,23 +12,23 @@ part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
-    on<AuthSignInEvent>((event, emit) async {
-      emit(LoadingState());
+    on<LogInEvent>((event, emit) async {
+      emit(SignInLoadingState());
       try {
         SignInUseCase signInUseCase = GetIt.instance<SignInUseCase>();
 
         AuthUserModel authUserModel =
             await signInUseCase.authenticateUser(event.email, event.password);
-
+        
         emit(SignInSuccessState(authUserModel));
       } on MyAppException catch (e) {
         emit(
-          ErrorState(errorMessage: e.title, errorDescription: e.message),
+          SignInErrorState(errorMessage: e.title, errorDescription: e.message),
         );
       } catch (e) {
         log(e.toString());
         emit(
-          const ErrorState(
+          const SignInErrorState(
             errorMessage: MyAppErrorMsg.errorMessage,
             errorDescription: MyAppErrorMsg.errorDescription,
           ),

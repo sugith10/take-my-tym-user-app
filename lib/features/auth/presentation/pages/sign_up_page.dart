@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
-import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -59,9 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
             context: context,
             builder: (context) {
               return const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                ),
+                child: CircularProgressIndicator(),
               );
             },
           );
@@ -69,11 +66,16 @@ class _SignUpPageState extends State<SignUpPage> {
         if (state is SignUpSuccessState) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => NavigationMenu()),
+            MaterialPageRoute(builder: (context) => const NavigationMenu()),
           );
         }
-        if (state is ErrorState) {
+        if (state is SignUpErrorState) {
           Navigator.pop(context);
+          SnackBarMessenger().showSnackBar(
+            context: context,
+            errorDescription: state.title,
+            errorMessage: state.message,
+          );
         }
       },
       child: BlocBuilder<SignUpBloc, SignUpState>(
@@ -243,11 +245,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                           ),
                           SizedBox(height: 35.h),
-                          SocialAuthWidget(
-                            function: () {},
-                          ),
-                          SizedBox(height: 40.h),
-                          //  const Spacer(),
+                          const SocialAuthWidget(),
+                          SizedBox(height: 25.h),
                           NavigationText(
                             leadingText: "By proceeding, I accept TakeMyTym's",
                             buttonText: 'T&C',

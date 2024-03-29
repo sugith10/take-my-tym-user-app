@@ -13,19 +13,19 @@ part 'social_auth_state.dart';
 class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
   SocialAuthBloc() : super(SocialAuthInitial()) {
     on<GoogleSignEvent>((event, emit) async{
-      emit((SocialAuthLoading()));
+      emit((SocialAuthLoadingState()));
       try {
         SocialAuthUseCase socialAuthUseCase = GetIt.instance<SocialAuthUseCase>();
         AuthUserModel authUserModel = await socialAuthUseCase.googleSign();
-        emit( SocialAuthSuccess(authUserModel));
+        emit( SocialAuthSuccessState(authUserModel));
       } on MyAppException catch (e) {
         log(e.toString());
         emit(
-          SocialAuthError(errorMessage: e.title, errorDescription: e.message),
+          SocialAuthFailState(errorMessage: e.title, errorDescription: e.message),
         );
       } catch (e) {
         log(e.toString());
-        const SocialAuthError(
+        const SocialAuthFailState(
           errorMessage: MyAppErrorMsg.errorMessage,
           errorDescription: MyAppErrorMsg.errorDescription,
         );

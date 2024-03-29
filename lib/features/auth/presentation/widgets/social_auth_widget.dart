@@ -8,8 +8,7 @@ import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/soc
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
 class SocialAuthWidget extends StatefulWidget {
-
-  const SocialAuthWidget({ super.key});
+  const SocialAuthWidget({super.key});
 
   @override
   State<SocialAuthWidget> createState() => _SocialAuthWidgetState();
@@ -54,14 +53,14 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                 BlocConsumer<SocialAuthBloc, SocialAuthState>(
                   bloc: _bloc,
                   listener: (context, state) {
-                    if (state is SocialAuthError) {
+                    if (state is SocialAuthFailState) {
                       SnackBarMessenger().showSnackBar(
                         context: context,
-                        errorMessage: state.errorMessage  ,
-                        errorDescription: state.errorDescription ,
+                        errorMessage: state.errorMessage,
+                        errorDescription: state.errorDescription,
                       );
                     }
-                    if (state is SocialAuthSuccess) {
+                    if (state is SocialAuthSuccessState) {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -71,7 +70,7 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                     }
                   },
                   builder: (context, state) {
-                    if (state is SocialAuthLoading) {
+                    if (state is SocialAuthLoadingState) {
                       return const SizedBox(
                         height: 65,
                         child: Center(
@@ -79,9 +78,18 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                         ),
                       );
                     }
+                    if (state is SocialAuthSuccessState) {
+                      return const SizedBox(
+                        height: 65,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+
                     return GestureDetector(
                       onTap: () {
-                      _bloc.add(GoogleSignEvent());
+                        _bloc.add(GoogleSignEvent());
                       },
                       child: Container(
                         height: 65,

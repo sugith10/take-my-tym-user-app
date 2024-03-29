@@ -16,8 +16,8 @@ final class SignUpSuccessState extends SignUpState {
   const SignUpSuccessState(this.userModel);
 }
 
-final class SignUpErrorState extends SignUpState{
+final class SignUpFailState extends SignUpState{
   final String title;
   final String message;
-  const SignUpErrorState({required this.title,required this.message,});
+  const SignUpFailState({required this.title,required this.message,});
 }

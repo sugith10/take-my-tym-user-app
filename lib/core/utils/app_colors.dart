@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 interface class AppColor {
   final Color background;
+  final Color softBackground;
   final Color secondaryBackground;
   final Color primaryText;
   final Color secondaryText;
@@ -13,8 +14,10 @@ interface class AppColor {
   final Color gradientSecondary;
   final Color boxShadow;
   final Color progressIndicatorColor;
+  final Color glassEffect;
   AppColor({
     required this.background,
+    required this.softBackground,
     required this.secondaryBackground,
     required this.primaryText,
     required this.secondaryText,
@@ -26,6 +29,7 @@ interface class AppColor {
     required this.gradientSecondary,
     required this.boxShadow,
     required this.progressIndicatorColor,
+    required this.glassEffect,
   });
 }
 
@@ -33,6 +37,7 @@ final class MyAppDarkColor extends AppColor {
   MyAppDarkColor()
       : super(
           background: const Color(0xFF121212),
+          softBackground: const Color.fromARGB(255, 25, 25, 25),
           secondaryBackground: const Color(0xFF1A1B1A),
           primaryText: const Color.fromARGB(255, 255, 255, 255),
           secondaryText: const Color.fromARGB(222, 160, 160, 160),
@@ -44,5 +49,6 @@ final class MyAppDarkColor extends AppColor {
           gradientSecondary: const Color.fromRGBO(0, 0, 0, 1),
           boxShadow: const Color.fromARGB(66, 255, 255, 255),
           progressIndicatorColor: const Color.fromRGBO(255, 255, 255, 1),
+          glassEffect: const Color.fromARGB(95, 0, 0, 0),
         );
 }

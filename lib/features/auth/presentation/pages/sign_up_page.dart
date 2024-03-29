@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
@@ -63,15 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
       bloc: _bloc,
       listener: (context, state) {
         if (state is SignUpLoadingState) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          );
+         ShowLoadingDialog().showLoadingIndicator(context);
         }
         if (state is SignUpSuccessState) {
           Navigator.push(
@@ -79,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
             MaterialPageRoute(builder: (context) => const NavigationMenu()),
           );
         }
-        if (state is SignUpErrorState) {
+        if (state is SignUpFailState) {
           Navigator.pop(context);
           SnackBarMessenger().showSnackBar(
             context: context,

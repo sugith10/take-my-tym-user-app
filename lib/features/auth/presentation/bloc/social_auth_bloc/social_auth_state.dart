@@ -9,19 +9,19 @@ sealed class SocialAuthState extends Equatable {
 
 final class SocialAuthInitial extends SocialAuthState {}
 
-final class SocialAuthLoading extends SocialAuthState {}
+final class SocialAuthLoadingState extends SocialAuthState {}
 
-final class SocialAuthSuccess extends SocialAuthState {
+final class SocialAuthSuccessState extends SocialAuthState {
   final AuthUserModel userModel;
 
-  const SocialAuthSuccess(this.userModel);
+  const SocialAuthSuccessState(this.userModel);
 }
 
-final class SocialAuthError extends SocialAuthState {
+final class SocialAuthFailState extends SocialAuthState {
   final String errorMessage;
   final String errorDescription;
 
-  const SocialAuthError({
+  const SocialAuthFailState({
     required this.errorMessage,
     required this.errorDescription,
   });

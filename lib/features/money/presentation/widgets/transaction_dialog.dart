@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class TransactionDialog extends StatelessWidget {
@@ -26,7 +27,7 @@ class TransactionDialog extends StatelessWidget {
           MyAppRadius.borderRadius,
         ),
       ),
-      backgroundColor: const Color.fromARGB(95, 0, 0, 0),
+      backgroundColor: MyAppDarkColor().glassEffect,
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(20.0),

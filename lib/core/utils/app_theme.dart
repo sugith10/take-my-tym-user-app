@@ -161,6 +161,11 @@ final class MyAppDarkTheme {
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData( 
       color: _color.progressIndicatorColor,
+    ),
+    dialogBackgroundColor: _color.softBackground,
+    dialogTheme: DialogTheme( 
+      backgroundColor: _color.softBackground,
+      surfaceTintColor: Colors.transparent,
     )
   );
 }

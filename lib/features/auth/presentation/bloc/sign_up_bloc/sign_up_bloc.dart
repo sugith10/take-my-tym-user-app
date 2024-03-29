@@ -24,7 +24,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(SignUpSuccessState(authUserModel));
       } on MyAppException catch (e) {
         log(e.toString());
-        emit(SignUpErrorState(
+        emit(SignUpFailState(
           title: e.title,
           message: e.message,
         ));

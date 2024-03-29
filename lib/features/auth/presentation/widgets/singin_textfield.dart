@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class SignTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -35,12 +36,13 @@ class SignTextField extends StatefulWidget {
 }
 
 class _SignTextFieldState extends State<SignTextField> {
-  late bool obsecureText;
+  late bool _obsecureText;
+  final MyAppDarkColor _color = MyAppDarkColor();
 
   @override
   void initState() {
     super.initState();
-    obsecureText = widget.obsecureText;
+    _obsecureText = widget.obsecureText;
   }
 
   @override
@@ -49,10 +51,11 @@ class _SignTextFieldState extends State<SignTextField> {
       delay: Duration(milliseconds: widget.fadeInDelay),
       duration: Duration(milliseconds: widget.fadeInDuration),
       child: TextFormField(
-        cursorColor: widget.errorMsg != null ? Colors.red : Colors.black,
+        cursorColor:  _color.pure,
+        cursorErrorColor:  _color.pure,
         validator: widget.validator,
         controller: widget.controller,
-        obscureText: obsecureText,
+        obscureText: _obsecureText,
         keyboardType: widget.keyboardType,
         focusNode: widget.focusNode,
         textInputAction: TextInputAction.next,
@@ -61,12 +64,12 @@ class _SignTextFieldState extends State<SignTextField> {
               ? IconButton(
                   onPressed: () {
                     setState(() {
-                      obsecureText = !obsecureText;
+                      _obsecureText = !_obsecureText;
                     });
                   },
-                  icon: Icon(obsecureText
+                  icon: Icon(_obsecureText
                       ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined),
+                      : Icons.visibility_off_outlined, color: _color.pure),
                 )
               : null,
           prefixIcon: widget.prefixIcon,

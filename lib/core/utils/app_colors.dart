@@ -4,6 +4,7 @@ interface class AppColor {
   final Color background;
   final Color softBackground;
   final Color secondaryBackground;
+  final Color pure;
   final Color primaryText;
   final Color primaryTextBlur;
   final Color secondaryText;
@@ -21,6 +22,7 @@ interface class AppColor {
     required this.background,
     required this.softBackground,
     required this.secondaryBackground,
+    required this.pure,
     required this.primaryText,
     required this.primaryTextBlur,
     required this.secondaryText,
@@ -43,6 +45,7 @@ final class MyAppDarkColor extends AppColor {
           background: const Color(0xFF121212),
           softBackground: const Color.fromARGB(255, 25, 25, 25),
           secondaryBackground: const Color(0xFF1A1B1A),
+          pure: const Color.fromRGBO(0, 0, 0, 1),
           primaryText: const Color.fromARGB(255, 255, 255, 255),
           primaryTextBlur: const Color.fromARGB(202, 255, 255, 255),
           secondaryText: const Color.fromARGB(222, 160, 160, 160),

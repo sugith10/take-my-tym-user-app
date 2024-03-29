@@ -28,8 +28,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final _emojiController = TextEditingController();
-  final _scrollController = ScrollController();
-  final bool _emojiShowing = false;
+  // final _scrollController = ScrollController();
+  // final bool _emojiShowing = false;
 
   @override
   void dispose() {

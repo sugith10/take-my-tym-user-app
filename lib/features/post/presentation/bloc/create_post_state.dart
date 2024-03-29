@@ -7,3 +7,8 @@ abstract class CreatePostState extends Equatable {
   List<Object> get props => [];
 }
 class CreatePostInitial extends CreatePostState {}
+
+class ChangeServiceTypeState extends CreatePostState {
+  final bool change ;
+  const ChangeServiceTypeState({required this.change});
+}

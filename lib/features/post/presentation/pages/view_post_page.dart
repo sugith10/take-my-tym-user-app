@@ -21,8 +21,8 @@ List<String> skillList = [
   'Skills and Expertise',
 ];
 
-class PostPage extends StatelessWidget {
-  const PostPage({super.key});
+class ViewPostPage extends StatelessWidget {
+  const ViewPostPage({super.key});
 
   @override
   Widget build(BuildContext context) {

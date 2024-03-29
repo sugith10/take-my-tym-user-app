@@ -14,7 +14,11 @@ class RemoteDataSource {
           .signInWithEmailAndPassword(email: email, password: password);
       return AuthUserModel(email: credential.user?.email);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
+      if (e.code == 'network-request-failed') {
+        throw const MyAppException(
+            title: 'Network Error',
+            message: "Please check your internet connection and try again.");
+      } else if (e.code == 'user-not-found') {
         log('No user found for that email.');
         throw const MyAppException(
           title: 'user-not-found',
@@ -81,17 +85,21 @@ class RemoteDataSource {
         transaction.set(
           userDocRef,
           AuthUserModel(
-                  uid: user.uid,
-                  email: email,
-                  firstName: firstName,
-                  lastName: lastName)
-              .toJson(),
+            uid: user.uid,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+          ).toJson(),
         );
       });
 
       return AuthUserModel(email: email);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
+      if (e.code == 'network-request-failed') {
+        throw const MyAppException(
+            title: 'Network Error',
+            message: "Please check your internet connection and try again.");
+      } else if (e.code == 'weak-password') {
         log('The password provided is too weak.');
         throw const MyAppException(
             title: 'user-not-found',
@@ -136,11 +144,23 @@ class RemoteDataSource {
       AuthUserModel userModel =
           AuthUserModel(email: userCredential.user?.email);
       return userModel;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'network-request-failed') {
+        throw const MyAppException(
+            title: 'Network Error',
+            message: "Please check your internet connection and try again.");
+      } else {
+        throw const MyAppException(
+          title: 'Authentication Failed',
+          message:
+              'Failed to authenticate with Google. Please try again later.',
+        );
+      }
+    } on Exception catch (e) {
       log(e.toString());
       throw const MyAppException(
-        title: 'Something Went Wrong',
-        message: 'Google auth went wrong',
+        title: 'Authentication Failed',
+        message: 'Failed to authenticate with Google. Please try again later.',
       );
     }
   }

@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 15.h),
-                
+
                 //Category One
                 const CategoryTitleWidget(
                   title: "Look's Interesting",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/widgets/app_coustom_alert_dialog.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/user_log_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
@@ -72,16 +72,15 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               },
               child: LogOutWidget(
                 callback: () {
-                  AppCoustomAlertDialog().showLoadingIndicator(
-                    context: context,
-                    title: 'Log Out Confirmation',
-                    actionOne: 'Log out',
-                    actionOneColor: Colors.red,
-                    actionTwoColor: Colors.transparent,
-                    actionOneCallback: () {},
-                    actionTwoCallback: () {},
-                  );
-                  // _bloc.add(UserSignOutEvent());
+                  UserLogOut().showLogOutDialog(
+                      context: context,
+                      signOutBloc: _bloc,
+                      cancelCallback: () {
+                        Navigator.pop(context);
+                      },
+                      logOutCallback: () {
+                        _bloc.add(UserSignOutEvent());
+                      });
                 },
               ),
             )

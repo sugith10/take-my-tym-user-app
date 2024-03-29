@@ -4,10 +4,12 @@ class CreatePostTextField extends StatelessWidget {
   final String hintText;
   final TextStyle textStyle;
   final TextEditingController controller;
+  final bool expands;
 
   const CreatePostTextField({
     required this.controller,
     required this.hintText,
+    required this.expands,
     required this.textStyle,
       super.key,
   });
@@ -17,6 +19,8 @@ class CreatePostTextField extends StatelessWidget {
     return TextField(
       autofocus: true,
       maxLines: null,
+      minLines: null,
+      expands: expands,
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: hintText,
@@ -32,7 +36,7 @@ class CreatePostTextField extends StatelessWidget {
       ),
       style: textStyle,
       cursorColor: Colors.white,
-      keyboardType: TextInputType.text,
+      keyboardType: expands ? null : TextInputType.text,
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
     );

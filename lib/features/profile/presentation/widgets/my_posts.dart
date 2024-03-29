@@ -3,7 +3,7 @@ import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
-import 'package:take_my_tym/features/post/presentation/pages/post_page.dart';
+import 'package:take_my_tym/features/post/presentation/pages/view_post_page.dart';
 
 class MyPosts extends StatelessWidget {
   const MyPosts({
@@ -24,7 +24,7 @@ class MyPosts extends StatelessWidget {
             child: PostedContentWidget(
               voidCallback: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const PostPage()));
+                    MaterialPageRoute(builder: (context) => const ViewPostPage()));
               },
               service: 'Remote',
               title: 'Timeless beauty of moments captured',

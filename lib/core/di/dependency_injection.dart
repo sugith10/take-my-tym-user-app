@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:take_my_tym/features/auth/data/datasources/remote_data_source.dart';
+import 'package:take_my_tym/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signin_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signout_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signup_repo_impl.dart';

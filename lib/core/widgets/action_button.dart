@@ -3,10 +3,11 @@ import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class ActionButton extends StatelessWidget {
+  final String action;
   final VoidCallback voidCallback;
-  const ActionButton(
-    {
-      required this.voidCallback,
+  const ActionButton({
+    required this.action,
+    required this.voidCallback,
     super.key,
   });
 
@@ -21,14 +22,11 @@ class ActionButton extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(MyAppRadius.borderRound),
+              borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
             ),
           ),
         ),
-        child: const Text(
-          'Next',
-        ),
+        child: Text(action),
       ),
     );
   }

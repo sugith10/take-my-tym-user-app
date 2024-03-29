@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
-import 'package:take_my_tym/features/post/presentation/pages/post_page.dart';
+import 'package:take_my_tym/features/post/presentation/pages/view_post_page.dart';
 
 class GenerateFeedWidget extends StatelessWidget {
   final String? image;
@@ -26,7 +26,7 @@ class GenerateFeedWidget extends StatelessWidget {
               child: PostedContentWidget(
                 voidCallback: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const PostPage()));
+                      MaterialPageRoute(builder: (_) => const ViewPostPage()));
                 },
                 image: image,
                 service: service,

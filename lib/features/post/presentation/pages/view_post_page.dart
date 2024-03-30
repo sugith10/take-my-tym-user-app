@@ -35,6 +35,10 @@ class ViewPostPage extends StatelessWidget {
               floating: true,
               leading: BackButtonWidget(),
             ),
+            // TODO: implement listener
+            // covert to Sliver Fill Remaining 
+            // learn about Sliver in detail
+            // SliverFillRemaining(),
             SliverList(
               delegate: SliverChildListDelegate(
                 [

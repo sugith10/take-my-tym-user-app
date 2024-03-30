@@ -3,14 +3,15 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class SkillsTextField extends StatelessWidget {
-    final TextEditingController categoryCntrl;
+  final VoidCallback callback;
+  final TextEditingController categoryCntrl;
   final MyAppDarkColor darkColor;
   const SkillsTextField({
+    required this.callback,
+    required this.categoryCntrl,
+    required this.darkColor,
     super.key,
-    required this. categoryCntrl,
-    required this. darkColor,
-  }) ;
-
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +22,24 @@ class SkillsTextField extends StatelessWidget {
       controller: categoryCntrl,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              MyAppRadius.borderRadius - 2),
+          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
           borderSide: BorderSide(color: darkColor.boxShadow),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              MyAppRadius.borderRadius - 2),
+          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
           borderSide: BorderSide(color: darkColor.boxShadow),
         ),
         hintText: "Skills",
         hintStyle: Theme.of(context).textTheme.bodyLarge,
         suffixIcon: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.add)),
+          onPressed: () {
+            callback();
+          },
+          icon: const Icon(Icons.add),
+        ),
         suffixIconColor: darkColor.primaryText,
       ),
       style: Theme.of(context).textTheme.labelLarge,
- 
     );
   }
 }

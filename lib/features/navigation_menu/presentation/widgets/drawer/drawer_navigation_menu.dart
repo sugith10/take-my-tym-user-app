@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/account_info_page.dart';

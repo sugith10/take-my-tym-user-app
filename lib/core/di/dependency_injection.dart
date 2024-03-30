@@ -12,6 +12,7 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 
 final class DependencyInject {
   void setupDependencies() {
@@ -38,5 +39,8 @@ final class DependencyInject {
         () => SignOutRepoImp(RemoteDataSource()));
     GetIt.instance.registerLazySingleton<SignOutUseCase>(
         () => SignOutUseCase(GetIt.instance<SignOutRepo>()));
+
+    ///CreateSkillBloc for accessing the list
+    GetIt.instance.registerLazySingleton<CreateSkillBloc>(() => CreateSkillBloc());
   }
 }

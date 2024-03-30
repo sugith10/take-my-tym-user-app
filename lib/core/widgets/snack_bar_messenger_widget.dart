@@ -19,6 +19,7 @@ final class SnackBarMessenger {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         elevation: 0,
+          duration: const Duration(seconds: 3),
       ),
     );
   }
@@ -38,7 +39,7 @@ class _SnackBarContentWidget extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           height: 100,
           decoration: const BoxDecoration(
             color: Color(0xFFC72c41),

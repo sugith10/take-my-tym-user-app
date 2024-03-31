@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class SwitchCategoryWidget extends StatefulWidget {
+  final Function(bool) getCategory;
   const SwitchCategoryWidget({
+    required this.getCategory,
     super.key,
   });
 
@@ -12,10 +14,7 @@ class SwitchCategoryWidget extends StatefulWidget {
 }
 
 class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
-  int value = 0;
-  int? nullableValue;
-  bool positive = false;
-  bool loading = false;
+  bool positive = true;
   final MyAppDarkColor _myAppDarkColor = MyAppDarkColor();
 
   @override
@@ -34,8 +33,8 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
         );
       },
       current: positive,
-      first: false,
-      second: true,
+      first: true,
+      second: false,
       spacing: 50.0,
       style: ToggleStyle(
         borderColor: Colors.transparent,
@@ -50,24 +49,24 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
       ),
       borderWidth: 7.5,
       height: 45,
-      onChanged: (b) => setState(() => positive = b),
+      onChanged: (value) {
+        setState(() => positive = value);
+        widget.getCategory(value);
+      },
       textBuilder: (value) => value
           ? Center(
               child: Text(
-                'Sell Tym',
+                'Buy Tym',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
             )
           : Center(
               child: Text(
-              'Buy Tym',
-              style: Theme.of(context).textTheme.labelMedium,
-            )),
-            //  iconBuilder: (value) => value
-            //         ? Icon(Icons.handshake_outlined , color: Colors.black,)
-            //         : Icon(Icons.tag_faces_rounded ,color: Colors.black,),
+                'Sell Tym',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
       indicatorSize: const Size.fromWidth(30.0),
-      
     );
   }
 }

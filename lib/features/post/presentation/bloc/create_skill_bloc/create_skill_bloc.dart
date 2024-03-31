@@ -6,7 +6,8 @@ part 'create_skill_event.dart';
 part 'create_skill_state.dart';
 
 class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
-  List<String> skills = [];
+  final List<String> _skills = [];
+  List<String> get skills => _skills;
   CreateSkillBloc() : super(CreateSkillInitial()) {
     on<RemoveSkillEvent>((event, emit) {
       if (skills.isEmpty) {

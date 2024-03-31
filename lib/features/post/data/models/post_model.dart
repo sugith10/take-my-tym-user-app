@@ -1,31 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class PostModel extends Equatable {
   final String uid;
-  final bool serviceType;
-  final String title;
   final String userName;
   final DateTime postDate;
+  final String? serviceType;
+  final String? title;
   final String? image;
   final String content;
   final List<String> category = [];
   final String location;
   final String skillLevel;
   final double price;
-
-  /// Indicates the type of service user demands.
-  ///
-  /// If `serviceType` is `true`, it signifies that the service is remote.
-  /// If `serviceType` is `false`, it indicates that the service is local.
-  ///
-  /// Example:
-  /// ```
-  /// final bool serviceType = true; // Remote service
-  /// final bool serviceType = false; // Local service
-  ///
 
   PostModel({
     required this.uid,
@@ -44,8 +32,6 @@ class PostModel extends Equatable {
   List<Object> get props {
     return [
       uid,
-      serviceType,
-      title,
       userName,
       postDate,
       content,
@@ -76,7 +62,7 @@ class PostModel extends Equatable {
   factory PostModel.fromMap(Map<String, dynamic> map) {
     return PostModel(
       uid: map['uid'] as String,
-      serviceType: map['serviceType'] as bool,
+      serviceType: map['serviceType'] as String,
       title: map['title'] as String,
       userName: map['userName'] as String,
       postDate: DateTime.fromMillisecondsSinceEpoch(map['postDate'] as int),

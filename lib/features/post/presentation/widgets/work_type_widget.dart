@@ -1,54 +1,67 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/post_types.dart';
 
-class WorkTypeWidget extends StatelessWidget {
+class WorkTypeWidget extends StatefulWidget {
+  final Function(String) function;
   const WorkTypeWidget({
+    required this.function,
     super.key,
   });
 
   @override
+  State<WorkTypeWidget> createState() => _WorkTypeWidgetState();
+}
+
+class _WorkTypeWidgetState extends State<WorkTypeWidget> {
+  Set<String> _selection = <String>{
+    MyAppPostType.remote,
+  };
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white,
-              ),
-              borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: MyAppPadding.authPadding,
-                right: MyAppPadding.authPadding,
-                top: 2,
-                bottom: 2,
-              ),
-              child: Row(
-                children: [
-                  BlocBuilder<CreatePostBloc, CreatePostState>(
-                    builder: (context, state) {
-                      return Text(
-                        'Remote',
-                        style: Theme.of(context).textTheme.labelSmall,
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 10),
-                  const Icon(Icons.keyboard_arrow_down_rounded)
-                ],
-              ),
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: SegmentedButton(
+        segments: const <ButtonSegment<String>>[
+          ButtonSegment<String>(
+            value: MyAppPostType.remote,
+            label: Text(MyAppPostType.remote),
+          ),
+          ButtonSegment<String>(
+            value: MyAppPostType.onsite,
+            label: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(MyAppPostType.onsite),
             ),
           ),
+        ],
+        selected: _selection,
+        onSelectionChanged: (Set<String> newSelection) {
+          setState(
+            () {
+              _selection = newSelection;
+             widget.function(newSelection.first);
+             log(newSelection.first);
+            },
+          );
+        },
+        multiSelectionEnabled: false,
+        emptySelectionAllowed: true,
+        showSelectedIcon: true,
+        style: ButtonStyle(
+          visualDensity: VisualDensity.comfortable,
+          side: MaterialStatePropertyAll(
+              BorderSide(color: MyAppDarkColor().primarySoftBorder)),
+          padding: const MaterialStatePropertyAll(EdgeInsets.all(5)),
+          backgroundColor: const MaterialStatePropertyAll(
+            Colors.transparent,
+          ),
+          foregroundColor: const MaterialStatePropertyAll(
+            Color.fromARGB(255, 254, 254, 254),
+          ),
         ),
-        const Expanded(child: SizedBox())
-      ],
+      ),
     );
   }
 }

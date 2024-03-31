@@ -5,10 +5,10 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/constraints_box_text_form_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widgets.dart';
+import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
 
 class CreatePostSecondPage extends StatefulWidget {
   const CreatePostSecondPage({super.key});
@@ -56,14 +56,8 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ///Skills and Expertise begin
                   const CreatePostSkillsWidget(),
-
-                  ///Skills and Expertise end
-                  ///
-                  /// Constraints begin
                   SizedBox(height: 10.h),
 
                   CreatePostTitleWidget(

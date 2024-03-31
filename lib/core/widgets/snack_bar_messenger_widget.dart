@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -35,12 +35,13 @@ class _SnackBarContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Container(
-          padding: const EdgeInsets.all(12),
-          height: 100,
+          padding: const EdgeInsets.all(7),
+          height: 80,
           decoration: const BoxDecoration(
             color: Color(0xFFC72c41),
             borderRadius: BorderRadius.all(
@@ -57,13 +58,13 @@ class _SnackBarContentWidget extends StatelessWidget {
                   children: [
                     Text(
                       message,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 5),
                     Text(
                       description,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            fontSize: 12.sp,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: MyAppDarkColor().primaryTextBlur
                           ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,76 +19,77 @@ class CreatePostSkillsWidget extends StatefulWidget {
 }
 
 class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
-  final TextEditingController _categoryCntrl = TextEditingController(); 
+  final TextEditingController _categoryCntrl = TextEditingController();
   final MyAppDarkColor _darkColor = MyAppDarkColor();
 
   @override
   void dispose() {
-    _categoryCntrl.dispose(); 
-    super.dispose();                               
+    _categoryCntrl.dispose();
+    super.dispose();
   }
+  //TODO -> ADD THE BLOCBUILDER AFTER THE TEXTFIELD
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateSkillBloc(),
-      child: BlocConsumer<CreateSkillBloc, CreateSkillState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          if (state is UpdateSkillSuccessState) {
-            return CreatePostTitleWidget(
-              title: "Skills and Expertise",
-              children: [
-                SizedBox(height: 10.h),
-                SkillsTextField(
-                  categoryCntrl: _categoryCntrl,
-                  darkColor: _darkColor,
-                  callback: () {
-                    if (state.skills.length >= 5) {
-                      SnackBarMessenger().showSnackBar(
-                        context: context,
-                        errorMessage: "Exceeded the limit",
-                        errorDescription:
-                            "Only five items can be added in the skills section.",
-                      );
-                    } else {
-                      context.read<CreateSkillBloc>().add(AddSkillEvent(
-                            skill: _categoryCntrl.text,
-                          ));
-                    }
-
-                    _categoryCntrl.clear();
-                  },
-                ),
-                SkillsWidget(
-                  darkColor: _darkColor,
-                ),
-              ],
-            );
-          }
+    return BlocBuilder<CreateSkillBloc, CreateSkillState>(
+      builder: (context, state) {
+        if (state is UpdateSkillSuccessState) {
           return CreatePostTitleWidget(
             title: "Skills and Expertise",
             children: [
               SizedBox(height: 10.h),
               SkillsTextField(
-                  categoryCntrl: _categoryCntrl,
-                  darkColor: _darkColor,
-                  callback: () {
-                    context
-                        .read<CreateSkillBloc>()
-                        .add(AddSkillEvent(skill: _categoryCntrl.text));
-                    _categoryCntrl.clear();
-                  }),
-              const SizedBox(
-                height: 70,
-                child: Center(
-                  child: Text("Please add at least one item to the section"),
-                ),
+                categoryCntrl: _categoryCntrl,
+                darkColor: _darkColor,
+                callback: () {
+                  if (state.skills.length >= 5) {
+                    SnackBarMessenger().showSnackBar(
+                      context: context,
+                      errorMessage: "Exceeded the limit",
+                      errorDescription:
+                          "Only five items can be added in the skills section.",
+                    );
+                  } else {
+                    context.read<CreateSkillBloc>().add(
+                          AddSkillEvent(
+                            skill: _categoryCntrl.text,
+                          ),
+                        );
+                    log("check items");
+                    log(context.read<CreateSkillBloc>().skills.toString());
+                  }
+
+                  _categoryCntrl.clear();
+                },
+              ),
+              SkillsWidget(
+                darkColor: _darkColor,
               ),
             ],
           );
-        },
-      ),
+        }
+        return CreatePostTitleWidget(
+          title: "Skills and Expertise",
+          children: [
+            SizedBox(height: 10.h),
+            SkillsTextField(
+                categoryCntrl: _categoryCntrl,
+                darkColor: _darkColor,
+                callback: () {
+                  context
+                      .read<CreateSkillBloc>()
+                      .add(AddSkillEvent(skill: _categoryCntrl.text));
+                  _categoryCntrl.clear();
+                }),
+            const SizedBox(
+              height: 70,
+              child: Center(
+                child: Text("Please add at least one item to the section"),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

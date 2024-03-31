@@ -142,6 +142,9 @@ final class MyAppDarkTheme {
           borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
         ),
+        errorStyle:  TextStyle(
+          color: _color.primaryTextSoft,
+        )
       ),
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: _color.primaryText,

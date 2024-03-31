@@ -3,16 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
-class ConstraintsBoxTextFormField extends StatelessWidget {
-  final String text;
+class ConstraintsTextFormField extends StatelessWidget {
+  final String hintText;
   final MyAppDarkColor darkColor;
   final TextInputType keyboardType;
   final TextEditingController controller;
-  const ConstraintsBoxTextFormField({
+  final String? Function(String?)? validator;
+  const ConstraintsTextFormField({
     required this.controller,
     required this.keyboardType,
-    required this.text,
+    required this.hintText,
     required this.darkColor,
+    this.validator,
     super.key,
   });
 
@@ -22,13 +24,16 @@ class ConstraintsBoxTextFormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          text,
+          hintText,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: darkColor.primaryTextSoft,
               ),
         ),
         SizedBox(height: 8.h),
         TextFormField(
+          controller: controller,
+          textCapitalization: TextCapitalization.words,
+          validator: validator,
           keyboardType: keyboardType,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
@@ -43,10 +48,10 @@ class ConstraintsBoxTextFormField extends StatelessWidget {
               ),
               borderSide: BorderSide(color: darkColor.boxShadow),
             ),
-            hintText: text,
+            hintText: hintText,
             hintStyle: Theme.of(context).textTheme.bodyLarge,
           ),
-           style: Theme.of(context).textTheme.labelLarge,
+          style: Theme.of(context).textTheme.labelLarge,
         ),
       ],
     );

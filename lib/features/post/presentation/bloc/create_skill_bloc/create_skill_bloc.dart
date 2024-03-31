@@ -12,6 +12,7 @@ class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
     on<RemoveSkillEvent>((event, emit) {
       if (skills.isEmpty) {
       } else {
+        log(skills.length.toString());
         skills.remove(event.skill);
         if (skills.isEmpty) {
           emit(CreateSkillInitial());

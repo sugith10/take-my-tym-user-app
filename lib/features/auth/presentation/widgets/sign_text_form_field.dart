@@ -12,7 +12,6 @@ class SignTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final String? errorMsg;
-
   final int fadeInDelay;
   final int fadeInDuration;
 

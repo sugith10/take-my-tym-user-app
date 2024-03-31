@@ -22,3 +22,14 @@ class FirstDataCollectFailState extends CreatePostState {
     log("on first fail collection");
   }
 }
+
+class SecondDataCollectFailState extends CreatePostState {
+  final String message;
+  final String description;
+  SecondDataCollectFailState({
+    required this.message,
+    required this.description,
+  }){
+    log("$message $description");
+  }
+}

@@ -11,7 +11,7 @@ final class CollectFirstPageDataEvent extends CreatePostEvent {
   final String workType;
   final String title;
   final String content;
-   CollectFirstPageDataEvent({
+  CollectFirstPageDataEvent({
     required this.uid,
     required this.userName,
     required this.postType,
@@ -19,9 +19,18 @@ final class CollectFirstPageDataEvent extends CreatePostEvent {
     required this.title,
     required this.content,
   });
-
 }
 
-final class CollectSecondPageDataEvent extends CreatePostEvent{
+final class CollectSecondPageDataEvent extends CreatePostEvent {
+  final List<String> skills;
+  final String location;
+  final String experience;
+  final String remuneration;
 
+  CollectSecondPageDataEvent({
+    required this.experience,
+    required this.location,
+    required this.remuneration,
+    required this.skills,
+  });
 }

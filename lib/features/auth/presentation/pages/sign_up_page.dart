@@ -10,7 +10,7 @@ import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up
 import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/singin_textfield.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';

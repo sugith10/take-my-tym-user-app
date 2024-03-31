@@ -6,8 +6,8 @@ class PostModel extends Equatable {
   final String uid;
   final String userName;
   final DateTime postDate;
-  final String? serviceType;
-  final String? title;
+  final String workType;
+  final String title;
   final String? image;
   final String content;
   final List<String> category = [];
@@ -17,7 +17,7 @@ class PostModel extends Equatable {
 
   PostModel({
     required this.uid,
-    required this.serviceType,
+    required this.workType,
     required this.title,
     required this.content,
     required this.userName,
@@ -47,7 +47,7 @@ class PostModel extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'uid': uid,
-      'serviceType': serviceType,
+      'workType': workType,
       'title': title,
       'userName': userName,
       'postDate': postDate.millisecondsSinceEpoch,
@@ -62,7 +62,7 @@ class PostModel extends Equatable {
   factory PostModel.fromMap(Map<String, dynamic> map) {
     return PostModel(
       uid: map['uid'] as String,
-      serviceType: map['serviceType'] as String,
+      workType: map['workType'] as String,
       title: map['title'] as String,
       userName: map['userName'] as String,
       postDate: DateTime.fromMillisecondsSinceEpoch(map['postDate'] as int),

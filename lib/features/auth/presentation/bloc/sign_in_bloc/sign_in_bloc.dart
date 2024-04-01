@@ -19,8 +19,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
         AuthUserModel authUserModel =
             await signInUseCase.authenticateUser(event.email, event.password);
-        
-        // GetIt.get<AppUserModel>().updateUserModel(authUserModel: authUserModel);
+            
         emit(SignInSuccessState(authUserModel));
       } on MyAppException catch (e) {
         emit(

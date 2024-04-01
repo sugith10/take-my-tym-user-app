@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (state is SignUpSuccessState) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NavigationMenu()),
+            MaterialPageRoute(builder: (context) =>  NavigationMenu(userModel: state.userModel)),
           );
         }
         if (state is SignUpFailState) {

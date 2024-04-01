@@ -55,13 +55,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             errorDescription: state.description,
           );
         }
-        if (state is RemoteDataAddSuccessState) {
-          context.read<CreateSkillBloc>().skills.clear();
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const NavigationMenu()),
-              (route) => false);
-        }
+      
       },
       child: Scaffold(
         appBar: AppBar(

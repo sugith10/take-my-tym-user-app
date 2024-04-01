@@ -17,10 +17,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         SignUpUseCase signUpUseCase = GetIt.instance<SignUpUseCase>();
 
         AuthUserModel authUserModel = await signUpUseCase.createUser(
-            email: event.email,
-            password: event.password,
-            firstName: event.firstName,
-            lastName: event.lastName);
+          email: event.email,
+          password: event.password,
+          firstName: event.firstName,
+          lastName: event.lastName,
+        );
         emit(SignUpSuccessState(authUserModel));
       } on MyAppException catch (e) {
         log(e.toString());

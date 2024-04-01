@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/messages_page.dart';
@@ -11,7 +11,8 @@ import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 class NavigationMenu extends StatefulWidget {
-  const NavigationMenu({super.key});
+  final AuthUserModel userModel;
+  const NavigationMenu({required this.userModel, super.key});
 
   @override
   State<NavigationMenu> createState() => _NavigationMenuState();
@@ -32,7 +33,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
 
   @override
   Widget build(BuildContext context) {
-    log('build');
     return BlocProvider(
       create: (context) => NavigationBloc(),
       child: Scaffold(

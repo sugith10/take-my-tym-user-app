@@ -1,18 +1,13 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/forget_password_bloc/forget_password_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
@@ -62,23 +57,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  SizedBox(height: 10.h),
-                  const Align(
-                    alignment: Alignment.bottomLeft,
-                    child: SignBackButton(),
+                  const SubPageInfoWidget(
+                    title: 'Forget Password',
+                    content:
+                        "Enter email addrress accociated with your account and we'll send email with instruction to reset your password",
                   ),
-                  SizedBox(height: 75.h),
-                  Text(
-                    'Forget Password',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                  const SizedBox(height: 30),
-                  Text(
-                    "Enter email addrress accociated with your account and we'll send email with instruction to reset your password",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 100.h),
                   SignTextField(
                     fadeInDelay: 0,
                     fadeInDuration: 0,
@@ -104,7 +87,6 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     function: () {
                       FocusScope.of(context).unfocus();
                       if (_formKey.currentState!.validate()) {
-                        //  log(_emailController.text);
                         _forgetPasswordBloc.add(
                             ForgetPasswordEvent(email: _emailController.text));
                       }
@@ -121,3 +103,4 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     );
   }
 }
+

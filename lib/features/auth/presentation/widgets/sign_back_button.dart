@@ -9,13 +9,16 @@ class SignBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      icon: const Icon(
-        IconlyBroken.arrow_left,
-        color: Colors.white,
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(
+          IconlyBroken.arrow_left,
+          color: Colors.white,
+        ),
       ),
     );
   }

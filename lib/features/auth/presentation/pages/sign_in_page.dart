@@ -55,12 +55,11 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInBloc, SignInState>(
+    return BlocListener<SignInBloc, SignInState>(
         bloc: _bloc,
         listener: (ctx, state) {
           if (state is SignInLoadingState) {
             ShowLoadingDialog().showLoadingIndicator(context);
-            
           }
           if (state is SignInErrorState) {
             Navigator.pop(context);
@@ -73,119 +72,109 @@ class _SignInPageState extends State<SignInPage> {
           if (state is SignInSuccessState) {
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (_) => NavigationMenu(userModel: state.userModel,)),
+              MaterialPageRoute(builder: (_) => const NavigationMenu()),
               (route) => false,
             );
           }
         },
-        builder: (ctx, state) {
-          return Scaffold(
+        child: Scaffold(
             body: SafeArea(
                 child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: MyAppPadding.authPadding,
-                  right: MyAppPadding.authPadding,
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: MyAppPadding.authPadding,
+              right: MyAppPadding.authPadding,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 5.h),
+                const WelcomeTextWidget(
+                  firstLine: 'Let\'s Sign You In',
+                  secondLine: 'Welcome back.',
+                  thirdLine: 'You\'ve been missed!',
                 ),
-                child: Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.bottomLeft,
-                      child: WelcomeTextWidget(
-                        firstLine: 'Let\'s Sign You In',
-                        secondLine: 'Welcome back.',
-                        thirdLine: 'You\'ve been missed!',
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 40.h),
+                      SignTextField(
+                        fadeInDelay: 700,
+                        fadeInDuration: 800,
+                        controller: _emailController,
+                        hintText: "Email",
+                        obsecureText: false,
+                        showSuffixIcon: false,
+                        errorMsg: _errorMsg,
+                        keyboardType: TextInputType.emailAddress,
+                        prefixIcon: const Icon(Icons.mail_outline_rounded),
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please fill in this Field";
+                          } else if (!emailRexExp.hasMatch(val)) {
+                            return "Please enter a valid email";
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          SizedBox(height: 40.h),
-                          SignTextField(
-                            fadeInDelay: 700,
-                            fadeInDuration: 800,
-                            controller: _emailController,
-                            hintText: "Email",
-                            obsecureText: false,
-                            showSuffixIcon: false,
-                            errorMsg: _errorMsg,
-                            keyboardType: TextInputType.emailAddress,
-                            prefixIcon: const Icon(Icons.mail_outline_rounded),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Please fill in this Field";
-                              } else if (!emailRexExp.hasMatch(val)) {
-                                return "Please enter a valid email";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20.h),
-                          SignTextField(
-                            fadeInDelay: 650,
-                            fadeInDuration: 750,
-                            controller: _passwordController,
-                            hintText: "Password",
-                            obsecureText: true,
-                            errorMsg: _errorMsg,
-                            keyboardType: TextInputType.visiblePassword,
-                            prefixIcon: const Icon(Icons.password_rounded),
-                            showSuffixIcon: true,
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Please fill in this Field.";
-                              } else if (val.length < 6) {
-                                return "Password should be at least 6 characters long.";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 15.h),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: ForgotPasswordWidget(
-                              function: () {},
+                      SizedBox(height: 20.h),
+                      SignTextField(
+                        fadeInDelay: 650,
+                        fadeInDuration: 750,
+                        controller: _passwordController,
+                        hintText: "Password",
+                        obsecureText: true,
+                        errorMsg: _errorMsg,
+                        keyboardType: TextInputType.visiblePassword,
+                        prefixIcon: const Icon(Icons.password_rounded),
+                        showSuffixIcon: true,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return "Please fill in this Field.";
+                          } else if (val.length < 6) {
+                            return "Password should be at least 6 characters long.";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 15.h),
+                      const ForgotPasswordWidget(),
+                      SizedBox(height: 25.h),
+                      SignButtonWidget(
+                        title: 'Log In',
+                        function: () {
+                          FocusScope.of(context).unfocus();
+                          if (_formKey.currentState!.validate()) {
+                            FocusScope.of(context).unfocus();
+                            submitCredentials();
+                          }
+                        },
+                      ),
+                      SizedBox(height: 15.h),
+                      NavigationText(
+                        leadingText: 'Don\'t have an account?',
+                        buttonText: 'Register',
+                        function: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignUpPage(),
                             ),
-                          ),
-                          SizedBox(height: 25.h),
-                          SignButtonWidget(
-                            title: 'Log In',
-                            function: () {
-                              FocusScope.of(context).unfocus();
-                              if (_formKey.currentState!.validate()) {
-                                FocusScope.of(context).unfocus();
-                                submitCredentials();
-                              }
-                            },
-                          ),
-                          SizedBox(height: 15.h),
-                          NavigationText(
-                            leadingText: 'Don\'t have an account?',
-                            buttonText: 'Register',
-                            function: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpPage(),
-                                ),
-                              );
-                            },
-                          ),
-                          SizedBox(height: 50.h),
-                          const SocialAuthWidget(),
-                          SizedBox(height: 25.h),
-                          const TermsAndConditionsWidget(),
-                          SizedBox(height: 20.h),
-                        ],
+                          );
+                        },
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 50.h),
+                      const SocialAuthWidget(),
+                      SizedBox(height: 25.h),
+                      const TermsAndConditionsWidget(),
+                      SizedBox(height: 20.h),
+                    ],
+                  ),
                 ),
-              ),
-            )),
-          );
-        });
+              ],
+            ),
+          ),
+        ))));
   }
 }

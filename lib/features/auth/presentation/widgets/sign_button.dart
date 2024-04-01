@@ -8,6 +8,8 @@ class SignButtonWidget extends StatelessWidget {
   final double height;
   final double paddingR;
   final double paddingL;
+  final int delay;
+  final int duration;
   const SignButtonWidget({
     required this.title,
     required this.function,
@@ -15,14 +17,16 @@ class SignButtonWidget extends StatelessWidget {
     this.height = 60,
     this.paddingL = 0,
     this.paddingR = 0,
+    this.delay = 800,
+    this.duration = 900,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return FadeInUp(
-      delay: const Duration(milliseconds: 800),
-      duration: const Duration(milliseconds: 900),
+      delay: Duration(milliseconds: delay),
+      duration: Duration(milliseconds: duration),
       child: Padding(
         padding: EdgeInsets.only(
           left: paddingL,

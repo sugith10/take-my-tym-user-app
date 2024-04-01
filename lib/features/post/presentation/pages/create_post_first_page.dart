@@ -11,7 +11,6 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_second_page.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
@@ -19,8 +18,7 @@ import 'package:take_my_tym/features/post/presentation/widgets/create_post_text_
 import 'package:take_my_tym/features/post/presentation/widgets/work_type_widget.dart';
 
 class CreatePostFirstPage extends StatefulWidget {
-  final AuthUserModel userModel;
-  const CreatePostFirstPage({required this.userModel, super.key});
+  const CreatePostFirstPage({super.key});
 
   @override
   State<CreatePostFirstPage> createState() => _CreatePostFirstPageState();

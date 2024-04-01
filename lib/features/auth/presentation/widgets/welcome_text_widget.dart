@@ -16,41 +16,45 @@ class WelcomeTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 10.h),
-       const SignBackButton(),
-        SizedBox(height: 15.h),
-        FadeInDown(
-          delay: const Duration(milliseconds: 800),
-          duration: const Duration(milliseconds: 900),
-          child: Text(
-            firstLine,
-            style: Theme.of(context).textTheme.displayMedium,
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 10.h),
+          FadeInDown(
+              delay: const Duration(milliseconds: 900),
+              duration: const Duration(milliseconds: 1000),
+              child: const SignBackButton()),
+          SizedBox(height: 15.h),
+          FadeInDown(
+            delay: const Duration(milliseconds: 800),
+            duration: const Duration(milliseconds: 900),
+            child: Text(
+              firstLine,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
-        ),
-        SizedBox(height: 10.h),
-        FadeInDown(
-          delay: const Duration(milliseconds: 700),
-          duration: const Duration(milliseconds: 800),
-          child: Text(
-            secondLine,
-            style: Theme.of(context).textTheme.displayMedium,
+          SizedBox(height: 10.h),
+          FadeInDown(
+            delay: const Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              secondLine,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
-        ),
-        SizedBox(height: 10.h),
-        FadeInDown(
-          delay: const Duration(milliseconds: 600),
-          duration: const Duration(milliseconds: 700),
-          child: Text(
-            thirdLine,
-            style: Theme.of(context).textTheme.displayMedium,
+          SizedBox(height: 10.h),
+          FadeInDown(
+            delay: const Duration(milliseconds: 600),
+            duration: const Duration(milliseconds: 700),
+            child: Text(
+              thirdLine,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
-
-

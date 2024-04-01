@@ -11,11 +11,12 @@ class SplashPage extends StatelessWidget {
     Timer(
       const Duration(seconds: 2),
       () {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (_) => const WelcomePage(),
           ),
+          (route) => false,
         );
       },
     );

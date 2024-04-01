@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +54,12 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             errorDescription: state.description,
           );
         }
-      
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NavigationMenu(),
+            ),
+            (route) => false);
       },
       child: Scaffold(
         appBar: AppBar(

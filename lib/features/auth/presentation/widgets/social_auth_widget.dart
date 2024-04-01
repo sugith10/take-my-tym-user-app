@@ -65,7 +65,7 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                         context,
                         MaterialPageRoute(
                             builder: (_) =>
-                                NavigationMenu(userModel: state.userModel)),
+                              const  NavigationMenu()),
                         (route) => false,
                       );
                     }

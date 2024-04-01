@@ -6,7 +6,9 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
+import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/constraints_text_form_field.dart';
@@ -42,7 +44,24 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   Widget build(BuildContext context) {
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is CreatPostLoadingState) {
+          ShowLoadingDialog().showLoadingIndicator(context);
+        }
+        if (state is SecondDataCollectFailState) {
+          Navigator.pop(context);
+          SnackBarMessenger().showSnackBar(
+            context: context,
+            errorMessage: state.message,
+            errorDescription: state.description,
+          );
+        }
+        if (state is RemoteDataAddSuccessState) {
+          context.read<CreateSkillBloc>().skills.clear();
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const NavigationMenu()),
+              (route) => false);
+        }
       },
       child: Scaffold(
         appBar: AppBar(
@@ -52,9 +71,8 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               voidCallback: () {
                 if (_formKey.currentState!.validate()) {
                   final skills = context.read<CreateSkillBloc>().skills;
-                  log(skills.toString());
+
                   if (skills.isNotEmpty) {
-                    log("location: ${_locationCntrl.text}");
                     context
                         .read<CreatePostBloc>()
                         .add(CollectSecondPageDataEvent(

@@ -12,7 +12,27 @@ class RemoteDataSource {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      return AuthUserModel(email: credential.user?.email);
+
+      final userDocRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(credential.user!.uid);
+
+      log(credential.user!.uid);
+      DocumentSnapshot userSnapshot = await userDocRef.get();
+      log(userSnapshot.toString());
+
+      if (userSnapshot.exists) {
+        final data = userSnapshot.data() as Map<String, dynamic>;
+        final authUser = AuthUserModel.fromMap(data);
+        log(authUser.toString());
+        return authUser;
+      } else {
+        log('User data does not exist in Firestore.');
+        throw const MyAppException(
+          title: 'user-not-found',
+          message: 'Check RemoteDataSource',
+        );
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
         throw const MyAppException(
@@ -97,8 +117,9 @@ class RemoteDataSource {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
         throw const MyAppException(
-            title: 'Network Error',
-            message: "Please check your internet connection and try again.");
+          title: 'Network Error',
+          message: "Please check your internet connection and try again.",
+        );
       } else if (e.code == 'weak-password') {
         log('The password provided is too weak.');
         throw const MyAppException(
@@ -131,16 +152,36 @@ class RemoteDataSource {
     log('one socail auth');
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        throw const MyAppException(
+          title: 'Sign In Cancelled',
+          message: 'The user cancelled the Google sign-in process.',
+        );
+      }
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
       final userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
+
+      final userDocRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid);
+      final userDocSnapshot = await userDocRef.get();
+      if (!userDocSnapshot.exists) {
+        await userDocRef.set(AuthUserModel(
+          uid: userCredential.user!.uid,
+          email: userCredential.user!.email ?? "",
+          firstName: userCredential.user!.displayName?.split(' ').first,
+          lastName: userCredential.user!.displayName?.split(' ').last,
+        ).toJson());
+      }
+      print("user name: ${userCredential.user!.displayName}");
       AuthUserModel userModel =
           AuthUserModel(email: userCredential.user?.email);
       return userModel;

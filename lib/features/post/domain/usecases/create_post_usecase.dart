@@ -6,7 +6,11 @@ class CreatePostUseCase{
 
   CreatePostUseCase(this._createPostRepo);
 
-  Future<void> createPost({required PostModel postModel})async{
-    await _createPostRepo.createPostRepo(postModel: postModel);
+  Future<bool> buyTymPost({required PostModel postModel})async{
+   return await  _createPostRepo.buyTymPost(postModel: postModel);
+  }
+
+  Future<bool> sellTymPost({required PostModel postModel})async{
+   return await _createPostRepo.sellTymPost(postModel: postModel);
   }
 }

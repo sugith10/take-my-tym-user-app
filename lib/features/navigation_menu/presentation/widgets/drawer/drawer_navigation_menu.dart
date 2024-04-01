@@ -49,13 +49,6 @@ class DrawerNavBar extends StatelessWidget {
                     icon: IconlyLight.buy,
                   ),
                   DrawerCustomButton(
-                    title: 'Login Settings',
-                    function: () {
-                      'print';
-                    },
-                    icon: IconlyLight.password,
-                  ),
-                  DrawerCustomButton(
                     title: 'Share the App',
                     function: () {
                       'print';
@@ -68,6 +61,13 @@ class DrawerNavBar extends StatelessWidget {
                       'print';
                     },
                     icon: IconlyLight.calling,
+                  ),
+                  DrawerCustomButton(
+                    title: 'Log Out',
+                    function: () {
+                      'print';
+                    },
+                    icon:IconlyLight.logout,
                   ),
                 ],
               ),

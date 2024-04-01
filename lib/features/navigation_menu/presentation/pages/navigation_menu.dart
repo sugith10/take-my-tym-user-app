@@ -18,7 +18,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 
   final _screen = [
     const HomePage(),
@@ -36,7 +36,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     return BlocProvider(
       create: (context) => NavigationBloc(),
       child: Scaffold(
-        key: scaffoldKey,
+        key: drawerKey,
         drawer: const DrawerNavBar(),
         body: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
@@ -60,7 +60,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
             selectedIndex: _index,
             onDestinationSelected: (value) {
               final navigationBloc = BlocProvider.of<NavigationBloc>(context);
-
               if (value == 0) {
                 _index = value;
                 navigationBloc.add(HomePageNavigation());
@@ -93,9 +92,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
               ),
               NavigationDestination(
                 icon: Icon(
-                  _index == 2
-                      ? IconlyBold.plus
-                      : IconlyLight.plus,
+                  _index == 2 ? IconlyBold.plus : IconlyLight.plus,
                 ),
                 label: 'Create',
               ),

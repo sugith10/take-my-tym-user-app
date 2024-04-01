@@ -12,7 +12,10 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/features/post/data/datasources/create_remote_data_source.dart';
+import 'package:take_my_tym/features/post/data/repositories/create_post_repo_impl.dart';
+import 'package:take_my_tym/features/post/domain/repositories/create_post_repo.dart';
+import 'package:take_my_tym/features/post/domain/usecases/create_post_usecase.dart';
 
 final class DependencyInject {
   void setupDependencies() {
@@ -40,7 +43,10 @@ final class DependencyInject {
     GetIt.instance.registerLazySingleton<SignOutUseCase>(
         () => SignOutUseCase(GetIt.instance<SignOutRepo>()));
 
-    ///CreateSkillBloc for accessing the list
-    GetIt.instance.registerLazySingleton<CreateSkillBloc>(() => CreateSkillBloc());
+    ///CreatePost
+    GetIt.instance.registerLazySingleton<CreatePostRepo>(
+      () => CreatePostRepoImpl(CreatePostRemoteData()));
+    GetIt.instance.registerLazySingleton<CreatePostUseCase>(
+      () => CreatePostUseCase(GetIt.instance<CreatePostRepo>()));
   }
 }

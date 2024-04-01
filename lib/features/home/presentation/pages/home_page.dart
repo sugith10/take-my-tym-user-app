@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
@@ -10,7 +9,6 @@ import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_wid
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
-import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +19,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void getCategory(bool isSellCategory) {
+  if (isSellCategory) {
+    log("Category is Buy Tym");
+  } else {
+    log("Category is Sell Tym");
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +63,9 @@ class _HomePageState extends State<HomePage> {
                         const EdgeInsets.only(left: MyAppPadding.homePadding),
                     child: Row(
                       children: [
-                        SwitchCategoryWidget(getCategory:getCategory,),
+                         SwitchCategoryWidget(
+                          getCategory: getCategory,
+                        ),
                         SizedBox(width: 5.w),
                         SearchButton(
                           function: () {
@@ -74,7 +82,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 15.h),
-
                 //Category One
                 const CategoryTitleWidget(
                   title: "Look's Interesting",
@@ -86,7 +93,6 @@ class _HomePageState extends State<HomePage> {
                   image: MyAppImages.testTwo,
                 ),
                 SizedBox(height: 30.h),
-
                 //Category Two
                 const CategoryTitleWidget(
                   title: "Look's Interesting",
@@ -98,7 +104,6 @@ class _HomePageState extends State<HomePage> {
                   image: MyAppImages.testTwo,
                 ),
                 SizedBox(height: 30.h),
-
                 //Category Three
                 const CategoryTitleWidget(
                   title: "Latest Offerings",
@@ -110,7 +115,6 @@ class _HomePageState extends State<HomePage> {
                   image: MyAppImages.testTwo,
                 ),
                 SizedBox(height: 30.h),
-
                 //Category Four
                 const CategoryTitleWidget(
                   title: "Look's Interesting",
@@ -131,14 +135,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-void getCategory(bool isSellCategory) {
-  // Use the boolean value to determine the category and perform actions accordingly
-  if (isSellCategory) {
-     log("Category is Buy Tym");
-    
-    // Do something
-  } else {
-    log("Category is Sell Tym");
-    // Do something else
-  }
-}

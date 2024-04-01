@@ -6,7 +6,7 @@ class SignOutRepoImp implements SignOutRepo{
   SignOutRepoImp(this._remoteDataSource);
   @override
   Future<void> signOut() async {
-    _remoteDataSource.signOut();
+    await  _remoteDataSource.signOut();
   }
   
 }

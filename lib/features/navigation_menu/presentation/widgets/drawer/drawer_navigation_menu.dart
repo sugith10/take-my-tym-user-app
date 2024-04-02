@@ -16,8 +16,6 @@ class DrawerNavBar extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const ProfileWidget(
-              name: 'Sugith',
-              email: 'sugithkodappurath@gmail.com',
               picture: MyAppImages.testProfile,
             ),
             Expanded(
@@ -67,7 +65,7 @@ class DrawerNavBar extends StatelessWidget {
                     function: () {
                       'print';
                     },
-                    icon:IconlyLight.logout,
+                    icon: IconlyLight.logout,
                   ),
                 ],
               ),

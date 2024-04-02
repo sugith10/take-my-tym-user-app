@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
@@ -50,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _submitCredentials() {
-    _bloc.add(CreateUser(
+    _bloc.add(CreateUserEvent(
       firstName: _firstNameCntrl.text,
       lastName: _lastNameCntrl.text,
       email: _emailCntrl.text,
@@ -67,6 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ShowLoadingDialog().showLoadingIndicator(context);
         }
         if (state is SignUpSuccessState) {
+          context.read<AppBloc>().add(UpdateAppUserModelEvent(appUserModel: state.userModel));
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const NavigationMenu()),

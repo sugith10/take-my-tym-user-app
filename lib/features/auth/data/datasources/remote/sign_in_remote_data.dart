@@ -2,11 +2,11 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 
-class SignInRemoteData{
-   ///EMAIL SIGNIN
-  Future<AuthUserModel> emailSignIn(String email, String password) async {
+class SignInRemoteData {
+  ///EMAIL SIGNIN
+  Future<AppUserModel> emailSignIn(String email, String password) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -21,7 +21,7 @@ class SignInRemoteData{
 
       if (userSnapshot.exists) {
         final data = userSnapshot.data() as Map<String, dynamic>;
-        final authUser = AuthUserModel.fromMap(data);
+        final authUser = AppUserModel.fromMap(data);
         log(authUser.toString());
         return authUser;
       } else {

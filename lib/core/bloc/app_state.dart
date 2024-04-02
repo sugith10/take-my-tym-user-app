@@ -8,3 +8,8 @@ sealed class AppState extends Equatable {
 }
 
 final class AppInitial extends AppState {}
+
+final class UserModelUpdatedState extends AppState{
+  final AppUserModel appUserModel;
+  const UserModelUpdatedState({required this.appUserModel});
+}

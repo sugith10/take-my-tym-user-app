@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/user_log_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
@@ -64,6 +67,8 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
                   ShowLoadingDialog().showLoadingIndicator(context);
                 }
                 if (state is UserSignOutSuccessState) {
+                  context.read<AppBloc>().add(UpdateUserSignOutEvent());
+                  log(context.read<AppBloc>().appUserModel.toString());
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (_) => const WelcomePage()),

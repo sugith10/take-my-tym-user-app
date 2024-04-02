@@ -1,7 +1,7 @@
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 
 abstract class SignInRepo {
-  Future<AuthUserModel> authenticateUser(
+  Future<AppUserModel> authenticateUser(
     String email,
     String password,
   );

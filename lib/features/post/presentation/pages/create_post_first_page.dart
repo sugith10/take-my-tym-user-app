@@ -53,7 +53,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
   Widget build(BuildContext context) {
     return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
-        // TODO: implement listener
         if (state is FirstDataCollectFailState) {
           SnackBarMessenger().showSnackBar(
             context: context,

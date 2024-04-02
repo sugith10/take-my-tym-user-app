@@ -8,16 +8,18 @@ sealed class SignUpEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CreateUser extends SignUpEvent {
+class CreateUserEvent extends SignUpEvent {
   final String firstName;
   final String lastName; 
   final String email;
   final String password;
 
-  const CreateUser({
+  const CreateUserEvent({
     required this.firstName,
     required this.lastName,
     required this.email,
     required this.password,
   });
 }
+
+class VerifyUserEvent extends SignUpEvent{}

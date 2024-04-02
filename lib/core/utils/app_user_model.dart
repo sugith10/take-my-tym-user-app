@@ -1,9 +1,9 @@
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 
 class AppUserModel {
- AuthUserModel userModel = const AuthUserModel();
 
- void updateUserModel({required AuthUserModel authUserModel}){
-  userModel = authUserModel;
+
+ void updateUserModel({required AppUserModel authUserModel}){
+  
  }
 }

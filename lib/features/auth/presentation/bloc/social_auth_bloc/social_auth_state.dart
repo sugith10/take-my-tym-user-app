@@ -12,7 +12,7 @@ final class SocialAuthInitial extends SocialAuthState {}
 final class SocialAuthLoadingState extends SocialAuthState {}
 
 final class SocialAuthSuccessState extends SocialAuthState {
-  final AuthUserModel userModel;
+  final AppUserModel userModel;
 
   const SocialAuthSuccessState(this.userModel);
 }

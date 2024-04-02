@@ -4,11 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
-import 'package:take_my_tym/features/auth/data/models/auth_user.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 
-final class SocailAuthRemoteData{
-    ///GOOGLE SIGNIN
-  Future<AuthUserModel> signInWithGoogle() async {
+final class SocailAuthRemoteData {
+  ///GOOGLE SIGNIN
+  Future<AppUserModel> signInWithGoogle() async {
     log('one socail auth');
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -32,19 +32,25 @@ final class SocailAuthRemoteData{
       final userDocRef = FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid);
+
       final userDocSnapshot = await userDocRef.get();
       if (!userDocSnapshot.exists) {
-        await userDocRef.set(AuthUserModel(
+        final AppUserModel userModel = AppUserModel(
           uid: userCredential.user!.uid,
           email: userCredential.user!.email ?? "",
-          firstName: userCredential.user!.displayName?.split(' ').first,
+          firstName: userCredential.user!.displayName?.split(' ').first ?? 'User',
           lastName: userCredential.user!.displayName?.split(' ').last,
-        ).toJson());
+          verified: true,
+        );
+        await userDocRef.set(userModel.toJson());
+        return userModel;
+      } else {
+        final Map<String, dynamic> userData =
+            userDocSnapshot.data() as Map<String, dynamic>;
+        AppUserModel userModel = AppUserModel.fromMap(userData);
+        log(userModel.toString());
+        return userModel;
       }
-      print("user name: ${userCredential.user!.displayName}");
-      AuthUserModel userModel =
-          AuthUserModel(email: userCredential.user?.email);
-      return userModel;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
         throw const MyAppException(
@@ -65,5 +71,4 @@ final class SocailAuthRemoteData{
       );
     }
   }
-
 }

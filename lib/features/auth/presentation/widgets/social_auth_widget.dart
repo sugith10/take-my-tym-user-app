@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/social_auth_bloc.dart';
@@ -61,11 +62,12 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                       );
                     }
                     if (state is SocialAuthSuccessState) {
+                      context.read<AppBloc>().add(UpdateAppUserModelEvent(
+                          appUserModel: state.userModel));
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (_) =>
-                              const  NavigationMenu()),
+                            builder: (_) => const NavigationMenu()),
                         (route) => false,
                       );
                     }

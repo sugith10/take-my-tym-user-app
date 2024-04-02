@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/app_view.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 
@@ -12,8 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        BlocProvider<AppBloc>(create: ((context) => AppBloc())),
         BlocProvider<CreatePostBloc>(create: ((context) => CreatePostBloc())),
-        BlocProvider<CreateSkillBloc>(create: ((context)=> CreateSkillBloc())),
+        BlocProvider<CreateSkillBloc>(create: ((context) => CreateSkillBloc())),
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

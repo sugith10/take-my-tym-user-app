@@ -15,7 +15,6 @@ class MyPosts extends StatelessWidget {
     return HomePadding(
       child: ListView.builder(
         shrinkWrap: true,
-        //  physics: NeverScrollableScrollPhysics(),
         primary: false,
         itemCount: 5,
         itemBuilder: ((context, index) {

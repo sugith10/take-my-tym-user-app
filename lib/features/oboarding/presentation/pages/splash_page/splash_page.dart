@@ -26,7 +26,9 @@ class SplashPage extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(25),
-            child: AppLogo(),
+            child: Hero(
+              tag: 'AppLogo',
+              child: AppLogo()),
           ),
         ],
       ),

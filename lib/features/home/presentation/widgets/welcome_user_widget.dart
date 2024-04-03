@@ -12,19 +12,9 @@ class WelcomeUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
-      child: BlocBuilder<AppBloc, AppState>(
-        builder: (context, state) {
-          if (state is UserModelUpdatedState) {
-            return Text(
-              'Hi, ${state.appUserModel.firstName} ...',
-              style: Theme.of(context).textTheme.displayLarge,
-            );
-          }
-          return Text(
-            'Welcome...',
-            style: Theme.of(context).textTheme.displayLarge,
-          );
-        },
+      child: Text(
+        'Hi, ${context.read<AppBloc>().appUserModel!.firstName}...',
+        style: Theme.of(context).textTheme.displayLarge,
       ),
     );
   }

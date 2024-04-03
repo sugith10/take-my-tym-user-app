@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:take_my_tym/core/utils/app_user_model.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/forget_password_remote_data.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/sign_in_remote_data.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/sign_out_remote_data.dart';
@@ -20,7 +19,7 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
-import 'package:take_my_tym/features/post/data/datasources/create_remote_data_source.dart';
+import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/repositories/create_post_repo_impl.dart';
 import 'package:take_my_tym/features/post/domain/repositories/create_post_repo.dart';
 import 'package:take_my_tym/features/post/domain/usecases/create_post_usecase.dart';

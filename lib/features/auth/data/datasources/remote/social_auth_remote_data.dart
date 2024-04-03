@@ -39,7 +39,7 @@ final class SocailAuthRemoteData {
           uid: userCredential.user!.uid,
           email: userCredential.user!.email ?? "",
           firstName: userCredential.user!.displayName?.split(' ').first ?? 'User',
-          lastName: userCredential.user!.displayName?.split(' ').last,
+          lastName: userCredential.user!.displayName?.split(' ').last ?? " ",
           verified: true,
         );
         await userDocRef.set(userModel.toJson());

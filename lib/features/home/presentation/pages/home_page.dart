@@ -53,9 +53,7 @@ class _HomePageState extends State<HomePage> {
             delegate: SliverChildListDelegate(
               [
                 SizedBox(height: 20.h),
-                WelcomeUser(
-                 
-                ),
+                const WelcomeUser(),
                 SizedBox(
                   height: 10.h,
                 ),

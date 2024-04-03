@@ -1,4 +1,4 @@
-import 'package:take_my_tym/features/post/data/datasources/create_remote_data_source.dart';
+import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/models/post_model.dart';
 import 'package:take_my_tym/features/post/domain/repositories/create_post_repo.dart';
 

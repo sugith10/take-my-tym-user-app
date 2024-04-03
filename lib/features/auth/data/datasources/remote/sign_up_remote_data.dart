@@ -3,10 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/features/auth/data/datasources/remote/verify_user_remote_data.dart';
 
 final class SignUpRemoteData {
-  ///EMAIL SIGNUP
   Future<AppUserModel> createUserWithEmail({
     required String firstName,
     required String lastName,

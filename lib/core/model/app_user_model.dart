@@ -3,7 +3,7 @@ class AppUserModel {
   String email;
   bool verified;
   String firstName;
-  String? lastName;
+  String lastName;
   String? picture;
   List<String>? buyTymPost;
   List<String>? sellTymPost;
@@ -12,7 +12,7 @@ class AppUserModel {
     required this.uid,
     required this.email,
     required this.firstName,
-    this.lastName,
+    required this.lastName,
     this.picture,
     this.buyTymPost,
     this.sellTymPost,
@@ -24,7 +24,7 @@ class AppUserModel {
       uid: data['uid'] as String,
       email: data['email'] as String,
       firstName: data['firstName'] as String,
-      lastName: data['lastName'] as String?,
+      lastName: data['lastName'] as String,
       picture: data['picture'] as String?,
       buyTymPost: data['buyTymPost'] as List<String>?,
       sellTymPost: data['sellTymPost'] as List<String>?,

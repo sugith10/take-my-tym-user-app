@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -60,12 +61,11 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
             errorDescription: state.description,
           );
         }
-        if(state is FirstDataCollectSuccessState){
-             Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const CreatePostSecondPage()),
-                );
+        if (state is FirstDataCollectSuccessState) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CreatePostSecondPage()),
+          );
         }
       },
       child: Scaffold(
@@ -74,11 +74,9 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           actions: [
             ActionButton(
               voidCallback: () {
-              log('next');
                 context.read<CreatePostBloc>().add(
                       CollectFirstPageDataEvent(
-                        uid: '123456789',
-                        userName: 'sugith',
+                      userModel: context.read<AppBloc>().appUserModel!,
                         postType: postType,
                         title: _titleController.text.trim(),
                         content: _contentController.text.trim(),
@@ -144,8 +142,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           ],
         )),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             height: 50.h,
             color: MyAppDarkColor().bottomNavigationBarBackground,

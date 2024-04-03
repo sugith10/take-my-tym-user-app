@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_logo.dart';
@@ -25,7 +26,7 @@ class WelcomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 40.h),
-                    const AppLogo(),
+                    const Hero(tag: 'AppLogo', child:  AppLogo()),
                     const Spacer(flex: 2),
                     const WelcomePageAnimation(),
                     const Spacer(

@@ -21,13 +21,15 @@ final class CreatePostRemoteData {
               usersPostSnapshot.data()!['buyTymPost'] as List<dynamic>;
           userPostIds.add(buyTymPostRef.id);
           await usersPostRef.update({"buyTymPost": userPostIds});
-        }else{
-           final List<String> userIds = [buyTymPostRef.id];
-              await usersPostRef.update({"buyTymPost": userIds});
+        } else {
+          final List<String> userIds = [buyTymPostRef.id];
+          await usersPostRef.update({"buyTymPost": userIds});
         }
       } else {
         final List<String> userIds = [buyTymPostRef.id];
-        await usersPostRef.set({"buyTymPost": userIds});
+        await usersPostRef.set({
+          "buyTymPost": userIds,
+        });
       }
       log("Data added successfully in buyTymPost - message from create post remote data");
       return true;
@@ -52,17 +54,18 @@ final class CreatePostRemoteData {
 
       if (usersPostSnapshot.exists) {
         final data = usersPostSnapshot.data();
-        if(data != null && data.containsKey('sellTymPost')){
-           final List<dynamic> userPostIds =
-            usersPostSnapshot.data()!['sellTymPost'] as List<dynamic>;
-        log(userPostIds.toString());
-        userPostIds.add(sellTymPostRef.id);
-        await usersPostRef.update({"sellTymPost": userPostIds});
-     
-        }else{
-          await usersPostRef.update({"sellTymPost":[sellTymPostRef.id]});
-        }
+        if (data != null && data.containsKey('sellTymPost')) {
+          final List<dynamic> userPostIds =
+              usersPostSnapshot.data()!['sellTymPost'] as List<dynamic>;
+          log(userPostIds.toString());
+          userPostIds.add(sellTymPostRef.id);
+          await usersPostRef.update({"sellTymPost": userPostIds});
         } else {
+          await usersPostRef.update({
+            "sellTymPost": [sellTymPostRef.id]
+          });
+        }
+      } else {
         final List<String> userIds = [sellTymPostRef.id];
         await usersPostRef.set({"sellTymPost": userIds});
       }

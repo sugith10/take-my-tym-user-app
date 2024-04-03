@@ -1,12 +1,17 @@
 part of 'user_post_bloc.dart';
 
-sealed class UserPostEvent extends Equatable {
+sealed class UserPostEvent  {
   const UserPostEvent();
 
-  @override
-  List<Object> get props => [];
+
 }
 
-final class GetBuyTymPostsEvent extends UserPostEvent {}
+final class GetBuyTymPostsEvent extends UserPostEvent {
+  String userId;
+   GetBuyTymPostsEvent({required this.userId});
+}
 
-final class GetSellTymPostsEvent extends UserPostEvent {}
+final class GetSellTymPostsEvent extends UserPostEvent {
+   String userId;
+   GetSellTymPostsEvent({required this.userId});
+}

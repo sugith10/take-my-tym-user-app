@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
+import 'package:take_my_tym/features/post/data/models/post_model.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/chat_floating_action_button.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_description_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_owner_info_widget.dart';
@@ -12,17 +18,9 @@ import 'package:take_my_tym/features/post/presentation/widgets/post_title_widget
 import 'package:take_my_tym/features/post/presentation/widgets/skills_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/submit_button.dart';
 
-
-List<String> skillList = [
-  'Skills and Expertise',
-  'Skills and Expertise',
-  'Skills and Expertise',
-  'Skills and Expertise',
-  'Skills and Expertise',
-];
-
 class ViewPostPage extends StatelessWidget {
-  const ViewPostPage({super.key});
+  final PostModel postModel;
+  const ViewPostPage({required this.postModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +28,11 @@ class ViewPostPage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              automaticallyImplyLeading: false,
-              floating: true,
-              leading: BackButtonWidget(),
+            ViewPostAppBar(
+              callback: () {},
+              showMoreButton:
+                  postModel.uid == context.read<AppBloc>().appUserModel!.uid,
             ),
-            // TODO: implement listener
-            // covert to Sliver Fill Remaining 
-            // learn about Sliver in detail
-            // SliverFillRemaining(),
             SliverList(
               delegate: SliverChildListDelegate(
                 [
@@ -47,22 +41,20 @@ class ViewPostPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 10.h),
-                        const ServiceTypeWidget(type: "Remote"),
+                        ServiceTypeWidget(type: postModel.workType),
                         SizedBox(height: 15.h),
-                        const PostTitleWidget(
-                          title:
-                              'Elevate Your Brand with Graphic Design Expertise',
+                        PostTitleWidget(
+                          title: postModel.title,
                         ),
                         SizedBox(height: 20.h),
-                        const PostOwnerInfoWidget(
-                          name: 'Dilshad D',
+                        PostOwnerInfoWidget(
+                          name: postModel.userName,
                           image: MyAppImages.testProfile,
                           date: 'Oct 15,2023',
                         ),
                         SizedBox(height: 20.h),
-                        const PostDescriptionWidget(
-                          description:
-                              "Offering expert services in mobile app designs, website layouts, and stunning graphics. Elevate your brand with Anika's creative vision, attention to detail, and dedication to excellence. Ready to transform your brand's visual identity? I specialize in creating mesmerizing mobile app designs, captivating website layouts, and stunning graphics. With a keen eye for detail and a dedication to excellence, I bring your vision to life. Invest in design brilliance for just ₹15,000. Let's make your brand unforgettable! 🚀🌈",
+                        PostDescriptionWidget(
+                          description: postModel.content,
                         ),
                       ],
                     ),
@@ -70,15 +62,18 @@ class ViewPostPage extends StatelessWidget {
                   SizedBox(height: 20.h),
                   const Divider(),
                   SizedBox(height: 20.h),
-                  HomePadding(child: SkillsWidget(skillList: skillList,)),
+                  HomePadding(
+                      child: SkillsWidget(
+                    skillList: postModel.category,
+                  )),
                   SizedBox(height: 20.h),
                   const Divider(),
                   SizedBox(height: 20.h),
-                  const HomePadding(
+                  HomePadding(
                     child: PostConstraintsWidget(
-                      location: "Kozhikode",
-                      level: "Intermediate",
-                      amount: 15000,
+                      location: postModel.location,
+                      level: postModel.skillLevel,
+                      amount: postModel.price,
                       flexible: true,
                     ),
                   ),
@@ -95,6 +90,71 @@ class ViewPostPage extends StatelessWidget {
       bottomNavigationBar: SubmitButton(
         callback: () {},
       ),
+    );
+  }
+}
+
+class ViewPostAppBar extends StatelessWidget {
+  final VoidCallback callback;
+  final bool showMoreButton;
+  const ViewPostAppBar({
+    required this.showMoreButton,
+    required this.callback,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      automaticallyImplyLeading: false,
+      floating: true,
+      leading: const BackButtonWidget(),
+      actions: [
+        showMoreButton
+            ? PopupMenuButton(
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                      value: ("Update"),
+                      child: PopupMenuItemChildWidget(
+                        value: 'Update',
+                        icon: IconlyLight.edit,
+                      )),
+                  const PopupMenuItem(
+                    value: ("Delete"),
+                    child: PopupMenuItemChildWidget(
+                        value: 'Delete', icon: IconlyLight.delete),
+                  )
+                ],
+                onSelected: (value) {
+                  log(value);
+                },
+              )
+            : const SizedBox.shrink(),
+      ],
+    );
+  }
+}
+
+class PopupMenuItemChildWidget extends StatelessWidget {
+  final IconData icon;
+  final String value;
+  const PopupMenuItemChildWidget({
+    required this.value,
+    required this.icon,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon),
+        const SizedBox(width: 20),
+        Text(
+          value,
+          style: Theme.of(context).textTheme.labelLarge,
+        ),
+      ],
     );
   }
 }

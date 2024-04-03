@@ -38,19 +38,16 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-               const SwitchProfilePostsWidget(),
+                const SwitchProfilePostsWidget(),
                 const SizedBox(
                   height: 25,
                 ),
+                const ProfilePostsWidget(),
               ],
             ),
           ),
-          const ProfilePostsWidget(),
         ],
       ),
     );
   }
 }
-
-
-

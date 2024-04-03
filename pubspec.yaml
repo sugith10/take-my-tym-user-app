@@ -36,6 +36,7 @@ dependencies:
   iconly: ^1.0.1
   lottie: ^3.1.0
   animated_toggle_switch: ^0.8.2
+  shimmer_pro: ^0.0.6
 
   
 

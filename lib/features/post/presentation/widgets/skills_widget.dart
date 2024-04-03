@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -17,7 +19,9 @@ class SkillsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const PostCategoryTitle(title: 'Skills and Expertise'),
+        InkWell(onTap: () {
+          log(skillList.length.toString());
+        }, child: const PostCategoryTitle(title: 'Skills and Expertise')),
         SizedBox(height: 15.h),
         Wrap(
           spacing: MyAppPadding.homePadding,

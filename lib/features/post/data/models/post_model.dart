@@ -38,6 +38,7 @@ class PostModel extends Equatable {
       location,
       skillLevel,
       price,
+      category,
     ];
   }
 

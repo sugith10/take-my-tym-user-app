@@ -50,7 +50,7 @@ interface class AppColor {
 final class MyAppDarkColor extends AppColor {
   MyAppDarkColor()
       : super(
-          background: const Color(0xFF121212),
+          background: const Color.fromRGBO(18, 18, 18, 1),
           softBackground: const Color.fromARGB(255, 25, 25, 25),
           secondaryBackground: const Color(0xFF1A1B1A),
           pure: const Color.fromRGBO(0, 0, 0, 1),

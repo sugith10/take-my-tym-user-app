@@ -20,9 +20,13 @@ import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
+import 'package:take_my_tym/features/post/data/datasources/remote_data_source/get_user_posts_data_source.dart';
 import 'package:take_my_tym/features/post/data/repositories/create_post_repo_impl.dart';
+import 'package:take_my_tym/features/post/data/repositories/get_user_posts_repo_impl.dart';
 import 'package:take_my_tym/features/post/domain/repositories/create_post_repo.dart';
+import 'package:take_my_tym/features/post/domain/repositories/get_user_posts_repo.dart';
 import 'package:take_my_tym/features/post/domain/usecases/create_post_usecase.dart';
+import 'package:take_my_tym/features/post/domain/usecases/get_user_posts_usecase.dart';
 
 final class DependencyInject {
   void setupDependencies() {
@@ -61,6 +65,12 @@ final class DependencyInject {
         () => ForgetPasswordRepoImpl(ForgetPasswordRemoteData()));
     GetIt.instance.registerLazySingleton<ForgetPasswordUseCase>(
         () => ForgetPasswordUseCase(GetIt.instance<ForgetPasswordRepo>()));
+
+    ///UserBuyTymPosts
+    GetIt.instance.registerLazySingleton<GetUserPostsRepo>(
+        () => GetUserPostsRepoImp(GetUserPostsRemoteData()));
+    GetIt.instance.registerLazySingleton<GetUserPostsUseCase>(
+        () => GetUserPostsUseCase(GetIt.instance<GetUserPostsRepo>()));
 
     
   }

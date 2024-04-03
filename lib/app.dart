@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AppBloc>(create: ((context) => AppBloc())),
         BlocProvider<CreatePostBloc>(create: ((context) => CreatePostBloc())),
         BlocProvider<CreateSkillBloc>(create: ((context) => CreateSkillBloc())),
-        BlocProvider<UserPostBloc>(create: (context) => UserPostBloc())
+        BlocProvider<UserPostsBloc>(create: (context) => UserPostsBloc())
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

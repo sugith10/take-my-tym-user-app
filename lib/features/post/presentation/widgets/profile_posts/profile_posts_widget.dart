@@ -4,7 +4,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/shimmer_effect.dart';
 import 'package:take_my_tym/features/post/data/models/post_model.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/user_post_bloc/user_post_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/view_post_page.dart';
 
 class ProfilePostsWidget extends StatelessWidget {
@@ -14,7 +14,7 @@ class ProfilePostsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserPostsBloc, UserPostsState>(
+    return BlocBuilder<ReadPostsBloc, ReadPostsState>(
       builder: (context, state) {
         if (state is UserPostsLoadingState) {
           return const ShimmerEffectWidget();

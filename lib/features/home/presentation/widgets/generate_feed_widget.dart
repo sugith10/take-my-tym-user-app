@@ -22,16 +22,32 @@ class GenerateFeedWidget extends StatelessWidget {
         padding: const EdgeInsets.only(right: 10),
         child: Row(
           children: List.generate(20, (index) {
-            PostModel postModel = PostModel(uid: "sdhdsa", workType: "workType", title: title, content: "content", userName: "userName", location: "location", skillLevel: "skillLevel", price: 1400, postDate: DateTime(2024, 4, 3));
+            PostModel postModel = PostModel(
+              tymType: true,
+              uid: "sdhdsa",
+              workType: "workType",
+              title: title,
+              content: "content",
+              userName: "userName",
+              location: "location",
+              skillLevel: "skillLevel",
+              price: 1400,
+              postDate: DateTime(2024, 4, 3),
+              skills: [],
+            );
             return Padding(
               padding: const EdgeInsets.only(left: 10),
               child: PostedContentWidget(
                 voidCallback: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => ViewPostPage(postModel: postModel),),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ViewPostPage(postModel: postModel),
+                    ),
+                  );
                 },
                 image: image,
-              postModel: postModel,
+                postModel: postModel,
                 width: 300,
               ),
             );

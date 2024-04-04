@@ -12,14 +12,17 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
+import 'package:take_my_tym/features/post/data/models/post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_second_page.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_text_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/work_type_widget.dart';
 
 class CreatePostFirstPage extends StatefulWidget {
-  const CreatePostFirstPage({super.key});
+  final PostModel? postModel;
+  const CreatePostFirstPage({this.postModel, super.key});
 
   @override
   State<CreatePostFirstPage> createState() => _CreatePostFirstPageState();
@@ -28,26 +31,35 @@ class CreatePostFirstPage extends StatefulWidget {
 class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
-  final _emojiController = TextEditingController();
+  bool _tymType = true;
+
+  void getTymType(bool select) {
+    _tymType = select;
+    log("select $select, _tymType $_tymType");
+  }
+
+  String _workType = MyAppPostType.remote;
+  void getWorkType(String select) {
+    _workType = select;
+    log("select $select workType $_workType");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.postModel != null) {
+      _titleController.text = widget.postModel!.title;
+      _contentController.text = widget.postModel!.content;
+      _tymType = widget.postModel!.tymType;
+      _workType = widget.postModel!.workType;
+    }
+  }
 
   @override
   void dispose() {
     _titleController.dispose();
     _contentController.dispose();
-    _emojiController.dispose();
     super.dispose();
-  }
-
-  bool postType = true;
-  void getCategory(bool select) {
-    postType = select;
-    log("select $select, postType $postType");
-  }
-
-  String workType = MyAppPostType.remote;
-  void getWorkType(String select) {
-    workType = select;
-    log("select $select workType $workType");
   }
 
   @override
@@ -62,9 +74,14 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           );
         }
         if (state is FirstDataCollectSuccessState) {
+          context.read<CreateSkillBloc>().add(ClearSkillsEvent());
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => const CreatePostSecondPage()),
+            MaterialPageRoute(
+              builder: (_) => CreatePostSecondPage(
+                postModel: widget.postModel,
+              ),
+            ),
           );
         }
       },
@@ -76,11 +93,11 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               voidCallback: () {
                 context.read<CreatePostBloc>().add(
                       CollectFirstPageDataEvent(
-                      userModel: context.read<AppBloc>().appUserModel!,
-                        postType: postType,
+                        userModel: context.read<AppBloc>().appUserModel!,
+                        postType: _tymType,
                         title: _titleController.text.trim(),
                         content: _contentController.text.trim(),
-                        workType: workType,
+                        workType: _workType,
                       ),
                     );
               },
@@ -96,7 +113,10 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               child: Column(
                 children: [
                   SizedBox(height: 10.h),
-                  WorkTypeWidget(function: getWorkType),
+                  WorkTypeWidget(
+                    function: getWorkType,
+                    selectedWorkType: _workType,
+                  ),
                   SizedBox(height: 8.h),
                   CreatePostTextField(
                     hintText: 'Title',
@@ -112,30 +132,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                       expands: true,
                     ),
                   ),
-                  // Offstage(
-                  //   offstage: !_emojiShowing,
-                  //   child: EmojiPicker(
-                  //     textEditingController: _emojiController,
-                  //     scrollController: _scrollController,
-                  //     config: Config(
-                  //       height: 256,
-                  //       checkPlatformCompatibility: true,
-                  //       emojiViewConfig: EmojiViewConfig(
-                  //         // Issue: https://github.com/flutter/flutter/issues/28894
-                  //         emojiSizeMax: 28 *
-                  //             (foundation.defaultTargetPlatform ==
-                  //                     TargetPlatform.iOS
-                  //                 ? 1.2
-                  //                 : 1.0),
-                  //       ),
-                  //       swapCategoryAndBottomBar: false,
-                  //       skinToneConfig: const SkinToneConfig(),
-                  //       categoryViewConfig: const CategoryViewConfig(),
-                  //       bottomActionBarConfig: const BottomActionBarConfig(),
-                  //       searchViewConfig: const SearchViewConfig(),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -163,9 +159,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                   ),
                   const SizedBox(width: 5),
                   IconButton(
-                    onPressed: () {
-                      // onTapEmojiField();
-                    },
+                    onPressed: () {},
                     icon: CoustomImageIcon(
                         image: MyAppImages.emojiIcon,
                         width: 30.w,
@@ -174,7 +168,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                   const SizedBox(width: 10),
                   const Spacer(),
                   SwitchCategoryWidget(
-                    getCategory: getCategory,
+                    getTymType: getTymType,
+                    tymType: _tymType,
                   ),
                 ],
               ),

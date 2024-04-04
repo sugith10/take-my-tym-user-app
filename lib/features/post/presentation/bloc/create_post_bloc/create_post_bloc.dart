@@ -118,12 +118,14 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             try {
               final bool res = await createPostUseCase.buyTymPost(
                 postModel: PostModel(
+                  tymType: true,
                   uid: uid!,
                   workType: workType!,
                   title: title!,
                   content: content!,
                   userName: userName!,
                   postDate: DateTime.now(),
+                  skills: skills!,
                   location: location!,
                   skillLevel: experience!,
                   price: remuneration!,
@@ -148,6 +150,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             try {
               final bool res = await createPostUseCase.sellTymPost(
                 postModel: PostModel(
+                  tymType: false,
                   uid: uid!,
                   workType: workType!,
                   title: title!,
@@ -157,6 +160,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   location: location!,
                   skillLevel: experience!,
                   price: remuneration!,
+                  skills: skills!,
                 ),
               );
 

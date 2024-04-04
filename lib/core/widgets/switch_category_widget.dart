@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class SwitchCategoryWidget extends StatefulWidget {
-  final Function(bool) getCategory;
+  final Function(bool) getTymType;
+  final bool tymType;
   const SwitchCategoryWidget({
-    required this.getCategory,
+    this.tymType = true,
+    required this.getTymType,
     super.key,
   });
 
@@ -14,8 +16,14 @@ class SwitchCategoryWidget extends StatefulWidget {
 }
 
 class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
-  bool positive = true;
+  bool current = true;
   final MyAppDarkColor _myAppDarkColor = MyAppDarkColor();
+
+  @override
+  void initState() {
+    super.initState();
+    current = widget.tymType;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +40,7 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
           indicatorColor: const Color.fromRGBO(255, 255, 255, 1),
         );
       },
-      current: positive,
+      current: current,
       first: true,
       second: false,
       spacing: 50.0,
@@ -50,8 +58,8 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
       borderWidth: 7.5,
       height: 45,
       onChanged: (value) {
-        setState(() => positive = value);
-        widget.getCategory(value);
+        setState(() => current = value);
+        widget.getTymType(value);
       },
       textBuilder: (value) => value
           ? Center(

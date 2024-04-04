@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
@@ -64,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       children: [
                         SwitchCategoryWidget(
-                          getCategory: getCategory,
+                          getTymType: getCategory,
                         ),
                         SizedBox(width: 5.w),
                         SearchButton(

@@ -5,7 +5,9 @@ import 'package:take_my_tym/core/utils/post_types.dart';
 
 class WorkTypeWidget extends StatefulWidget {
   final Function(String) function;
+  final String selectedWorkType;
   const WorkTypeWidget({
+    required this.selectedWorkType,
     required this.function,
     super.key,
   });
@@ -15,9 +17,13 @@ class WorkTypeWidget extends StatefulWidget {
 }
 
 class _WorkTypeWidgetState extends State<WorkTypeWidget> {
-  Set<String> _selection = <String>{
-    MyAppPostType.remote,
-  };
+  Set<String> _selection = <String>{};
+
+  @override
+  void initState() {
+    super.initState();
+    _selection.add(widget.selectedWorkType);
+  }
   @override
   Widget build(BuildContext context) {
     return Align(

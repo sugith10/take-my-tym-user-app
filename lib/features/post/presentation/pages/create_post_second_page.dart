@@ -8,6 +8,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
+import 'package:take_my_tym/features/post/data/models/post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/constraints_text_form_field.dart';
@@ -15,7 +16,8 @@ import 'package:take_my_tym/features/post/presentation/widgets/create_post_title
 import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
 
 class CreatePostSecondPage extends StatefulWidget {
-  const CreatePostSecondPage({super.key});
+  final PostModel? postModel;
+  const CreatePostSecondPage({this.postModel, super.key});
 
   @override
   State<CreatePostSecondPage> createState() => _CreatePostSecondPageState();
@@ -26,8 +28,21 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController _locationCntrl = TextEditingController();
   final TextEditingController _experienceCntrl = TextEditingController();
   final TextEditingController _remunerationCntrl = TextEditingController();
+  List<dynamic>? skills;
+
   final MyAppDarkColor _darkColor = MyAppDarkColor();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.postModel != null) {
+      _locationCntrl.text = widget.postModel!.location;
+      _experienceCntrl.text = widget.postModel!.skillLevel;
+      _remunerationCntrl.text = widget.postModel!.price.toString();
+      skills = widget.postModel!.skills;
+    }
+  }
 
   @override
   void dispose() {
@@ -54,12 +69,15 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             errorDescription: state.description,
           );
         }
-        Navigator.pushAndRemoveUntil(
+        if (state is RemoteDataAddSuccessState) {
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => const NavigationMenu(),
             ),
-            (route) => false);
+            (route) => false,
+          );
+        }
       },
       child: Scaffold(
         appBar: AppBar(
@@ -101,7 +119,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  const CreatePostSkillsWidget(),
+                  CreatePostSkillsWidget(skills: skills,),
                   SizedBox(height: 10.h),
                   Form(
                     key: _formKey,

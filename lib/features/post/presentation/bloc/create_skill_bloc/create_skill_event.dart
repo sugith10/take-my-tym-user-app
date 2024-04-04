@@ -9,12 +9,17 @@ sealed class CreateSkillEvent extends Equatable {
 
 final class AddSkillEvent extends CreateSkillEvent {
   final String skill;
-
   const AddSkillEvent({required this.skill});
 }
 
 class RemoveSkillEvent extends CreateSkillEvent {
   final String skill;
-
   const RemoveSkillEvent({required this.skill});
 }
+
+final class AddAllSkillEvent extends CreateSkillEvent {
+  final List<dynamic>? skill;
+  const AddAllSkillEvent({required this.skill});
+}
+
+final class ClearSkillsEvent extends CreateSkillEvent {}

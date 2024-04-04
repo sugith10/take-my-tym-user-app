@@ -1,14 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_category_widget.dart';
 
-
 class SkillsWidget extends StatelessWidget {
-  final List<String> skillList;
+  final List<dynamic> skillList;
   const SkillsWidget({
     required this.skillList,
     super.key,
@@ -19,17 +17,19 @@ class SkillsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(onTap: () {
-          log(skillList.length.toString());
-        }, child: const PostCategoryTitle(title: 'Skills and Expertise')),
+        InkWell(
+            onTap: () {
+              log(skillList.length.toString());
+            },
+            child: const PostCategoryTitle(title: 'Skills and Expertise')),
         SizedBox(height: 15.h),
         Wrap(
           spacing: MyAppPadding.homePadding,
           runSpacing: MyAppPadding.homePadding,
-          children: List.generate(
-            skillList.length,
-            (index) => const _SkillTypeWidget(skill: 'Skills and Expertise'),
-          ),
+          children: List.generate(skillList.length, (index) {
+            String skill = skillList[index];
+            return _SkillTypeWidget(skill: skill);
+          }),
         ),
       ],
     );
@@ -51,9 +51,9 @@ class _SkillTypeWidget extends StatelessWidget {
           Radius.circular(MyAppRadius.borderRound),
         ),
       ),
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text('Mobile App Development'),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(skill),
       ),
     );
   }

@@ -21,19 +21,37 @@ class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
         }
       }
     });
-    on<AddSkillEvent>((event, emit) {
-      if (event.skill.isNotEmpty) {
-        if (skills.length >= 5) {
-          log("sills length exceeded");
+
+    on<AddSkillEvent>(
+      (event, emit) {
+        if (event.skill.isNotEmpty) {
+          if (skills.length >= 5) {
+            log("sills length exceeded");
+          } else {
+            skills.add(event.skill);
+            log(skills.length.toString());
+            log(skills.toString());
+            emit(UpdateSkillSuccessState(skills: skills));
+          }
         } else {
-          skills.add(event.skill);
-          log(skills.length.toString());
-          log(skills.toString());
+          log('skill is empty');
+        }
+      },
+    );
+
+    on<AddAllSkillEvent>(
+      (event, emit) {
+        if (event.skill != null) {
+          emit(CreateSkillInitial());
+          skills.addAll(event.skill!.cast<String>());
           emit(UpdateSkillSuccessState(skills: skills));
         }
-      } else {
-        log('skill is empty');
-      }
+      },
+    );
+
+    on<ClearSkillsEvent>((event, emit) {
+      emit(CreateSkillInitial());
+      skills.clear();
     });
   }
 }

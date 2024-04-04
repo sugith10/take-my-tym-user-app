@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/user_post_bloc/user_post_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 
 class SwitchProfilePostsWidget extends StatefulWidget {
   const SwitchProfilePostsWidget({
@@ -35,16 +35,16 @@ class _SwitchProfilePostsWidgetState extends State<SwitchProfilePostsWidget> {
       }
 
       type
-          ? context.read<UserPostsBloc>().add(
+          ? context.read<ReadPostsBloc>().add(
                 GetBuyTymPostsEvent(userId: userId),
               )
           : context
-              .read<UserPostsBloc>()
+              .read<ReadPostsBloc>()
               .add(GetSellTymPostsEvent(userId: userId));
     }
 
     return HomePadding(
-      child: SwitchCategoryWidget(getCategory: getCategory),
+      child: SwitchCategoryWidget(getTymType: getCategory),
     );
   }
 }

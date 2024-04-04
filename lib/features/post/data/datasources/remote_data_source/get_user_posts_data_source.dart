@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/post/data/models/post_model.dart';
@@ -35,6 +34,7 @@ final class GetUserPostsRemoteData {
                 .map(
                   (doc) => PostModel.fromMap(
                     doc.data(),
+                    postId:  doc.id,
                   ),
                 )
                 .toList();
@@ -87,6 +87,7 @@ final class GetUserPostsRemoteData {
                 .map(
                   (doc) => PostModel.fromMap(
                     doc.data(),
+                   postId:  doc.id,
                   ),
                 )
                 .toList();

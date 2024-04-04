@@ -10,7 +10,9 @@ import 'package:take_my_tym/features/post/presentation/widgets/create_post_title
 import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_text_field.dart';
 
 class CreatePostSkillsWidget extends StatefulWidget {
+  final List<dynamic>? skills;
   const CreatePostSkillsWidget({
+    required this.skills,
     super.key,
   });
 
@@ -31,6 +33,7 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CreateSkillBloc>().add(AddAllSkillEvent(skill: widget.skills));
     return BlocBuilder<CreateSkillBloc, CreateSkillState>(
       builder: (context, state) {
         if (state is UpdateSkillSuccessState) {

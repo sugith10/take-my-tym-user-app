@@ -1,17 +1,17 @@
-part of 'user_post_bloc.dart';
+part of 'read_post_bloc.dart';
 
-sealed class UserPostsState extends Equatable {
-  const UserPostsState();
+sealed class ReadPostsState extends Equatable {
+  const ReadPostsState();
   
   @override
   List<Object> get props => [];
 }
 
-final class UserPostInitial extends UserPostsState {}
+final class UserPostInitial extends ReadPostsState {}
 
-final class UserPostsLoadingState extends UserPostsState{}
+final class UserPostsLoadingState extends ReadPostsState{}
 
-final class GotBuyTymPostsState extends UserPostsState{
+final class GotBuyTymPostsState extends ReadPostsState{
   final List<PostModel> buyTymPostModel;
   const GotBuyTymPostsState({required this.buyTymPostModel});
 
@@ -19,7 +19,7 @@ final class GotBuyTymPostsState extends UserPostsState{
   List<Object> get props => [buyTymPostModel];
 }
 
-final class GotSellTymPostsState extends UserPostsState{
+final class GotSellTymPostsState extends ReadPostsState{
   final List<PostModel> sellTymPostModels;
   const GotSellTymPostsState({required this.sellTymPostModels});
 

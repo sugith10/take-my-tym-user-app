@@ -6,3 +6,13 @@ sealed class UpdatePostEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class UpdateBuyTymPostEvent extends UpdatePostEvent {
+  final PostModel postModel;
+  const UpdateBuyTymPostEvent({required this.postModel});
+}
+
+final class UpdateSellTymPostEvent extends UpdatePostEvent {
+  final PostModel postModel;
+  const UpdateSellTymPostEvent({required this.postModel});
+}

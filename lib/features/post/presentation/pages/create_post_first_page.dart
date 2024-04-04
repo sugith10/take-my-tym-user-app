@@ -91,7 +91,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           actions: [
             ActionButton(
               voidCallback: () {
-                context.read<CreatePostBloc>().add(
+                if(widget.postModel == null){
+                      context.read<CreatePostBloc>().add(
                       CollectFirstPageDataEvent(
                         userModel: context.read<AppBloc>().appUserModel!,
                         postType: _tymType,
@@ -100,6 +101,10 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                         workType: _workType,
                       ),
                     );
+                }else{
+                 
+                }
+            
               },
               action: 'Next',
             ),

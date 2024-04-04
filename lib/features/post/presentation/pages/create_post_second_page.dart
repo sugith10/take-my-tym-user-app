@@ -11,6 +11,7 @@ import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigati
 import 'package:take_my_tym/features/post/data/models/post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/constraints_text_form_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
@@ -56,29 +57,53 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CreatePostBloc, CreatePostState>(
-      listener: (context, state) {
-        if (state is CreatPostLoadingState) {
-          ShowLoadingDialog().showLoadingIndicator(context);
-        }
-        if (state is SecondDataCollectFailState) {
-          Navigator.pop(context);
-          SnackBarMessenger().showSnackBar(
-            context: context,
-            errorMessage: state.message,
-            errorDescription: state.description,
-          );
-        }
-        if (state is RemoteDataAddSuccessState) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NavigationMenu(),
-            ),
-            (route) => false,
-          );
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CreatePostBloc, CreatePostState>(
+            listener: (context, state) {
+          if (state is CreatPostLoadingState) {
+            ShowLoadingDialog().showLoadingIndicator(context);
+          }
+          if (state is SecondDataCollectFailState) {
+            Navigator.pop(context);
+            SnackBarMessenger().showSnackBar(
+              context: context,
+              errorMessage: state.message,
+              errorDescription: state.description,
+            );
+          }
+          if (state is RemoteDataAddSuccessState) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavigationMenu(),
+              ),
+              (route) => false,
+            );
+          }
+        }),
+        BlocListener<UpdatePostBloc, UpdatePostState>(
+            listener: (context, state) {
+          if (state is UpdatePostLoadingState) {
+            ShowLoadingDialog().showLoadingIndicator(context);
+          } else if (state is UpdatePostFailState) {
+            Navigator.pop(context);
+            SnackBarMessenger().showSnackBar(
+              context: context,
+              errorMessage: state.message,
+              errorDescription: state.description,
+            );
+          } else if (state is UpdatePostSuccessState) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavigationMenu(),
+              ),
+              (route) => false,
+            );
+          }
+        })
+      ],
       child: Scaffold(
         appBar: AppBar(
           leading: const BackButtonWidget(),
@@ -89,14 +114,26 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   final skills = context.read<CreateSkillBloc>().skills;
 
                   if (skills.isNotEmpty) {
-                    context
-                        .read<CreatePostBloc>()
-                        .add(CollectSecondPageDataEvent(
-                          experience: _experienceCntrl.text,
-                          location: _locationCntrl.text,
-                          remuneration: _remunerationCntrl.text,
-                          skills: skills,
-                        ));
+                    if (widget.postModel != null) {
+                      widget.postModel!.tymType
+                          ? context.read<UpdatePostBloc>().add(
+                                UpdateBuyTymPostEvent(
+                                    postModel: widget.postModel!),
+                              )
+                          : context.read<UpdatePostBloc>().add(
+                                UpdateSellTymPostEvent(
+                                    postModel: widget.postModel!),
+                              );
+                    } else {
+                      context
+                          .read<CreatePostBloc>()
+                          .add(CollectSecondPageDataEvent(
+                            experience: _experienceCntrl.text,
+                            location: _locationCntrl.text,
+                            remuneration: _remunerationCntrl.text,
+                            skills: skills,
+                          ));
+                    }
                   } else {
                     SnackBarMessenger().showSnackBar(
                       context: context,
@@ -119,7 +156,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  CreatePostSkillsWidget(skills: skills,),
+                  CreatePostSkillsWidget(
+                    skills: skills,
+                  ),
                   SizedBox(height: 10.h),
                   Form(
                     key: _formKey,

@@ -22,18 +22,22 @@ import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.da
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/delete_post_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/get_user_posts_data_source.dart';
+import 'package:take_my_tym/features/post/data/datasources/remote_data_source/search_posts_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/update_post_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/repositories/create_post_repo_impl.dart';
 import 'package:take_my_tym/features/post/data/repositories/delete_post_repo_impl.dart';
 import 'package:take_my_tym/features/post/data/repositories/get_user_posts_repo_impl.dart';
+import 'package:take_my_tym/features/post/data/repositories/search_posts_repo_impl.dart';
 import 'package:take_my_tym/features/post/data/repositories/update_post_repo_impl.dart';
 import 'package:take_my_tym/features/post/domain/repositories/create_post_repo.dart';
 import 'package:take_my_tym/features/post/domain/repositories/delete_post_repo.dart';
 import 'package:take_my_tym/features/post/domain/repositories/get_user_posts_repo.dart';
+import 'package:take_my_tym/features/post/domain/repositories/search_posts_repo.dart';
 import 'package:take_my_tym/features/post/domain/repositories/update_post_repo.dart';
 import 'package:take_my_tym/features/post/domain/usecases/create_post_usecase.dart';
 import 'package:take_my_tym/features/post/domain/usecases/delete_post_usecase.dart';
 import 'package:take_my_tym/features/post/domain/usecases/get_user_posts_usecase.dart';
+import 'package:take_my_tym/features/post/domain/usecases/search_posts_usecase.dart';
 import 'package:take_my_tym/features/post/domain/usecases/update_post_usecase.dart';
 
 final class DependencyInject {
@@ -91,5 +95,11 @@ final class DependencyInject {
         () => UpdatePostRepoImpl(UpdatePostRemoteData()));
     GetIt.instance.registerLazySingleton<UpdatePostUseCase>(
       () => UpdatePostUseCase(GetIt.instance<UpdatePostRepo>()));
+
+    ///Search Posts
+    GetIt.instance.registerLazySingleton<SearchPostRepo>(
+      () => SearchPostsRepoImpl(SearchPostsRemoteData()));
+    GetIt.instance.registerLazySingleton<SearchPostUseCase>(
+      () => SearchPostUseCase(GetIt.instance<SearchPostRepo>()));
   }
 }

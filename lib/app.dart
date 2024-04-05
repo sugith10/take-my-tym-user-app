@@ -7,8 +7,8 @@ import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/cre
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,9 +20,13 @@ class MyApp extends StatelessWidget {
         BlocProvider<AppBloc>(create: ((context) => AppBloc())),
         BlocProvider<CreatePostBloc>(create: ((context) => CreatePostBloc())),
         BlocProvider<CreateSkillBloc>(create: ((context) => CreateSkillBloc())),
-        BlocProvider<ReadPostsBloc>(create: (context) => ReadPostsBloc()),
+        BlocProvider<ReadPostsBloc>(
+            create: (context) => ReadPostsBloc()
+              ..add(GetBuyTymPostsEvent(
+                  userId: context.read<AppBloc>().appUserModel!.uid))),
         BlocProvider<DeletePostBloc>(create: (context) => DeletePostBloc()),
         BlocProvider<UpdatePostBloc>(create: (context) => UpdatePostBloc()),
+        BlocProvider<SearchPostsBloc>(create: (context) => SearchPostsBloc()),
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

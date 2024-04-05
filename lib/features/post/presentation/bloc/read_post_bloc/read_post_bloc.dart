@@ -9,9 +9,10 @@ part 'read_post_event.dart';
 part 'read_post_state.dart';
 
 class ReadPostsBloc extends Bloc<ReadPostEvent, ReadPostsState> {
-  ReadPostsBloc() : super(UserPostInitial()) {
+  ReadPostsBloc() : super(UserPostsLoadingState()) {
     final GetUserPostsUseCase getUserPostsUseCase =
         GetIt.instance<GetUserPostsUseCase>();
+
     on<GetBuyTymPostsEvent>((event, emit) async {
       emit(UserPostsLoadingState());
       try {

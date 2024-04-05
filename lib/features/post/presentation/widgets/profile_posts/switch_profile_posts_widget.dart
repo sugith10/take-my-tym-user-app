@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
@@ -26,14 +25,6 @@ class _SwitchProfilePostsWidgetState extends State<SwitchProfilePostsWidget> {
     void getCategory(bool value) {
       value ? type = true : type = false;
 
-      if (type) {
-        log(value.toString());
-        log("true");
-      } else {
-        log(value.toString());
-        log("false");
-      }
-
       type
           ? context.read<ReadPostsBloc>().add(
                 GetBuyTymPostsEvent(userId: userId),
@@ -44,7 +35,17 @@ class _SwitchProfilePostsWidgetState extends State<SwitchProfilePostsWidget> {
     }
 
     return HomePadding(
-      child: SwitchCategoryWidget(getTymType: getCategory),
+      child: BlocBuilder<ReadPostsBloc, ReadPostsState>(
+        builder: (context, state) {
+          if (state is GotBuyTymPostsState) {
+            return SwitchCategoryWidget(getTymType: getCategory);
+          }
+          return SwitchCategoryWidget(
+            getTymType: getCategory,
+            tymType: false,
+          );
+        },
+      ),
     );
   }
 }

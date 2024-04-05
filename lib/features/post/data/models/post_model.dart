@@ -39,6 +39,7 @@ class PostModel extends Equatable {
      tymType,
       userName,
       postDate,
+      title,
       content,
       location,
       skillLevel,

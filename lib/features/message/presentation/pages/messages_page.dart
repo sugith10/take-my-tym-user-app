@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
@@ -14,6 +16,7 @@ class MessagePage extends StatefulWidget {
 class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
+    log("message");
     return Scaffold(
       body: CustomScrollView(
         slivers: [

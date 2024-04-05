@@ -9,7 +9,7 @@ import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_wid
 import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
-import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
+import 'package:take_my_tym/features/post/presentation/pages/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

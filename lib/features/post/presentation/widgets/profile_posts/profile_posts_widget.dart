@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/shimmer_effect.dart';
@@ -14,6 +17,8 @@ class ProfilePostsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('xxx');
+
     return BlocBuilder<ReadPostsBloc, ReadPostsState>(
       builder: (context, state) {
         if (state is UserPostsLoadingState) {

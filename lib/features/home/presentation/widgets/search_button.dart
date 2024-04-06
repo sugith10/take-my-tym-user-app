@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 class SearchButton extends StatelessWidget {
-  final VoidCallback function;
+  final VoidCallback callback;
   const SearchButton({
-    required this.function,
+    required this.callback,
     super.key,
   });
 
@@ -13,7 +13,7 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        function();
+        callback();
       },
       icon: CircleAvatar(
         radius: 20.h,

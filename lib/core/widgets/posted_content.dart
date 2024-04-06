@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/features/post/data/models/post_model.dart';
+import 'package:take_my_tym/core/model/app_post_model.dart';
 
 class PostedContentWidget extends StatelessWidget {
   final String? image;

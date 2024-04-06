@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
+import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 
 class ChatTileWidget extends StatelessWidget {
   final String personName;
@@ -8,21 +9,44 @@ class ChatTileWidget extends StatelessWidget {
   final String lastMsgTime;
   final String personPhoto;
 
-  const ChatTileWidget({
-    super.key,
-    required this.personName,
-    required this.lastMessage,
-    required this.lastMsgTime,
-    this.personPhoto = MyAppImages.profileIcon
-  });
+  const ChatTileWidget(
+      {super.key,
+      required this.personName,
+      required this.lastMessage,
+      required this.lastMsgTime,
+      this.personPhoto = MyAppImages.profileIcon});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleProfilePicWidget(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const IndividualChatPage()));
+      },
+      
+      leading: SizedBox(
         height: 50,
-        width: 50,
-        image: personPhoto,
+        child: Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+          CircleProfilePicWidget(
+            height: 50,
+            width: 50,
+            image: personPhoto,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: CircleAvatar(
+              radius: 5,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.green, borderRadius: BorderRadius.circular(100)),
+              ),
+            ),
+          )
+        ]),
       ),
       title: Text(
         personName,

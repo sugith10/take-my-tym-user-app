@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/search_bloc/search_bloc.dart';
 
@@ -25,7 +26,7 @@ class SearchTextField extends StatelessWidget {
         },
         autofocus: true,
         textCapitalization: TextCapitalization.sentences,
-        cursorColor: Colors.white,
+        cursorColor: MyAppDarkColor().primaryText ,
         decoration: InputDecoration(
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 5),

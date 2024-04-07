@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
+import 'package:take_my_tym/core/widgets/default_appbar.dart';
+import 'package:take_my_tym/features/message/presentation/widgets/chat_text_field.dart';
 
 class IndividualChatPage extends StatelessWidget {
   const IndividualChatPage({super.key});
@@ -8,67 +9,105 @@ class IndividualChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Text('Chat'),
-            )
-          ],
-        ),
+      appBar: DefaultAppBar(
+        leading: const BackButtonWidget(),
+        settings: () {},
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10),
-        child: SizedBox(
-          child: Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Row(
-              children: [
-                Expanded(
-                    child: TextField(
-                  textCapitalization: TextCapitalization.sentences,
-                  decoration: InputDecoration(
-                    hintText: "Message",
-                    hintStyle: Theme.of(context).textTheme.bodyLarge,
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          IconlyBold.image_2,
-                          color: Color.fromARGB(236, 124, 123, 123),
-                          size: 35,
-                        ),
-                      ),
-                    ),
-                    filled: true,
-                    fillColor:
-                        const Color.fromARGB(237, 53, 53, 53).withOpacity(0.5),
-                  ),
-                  style: Theme.of(context).textTheme.titleMedium,
-                )),
-                const SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(100),
-                    color: MyAppDarkColor().primaryText,
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      IconlyBold.send,
-                      color: MyAppDarkColor().background,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: const ChatTextField(),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class IndividualChatPage extends StatefulWidget {
+//   //receiverEmail;
+//   const IndividualChatPage({super.key});
+
+//   @override
+//   State<IndividualChatPage> createState() => _IndividualChatPageState();
+// }
+
+// class _IndividualChatPageState extends State<IndividualChatPage> {
+//   final TextEditingController _controller = TextEditingController();
+
+//   final ChatService _chatService = ChatService();
+
+//   void sendMessage() async {
+//     if (_controller.text.isNotEmpty) {
+//       await _chatService.sendMessage(
+//         "QkbZfvJpcuWtKrMsmHq09phXgC02",
+//         _controller.text,
+//       );
+//       _controller.clear();
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(),
+//       body: _buildMessageList(),
+//       bottomNavigationBar: const ChatTextField(),
+//     );
+//   }
+
+//   Widget _buildMessageList() {
+//     return StreamBuilder(
+//         stream: _chatService.getMessages(
+//           "QkbZfvJpcuWtKrMsmHq09phXgC02",
+//           "PBEkOtuZZNT7Ljpoo8hKuvg2XVC3",
+//         ),
+//         builder: (context, snapshot) {
+//           //errors
+//           if (snapshot.hasError) {
+//             log("error");
+//             return const Text("error");
+//           }
+//           //loading
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             log('loding');
+//             return const Text("loading");
+//           }
+//           //success
+//           log('success');
+//           return ListView(
+//             children: snapshot.data!.docs
+//                 .map((doc) => _buildMssageItem(doc))
+//                 .toList(),
+//           );
+//         });
+//   }
+
+//   Widget _buildMssageItem(DocumentSnapshot doc) {
+//     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+//     bool isCurrentUser = data['senderID'] == "PBEkOtuZZNT7Ljpoo8hKuvg2XVC3";
+//     log(data['senderID'].toString());
+//     log(isCurrentUser.toString());
+//     return Column(
+//       children: [
+//         Text(
+//           data['message'],
+//           textAlign: isCurrentUser ? TextAlign.right : TextAlign.left,
+//         ),
+//       ],
+//     );
+//   }
+// }

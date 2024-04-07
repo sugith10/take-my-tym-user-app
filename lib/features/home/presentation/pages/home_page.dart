@@ -14,7 +14,7 @@ import 'package:take_my_tym/features/home/presentation/widgets/search_button.dar
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/create_post/presentation/pages/search_page.dart';
+import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
 import 'package:take_my_tym/features/create_post/presentation/pages/view_post_page.dart';
 
 class HomePage extends StatefulWidget {

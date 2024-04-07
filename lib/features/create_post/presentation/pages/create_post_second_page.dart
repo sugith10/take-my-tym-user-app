@@ -12,7 +12,7 @@ import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/constraints_text_form_field.dart';
+import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_skill/create_skills_widget.dart';
 
@@ -109,7 +109,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
           leading: const BackButtonWidget(),
           actions: [
             ActionButton(
-              voidCallback: () {
+              callback: () {
                 if (_formKey.currentState!.validate()) {
                   final skills = context.read<CreateSkillBloc>().skills;
 
@@ -163,7 +163,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   Form(
                     key: _formKey,
                     child: CreatePostTitleWidget(
-                      title: "Constraints",
+                      title: "Relevant Details",
                       children: [
                         SizedBox(height: 10.h),
                         ConstraintsTextFormField(

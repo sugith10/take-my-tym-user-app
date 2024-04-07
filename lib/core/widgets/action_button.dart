@@ -4,10 +4,10 @@ import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class ActionButton extends StatelessWidget {
   final String action;
-  final VoidCallback voidCallback;
+  final VoidCallback callback;
   const ActionButton({
     required this.action,
-    required this.voidCallback,
+    required this.callback,
     super.key,
   });
 
@@ -17,7 +17,7 @@ class ActionButton extends StatelessWidget {
       padding: const EdgeInsets.all(MyAppPadding.homePadding),
       child: ElevatedButton(
         onPressed: () {
-          voidCallback();
+          callback();
         },
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(

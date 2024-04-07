@@ -90,7 +90,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           leading: const BackButtonWidget(),
           actions: [
             ActionButton(
-              voidCallback: () {
+              callback: () {
                 if(widget.postModel == null){
                       context.read<CreatePostBloc>().add(
                       CollectFirstPageDataEvent(
@@ -101,10 +101,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                         workType: _workType,
                       ),
                     );
-                }else{
-                 
                 }
-            
               },
               action: 'Next',
             ),

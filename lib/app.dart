@@ -7,7 +7,7 @@ import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_b
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
 

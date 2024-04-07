@@ -1,10 +1,13 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 
 class ProfileOptionsWidget extends StatelessWidget {
+  final VoidCallback editProfile;
   const ProfileOptionsWidget({
+    required this.editProfile,
     super.key,
   });
 
@@ -12,11 +15,12 @@ class ProfileOptionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return HomePadding(
       child: Row(
-       
         children: [
           _ProfileOptionButton(
             action: 'Edit Profile',
-            callback: () {},
+            callback: () {
+              editProfile();
+            },
           ),
           const Spacer(),
           _ProfileOptionButton(
@@ -45,7 +49,9 @@ class _ProfileOptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        callback();
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 5),

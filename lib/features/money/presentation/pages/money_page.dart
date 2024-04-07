@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
-import 'package:take_my_tym/core/widgets/settings_button.dart';
+import 'package:take_my_tym/core/widgets/default_appbar.dart';
+import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/transactions_view_setup_widget.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/transaction_tile.dart';
 import 'package:take_my_tym/features/money/presentation/widgets/wallet_card/wallet_card_widget.dart';
@@ -14,20 +14,13 @@ class MoneyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
+      appBar: DefaultAppBar(
         title: const AppBarTitle(
-          title: 'Money',
+          title: "Money",
         ),
-        actions: [
-          SettingsButton(
-            callback: () {},
-          )
-        ],
+        settings: () {},
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-            left: MyAppPadding.homePadding, right: MyAppPadding.homePadding),
+      body: HomePadding(
         child: Column(
           children: [
             const WalletCard(

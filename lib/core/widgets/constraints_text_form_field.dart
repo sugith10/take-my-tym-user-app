@@ -31,6 +31,7 @@ class ConstraintsTextFormField extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         TextFormField(
+          maxLines: null,
           controller: controller,
           textCapitalization: TextCapitalization.words,
           validator: validator,

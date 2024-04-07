@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/app_bar_title.dart';
-import 'package:take_my_tym/core/widgets/settings_button.dart';
+import 'package:take_my_tym/core/widgets/default_silver_appbar.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_tile_widget.dart';
 
 class ChatListPage extends StatefulWidget {
@@ -17,15 +16,9 @@ class _ChatListPageState extends State<ChatListPage> {
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          SliverAppBar(
-            floating: true,
-            automaticallyImplyLeading: false,
-            title: const AppBarTitle(title: 'Inbox'),
-            actions: [
-              SettingsButton(
-                callback: () {},
-              )
-            ],
+          DefaultSilverAppBar(
+            title: 'Inbox',
+            settings: () {},
           ),
           SliverList.builder(
             itemCount: 20,

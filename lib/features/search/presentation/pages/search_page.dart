@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/create_post/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/search_page/search_page_initial_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/search_text_field.dart';
 

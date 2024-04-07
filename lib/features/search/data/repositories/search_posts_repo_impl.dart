@@ -1,7 +1,6 @@
-import 'dart:developer';
-import 'package:take_my_tym/features/create_post/data/datasources/remote_data_source/search_posts_remote_data_source.dart';
+import 'package:take_my_tym/features/search/data/datasources/remote/search_posts_remote_data_source.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/create_post/domain/repositories/search_posts_repo.dart';
+import 'package:take_my_tym/features/search/domain/repositories/search_posts_repo.dart';
 
 class SearchPostsRepoImpl implements SearchPostRepo {
   final SearchPostsRemoteData _searchRemoteData;

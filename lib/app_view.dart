@@ -10,7 +10,7 @@ class MyAppView extends StatelessWidget {
     return MaterialApp(
       title: "Take My Tym",
       home: const SplashPage(),
-      darkTheme: MyAppDarkTheme().darkTheme,
+      theme: MyAppDarkTheme().darkTheme,
       debugShowCheckedModeBanner: false,
     );
   }

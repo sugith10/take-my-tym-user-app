@@ -4,33 +4,25 @@ import 'package:take_my_tym/core/widgets/default_appbar.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_text_field.dart';
 
 class IndividualChatPage extends StatelessWidget {
-  const IndividualChatPage({super.key});
+  final String receiverUid;
+  final String currentUid;
+  const IndividualChatPage(
+      {required this.currentUid, required this.receiverUid, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(
-        leading: const BackButtonWidget(),
-        settings: () {},
+          leading: const BackButtonWidget(),
+          callback: () {},
+          actionIcon: Icons.more_vert_rounded),
+      bottomNavigationBar: ChatTextField(
+        currentUid: currentUid,
+        receiverUid: receiverUid,
       ),
-      bottomNavigationBar: const ChatTextField(),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

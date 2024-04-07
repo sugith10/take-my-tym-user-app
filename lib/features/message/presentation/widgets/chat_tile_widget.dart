@@ -23,7 +23,7 @@ class ChatTileWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const IndividualChatPage()));
+                builder: (context) => const  IndividualChatPage(currentUid: '',receiverUid: '',)));
       },
       
       leading: SizedBox(

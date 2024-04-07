@@ -10,4 +10,3 @@ abstract class MessageEvent extends Equatable {
 final class StartChatEvent extends MessageEvent{}
 
 final class DeleteMessageEvent extends MessageEvent {}
-

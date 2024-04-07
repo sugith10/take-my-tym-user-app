@@ -8,7 +8,7 @@ final class CommunityPostsRepoImpl implements CommunityPostsRepo {
 
   @override
   Future<List<PostModel>> buyTymPosts() async{
-    return await _communityPostsRemoteData.sellTymPosts();
+    return await _communityPostsRemoteData.buyTymPosts();
   }
 
   @override

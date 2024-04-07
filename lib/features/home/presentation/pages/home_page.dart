@@ -7,9 +7,10 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
+import 'package:take_my_tym/features/home/presentation/widgets/home_page_app_bar.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/home_page_filter_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_widget.dart';
+import 'package:take_my_tym/features/home/presentation/widgets/home_page_shimmer_effect.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/post/presentation/pages/view_post_page.dart';
@@ -51,18 +52,19 @@ class _HomePageState extends State<HomePage> {
                   title: 'Timeless beauty of moments captured',
                   image: MyAppImages.testTwo,
                 ),
-                SizedBox(height: 30.h),
+                SizedBox(height: 20.h),
+                // ShimmerEffectWidget(),
                 //Category Two
                 SingleChildScrollView(
-                  child: HomePadding(
-                    child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
-                      builder: (context, state) {
-                        if (state is CommunityPostsLoadingState) {
-                          return const CircularProgressIndicator();
-                        }
-                        if (state is BuyTymCommunityPostsState) {
-                          log("its successssssss");
-                          return Column(
+                  child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
+                    builder: (context, state) {
+                      if (state is CommunityPostsLoadingState) {
+                        return const HomePageShimmerEffect();
+                      }
+                      if (state is CommunityPostsSuccessState) {
+                        log("its successssssss");
+                        return HomePadding(
+                          child: Column(
                             children: List.generate(state.buyTymPosts.length,
                                 (index) {
                               final PostModel postModel =
@@ -81,11 +83,11 @@ class _HomePageState extends State<HomePage> {
                                 width: double.infinity,
                               );
                             }),
-                          );
-                        }
-                        return const SizedBox();
-                      },
-                    ),
+                          ),
+                        );
+                      }
+                      return const  HomePageShimmerEffect();
+                    },
                   ),
                 )
               ],
@@ -93,33 +95,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-    );
-  }
-}
-
-class HomePageAppBar extends StatelessWidget {
-  final VoidCallback openDrawer;
-  final VoidCallback location;
-  const HomePageAppBar({
-    required this.openDrawer,
-    required this.location,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      automaticallyImplyLeading: false,
-      leading: IconButton(
-        onPressed: () => openDrawer(),
-        icon: const Icon(Icons.density_medium),
-      ),
-      actions: [
-        LocationWidget(
-          function: () => location(),
-        ),
-      ],
     );
   }
 }

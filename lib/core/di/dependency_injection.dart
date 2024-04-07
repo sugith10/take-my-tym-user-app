@@ -19,6 +19,10 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
+import 'package:take_my_tym/features/message/data/datasources/remote/chat_service.dart';
+import 'package:take_my_tym/features/message/data/repositories/individual_message_repo_impl.dart';
+import 'package:take_my_tym/features/message/domain/repositories/individual_message_repo.dart';
+import 'package:take_my_tym/features/message/domain/usecases/individual_message_usecase.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/delete_post_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/get_user_posts_data_source.dart';
@@ -88,29 +92,34 @@ final class DependencyInject {
     GetIt.instance.registerLazySingleton<GetUserPostsUseCase>(
         () => GetUserPostsUseCase(GetIt.instance<GetUserPostsRepo>()));
 
-    ///Delete
+    ///DeletePost
     GetIt.instance.registerLazySingleton<DeletePostRepo>(
         () => DeletePostRepoImp(DeletePostRemoteData()));
     GetIt.instance.registerLazySingleton<DeletePostUseCase>(
         () => DeletePostUseCase(GetIt.instance<DeletePostRepo>()));
 
-    ///Update Post
+    ///UpdatePost
     GetIt.instance.registerLazySingleton<UpdatePostRepo>(
         () => UpdatePostRepoImpl(UpdatePostRemoteData()));
     GetIt.instance.registerLazySingleton<UpdatePostUseCase>(
         () => UpdatePostUseCase(GetIt.instance<UpdatePostRepo>()));
 
-    ///Search Posts
+    ///SearchPosts
     GetIt.instance.registerLazySingleton<SearchPostRepo>(
         () => SearchPostsRepoImpl(SearchPostsRemoteData()));
     GetIt.instance.registerLazySingleton<SearchPostUseCase>(
         () => SearchPostUseCase(GetIt.instance<SearchPostRepo>()));
 
-    ///Community Posts
+    ///CommunityPosts
     GetIt.instance.registerLazySingleton<CommunityPostsRepo>(
         () => CommunityPostsRepoImpl(CommunityPostsRemoteData()));
     GetIt.instance.registerLazySingleton<CommunityPostsUseCase>(
         () => CommunityPostsUseCase(GetIt.instance<CommunityPostsRepo>()));
-  
+
+    ///IndividualMessage
+    GetIt.instance.registerLazySingleton<IndividualMessageRepo>(
+        () => IndividualMessageRepoImpl(MessageRemoteData()));
+    GetIt.instance.registerLazySingleton<IndividualMessageUseCase>(() =>
+        IndividualMessageUseCase(GetIt.instance<IndividualMessageRepo>()));
   }
 }

@@ -5,9 +5,9 @@ import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 
 class LocationWidget extends StatelessWidget {
-  final Function function;
+  final VoidCallback callback;
   const LocationWidget({
-    required this.function,
+    required this.callback,
     super.key,
   });
 
@@ -15,7 +15,7 @@ class LocationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          function();
+          callback();
         },
         icon: Row(
           children: [

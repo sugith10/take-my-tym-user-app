@@ -17,12 +17,19 @@ class CommunityPostsBloc
       emit(CommunityPostsLoadingState());
       try {
         await communityPostsUseCase.buyTymPosts().then(
-            (value) => emit(BuyTymCommunityPostsState(buyTymPosts: value)));
+            (value) => emit(CommunityPostsSuccessState(buyTymPosts: value)));
       } catch (e) {
         log(e.toString());
       }
     });
-    on<SellTymCommunityPostsEvent>((event, emit) {
+    on<SellTymCommunityPostsEvent>((event, emit)async {
+       emit(CommunityPostsLoadingState());
+      try {
+        await communityPostsUseCase.sellTymPosts().then(
+            (value) => emit(CommunityPostsSuccessState(buyTymPosts: value)));
+      } catch (e) {
+        log(e.toString());
+      }
     });
   }
 }

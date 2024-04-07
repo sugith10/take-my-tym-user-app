@@ -55,9 +55,9 @@ class _HomePostSwitchState extends State<HomePostSwitch> {
 
       _type
           ? context.read<CommunityPostsBloc>().add(
-                (SellTymCommunityPostsEvent()),
+                (BuyTymCommunityPostsEvent()),
               )
-          : context.read<CommunityPostsBloc>().add(BuyTymCommunityPostsEvent());
+          : context.read<CommunityPostsBloc>().add(SellTymCommunityPostsEvent());
     }
 
     return SwitchCategoryWidget(

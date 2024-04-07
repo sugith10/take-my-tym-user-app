@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/app_view.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         BlocProvider<AppBloc>(create: ((context) => AppBloc())),
-         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
+        BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
         BlocProvider<ReadPostsBloc>(
             create: (context) => ReadPostsBloc()
               ..add(GetBuyTymPostsEvent(
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<DeletePostBloc>(create: (context) => DeletePostBloc()),
         BlocProvider<UpdatePostBloc>(create: (context) => UpdatePostBloc()),
         BlocProvider<SearchPostsBloc>(create: (context) => SearchPostsBloc()),
-
+        BlocProvider<IndividualMessageBloc>(
+            create: (context) => IndividualMessageBloc()),
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

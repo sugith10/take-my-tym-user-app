@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/image_pick.dart';
+import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 
 class ChatTextField extends StatefulWidget {
+  final String receiverUid;
+  final String currentUid;
   const ChatTextField({
+    required this.currentUid,
+    required this.receiverUid,
     super.key,
   });
 
@@ -15,6 +21,16 @@ class ChatTextField extends StatefulWidget {
 class _ChatTextFieldState extends State<ChatTextField> {
   final MyAppDarkColor _appDarkColor = MyAppDarkColor();
   final TextEditingController _controller = TextEditingController();
+
+  //   void sendMessage() async {
+  //   if (_controller.text.isNotEmpty) {
+  //     await _chatService.sendMessage(
+  //       "QkbZfvJpcuWtKrMsmHq09phXgC02",
+  //       _controller.text,
+  //     );
+  //     _controller.clear();
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -34,25 +50,28 @@ class _ChatTextFieldState extends State<ChatTextField> {
           child: Row(
             children: [
               Expanded(
-                  child: TextField(
-                controller: _controller,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: _appDarkColor.secondaryText),
-                    borderRadius: BorderRadius.circular(100),
+                child: TextField(
+                  controller: _controller,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: _appDarkColor.secondaryText),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: _appDarkColor.secondaryText),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    hintText: "Message",
+                    hintStyle: Theme.of(context).textTheme.bodyLarge,
+                    filled: true,
+                    fillColor: MyAppDarkColor().bottomNavigationBarBackground,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: _appDarkColor.secondaryText),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  hintText: "Message",
-                  hintStyle: Theme.of(context).textTheme.bodyLarge,
-                  filled: true,
-                  fillColor: MyAppDarkColor().bottomNavigationBarBackground,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
-                style: Theme.of(context).textTheme.labelLarge,
-              )),
+              ),
               const SizedBox(width: 10),
               _ChatIconButton(
                 icon: IconlyBold.image_2,
@@ -63,7 +82,15 @@ class _ChatTextFieldState extends State<ChatTextField> {
               ),
               const SizedBox(width: 10),
               _ChatIconButton(
-                callback: () {},
+                callback: () {
+                  context.read<IndividualMessageBloc>().add(
+                        SendMessageEvent(
+                          message: _controller.text,
+                          currentUid: widget.currentUid,
+                          receiverUid: widget.receiverUid,
+                        ),
+                      );
+                },
                 icon: IconlyBold.send,
                 darkColor: _appDarkColor,
               )

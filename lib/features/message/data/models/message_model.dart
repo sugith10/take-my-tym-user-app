@@ -1,13 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Message {
+class MessageModel {
   final String senderUid;
   final String receiverUid;
   final String message;
   final Timestamp timestamp;
-  Message({
+  MessageModel({
     required this.senderUid,
     required this.receiverUid,
     required this.message,
@@ -15,13 +14,13 @@ class Message {
   });
   
 
-  Message copyWith({
+  MessageModel copyWith({
     String? senderUid,
     String? receiverUid,
     String? message,
     Timestamp? timestamp,
   }) {
-    return Message(
+    return MessageModel(
       senderUid: senderUid ?? this.senderUid,
       receiverUid: receiverUid ?? this.receiverUid,
       message: message ?? this.message,
@@ -38,8 +37,8 @@ class Message {
     };
   }
 
-  factory Message.fromMap(Map<String, dynamic> map) {
-    return Message(
+  factory MessageModel.fromMap(Map<String, dynamic> map) {
+    return MessageModel(
       senderUid: map['senderUid'] as String,
       receiverUid: map['receiverUid'] as String,
       message: map['message'] as String,
@@ -49,7 +48,7 @@ class Message {
 
   String toJson() => json.encode(toMap());
 
-  factory Message.fromJson(String source) => Message.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MessageModel.fromJson(String source) => MessageModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -57,7 +56,7 @@ class Message {
   }
 
   @override
-  bool operator ==(covariant Message other) {
+  bool operator ==(covariant MessageModel other) {
     if (identical(this, other)) return true;
   
     return 

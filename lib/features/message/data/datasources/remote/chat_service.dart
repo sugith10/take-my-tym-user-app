@@ -1,22 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/features/message/data/models/message_model.dart';
 
-class ChatService {
+class MessageRemoteData {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> sendMessage(String receiverUid, String message) async {
+  Future<void> sendMessage({
+    required String currentUid,
+    required String receiverUid,
+    required String message,
+  }) async {
     //get current user info
-    final String currentUid = _auth.currentUser!.uid;
+    // final String currentUid = _auth.currentUser!.uid;
     final Timestamp timestamp = Timestamp.now();
 
     //create a new message
-    Message newMessage = Message(
-        senderUid: currentUid,
-        receiverUid: receiverUid,
-        message: message,
-        timestamp: timestamp);
+    MessageModel newMessage = MessageModel(
+      senderUid: currentUid,
+      receiverUid: receiverUid,
+      message: message,
+      timestamp: timestamp,
+    );
 
     //construct chat room ID for the two users (sorted to ensure uniqueness)
     List<String> ids = [currentUid, receiverUid];
@@ -33,17 +37,16 @@ class ChatService {
 
   //Get messages
   Stream<QuerySnapshot> getMessages(String currentUid, String otherUid) {
-  //construct a chatroom ID for two users
-  List<String> ids = [currentUid, otherUid];
-  ids.sort();
-  String chatroomID = ids.join('_');
+    //construct a chatroom ID for two users
+    List<String> ids = [currentUid, otherUid];
+    ids.sort();
+    String chatroomID = ids.join('_');
 
-  return _firestore
-      .collection("chatRooms")
-      .doc(chatroomID) // Use the constructed chatroomID here
-      .collection("messages")
-      .orderBy("timestamp", descending: false)
-      .snapshots();
-}
-
+    return _firestore
+        .collection("chatRooms")
+        .doc(chatroomID) // Use the constructed chatroomID here
+        .collection("messages")
+        .orderBy("timestamp", descending: false)
+        .snapshots();
+  }
 }

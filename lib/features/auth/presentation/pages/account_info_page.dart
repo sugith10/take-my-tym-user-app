@@ -12,7 +12,7 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/account_info_content_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/log_out_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
 
 class AccountInfoPage extends StatefulWidget {
   const AccountInfoPage({super.key});
@@ -22,7 +22,7 @@ class AccountInfoPage extends StatefulWidget {
 }
 
 class _AccountInfoPageState extends State<AccountInfoPage> {
-  final SignOutBloc _bloc = SignOutBloc();
+  
   @override
   Widget build(BuildContext context) {
     AppUserModel userModel = context.read<AppBloc>().appUserModel!;
@@ -54,8 +54,8 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               title: "Location",
               subtitle: "Calicut Kerala, India",
             ),
-            BlocListener(
-              bloc: _bloc,
+            BlocListener<SignOutBloc,SignOutState>(
+         
               listener: (context, state) {
                 if (state is UserSignOutFailState) {
                   SnackBarMessenger().showSnackBar(
@@ -76,11 +76,10 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
                       (route) => false);
                 }
               },
-              child: LogOutWidget(
+              child: AccountInfoLogOutWidget(
                 callback: () {
                   UserLogOut().showLogOutDialog(
                     context: context,
-                  
                   );
                 },
               ),

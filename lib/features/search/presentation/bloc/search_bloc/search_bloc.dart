@@ -10,11 +10,15 @@ part 'search_state.dart';
 
 class SearchPostsBloc extends Bloc<SearchPostsEvent, SearchPostsState> {
   SearchPostsBloc() : super(SearchPostsInitial()) {
+   
     final SearchPostUseCase searchPostUseCase =
         GetIt.instance<SearchPostUseCase>();
 
+    on<SwitchTymPostEvent>(((event, emit) {
+
+      emit(SwitchTymPostState(tymType: event.tymType));
+    }));
     on<SearchBuyTymPost>((event, emit) async {
-      log("on bloc.... ${event.searchQuery} ");
       try {
         if (event.searchQuery.isNotEmpty) {
           await searchPostUseCase

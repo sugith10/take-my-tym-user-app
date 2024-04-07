@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 
-class UserLogOut {
-  showLogOutDialog({
+class DletePost {
+  showDletePostDialog({
     required BuildContext context,
+    required PostModel postModel,
   }) {
     showDialog(
       barrierDismissible: false,
@@ -21,12 +23,12 @@ class UserLogOut {
               children: [
                 SizedBox(height: 25.h),
                 Text(
-                  'Log out confirmation',
+                  'Delete confirmation',
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  'Are you sure you want log out?',
+                  'Are you sure you want delete this post?',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: MyAppDarkColor().primaryTextBlur,
                       ),
@@ -36,23 +38,28 @@ class UserLogOut {
                   action: const Text('CANCEL'),
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
-                  callback: (){
+                  callback: () {
                     Navigator.pop(context);
                   },
                 ),
                 SizedBox(height: 12.h),
                 _MessageButton(
-                  action: BlocBuilder<SignOutBloc, SignOutState>(
-                      builder: (context, state) {
-                    if (state is UserSignOutLoadingState) {
-                      return const CircularProgressIndicator();
-                    }
-                    return const Text("LOG OUT");
-                  }),
+                  action: BlocBuilder<DeletePostBloc, DeletePostState>(
+                    builder: (context, state) {
+                      if (state is DeletePostLoading) {
+                        return const CircularProgressIndicator();
+                      }
+                      return const Text("Delete");
+                    },
+                  ),
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  callback: (){
-                      context.read<SignOutBloc>().add(UserSignOutEvent());
+                  callback: () {
+                    context.read<DeletePostBloc>().add(
+                          DeletePersonalPostEvent(
+                            postModel: postModel,
+                          ),
+                        );
                   },
                 ),
                 const Spacer(),

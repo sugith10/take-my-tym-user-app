@@ -26,3 +26,8 @@ class SearchPostsErrorState extends SearchPostsState {
     required this.description,
   });
 }
+
+class SwitchTymPostState extends  SearchPostsState {
+  final bool tymType;
+ const SwitchTymPostState({this.tymType = true});
+}

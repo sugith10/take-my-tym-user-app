@@ -7,15 +7,19 @@ sealed class SearchPostsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class SearchBuyTymPost extends SearchPostsEvent{
+final class SearchBuyTymPost extends SearchPostsEvent {
   final String searchQuery;
   const SearchBuyTymPost({required this.searchQuery});
 }
 
-final class SearchSellTymPost extends SearchPostsEvent{
+final class SearchSellTymPost extends SearchPostsEvent {
   final String searchQuery;
   const SearchSellTymPost({required this.searchQuery});
 }
 
-final class ClearSearchEvent extends SearchPostsEvent{}
+final class ClearSearchEvent extends SearchPostsEvent {}
 
+final class SwitchTymPostEvent extends SearchPostsEvent {
+  final bool tymType;
+  const SwitchTymPostEvent({required this.tymType});
+}

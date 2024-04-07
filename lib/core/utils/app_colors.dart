@@ -22,6 +22,7 @@ interface class AppColor {
   final Color progressIndicatorColor;
   final Color glassEffect;
   final Color danger;
+  final Color fillColor;
   AppColor({
     required this.background,
     required this.softBackground,
@@ -44,6 +45,7 @@ interface class AppColor {
     required this.primaryBorder,
     required this.primarySoftBorder,
     required this.secondaryBorder,
+    required this.fillColor,
   });
 }
 
@@ -55,7 +57,8 @@ final class MyAppDarkColor extends AppColor {
           secondaryBackground: const Color(0xFF1A1B1A),
           pure: const Color.fromRGBO(0, 0, 0, 1),
           primaryText: const Color.fromARGB(255, 255, 255, 255),
-          primaryTextSoft: const Color.fromRGBO(255, 255, 255, 1).withOpacity(0.9),
+          primaryTextSoft:
+              const Color.fromRGBO(255, 255, 255, 1).withOpacity(0.9),
           primaryTextBlur: const Color.fromARGB(202, 255, 255, 255),
           secondaryText: const Color.fromARGB(222, 160, 160, 160),
           buttonBackground: const Color.fromRGBO(255, 255, 255, 1),
@@ -71,5 +74,6 @@ final class MyAppDarkColor extends AppColor {
           primaryBorder: const Color.fromRGBO(255, 255, 255, 1),
           primarySoftBorder: const Color.fromARGB(116, 255, 255, 255),
           secondaryBorder: const Color.fromARGB(66, 255, 255, 255),
+          fillColor: const Color.fromARGB(237, 53, 53, 53),
         );
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/account_info_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/log_out_drawer_button.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/drawer_log_out_button.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/widgets/drawer_button.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/widgets/drawer_profile_widget.dart';
 import 'package:url_launcher/url_launcher.dart';

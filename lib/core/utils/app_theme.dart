@@ -173,5 +173,10 @@ final class MyAppDarkTheme {
       surfaceTintColor: _color.softBackground,
       elevation: 10,
     ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor:  _color.fillColor.withOpacity(0.8),
+      shadowColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent
+      )
   );
 }

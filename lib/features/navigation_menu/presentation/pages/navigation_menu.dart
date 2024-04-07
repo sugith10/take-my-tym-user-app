@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/pages/create_post_first_page.dart';
+import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.dart';
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';

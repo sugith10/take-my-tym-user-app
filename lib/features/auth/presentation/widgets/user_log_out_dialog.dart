@@ -7,9 +7,9 @@ import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_o
 class UserLogOut {
   showLogOutDialog({
     required BuildContext context,
-    required SignOutBloc signOutBloc,
-    required VoidCallback cancelCallback,
-    required VoidCallback logOutCallback,
+
+
+
   }) {
     showDialog(
       barrierDismissible: false,
@@ -36,24 +36,27 @@ class UserLogOut {
                 ),
                 const Spacer(),
                 _MessageButton(
-                  action:const Text( 'CANCEL'),
+                  action: const Text('CANCEL'),
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
-                  callback: cancelCallback,
+                  callback: (){
+                    Navigator.pop(context);
+                  },
                 ),
                 SizedBox(height: 12.h),
                 _MessageButton(
-                  action: BlocBuilder(
-                    bloc: signOutBloc,
-                    builder: (context,state){
-                      if(state is UserSignOutLoadingState){
-                        return const CircularProgressIndicator();
-                      }
-                      return const Text("LOG OUT");
+                  action: BlocBuilder<SignOutBloc, SignOutState>(
+                      builder: (context, state) {
+                    if (state is UserSignOutLoadingState) {
+                      return const CircularProgressIndicator();
+                    }
+                    return const Text("LOG OUT");
                   }),
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  callback: logOutCallback,
+                  callback: (){
+                      context.read<SignOutBloc>().add(UserSignOutEvent());
+                  },
                 ),
                 const Spacer(),
               ],
@@ -83,15 +86,14 @@ class _MessageButton extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton(
-            onPressed: () {
-              callback();
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(backgroundColor),
-              foregroundColor: MaterialStatePropertyAll(foregroundColor),
-            ),
-            child: action
-          ),
+              onPressed: () {
+                callback();
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(backgroundColor),
+                foregroundColor: MaterialStatePropertyAll(foregroundColor),
+              ),
+              child: action),
         ),
       ],
     );

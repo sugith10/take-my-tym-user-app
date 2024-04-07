@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/user_log_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
@@ -12,7 +12,7 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/account_info_content_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/log_out_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/log_out_widget.dart';
 
 class AccountInfoPage extends StatefulWidget {
   const AccountInfoPage({super.key});
@@ -25,6 +25,7 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
   final SignOutBloc _bloc = SignOutBloc();
   @override
   Widget build(BuildContext context) {
+    AppUserModel userModel = context.read<AppBloc>().appUserModel!;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonWidget(),
@@ -37,13 +38,13 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
             Text("Account Info",
                 style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: 20.h),
-            const AccountInfoContentWidget(
+            AccountInfoContentWidget(
               title: "Username",
-              subtitle: "Sugit K",
+              subtitle: "${userModel.firstName} ${userModel.lastName}",
             ),
-            const AccountInfoContentWidget(
+            AccountInfoContentWidget(
               title: "Email address",
-              subtitle: "sugithkodappurath@gmail.com",
+              subtitle: userModel.email,
             ),
             const AccountInfoContentWidget(
               title: "Phone",
@@ -78,14 +79,9 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               child: LogOutWidget(
                 callback: () {
                   UserLogOut().showLogOutDialog(
-                      context: context,
-                      signOutBloc: _bloc,
-                      cancelCallback: () {
-                        Navigator.pop(context);
-                      },
-                      logOutCallback: () {
-                        _bloc.add(UserSignOutEvent());
-                      });
+                    context: context,
+                  
+                  );
                 },
               ),
             )

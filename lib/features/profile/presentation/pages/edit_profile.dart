@@ -6,8 +6,23 @@ import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  final TextEditingController _nameCntrl = TextEditingController();
+  final TextEditingController _aboutCntrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameCntrl.dispose();
+    _aboutCntrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

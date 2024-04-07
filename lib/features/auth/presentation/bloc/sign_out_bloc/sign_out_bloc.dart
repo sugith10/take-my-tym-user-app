@@ -14,8 +14,9 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
       emit(UserSignOutLoadingState());
       try {
         final SignOutUseCase signOutUseCase = GetIt.instance<SignOutUseCase>();
-        await signOutUseCase.signOutUser();
-        emit(UserSignOutSuccessState());
+        await signOutUseCase
+            .signOutUser()
+            .then((value) => emit(UserSignOutSuccessState()));
       } on MyAppException catch (e) {
         emit(
           UserSignOutFailState(

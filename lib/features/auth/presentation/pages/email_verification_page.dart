@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/email_verify_text_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
 

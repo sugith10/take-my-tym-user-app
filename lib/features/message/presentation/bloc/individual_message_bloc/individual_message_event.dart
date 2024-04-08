@@ -15,3 +15,13 @@ final class SendMessageEvent extends IndividualMessageEvent {
     required this.receiverUid,
   });
 }
+
+final class GetMessagesEvent extends IndividualMessageEvent{
+    final String currentUid;
+  final String receiverUid;
+
+   GetMessagesEvent({
+    required this.currentUid,
+    required this.receiverUid,
+  });
+}

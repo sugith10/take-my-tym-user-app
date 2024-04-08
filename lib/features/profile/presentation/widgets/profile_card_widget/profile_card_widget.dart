@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/profile_location_widget.dart';
@@ -13,6 +15,7 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppUserModel appUserModel =   context.read<AppBloc>().appUserModel!;
     return SizedBox(
       height: 200,
       child: HomePadding(
@@ -26,7 +29,7 @@ class ProfileCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ProfileNameWidget(name: 'Sugith K'),
+                   ProfileNameWidget(name: appUserModel.userName),
                   SizedBox(height: 10.h),
 
                   const RatingWidget(
@@ -39,8 +42,8 @@ class ProfileCard extends StatelessWidget {
                   SizedBox(height: 10.h),
                   //location start
 
-                  const ProfileLocationWidget(
-                    location: 'Calicut, Kerala',
+                   ProfileLocationWidget(
+                    location: appUserModel.location,
                   ),
                   //location end
                 ],

@@ -90,6 +90,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                           receiverUid: widget.receiverUid,
                         ),
                       );
+                  _controller.clear();
                 },
                 icon: IconlyBold.send,
                 darkColor: _appDarkColor,

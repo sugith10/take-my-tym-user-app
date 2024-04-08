@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/features/message/data/models/message_model.dart';
 
@@ -10,6 +12,7 @@ class MessageRemoteData {
     required String receiverUid,
     required String message,
   }) async {
+    log('on send message remote');
     //get current user info
     // final String currentUid = _auth.currentUser!.uid;
     final Timestamp timestamp = Timestamp.now();
@@ -36,9 +39,13 @@ class MessageRemoteData {
   }
 
   //Get messages
-  Stream<QuerySnapshot> getMessages(String currentUid, String otherUid) {
+  Stream<QuerySnapshot> getMessages({
+    required String currentUid,
+    required String receiverUid,
+  }) {
+       log('on get message remote');
     //construct a chatroom ID for two users
-    List<String> ids = [currentUid, otherUid];
+    List<String> ids = [currentUid, receiverUid];
     ids.sort();
     String chatroomID = ids.join('_');
 

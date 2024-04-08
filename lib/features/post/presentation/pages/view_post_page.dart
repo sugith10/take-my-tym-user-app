@@ -9,6 +9,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
@@ -130,9 +131,22 @@ class ViewPostPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: ChatFloatingActionButton(
-        callBack: () {},
-      ),
+      floatingActionButton:
+          postModel.uid != context.read<AppBloc>().appUserModel!.uid
+              ? ChatFloatingActionButton(
+                  callBack: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => IndividualChatPage(
+                          currentUid: context.read<AppBloc>().appUserModel!.uid,
+                          receiverUid: postModel.uid,
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : null,
       bottomNavigationBar: SubmitButton(
         callback: () {},
       ),

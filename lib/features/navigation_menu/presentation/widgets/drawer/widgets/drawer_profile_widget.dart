@@ -19,7 +19,6 @@ class ProfileWidget extends StatelessWidget {
             CircleProfilePicWidget(
               height: 80,
               width: 80,
-              image: picture,
             ),
             const SizedBox(width: 10),
             Expanded(

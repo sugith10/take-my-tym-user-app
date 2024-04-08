@@ -32,6 +32,7 @@ final class SignUpRemoteData {
         email: email,
         firstName: firstName,
         lastName: lastName,
+        userName: firstName+lastName
       );
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {

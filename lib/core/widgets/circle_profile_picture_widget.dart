@@ -1,14 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_images.dart';
 
 class CircleProfilePicWidget extends StatelessWidget {
   final double width;
   final double height;
-  final String image;
+  final File? image;
   const CircleProfilePicWidget({
     super.key,
     required this.width,
     required this.height,
-    required this.image,
+    this.image,
   });
 
   @override
@@ -28,10 +31,10 @@ class CircleProfilePicWidget extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: ClipOval(
-          child: Image.asset(
-            image,
+          child: image != null ? Image.file(
+            image!,
             fit: BoxFit.cover,
-          ),
+          ) : Image.asset(MyAppImages.profileIcon)
         ),
       ),
     );

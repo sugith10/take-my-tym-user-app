@@ -26,7 +26,7 @@ class ProfileCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 const ProfileNameWidget(name:  'Sugith K'),
+                  const ProfileNameWidget(name: 'Sugith K'),
                   SizedBox(height: 10.h),
 
                   const RatingWidget(
@@ -52,7 +52,6 @@ class ProfileCard extends StatelessWidget {
             const CircleProfilePicWidget(
               height: 100,
               width: 100,
-              image: MyAppImages.testProfile,
             ),
 
             //Section 2 ends
@@ -74,7 +73,7 @@ class ProfileNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-     name,
+      name,
       style: Theme.of(context).textTheme.displayMedium,
       overflow: TextOverflow.fade,
       maxLines: 2,

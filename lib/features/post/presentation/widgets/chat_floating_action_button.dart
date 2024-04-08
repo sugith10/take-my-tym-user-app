@@ -127,7 +127,6 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                   const CircleProfilePicWidget(
                     height: 30,
                     width: 30,
-                    image: MyAppImages.testProfile,
                   ),
                   SizedBox(width: 10.w),
                   const Text("Chat"),

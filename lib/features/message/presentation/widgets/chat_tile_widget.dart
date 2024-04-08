@@ -23,18 +23,17 @@ class ChatTileWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const  IndividualChatPage(currentUid: '',receiverUid: '',)));
+                builder: (context) => const IndividualChatPage(
+                      currentUid: '',
+                      receiverUid: '',
+                    )));
       },
-      
       leading: SizedBox(
         height: 50,
-        child: Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-          CircleProfilePicWidget(
+        child: Stack(alignment: Alignment.bottomRight, children: [
+          const CircleProfilePicWidget(
             height: 50,
             width: 50,
-            image: personPhoto,
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -42,7 +41,8 @@ class ChatTileWidget extends StatelessWidget {
               radius: 5,
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.green, borderRadius: BorderRadius.circular(100)),
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(100)),
               ),
             ),
           )

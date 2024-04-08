@@ -4,31 +4,34 @@ class AppUserModel {
   bool verified;
   String firstName;
   String lastName;
+  String userName;
   String? picture;
-  List<String>? buyTymPost;
-  List<String>? sellTymPost;
+  String? location;
+  String? about;
 
   AppUserModel({
     required this.uid,
     required this.email,
     required this.firstName,
     required this.lastName,
+    required this.userName,
     this.picture,
-    this.buyTymPost,
-    this.sellTymPost,
     this.verified = false,
+    this.about,
+    this.location,
   });
 
   factory AppUserModel.fromMap(Map<String, dynamic> data) {
     return AppUserModel(
       uid: data['uid'] as String,
       email: data['email'] as String,
+      verified: data['verified'] as bool,
       firstName: data['firstName'] as String,
       lastName: data['lastName'] as String,
+      userName: data['userName'] as String,
       picture: data['picture'] as String?,
-      buyTymPost: data['buyTymPost'] as List<String>?,
-      sellTymPost: data['sellTymPost'] as List<String>?,
-      verified: data['verified'] as bool,
+      about: data['about'] as String?,
+      location: data['location'] as String?,
     );
   }
 
@@ -36,17 +39,18 @@ class AppUserModel {
     return {
       'uid': uid,
       'email': email,
+      'verified': verified,
       'firstName': firstName,
       'lastName': lastName,
+      'userName': userName,
       'picture': picture,
-      'buyTymPost': buyTymPost,
-      'sellTymPost': sellTymPost,
-      'verified': verified,
+      'about': about,
+      'location': location,
     };
   }
 
   @override
   String toString() {
-    return "AppUserModel -> $uid $email $firstName $lastName $picture, $verified";
+    return "AppUserModel -> $uid $email $firstName $lastName $picture, $verified, $userName";
   }
 }

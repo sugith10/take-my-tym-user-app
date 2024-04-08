@@ -23,7 +23,7 @@ class PostOwnerInfoWidget extends StatelessWidget {
           CircleProfilePicWidget(
             height: 60,
             width: 60,
-            image: image,
+        
           ),
           SizedBox(width: 10.w),
           Column(

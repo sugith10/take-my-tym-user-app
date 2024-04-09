@@ -30,31 +30,36 @@ class WelcomeTextWidget extends StatelessWidget {
           FadeInDown(
             delay: const Duration(milliseconds: 800),
             duration: const Duration(milliseconds: 900),
-            child: Text(
-              firstLine,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
+            child: _Text(line: firstLine),
           ),
           SizedBox(height: 10.h),
           FadeInDown(
             delay: const Duration(milliseconds: 700),
             duration: const Duration(milliseconds: 800),
-            child: Text(
-              secondLine,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
+            child: _Text(line: secondLine),
           ),
           SizedBox(height: 10.h),
           FadeInDown(
-            delay: const Duration(milliseconds: 600),
-            duration: const Duration(milliseconds: 700),
-            child: Text(
-              thirdLine,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-          ),
+              delay: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 700),
+              child: _Text(line: thirdLine)),
         ],
       ),
+    );
+  }
+}
+
+class _Text extends StatelessWidget {
+  final String line;
+  const _Text({
+    required this.line,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      line,
+      style: Theme.of(context).textTheme.displayMedium,
     );
   }
 }

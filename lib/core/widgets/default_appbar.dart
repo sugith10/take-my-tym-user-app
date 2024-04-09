@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/settings_button.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;

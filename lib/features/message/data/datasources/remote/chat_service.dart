@@ -5,8 +5,8 @@ import 'package:take_my_tym/features/message/data/models/message_model.dart';
 
 class MessageRemoteData {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  ///Send Message
   Future<void> sendMessage({
     required String currentUid,
     required String receiverUid,
@@ -38,7 +38,7 @@ class MessageRemoteData {
         .add(newMessage.toMap());
   }
 
-  //Get messages
+  //Get message
   Stream<QuerySnapshot> getMessages({
     required String currentUid,
     required String receiverUid,

@@ -2,15 +2,16 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/features/message/data/models/message_model.dart';
+import 'package:take_my_tym/features/message/data/models/user_message_model.dart';
 
 class MessageRemoteData {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  ///Send Message
+  
   Future<void> sendMessage({
     required String currentUid,
     required String receiverUid,
     required String message,
+    required String senderName,
+    required String receiverName,
   }) async {
     log('on send message remote');
     //get current user info
@@ -30,26 +31,54 @@ class MessageRemoteData {
     ids.sort(); //sort the ids (this ensure the chatroomID is the smae for any 2 people)
     String chatroomID = ids.join('_');
 
-    // add new message to database
-    await _firestore
-        .collection("chatRooms")
-        .doc(chatroomID)
-        .collection("messages")
-        .add(newMessage.toMap());
+    final fireStore = FirebaseFirestore.instance
+        .collection("chats")
+        .doc("EYYn66HdjFf8XJVCXQdP");
+    try {
+      await fireStore
+          .collection("chatRooms")
+          .doc(chatroomID)
+          .collection("messages")
+          .add(newMessage.toMap())
+          .then(
+        (value) async {
+          final UserMessageModel userMessage = UserMessageModel(
+            messageId: chatroomID,
+            name: senderName,
+          );
+
+          await fireStore
+              .collection("userChats")
+              .doc(currentUid).set(userMessage.toMap());
+
+          final UserMessageModel receiverMessage = UserMessageModel(
+            messageId: chatroomID,
+            name: receiverName,
+          );
+
+          await fireStore
+              .collection("userChats")
+              .doc(receiverUid)
+              .set(receiverMessage.toMap());
+        },
+      );
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
-  //Get message
+  //Get messages
   Stream<QuerySnapshot> getMessages({
     required String currentUid,
     required String receiverUid,
   }) {
-       log('on get message remote');
+    log('on get message remote');
     //construct a chatroom ID for two users
     List<String> ids = [currentUid, receiverUid];
     ids.sort();
     String chatroomID = ids.join('_');
 
-    return _firestore
+    return FirebaseFirestore.instance
         .collection("chatRooms")
         .doc(chatroomID) // Use the constructed chatroomID here
         .collection("messages")

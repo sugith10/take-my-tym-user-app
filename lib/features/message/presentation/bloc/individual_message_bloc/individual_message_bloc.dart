@@ -21,6 +21,8 @@ class IndividualMessageBloc
             currentUid: event.currentUid,
             receiverUid: event.receiverUid,
             message: event.message,
+            senderName: event.senderName,
+            receiverName: event.receiverName
           );
         } catch (e) {
           log(e.toString());

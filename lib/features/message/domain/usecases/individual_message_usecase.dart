@@ -9,16 +9,24 @@ final class IndividualMessageUseCase {
     required String currentUid,
     required String receiverUid,
     required String message,
+    required String senderName,
+    required String receiverName,
   }) async {
     return await _individualMessageRepo.sendMessage(
-      currentUid: currentUid,
-      receiverUid: receiverUid,
-      message: message,
-    );
+        currentUid: currentUid,
+        receiverUid: receiverUid,
+        message: message,
+        senderName: senderName,
+        receiverName: receiverName,);
   }
 
-   Stream<QuerySnapshot> getMessages({required String currentUid,
-    required String receiverUid,}){
-    return _individualMessageRepo.getMessages(currentUid: currentUid, receiverUid: receiverUid,);
+  Stream<QuerySnapshot> getMessages({
+    required String currentUid,
+    required String receiverUid,
+  }) {
+    return _individualMessageRepo.getMessages(
+      currentUid: currentUid,
+      receiverUid: receiverUid,
+    );
   }
 }

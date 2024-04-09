@@ -10,11 +10,15 @@ import 'package:take_my_tym/features/message/presentation/widgets/chat_text_fiel
 class IndividualChatPage extends StatelessWidget {
   final String receiverUid;
   final String currentUid;
+  final String receiverName;
+  final String senderName;
 
   const IndividualChatPage({
     required this.currentUid,
+    required this.senderName,
     required this.receiverUid,
-    super.key,
+    required this.receiverName,
+    super.key, 
   });
 
   @override
@@ -67,6 +71,8 @@ class IndividualChatPage extends StatelessWidget {
       bottomNavigationBar: ChatTextField(
         currentUid: currentUid,
         receiverUid: receiverUid,
+        receiverName: receiverName,
+        senderName: senderName,
       ),
     );
   }

@@ -140,7 +140,9 @@ class ViewPostPage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (_) => IndividualChatPage(
                           currentUid: context.read<AppBloc>().appUserModel!.uid,
+                          senderName: context.read<AppBloc>().appUserModel!.userName,
                           receiverUid: postModel.uid,
+                          receiverName: postModel.userName,
                         ),
                       ),
                     );

@@ -7,10 +7,14 @@ import 'package:take_my_tym/features/message/presentation/bloc/individual_messag
 
 class ChatTextField extends StatefulWidget {
   final String receiverUid;
+  final String receiverName;
   final String currentUid;
+  final String senderName;
   const ChatTextField({
     required this.currentUid,
+    required this.senderName,
     required this.receiverUid,
+    required this.receiverName,
     super.key,
   });
 
@@ -21,16 +25,6 @@ class ChatTextField extends StatefulWidget {
 class _ChatTextFieldState extends State<ChatTextField> {
   final MyAppDarkColor _appDarkColor = MyAppDarkColor();
   final TextEditingController _controller = TextEditingController();
-
-  //   void sendMessage() async {
-  //   if (_controller.text.isNotEmpty) {
-  //     await _chatService.sendMessage(
-  //       "QkbZfvJpcuWtKrMsmHq09phXgC02",
-  //       _controller.text,
-  //     );
-  //     _controller.clear();
-  //   }
-  // }
 
   @override
   void dispose() {
@@ -87,7 +81,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
                         SendMessageEvent(
                           message: _controller.text,
                           currentUid: widget.currentUid,
+                          senderName: widget.senderName,
                           receiverUid: widget.receiverUid,
+                          receiverName: widget.receiverName
                         ),
                       );
                   _controller.clear();

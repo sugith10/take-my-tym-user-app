@@ -26,6 +26,8 @@ class ChatTileWidget extends StatelessWidget {
                 builder: (context) => const IndividualChatPage(
                       currentUid: '',
                       receiverUid: '',
+                      receiverName: '',
+                      senderName: '',
                     )));
       },
       leading: SizedBox(

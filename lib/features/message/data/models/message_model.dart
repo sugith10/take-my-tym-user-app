@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MessageModel {
+ final class MessageModel {
   final String senderUid;
   final String receiverUid;
   final String message;

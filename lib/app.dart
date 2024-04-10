@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/app_view.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
@@ -35,9 +36,16 @@ class MyApp extends StatelessWidget {
         BlocProvider<DeletePostBloc>(create: (context) => DeletePostBloc()),
         BlocProvider<UpdatePostBloc>(create: (context) => UpdatePostBloc()),
         BlocProvider<SearchPostsBloc>(create: (context) => SearchPostsBloc()),
+        BlocProvider<ChatListBloc>(
+            create: ((context) => ChatListBloc()
+              ..add(
+                GetChatList(
+                    currentUid: context.read<AppBloc>().appUserModel!.uid),
+              ))),
         BlocProvider<IndividualMessageBloc>(
             create: (context) => IndividualMessageBloc()),
-            BlocProvider<UpdateProfileBloc>(create: ((context) => UpdateProfileBloc())),
+        BlocProvider<UpdateProfileBloc>(
+            create: ((context) => UpdateProfileBloc())),
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

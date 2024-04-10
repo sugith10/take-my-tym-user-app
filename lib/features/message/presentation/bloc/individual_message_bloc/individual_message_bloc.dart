@@ -37,7 +37,7 @@ class IndividualMessageBloc
           receiverUid: event.receiverUid,
         );
 
-        emit(GetMessagesLoaded(messages: snapshot));
+        emit( IndividualChatsLoadedState(messages: snapshot));
       } catch (e) {}
     });
   }

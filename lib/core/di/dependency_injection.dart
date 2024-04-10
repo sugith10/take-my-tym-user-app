@@ -20,8 +20,11 @@ import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
 import 'package:take_my_tym/features/message/data/datasources/remote/chat_service.dart';
+import 'package:take_my_tym/features/message/data/repositories/chat_list_repo_impl.dart';
 import 'package:take_my_tym/features/message/data/repositories/individual_message_repo_impl.dart';
+import 'package:take_my_tym/features/message/domain/repositories/chat_list_repo.dart';
 import 'package:take_my_tym/features/message/domain/repositories/individual_message_repo.dart';
+import 'package:take_my_tym/features/message/domain/usecases/chat_list_usecase.dart';
 import 'package:take_my_tym/features/message/domain/usecases/individual_message_usecase.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/delete_post_data_source.dart';
@@ -121,5 +124,12 @@ final class DependencyInject {
         () => IndividualMessageRepoImpl(MessageRemoteData()));
     GetIt.instance.registerLazySingleton<IndividualMessageUseCase>(() =>
         IndividualMessageUseCase(GetIt.instance<IndividualMessageRepo>()));
+  
+    ///ChatListRepo
+    GetIt.instance.registerLazySingleton<ChatListRepo>(
+      () => ChatListRepoImp(MessageRemoteData()));
+    GetIt.instance.registerLazySingleton<ChatListUseCase>(
+      () => ChatListUseCase(GetIt.instance<ChatListRepo>()));
+    
   }
 }

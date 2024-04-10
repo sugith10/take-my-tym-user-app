@@ -35,7 +35,7 @@ class IndividualChatPage extends StatelessWidget {
         child: BlocBuilder<IndividualMessageBloc, IndividualMessageState>(
           builder: (context, state) {
             log(state.toString());
-            if (state is GetMessagesLoaded) {
+            if (state is IndividualChatsLoadedState) {
               log("get messages state");
               return StreamBuilder<QuerySnapshot>(
                 stream: state.messages,

@@ -1,7 +1,7 @@
 final class MyAppImages{
   //lottie
-  static const String onboardingLottie = 'asset/json/onboarding_animation.json';
-  static const String welcomeLottie = 'asset/json/welcome_img.json';
+  static const String onboardingLottie = 'asset/json/Animation.json';
+  // static const String welcomeLottie = 'asset/json/welcome_img.json';
   static const String searchIntialLottie = 'asset/json/search_animation.json';
   //logo
   static const String onboarding = 'asset/img/TAKEMYTYM.svg';
@@ -21,5 +21,4 @@ final class MyAppImages{
   static const String testTwo = "asset/img/test/shoot-portrait-photography-in-toronto (1).jpg";
   static const String testThree = 'asset/img/test/shoot-portrait-photography-in-toronto.jpg';
   static const String testProfile = 'asset/img/test/1708082072758.jpg';
-
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_logo.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
@@ -25,15 +23,13 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 40.h),
-                    const Hero(tag: 'AppLogo', child:  AppLogo()),
+                    const Spacer(flex: 1),
+                    const Hero(tag: 'AppLogo', child: AppLogo()),
                     const Spacer(flex: 2),
                     const WelcomePageAnimation(),
-                    const Spacer(
-                      flex: 2,
-                    ),
-                    SizedBox(height: 20.h),
+                    const Spacer(flex: 2),
                     SignButtonWidget(
+                      delay: 2000,
                       title: 'Login',
                       function: () {
                         Navigator.push(
@@ -45,8 +41,10 @@ class WelcomePage extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 30),
-                    const TermsAndConditons(),
-                    const SizedBox(height: 20),
+                    const TermsAndConditons(
+                      delay: 1900,
+                    ),
+                    const SizedBox(height: 80),
                   ],
                 ),
               ),

@@ -10,8 +10,9 @@ class WelcomePageAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 1.5,
-      child: Lottie.asset(MyAppImages.welcomeLottie,
+      scale: 1.7,
+      child: Lottie.asset(MyAppImages.onboardingLottie,
+      repeat: false,
           fit: BoxFit.cover),
     );
   }

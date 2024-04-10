@@ -11,10 +11,10 @@ final class IndividualMessageInitial extends IndividualMessageState {}
 
 final class MessageSendErrorState extends IndividualMessageState {}
 
-final class GetMessagesLoaded extends IndividualMessageState {
+final class IndividualChatsLoadedState extends IndividualMessageState {
   final Stream<QuerySnapshot> messages;
 
-  const GetMessagesLoaded({required this.messages});
+  const IndividualChatsLoadedState({required this.messages});
 
   @override
   List<Object> get props => [messages];

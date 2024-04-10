@@ -5,19 +5,23 @@ class NavigationText extends StatelessWidget {
   final String leadingText;
   final String buttonText;
   final Function function;
+  final int delay;
+  final int duration;
 
   const NavigationText({
     super.key,
     required this.leadingText,
     required this.buttonText,
     required this.function,
+    this.delay = 800,
+    this.duration = 900,
   });
 
   @override
   Widget build(BuildContext context) {
     return FadeInUp(
-      delay: const Duration(milliseconds: 800),
-      duration: const Duration(milliseconds: 900),
+      delay:  Duration(milliseconds: delay),
+      duration:  Duration(milliseconds: duration),
       child: GestureDetector(
         onTap: () {
           function();

@@ -17,3 +17,5 @@ final class UpdateAppUserModelEvent extends AppEvent {
 }
 
 final class UpdateUserSignOutEvent extends AppEvent {}
+
+final class EnsureAppUserModelExistsEvent extends AppEvent {}

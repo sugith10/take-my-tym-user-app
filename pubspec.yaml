@@ -1,13 +1,12 @@
 name: take_my_tym
 description: "A new Flutter project."
 
-publish_to: 'none' 
-
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -24,12 +23,15 @@ dependencies:
   emoji_picker_flutter: ^2.1.1
   back_button_interceptor: ^5.0.2
   url_launcher: ^6.2.5
-  
+  path_provider: ^2.1.2
+
+  hive_flutter: ^1.1.0
   firebase_auth: ^4.17.8
   firebase_core: ^2.26.0
   cloud_firestore: ^4.15.10
   google_sign_in: ^6.2.1
   firebase_storage: ^11.7.0
+  
 
   loading_indicator: ^3.1.1
   flutter_svg: ^2.0.10+1
@@ -38,27 +40,24 @@ dependencies:
   lottie: ^3.1.0
   animated_toggle_switch: ^0.8.2
   shimmer_pro: ^0.0.6
-  
-
-  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.9
+  hive_generator: ^2.0.1
 
 flutter:
-
   uses-material-design: true
 
   assets:
     - asset/img/auth/
     - asset/img/
     - asset/json/
-    - asset/img/test/    
-    - asset/img/icons/     
-
+    - asset/img/test/
+    - asset/img/icons/
 
   fonts:
     - family: Poppins
@@ -82,4 +81,3 @@ flutter:
           weight: 800
         - asset: asset/font/Denton Condensed/DentonCondensedTest-Medium.otf
           weight: 900
-

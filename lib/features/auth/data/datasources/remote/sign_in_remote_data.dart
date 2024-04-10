@@ -23,6 +23,7 @@ class SignInRemoteData {
         final data = userSnapshot.data() as Map<String, dynamic>;
         final authUser = AppUserModel.fromMap(data);
         log(authUser.toString());
+        
         return authUser;
       } else {
         log('User data does not exist in Firestore.');

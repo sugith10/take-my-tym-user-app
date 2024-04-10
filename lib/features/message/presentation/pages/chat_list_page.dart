@@ -37,18 +37,7 @@ class _ChatListPageState extends State<ChatListPage> {
                       if (snapshot.hasData) {
                         var documentData = snapshot.data!.data();
                         log("snapshot: ${snapshot.data!.data().toString()}");
-                        //  if(documentData != null &&  )
-                        //         return ListView.builder(
-                        //           itemCount: snapshot.l,
-                        // itemBuilder: (BuildContext context, int index) {
-
-                        //   return const ChatTileWidget(
-                        //     personName: 'Sugith',
-                        //     lastMessage: 'hello world!',
-                        //     lastMsgTime: '12:24 pm',
-                        //   );
-                        // },
-                        //           )
+                    
                       }
                       return SizedBox();
                     });

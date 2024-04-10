@@ -119,7 +119,9 @@ class _NavigationMenuState extends State<NavigationMenu> {
             ),
           );
         }
-        return const Scaffold();
+        return const Scaffold(
+          body: Center(child: Text("null")),
+        );
       },
     );
   }

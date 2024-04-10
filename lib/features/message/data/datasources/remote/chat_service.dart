@@ -94,6 +94,5 @@ class MessageRemoteData {
         .collection("userChats")
         .doc(currentUid)
         .snapshots();
- 
   }
 }

@@ -1,67 +1,110 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
+import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 
-class ChatTileWidget extends StatelessWidget {
-  final String personName;
-  final String lastMessage;
-  final String lastMsgTime;
-  final String personPhoto;
+class ChatTileWidget extends StatefulWidget {
+  // final Stream<DocumentSnapshot> recipientInfoSnap;
+  // final String chatId;
+  // final String lastMsgTime;
+  // final String personPhoto;
+  final String currentUserId;
+  final String recipientUserId;
 
-  const ChatTileWidget(
-      {super.key,
-      required this.personName,
-      required this.lastMessage,
-      required this.lastMsgTime,
-      this.personPhoto = MyAppImages.profileIcon});
+  const ChatTileWidget({
+    super.key,
+    required this.currentUserId,
+    required this.recipientUserId,
+  });
+
+  @override
+  State<ChatTileWidget> createState() => _ChatTileWidgetState();
+}
+
+class _ChatTileWidgetState extends State<ChatTileWidget> {
+  late final IndividualMessageBloc _individualMessageBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _individualMessageBloc = IndividualMessageBloc();
+    _individualMessageBloc.add(
+      GetMessagesEvent(
+        currentUserId: widget.currentUserId,
+        recipientUserId: widget.recipientUserId,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const IndividualChatPage(
-                      currentUid: '',
-                      receiverUid: '',
-                      receiverName: '',
-                      senderName: '',
-                    )));
+    return BlocBuilder(
+      bloc: _individualMessageBloc,
+      builder: (context, state) {
+        if (state is IndividualChatsLoadedState) {
+          return StreamBuilder<DocumentSnapshot>(
+              stream: state.userInfo,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final map = snapshot.data!;
+                  final name = map['userName'] ?? 'error';
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const IndividualChatPage(
+                            currentUid: '',
+                            receiverUid: '',
+                            receiverName: '',
+                            senderName: '',
+                          ),
+                        ),
+                      );
+                    },
+                    leading: SizedBox(
+                      height: 50,
+                      child: Stack(alignment: Alignment.bottomRight, children: [
+                        const CircleProfilePicWidget(
+                          height: 50,
+                          width: 50,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: CircleAvatar(
+                            radius: 5,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                          ),
+                        )
+                      ]),
+                    ),
+                    title: Text(
+                      name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    subtitle: Text(
+                      "Sample message",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    trailing: Text(
+                      "Time",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              });
+        }
+        return const Text("Loading");
       },
-      leading: SizedBox(
-        height: 50,
-        child: Stack(alignment: Alignment.bottomRight, children: [
-          const CircleProfilePicWidget(
-            height: 50,
-            width: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: CircleAvatar(
-              radius: 5,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(100)),
-              ),
-            ),
-          )
-        ]),
-      ),
-      title: Text(
-        personName,
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
-      subtitle: Text(
-        lastMessage,
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
-      trailing: Text(
-        lastMsgTime,
-        style: Theme.of(context).textTheme.bodySmall,
-      ),
     );
   }
 }

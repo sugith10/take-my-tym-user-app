@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 abstract class IndividualMessageRepo {
   Future<void> sendMessage({
     required String currentUid,
-    required String receiverUid,
+    required String recipientUserId,
     required String message,
     required String senderName,
     required String receiverName,
@@ -13,4 +13,7 @@ abstract class IndividualMessageRepo {
     required String currentUid,
     required String receiverUid,
   });
+
+  Stream<DocumentSnapshot> getChatPartnerInfoStream({
+    required String recipientUserId });
 }

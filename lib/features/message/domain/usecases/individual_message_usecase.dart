@@ -13,11 +13,12 @@ final class IndividualMessageUseCase {
     required String receiverName,
   }) async {
     return await _individualMessageRepo.sendMessage(
-        currentUid: currentUid,
-        receiverUid: receiverUid,
-        message: message,
-        senderName: senderName,
-        receiverName: receiverName,);
+      currentUid: currentUid,
+      recipientUserId: receiverUid,
+      message: message,
+      senderName: senderName,
+      receiverName: receiverName,
+    );
   }
 
   Stream<QuerySnapshot> getMessages({
@@ -29,4 +30,13 @@ final class IndividualMessageUseCase {
       receiverUid: receiverUid,
     );
   }
+
+  Stream<DocumentSnapshot> getChatPartnerInfoStream({
+    required String recipientUserId,
+  }) {
+    return _individualMessageRepo.getChatPartnerInfoStream(
+      recipientUserId: recipientUserId,
+    );
+  }
+  
 }

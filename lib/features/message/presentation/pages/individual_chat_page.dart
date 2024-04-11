@@ -18,25 +18,26 @@ class IndividualChatPage extends StatelessWidget {
     required this.senderName,
     required this.receiverUid,
     required this.receiverName,
-    super.key, 
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    context.read<IndividualMessageBloc>().add(
-        GetMessagesEvent(currentUid: currentUid, receiverUid: receiverUid));
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with $receiverUid'),
+        title: Text(receiverName),
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.more_vert_rounded))
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 20.h, right: 20.h, top: 20.h),
-        child: BlocBuilder<IndividualMessageBloc, IndividualMessageState>(
+        child: BlocBuilder(
+          bloc: IndividualMessageBloc(),
           builder: (context, state) {
             log(state.toString());
             if (state is IndividualChatsLoadedState) {
-              log("get messages state");
               return StreamBuilder<QuerySnapshot>(
                 stream: state.messages,
                 builder: (context, snapshot) {
@@ -45,8 +46,8 @@ class IndividualChatPage extends StatelessWidget {
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         final messageData = snapshot.data!.docs[index];
-                        final message = messageData['message'] ?? 'hi';
-                        final senderId = messageData['senderUid'] ?? 'hello';
+                        final message = messageData['message'] ?? 'error';
+                        final senderId = messageData['senderUid'] ?? 'error';
                         return ChatWidget(
                           message: message,
                           senderId: senderId,
@@ -76,23 +77,6 @@ class IndividualChatPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildMessageItem(DocumentSnapshot messageSnapshot) {
-  //   final messageData = messageSnapshot.data() as Map<String, dynamic>;
-  //   final message = messageData['message'] ?? 'hi';
-  //   final senderUid = messageData['senderUid'] ?? 'hello';
-
-  //   return ListTile(
-  //     title: Text(
-  //       message,
-  //       style: const TextStyle(color: Colors.white),
-  //     ),
-  //     subtitle: Text(
-  //       senderUid,
-  //       style: const TextStyle(color: Color.fromARGB(255, 4, 154, 230)),
-  //     ),
-  //   );
-  // }
 }
 
 class ChatWidget extends StatelessWidget {
@@ -140,4 +124,4 @@ class ChatWidget extends StatelessWidget {
       ),
     );
   }
-} 
+}

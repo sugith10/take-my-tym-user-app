@@ -48,15 +48,13 @@ class MessageRemoteData {
           if (data != null && data.containsKey(chatroomID)) {
             log("chataRoom data already exists $chatroomID");
           } else {
-            await fireStore
-                .collection("userChats")
-                .doc(currentUid)
-                .set({chatroomID: senderName});
+            await fireStore.collection("userChats").doc(currentUid).update({
+              chatroomID: receiverUid,
+            });
 
-            await fireStore
-                .collection("userChats")
-                .doc(receiverUid)
-                .set({chatroomID: receiverUid});
+            await fireStore.collection("userChats").doc(receiverUid).update({
+              chatroomID: currentUid,
+            });
           }
         },
       );
@@ -79,7 +77,7 @@ class MessageRemoteData {
         .collection("chats")
         .doc("EYYn66HdjFf8XJVCXQdP")
         .collection("chatRooms")
-        .doc(chatroomID) // Use the constructed chatroomID here
+        .doc(chatroomID)
         .collection("messages")
         .orderBy("timestamp", descending: false)
         .snapshots();
@@ -93,6 +91,17 @@ class MessageRemoteData {
         .doc("EYYn66HdjFf8XJVCXQdP")
         .collection("userChats")
         .doc(currentUid)
+        .snapshots();
+  }
+
+    //Chat Partner Info
+  Stream<DocumentSnapshot> getChatPartnerInfoStream({
+    required String recipientUserId
+    }) {
+    log('on Chat list message remote');
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(recipientUserId)
         .snapshots();
   }
 }

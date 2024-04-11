@@ -7,7 +7,9 @@ final class ChatListRepoImp implements ChatListRepo {
 
   ChatListRepoImp(this._messageRemoteData);
   @override
-  Stream<DocumentSnapshot> getChatList({required String userId}) {
+  Stream<DocumentSnapshot> getUserChatListStream({required String userId}) {
     return _messageRemoteData.getChatList(currentUid: userId);
   }
+  
+ 
 }

@@ -3,8 +3,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 
-// Function to store user data in Hive after signing in
-Future<void> storeUserDataInHive(AppUserModel user) async {
+final class LocalUserData{
+  // Function to store user data in Hive after signing in
+Future<void> storeUserDataLocal(AppUserModel user) async {
   final userBox = await Hive.openBox('userData');
 
   await userBox.put('user', user.toJson());
@@ -12,7 +13,7 @@ Future<void> storeUserDataInHive(AppUserModel user) async {
 }
 
 // Function to retrieve user data from Hive
-Future<AppUserModel?> getUserDataFromHive() async {
+Future<AppUserModel?> getUserDataFromLocal() async {
   try {
     final userBox = await Hive.openBox('userData');
 
@@ -33,7 +34,7 @@ Future<AppUserModel?> getUserDataFromHive() async {
 }
 
 // Function to logout user
-Future<void> userSignOut() async {
+Future<void> userSignOutFromLocal() async {
   try {
     final userBox = await Hive.openBox('userData');
     await userBox.put('user', null);
@@ -42,3 +43,6 @@ Future<void> userSignOut() async {
     throw MyAppException(message: e.toString(), title: e.toString());
   }
 }
+
+}
+

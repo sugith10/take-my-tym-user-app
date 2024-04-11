@@ -21,11 +21,11 @@ final class SendMessageEvent extends IndividualMessageEvent {
 }
 
 final class GetMessagesEvent extends IndividualMessageEvent {
-  final String currentUid;
-  final String receiverUid;
+  final String currentUserId;
+  final String recipientUserId;
 
   GetMessagesEvent({
-    required this.currentUid,
-    required this.receiverUid,
+    required this.currentUserId,
+    required this.recipientUserId,
   });
 }

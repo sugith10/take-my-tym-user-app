@@ -13,5 +13,6 @@ final class ImagePick {
     } catch (e) {
       log(e.toString());
     }
+    return null;
   }
 }

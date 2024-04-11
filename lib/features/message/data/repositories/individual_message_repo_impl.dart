@@ -9,18 +9,17 @@ final class IndividualMessageRepoImpl implements IndividualMessageRepo {
   @override
   Future<void> sendMessage({
     required String currentUid,
-    required String receiverUid,
+    required String recipientUserId,
     required String message,
-        required String senderName,
+    required String senderName,
     required String receiverName,
   }) async {
     return await _messageRemoteData.sendMessage(
-      currentUid: currentUid,
-      receiverUid: receiverUid,
-      message: message,
-      senderName: senderName,
-      receiverName: receiverName
-    );
+        currentUid: currentUid,
+        receiverUid: recipientUserId,
+        message: message,
+        senderName: senderName,
+        receiverName: receiverName);
   }
 
   @override
@@ -30,5 +29,13 @@ final class IndividualMessageRepoImpl implements IndividualMessageRepo {
       currentUid: currentUid,
       receiverUid: receiverUid,
     );
+  }
+
+  @override
+  Stream<DocumentSnapshot<Object?>> getChatPartnerInfoStream(
+      {required String recipientUserId}) {
+    //
+    return _messageRemoteData.getChatPartnerInfoStream(
+        recipientUserId: recipientUserId);
   }
 }

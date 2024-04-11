@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
                 GetChatList(
                     currentUid: context.read<AppBloc>().appUserModel!.uid),
               ))),
-        BlocProvider<IndividualMessageBloc>(
-            create: (context) => IndividualMessageBloc()),
+        // BlocProvider<IndividualMessageBloc>(
+        //     create: (context) => IndividualMessageBloc()),
         BlocProvider<UpdateProfileBloc>(
             create: ((context) => UpdateProfileBloc())),
       ],

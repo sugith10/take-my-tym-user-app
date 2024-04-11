@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/features/auth/domain/usecases/local_user_storage_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 
 part 'sign_out_event.dart';
@@ -14,9 +15,11 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
       emit(UserSignOutLoadingState());
       try {
         final SignOutUseCase signOutUseCase = GetIt.instance<SignOutUseCase>();
-        await signOutUseCase
-            .signOutUser()
-            .then((value) => emit(UserSignOutSuccessState()));
+        await signOutUseCase.signOutUser().then((value) async {
+          await GetIt.instance<LocalUserStorageUseCase>()
+              .userSignOutFromLocal();
+          emit(UserSignOutSuccessState());
+        });
       } on MyAppException catch (e) {
         emit(
           UserSignOutFailState(

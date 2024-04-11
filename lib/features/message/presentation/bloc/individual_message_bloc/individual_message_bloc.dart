@@ -18,12 +18,11 @@ class IndividualMessageBloc
       (event, emit) {
         try {
           individualMessageUseCase.sendMessage(
-            currentUid: event.currentUid,
-            receiverUid: event.receiverUid,
-            message: event.message,
-            senderName: event.senderName,
-            receiverName: event.receiverName
-          );
+              currentUid: event.currentUid,
+              receiverUid: event.receiverUid,
+              message: event.message,
+              senderName: event.senderName,
+              receiverName: event.receiverName,);
         } catch (e) {
           log(e.toString());
         }
@@ -32,12 +31,23 @@ class IndividualMessageBloc
 
     on<GetMessagesEvent>((event, emit) {
       try {
-        Stream<QuerySnapshot> snapshot = individualMessageUseCase.getMessages(
-          currentUid: event.currentUid,
-          receiverUid: event.receiverUid,
+        log("on getMessses =-");
+        Stream<QuerySnapshot> chatSnapshot =
+            individualMessageUseCase.getMessages(
+          currentUid: event.currentUserId,
+          receiverUid: event.recipientUserId,
         );
-
-        emit( IndividualChatsLoadedState(messages: snapshot));
+        log(chatSnapshot.toString());
+        Stream<DocumentSnapshot> recipientUserInfoSnapshot =
+            individualMessageUseCase.getChatPartnerInfoStream(
+                recipientUserId: event.recipientUserId);
+        emit(
+          IndividualChatsLoadedState(
+            messages: chatSnapshot,
+            userInfo: recipientUserInfoSnapshot,
+          ),
+        );
+        log(chatSnapshot.toString());
       } catch (e) {}
     });
   }

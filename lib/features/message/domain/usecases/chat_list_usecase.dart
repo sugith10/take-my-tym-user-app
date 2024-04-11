@@ -6,6 +6,6 @@ final class ChatListUseCase{
   ChatListUseCase(this._chatListRepo);
 
   Stream<DocumentSnapshot>  getChatList({required String userId}){
-    return _chatListRepo.getChatList(userId: userId);
+    return _chatListRepo.getUserChatListStream(userId: userId);
   }
 }

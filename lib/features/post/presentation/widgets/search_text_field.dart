@@ -54,7 +54,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
           filled: true,
-          fillColor: MyAppDarkColor().fillColor.withOpacity(0.5),
+          fillColor: MyAppDarkColor().fillColor,
           hintText: 'Search',
           hintStyle: Theme.of(context).textTheme.labelLarge,
         ),

@@ -1,7 +1,5 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
@@ -37,43 +35,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100.0),
-        child: SafeArea(
-          child: Row(
-            children: [
-              Expanded(
-                child: SearchTextField(
-                  searchEditingController: _searchEditingController,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: InkWell(
-                  onTap: () {
-                    _showBottomSheet(context);
-                  },
-                  borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(MyAppRadius.borderRadius),
-                        border: Border.all(
-                            color: MyAppDarkColor().primarySoftBorder)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Icon(
-                        IconlyLight.filter,
-                        size: 28,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      appBar: SearchPageAppBar(searchEditingController: _searchEditingController),
       body: SafeArea(
         child: HomePadding(
           child: BlocBuilder<SearchPostsBloc, SearchPostsState>(
@@ -120,6 +82,58 @@ class _SearchPageState extends State<SearchPage> {
       // floatingActionButton: const HomePostSwitch(),
     );
   }
+}
+
+class SearchPageAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const SearchPageAppBar({
+    super.key,
+    required TextEditingController searchEditingController,
+  }) : _searchEditingController = searchEditingController;
+
+  final TextEditingController _searchEditingController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Row(
+        children: [
+          Expanded(
+            child: SearchTextField(
+              searchEditingController: _searchEditingController,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: InkWell(
+              onTap: () {
+                _showBottomSheet(context);
+              },
+              borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(MyAppRadius.borderRadius),
+                    border: Border.all(
+                        color: MyAppDarkColor().primarySoftBorder)),
+                child: const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Icon(
+                    IconlyLight.filter,
+                    size: 28,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  
+   @override
+  Size get preferredSize => const Size.fromHeight(100.0);
+  
+
 }
 
 Future _showBottomSheet(BuildContext context) {

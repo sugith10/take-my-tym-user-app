@@ -23,6 +23,8 @@ interface class AppColor {
   final Color glassEffect;
   final Color danger;
   final Color fillColor;
+  final Color userChatColor;
+  final Color recipientChatColor;
   AppColor({
     required this.background,
     required this.softBackground,
@@ -46,6 +48,8 @@ interface class AppColor {
     required this.primarySoftBorder,
     required this.secondaryBorder,
     required this.fillColor,
+    required this.userChatColor,
+    required this.recipientChatColor,
   });
 }
 
@@ -74,6 +78,8 @@ final class MyAppDarkColor extends AppColor {
           primaryBorder: const Color.fromRGBO(255, 255, 255, 1),
           primarySoftBorder: const Color.fromARGB(116, 255, 255, 255),
           secondaryBorder: const Color.fromARGB(66, 255, 255, 255),
-          fillColor: const Color.fromARGB(237, 53, 53, 53),
+          fillColor: const Color.fromARGB(237, 53, 53, 53).withOpacity(0.5),
+          userChatColor: const Color.fromRGBO(129, 199, 132, 1),
+          recipientChatColor: const Color.fromARGB(255, 30, 110, 186),
         );
 }

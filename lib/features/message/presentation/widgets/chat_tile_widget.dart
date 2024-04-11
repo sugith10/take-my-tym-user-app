@@ -6,12 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
+import 'package:take_my_tym/features/message/presentation/widgets/chat_list_shimmer_widget.dart';
 
 class ChatTileWidget extends StatefulWidget {
-  // final Stream<DocumentSnapshot> recipientInfoSnap;
-  // final String chatId;
-  // final String lastMsgTime;
-  // final String personPhoto;
   final String currentUserId;
   final String recipientUserId;
 
@@ -57,11 +54,12 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const IndividualChatPage(
+                          builder: (context) => IndividualChatPage(
                             currentUid: '',
                             receiverUid: '',
                             receiverName: '',
                             senderName: '',
+                            individualMessageBloc: _individualMessageBloc,
                           ),
                         ),
                       );
@@ -103,7 +101,7 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                 return const SizedBox.shrink();
               });
         }
-        return const Text("Loading");
+        return SizedBox.fromSize();
       },
     );
   }

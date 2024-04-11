@@ -19,16 +19,11 @@ class ShimmerEffectWidget extends StatelessWidget {
           scaffoldBackgroundColor: MyAppDarkColor().background,
         ),
         SizedBox(height: 10.h),
-        ShimmerPro.text(
-          maxLine: 5,
-          light: ShimmerProLight.lighter,
-          width: 450,
-          scaffoldBackgroundColor: MyAppDarkColor().background,
-        ),
+
      
            ShimmerPro.generated(
             light: ShimmerProLight.lighter,
-            scaffoldBackgroundColor: MyAppDarkColor().background,
+            scaffoldBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               children: [
              
@@ -46,6 +41,13 @@ class ShimmerEffectWidget extends StatelessWidget {
                 ),
               ],
             )),
+            SizedBox(height: 10.h),
+                    ShimmerPro.text(
+          maxLine: 5,
+          light: ShimmerProLight.lighter,
+          width: 450,
+          scaffoldBackgroundColor: MyAppDarkColor().background,
+        ),
       ],
     );
   }

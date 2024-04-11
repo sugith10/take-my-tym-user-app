@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer_pro/shimmer_pro.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/default_silver_appbar.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
+import 'package:take_my_tym/features/message/presentation/widgets/chat_list_shimmer_widget.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_tile_widget.dart';
 
 class ChatListPage extends StatefulWidget {
@@ -36,7 +40,7 @@ class _ChatListPageState extends State<ChatListPage> {
           SliverToBoxAdapter(child: BlocBuilder<ChatListBloc, ChatListState>(
             builder: (context, state) {
               if (state is ChatListLoadingState) {
-                return const CircularProgressIndicator();
+                return  const ChatListShimmerWidget();
               }
               if (state is ChatListLoadedState) {
                 return StreamBuilder<DocumentSnapshot>(
@@ -64,6 +68,8 @@ class _ChatListPageState extends State<ChatListPage> {
                           );
                         }),
                       );
+
+                     
                     }
                     return const SizedBox.shrink();
                   },
@@ -87,6 +93,8 @@ class _ChatListPageState extends State<ChatListPage> {
     );
   }
 }
+
+
 
 class ChatListItem {
   final String chatId;

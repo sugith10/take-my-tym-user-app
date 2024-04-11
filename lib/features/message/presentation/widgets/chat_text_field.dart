@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/image_pick.dart';
@@ -10,7 +9,9 @@ class ChatTextField extends StatefulWidget {
   final String receiverName;
   final String currentUid;
   final String senderName;
+  final IndividualMessageBloc individualMessageBloc;
   const ChatTextField({
+    required this.individualMessageBloc,
     required this.currentUid,
     required this.senderName,
     required this.receiverUid,
@@ -77,7 +78,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
               const SizedBox(width: 10),
               _ChatIconButton(
                 callback: () {
-                  context.read<IndividualMessageBloc>().add(
+                 widget.individualMessageBloc.add(
                         SendMessageEvent(
                           message: _controller.text,
                           currentUid: widget.currentUid,

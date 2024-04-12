@@ -19,11 +19,11 @@ class LocationWidget extends StatelessWidget {
         },
         icon: Row(
           children: [
-            const SizedBox(
+            SizedBox(
                 child: CoustomImageIcon(
               image: MyAppImages.locationIcon,
-              height: 28,
-              width: 28,
+              height: 25.h,
+              width: 25.h,
             )),
             SizedBox(width: 10.sp),
             SizedBox(

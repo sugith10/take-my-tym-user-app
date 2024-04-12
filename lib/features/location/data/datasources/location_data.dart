@@ -6,6 +6,7 @@ final class LocationData {
     try{
       final response = await http.get(uri, headers: headers);
       if(response.statusCode == 200){
+        log(response.body);
         return response.body;
       }
     }catch(e){

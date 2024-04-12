@@ -15,7 +15,6 @@ void main() async {
       await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
 
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -25,6 +25,8 @@ dependencies:
   url_launcher: ^6.2.5
   path_provider: ^2.1.2
   http: ^1.2.1
+  geolocator: ^11.0.0
+  geocoding: ^3.0.0
 
   hive_flutter: ^1.1.0
   firebase_auth: ^4.17.8
@@ -33,7 +35,6 @@ dependencies:
   google_sign_in: ^6.2.1
   firebase_storage: ^11.7.0
   
-
   loading_indicator: ^3.1.1
   flutter_svg: ^2.0.10+1
   animate_do: ^3.3.4

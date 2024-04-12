@@ -24,6 +24,7 @@ dependencies:
   back_button_interceptor: ^5.0.2
   url_launcher: ^6.2.5
   path_provider: ^2.1.2
+  http: ^1.2.1
 
   hive_flutter: ^1.1.0
   firebase_auth: ^4.17.8

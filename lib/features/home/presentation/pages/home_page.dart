@@ -13,7 +13,7 @@ import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_wid
 import 'package:take_my_tym/features/home/presentation/widgets/home_page_shimmer_effect.dart';
 import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/location/presentation/pages/select_location.dart';
+import 'package:take_my_tym/features/location/presentation/pages/select_location_page.dart';
 import 'package:take_my_tym/features/post/presentation/pages/view_post_page.dart';
 
 class HomePage extends StatefulWidget {

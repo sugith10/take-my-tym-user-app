@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:take_my_tym/core/secret/google_map_api_key.dart';
 
-Future<String> getLocationName(double latitude, double longitude) async {
+final class CurrentLocationRemote{
+  
+Future<String> locationPositionName({required  double latitude,required double longitude}) async {
   Uri uri = Uri.https(
     'maps.googleapis.com',
     '/maps/api/geocode/json',
@@ -37,4 +39,5 @@ Future<String> getLocationName(double latitude, double longitude) async {
     // Handle other exceptions
     rethrow;
   }
+}
 }

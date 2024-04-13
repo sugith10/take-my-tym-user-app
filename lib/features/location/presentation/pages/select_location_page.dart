@@ -1,20 +1,19 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:iconly/iconly.dart';
-import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/secret/google_map_api_key.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/features/location/data/datasources/get_location_name.dart';
+import 'package:take_my_tym/core/utils/app_debouncer.dart';
+import 'package:take_my_tym/features/location/data/datasources/location_position_name_remote.dart';
 import 'package:take_my_tym/features/location/data/models/auto_complete_prediction.dart';
-import 'package:take_my_tym/features/location/data/models/place_auto_complete_response.dart';
-import 'package:take_my_tym/features/location/data/datasources/location_data.dart';
+import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/location/presentation/widgets/google_text.dart';
 import 'package:take_my_tym/features/location/presentation/widgets/location_divider.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_list_tile_widget.dart';
 import 'package:take_my_tym/features/location/presentation/widgets/location_page_appbar.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:take_my_tym/features/location/presentation/widgets/search_location_result_widget.dart';
 
 class SelectLocationPage extends StatefulWidget {
   const SelectLocationPage({super.key});
@@ -28,49 +27,39 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
 
   List<AutoCompletePrediction> placePrdictions = [];
 
-  void placeAutocomplate(String query) async {
-    log("on placeAutoComplate");
-    Uri uri =
-        Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
-      "input": query,
-      "key": googleMapApiKey,
-    });
-    String? response = await LocationData().fetchUrl(uri);
+  // void placeAutocomplate(String query) async {
+  //   log("on placeAutoComplate");
 
-    if (response != null) {
-      PlaceAutocompleteResponse result =
-          PlaceAutocompleteResponse.parseAutocompleteResult(response);
-      if (result.predictions != null) {
-        setState(() {
-          placePrdictions = result.predictions!;
-        });
-      }
-    }
-  }
+  //   String? response =
+  //       await SerachLocationRemote().autoCompleteLocation(query: query);
 
-  void getLocation(BuildContext context) async {
-    {
-      await Geolocator.checkPermission();
-      await Geolocator.requestPermission();
-      try {
-        Position position = await _determinePosition(context);
-        log("Location:-  $position");
+  //   if (response != null) {
+  //     PlaceAutocompleteResponse result =
+  //         PlaceAutocompleteResponse.parseAutocompleteResult(response);
+  //     if (result.predictions != null) {
+  //       setState(() {
+  //         placePrdictions = result.predictions!;
+  //       });
+  //     }
+  //   }
+  // }
 
-        String address =
-            await getLocationName(position.latitude, position.longitude);
-        log("Address: $address");
 
-        List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude,
-          position.longitude,
-        );
 
-        log("place: $placemarks.toString()");
-      } catch (e) {
-        log(e.toString());
-      }
-    }
-  }
+  // void handlePlaceSelected({required String placeId}) async {
+  //   try {
+  //     Map<String, dynamic> placeDetails =
+  //         await fetchPlaceDetails(placeId: placeId);
+
+  //     // Use these coordinates as needed in your application
+  //   } catch (e) {
+  //     log('Error fetching place details: $e');
+  //   }
+  // }
+
+  final LocationBloc locationBloc = LocationBloc();
+
+  final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   void dispose() {
@@ -90,8 +79,10 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
               keyboardType: TextInputType.text,
               controller: _locationController,
               onChanged: (value) {
-                placeAutocomplate(value);
-                // searchBloc.add(SearchBuyTymPost(searchQuery: value));
+                // placeAutocomplate(value);
+                _debouncer.run(() => locationBloc.add(
+                      SearchLocationsEvent(query: value),
+                    ));
               },
               autofocus: true,
               textCapitalization: TextCapitalization.sentences,
@@ -117,8 +108,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
             padding: const EdgeInsets.all(MyAppPadding.homePadding),
             child: ElevatedButton(
               onPressed: () {
-                getLocation(context);
-                // placeAutocomplate("Dubai");
+                locationBloc.add(CurrentLocationEvent());
               },
               style: const ButtonStyle(
                   fixedSize: MaterialStatePropertyAll(
@@ -137,18 +127,71 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
             ),
           ),
           const LocationDivider(),
-          Expanded(
-            child: ListView.builder(
-              itemCount: placePrdictions.length,
-              itemBuilder: (context, index) {
-                return LocationListTile(
-                  callback: () {},
-                  location: placePrdictions[index].description!,
+          BlocConsumer(
+            bloc: locationBloc,
+            listener: (context, state) {
+              if (state is LocationTurnedOffState) {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Center(
+                        child: Text(
+                      'Location Services Disabled',
+                      style: TextStyle(color: MyAppDarkColor().danger),
+                    )),
+                    content: const Text(
+                      'Please enable location services to use this feature.',
+                      textAlign: TextAlign.center,
+                    ),
+                    actions: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Geolocator.openLocationSettings().then((value) {
+                                if (value) {
+                                  locationBloc.add(CurrentLocationEvent());
+                                }
+                              }); // Open location settings
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Enable Location'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text(
+                              'Cancel',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 );
-              },
-            ),
+              }
+            },
+            builder: (context, state) {
+              if (state is LocationInitialState) {
+                return const PoweredByGoogleText();
+              }
+              if (state is LocationLoadingState) {
+                return const Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              if (state is SearchLocationsResultsState) {
+                return SearchLocationResultWiedget(
+                  locationBloc: locationBloc,
+                  searchLocationsResultsState: state,
+                );
+              }
+
+              return const SizedBox.shrink();
+            },
           ),
-          const PoweredByGoogleText()
         ],
       ),
     );
@@ -166,40 +209,6 @@ Future<Position> _determinePosition(BuildContext context) async {
   // Test if location services are enabled.
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(
-            child: Text(
-          'Location Services Disabled',
-          style: TextStyle(color: MyAppDarkColor().danger),
-        )),
-        content: const Text(
-          'Please enable location services to use this feature.',
-          textAlign: TextAlign.center,
-        ),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Geolocator.openLocationSettings(); // Open location settings
-                  Navigator.pop(context);
-                },
-                child: const Text('Enable Location'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text(
-                  'Cancel',
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
     return Future.error('Location services are disabled.');
   }
 

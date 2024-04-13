@@ -23,6 +23,18 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
+import 'package:take_my_tym/features/location/data/datasources/location_position_name_remote.dart';
+import 'package:take_my_tym/features/location/data/datasources/location_position_remote.dart';
+import 'package:take_my_tym/features/location/data/datasources/search_location_remote.dart';
+import 'package:take_my_tym/features/location/data/repositories/current_location_repo_impl.dart';
+import 'package:take_my_tym/features/location/data/repositories/location_position_repo.dart';
+import 'package:take_my_tym/features/location/data/repositories/search_location_repo_impl.dart';
+import 'package:take_my_tym/features/location/domain/repositories/current_location_repo.dart';
+import 'package:take_my_tym/features/location/domain/repositories/location_position_repo.dart';
+import 'package:take_my_tym/features/location/domain/repositories/search_location_repo.dart';
+import 'package:take_my_tym/features/location/domain/usecases/current_location_use_case.dart';
+import 'package:take_my_tym/features/location/domain/usecases/location_position_use_case.dart';
+import 'package:take_my_tym/features/location/domain/usecases/search_location_use_case.dart';
 import 'package:take_my_tym/features/message/data/datasources/remote/chat_service.dart';
 import 'package:take_my_tym/features/message/data/repositories/chat_list_repo_impl.dart';
 import 'package:take_my_tym/features/message/data/repositories/individual_message_repo_impl.dart';
@@ -83,9 +95,9 @@ final class DependencyInject {
 
     ///StoreLocalUserData
     GetIt.instance.registerLazySingleton<LocalUserDataRepo>(
-      () => LocalUserDataRepoImpl(LocalUserData()));
+        () => LocalUserDataRepoImpl(LocalUserData()));
     GetIt.instance.registerLazySingleton<LocalUserStorageUseCase>(
-      () => LocalUserStorageUseCase(GetIt.instance<LocalUserDataRepo>()));
+        () => LocalUserStorageUseCase(GetIt.instance<LocalUserDataRepo>()));
 
     ///CreatePost
     GetIt.instance.registerLazySingleton<CreatePostRepo>(
@@ -134,12 +146,30 @@ final class DependencyInject {
         () => IndividualMessageRepoImpl(MessageRemoteData()));
     GetIt.instance.registerLazySingleton<IndividualMessageUseCase>(() =>
         IndividualMessageUseCase(GetIt.instance<IndividualMessageRepo>()));
-  
-    ///ChatListRepo
+
+    ///ChatList
     GetIt.instance.registerLazySingleton<ChatListRepo>(
-      () => ChatListRepoImp(MessageRemoteData()));
+        () => ChatListRepoImp(MessageRemoteData()));
     GetIt.instance.registerLazySingleton<ChatListUseCase>(
-      () => ChatListUseCase(GetIt.instance<ChatListRepo>()));
-    
+        () => ChatListUseCase(GetIt.instance<ChatListRepo>()));
+
+    ///SearchLocation
+    GetIt.instance.registerLazySingleton<SearchLocationRepo>(
+        () => SearchLocationRepoImpl(SerachLocationRemote()));
+    GetIt.instance.registerLazySingleton<SearchLocationUseCase>(
+        () => SearchLocationUseCase(GetIt.instance<SearchLocationRepo>()));
+
+    ///GetPositonOfLocation
+    GetIt.instance.registerLazySingleton<LocationPositionRepo>(
+        () => LocationPositionRepoImpl(LocationPositionRemote()));
+    GetIt.instance.registerLazySingleton<LocationPositionUseCase>(
+        () => LocationPositionUseCase(GetIt.instance<LocationPositionRepo>()));
+  
+    ///GetLocationPositionName
+    GetIt.instance.registerLazySingleton<CurrentLocationRepo>(
+      () => CurrentLocationRepoImpl(CurrentLocationRemote()));
+    GetIt.instance.registerLazySingleton<CurrentLocationUseCase>(
+      () => CurrentLocationUseCase(GetIt.instance<CurrentLocationRepo>()));
+      
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
-final MyAppDarkColor _color = MyAppDarkColor();
+final MyAppDarkColor _color = MyAppDarkColor.instance;
 
 final class MyAppDarkTheme {
   final ThemeData darkTheme = ThemeData(

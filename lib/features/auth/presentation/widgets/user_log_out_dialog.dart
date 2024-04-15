@@ -28,7 +28,7 @@ class UserLogOut {
                 Text(
                   'Are you sure you want log out?',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: MyAppDarkColor().primaryTextBlur,
+                        color: MyAppDarkColor.instance.primaryTextBlur,
                       ),
                 ),
                 const Spacer(),

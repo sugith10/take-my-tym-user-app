@@ -34,7 +34,7 @@ class ChatShimmerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerPro.generated(
       scaffoldBackgroundColor:
-          MyAppDarkColor().bottomNavigationBarBackground,
+         MyAppDarkColor.instance.bottomNavigationBarBackground,
       child: Row(
         children: [
           ShimmerPro.sized(

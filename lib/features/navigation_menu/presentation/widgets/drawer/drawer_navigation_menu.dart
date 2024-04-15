@@ -64,7 +64,6 @@ class DrawerNavBar extends StatelessWidget {
                   ),
 
                   const LogOutDrawerButton(), // Logout button for user convenience.
-
                   /// For user convenience, a logout option is provided in the app drawer.
                   /// This widget serves as the logout button.
                   ///

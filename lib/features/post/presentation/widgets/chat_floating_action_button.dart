@@ -20,7 +20,7 @@ class ChatFloatingActionButton extends StatefulWidget {
 
 class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
     with SingleTickerProviderStateMixin {
-  final MyAppDarkColor _appDarkColor = MyAppDarkColor();
+
   late AnimationController _controller;
   late Animation<Alignment> _topAlignmentAnimation;
   late Animation<Alignment> _bottomAlignmentAnimation;
@@ -85,7 +85,7 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
 
   @override
   void dispose() {
-    _appDarkColor;
+
     _controller.dispose();
     _topAlignmentAnimation;
     _bottomAlignmentAnimation;
@@ -101,8 +101,8 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    _appDarkColor.gradientPrimary,
-                    _appDarkColor.gradientSecondary,
+                    MyAppDarkColor.instance.gradientPrimary,
+                    MyAppDarkColor.instance.gradientSecondary,
                   ],
                   begin: _topAlignmentAnimation.value,
                   end: _bottomAlignmentAnimation.value,
@@ -112,7 +112,7 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: _appDarkColor.boxShadow,
+                    color: MyAppDarkColor.instance.boxShadow,
                     spreadRadius: 1,
                     blurRadius: 1,
                     offset: const Offset(0, 1.5),

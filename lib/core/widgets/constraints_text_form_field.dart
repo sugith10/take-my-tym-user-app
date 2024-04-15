@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class ConstraintsTextFormField extends StatelessWidget {
   final String hintText;
-  final MyAppDarkColor darkColor;
+  
   final TextInputType keyboardType;
   final TextEditingController controller;
   final String? Function(String?)? validator;
@@ -13,7 +13,7 @@ class ConstraintsTextFormField extends StatelessWidget {
     required this.controller,
     required this.keyboardType,
     required this.hintText,
-    required this.darkColor,
+
     this.validator,
     super.key,
   });
@@ -26,7 +26,7 @@ class ConstraintsTextFormField extends StatelessWidget {
         Text(
           hintText,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: darkColor.primaryTextSoft,
+                color: MyAppDarkColor.instance.primaryTextSoft,
               ),
         ),
         SizedBox(height: 8.h),
@@ -41,13 +41,13 @@ class ConstraintsTextFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 MyAppRadius.borderRadius - 2,
               ),
-              borderSide: BorderSide(color: darkColor.boxShadow),
+              borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
                 MyAppRadius.borderRadius - 2,
               ),
-              borderSide: BorderSide(color: darkColor.boxShadow),
+              borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
             ),
             hintText: hintText,
             hintStyle: Theme.of(context).textTheme.bodyLarge,

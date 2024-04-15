@@ -24,14 +24,14 @@ class ChatWidget extends StatelessWidget {
           Container(
               decoration: context.read<AppBloc>().appUserModel!.uid == senderId
                   ? BoxDecoration(
-                      color: MyAppDarkColor().userChatColor,
+                      color: MyAppDarkColor.instance.userChatColor,
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(10),
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10)),
                     )
                   : BoxDecoration(
-                      color: MyAppDarkColor().recipientChatColor,
+                      color: MyAppDarkColor.instance.recipientChatColor,
                       borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(10),
                           topLeft: Radius.circular(10),

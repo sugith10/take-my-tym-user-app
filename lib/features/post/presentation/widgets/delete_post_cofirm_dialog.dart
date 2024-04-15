@@ -30,7 +30,7 @@ class DletePost {
                 Text(
                   'Are you sure you want delete this post?',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: MyAppDarkColor().primaryTextBlur,
+                        color: MyAppDarkColor.instance.primaryTextBlur,
                       ),
                 ),
                 const Spacer(),

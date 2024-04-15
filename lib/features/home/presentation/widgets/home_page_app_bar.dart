@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/location_widget.dart';
+import 'package:take_my_tym/features/location/presentation/widgets/home_page_app_bar_location_widget.dart';
 
 class HomePageAppBar extends StatelessWidget {
   final VoidCallback openDrawer;
-  final VoidCallback location;
+
   const HomePageAppBar({
     required this.openDrawer,
-    required this.location,
     super.key,
   });
 
@@ -19,10 +18,8 @@ class HomePageAppBar extends StatelessWidget {
         onPressed: () => openDrawer(),
         icon: const Icon(Icons.density_medium),
       ),
-      actions: [
-        LocationWidget(
-          callback: () => location(),
-        ),
+      actions: const [
+        MyLocationWidget(),
       ],
     );
   }

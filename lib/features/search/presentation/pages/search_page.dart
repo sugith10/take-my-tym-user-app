@@ -114,7 +114,7 @@ class SearchPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                     borderRadius:
                         BorderRadius.circular(MyAppRadius.borderRadius),
                     border: Border.all(
-                        color: MyAppDarkColor().primarySoftBorder)),
+                        color: MyAppDarkColor.instance.primarySoftBorder)),
                 child: const Padding(
                   padding: EdgeInsets.all(15),
                   child: Icon(

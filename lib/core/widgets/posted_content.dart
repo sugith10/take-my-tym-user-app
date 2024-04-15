@@ -32,7 +32,7 @@ class PostedContentWidget extends StatelessWidget {
         child: Container(
           width: width,
           decoration: BoxDecoration(
-            color: MyAppDarkColor().secondaryBackground,
+            color: MyAppDarkColor.instance.secondaryBackground,
             borderRadius: BorderRadius.circular(
               MyAppRadius.borderRadius,
             ),

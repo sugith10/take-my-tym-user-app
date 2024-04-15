@@ -17,7 +17,6 @@ class SwitchCategoryWidget extends StatefulWidget {
 
 class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
   bool current = true;
-  final MyAppDarkColor _myAppDarkColor = MyAppDarkColor();
 
   @override
   void initState() {
@@ -33,8 +32,8 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
           borderColor: Colors.transparent,
           backgroundGradient: LinearGradient(
             colors: [
-              _myAppDarkColor.gradientPrimary,
-              _myAppDarkColor.gradientSecondary,
+              MyAppDarkColor.instance.gradientPrimary,
+              MyAppDarkColor.instance.gradientSecondary,
             ],
           ),
           indicatorColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -48,7 +47,7 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
         borderColor: Colors.transparent,
         boxShadow: [
           BoxShadow(
-            color: _myAppDarkColor.boxShadow,
+            color: MyAppDarkColor.instance.boxShadow,
             spreadRadius: 1,
             blurRadius: 1,
             offset: const Offset(0, 1.5),

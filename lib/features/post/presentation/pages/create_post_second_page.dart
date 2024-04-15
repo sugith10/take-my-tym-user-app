@@ -32,7 +32,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController _remunerationCntrl = TextEditingController();
   List<dynamic>? skills;
 
-  final MyAppDarkColor _darkColor = MyAppDarkColor();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -183,7 +182,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         ConstraintsTextFormField(
                           controller: _locationCntrl,
                           keyboardType: TextInputType.streetAddress,
-                          darkColor: _darkColor,
+                       
                           hintText: 'Location',
                           validator: (val) {
                             if (val!.isEmpty) {
@@ -194,7 +193,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         ),
                         SizedBox(height: 15.h),
                         ConstraintsTextFormField(
-                          darkColor: _darkColor,
+                         
                           controller: _experienceCntrl,
                           keyboardType: TextInputType.text,
                           hintText: "Experience",
@@ -207,7 +206,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         ),
                         SizedBox(height: 15.h),
                         ConstraintsTextFormField(
-                          darkColor: _darkColor,
+                         
                           controller: _remunerationCntrl,
                           keyboardType: TextInputType.number,
                           hintText: "Remuneration",

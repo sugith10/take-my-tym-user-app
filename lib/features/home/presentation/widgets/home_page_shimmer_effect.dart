@@ -13,13 +13,13 @@ class HomePageShimmerEffect extends StatelessWidget {
       children: [
            ShimmerPro.generated(
             light: ShimmerProLight.lighter,
-            scaffoldBackgroundColor: MyAppDarkColor().background,
+            scaffoldBackgroundColor: MyAppDarkColor.instance.background,
             child: Column(
               children: [
              
                 ShimmerPro.sized(
                   light: ShimmerProLight.lighter,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                   height: 150,
                   width: 400,
                 ),
@@ -27,19 +27,19 @@ class HomePageShimmerEffect extends StatelessWidget {
                   maxLine: 5,
                   light: ShimmerProLight.lighter,
                   width: 450,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                 ),
               ],
             )),
                 ShimmerPro.generated(
             light: ShimmerProLight.lighter,
-            scaffoldBackgroundColor: MyAppDarkColor().background,
+            scaffoldBackgroundColor: MyAppDarkColor.instance.background,
             child: Column(
               children: [
              
                 ShimmerPro.sized(
                   light: ShimmerProLight.lighter,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                   height: 150,
                   width: 400,
                 ),
@@ -47,20 +47,20 @@ class HomePageShimmerEffect extends StatelessWidget {
                   maxLine: 5,
                   light: ShimmerProLight.lighter,
                   width: 450,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                 ),
               ],
             )),
      
            ShimmerPro.generated(
             light: ShimmerProLight.lighter,
-            scaffoldBackgroundColor: MyAppDarkColor().background,
+            scaffoldBackgroundColor: MyAppDarkColor.instance.background,
             child: Column(
               children: [
              
                 ShimmerPro.sized(
                   light: ShimmerProLight.lighter,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                   height: 150,
                   width: 400,
                 ),
@@ -68,7 +68,7 @@ class HomePageShimmerEffect extends StatelessWidget {
                   maxLine: 5,
                   light: ShimmerProLight.lighter,
                   width: 450,
-                  scaffoldBackgroundColor: MyAppDarkColor().background,
+                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                 ),
               ],
             )),

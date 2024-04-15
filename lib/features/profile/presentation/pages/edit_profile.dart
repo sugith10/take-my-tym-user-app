@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
@@ -122,7 +122,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     children: [
                       ConstraintsTextFormField(
                         controller: _nameCntrl,
-                        darkColor: MyAppDarkColor(),
+                      
                         hintText: "Name",
                         keyboardType: TextInputType.name,
                         validator: (val) {
@@ -135,7 +135,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       SizedBox(height: 25.h),
                       ConstraintsTextFormField(
                         controller: _aboutCntrl,
-                        darkColor: MyAppDarkColor(),
+                
                         hintText: "About",
                         keyboardType: TextInputType.text,
                         validator: (val) {
@@ -148,7 +148,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       SizedBox(height: 25.h),
                       ConstraintsTextFormField(
                         controller: _locationCntrl,
-                        darkColor: MyAppDarkColor(),
+                      
                         hintText: "Location",
                         keyboardType: TextInputType.text,
                         validator: (val) {

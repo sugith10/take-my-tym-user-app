@@ -22,7 +22,6 @@ class CreatePostSkillsWidget extends StatefulWidget {
 
 class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
   final TextEditingController _categoryCntrl = TextEditingController();
-  final MyAppDarkColor _darkColor = MyAppDarkColor();
 
   @override
   void dispose() {
@@ -43,7 +42,6 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
               SizedBox(height: 10.h),
               SkillsTextField(
                 categoryCntrl: _categoryCntrl,
-                darkColor: _darkColor,
                 callback: () {
                   if (state.skills.length >= 5) {
                     SnackBarMessenger().showSnackBar(
@@ -65,9 +63,7 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
                   _categoryCntrl.clear();
                 },
               ),
-              SkillsWidget(
-                darkColor: _darkColor,
-              ),
+              const _SkillsWidget(),
             ],
           );
         }
@@ -77,7 +73,6 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
             SizedBox(height: 10.h),
             SkillsTextField(
                 categoryCntrl: _categoryCntrl,
-                darkColor: _darkColor,
                 callback: () {
                   context
                       .read<CreateSkillBloc>()
@@ -97,13 +92,8 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
   }
 }
 
-class SkillsWidget extends StatelessWidget {
-  final MyAppDarkColor darkColor;
-
-  const SkillsWidget({
-    super.key,
-    required this.darkColor,
-  });
+class _SkillsWidget extends StatelessWidget {
+  const _SkillsWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -122,14 +112,12 @@ class SkillsWidget extends StatelessWidget {
                     return Chip(
                       label: Text(
                         skill,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall
-                            ?.copyWith(color: darkColor.primaryTextSoft),
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: MyAppDarkColor.instance.primaryTextSoft),
                       ),
                       shape: const StadiumBorder(side: BorderSide(width: 0.5)),
                       side: BorderSide(
-                        color: darkColor.primarySoftBorder,
+                        color: MyAppDarkColor.instance.primarySoftBorder,
                       ),
                       onDeleted: () {
                         context.read<CreateSkillBloc>().add(RemoveSkillEvent(

@@ -36,7 +36,7 @@ class SignTextField extends StatefulWidget {
 
 class _SignTextFieldState extends State<SignTextField> {
   late bool _obsecureText;
-  final MyAppDarkColor _color = MyAppDarkColor();
+  
 
   @override
   void initState() {
@@ -50,8 +50,8 @@ class _SignTextFieldState extends State<SignTextField> {
       delay: Duration(milliseconds: widget.fadeInDelay),
       duration: Duration(milliseconds: widget.fadeInDuration),
       child: TextFormField(
-        cursorColor:  _color.pure,
-        cursorErrorColor:  _color.pure,
+        cursorColor:  MyAppDarkColor.instance.pure,
+        cursorErrorColor:  MyAppDarkColor.instance.pure,
         validator: widget.validator,
         controller: widget.controller,
         obscureText: _obsecureText,
@@ -68,7 +68,7 @@ class _SignTextFieldState extends State<SignTextField> {
                   },
                   icon: Icon(_obsecureText
                       ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined, color: _color.pure),
+                      : Icons.visibility_off_outlined, color: MyAppDarkColor.instance.pure),
                 )
               : null,
           prefixIcon: widget.prefixIcon,

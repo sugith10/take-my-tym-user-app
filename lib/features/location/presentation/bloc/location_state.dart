@@ -7,11 +7,24 @@ abstract class LocationState extends Equatable {
   List<Object> get props => [];
 }
 
-class LocationInitialState extends LocationState {}
+final class LocationResultState extends LocationState {
+  final String placeName;
+  final double latitude;
+  final double longitude;
 
-class LocationLoadingState extends LocationState {}
+  const LocationResultState({
+    required this.placeName,
+    required this.latitude,
+    required this.longitude,
+  });
+  
+}
 
-class SearchLocationsResultsState extends LocationState {
+final class LocationInitialState extends LocationState {}
+
+final class LocationLoadingState extends LocationState {}
+
+final class SearchLocationsResultsState extends LocationState {
   final List<AutoCompletePrediction> placePrdictions;
 
   const SearchLocationsResultsState({required this.placePrdictions});
@@ -20,7 +33,7 @@ class SearchLocationsResultsState extends LocationState {
   List<Object> get props => [placePrdictions];
 }
 
-class LocationPositionState extends LocationState {
+final class LocationPositionState extends LocationState {
   final double latitude;
   final double longitude;
 
@@ -30,10 +43,6 @@ class LocationPositionState extends LocationState {
   });
 }
 
-class LocationTurnedOffState extends LocationState{
+final class LocationTurnedOffState extends LocationState {}
 
-}
-
-final class CurrentLocationState extends LocationState{
-  
-}
+final class LocationPermissionDeniedForeverState extends LocationState {}

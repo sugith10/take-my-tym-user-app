@@ -38,7 +38,7 @@ class TransactionTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-          color: MyAppDarkColor().secondaryBackground,
+          color: MyAppDarkColor.instance.secondaryBackground,
         ),
         child: ListTile(
           leading: ClipRRect(

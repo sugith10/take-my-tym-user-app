@@ -184,7 +184,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             height: 50.h,
-            color: MyAppDarkColor().bottomNavigationBarBackground,
+            color: MyAppDarkColor.instance.bottomNavigationBarBackground,
             child: Padding(
               padding: const EdgeInsets.only(
                 left: MyAppPadding.homePadding,

@@ -30,7 +30,7 @@ class CreatePostTitleWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               width: 0.5,
-              color: MyAppDarkColor().secondaryBorder,
+              color: MyAppDarkColor.instance.secondaryBorder,
             ),
             borderRadius: BorderRadius.circular(
               MyAppRadius.borderRadius,

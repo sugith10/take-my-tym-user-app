@@ -54,7 +54,13 @@ interface class AppColor {
 }
 
 final class MyAppDarkColor extends AppColor {
-  MyAppDarkColor()
+  static MyAppDarkColor? _instance;
+  static MyAppDarkColor get instance {
+    _instance ??= MyAppDarkColor._();
+    return _instance!;
+  }
+
+  MyAppDarkColor._()
       : super(
           background: const Color.fromRGBO(18, 18, 18, 1),
           softBackground: const Color.fromARGB(255, 25, 25, 25),

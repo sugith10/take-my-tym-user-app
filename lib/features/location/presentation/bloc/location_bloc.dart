@@ -6,7 +6,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/features/location/data/models/auto_complete_prediction.dart';
 import 'package:take_my_tym/features/location/data/models/place_auto_complete_response.dart';
-import 'package:take_my_tym/features/location/domain/usecases/current_location_use_case.dart';
 import 'package:take_my_tym/features/location/domain/usecases/location_position_use_case.dart';
 import 'package:take_my_tym/features/location/domain/usecases/search_location_use_case.dart';
 
@@ -27,7 +26,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         serviceEnabled = await Geolocator.isLocationServiceEnabled();
         if (!serviceEnabled) {
           emit(LocationTurnedOffState());
-          return Future.error('Location services are disabled.');
+          return;
         }
 
         permission = await Geolocator.checkPermission();
@@ -39,34 +38,52 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
             // Android's shouldShowRequestPermissionRationale
             // returned true. According to Android guidelines
             // your App should show an explanatory UI now.
-            return Future.error('Location permissions are denied');
+            log("location denied");
+            return;
           }
         }
 
         if (permission == LocationPermission.deniedForever) {
           // Permissions are denied forever, handle appropriately.
-          return Future.error(
-              'Location permissions are permanently denied, we cannot request permissions.');
+          log("location  permently denied");
+          emit(LocationPermissionDeniedForeverState());
+          return;
         }
 
         Position position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.low);
-
-        final CurrentLocationUseCase currentLocationUseCase =
-            GetIt.instance<CurrentLocationUseCase>();
-        String address = await currentLocationUseCase.locationPositionName(
-          position.latitude,
-          position.longitude,
-        );
+        log("position:- $position");
+        // final CurrentLocationUseCase currentLocationUseCase =
+        //     GetIt.instance<CurrentLocationUseCase>();
+        // String address = await currentLocationUseCase.locationPositionName(
+        //   position.latitude,
+        //   position.longitude,
+        // );
         List<Placemark> placemarks = await placemarkFromCoordinates(
           position.latitude,
           position.longitude,
         );
 
-        log("place: $placemarks.toString()");
-        log("Address: $address");
+        String formattedPlaceName = '';
+
+        for (var place in placemarks) {
+          formattedPlaceName =
+              '${place.locality}, ${place.administrativeArea}, ${place.country}';
+          break;
+        }
+
+        formattedPlaceName = capitalizePlaces(formattedPlaceName);
+
+        log(formattedPlaceName);
+
+        emit(
+          LocationResultState(
+              latitude: position.latitude,
+              longitude: position.longitude,
+              placeName: formattedPlaceName),
+        );
       } catch (e) {
-        log(e.toString());
+        log("Exception-come to location vloc ${e.toString()}");
       }
     });
 
@@ -106,19 +123,42 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
       try {
         Map<String, dynamic> placePosition = await locationPositionUseCase
-            .fetchLocationPosition(placeId: event.placeId);
+            .fetchLocationPosition(placeId: event.place.placeId!);
         double latitude = placePosition['latitude'];
         double longitude = placePosition['longitude'];
 
+        log('Selected place name: ${event.place.description}');
+        log('Selected place reference: ${event.place.reference}');
         log('Selected place: Latitude: $latitude, Longitude: $longitude');
 
-        emit(LocationPositionState(
-          latitude: latitude,
-          longitude: longitude,
-        ));
+        emit(
+          LocationResultState(
+            latitude: latitude,
+            longitude: longitude,
+            placeName: event.place.description!,
+          ),
+        );
       } catch (e) {
         log(e.toString());
       }
     });
+  }
+
+  String capitalizePlaces(String place) {
+    List<String> placeList = place.split(', ');
+
+    for (int i = 0; i < placeList.length; i++) {
+      // Correctly extract the first character and convert it to uppercase
+      String firstChar = placeList[i][0].toUpperCase();
+
+      if (firstChar != placeList[i][0]) {
+        placeList[i] = firstChar + placeList[i].substring(1);
+      }
+
+      // Concatenate the capitalized first character with the remainder of the string
+    }
+
+    // Join the list back into a string, with each element separated by a comma and a space
+    return placeList.join(', ');
   }
 }

@@ -26,8 +26,9 @@ class SearchLocationResultWiedget extends StatelessWidget {
               log("place ID:- ${searchLocationsResultsState.placePrdictions[index].placeId!}");
               locationBloc.add(
                 LocationPositonEvent(
-                  placeId: searchLocationsResultsState
-                      .placePrdictions[index].placeId!,
+                  place: searchLocationsResultsState.placePrdictions[index],
+                  // placeId: searchLocationsResultsState
+                  //     .placePrdictions[index].placeId!,
                 ),
               );
             },

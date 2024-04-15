@@ -18,10 +18,10 @@ final class SearchLocationsEvent extends LocationEvent {
 }
 
 final class LocationPositonEvent extends LocationEvent {
-  final String placeId;
 
-  const LocationPositonEvent({required this.placeId});
+  final AutoCompletePrediction place;
+  const LocationPositonEvent({ required this.place});
 
   @override
-  List<Object> get props => [placeId];
+  List<Object> get props => [place];
 }

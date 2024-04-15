@@ -27,7 +27,7 @@ class TransactionDialog extends StatelessWidget {
           MyAppRadius.borderRadius,
         ),
       ),
-      backgroundColor: MyAppDarkColor().glassEffect,
+      backgroundColor: MyAppDarkColor.instance.glassEffect,
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(20.0),

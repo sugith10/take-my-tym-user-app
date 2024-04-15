@@ -140,7 +140,7 @@ class HeadLineWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .labelLarge
-              ?.copyWith(color: MyAppDarkColor().primaryTextSoft),
+              ?.copyWith(color: MyAppDarkColor.instance.primaryTextSoft),
           textAlign: TextAlign.center,
         ),
       ],
@@ -168,7 +168,7 @@ class AppExplainWidget extends StatelessWidget {
           text: TextSpan(
               text: '$number.',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: MyAppDarkColor().primaryTextSoft,
+                    color: MyAppDarkColor.instance.primaryTextSoft,
                     fontWeight: FontWeight.w700,
                   ),
               children: [
@@ -176,7 +176,7 @@ class AppExplainWidget extends StatelessWidget {
                 TextSpan(
                   text: "$title :",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: MyAppDarkColor().primaryTextSoft,
+                        color: MyAppDarkColor.instance.primaryTextSoft,
                         fontWeight: FontWeight.w800,
                         letterSpacing: .5,
                       ),
@@ -189,7 +189,7 @@ class AppExplainWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .labelMedium
-              ?.copyWith(color: MyAppDarkColor().primaryTextSoft),
+              ?.copyWith(color: MyAppDarkColor.instance.primaryTextSoft),
         ),
       ],
     );

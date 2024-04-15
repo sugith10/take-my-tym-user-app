@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/app_view.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
-import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
                 GetChatList(
                     currentUid: context.read<AppBloc>().appUserModel!.uid),
               ))),
-        // BlocProvider<IndividualMessageBloc>(
-        //     create: (context) => IndividualMessageBloc()),
+        BlocProvider<LocationBloc>(
+            create: (context) => LocationBloc()),
         BlocProvider<UpdateProfileBloc>(
             create: ((context) => UpdateProfileBloc())),
       ],

@@ -24,7 +24,7 @@ class ChatTextField extends StatefulWidget {
 }
 
 class _ChatTextFieldState extends State<ChatTextField> {
-  final MyAppDarkColor _appDarkColor = MyAppDarkColor();
+  final MyAppDarkColor _appDarkColor = MyAppDarkColor.instance;
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -62,7 +62,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     hintText: "Message",
                     hintStyle: Theme.of(context).textTheme.bodyLarge,
                     filled: true,
-                    fillColor: MyAppDarkColor().bottomNavigationBarBackground,
+                    fillColor: _appDarkColor.bottomNavigationBarBackground,
                   ),
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
@@ -78,15 +78,14 @@ class _ChatTextFieldState extends State<ChatTextField> {
               const SizedBox(width: 10),
               _ChatIconButton(
                 callback: () {
-                 widget.individualMessageBloc.add(
-                        SendMessageEvent(
-                          message: _controller.text,
-                          currentUid: widget.currentUid,
-                          senderName: widget.senderName,
-                          receiverUid: widget.receiverUid,
-                          receiverName: widget.receiverName
-                        ),
-                      );
+                  widget.individualMessageBloc.add(
+                    SendMessageEvent(
+                        message: _controller.text,
+                        currentUid: widget.currentUid,
+                        senderName: widget.senderName,
+                        receiverUid: widget.receiverUid,
+                        receiverName: widget.receiverName),
+                  );
                   _controller.clear();
                 },
                 icon: IconlyBold.send,
@@ -111,9 +110,9 @@ class _ChatIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: MyAppDarkColor().secondaryText),
+        border: Border.all(color: MyAppDarkColor.instance.secondaryText),
         borderRadius: BorderRadius.circular(100),
-        color: MyAppDarkColor().bottomNavigationBarBackground,
+        color: MyAppDarkColor.instance.bottomNavigationBarBackground,
       ),
       child: IconButton(
         onPressed: () {
@@ -122,7 +121,7 @@ class _ChatIconButton extends StatelessWidget {
         icon: Icon(
           icon,
           size: 25,
-          color: MyAppDarkColor().primaryText,
+          color: MyAppDarkColor.instance.primaryText,
         ),
       ),
     );

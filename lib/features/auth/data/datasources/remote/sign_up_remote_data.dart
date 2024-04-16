@@ -28,12 +28,11 @@ final class SignUpRemoteData {
           FirebaseFirestore.instance.collection('users').doc(user.uid);
 
       AppUserModel userModel = AppUserModel(
-        uid: user.uid,
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        userName: firstName+lastName
-      );
+          uid: user.uid,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          userName: firstName + lastName);
 
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         transaction.set(
@@ -57,8 +56,8 @@ final class SignUpRemoteData {
       } else if (e.code == 'email-already-in-use') {
         log('The account already exists for that email.');
         throw const MyAppException(
-          title: 'user-not-found',
-          message: 'The password provided is too weak.',
+          title: 'Account Already Exists',
+          message: 'An account with this email already exists.',
         );
       } else {
         log('excpetion occured');

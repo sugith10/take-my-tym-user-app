@@ -24,11 +24,15 @@ final class CreateSecondPageEvent extends CreatePostEvent {
   final String location;
   final String experience;
   final String remuneration;
+  final double latitude;
+  final double longitude;
 
   CreateSecondPageEvent({
     required this.experience,
     required this.location,
     required this.remuneration,
     required this.skills,
+    required this.latitude,
+    required this.longitude,
   });
 }

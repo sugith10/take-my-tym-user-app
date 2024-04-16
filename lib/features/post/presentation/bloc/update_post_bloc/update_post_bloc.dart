@@ -139,7 +139,10 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
                           location: location!,
                           skillLevel: experience!,
                           price: remuneration!,
-                          skills: skills!))
+                          skills: skills!,
+                          latitude: event.latitude,
+                          longitude: event.longitude,
+                          ))
                   .then((value) {
                 emit(UpdatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
@@ -167,6 +170,8 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
                   skillLevel: experience!,
                   price: remuneration!,
                   skills: skills!,
+                  latitude: event.latitude,
+                  longitude: event.longitude,
                 ),
               )
                   .then((value) {

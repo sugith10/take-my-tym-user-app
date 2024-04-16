@@ -17,18 +17,18 @@ class SubPageInfoWidget extends StatelessWidget {
       children: [
         SizedBox(height: 10.h),
         const SignBackButton(),
-        SizedBox(height: 70.h),
+        SizedBox(height: 120.h),
         Text(
           title,
           style: Theme.of(context).textTheme.displayMedium,
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 25),
         Text(
           content,
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 90.h),
+        SizedBox(height: 70.h),
       ],
     );
   }

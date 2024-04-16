@@ -92,7 +92,6 @@ class _SignInPageState extends State<SignInPage> {
             ),
             child: Column(
               children: [
-                SizedBox(height: 5.h),
                 const WelcomeTextWidget(
                   firstLine: 'Let\'s Sign You In',
                   secondLine: 'Welcome back.',

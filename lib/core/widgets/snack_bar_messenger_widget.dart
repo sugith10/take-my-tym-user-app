@@ -15,11 +15,36 @@ final class SnackBarMessenger {
         content: _SnackBarContentWidget(
           message: errorMessage,
           description: errorDescription,
-        ),                        
+          backgroundColor: const Color(0xFFC72c41),
+          assetColor: const Color(0xFF801336),
+          icon: MyAppImages.snackBarFail,
+        ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         elevation: 0,
-          duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  successSnackBar({
+    required BuildContext context,
+    required String title,
+    required String message,
+  }) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: _SnackBarContentWidget(
+          message: title,
+          description: message,
+          backgroundColor: const Color(0xff2D6A4F),
+          assetColor: const Color.fromARGB(255, 31, 63, 49),
+          icon: MyAppImages.snackBarSuccess,
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        duration: const Duration(seconds: 3),
       ),
     );
   }
@@ -28,23 +53,28 @@ final class SnackBarMessenger {
 class _SnackBarContentWidget extends StatelessWidget {
   final String message;
   final String description;
+  final Color backgroundColor;
+  final Color assetColor;
+  final String icon;
   const _SnackBarContentWidget({
     required this.message,
     required this.description,
+    required this.backgroundColor,
+    required this.assetColor,
+    required this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
-    
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Container(
           padding: const EdgeInsets.all(7),
           height: 80,
-          decoration: const BoxDecoration(
-            color: Color(0xFFC72c41),
-            borderRadius: BorderRadius.all(
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: const BorderRadius.all(
               Radius.circular(MyAppRadius.borderRadius),
             ),
           ),
@@ -64,8 +94,7 @@ class _SnackBarContentWidget extends StatelessWidget {
                     Text(
                       description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color:MyAppDarkColor.instance.primaryTextBlur
-                          ),
+                          color: MyAppDarkColor.instance.primaryTextBlur),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -85,8 +114,9 @@ class _SnackBarContentWidget extends StatelessWidget {
               height: 48,
               width: 40,
               // ignore: deprecated_member_use
-              color: const Color(0xFF801336),
-            ),          ),
+              color: assetColor,
+            ),
+          ),
         ),
         Positioned(
           top: -8,
@@ -95,13 +125,15 @@ class _SnackBarContentWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(
-                MyAppImages.snackBarFail,
+                 MyAppImages.snackBarIconSpace,
                 height: 40,
+                // ignore: deprecated_member_use
+                color: assetColor,
               ),
               Positioned(
                 top: 10,
                 child: SvgPicture.asset(
-                  MyAppImages.snackBarClose,
+                 icon,
                   height: 16,
                 ),
               ),
@@ -112,4 +144,3 @@ class _SnackBarContentWidget extends StatelessWidget {
     );
   }
 }
-

@@ -34,6 +34,8 @@ class GenerateFeedWidget extends StatelessWidget {
               price: 1400,
               postDate: DateTime(2024, 4, 3),
               skills: [],
+              latitude: 123,
+              longitude: 123
             );
             return Padding(
               padding: const EdgeInsets.only(left: 10),

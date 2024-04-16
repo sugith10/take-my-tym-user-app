@@ -13,6 +13,7 @@ part 'location_event.dart';
 part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
+  String? location;
   LocationBloc() : super(LocationInitialState()) {
     on<CurrentLocationEvent>((event, emit) async {
       log("on current location blox");
@@ -76,6 +77,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
         log(formattedPlaceName);
 
+        location = formattedPlaceName;
         emit(
           LocationResultState(
               latitude: position.latitude,
@@ -131,6 +133,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         log('Selected place reference: ${event.place.reference}');
         log('Selected place: Latitude: $latitude, Longitude: $longitude');
 
+        location = event.place.description!;
         emit(
           LocationResultState(
             latitude: latitude,

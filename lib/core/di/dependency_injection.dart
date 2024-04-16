@@ -5,24 +5,28 @@ import 'package:take_my_tym/features/auth/data/datasources/remote/sign_in_remote
 import 'package:take_my_tym/features/auth/data/datasources/remote/sign_out_remote_data.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/sign_up_remote_data.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/social_auth_remote_data.dart';
+import 'package:take_my_tym/features/auth/data/datasources/remote/verify_user_remote_data.dart';
 import 'package:take_my_tym/features/auth/data/repositories/forget_password_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/local_user_storage_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signin_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signout_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/signup_repo_impl.dart';
 import 'package:take_my_tym/features/auth/data/repositories/social_auth_repo_impl.dart';
+import 'package:take_my_tym/features/auth/data/repositories/verify_user_repo_impl.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/forget_password_repo.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/local_user_storage_repo.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/signin_repo.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/signout_repo.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/signup_repo.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/social_auth_repo.dart';
+import 'package:take_my_tym/features/auth/domain/repositories/verify_user_repo.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/forget_password_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/local_user_storage_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
+import 'package:take_my_tym/features/auth/domain/usecases/verify_user_usecase.dart';
 import 'package:take_my_tym/features/location/data/datasources/location_position_name_remote.dart';
 import 'package:take_my_tym/features/location/data/datasources/location_position_remote.dart';
 import 'package:take_my_tym/features/location/data/datasources/search_location_remote.dart';
@@ -42,7 +46,7 @@ import 'package:take_my_tym/features/message/domain/repositories/chat_list_repo.
 import 'package:take_my_tym/features/message/domain/repositories/individual_message_repo.dart';
 import 'package:take_my_tym/features/message/domain/usecases/chat_list_usecase.dart';
 import 'package:take_my_tym/features/message/domain/usecases/individual_message_usecase.dart';
-import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_remote_data_source.dart';
+import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_post_remote_data.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/delete_post_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/get_user_posts_data_source.dart';
 import 'package:take_my_tym/features/search/data/datasources/remote/search_posts_remote_data_source.dart';
@@ -171,5 +175,9 @@ final class DependencyInject {
     GetIt.instance.registerLazySingleton<CurrentLocationUseCase>(
       () => CurrentLocationUseCase(GetIt.instance<CurrentLocationRepo>()));
       
+     GetIt.instance.registerLazySingleton<VerifyUserRepo>(
+      () => VerifyUserRepoImpl(VerifyUserRemote()));
+    GetIt.instance.registerLazySingleton<VerifyUserUseCase>(
+      () => VerifyUserUseCase(GetIt.instance<VerifyUserRepo>()));
   }
 }

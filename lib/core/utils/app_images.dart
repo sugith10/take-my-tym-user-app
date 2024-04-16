@@ -10,12 +10,13 @@ final class MyAppImages{
   //icon
   static const String locationIcon = 'asset/img/location_icon.png';
   static const String profileIcon = 'asset/img/icons/user.png';
-  static const String emojiIcon = 'asset/img/icons/happy-face.png';
-  static const String galleryIcon = 'asset/img/icons/add-image.png';
   // snackbar
-  static const String snackBarBubbles =  'asset/img/icons/bubbles.svg';
-  static const String snackBarClose = 'asset/img/icons/close.svg';
-  static const String snackBarFail = 'asset/img/icons/fail.svg';
+  static const String snackBarBubbles = 'asset/img/snackbar/bubbles.svg';
+    static const String snackBarIconSpace = 'asset/img/snackbar/icon_space.svg';
+  static const String snackBarFail = 'asset/img/snackbar/fail.svg';
+  static const String snackBarSuccess = 'asset/img/snackbar/success.svg';
+  static const String snackBarWarning = 'asset/img/snackbar/warning.svg';
+
   //test
   static const String testOne = 'asset/img/test/designers_1.png';
   static const String testTwo = "asset/img/test/shoot-portrait-photography-in-toronto (1).jpg";

@@ -22,4 +22,3 @@ class CreateUserEvent extends SignUpEvent {
   });
 }
 
-class VerifyUserEvent extends SignUpEvent{}

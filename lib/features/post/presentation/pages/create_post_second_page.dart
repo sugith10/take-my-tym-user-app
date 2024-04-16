@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
@@ -14,6 +14,7 @@ import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/cre
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
+import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
 
@@ -27,18 +28,17 @@ class CreatePostSecondPage extends StatefulWidget {
 
 class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController _categoryCntrl = TextEditingController();
-  final TextEditingController _locationCntrl = TextEditingController();
+
   final TextEditingController _experienceCntrl = TextEditingController();
   final TextEditingController _remunerationCntrl = TextEditingController();
+  final LocationBloc _locationBloc = LocationBloc();
   List<dynamic>? skills;
-
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     if (widget.postModel != null) {
-      _locationCntrl.text = widget.postModel!.location;
       _experienceCntrl.text = widget.postModel!.skillLevel;
       _remunerationCntrl.text = widget.postModel!.price.toString();
       skills = widget.postModel!.skills;
@@ -48,7 +48,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   @override
   void dispose() {
     _categoryCntrl.dispose();
-    _locationCntrl.dispose();
     _experienceCntrl.dispose();
     _remunerationCntrl.dispose();
     _formKey;
@@ -73,7 +72,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             );
           }
           if (state is CreatePostSuccessState) {
-              state.refreshType
+            state.refreshType
                 ? context
                     .read<ReadPostsBloc>()
                     .add(GetBuyTymPostsEvent(userId: state.uid))
@@ -126,26 +125,38 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               callback: () {
                 if (_formKey.currentState!.validate()) {
                   final skills = context.read<CreateSkillBloc>().skills;
-
+                  final locationState = _locationBloc.state;
                   if (skills.isNotEmpty) {
-                    if (widget.postModel == null) {
-                      context.read<CreatePostBloc>().add(
-                            CreateSecondPageEvent(
-                              experience: _experienceCntrl.text,
-                              location: _locationCntrl.text,
-                              remuneration: _remunerationCntrl.text,
-                              skills: skills,
-                            ),
-                          );
+                    if (locationState is LocationResultState) {
+                      if (widget.postModel == null) {
+                        context.read<CreatePostBloc>().add(
+                              CreateSecondPageEvent(
+                                experience: _experienceCntrl.text,
+                                location: locationState.placeName,
+                                remuneration: _remunerationCntrl.text,
+                                skills: skills,
+                                latitude: locationState.latitude,
+                                longitude: locationState.longitude,
+                              ),
+                            );
+                      } else {
+                        context.read<UpdatePostBloc>().add(
+                              UpdateSecondPageEvent(
+                                experience: _experienceCntrl.text,
+                                location: locationState.placeName,
+                                remuneration: _remunerationCntrl.text,
+                                skills: skills,
+                                latitude: locationState.latitude,
+                                longitude: locationState.longitude,
+                              ),
+                            );
+                      }
                     } else {
-                      context.read<UpdatePostBloc>().add(
-                            UpdateSecondPageEvent(
-                              experience: _experienceCntrl.text,
-                              location: _locationCntrl.text,
-                              remuneration: _remunerationCntrl.text,
-                              skills: skills,
-                            ),
-                          );
+                      SnackBarMessenger().showSnackBar(
+                        context: context,
+                        errorMessage: "Location is Missing",
+                        errorDescription: "Please Provide a location.",
+                      );
                     }
                   } else {
                     SnackBarMessenger().showSnackBar(
@@ -179,21 +190,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                       title: "Relevant Details",
                       children: [
                         SizedBox(height: 10.h),
-                        ConstraintsTextFormField(
-                          controller: _locationCntrl,
-                          keyboardType: TextInputType.streetAddress,
-                       
-                          hintText: 'Location',
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return "Please fill in this field";
-                            }
-                            return null;
-                          },
-                        ),
+                        CreatePostLocationWidget(locationBloc: _locationBloc),
                         SizedBox(height: 15.h),
                         ConstraintsTextFormField(
-                         
                           controller: _experienceCntrl,
                           keyboardType: TextInputType.text,
                           hintText: "Experience",
@@ -206,7 +205,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         ),
                         SizedBox(height: 15.h),
                         ConstraintsTextFormField(
-                         
                           controller: _remunerationCntrl,
                           keyboardType: TextInputType.number,
                           hintText: "Remuneration",

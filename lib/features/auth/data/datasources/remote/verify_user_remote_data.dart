@@ -1,20 +1,15 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
-import 'package:take_my_tym/core/model/app_user_model.dart';
 
-final class VerifyUserRemoteData {
-  Future<AppUserModel> sendEmailVerification({
-    required User user,
-    required AppUserModel userModel,
-  }) async {
+final class VerifyUserRemote {
+  Future<void> sendEmailVerification() async {
     try {
-      await user.sendEmailVerification();
-      if (user.emailVerified) {
-        userModel.verified = true;
-        return userModel;
-      }else{
-        return userModel;
-      }
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+
+      return;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw const MyAppException(
@@ -30,5 +25,19 @@ final class VerifyUserRemoteData {
     } catch (e) {
       throw const MyAppException();
     }
+  }
+
+  Future<bool> checkUserVerified() async {
+    final user = FirebaseAuth.instance.currentUser;
+    await user!.reload();
+    bool verified = user.emailVerified;
+    log("user is verified: $verified");
+    if (verified) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'verified': true});
+    }
+    return verified;
   }
 }

@@ -131,6 +131,8 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   location: location!,
                   skillLevel: experience!,
                   price: remuneration!,
+                  latitude: event.latitude,
+                  longitude: event.longitude,
                 ),
               );
               if (res) {
@@ -164,6 +166,8 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   skillLevel: experience!,
                   price: remuneration!,
                   skills: skills!,
+                  latitude: event.latitude,
+                  longitude: event.longitude,
                 ),
               );
               if (res) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
@@ -13,7 +14,7 @@ import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
-import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
+import 'package:take_my_tym/core/widgets/create_post_text_form_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
@@ -28,12 +29,12 @@ class CreatePostSecondPage extends StatefulWidget {
 
 class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController _categoryCntrl = TextEditingController();
-
   final TextEditingController _experienceCntrl = TextEditingController();
   final TextEditingController _remunerationCntrl = TextEditingController();
   final LocationBloc _locationBloc = LocationBloc();
   List<dynamic>? skills;
   final _formKey = GlobalKey<FormState>();
+  late TextStyle? style;
 
   @override
   void initState() {
@@ -43,6 +44,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
       _remunerationCntrl.text = widget.postModel!.price.toString();
       skills = widget.postModel!.skills;
     }
+    style = Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: MyAppDarkColor.instance.primaryTextSoft,
+              );
   }
 
   @override
@@ -190,9 +194,18 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                       title: "Relevant Details",
                       children: [
                         SizedBox(height: 10.h),
-                        CreatePostLocationWidget(locationBloc: _locationBloc),
+                        CreatePostLocationWidget(
+                          locationBloc: _locationBloc,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(
+                                color: MyAppDarkColor.instance.primaryTextSoft,
+                              ),
+                          gap: 8.h,
+                        ),
                         SizedBox(height: 15.h),
-                        ConstraintsTextFormField(
+                        ConstrainTextFormField(
                           controller: _experienceCntrl,
                           keyboardType: TextInputType.text,
                           hintText: "Experience",
@@ -202,9 +215,10 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                             }
                             return null;
                           },
+                          style: style,
                         ),
                         SizedBox(height: 15.h),
-                        ConstraintsTextFormField(
+                        ConstrainTextFormField(
                           controller: _remunerationCntrl,
                           keyboardType: TextInputType.number,
                           hintText: "Remuneration",
@@ -214,6 +228,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                             }
                             return null;
                           },
+                          style: style,
                         ),
                         SizedBox(height: 10.h),
                       ],

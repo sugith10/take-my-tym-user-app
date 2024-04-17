@@ -5,10 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/constraints_text_form_field.dart';
+import 'package:take_my_tym/core/widgets/create_post_text_form_field.dart';
 import 'package:take_my_tym/features/profile/presentation/bloc/bloc/update_profile_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -23,6 +24,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _aboutCntrl = TextEditingController();
   final TextEditingController _locationCntrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+   late final  style = Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: MyAppDarkColor.instance.primaryTextSoft,
+              );
 
   @override
   void initState() {
@@ -113,16 +117,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 'Change profile photo',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-              SizedBox(height: 25.h),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+              SizedBox(height: 40.h),
+              HomePadding(
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      ConstraintsTextFormField(
+                      //TODO:change the textform field name
+                      ConstrainTextFormField(
                         controller: _nameCntrl,
-                      
+                      style: style,
                         hintText: "Name",
                         keyboardType: TextInputType.name,
                         validator: (val) {
@@ -133,9 +137,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         },
                       ),
                       SizedBox(height: 25.h),
-                      ConstraintsTextFormField(
+                      ConstrainTextFormField(
                         controller: _aboutCntrl,
-                
+                 style: style,
                         hintText: "About",
                         keyboardType: TextInputType.text,
                         validator: (val) {
@@ -146,9 +150,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         },
                       ),
                       SizedBox(height: 25.h),
-                      ConstraintsTextFormField(
+                      ConstrainTextFormField(
                         controller: _locationCntrl,
-                      
+                       style: style,
                         hintText: "Location",
                         keyboardType: TextInputType.text,
                         validator: (val) {

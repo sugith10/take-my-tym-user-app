@@ -9,9 +9,11 @@ import 'package:take_my_tym/features/location/presentation/pages/select_location
 
 class CreatePostLocationWidget extends StatelessWidget {
   final LocationBloc locationBloc;
+  final TextStyle? style;
+  final double gap;
   const CreatePostLocationWidget({
     required this.locationBloc,
-    super.key,
+    super.key, required this.style, required this.gap,
   });
 
   @override
@@ -21,11 +23,9 @@ class CreatePostLocationWidget extends StatelessWidget {
       children: [
         Text(
           "Location",
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: MyAppDarkColor.instance.primaryTextSoft,
-              ),
+          style: style,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: gap),
         InkWell(
           onTap: () {
             Navigator.push(

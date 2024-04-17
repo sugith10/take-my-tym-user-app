@@ -7,7 +7,7 @@ import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/user_log_out_dialog.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/widgets/drawer_button.dart';
 
 class LogOutDrawerButton extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 
 class UserLogOut {
-  showLogOutDialog({
+  void showLogOutDialog({
     required BuildContext context,
   }) {
     showDialog(
@@ -36,23 +36,17 @@ class UserLogOut {
                   action: const Text('CANCEL'),
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
-                  callback: (){
+                  callback: () {
                     Navigator.pop(context);
                   },
                 ),
                 SizedBox(height: 12.h),
                 _MessageButton(
-                  action: BlocBuilder<SignOutBloc, SignOutState>(
-                      builder: (context, state) {
-                    if (state is UserSignOutLoadingState) {
-                      return const CircularProgressIndicator();
-                    }
-                    return const Text("LOG OUT");
-                  }),
+                  action: const Text("LOG OUT"),
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  callback: (){
-                      context.read<SignOutBloc>().add(UserSignOutEvent());
+                  callback: () {
+                    context.read<SignOutBloc>().add(UserSignOutEvent());
                   },
                 ),
                 const Spacer(),

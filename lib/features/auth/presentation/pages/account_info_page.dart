@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/user_log_out_dialog.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';

@@ -42,4 +42,3 @@ final class CollectUpdateDataEvent extends UpdateProfileEvent {
     required this.userModel,
   });
 }
-

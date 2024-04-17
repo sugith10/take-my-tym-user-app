@@ -43,7 +43,7 @@ final class SocailAuthRemoteData {
           verified: true,
           userName: userCredential.user!.displayName?.split(' ').first ?? 'User',
         );
-        await userDocRef.set(userModel.toJson());
+        await userDocRef.set(userModel.toMap());
         return userModel;
       } else {
         final Map<String, dynamic> userData =

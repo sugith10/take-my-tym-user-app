@@ -1,7 +1,7 @@
 final class MyAppImages{
   //lottie
   static const String onboardingLottie = 'asset/json/Animation.json';
-  // static const String welcomeLottie = 'asset/json/welcome_img.json';
+  static const String welcomeLottie = 'asset/json/onboarding_animation (1).json';
   static const String searchIntialLottie = 'asset/json/search_animation.json';
   //logo
   static const String onboarding = 'asset/img/TAKEMYTYM.svg';

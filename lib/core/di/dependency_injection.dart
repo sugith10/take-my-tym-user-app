@@ -49,6 +49,10 @@ import 'package:take_my_tym/features/message/domain/usecases/individual_message_
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/create_post_remote_data.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/delete_post_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/get_user_posts_data_source.dart';
+import 'package:take_my_tym/features/profile/data/datasources/remote/update_profile_remote.dart';
+import 'package:take_my_tym/features/profile/data/repositories/update_repo_impl.dart';
+import 'package:take_my_tym/features/profile/domain/repositories/update_profile_repo.dart';
+import 'package:take_my_tym/features/profile/domain/usecases/update_profile_usecase.dart';
 import 'package:take_my_tym/features/search/data/datasources/remote/search_posts_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/datasources/remote_data_source/update_post_remote_data_source.dart';
 import 'package:take_my_tym/features/post/data/repositories/create_post_repo_impl.dart';
@@ -168,16 +172,23 @@ final class DependencyInject {
         () => LocationPositionRepoImpl(LocationPositionRemote()));
     GetIt.instance.registerLazySingleton<LocationPositionUseCase>(
         () => LocationPositionUseCase(GetIt.instance<LocationPositionRepo>()));
-  
+
     ///GetLocationPositionName
     GetIt.instance.registerLazySingleton<CurrentLocationRepo>(
-      () => CurrentLocationRepoImpl(CurrentLocationRemote()));
+        () => CurrentLocationRepoImpl(CurrentLocationRemote()));
     GetIt.instance.registerLazySingleton<CurrentLocationUseCase>(
-      () => CurrentLocationUseCase(GetIt.instance<CurrentLocationRepo>()));
-      
-     GetIt.instance.registerLazySingleton<VerifyUserRepo>(
-      () => VerifyUserRepoImpl(VerifyUserRemote()));
+        () => CurrentLocationUseCase(GetIt.instance<CurrentLocationRepo>()));
+
+    ///VerifyUser
+    GetIt.instance.registerLazySingleton<VerifyUserRepo>(
+        () => VerifyUserRepoImpl(VerifyUserRemote()));
     GetIt.instance.registerLazySingleton<VerifyUserUseCase>(
-      () => VerifyUserUseCase(GetIt.instance<VerifyUserRepo>()));
+        () => VerifyUserUseCase(GetIt.instance<VerifyUserRepo>()));
+
+    ///UpdateProfile
+    GetIt.instance.registerLazySingleton<UpdateProfileRepo>(
+        () => UpdateProfileRepoImpl(UpdateProfileRemote()));
+    GetIt.instance.registerLazySingleton<UpdateProfileUseCase>(
+        () => UpdateProfileUseCase(GetIt.instance<UpdateProfileRepo>()));
   }
 }

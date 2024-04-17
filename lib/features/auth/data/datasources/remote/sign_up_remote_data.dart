@@ -28,20 +28,26 @@ final class SignUpRemoteData {
           FirebaseFirestore.instance.collection('users').doc(user.uid);
 
       AppUserModel userModel = AppUserModel(
-          uid: user.uid,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          userName: firstName + lastName);
+        uid: user.uid,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        userName: firstName + lastName,
+        verified: false,
+      );
+      try {
+        await FirebaseFirestore.instance.runTransaction((transaction) async {
+          transaction.set(
+            userDocRef,
+            userModel.toMap(),
+          );
+        });
 
-      await FirebaseFirestore.instance.runTransaction((transaction) async {
-        transaction.set(
-          userDocRef,
-          userModel.toJson(),
-        );
-      });
-
-      return userModel;
+        return userModel;
+      } catch (e) {
+        log(e.toString());
+        throw Exception();
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
         throw const MyAppException(

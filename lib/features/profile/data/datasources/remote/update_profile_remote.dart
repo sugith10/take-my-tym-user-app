@@ -5,17 +5,18 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 
-final class UpdateProfileRemoteData {
+final class UpdateProfileRemote {
   Future<void> updateProfile({
     required AppUserModel appUserModel,
-    required File? image,
+    required File? profilePicture,
   }) async {
+    log("on remote update profile");
     try {
-      if (image != null) {
+      if (profilePicture != null) {
         FirebaseStorage storage = FirebaseStorage.instance;
         Reference storageRef =
-            storage.ref().child('images/${DateTime.now().toString()}');
-        UploadTask uploadTask = storageRef.putFile(image);
+            storage.ref().child('profilePictures/${DateTime.now().toString()}');
+        UploadTask uploadTask = storageRef.putFile(profilePicture);
         TaskSnapshot storageSnapshot =
             await uploadTask.whenComplete(() => null);
 
@@ -25,7 +26,7 @@ final class UpdateProfileRemoteData {
           await firestore
               .collection('users')
               .doc(appUserModel.uid)
-              .update(appUserModel.toJson())
+              .update(appUserModel.toMap())
               .then((value) async {
             log("success update");
           });
@@ -35,7 +36,7 @@ final class UpdateProfileRemoteData {
         await firestore
             .collection('users')
             .doc(appUserModel.uid)
-            .update(appUserModel.toJson())
+            .update(appUserModel.toMap())
             .then((value) async {
           log("success update without image");
         });

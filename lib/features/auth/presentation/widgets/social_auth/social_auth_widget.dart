@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/social_auth_bloc.dart';
-import 'package:take_my_tym/features/profile/presentation/pages/collect_profile_data.dart';
+import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SocialAuthWidget extends StatefulWidget {
   const SocialAuthWidget({super.key});

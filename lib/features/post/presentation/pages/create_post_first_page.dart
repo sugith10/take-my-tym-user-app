@@ -13,7 +13,7 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/features/skills/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_second_page.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
@@ -76,7 +76,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               );
             }
             if (state is CreateFirstSuccessState) {
-              context.read<CreateSkillBloc>().add(ClearSkillsEvent());
+             
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -100,7 +100,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
             }
             if (state is UpdateFirstSuccessState) {
               log('correct positon');
-              context.read<CreateSkillBloc>().add(ClearSkillsEvent());
+           
               Navigator.push(
                 context,
                 MaterialPageRoute(

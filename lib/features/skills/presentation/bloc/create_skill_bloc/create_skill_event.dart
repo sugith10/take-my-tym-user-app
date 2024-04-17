@@ -18,7 +18,7 @@ class RemoveSkillEvent extends CreateSkillEvent {
 }
 
 final class AddAllSkillEvent extends CreateSkillEvent {
-  final List<dynamic>? skill;
+  final Set<String> skill;
   const AddAllSkillEvent({required this.skill});
 }
 

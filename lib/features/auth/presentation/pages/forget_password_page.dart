@@ -4,7 +4,7 @@ import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/forget_password_bloc/forget_password_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
+import 'package:take_my_tym/core/utils/reg_exp.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';

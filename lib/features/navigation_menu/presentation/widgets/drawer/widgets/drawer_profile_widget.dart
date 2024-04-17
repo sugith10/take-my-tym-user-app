@@ -16,7 +16,7 @@ class ProfileWidget extends StatelessWidget {
       child: SizedBox(
         child: Row(
           children: [
-            CircleProfilePicWidget(
+            const CircleProfilePicWidget(
               height: 80,
               width: 80,
             ),

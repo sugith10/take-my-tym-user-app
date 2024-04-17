@@ -10,6 +10,12 @@ part 'update_profile_state.dart';
 
 class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
   UpdateProfileBloc() : super(UpdateProfileInitial()) {
+    on<ProfileSetupEvent>(
+      ((event, emit) {
+        
+      }),
+    );
+
     on<CollectUpdateDataEvent>((event, emit) async {
       event.userModel.about = event.about;
       event.userModel.userName = event.userName;

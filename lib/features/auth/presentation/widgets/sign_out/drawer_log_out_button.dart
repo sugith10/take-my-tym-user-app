@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
@@ -23,9 +22,6 @@ class LogOutDrawerButton extends StatelessWidget {
             errorMessage: state.title,
             errorDescription: state.message,
           );
-        }
-        if (state is UserSignOutLoadingState) {
-          ShowLoadingDialog().showLoadingIndicator(context);
         }
         if (state is UserSignOutSuccessState) {
           context.read<AppBloc>().add(UpdateUserSignOutEvent());

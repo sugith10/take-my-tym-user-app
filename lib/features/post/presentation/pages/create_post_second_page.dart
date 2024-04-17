@@ -12,12 +12,13 @@ import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
-import 'package:take_my_tym/core/widgets/create_post_text_form_field.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/create_skill/create_skills_widget.dart';
+import 'package:take_my_tym/features/skills/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
+import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
+import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
+import 'package:take_my_tym/features/skills/presentation/widget/create_skills_widget.dart';
+
 
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;
@@ -32,9 +33,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController _experienceCntrl = TextEditingController();
   final TextEditingController _remunerationCntrl = TextEditingController();
   final LocationBloc _locationBloc = LocationBloc();
+  final CreateSkillBloc _createSkillBloc = CreateSkillBloc();
   List<dynamic>? skills;
   final _formKey = GlobalKey<FormState>();
-  late TextStyle? style;
 
   @override
   void initState() {
@@ -44,9 +45,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
       _remunerationCntrl.text = widget.postModel!.price.toString();
       skills = widget.postModel!.skills;
     }
-    style = Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: MyAppDarkColor.instance.primaryTextSoft,
-              );
   }
 
   @override
@@ -60,6 +58,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle? style = Theme.of(context).textTheme.labelMedium?.copyWith(
+          color: MyAppDarkColor.instance.primaryTextSoft,
+        );
     return MultiBlocListener(
       listeners: [
         BlocListener<CreatePostBloc, CreatePostState>(
@@ -93,33 +94,34 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
           }
         }),
         BlocListener<UpdatePostBloc, UpdatePostState>(
-            listener: (context, state) {
-          if (state is UpdatePostLoadingState) {
-            ShowLoadingDialog().showLoadingIndicator(context);
-          } else if (state is UpdatePostFailState) {
-            Navigator.pop(context);
-            SnackBarMessenger().showSnackBar(
-              context: context,
-              errorMessage: state.message,
-              errorDescription: state.description,
-            );
-          } else if (state is UpdatePostSuccessState) {
-            state.refreshType
-                ? context
-                    .read<ReadPostsBloc>()
-                    .add(GetBuyTymPostsEvent(userId: state.uid))
-                : context
-                    .read<ReadPostsBloc>()
-                    .add(GetSellTymPostsEvent(userId: state.uid));
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NavigationMenu(),
-              ),
-              (route) => false,
-            );
-          }
-        })
+          listener: (context, state) {
+            if (state is UpdatePostLoadingState) {
+              ShowLoadingDialog().showLoadingIndicator(context);
+            } else if (state is UpdatePostFailState) {
+              Navigator.pop(context);
+              SnackBarMessenger().showSnackBar(
+                context: context,
+                errorMessage: state.message,
+                errorDescription: state.description,
+              );
+            } else if (state is UpdatePostSuccessState) {
+              state.refreshType
+                  ? context
+                      .read<ReadPostsBloc>()
+                      .add(GetBuyTymPostsEvent(userId: state.uid))
+                  : context
+                      .read<ReadPostsBloc>()
+                      .add(GetSellTymPostsEvent(userId: state.uid));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NavigationMenu(),
+                ),
+                (route) => false,
+              );
+            }
+          },
+        )
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -128,7 +130,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             ActionButton(
               callback: () {
                 if (_formKey.currentState!.validate()) {
-                  final skills = context.read<CreateSkillBloc>().skills;
+                  final List<String> skills = [];
                   final locationState = _locationBloc.state;
                   if (skills.isNotEmpty) {
                     if (locationState is LocationResultState) {
@@ -185,7 +187,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               child: Column(
                 children: [
                   CreatePostSkillsWidget(
-                    skills: skills,
+                    createSkillBloc: _createSkillBloc,
                   ),
                   SizedBox(height: 10.h),
                   Form(
@@ -196,12 +198,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         SizedBox(height: 10.h),
                         CreatePostLocationWidget(
                           locationBloc: _locationBloc,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(
-                                color: MyAppDarkColor.instance.primaryTextSoft,
-                              ),
+                          style: style,
                           gap: 8.h,
                         ),
                         SizedBox(height: 15.h),

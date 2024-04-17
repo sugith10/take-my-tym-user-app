@@ -62,7 +62,20 @@ class DrawerNavBar extends StatelessWidget {
                     },
                     icon: IconlyLight.calling,
                   ),
-
+                    DrawerCustomButton(
+                    title: 'Privacy Policy',
+                    function: () {
+                      'print';
+                    },
+                    icon: IconlyLight.document,
+                  ),
+                    DrawerCustomButton(
+                    title: 'Terms & Condiitions',
+                    function: () {
+                      'print';
+                    },
+                    icon: IconlyLight.document,
+                  ),
                   const LogOutDrawerButton(), // Logout button for user convenience.
                   /// For user convenience, a logout option is provided in the app drawer.
                   /// This widget serves as the logout button.

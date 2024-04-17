@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/util/reg_exp.dart';
+import 'package:take_my_tym/core/utils/reg_exp.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';

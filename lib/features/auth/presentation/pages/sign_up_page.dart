@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_bloc.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/email_verification_page.dart';
+import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
@@ -21,7 +24,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   String? errorMsg;
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final firstNameCntrl = TextEditingController();
   final lastNameCntrl = TextEditingController();
   final emailCntrl = TextEditingController();
@@ -60,7 +63,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const EmailVerificationPage()),
+              MaterialPageRoute(
+                  builder: (context) => const EmailVerificationPage()),
             );
           }
           if (state is SignUpFailState) {
@@ -82,7 +86,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     right: MyAppPadding.authPadding),
                 child: Column(
                   children: [
-                 
                     const WelcomeTextWidget(
                       firstLine: 'New Here?',
                       secondLine: 'Welcome aboard.',
@@ -90,7 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 25.h),
                     SignUpForm(
-                      formKey: formKey,
+                      formKey: _formKey,
                       firstNameCntrl: firstNameCntrl,
                       errorMsg: errorMsg,
                       lastNameCntrl: lastNameCntrl,
@@ -98,6 +101,41 @@ class _SignUpPageState extends State<SignUpPage> {
                       passwordCntrl: passwordCntrl,
                       confirmPasswordCntrl: confirmPasswordCntrl,
                       bloc: bloc,
+                    ),
+                    SignButtonWidget(
+                      title: 'Create Account',
+                      function: () {
+                        firstNameCntrl.text.trim();
+                        lastNameCntrl.text.trim();
+                        emailCntrl.text.trim();
+                        passwordCntrl.text.trim();
+                        confirmPasswordCntrl.text.trim();
+                        if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate()) {
+                            bloc.add(
+                              CreateUserEvent(
+                                firstName: firstNameCntrl.text,
+                                lastName: lastNameCntrl.text,
+                                email: emailCntrl.text,
+                                password: passwordCntrl.text,
+                              ),
+                            );
+                          }
+                        }
+                      },
+                    ),
+                    SizedBox(height: 15.h),
+                    NavigationText(
+                      leadingText: 'Have an account?',
+                      buttonText: 'Login',
+                      function: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInPage(),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(height: 35.h),
                     const SocialAuthWidget(),

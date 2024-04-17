@@ -6,9 +6,8 @@ part 'create_skill_event.dart';
 part 'create_skill_state.dart';
 
 class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
-  final List<String> _skills = [];
-  List<String> get skills => _skills;
   CreateSkillBloc() : super(CreateSkillInitial()) {
+    Set<String> skills = {};
     on<RemoveSkillEvent>((event, emit) {
       if (skills.isEmpty) {
       } else {
@@ -17,13 +16,15 @@ class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
         if (skills.isEmpty) {
           emit(CreateSkillInitial());
         } else {
-          emit(UpdateSkillSuccessState(skills: skills));
+          emit(UpdateSkillSuccessState(skills: skills.toList()));
         }
       }
     });
 
     on<AddSkillEvent>(
       (event, emit) {
+        log("one add skill");
+        log(event.skill.length.toString());
         if (event.skill.isNotEmpty) {
           if (skills.length >= 5) {
             log("sills length exceeded");
@@ -31,27 +32,31 @@ class CreateSkillBloc extends Bloc<CreateSkillEvent, CreateSkillState> {
             skills.add(event.skill);
             log(skills.length.toString());
             log(skills.toString());
-            emit(UpdateSkillSuccessState(skills: skills));
+            emit(UpdateSkillSuccessState(skills: skills.toList()));
           }
         } else {
-          log('skill is empty');
+          emit(CreateSkillInitial());
         }
       },
     );
 
     on<AddAllSkillEvent>(
       (event, emit) {
-        if (event.skill != null) {
-          emit(CreateSkillInitial());
-          skills.addAll(event.skill!.cast<String>());
-          emit(UpdateSkillSuccessState(skills: skills));
+        log('one add all');
+        emit(CreateSkillInitial());
+        if (event.skill.isEmpty) {
+          return emit(CreateSkillInitial());
         }
+        skills.addAll(event.skill.cast<String>());
+        emit(UpdateSkillSuccessState(skills: skills.toList()));
       },
     );
 
-    on<ClearSkillsEvent>((event, emit) {
-      emit(CreateSkillInitial());
-      skills.clear();
-    });
+    on<ClearSkillsEvent>(
+      (event, emit) {
+        emit(CreateSkillInitial());
+        skills.clear();
+      },
+    );
   }
 }

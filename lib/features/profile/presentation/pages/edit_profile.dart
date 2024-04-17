@@ -9,8 +9,8 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/create_post_text_form_field.dart';
-import 'package:take_my_tym/features/profile/presentation/bloc/bloc/update_profile_bloc.dart';
+import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
+import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});

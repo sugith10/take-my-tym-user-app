@@ -80,7 +80,7 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
 
                                  Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const ProfileSetupCollectionPage()),
+                        MaterialPageRoute(builder: (context) => const ProfileSetupPage()),
                         ((route) => false)
                       );
                     }

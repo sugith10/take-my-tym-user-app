@@ -192,5 +192,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         }
       }),
     );
+  
+  
   }
 }

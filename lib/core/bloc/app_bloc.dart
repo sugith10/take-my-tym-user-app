@@ -14,7 +14,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<UpdateAppUserModelEvent>(
       (event, emit) {
         appUserModel = event.appUserModel;
-        log("updataed AppBloc $appUserModel");
+       
         if (appUserModel != null) {
           emit(UserModelUpdatedState());
         }
@@ -30,13 +30,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         try {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
           appUserModel = await localUserData.getUserDataFromLocal();
+          
           if (appUserModel != null) {
             emit(UserModelUpdatedState());
           } else {
             emit(UserModelNotFoundState());
           }
         } catch (e) {
-          log(e.toString());
+          log("EnsureAppUserModelExistsEvent: exception ${e.toString()}");
           emit(UserModelNotFoundState());
         }
       }),

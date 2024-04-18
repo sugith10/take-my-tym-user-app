@@ -3,6 +3,9 @@ final class MyAppImages{
   static const String onboardingLottie = 'asset/json/Animation.json';
   static const String welcomeLottie = 'asset/json/onboarding_animation (1).json';
   static const String searchIntialLottie = 'asset/json/search_animation.json';
+  static const String successLottie = 'asset/json/success.json';
+  //images
+   static const String successImage =  'asset/img/SUCCESSFULL (2).png';
   //logo
   static const String onboarding = 'asset/img/TAKEMYTYM.svg';
   //auth
@@ -16,7 +19,6 @@ final class MyAppImages{
   static const String snackBarFail = 'asset/img/snackbar/fail.svg';
   static const String snackBarSuccess = 'asset/img/snackbar/success.svg';
   static const String snackBarWarning = 'asset/img/snackbar/warning.svg';
-
   //test
   static const String testOne = 'asset/img/test/designers_1.png';
   static const String testTwo = "asset/img/test/shoot-portrait-photography-in-toronto (1).jpg";

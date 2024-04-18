@@ -7,8 +7,8 @@ final class LocalUserData{
   // Function to store user data in Hive after signing in
 Future<void> storeUserDataLocal(AppUserModel user) async {
   final userBox = await Hive.openBox('userData');
-
-  await userBox.put('user', user.toJson());
+  log('on update userData');
+  await userBox.put('user', user.toMap());
   userBox.close();
 }
 
@@ -19,7 +19,7 @@ Future<AppUserModel?> getUserDataFromLocal() async {
 
     final userData = userBox.get('user');
     print('User Data Type: ${userData.runtimeType}');
-    if (userData != null) {
+    if (userData != null ) {
       log("look at the data $userData");
       final userDataMap = Map<String, dynamic>.from(userData);
       log("getUserDataFromHive: $userDataMap");

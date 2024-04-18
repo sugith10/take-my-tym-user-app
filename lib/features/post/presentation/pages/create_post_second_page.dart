@@ -19,7 +19,6 @@ import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
 import 'package:take_my_tym/features/skills/presentation/widget/create_skills_widget.dart';
 
-
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;
   const CreatePostSecondPage({this.postModel, super.key});
@@ -130,9 +129,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             ActionButton(
               callback: () {
                 if (_formKey.currentState!.validate()) {
-                  final List<String> skills = [];
+                  final createSkillState = _createSkillBloc.state;
                   final locationState = _locationBloc.state;
-                  if (skills.isNotEmpty) {
+                  if (createSkillState is UpdateSkillSuccessState) {
                     if (locationState is LocationResultState) {
                       if (widget.postModel == null) {
                         context.read<CreatePostBloc>().add(
@@ -140,7 +139,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                                 experience: _experienceCntrl.text,
                                 location: locationState.placeName,
                                 remuneration: _remunerationCntrl.text,
-                                skills: skills,
+                                skills: createSkillState.skills,
                                 latitude: locationState.latitude,
                                 longitude: locationState.longitude,
                               ),
@@ -151,7 +150,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                                 experience: _experienceCntrl.text,
                                 location: locationState.placeName,
                                 remuneration: _remunerationCntrl.text,
-                                skills: skills,
+                                skills: createSkillState.skills,
                                 latitude: locationState.latitude,
                                 longitude: locationState.longitude,
                               ),

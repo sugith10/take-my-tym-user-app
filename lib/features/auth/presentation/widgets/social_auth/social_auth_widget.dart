@@ -62,27 +62,19 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                       );
                     }
                     if (state is SocialAuthSuccessState) {
-                      context.read<AppBloc>().add(UpdateAppUserModelEvent(
-                          appUserModel: state.userModel));
-                      // Navigator.pushAndRemoveUntil(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (_) => const NavigationMenu()),
-                      //   (route) => false,
-                      // );
+                      context.read<AppBloc>().add(
+                            UpdateAppUserModelEvent(
+                              appUserModel: state.userModel,
+                            ),
+                          );
 
-                      //  Navigator.pushAndRemoveUntil(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (_) => const ProfileSetupPage()),
-                      //   (route) => false,
-                      // );
-
-                                 Navigator.pushAndRemoveUntil(
+                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const ProfileSetupPage()),
-                        ((route) => false)
+                        MaterialPageRoute(
+                            builder: (_) => const ProfileSetupPage()),
+                        (route) => false,
                       );
+
                     }
                   },
                   builder: (context, state) {

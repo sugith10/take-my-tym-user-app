@@ -156,7 +156,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                       FinishSetupButton(
                         title: "Submit",
                         callback: () {
-                          
+                          FocusScope.of(context).unfocus();
                           if (_formKey.currentState!.validate()) {
                             log("${userNameCntrl.text},${aboutCntrl.text},${professionCntrl.text}");
                           }

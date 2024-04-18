@@ -12,18 +12,6 @@ class AppInfoDialog {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton.outlined(
-                  style: ButtonStyle(
-                    side: MaterialStatePropertyAll(
-                      BorderSide(color: MyAppDarkColor.instance.primaryBorder),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.close_rounded),
-                ),
-                SizedBox(height: 20.h),
                 Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).scaffoldBackgroundColor,
@@ -36,7 +24,7 @@ class AppInfoDialog {
                       children: [
                         SizedBox(height: 20.h),
                         const _HeadLineWidget(),
-                       SizedBox(height: 25.h),
+                        SizedBox(height: 25.h),
                         const _AppExplainWidget(
                           number: 1,
                           title: "What is TakeMyTym",
@@ -62,13 +50,24 @@ class AppInfoDialog {
                     ),
                   ),
                 ),
+                SizedBox(height: 20.h),
+                IconButton.outlined(
+                  style: ButtonStyle(
+                    side: MaterialStatePropertyAll(
+                      BorderSide(color: MyAppDarkColor.instance.primaryBorder),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.close_rounded),
+                ),
               ],
             ),
           );
         });
   }
 }
-
 
 class _HeadLineWidget extends StatelessWidget {
   const _HeadLineWidget();
@@ -110,7 +109,6 @@ class _AppExplainWidget extends StatelessWidget {
     required this.number,
     required this.title,
     required this.content,
-
   });
 
   @override
@@ -122,14 +120,13 @@ class _AppExplainWidget extends StatelessWidget {
           text: TextSpan(
             text: '$number.',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-               fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w700,
                 ),
             children: [
               const TextSpan(text: '  '),
               TextSpan(
                 text: "$title ",
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                     
                       fontWeight: FontWeight.w800,
                       letterSpacing: .5,
                     ),

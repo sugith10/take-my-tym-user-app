@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 import 'package:take_my_tym/features/post/presentation/pages/scale_up.dart';
 
 class CreatePostSuccessPage extends StatelessWidget {
@@ -41,13 +42,37 @@ class CreatePostSuccessPage extends StatelessWidget {
                         ?.copyWith(fontWeight: FontWeight.w600)),
               ),
               SizedBox(height: 10.h),
-              Text("Your tym post now accessible to the world...",style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: MyAppDarkColor.instance.primaryTextSoft
-              ),),
-              SizedBox(height: 80.h),
-             const Text('This page will automatically closed in')
-             , const SizedBox(height: 5),
-             const Text('5  :  seconds')
+              FadeInDown(
+                delay: const Duration(milliseconds: 1500),
+                duration: const Duration(milliseconds: 1500),
+                child: Text(
+                  "Your tym post now accessible to the world...",
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: MyAppDarkColor.instance.primaryTextSoft),
+                ),
+              ),
+              SizedBox(height: 60.h),
+              FadeIn(
+                delay: const Duration(milliseconds: 2550),
+                duration: const Duration(milliseconds: 2550),
+                child: Column(
+                  children: [
+                    const Text('This page will automatically closed in'),
+                    const SizedBox(height: 5),
+                    const Text('5  :  seconds'),
+                    const SizedBox(height: 40),
+                    CloseIconButton(
+                      callback: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.close_rounded,
+                        color: MyAppDarkColor.instance.secondaryText,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

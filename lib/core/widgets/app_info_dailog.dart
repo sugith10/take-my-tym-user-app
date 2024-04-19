@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 
 class AppInfoDialog {
   void showAppIntroDialog({required BuildContext context}) {
@@ -51,16 +52,11 @@ class AppInfoDialog {
                   ),
                 ),
                 SizedBox(height: 20.h),
-                IconButton.outlined(
-                  style: ButtonStyle(
-                    side: MaterialStatePropertyAll(
-                      BorderSide(color: MyAppDarkColor.instance.primaryBorder),
-                    ),
-                  ),
-                  onPressed: () {
+                CloseIconButton(
+                  callback: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.close_rounded),
+                  child: const Icon(Icons.close_rounded),
                 ),
               ],
             ),

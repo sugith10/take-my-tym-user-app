@@ -31,10 +31,13 @@ class CircleProfilePicWidget extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: image != null
-            ? Image.file(
-                image!,
-                fit: BoxFit.cover,
-              )
+            ? ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.file(
+                  image!,
+                  fit: BoxFit.cover,
+                ),
+            )
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipOval(child: Image.asset(MyAppImages.profileIcon)),

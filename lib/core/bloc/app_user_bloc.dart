@@ -5,16 +5,16 @@ import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/local_user_storage_usecase.dart';
 
-part 'app_event.dart';
-part 'app_state.dart';
+part 'app_user_event.dart';
+part 'app_user_state.dart';
 
-class AppBloc extends Bloc<AppEvent, AppState> {
+class AppUserBloc extends Bloc<AppEvent, AppState> {
   AppUserModel? appUserModel;
-  AppBloc() : super(AppInitial()) {
+  AppUserBloc() : super(AppInitial()) {
     on<UpdateAppUserModelEvent>(
       (event, emit) {
         appUserModel = event.appUserModel;
-       
+
         if (appUserModel != null) {
           emit(UserModelUpdatedState());
         }
@@ -30,7 +30,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         try {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
           appUserModel = await localUserData.getUserDataFromLocal();
-          
+
           if (appUserModel != null) {
             emit(UserModelUpdatedState());
           } else {
@@ -42,5 +42,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         }
       }),
     );
+
+    on<UpdateUserLocationEvent>((event, emit) async {
+      if (appUserModel != null) {
+        final localUserData = GetIt.instance<LocalUserStorageUseCase>();
+        appUserModel!.location = event.location;
+        appUserModel!.longitude = event.longitude;
+        appUserModel!.latitude = event.latitude;
+        await localUserData.storeUserDataLocal(appUserModel!);
+      }
+    });
   }
 }

@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
@@ -24,8 +24,8 @@ class LogOutDrawerButton extends StatelessWidget {
           );
         }
         if (state is UserSignOutSuccessState) {
-          context.read<AppBloc>().add(UpdateUserSignOutEvent());
-          log(context.read<AppBloc>().appUserModel.toString());
+          context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
+          log(context.read<AppUserBloc>().appUserModel.toString());
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const WelcomePage()),

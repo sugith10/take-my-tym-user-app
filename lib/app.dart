@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/app_view.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
-import 'package:take_my_tym/features/skills/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
@@ -22,12 +20,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        BlocProvider<AppBloc>(create: ((context) => AppBloc())),
+        BlocProvider<AppUserBloc>(create: ((context) => AppUserBloc())),
         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
         BlocProvider<ReadPostsBloc>(
-            create: (context) => ReadPostsBloc()
-              ..add(GetBuyTymPostsEvent(
-                  userId: context.read<AppBloc>().appUserModel!.uid))),
+          create: (context) => ReadPostsBloc()
+            ..add(GetBuyTymPostsEvent(
+                userId: context.read<AppUserBloc>().appUserModel!.uid)),
+        ),
         BlocProvider<CommunityPostsBloc>(
             create: (context) =>
                 CommunityPostsBloc()..add(BuyTymCommunityPostsEvent())),
@@ -39,12 +38,11 @@ class MyApp extends StatelessWidget {
             create: ((context) => ChatListBloc()
               ..add(
                 GetChatList(
-                    currentUid: context.read<AppBloc>().appUserModel!.uid),
+                    currentUid: context.read<AppUserBloc>().appUserModel!.uid),
               ))),
-        BlocProvider<LocationBloc>(
-            create: (context) => LocationBloc()),
         BlocProvider<UpdateProfileBloc>(
             create: ((context) => UpdateProfileBloc())),
+        
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

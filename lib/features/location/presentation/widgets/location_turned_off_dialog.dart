@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 
 final class LocationTurnedOff {
   dailog(
@@ -9,10 +9,9 @@ final class LocationTurnedOff {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(
+        title: const Center(
             child: Text(
           'Location Services Disabled',
-          style: TextStyle(color: MyAppDarkColor.instance.danger),
         )),
         content: const Text(
           'Please enable location services to use this feature.',
@@ -20,18 +19,30 @@ final class LocationTurnedOff {
         ),
         actions: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
-                onPressed: () {
+              CloseIconButton(
+                callback: () {
                   enableLocation();
                 },
-                child: const Text('Enable Location'),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    'Enable Location',
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ),
               ),
-              TextButton(
-                onPressed: () => cancel,
-                child: const Text(
-                  'Cancel',
+              CloseIconButton(
+                callback: () {
+                  cancel();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    'Cancel',
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
                 ),
               ),
             ],

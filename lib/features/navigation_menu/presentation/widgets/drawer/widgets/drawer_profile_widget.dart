@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -27,12 +27,12 @@ class ProfileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.read<AppBloc>().appUserModel!.firstName,
+                    context.read<AppUserBloc>().appUserModel!.firstName,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    context.read<AppBloc>().appUserModel!.email,
+                    context.read<AppUserBloc>().appUserModel!.email,
                     style: Theme.of(context).textTheme.bodySmall,
                     overflow: TextOverflow.ellipsis,
                   )

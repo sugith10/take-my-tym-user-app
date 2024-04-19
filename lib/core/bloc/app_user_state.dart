@@ -1,4 +1,4 @@
-part of 'app_bloc.dart';
+part of 'app_user_bloc.dart';
 
 sealed class AppState extends Equatable {
   const AppState();

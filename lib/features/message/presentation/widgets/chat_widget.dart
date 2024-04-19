@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class ChatWidget extends StatelessWidget {
@@ -17,12 +17,12 @@ class ChatWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 5),
       child: Wrap(
-        alignment: context.read<AppBloc>().appUserModel!.uid == senderId
+        alignment: context.read<AppUserBloc>().appUserModel!.uid == senderId
             ? WrapAlignment.end
             : WrapAlignment.start,
         children: [
           Container(
-              decoration: context.read<AppBloc>().appUserModel!.uid == senderId
+              decoration: context.read<AppUserBloc>().appUserModel!.uid == senderId
                   ? BoxDecoration(
                       color: MyAppDarkColor.instance.userChatColor,
                       borderRadius: const BorderRadius.only(

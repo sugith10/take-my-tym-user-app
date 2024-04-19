@@ -24,6 +24,7 @@ class CommunityPostsRemoteData {
       );
     }
   }
+  
   Future<List<PostModel>> sellTymPosts() async {
     try {
       final data =
@@ -44,4 +45,8 @@ class CommunityPostsRemoteData {
       );
     }
   }
+
+  // Future<DocumentSnapshot> latestPosts()async{
+  //   return await 
+  // }
 }

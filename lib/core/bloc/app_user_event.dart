@@ -1,4 +1,4 @@
-part of 'app_bloc.dart';
+part of 'app_user_bloc.dart';
 
 sealed class AppEvent extends Equatable {
   const AppEvent();
@@ -19,3 +19,14 @@ final class UpdateAppUserModelEvent extends AppEvent {
 final class UpdateUserSignOutEvent extends AppEvent {}
 
 final class EnsureAppUserModelExistsEvent extends AppEvent {}
+
+final class UpdateUserLocationEvent extends AppEvent {
+  final String location;
+  final double latitude;
+  final double longitude;
+  const UpdateUserLocationEvent({
+    required this.location,
+    required this.latitude,
+    required this.longitude,
+  });
+}

@@ -13,11 +13,9 @@ dependencies:
     sdk: flutter
 
   flutter_screenutil: ^5.9.0
-  go_router: ^13.2.0
   get_it: ^7.6.7
   flutter_bloc: ^8.1.4
   equatable: ^2.0.5
-
   image_picker: ^1.0.7
   permission_handler:
   emoji_picker_flutter: ^2.1.1
@@ -27,8 +25,9 @@ dependencies:
   http: ^1.2.1
   geolocator: ^11.0.0
   geocoding: ^3.0.0
+  vibration: ^1.8.4
 
-  hive_flutter: ^1.1.0
+  hive: ^2.2.3
   firebase_auth: ^4.17.8
   firebase_core: ^2.26.0
   cloud_firestore: ^4.15.10
@@ -48,8 +47,6 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^3.0.0
-  build_runner: ^2.4.9
-  hive_generator: ^2.0.1
 
 flutter:
   uses-material-design: true

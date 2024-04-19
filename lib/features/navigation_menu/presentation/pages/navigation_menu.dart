@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.dart';
@@ -33,7 +33,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppBloc, AppState>(
+    return BlocBuilder<AppUserBloc, AppState>(
       builder: (context, state) {
         if (state is UserModelUpdatedState) {
           return BlocProvider(
@@ -72,10 +72,11 @@ class _NavigationMenuState extends State<NavigationMenu> {
                       navigationBloc.add(MessagePageNavigation());
                     } else if (value == 2) {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const CreatePostSuccessPage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreatePostFirstPage(),
+                        ),
+                      );
                     } else if (value == 3) {
                       _index = value;
                       navigationBloc.add(MoneyPageNavigation());

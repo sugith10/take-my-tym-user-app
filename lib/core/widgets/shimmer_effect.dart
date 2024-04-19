@@ -19,35 +19,35 @@ class ShimmerEffectWidget extends StatelessWidget {
           scaffoldBackgroundColor: MyAppDarkColor.instance.background,
         ),
         SizedBox(height: 10.h),
-
-     
-           ShimmerPro.generated(
-            light: ShimmerProLight.lighter,
-            scaffoldBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            child: Column(
-              children: [
-             
-                ShimmerPro.sized(
-                  light: ShimmerProLight.lighter,
-                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
-                  height: 150,
-                  width: 400,
-                ),
-                ShimmerPro.text(
-                  maxLine: 5,
-                  light: ShimmerProLight.lighter,
-                  width: 450,
-                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
-                ),
-              ],
-            )),
-            SizedBox(height: 10.h),
-                    ShimmerPro.text(
-          maxLine: 5,
+        ShimmerPro.generated(
+          light: ShimmerProLight.lighter,
+          scaffoldBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          child: Column(
+            children: [
+              ShimmerPro.sized(
+                light: ShimmerProLight.lighter,
+                scaffoldBackgroundColor: MyAppDarkColor.instance.background,
+                height: 150,
+                width: 400,
+              ),
+              ShimmerPro.text(
+                maxLine: 5,
+                light: ShimmerProLight.lighter,
+                width: 450,
+                scaffoldBackgroundColor: MyAppDarkColor.instance.background,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 10.h),
+        ShimmerPro.text(
+          maxLine: 6,
           light: ShimmerProLight.lighter,
           width: 450,
           scaffoldBackgroundColor: MyAppDarkColor.instance.background,
         ),
+        SizedBox(height: 10.h),
+      
       ],
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class WelcomePageAnimation extends StatelessWidget {
   const WelcomePageAnimation({
@@ -10,10 +10,8 @@ class WelcomePageAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 1.7,
-      child: Lottie.asset(MyAppImages.onboardingLottie,
-      repeat: false,
-          fit: BoxFit.cover),
+      scale: 2,
+      child:     SvgPicture.asset('asset/img/welcome.svg'),
     );
   }
 }

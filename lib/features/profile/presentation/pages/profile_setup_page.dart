@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/reg_exp.dart';
@@ -51,7 +51,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
       listener: (context, state) {
         if (state is UpdateProfileSuccessState) {
           context
-              .read<AppBloc>()
+              .read<AppUserBloc>()
               .add(UpdateAppUserModelEvent(appUserModel: state.appUserModel));
           Navigator.pushAndRemoveUntil(
             context,
@@ -172,7 +172,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                                 latitude: locationState.latitude,
                                 longitude: locationState.longitude,
                                 appUserModel:
-                                    context.read<AppBloc>().appUserModel!,
+                                    context.read<AppUserBloc>().appUserModel!,
                               ),
                             );
                           } else {
@@ -202,7 +202,7 @@ class _WelcomeMessagewidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstName = context.read<AppBloc>().appUserModel!.firstName;
+    final firstName = context.read<AppUserBloc>().appUserModel!.firstName;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

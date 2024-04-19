@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
@@ -24,14 +24,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _aboutCntrl = TextEditingController();
   final TextEditingController _locationCntrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-   late final  style = Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: MyAppDarkColor.instance.primaryTextSoft,
-              );
+  late final style = Theme.of(context).textTheme.labelMedium?.copyWith(
+        color: MyAppDarkColor.instance.primaryTextSoft,
+      );
 
   @override
   void initState() {
     super.initState();
-    final AppUserModel appUserModel = context.read<AppBloc>().appUserModel!;
+    final AppUserModel appUserModel = context.read<AppUserBloc>().appUserModel!;
     _nameCntrl.text = appUserModel.firstName;
   }
 
@@ -76,12 +76,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   if (_formKey.currentState!.validate()) {
                     context.read<UpdateProfileBloc>().add(
                           CollectUpdateDataEvent(
-                            userName: _nameCntrl.text,
-                            about: _aboutCntrl.text,
-                            location: _locationCntrl.text,
-                            image: _image,
-                            userModel: context.read<AppBloc>().appUserModel!
-                          ),
+                              userName: _nameCntrl.text,
+                              about: _aboutCntrl.text,
+                              location: _locationCntrl.text,
+                              image: _image,
+                              userModel: context.read<AppUserBloc>().appUserModel!),
                         );
                   }
                 },
@@ -123,10 +122,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      //TODO:change the textform field name
                       ConstrainTextFormField(
                         controller: _nameCntrl,
-                      style: style,
+                        style: style,
                         hintText: "Name",
                         keyboardType: TextInputType.name,
                         validator: (val) {
@@ -139,7 +137,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       SizedBox(height: 25.h),
                       ConstrainTextFormField(
                         controller: _aboutCntrl,
-                 style: style,
+                        style: style,
                         hintText: "About",
                         keyboardType: TextInputType.text,
                         validator: (val) {
@@ -152,7 +150,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       SizedBox(height: 25.h),
                       ConstrainTextFormField(
                         controller: _locationCntrl,
-                       style: style,
+                        style: style,
                         hintText: "Location",
                         keyboardType: TextInputType.text,
                         validator: (val) {

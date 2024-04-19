@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
@@ -25,7 +25,7 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
   
   @override
   Widget build(BuildContext context) {
-    AppUserModel userModel = context.read<AppBloc>().appUserModel!;
+    AppUserModel userModel = context.read<AppUserBloc>().appUserModel!;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButtonWidget(),
@@ -68,8 +68,8 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
                   ShowLoadingDialog().showLoadingIndicator(context);
                 }
                 if (state is UserSignOutSuccessState) {
-                  context.read<AppBloc>().add(UpdateUserSignOutEvent());
-                  log(context.read<AppBloc>().appUserModel.toString());
+                  context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
+                  log(context.read<AppUserBloc>().appUserModel.toString());
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (_) => const WelcomePage()),

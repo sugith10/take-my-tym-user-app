@@ -22,11 +22,14 @@ class CommunityPostsBloc
         log(e.toString());
       }
     });
-    on<SellTymCommunityPostsEvent>((event, emit)async {
-       emit(CommunityPostsLoadingState());
+    on<SellTymCommunityPostsEvent>((event, emit) async {
+      emit(CommunityPostsLoadingState());
       try {
         await communityPostsUseCase.sellTymPosts().then(
-            (value) => emit(CommunityPostsSuccessState(buyTymPosts: value)));
+              (value) => emit(
+                CommunityPostsSuccessState(buyTymPosts: value),
+              ),
+            );
       } catch (e) {
         log(e.toString());
       }

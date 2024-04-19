@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_logo.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
@@ -21,30 +23,41 @@ class WelcomePage extends StatelessWidget {
                   left: MyAppPadding.authPadding,
                   right: MyAppPadding.authPadding,
                 ),
-                child: Column(
+                child: Stack(
                   children: [
-                    const Spacer(flex: 1),
-                    const Hero(tag: 'AppLogo', child: AppLogo()),
-                    const Spacer(flex: 2),
-                    const WelcomePageAnimation(),
-                    const Spacer(flex: 2),
-                    SignButtonWidget(
-                      delay: 2000,
-                      title: 'Login',
-                      function: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (ctx) => const SignInPage(),
+                    const Positioned(
+                        child: Padding(
+                      padding: EdgeInsets.only(top: 40),
+                      child: Hero(tag: 'AppLogo', child: AppLogo()),
+                    )),
+                    const Align(
+                        alignment: Alignment.center,
+                        child: WelcomePageAnimation()),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SignButtonWidget(
+                            delay: 0,
+                            title: 'Login',
+                            function: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (ctx) => const SignInPage(),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
+                          const SizedBox(height: 30),
+                          const TermsAndConditons(
+                            delay: 1900,
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 30),
-                    const TermsAndConditons(
-                      delay: 1900,
-                    ),
-                    const SizedBox(height: 80),
                   ],
                 ),
               ),

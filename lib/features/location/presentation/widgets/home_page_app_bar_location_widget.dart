@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
@@ -17,13 +18,7 @@ class MyLocationWidget extends StatefulWidget {
 }
 
 class _MyLocationWidgetState extends State<MyLocationWidget> {
-  late final LocationBloc _locationBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _locationBloc = context.read<LocationBloc>();
-  }
+  final LocationBloc _locationBloc = LocationBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -51,38 +46,65 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
                 bloc: _locationBloc,
                 builder: (context, state) {
                   if (state is LocationResultState) {
-                    return SizedBox(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text( state.placeName,
-                              style: Theme.of(context).textTheme.labelMedium),
-                          Text(
-                            "Kerala, Indaia",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall!
-                                .copyWith(fontSize: 11.sp),
+                    context.read<AppUserBloc>().add(
+                          UpdateUserLocationEvent(
+                            location: state.placeName,
+                            latitude: state.latitude,
+                            longitude: state.longitude,
                           ),
-                        ],
-                      ),
+                        );
+                    return _LocationWidget(
+                      location: state.placeName,
                     );
                   }
-                  return SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("No Location Provide",
-                            style: Theme.of(context).textTheme.labelMedium),
-                      ],
-                    ),
+
+                  return _LocationWidget(
+                    location:
+                        context.read<AppUserBloc>().appUserModel!.location!,
                   );
                 }),
             SizedBox(width: 5.sp),
-            const SizedBox(child: Icon(IconlyLight.arrow_down_2)),
+            const SizedBox(
+              child: Icon(IconlyLight.arrow_down_2),
+            ),
           ],
         ));
+  }
+}
+
+class _LocationWidget extends StatelessWidget {
+  final String location;
+
+  const _LocationWidget({required this.location});
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> parts = location.split(',').map((s) => s.trim()).toList();
+
+    String city = parts.isNotEmpty ? parts[0] : 'Unknown city';
+    String rest = parts.length > 1 ? parts.sublist(1).join(', ') : '';
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: 100.w,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(city,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelMedium),
+          Text(
+            rest,
+            style: Theme.of(context)
+                .textTheme
+                .labelSmall!
+                .copyWith(fontSize: 11.sp),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
   }
 }

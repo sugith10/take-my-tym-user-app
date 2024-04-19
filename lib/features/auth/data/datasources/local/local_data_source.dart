@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 
@@ -37,7 +37,7 @@ Future<AppUserModel?> getUserDataFromLocal() async {
 Future<void> userSignOutFromLocal() async {
   try {
     final userBox = await Hive.openBox('userData');
-    await userBox.put('user', null);
+    await userBox.clear();
     userBox.close();
   } catch (e) {
     throw MyAppException(message: e.toString(), title: e.toString());

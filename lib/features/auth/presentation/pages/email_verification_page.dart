@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/verify_user_bloc/verify_user_bloc.dart';
@@ -53,7 +53,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
         }
 
         if (state is UserVerificationSuccessState) {
-          context.read<AppBloc>().appUserModel!.verified = true;
+          context.read<AppUserBloc>().appUserModel!.verified = true;
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const NavigationMenu()),

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-abstract class IndividualMessageRepo {
+abstract interface class IndividualMessageRepo {
   Future<void> sendMessage({
     required String currentUid,
     required String recipientUserId,

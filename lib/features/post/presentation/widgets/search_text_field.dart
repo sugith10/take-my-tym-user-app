@@ -31,6 +31,7 @@ class SearchTextField extends StatelessWidget {
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 5),
             child: InkWell(
+              borderRadius: BorderRadius.circular(5),
               onTap: () {
                 searchEditingController.clear();
                 searchBloc.add(ClearSearchEvent());
@@ -44,6 +45,7 @@ class SearchTextField extends StatelessWidget {
           prefixIcon: Padding(
             padding: const EdgeInsets.only(left: 5),
             child: InkWell(
+               borderRadius: BorderRadius.circular(5),
               onTap: () {
                 Navigator.pop(context);
               },

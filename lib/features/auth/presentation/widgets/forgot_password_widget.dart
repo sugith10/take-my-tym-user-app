@@ -17,9 +17,9 @@ class ForgotPasswordWidget extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ForgetPasswordPage()));
+              context,
+              ForgetPasswordPage.route(),
+            );
           },
           child: Text(
             "Forgot password?",

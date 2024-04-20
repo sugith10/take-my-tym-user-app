@@ -1,71 +1,52 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-/// Represents a post made by a user, detailing a specific task or job offer/request.
-///
-/// The post includes various details such as the type of transaction (buy/sell),
-/// the geographic location, skills required, and other relevant information.
 class PostModel extends Equatable {
   /// Determines the type of transaction: `true` for buying tym, `false` for selling tym.
   final bool tymType;
 
-  /// The unique identifier for the user who created the post.
+  /// User ID of the post creator
   final String uid;
 
-  /// An optional unique identifier for the post.
-  ///
-  /// This field is used to uniquely identify each post within the system. When a new post is created
-  /// locally or initially submitted to the server, `postId` is typically `null` because it has not yet
-  /// been assigned an identifier by the server. 
-  ///
-  /// Once the post is saved and acknowledged by the backend, it is assigned a unique `postId` which is 
-  /// then used for retrieving, updating, or deleting the post in subsequent operations. This identifier
-  /// ensures each post can be uniquely distinguished from others, even if other attributes such as the
-  /// title or content are identical.
-  ///
-  /// Usage Note:
-  /// - `null` when creating a new post that has not been submitted to the server.
-  /// - Non-null when fetching an existing post from the server, where it has been assigned a unique identifier.
+  /// Unique identifier for the post
+  /// Initially `null` when created, `postId` uniquely identifies each post after being assigned by the backend.
   final String? postId;
 
-
-  /// The name of the user who created the post.
+  /// Name of the user who created the post
   final String userName;
 
-  /// The date and time the post was created.
+  /// Date and time when the post was created
   final Timestamp postDate;
 
-  /// A category or type of work associated with the post (e.g., "part-time", "freelance").
+  /// Type of work
   final String workType;
 
-  /// The title of the post, summarizing its content.
+  /// Title of the post
   final String title;
+  /// Image URL associated with the post (optional)
+  final String? image; 
 
-  /// An optional image URL related to the post.
-  final String? image;
+  /// Content of the post
+  final String content; 
 
-  /// The detailed content or description of the post.
-  final String content;
+  // List of skills required for the post
+  final List<dynamic> skills; 
 
-  /// A list of skills required or associated with the post.
-  final List<dynamic> skills;
+  /// Location of the post
+  final String location; 
 
-  /// The textual location of where the service is needed or offered.
-  final String location;
+  /// Skill level required for the post
+  final String skillLevel; 
 
-  /// The skill level required for the post, e.g., "beginner", "expert".
-  final String skillLevel;
+  /// Price associated with the post
+  final double price; 
 
-  /// The price associated with the service or task.
-  final double price;
+  /// Latitude of the post location
+  final double latitude; 
 
-  /// The geographical latitude of the location.
-  final double latitude;
-
-  /// The geographical longitude of the location.
+  /// Longitude of the post location
   final double longitude;
 
-  /// Constructs a [PostModel] with the given properties.
   const PostModel({
     required this.tymType,
     required this.uid,
@@ -84,7 +65,7 @@ class PostModel extends Equatable {
     required this.skills,
   });
 
-  /// Returns a list of properties that will be used to determine whether two instances are equal.
+  // Equatable props for comparing instances
   @override
   List<Object> get props => [
         uid,
@@ -102,13 +83,7 @@ class PostModel extends Equatable {
         longitude,
       ];
 
-  /// Determines whether to stringify the [PostModel] object when using `toString`.
-  @override
-  bool get stringify => true;
-
-  /// Converts the [PostModel] instance into a map of key-value pairs.
-  ///
-  /// Useful for serialization or sending data over network calls.
+  // Convert PostModel instance to a map
   Map<String, dynamic> toMap() {
     return {
       'tymType': tymType,
@@ -116,7 +91,7 @@ class PostModel extends Equatable {
       'workType': workType,
       'title': title,
       'userName': userName,
-      'postDate': postDate.millisecondsSinceEpoch,
+      'postDate': postDate,
       'image': image,
       'content': content,
       'location': location,
@@ -128,27 +103,44 @@ class PostModel extends Equatable {
     };
   }
 
-  /// Creates an instance of [PostModel] from a map of key-value pairs.
-  ///
-  /// This is particularly useful when constructing a new [PostModel] instance
-  /// from data structures that map closely to the underlying storage format (e.g., JSON).
-  factory PostModel.fromMap(Map<String, dynamic> map, {required String postId}) {
+  // Factory method to create a PostModel instance from a map
+  factory PostModel.fromMap(Map<String, dynamic> map,
+      {required String postId}) {
     return PostModel(
-      tymType: map['tymType'] as bool,
-      uid: map['uid'] as String,
-      workType: map['workType'] as String,
-      title: map['title'] as String,
-      userName: map['userName'] as String,
-      postDate: map['timestamp'] as Timestamp,
+      tymType: map['tymType'],
+      uid: map['uid'],
+      workType: map['workType'],
+      title: map['title'],
+      userName: map['userName'],
+      postDate: map['postDate'] as Timestamp,
       image: map['image'] != null ? map['image'] as String : null,
-      content: map['content'] as String,
-      location: map['location'] as String,
-      skillLevel: map['skillLevel'] as String,
-      price: map['price'] as double,
+      content: map['content'],
+      location: map['location'],
+      skillLevel: map['skillLevel'],
+      price: map['price'],
       skills: map['skills'] as List<dynamic>,
       postId: postId,
-      longitude: map['longitude'] as double,
-      latitude: map['latitude'] as double,
+      longitude: map['longitude'],
+      latitude: map['latitude'],
+    );
+  }
+
+  // Factory method to create a PostModel instance from a Firestore document snapshot
+  factory PostModel.fromSnapshot(DocumentSnapshot snapshot) {
+    return PostModel(
+      tymType: snapshot['tymType'],
+      uid: snapshot['uid'],
+      workType: snapshot['workType'],
+      title: snapshot['title'],
+      content: snapshot['content'],
+      userName: snapshot['userName'],
+      location: snapshot['location'],
+      skillLevel: snapshot['skillLevel'],
+      price: snapshot['price'],
+      postDate: (snapshot['postDate'] as Timestamp),
+      skills: List<String>.from(snapshot['skills']),
+      latitude: snapshot['latitude'],
+      longitude: snapshot['longitude'],
     );
   }
 }

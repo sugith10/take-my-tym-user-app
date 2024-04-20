@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
               ))),
         BlocProvider<UpdateProfileBloc>(
             create: ((context) => UpdateProfileBloc())),
-        
+        //  BlocProvider<HomePagePostsBloc>(
+        //     create: ((context) => HomePagePostsBloc())),
       ],
       child: const ScreenUtilInit(
         designSize: Size(360, 690),

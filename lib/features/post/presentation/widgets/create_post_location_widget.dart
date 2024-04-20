@@ -13,7 +13,9 @@ class CreatePostLocationWidget extends StatelessWidget {
   final double gap;
   const CreatePostLocationWidget({
     required this.locationBloc,
-    super.key, required this.style, required this.gap,
+    super.key,
+    required this.style,
+    required this.gap,
   });
 
   @override
@@ -29,11 +31,7 @@ class CreatePostLocationWidget extends StatelessWidget {
         InkWell(
           onTap: () {
             Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => SelectLocationPage(locationBloc: locationBloc),
-              ),
-            );
+                context, SelectLocationPage.route(locationBloc: locationBloc));
           },
           borderRadius: BorderRadius.circular(
             MyAppRadius.borderRadius,

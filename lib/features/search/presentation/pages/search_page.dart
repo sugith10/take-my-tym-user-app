@@ -13,6 +13,7 @@ import 'package:take_my_tym/features/post/presentation/widgets/search_page/searc
 import 'package:take_my_tym/features/post/presentation/widgets/search_text_field.dart';
 
 class SearchPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const SearchPage());
   const SearchPage({super.key});
 
   @override
@@ -35,7 +36,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchPageAppBar(searchEditingController: _searchEditingController),
+      appBar:
+          SearchPageAppBar(searchEditingController: _searchEditingController),
       body: SafeArea(
         child: HomePadding(
           child: BlocBuilder<SearchPostsBloc, SearchPostsState>(
@@ -62,10 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                         voidCallback: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  ViewPostPage(postModel: postModel),
-                            ),
+                            ViewPostPage.route(postModel: postModel),
                           );
                         },
                         width: double.infinity,
@@ -79,7 +78,6 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ),
       ),
-      // floatingActionButton: const HomePostSwitch(),
     );
   }
 }
@@ -129,11 +127,9 @@ class SearchPageAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-  
-   @override
-  Size get preferredSize => const Size.fromHeight(100.0);
-  
 
+  @override
+  Size get preferredSize => const Size.fromHeight(100.0);
 }
 
 Future _showBottomSheet(BuildContext context) {

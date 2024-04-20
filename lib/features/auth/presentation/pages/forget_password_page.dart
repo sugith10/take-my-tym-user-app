@@ -10,6 +10,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_fi
 import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
+   static route() => MaterialPageRoute(builder: (context)=>  const ForgetPasswordPage());
   const ForgetPasswordPage({super.key});
 
   @override

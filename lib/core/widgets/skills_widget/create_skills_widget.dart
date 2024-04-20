@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
-import 'package:take_my_tym/features/skills/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 
 class CreatePostSkillsWidget extends StatefulWidget {

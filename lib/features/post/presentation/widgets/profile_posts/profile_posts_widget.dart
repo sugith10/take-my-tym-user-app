@@ -51,11 +51,7 @@ class _PostsBuilder extends StatelessWidget {
             voidCallback: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => ViewPostPage(
-                    postModel: model,
-                  ),
-                ),
+                ViewPostPage.route(postModel: model),
               );
             },
             width: MediaQuery.of(context).size.width,

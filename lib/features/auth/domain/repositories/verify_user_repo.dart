@@ -1,4 +1,4 @@
-abstract class VerifyUserRepo{
+abstract interface class VerifyUserRepo{
   Future<void> verifyUserEmail();
 
   Future<bool> checkUserVerified();

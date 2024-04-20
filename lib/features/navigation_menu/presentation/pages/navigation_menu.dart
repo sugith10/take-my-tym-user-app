@@ -6,7 +6,6 @@ import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.d
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/drawer_navigation_menu.dart';
-import 'package:take_my_tym/features/post/presentation/pages/create_post_success_page.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';

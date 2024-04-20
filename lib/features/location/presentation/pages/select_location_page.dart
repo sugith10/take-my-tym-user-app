@@ -15,6 +15,9 @@ import 'package:take_my_tym/features/location/presentation/widgets/location_turn
 import 'package:take_my_tym/features/location/presentation/widgets/search_location_result_widget.dart';
 
 class SelectLocationPage extends StatefulWidget {
+  static route({required LocationBloc locationBloc}) => MaterialPageRoute(
+        builder: (_) => SelectLocationPage(locationBloc: locationBloc),
+      );
   final LocationBloc locationBloc;
   const SelectLocationPage({
     required this.locationBloc,

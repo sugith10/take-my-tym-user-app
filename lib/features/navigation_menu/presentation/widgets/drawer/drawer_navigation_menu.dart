@@ -28,9 +28,9 @@ class DrawerNavBar extends StatelessWidget {
                     title: 'Account Info',
                     function: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const AccountInfoPage()));
+                        context,
+                        AccountInfoPage.route(),
+                      );
                     },
                     icon: IconlyLight.profile,
                   ),
@@ -62,14 +62,14 @@ class DrawerNavBar extends StatelessWidget {
                     },
                     icon: IconlyLight.calling,
                   ),
-                    DrawerCustomButton(
+                  DrawerCustomButton(
                     title: 'Privacy Policy',
                     function: () {
                       'print';
                     },
                     icon: IconlyLight.document,
                   ),
-                    DrawerCustomButton(
+                  DrawerCustomButton(
                     title: 'Terms & Condiitions',
                     function: () {
                       'print';

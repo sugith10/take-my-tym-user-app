@@ -32,6 +32,7 @@ class GenerateFeedWidget extends StatelessWidget {
             child: Row(
               children: List.generate(documents.length, (index) {
                 Map<String, dynamic> data = documents[index].data() as Map<String, dynamic>;
+                
                        PostModel postModel = PostModel(
                   tymType: data['tymType'],
                   uid: data['uid'],

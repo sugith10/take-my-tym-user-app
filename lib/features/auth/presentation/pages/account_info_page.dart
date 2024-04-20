@@ -15,6 +15,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/account_info_cont
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
 
 class AccountInfoPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context)=>  const AccountInfoPage());
   const AccountInfoPage({super.key});
 
   @override

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_logo.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
@@ -44,9 +42,7 @@ class WelcomePage extends StatelessWidget {
                             function: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (ctx) => const SignInPage(),
-                                ),
+                                SignInPage.route(),
                               );
                             },
                           ),

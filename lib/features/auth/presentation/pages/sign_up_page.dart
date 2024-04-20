@@ -16,6 +16,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditi
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 
 class SignUpPage extends StatefulWidget {
+   static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
   const SignUpPage({super.key});
 
   @override
@@ -63,8 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const EmailVerificationPage()),
+              EmailVerificationPage.route(),
             );
           }
           if (state is SignUpFailState) {
@@ -131,9 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       function: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignInPage(),
-                          ),
+                          SignInPage.route(),
                         );
                       },
                     ),

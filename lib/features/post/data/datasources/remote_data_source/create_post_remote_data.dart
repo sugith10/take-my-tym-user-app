@@ -44,6 +44,7 @@ final class CreatePostRemoteData {
 
   Future<bool> sellTymPost({required PostModel postModel}) async {
     try {
+      log("postModel $postModel");
       final sellTymPost = FirebaseFirestore.instance.collection('sellTymPost');
       final sellTymPostRef = await sellTymPost.add(postModel.toMap());
 

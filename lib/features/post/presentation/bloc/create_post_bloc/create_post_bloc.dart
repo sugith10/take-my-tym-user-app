@@ -119,6 +119,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
 
           if (tymType != null && tymType == true) {
             try {
+              final Timestamp timestamp = Timestamp.now();
               final bool res = await createPostUseCase.buyTymPost(
                 postModel: PostModel(
                   tymType: true,
@@ -127,7 +128,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   title: title!,
                   content: content!,
                   userName: userName!,
-                  postDate: Timestamp.now(),
+                  postDate: timestamp,
                   skills: skills!,
                   location: location!,
                   skillLevel: experience!,
@@ -137,7 +138,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 ),
               );
               if (res) {
-                   log("success buy");
+                log("success buy");
                 emit(CreatePostSuccessState(refreshType: true, uid: uid!));
               } else {
                 emit(RemoteDataAddFailState(
@@ -154,6 +155,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             }
           } else if (tymType != null && tymType == false) {
             try {
+              final Timestamp timestamp = Timestamp.now();
               final bool res = await createPostUseCase.sellTymPost(
                 postModel: PostModel(
                   tymType: false,
@@ -162,7 +164,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   title: title!,
                   content: content!,
                   userName: userName!,
-                  postDate: Timestamp.now(),
+                  postDate: timestamp,
                   location: location!,
                   skillLevel: experience!,
                   price: remuneration!,
@@ -172,8 +174,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 ),
               );
               if (res) {
-             
-                emit(CreatePostSuccessState(refreshType: false,uid: uid!));
+                emit(CreatePostSuccessState(refreshType: false, uid: uid!));
               } else {
                 emit(RemoteDataAddFailState(
                     message: "Failed to add data",
@@ -193,7 +194,5 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         }
       }),
     );
-  
-  
   }
 }

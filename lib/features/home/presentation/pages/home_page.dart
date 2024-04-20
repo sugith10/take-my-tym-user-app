@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,14 +38,16 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 10.h,
                 ),
+
                 const HomePageFilterWidget(),
                 SizedBox(height: 15.h),
+
                 //Category Two
-                 const GenerateFeedWidget(
-                              service: 'Remote',
-                              title: 'Timeless beauty of moments captured',
-                              // image: MyAppImages.testTwo,
-                            ),
+                const GenerateFeedWidget(
+                  service: 'Remote',
+                  title: 'Timeless beauty of moments captured',
+                  // image: MyAppImages.testTwo,
+                ),
                 SingleChildScrollView(
                   child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
                     builder: (context, state) {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                         return const ShimmerEffectWidget();
                       }
                       if (state is CommunityPostsSuccessState) {
-                        log("its successssssss");
+                  
                         return Column(
                           children: [
                             const CategoryTitleWidget(
@@ -90,23 +91,22 @@ class _HomePageState extends State<HomePage> {
                             HomePadding(
                               child: Column(
                                 children: List.generate(
-                                    state.buyTymPosts.length, (index) {
-                                  final PostModel postModel =
-                                      state.buyTymPosts[index];
-                                  return PostedContentWidget(
-                                    voidCallback: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) => ViewPostPage(
-                                              postModel: postModel),
-                                        ),
-                                      );
-                                    },
-                                    postModel: postModel,
-                                    width: double.infinity,
-                                  );
-                                }),
+                                  state.buyTymPosts.length,
+                                  (index) {
+                                    final PostModel postModel =
+                                        state.buyTymPosts[index];
+                                    return PostedContentWidget(
+                                      voidCallback: () {
+                                        Navigator.push(
+                                            context,
+                                            ViewPostPage.route(
+                                                postModel: postModel));
+                                      },
+                                      postModel: postModel,
+                                      width: double.infinity,
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ],

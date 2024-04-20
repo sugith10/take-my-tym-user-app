@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
@@ -8,9 +7,11 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/verify_user_bloc/verify_user_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
+import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class EmailVerificationPage extends StatefulWidget {
+  static route() =>
+      MaterialPageRoute(builder: (context) => const EmailVerificationPage());
   const EmailVerificationPage({super.key});
 
   @override
@@ -55,9 +56,10 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
         if (state is UserVerificationSuccessState) {
           context.read<AppUserBloc>().appUserModel!.verified = true;
           Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const NavigationMenu()),
-              (route) => false);
+            context,
+            MaterialPageRoute(builder: (_) => const ProfileSetupPage()),
+            (route) => false,
+          );
         }
       },
       child: Scaffold(

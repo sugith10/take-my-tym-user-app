@@ -12,7 +12,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
     required this.message,
     required this.timestamp,
   });
-  
 
   MessageModel copyWith({
     String? senderUid,

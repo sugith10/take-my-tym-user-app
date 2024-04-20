@@ -27,6 +27,9 @@ class ViewPostPage extends StatelessWidget {
   final PostModel postModel;
   const ViewPostPage({required this.postModel, super.key});
 
+  static route({required PostModel postModel}) => MaterialPageRoute(
+        builder: (_) => ViewPostPage(postModel: postModel),
+      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,8 +79,8 @@ class ViewPostPage extends StatelessWidget {
                     postModel: postModel,
                   );
                 },
-                showMoreButton:
-                    postModel.uid == context.read<AppUserBloc>().appUserModel!.uid,
+                showMoreButton: postModel.uid ==
+                    context.read<AppUserBloc>().appUserModel!.uid,
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
@@ -131,24 +134,25 @@ class ViewPostPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton:
-          postModel.uid != context.read<AppUserBloc>().appUserModel!.uid
-              ? ChatFloatingActionButton(
-                  callBack: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => IndividualChatPage(
-                          currentUid: context.read<AppUserBloc>().appUserModel!.uid,
-                          senderName: context.read<AppUserBloc>().appUserModel!.userName,
-                          receiverUid: postModel.uid,
-                          receiverName: postModel.userName,
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : null,
+      floatingActionButton: postModel.uid !=
+              context.read<AppUserBloc>().appUserModel!.uid
+          ? ChatFloatingActionButton(
+              callBack: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => IndividualChatPage(
+                      currentUid: context.read<AppUserBloc>().appUserModel!.uid,
+                      senderName:
+                          context.read<AppUserBloc>().appUserModel!.userName,
+                      receiverUid: postModel.uid,
+                      receiverName: postModel.userName,
+                    ),
+                  ),
+                );
+              },
+            )
+          : null,
       bottomNavigationBar: SubmitButton(
         callback: () {},
       ),

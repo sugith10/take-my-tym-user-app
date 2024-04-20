@@ -13,11 +13,11 @@ import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigati
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
-import 'package:take_my_tym/features/skills/presentation/bloc/create_skill_bloc/create_skill_bloc.dart';
+import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
-import 'package:take_my_tym/features/skills/presentation/widget/create_skills_widget.dart';
+import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart';
 
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;

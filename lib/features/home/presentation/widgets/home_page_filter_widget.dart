@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/switch_category_widget.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/search_button.dart';
 import 'package:take_my_tym/features/search/presentation/pages/search_page.dart';
 
 class HomePageFilterWidget extends StatelessWidget {
@@ -21,16 +21,16 @@ class HomePageFilterWidget extends StatelessWidget {
           children: [
             const HomePostSwitch(),
             SizedBox(width: 5.w),
-            SearchButton(
-              callback: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SearchPage(),
-                  ),
-                );
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, SearchPage.route());
               },
-            )
+              icon: CircleAvatar(
+                radius: 20.h,
+                backgroundColor: const Color.fromARGB(255, 40, 40, 40),
+                child: const Icon(IconlyLight.search),
+              ),
+            ),
           ],
         ),
       ),
@@ -57,7 +57,9 @@ class _HomePostSwitchState extends State<HomePostSwitch> {
           ? context.read<CommunityPostsBloc>().add(
                 (BuyTymCommunityPostsEvent()),
               )
-          : context.read<CommunityPostsBloc>().add(SellTymCommunityPostsEvent());
+          : context
+              .read<CommunityPostsBloc>()
+              .add(SellTymCommunityPostsEvent());
     }
 
     return SwitchCategoryWidget(

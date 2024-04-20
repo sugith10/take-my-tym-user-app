@@ -18,6 +18,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/socia
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 
 class SignInPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const SignInPage());
   const SignInPage({super.key});
 
   @override
@@ -57,127 +58,128 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
-        bloc: _bloc,
-        listener: (ctx, state) {
-          if (state is SignInLoadingState) {
-            ShowLoadingDialog().showLoadingIndicator(context);
-          }
-          if (state is SignInErrorState) {
-            Navigator.pop(context);
-            SnackBarMessenger().showSnackBar(
-              context: context,
-              errorMessage: state.errorMessage,
-              errorDescription: state.errorDescription,
-            );
-          }
-          if (state is SignInSuccessState) {
-            context
-                .read<AppUserBloc>()
-                .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const NavigationMenu()),
-              (route) => false,
-            );
-          }
-        },
-        child: Scaffold(
-            body: SafeArea(
-                child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: MyAppPadding.authPadding,
-              right: MyAppPadding.authPadding,
-            ),
-            child: Column(
-              children: [
-                const WelcomeTextWidget(
-                  firstLine: 'Let\'s Sign You In',
-                  secondLine: 'Welcome back.',
-                  thirdLine: 'You\'ve been missed!',
-                ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      SizedBox(height: 40.h),
-                      SignTextField(
-                        fadeInDelay: 700,
-                        fadeInDuration: 800,
-                        controller: _emailController,
-                        hintText: "Email",
-                        obsecureText: false,
-                        showSuffixIcon: false,
-                        errorMsg: _errorMsg,
-                        keyboardType: TextInputType.emailAddress,
-                        prefixIcon: const Icon(Icons.mail_outline_rounded),
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this Field";
-                          } else if (!emailRexExp.hasMatch(val)) {
-                            return "Please enter a valid email";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 20.h),
-                      SignTextField(
-                        fadeInDelay: 650,
-                        fadeInDuration: 750,
-                        controller: _passwordController,
-                        hintText: "Password",
-                        obsecureText: true,
-                        errorMsg: _errorMsg,
-                        keyboardType: TextInputType.visiblePassword,
-                        prefixIcon: const Icon(Icons.password_rounded),
-                        showSuffixIcon: true,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this Field.";
-                          } else if (val.length < 6) {
-                            return "Password should be at least 6 characters long.";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 15.h),
-                      const ForgotPasswordWidget(),
-                      SizedBox(height: 25.h),
-                      SignButtonWidget(
-                        title: 'Log In',
-                        function: () {
-                          FocusScope.of(context).unfocus();
-                          if (_formKey.currentState!.validate()) {
-                            FocusScope.of(context).unfocus();
-                            submitCredentials();
-                          }
-                        },
-                      ),
-                      SizedBox(height: 15.h),
-                      NavigationText(
-                        leadingText: 'Don\'t have an account?',
-                        buttonText: 'Register',
-                        function: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: 50.h),
-                      const SocialAuthWidget(),
-                      SizedBox(height: 25.h),
-                      const TermsAndConditionsWidget(),
-                      SizedBox(height: 20.h),
-                    ],
+      bloc: _bloc,
+      listener: (ctx, state) {
+        if (state is SignInLoadingState) {
+          ShowLoadingDialog().showLoadingIndicator(context);
+        }
+        if (state is SignInErrorState) {
+          Navigator.pop(context);
+          SnackBarMessenger().showSnackBar(
+            context: context,
+            errorMessage: state.errorMessage,
+            errorDescription: state.errorDescription,
+          );
+        }
+        if (state is SignInSuccessState) {
+          context
+              .read<AppUserBloc>()
+              .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const NavigationMenu()),
+            (route) => false,
+          );
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: MyAppPadding.authPadding,
+                right: MyAppPadding.authPadding,
+              ),
+              child: Column(
+                children: [
+                  const WelcomeTextWidget(
+                    firstLine: 'Let\'s Sign You In',
+                    secondLine: 'Welcome back.',
+                    thirdLine: 'You\'ve been missed!',
                   ),
-                ),
-              ],
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 40.h),
+                        SignTextField(
+                          fadeInDelay: 700,
+                          fadeInDuration: 800,
+                          controller: _emailController,
+                          hintText: "Email",
+                          obsecureText: false,
+                          showSuffixIcon: false,
+                          errorMsg: _errorMsg,
+                          keyboardType: TextInputType.emailAddress,
+                          prefixIcon: const Icon(Icons.mail_outline_rounded),
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return "Please fill in this Field";
+                            } else if (!emailRexExp.hasMatch(val)) {
+                              return "Please enter a valid email";
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20.h),
+                        SignTextField(
+                          fadeInDelay: 650,
+                          fadeInDuration: 750,
+                          controller: _passwordController,
+                          hintText: "Password",
+                          obsecureText: true,
+                          errorMsg: _errorMsg,
+                          keyboardType: TextInputType.visiblePassword,
+                          prefixIcon: const Icon(Icons.password_rounded),
+                          showSuffixIcon: true,
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return "Please fill in this Field.";
+                            } else if (val.length < 6) {
+                              return "Password should be at least 6 characters long.";
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 15.h),
+                        const ForgotPasswordWidget(),
+                        SizedBox(height: 25.h),
+                        SignButtonWidget(
+                          title: 'Log In',
+                          function: () {
+                            FocusScope.of(context).unfocus();
+                            if (_formKey.currentState!.validate()) {
+                              FocusScope.of(context).unfocus();
+                              submitCredentials();
+                            }
+                          },
+                        ),
+                        SizedBox(height: 15.h),
+                        NavigationText(
+                          leadingText: 'Don\'t have an account?',
+                          buttonText: 'Register',
+                          function: () {
+                            Navigator.push(
+                              context,
+                              SignUpPage.route(),
+                            );
+                          },
+                        ),
+                        SizedBox(height: 50.h),
+                        const SocialAuthWidget(),
+                        SizedBox(height: 25.h),
+                        const TermsAndConditionsWidget(),
+                        SizedBox(height: 20.h),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ))));
+        ),
+      ),
+    );
   }
 }

@@ -42,6 +42,11 @@ class _HomePageState extends State<HomePage> {
                 const HomePageFilterWidget(),
                 SizedBox(height: 15.h),
                 //Category Two
+                 const GenerateFeedWidget(
+                              service: 'Remote',
+                              title: 'Timeless beauty of moments captured',
+                              // image: MyAppImages.testTwo,
+                            ),
                 SingleChildScrollView(
                   child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
                     builder: (context, state) {
@@ -52,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                         log("its successssssss");
                         return Column(
                           children: [
-                               const CategoryTitleWidget(
+                            const CategoryTitleWidget(
                               title: "Look's Interesting",
                             ),
                             SizedBox(height: 20.h),
@@ -72,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                               image: MyAppImages.testTwo,
                             ),
                             SizedBox(height: 20.h),
-                             const CategoryTitleWidget(
+                            const CategoryTitleWidget(
                               title: "Looking for Remote Work?",
                             ),
                             SizedBox(height: 20.h),
@@ -81,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                               title: 'Timeless beauty of moments captured',
                               image: MyAppImages.testTwo,
                             ),
-                                    SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
                             HomePadding(
                               child: Column(
                                 children: List.generate(

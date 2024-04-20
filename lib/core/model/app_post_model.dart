@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 /// Represents a post made by a user, detailing a specific task or job offer/request.
@@ -32,7 +33,7 @@ class PostModel extends Equatable {
   final String userName;
 
   /// The date and time the post was created.
-  final DateTime postDate;
+  final Timestamp postDate;
 
   /// A category or type of work associated with the post (e.g., "part-time", "freelance").
   final String workType;
@@ -138,7 +139,7 @@ class PostModel extends Equatable {
       workType: map['workType'] as String,
       title: map['title'] as String,
       userName: map['userName'] as String,
-      postDate: DateTime.fromMillisecondsSinceEpoch(map['postDate'] as int),
+      postDate: map['timestamp'] as Timestamp,
       image: map['image'] != null ? map['image'] as String : null,
       content: map['content'] as String,
       location: map['location'] as String,

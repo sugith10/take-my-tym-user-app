@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
@@ -18,7 +19,7 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
     String? workType;
     String? title;
     String? content;
-    DateTime? postDate;
+    Timestamp? postDate;
     // Second page data
     List<String>? skills;
     String? location;

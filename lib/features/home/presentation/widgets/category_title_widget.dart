@@ -19,7 +19,7 @@ class CategoryTitleWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineLarge,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(width: 10),
           const Expanded(

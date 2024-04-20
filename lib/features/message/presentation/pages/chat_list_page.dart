@@ -37,18 +37,22 @@ class _ChatListPageState extends State<ChatListPage> {
           SliverToBoxAdapter(child: BlocBuilder<ChatListBloc, ChatListState>(
             builder: (context, state) {
               if (state is ChatListLoadingState) {
-                return  const ChatListShimmerWidget();
+                return const ChatListShimmerWidget();
               }
               if (state is ChatListLoadedState) {
                 return StreamBuilder<DocumentSnapshot>(
                   stream: state.chatList,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
+                      if (snapshot.data!.data() == null) {
+                        return const SizedBox.shrink();
+                      }
                       final documentData =
                           snapshot.data!.data() as Map<String, dynamic>;
                       final chatListItems = documentData.entries
                           .map(
-                            (i) => ChatListItem(chatId: i.key, recipientUserId: i.value),
+                            (i) => ChatListItem(
+                                chatId: i.key, recipientUserId: i.value),
                           )
                           .toList();
 
@@ -65,8 +69,6 @@ class _ChatListPageState extends State<ChatListPage> {
                           );
                         }),
                       );
-
-                     
                     }
                     return const SizedBox.shrink();
                   },
@@ -90,8 +92,6 @@ class _ChatListPageState extends State<ChatListPage> {
     );
   }
 }
-
-
 
 class ChatListItem {
   final String chatId;

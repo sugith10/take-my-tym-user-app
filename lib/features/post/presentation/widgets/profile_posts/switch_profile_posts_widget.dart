@@ -26,16 +26,16 @@ class _SwitchProfilePostsWidgetState extends State<SwitchProfilePostsWidget> {
       value ? type = true : type = false;
 
       type
-          ? context.read<ReadPostsBloc>().add(
+          ? context.read<GetPostsBloc>().add(
                 GetBuyTymPostsEvent(
                     userId: context.read<AppUserBloc>().appUserModel!.uid),
               )
-          : context.read<ReadPostsBloc>().add(GetSellTymPostsEvent(
+          : context.read<GetPostsBloc>().add(GetSellTymPostsEvent(
               userId: context.read<AppUserBloc>().appUserModel!.uid));
     }
 
     return HomePadding(
-      child: BlocBuilder<ReadPostsBloc, ReadPostsState>(
+      child: BlocBuilder<GetPostsBloc, ReadPostsState>(
         builder: (context, state) {
           log(state.toString());
           if (state is GotSellTymPostsState) {

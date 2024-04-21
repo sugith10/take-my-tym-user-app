@@ -14,7 +14,7 @@ class ProfilePostsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReadPostsBloc, ReadPostsState>(
+    return BlocBuilder<GetPostsBloc, ReadPostsState>(
       builder: (context, state) {
         if (state is UserPostsLoadingState) {
           return const ShimmerEffectWidget();

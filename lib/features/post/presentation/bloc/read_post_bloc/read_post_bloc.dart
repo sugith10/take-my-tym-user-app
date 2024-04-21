@@ -7,8 +7,8 @@ import 'package:take_my_tym/features/post/domain/usecases/get_user_posts_usecase
 part 'read_post_event.dart';
 part 'read_post_state.dart';
 
-class ReadPostsBloc extends Bloc<ReadPostEvent, ReadPostsState> {
-  ReadPostsBloc() : super(UserPostsLoadingState()) {
+class GetPostsBloc extends Bloc<ReadPostEvent, ReadPostsState> {
+  GetPostsBloc() : super(UserPostsLoadingState()) {
     final GetUserPostsUseCase getUserPostsUseCase =
         GetIt.instance<GetUserPostsUseCase>();
 

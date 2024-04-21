@@ -39,12 +39,12 @@ class ViewPostPage extends StatelessWidget {
               listener: (context, state) {
             if (state is DeletPostSuccessState) {
               state.refreshType
-                  ? context.read<ReadPostsBloc>().add(
+                  ? context.read<GetPostsBloc>().add(
                         GetBuyTymPostsEvent(
                           userId: state.uid,
                         ),
                       )
-                  : context.read<ReadPostsBloc>().add(
+                  : context.read<GetPostsBloc>().add(
                         GetSellTymPostsEvent(
                           userId: state.uid,
                         ),

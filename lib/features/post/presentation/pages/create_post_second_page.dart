@@ -8,10 +8,10 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
+import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
@@ -21,8 +21,14 @@ import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart
 
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;
-  const CreatePostSecondPage({this.postModel, super.key});
+  final CreatePostBloc bloc;
+  const CreatePostSecondPage({required  this.bloc,  this.postModel, super.key});
 
+  static route({required PostModel? postModel, required CreatePostBloc createPostBloc}) => MaterialPageRoute(
+                  builder: (_) => CreatePostSecondPage(
+                   bloc: createPostBloc,postModel: postModel,
+                  ),
+                );
   @override
   State<CreatePostSecondPage> createState() => _CreatePostSecondPageState();
 }
@@ -62,7 +68,8 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
         );
     return MultiBlocListener(
       listeners: [
-        BlocListener<CreatePostBloc, CreatePostState>(
+        BlocListener(
+          bloc: widget.bloc,
             listener: (context, state) {
           if (state is CreatPostLoadingState) {
             ShowLoadingDialog().showLoadingIndicator(context);
@@ -78,10 +85,10 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
           if (state is CreatePostSuccessState) {
             state.refreshType
                 ? context
-                    .read<ReadPostsBloc>()
+                    .read<GetPostsBloc>()
                     .add(GetBuyTymPostsEvent(userId: state.uid))
                 : context
-                    .read<ReadPostsBloc>()
+                    .read<GetPostsBloc>()
                     .add(GetSellTymPostsEvent(userId: state.uid));
             Navigator.pushAndRemoveUntil(
               context,
@@ -106,10 +113,10 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             } else if (state is UpdatePostSuccessState) {
               state.refreshType
                   ? context
-                      .read<ReadPostsBloc>()
+                      .read<GetPostsBloc>()
                       .add(GetBuyTymPostsEvent(userId: state.uid))
                   : context
-                      .read<ReadPostsBloc>()
+                      .read<GetPostsBloc>()
                       .add(GetSellTymPostsEvent(userId: state.uid));
               Navigator.pushAndRemoveUntil(
                 context,
@@ -134,7 +141,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   if (createSkillState is UpdateSkillSuccessState) {
                     if (locationState is LocationResultState) {
                       if (widget.postModel == null) {
-                        context.read<CreatePostBloc>().add(
+                        widget.bloc.add(
                               CreateSecondPageEvent(
                                 experience: _experienceCntrl.text,
                                 location: locationState.placeName,

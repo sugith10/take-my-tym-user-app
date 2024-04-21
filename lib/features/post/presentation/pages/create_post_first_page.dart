@@ -32,6 +32,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   bool _tymType = true;
+  final _bloc = CreatePostBloc();
 
   void getTymType(bool select) {
     _tymType = select;
@@ -81,7 +82,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<CreatePostBloc, CreatePostState>(
+        BlocListener(
+          bloc: _bloc,
           listener: (context, state) {
             if (state is CreateFirstFailState) {
               SnackBarMessenger().showSnackBar(
@@ -92,14 +94,11 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
             }
             if (state is CreateFirstSuccessState) {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => CreatePostSecondPage(
+                  context,
+                  CreatePostSecondPage.route(
                     postModel: widget.postModel,
-                    //null postmodel means its a create post
-                  ),
-                ),
-              );
+                    createPostBloc: _bloc,
+                  ));
             }
           },
         ),
@@ -114,14 +113,11 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
             }
             if (state is UpdateFirstSuccessState) {
               log('correct positon');
-
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => CreatePostSecondPage(
-                    postModel: widget.postModel,
-                    //null postmodel means its a create post
-                  ),
+                CreatePostSecondPage.route(
+                  postModel: widget.postModel,
+                  createPostBloc: _bloc,
                 ),
               );
             }
@@ -135,15 +131,15 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               ActionButton(
                 callback: () {
                   if (widget.postModel == null) {
-                    context.read<CreatePostBloc>().add(
-                          CreateFirstPageEvent(
-                            userModel: context.read<AppUserBloc>().appUserModel!,
-                            tymType: _tymType,
-                            title: _titleController.text.trim(),
-                            content: _contentController.text.trim(),
-                            workType: _workType,
-                          ),
-                        );
+                    _bloc.add(
+                      CreateFirstPageEvent(
+                        userModel: context.read<AppUserBloc>().appUserModel!,
+                        tymType: _tymType,
+                        title: _titleController.text.trim(),
+                        content: _contentController.text.trim(),
+                        workType: _workType,
+                      ),
+                    );
                   } else {
                     log("update section");
                     context.read<UpdatePostBloc>().add(

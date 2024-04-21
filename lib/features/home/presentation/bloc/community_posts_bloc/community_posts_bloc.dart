@@ -10,10 +10,12 @@ part 'community_posts_state.dart';
 
 class CommunityPostsBloc
     extends Bloc<CommunityPostsEvent, CommunityPostsState> {
+      bool tymType = true;
   CommunityPostsBloc() : super(CommunityPostsLoadingState()) {
     CommunityPostsUseCase communityPostsUseCase =
         GetIt.instance<CommunityPostsUseCase>();
     on<BuyTymCommunityPostsEvent>((event, emit) async {
+      tymType = true;
       emit(CommunityPostsLoadingState());
       try {
         await communityPostsUseCase.buyTymPosts().then(
@@ -23,6 +25,7 @@ class CommunityPostsBloc
       }
     });
     on<SellTymCommunityPostsEvent>((event, emit) async {
+      tymType = false;
       emit(CommunityPostsLoadingState());
       try {
         await communityPostsUseCase.sellTymPosts().then(

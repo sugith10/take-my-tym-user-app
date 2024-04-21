@@ -19,7 +19,7 @@ class HomePageFilterWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
         child: Row(
           children: [
-            const HomePostSwitch(),
+            const _HomePostSwitch(),
             SizedBox(width: 5.w),
             IconButton(
               onPressed: () {
@@ -38,22 +38,26 @@ class HomePageFilterWidget extends StatelessWidget {
   }
 }
 
-class HomePostSwitch extends StatefulWidget {
-  const HomePostSwitch({super.key});
+class _HomePostSwitch extends StatefulWidget {
+  const _HomePostSwitch();
 
   @override
-  State<HomePostSwitch> createState() => _HomePostSwitchState();
+  State<_HomePostSwitch> createState() => __HomePostSwitchState();
 }
 
-class _HomePostSwitchState extends State<HomePostSwitch> {
-  bool _type = true;
+class __HomePostSwitchState extends State<_HomePostSwitch> {
+  late bool tymType;
+
+  @override
+  void initState() {
+    super.initState();
+    tymType = context.read<CommunityPostsBloc>().tymType;
+  }
 
   @override
   Widget build(BuildContext context) {
     void getCategory(bool tymType) {
-      tymType ? _type = true : _type = false;
-
-      _type
+      tymType
           ? context.read<CommunityPostsBloc>().add(
                 (BuyTymCommunityPostsEvent()),
               )
@@ -62,8 +66,13 @@ class _HomePostSwitchState extends State<HomePostSwitch> {
               .add(SellTymCommunityPostsEvent());
     }
 
-    return SwitchCategoryWidget(
-      getTymType: getCategory,
+    return BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
+      builder: (context, state) {
+        return SwitchCategoryWidget(
+          getTymType: getCategory,
+          tymType: tymType,
+        );
+      },
     );
   }
 }

@@ -23,8 +23,17 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
         await GetIt.instance<LocalUserStorageUseCase>()
             .storeUserDataLocal(authUserModel);
-
-        emit(SignInSuccessState(authUserModel));
+        if (authUserModel.about != null) {
+          emit(SignInSuccessState(
+            profileSetupComp: true,
+            userModel: authUserModel,
+          ));
+        } else {
+          emit(SignInSuccessState(
+            profileSetupComp: false,
+            userModel: authUserModel,
+          ));
+        }
       } on MyAppException catch (e) {
         emit(
           SignInErrorState(errorMessage: e.title, errorDescription: e.message),

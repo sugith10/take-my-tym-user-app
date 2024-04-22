@@ -13,7 +13,9 @@ final class SignInLoadingState extends SignInState {}
 
 final class SignInSuccessState extends SignInState {
   final AppUserModel userModel;
-  const SignInSuccessState(this.userModel);
+  final bool profileSetupComp;
+  const SignInSuccessState(
+      {required this.userModel, required this.profileSetupComp});
 }
 
 final class SignInErrorState extends SignInState {

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/verify_user_bloc/verify_user_bloc.dart';
@@ -9,16 +9,19 @@ import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart'
 import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
-class EmailVerificationPage extends StatefulWidget {
-  static route() =>
-      MaterialPageRoute(builder: (context) => const EmailVerificationPage());
-  const EmailVerificationPage({super.key});
+class EmailVerificationPage extends StatelessWidget {
+  final AppUserModel userModel;
 
-  @override
-  State<EmailVerificationPage> createState() => _EmailVerificationPageState();
-}
+  EmailVerificationPage({
+    super.key,
+    required this.userModel,
+  });
+  static route({required AppUserModel userModel}) => MaterialPageRoute(
+        builder: (context) => EmailVerificationPage(
+          userModel: userModel,
+        ),
+      );
 
-class _EmailVerificationPageState extends State<EmailVerificationPage> {
   final VerifyUserBloc _bloc = VerifyUserBloc()
     ..add((SendVerificationEmailEvent()));
 
@@ -54,10 +57,10 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
         }
 
         if (state is UserVerificationSuccessState) {
-          context.read<AppUserBloc>().appUserModel!.verified = true;
+          userModel.verified = true;
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => const ProfileSetupPage()),
+           ProfileSetupPage.route(userModel: userModel),
             (route) => false,
           );
         }

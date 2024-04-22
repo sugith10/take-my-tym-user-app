@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 
 class SubPageInfoWidget extends StatelessWidget {
@@ -16,7 +17,9 @@ class SubPageInfoWidget extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 10.h),
-        const SignBackButton(),
+      SignBackButton(callback: () {
+        Navigator.pushAndRemoveUntil(context, SignInPage.route(), (route) => false);
+      },),
         SizedBox(height: 120.h),
         Text(
           title,

@@ -9,6 +9,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
@@ -67,11 +68,13 @@ class ViewPostPage extends StatelessWidget {
               ViewPostAppBar(
                 update: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreatePostFirstPage(
-                                postModel: postModel,
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CreatePostFirstPage(
+                        postModel: postModel,
+                      ),
+                    ),
+                  );
                 },
                 delete: () {
                   DletePost().showDletePostDialog(
@@ -99,7 +102,7 @@ class ViewPostPage extends StatelessWidget {
                           PostOwnerInfoWidget(
                             name: postModel.userName,
                             image: MyAppImages.testProfile,
-                            date: 'Oct 15,2023',
+                            date: postModel.postDate,
                           ),
                           SizedBox(height: 20.h),
                           PostDescriptionWidget(
@@ -147,6 +150,7 @@ class ViewPostPage extends StatelessWidget {
                           context.read<AppUserBloc>().appUserModel!.userName,
                       receiverUid: postModel.uid,
                       receiverName: postModel.userName,
+                      individualMessageBloc: IndividualMessageBloc(),
                     ),
                   ),
                 );

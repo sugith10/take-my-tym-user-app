@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
@@ -16,7 +15,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditi
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 
 class SignUpPage extends StatefulWidget {
-   static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
+  static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
   const SignUpPage({super.key});
 
   @override
@@ -58,13 +57,10 @@ class _SignUpPageState extends State<SignUpPage> {
             ShowLoadingDialog().showLoadingIndicator(context);
           }
           if (state is SignUpSuccessState) {
-            context
-                .read<AppUserBloc>()
-                .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
-
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
-              EmailVerificationPage.route(),
+              EmailVerificationPage.route(userModel: state.userModel),
+              (route) => false,
             );
           }
           if (state is SignUpFailState) {

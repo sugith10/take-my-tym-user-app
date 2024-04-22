@@ -10,8 +10,8 @@ sealed class CommunityPostsState extends Equatable {
 final class CommunityPostsLoadingState extends CommunityPostsState {}
 
 final class CommunityPostsSuccessState extends CommunityPostsState {
- final List<PostModel> buyTymPosts;
- const CommunityPostsSuccessState({required this.buyTymPosts});
+ final List<PostModel>posts;
+ const CommunityPostsSuccessState({required this.posts});
 }
 
 

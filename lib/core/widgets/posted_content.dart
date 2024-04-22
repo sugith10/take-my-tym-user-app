@@ -10,12 +10,14 @@ class PostedContentWidget extends StatelessWidget {
   final PostModel postModel;
   final double width;
   final VoidCallback voidCallback;
+  final double? height;
 
   const PostedContentWidget({
     this.image,
     required this.voidCallback,
     required this.postModel,
     required this.width,
+    this.height,
     super.key,
   });
 
@@ -31,6 +33,7 @@ class PostedContentWidget extends StatelessWidget {
         ),
         child: Container(
           width: width,
+          height: height,
           decoration: BoxDecoration(
             color: MyAppDarkColor.instance.secondaryBackground,
             borderRadius: BorderRadius.circular(
@@ -55,7 +58,7 @@ class PostedContentWidget extends StatelessWidget {
                           image!,
                           fit: BoxFit.fill,
                           width: MediaQuery.of(context).size.width,
-                          height: 120.h,
+                          height: height,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -85,7 +88,7 @@ class PostedContentWidget extends StatelessWidget {
                       Text(
                         postModel.content,
                         style: Theme.of(context).textTheme.bodyLarge,
-                        maxLines: 5,
+                        maxLines: 6,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],

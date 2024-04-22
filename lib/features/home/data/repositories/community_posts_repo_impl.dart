@@ -7,8 +7,30 @@ final class CommunityPostsRepoImpl implements CommunityPostsRepo {
   CommunityPostsRepoImpl(this._communityPostsRemoteData);
 
   @override
-  Future<List<PostModel>> buyTymPosts() async{
-    return await _communityPostsRemoteData.buyTymPosts();
+  Future<List<PostModel>> latestbuyTymPosts() async {
+    return await _communityPostsRemoteData.latestbuyTymPosts();
+  }
+
+  @override
+  Future<List<PostModel>> nearbyBuyTymPosts({
+    required double latitude,
+    required double longitude,
+    required double range,
+  }) async {
+    return await _communityPostsRemoteData.nearbyBuyTymPosts(
+        latitude: latitude, longitude: latitude, range: range);
+  }
+
+  @override
+  Future<List<PostModel>> onsiteBuyTymPosts() {
+    // TODO: implement onsiteBuyTymPosts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PostModel>> remoteBuyTymPosts() {
+    // TODO: implement remoteBuyTymPosts
+    throw UnimplementedError();
   }
 
   @override

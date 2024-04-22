@@ -6,6 +6,7 @@ import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/social_auth_bloc.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SocialAuthWidget extends StatefulWidget {
@@ -62,14 +63,25 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                       );
                     }
                     if (state is SocialAuthSuccessState) {
-                      context.read<AppUserBloc>().add(
+                    
+                      if (state.profileSetupComp) {
+                          context.read<AppUserBloc>().add(
                             UpdateAppUserModelEvent(
                               appUserModel: state.userModel,
                             ),
                           );
-
-                     
-
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const NavigationMenu()),
+                            (route) => false);
+                      } else {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ProfileSetupPage(userModel: state.userModel)),
+                            (route) => false);
+                      }
                     }
                   },
                   builder: (context, state) {

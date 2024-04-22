@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/features/auth/domain/usecases/local_user_storage_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 
 part 'sign_up_event.dart';
@@ -25,9 +24,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           lastName: event.lastName,
         )
             .then(
-          (value) async {
-            await GetIt.instance<LocalUserStorageUseCase>()
-                .storeUserDataLocal(value);
+          (value) {
             emit(SignUpSuccessState(value));
           },
         );

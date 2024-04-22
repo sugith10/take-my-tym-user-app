@@ -12,9 +12,10 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
   AppUserModel? appUserModel;
   AppUserBloc() : super(AppInitial()) {
     on<UpdateAppUserModelEvent>(
-      (event, emit) {
+      (event, emit) async {
         appUserModel = event.appUserModel;
-
+        await GetIt.instance<LocalUserStorageUseCase>()
+            .storeUserDataLocal(event.appUserModel);
         if (appUserModel != null) {
           emit(UserModelUpdatedState());
         }
@@ -43,14 +44,16 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
       }),
     );
 
-    on<UpdateUserLocationEvent>((event, emit) async {
-      if (appUserModel != null) {
-        final localUserData = GetIt.instance<LocalUserStorageUseCase>();
-        appUserModel!.location = event.location;
-        appUserModel!.longitude = event.longitude;
-        appUserModel!.latitude = event.latitude;
-        await localUserData.storeUserDataLocal(appUserModel!);
-      }
-    });
+    on<UpdateUserLocationEvent>(
+      (event, emit) async {
+        if (appUserModel != null) {
+          final localUserData = GetIt.instance<LocalUserStorageUseCase>();
+          appUserModel!.location = event.location;
+          appUserModel!.longitude = event.longitude;
+          appUserModel!.latitude = event.latitude;
+          await localUserData.storeUserDataLocal(appUserModel!);
+        }
+      },
+    );
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/features/message/domain/usecases/individual_message_usecase.dart';
@@ -17,12 +16,15 @@ class IndividualMessageBloc
     on<SendMessageEvent>(
       (event, emit) {
         try {
-          individualMessageUseCase.sendMessage(
+          String message = event.message.trim();
+          if (message.isNotEmpty) {
+            log("not empty");
+            individualMessageUseCase.sendMessage(
               currentUid: event.currentUid,
               receiverUid: event.receiverUid,
-              message: event.message,
-              senderName: event.senderName,
-              receiverName: event.receiverName,);
+              message: message,
+            );
+          }
         } catch (e) {
           log(e.toString());
         }

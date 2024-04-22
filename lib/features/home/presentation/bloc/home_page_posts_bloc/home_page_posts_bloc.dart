@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
@@ -15,9 +13,10 @@ class HomePagePostsBloc extends Bloc<HomePagePostsEvent, HomePagePostsState> {
       final stream =
           BuyTymCommunityPostsRepo().newPosts().asyncMap((snapshot) async {
         try {
-          return snapshot.docs.map((doc) => PostModel.fromSnapshot(doc)).toList();
+          return snapshot.docs
+              .map((doc) => PostModel.fromSnapshot(doc))
+              .toList();
         } catch (e) {
-          log('error');
           rethrow;
         }
       });

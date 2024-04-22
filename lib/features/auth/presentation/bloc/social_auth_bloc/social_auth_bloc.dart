@@ -20,9 +20,18 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
             GetIt.instance<SocialAuthUseCase>();
         await socialAuthUseCase.googleSign().then(
           (value) async {
-            await GetIt.instance<LocalUserStorageUseCase>()
+            
+            // The condition `userModel == null` occurs when the user has not set up their profile yet,
+            // indicating that the user is a new user who hasn't completed the profile setup process.
+            if (value.about != null) {
+              await GetIt.instance<LocalUserStorageUseCase>()
                 .storeUserDataLocal(value);
-            emit(SocialAuthSuccessState(value));
+              emit(SocialAuthSuccessState(
+                  userModel: value, profileSetupComp: true));
+            } else {
+              emit(
+                  SocialAuthSuccessState(userModel: value, profileSetupComp: false));
+            }
           },
         );
       } on MyAppException catch (e) {

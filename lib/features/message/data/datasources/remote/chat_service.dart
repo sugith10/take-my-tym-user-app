@@ -7,10 +7,10 @@ class MessageRemoteData {
     required String currentUid,
     required String receiverUid,
     required String message,
-    required String senderName,
-    required String receiverName,
+    // required String senderName,
+    // required String receiverName,
   }) async {
-    log('on send message remote');
+    log('on send message remote: $currentUid, $receiverUid');
 
     final Timestamp timestamp = Timestamp.now();
 
@@ -41,18 +41,29 @@ class MessageRemoteData {
         //after the write succes saving the id inside another collection
         (value) async {
           final dataDoc =
-              await fireStore.collection("userChats").doc(currentUid).get();
+              await fireStore.collection("chatList").doc(currentUid).get();
+
+          log("no datafound here : ${dataDoc.toString()}");
 
           final Map<String, dynamic>? data = dataDoc.data();
 
-          if (data != null && data.containsKey(chatroomID)) {
-            log("chataRoom data already exists $chatroomID");
-          } else {
-            await fireStore.collection("userChats").doc(currentUid).update({
+          if (data == null) {
+            await fireStore.collection("chatList").doc(currentUid).set({
               chatroomID: receiverUid,
             });
 
-            await fireStore.collection("userChats").doc(receiverUid).update({
+            await fireStore.collection("chatList").doc(receiverUid).set({
+              chatroomID: currentUid,
+            });
+          } else if (data.containsKey(chatroomID)) {
+            log("chataRoom data already exists $chatroomID");
+          } else {
+            log("came here");
+            await fireStore.collection("chatList").doc(currentUid).update({
+              chatroomID: receiverUid,
+            });
+
+            await fireStore.collection("chatList").doc(receiverUid).update({
               chatroomID: currentUid,
             });
           }
@@ -89,15 +100,14 @@ class MessageRemoteData {
     return FirebaseFirestore.instance
         .collection("chats")
         .doc("EYYn66HdjFf8XJVCXQdP")
-        .collection("userChats")
+        .collection("chatList")
         .doc(currentUid)
         .snapshots();
   }
 
-    //Chat Partner Info
-  Stream<DocumentSnapshot> getChatPartnerInfoStream({
-    required String recipientUserId
-    }) {
+  //Chat Partner Info
+  Stream<DocumentSnapshot> getChatPartnerInfoStream(
+      {required String recipientUserId}) {
     log('on Chat list message remote');
     return FirebaseFirestore.instance
         .collection("users")

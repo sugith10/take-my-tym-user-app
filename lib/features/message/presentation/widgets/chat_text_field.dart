@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/image_pick.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 
 class ChatTextField extends StatefulWidget {
@@ -67,24 +66,23 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
-              const SizedBox(width: 10),
-              _ChatIconButton(
-                icon: IconlyBold.image_2,
-                callback: () {
-                  ImagePick().getImage();
-                },
-                darkColor: _appDarkColor,
-              ),
+              // const SizedBox(width: 10),
+              // _ChatIconButton(
+              //   icon: IconlyBold.image_2,
+              //   callback: () {
+              //     ImagePick().getImage();
+              //   },
+              //   darkColor: _appDarkColor,
+              // ),
               const SizedBox(width: 10),
               _ChatIconButton(
                 callback: () {
                   widget.individualMessageBloc.add(
                     SendMessageEvent(
-                        message: _controller.text,
-                        currentUid: widget.currentUid,
-                        senderName: widget.senderName,
-                        receiverUid: widget.receiverUid,
-                        receiverName: widget.receiverName),
+                      message: _controller.text,
+                      currentUid: widget.currentUid,
+                      receiverUid: widget.receiverUid,
+                    ),
                   );
                   _controller.clear();
                 },

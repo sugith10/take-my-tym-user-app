@@ -23,9 +23,14 @@ class WelcomeTextWidget extends StatelessWidget {
         children: [
           SizedBox(height: 10.h),
           FadeInDown(
-              delay: const Duration(milliseconds: 900),
-              duration: const Duration(milliseconds: 1000),
-              child: const SignBackButton()),
+            delay: const Duration(milliseconds: 900),
+            duration: const Duration(milliseconds: 1000),
+            child: SignBackButton(
+              callback: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
           SizedBox(height: 15.h),
           FadeInDown(
             delay: const Duration(milliseconds: 800),

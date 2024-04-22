@@ -24,8 +24,3 @@ final class SignUpFailState extends SignUpState {
     required this.message,
   });
 }
-
-final class UserVerifiedState extends SignUpState {
-  final AppUserModel userModel;
-  const UserVerifiedState({required this.userModel});
-}

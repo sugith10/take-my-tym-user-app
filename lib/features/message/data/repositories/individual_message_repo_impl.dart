@@ -11,15 +11,12 @@ final class IndividualMessageRepoImpl implements IndividualMessageRepo {
     required String currentUid,
     required String recipientUserId,
     required String message,
-    required String senderName,
-    required String receiverName,
   }) async {
     return await _messageRemoteData.sendMessage(
         currentUid: currentUid,
         receiverUid: recipientUserId,
         message: message,
-        senderName: senderName,
-        receiverName: receiverName);
+        );
   }
 
   @override

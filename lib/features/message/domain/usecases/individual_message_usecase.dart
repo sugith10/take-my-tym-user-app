@@ -9,15 +9,12 @@ final class IndividualMessageUseCase {
     required String currentUid,
     required String receiverUid,
     required String message,
-    required String senderName,
-    required String receiverName,
+
   }) async {
     return await _individualMessageRepo.sendMessage(
       currentUid: currentUid,
       recipientUserId: receiverUid,
       message: message,
-      senderName: senderName,
-      receiverName: receiverName,
     );
   }
 

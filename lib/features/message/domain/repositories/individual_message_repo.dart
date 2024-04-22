@@ -5,8 +5,6 @@ abstract interface class IndividualMessageRepo {
     required String currentUid,
     required String recipientUserId,
     required String message,
-    required String senderName,
-    required String receiverName,
   });
 
   Stream<QuerySnapshot> getMessages({

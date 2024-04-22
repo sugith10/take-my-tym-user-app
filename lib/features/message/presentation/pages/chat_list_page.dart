@@ -1,28 +1,14 @@
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/widgets/default_silver_appbar.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_list_shimmer_widget.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_tile_widget.dart';
 
-class ChatListPage extends StatefulWidget {
+class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
-
-  @override
-  State<ChatListPage> createState() => _ChatListPageState();
-}
-
-class _ChatListPageState extends State<ChatListPage> {
-  late final String _currentUserId;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _currentUserId = context.read<AppUserBloc>().appUserModel!.uid;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +31,7 @@ class _ChatListPageState extends State<ChatListPage> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.data() == null) {
+                        log("no data");
                         return const SizedBox.shrink();
                       }
                       final documentData =
@@ -52,7 +39,7 @@ class _ChatListPageState extends State<ChatListPage> {
                       final chatListItems = documentData.entries
                           .map(
                             (i) => ChatListItem(
-                                chatId: i.key, recipientUserId: i.value),
+                                chatId: i.key, recipientUserId: i.value,),
                           )
                           .toList();
 
@@ -61,10 +48,10 @@ class _ChatListPageState extends State<ChatListPage> {
                         itemCount: chatListItems.length,
                         itemBuilder: ((context, index) {
                           final chatListItem = chatListItems[index];
-                          final chatId = chatListItem.chatId;
+                          // final chatId = chatListItem.chatId;
                           final recipientUserId = chatListItem.recipientUserId;
                           return ChatTileWidget(
-                            currentUserId: _currentUserId,
+                            currentUserId: state.userId,
                             recipientUserId: recipientUserId,
                           );
                         }),
@@ -77,16 +64,7 @@ class _ChatListPageState extends State<ChatListPage> {
               return const SizedBox.shrink();
             },
           )),
-          // SliverList.builder(
-          //   itemCount: 20,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     return const ChatTileWidget(
-          //       personName: 'Sugith',
-          //       lastMessage: 'hello world!',
-          //       lastMsgTime: '12:24 pm',
-          //     );
-          //   },
-          // ),
+    
         ],
       ),
     );

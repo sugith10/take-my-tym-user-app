@@ -1,8 +1,9 @@
-import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_text_field.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_widget.dart';
@@ -12,14 +13,14 @@ class IndividualChatPage extends StatefulWidget {
   final String currentUid;
   final String receiverName;
   final String senderName;
-  final IndividualMessageBloc? individualMessageBloc;
+  final IndividualMessageBloc individualMessageBloc;
 
   const IndividualChatPage({
     required this.currentUid,
     required this.senderName,
     required this.receiverUid,
     required this.receiverName,
-    this.individualMessageBloc,
+    required this.individualMessageBloc,
     super.key,
   });
 
@@ -28,20 +29,15 @@ class IndividualChatPage extends StatefulWidget {
 }
 
 class _IndividualChatPageState extends State<IndividualChatPage> {
-  late final IndividualMessageBloc _individualMessageBloc;
-
   @override
   void initState() {
     super.initState();
-    if (widget.individualMessageBloc != null) {
-      _individualMessageBloc = widget.individualMessageBloc!;
-    } else {
-      _individualMessageBloc = IndividualMessageBloc();
-      _individualMessageBloc.add(GetMessagesEvent(
+    widget.individualMessageBloc.add(
+      GetMessagesEvent(
         currentUserId: widget.currentUid,
         recipientUserId: widget.receiverUid,
-      ));
-    }
+      ),
+    );
   }
 
   @override
@@ -50,16 +46,31 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
       appBar: AppBar(
         title: Text(widget.receiverName),
         actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.more_vert_rounded))
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: ("Block"),
+                child: PopupMenuItemChildWidget(
+                  value: 'Block',
+                  icon: IconlyLight.shield_fail,
+                ),
+              ),
+              const PopupMenuItem(
+                value: ("Report"),
+                child: PopupMenuItemChildWidget(
+                  value: 'Report',
+                  icon: IconlyLight.danger,
+                ),
+              ),
+            ],
+          )
         ],
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 20.h, right: 20.h, top: 20.h),
         child: BlocBuilder(
-          bloc: _individualMessageBloc,
+          bloc: widget.individualMessageBloc,
           builder: (context, state) {
-            log(state.toString());
             if (state is IndividualChatsLoadedState) {
               return StreamBuilder<QuerySnapshot>(
                 stream: state.messages,
@@ -78,9 +89,9 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                       },
                     );
                   } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
+                    return Center(child: Text('Error: ${snapshot.error}'));
                   } else {
-                    return const CircularProgressIndicator();
+                    return const SizedBox.shrink();
                   }
                 },
               );
@@ -93,7 +104,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
         ),
       ),
       bottomNavigationBar: ChatTextField(
-        individualMessageBloc: _individualMessageBloc,
+        individualMessageBloc: widget.individualMessageBloc,
         currentUid: widget.currentUid,
         receiverUid: widget.receiverUid,
         receiverName: widget.receiverName,

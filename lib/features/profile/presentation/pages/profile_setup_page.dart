@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/reg_exp.dart';
@@ -20,7 +21,14 @@ import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart
 import 'package:take_my_tym/features/profile/presentation/widgets/finish_setup_button.dart';
 
 class ProfileSetupPage extends StatefulWidget {
-  const ProfileSetupPage({super.key});
+  final AppUserModel userModel;
+  const ProfileSetupPage({required this.userModel, super.key});
+
+  static route({required AppUserModel userModel}) => MaterialPageRoute(
+        builder: (context) => ProfileSetupPage(
+          userModel: userModel,
+        ),
+      );
 
   @override
   State<ProfileSetupPage> createState() => _ProfileSetupPageState();
@@ -53,6 +61,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           context
               .read<AppUserBloc>()
               .add(UpdateAppUserModelEvent(appUserModel: state.appUserModel));
+          
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -60,7 +69,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             ),
             (route) => false,
           );
-          
+
           AppInfoDialog().showAppIntroDialog(context: context);
         }
         if (state is UpdataProfileFailState) {
@@ -83,9 +92,8 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: _WelcomeMessagewidget(),
+                      _WelcomeMessagewidget(
+                        firstName: widget.userModel.firstName,
                       ),
                       Lottie.asset(
                         MyAppImages.welcomeLottie,
@@ -172,8 +180,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                                 location: locationState.placeName,
                                 latitude: locationState.latitude,
                                 longitude: locationState.longitude,
-                                appUserModel:
-                                    context.read<AppUserBloc>().appUserModel!,
+                                appUserModel: widget.userModel,
                               ),
                             );
                           } else {
@@ -199,48 +206,51 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
 }
 
 class _WelcomeMessagewidget extends StatelessWidget {
-  const _WelcomeMessagewidget();
+  final String firstName;
+  const _WelcomeMessagewidget({required this.firstName});
 
   @override
   Widget build(BuildContext context) {
-    final firstName = context.read<AppUserBloc>().appUserModel!.firstName;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 25.h),
-        Text(
-          "Welcome $firstName...",
-          style: Theme.of(context)
-              .textTheme
-              .displayLarge
-              ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: .5),
-        ),
-        SizedBox(height: 10.h),
-        Text(
-          "We are exited to on onboard you.",
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w500,
-              letterSpacing: .5,
-              color: MyAppDarkColor.instance.primaryTextBlur),
-        ),
-        SizedBox(height: 3.5.h),
-        Text(
-          "Before our journey begins,",
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w500,
-              letterSpacing: .5,
-              color: MyAppDarkColor.instance.primaryTextBlur),
-        ),
-        SizedBox(height: 3.5.h),
-        Text(
-          "Complete your profile.",
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w500,
-              letterSpacing: .5,
-              color: MyAppDarkColor.instance.primaryTextBlur),
-        ),
-        const SizedBox(height: 25),
-      ],
+    return Padding(
+       padding: const EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 25.h),
+          Text(
+            "Welcome $firstName...",
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge
+                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: .5),
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            "We are exited to on onboard you.",
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+                letterSpacing: .5,
+                color: MyAppDarkColor.instance.primaryTextBlur),
+          ),
+          SizedBox(height: 3.5.h),
+          Text(
+            "Before our journey begins,",
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+                letterSpacing: .5,
+                color: MyAppDarkColor.instance.primaryTextBlur),
+          ),
+          SizedBox(height: 3.5.h),
+          Text(
+            "Complete your profile.",
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+                letterSpacing: .5,
+                color: MyAppDarkColor.instance.primaryTextBlur),
+          ),
+          const SizedBox(height: 25),
+        ],
+      ),
     );
   }
 }

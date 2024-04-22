@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/time_stamp_convert.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
 class PostOwnerInfoWidget extends StatelessWidget {
   final String image;
   final String name;
-  final String date;
+  final Timestamp date;
 
   const PostOwnerInfoWidget({
     required this.image,
@@ -20,10 +22,9 @@ class PostOwnerInfoWidget extends StatelessWidget {
       height: 65,
       child: Row(
         children: [
-          CircleProfilePicWidget(
+          const CircleProfilePicWidget(
             height: 60,
             width: 60,
-        
           ),
           SizedBox(width: 10.w),
           Column(
@@ -31,12 +32,12 @@ class PostOwnerInfoWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-               name,
+                name,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               SizedBox(height: 5.h),
               Text(
-                date,
+                timestampToDate(date),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

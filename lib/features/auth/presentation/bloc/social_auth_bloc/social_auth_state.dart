@@ -13,8 +13,8 @@ final class SocialAuthLoadingState extends SocialAuthState {}
 
 final class SocialAuthSuccessState extends SocialAuthState {
   final AppUserModel userModel;
-
-  const SocialAuthSuccessState(this.userModel);
+  final bool profileSetupComp;
+  const SocialAuthSuccessState({required this.profileSetupComp, required this.userModel});
 }
 
 final class SocialAuthFailState extends SocialAuthState {

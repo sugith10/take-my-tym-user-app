@@ -10,7 +10,7 @@ part 'community_posts_state.dart';
 
 class CommunityPostsBloc
     extends Bloc<CommunityPostsEvent, CommunityPostsState> {
-      bool tymType = true;
+  bool tymType = true;
   CommunityPostsBloc() : super(CommunityPostsLoadingState()) {
     CommunityPostsUseCase communityPostsUseCase =
         GetIt.instance<CommunityPostsUseCase>();
@@ -18,8 +18,9 @@ class CommunityPostsBloc
       tymType = true;
       emit(CommunityPostsLoadingState());
       try {
-        await communityPostsUseCase.buyTymPosts().then(
-            (value) => emit(CommunityPostsSuccessState(buyTymPosts: value)));
+        await communityPostsUseCase
+            .latestbuyTymPosts()
+            .then((value) => emit(CommunityPostsSuccessState(posts: value)));
       } catch (e) {
         log(e.toString());
       }
@@ -30,7 +31,7 @@ class CommunityPostsBloc
       try {
         await communityPostsUseCase.sellTymPosts().then(
               (value) => emit(
-                CommunityPostsSuccessState(buyTymPosts: value),
+                CommunityPostsSuccessState(posts: value),
               ),
             );
       } catch (e) {

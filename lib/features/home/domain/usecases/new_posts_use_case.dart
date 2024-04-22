@@ -1,11 +1,19 @@
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/home/domain/repositories/community_posts_repo.dart';
 
-class NewBuyTymPostsUseCase {
+class NearbyPostsUseCase {
   final CommunityPostsRepo _communityPostsRepo;
-  NewBuyTymPostsUseCase(this._communityPostsRepo);
+  NearbyPostsUseCase(this._communityPostsRepo);
 
-  Future<List<PostModel>> call()async{
-    return await _communityPostsRepo.buyTymPosts();
+  Future<List<PostModel>> call({
+    required double latitude,
+    required double longitude,
+    required double range,
+  }) async {
+    return await _communityPostsRepo.nearbyBuyTymPosts(
+      latitude: latitude,
+      longitude: longitude,
+      range: range,
+    );
   }
 }

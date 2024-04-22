@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
-import 'package:take_my_tym/features/message/presentation/widgets/chat_list_shimmer_widget.dart';
 
 class ChatTileWidget extends StatefulWidget {
   final String currentUserId;
@@ -55,8 +52,8 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => IndividualChatPage(
-                            currentUid: '',
-                            receiverUid: '',
+                            currentUid: widget.currentUserId,
+                            receiverUid: widget.recipientUserId,
                             receiverName: '',
                             senderName: '',
                             individualMessageBloc: _individualMessageBloc,

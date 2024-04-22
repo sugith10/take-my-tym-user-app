@@ -85,16 +85,16 @@ final class DependencyInject {
       ..registerLazySingleton<CommunityPostsRepo>(
           () => CommunityPostsRepoImpl(CommunityPostsRemoteData()))
       ..registerLazySingleton<CommunityPostsUseCase>(
-          () => CommunityPostsUseCase(_getIt<CommunityPostsRepo>()));
-      // ..registerLazySingleton<NewBuyTymPostsUseCase>(
-      //     () => NewBuyTymPostsUseCase(_getIt<CommunityPostsRepo>()));
+          () => CommunityPostsUseCase(_getIt<CommunityPostsRepo>()))
+      ..registerLazySingleton<NearbyPostsUseCase>(
+          () => NearbyPostsUseCase(_getIt<CommunityPostsRepo>()));
 
-    // ///CommunityBuyTymPosts Bloc
-    // _getIt.registerLazySingleton<CommuneBuyTymPostsBloc>(
-    //   () => CommuneBuyTymPostsBloc(
-    //     newPostsUseCase: _getIt<NewBuyTymPostsUseCase>(),
-    //   ),
-    // );
+    ///NearbyPostsBloc Bloc
+    _getIt.registerLazySingleton<NearbyPostsBloc>(
+      () => NearbyPostsBloc(
+        newPostsUseCase: _getIt<NearbyPostsUseCase>(),
+      ),
+    );
 
     ///IndividualMessage
     _getIt

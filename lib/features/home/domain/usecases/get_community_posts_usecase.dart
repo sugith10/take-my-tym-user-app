@@ -6,11 +6,20 @@ final class CommunityPostsUseCase {
 
   CommunityPostsUseCase(this._communityPostsRepo);
 
-  Future<List<PostModel>> buyTymPosts() async {
-    return await _communityPostsRepo.buyTymPosts();
+  Future<List<PostModel>> latestbuyTymPosts() async {
+    return await _communityPostsRepo.latestbuyTymPosts();
   }
 
   Future<List<PostModel>> sellTymPosts() async {
     return await _communityPostsRepo.sellTymPosts();
+  }
+
+  Future<List<PostModel>> nearbyBuyTymPosts({
+    required double latitude,
+    required double longitude,
+    required double range,
+  }) async {
+    return await _communityPostsRepo.nearbyBuyTymPosts(
+        latitude: latitude, longitude: longitude, range: range);
   }
 }

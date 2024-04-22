@@ -16,9 +16,10 @@ class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
       (event, emit) async {
         emit(ChatListLoadingState());
         try {
-          Stream<DocumentSnapshot> snapshot =
-              chatListUseCase.getChatList(userId: event.currentUid);
-          emit(ChatListLoadedState(chatList: snapshot));
+          Stream<DocumentSnapshot> snapshot = chatListUseCase.call(
+            userId: event.currentUid,
+          );
+          emit(ChatListLoadedState(chatList: snapshot,userId: event.currentUid));
         } catch (e) {
           log(e.toString());
         }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 class SignBackButton extends StatelessWidget {
-
-  const SignBackButton({
+  final VoidCallback callback;
+  const SignBackButton(
+    {
+    required this. callback,
     super.key,
   });
 
@@ -13,7 +15,7 @@ class SignBackButton extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       child: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          
         },
         icon: const Icon(
           IconlyBroken.arrow_left,

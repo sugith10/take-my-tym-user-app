@@ -5,6 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
+import 'package:take_my_tym/features/home/presentation/bloc/nearby_posts_bloc/nearby_posts_bloc.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/location/presentation/pages/select_location_page.dart';
 
@@ -51,6 +52,13 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
                             location: state.placeName,
                             latitude: state.latitude,
                             longitude: state.longitude,
+                          ),
+                        );
+                    context.read<NearbyPostsBloc>().add(
+                          NearbyPostsEvent(
+                            latitude: state.latitude,
+                            longitude: state.longitude,
+                            location: state.placeName,
                           ),
                         );
                     return _LocationWidget(

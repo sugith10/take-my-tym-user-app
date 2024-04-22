@@ -16,6 +16,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widg
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
+import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SignInPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignInPage());
@@ -72,14 +73,23 @@ class _SignInPageState extends State<SignInPage> {
           );
         }
         if (state is SignInSuccessState) {
-          context
-              .read<AppUserBloc>()
-              .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (_) => const NavigationMenu()),
-            (route) => false,
-          );
+          if (state.profileSetupComp) {
+            context
+                .read<AppUserBloc>()
+                .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
+
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const NavigationMenu()),
+              (route) => false,
+            );
+          } else {
+            Navigator.pushAndRemoveUntil(
+              context,
+              ProfileSetupPage.route(userModel: state.userModel),
+              (route) => false,
+            );
+          }
         }
       },
       child: Scaffold(

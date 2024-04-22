@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/app_view.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
-import 'package:take_my_tym/features/home/presentation/bloc/commune_buy_tym_post_bloc/commune_buy_tym_posts_bloc.dart';
+import 'package:take_my_tym/features/home/presentation/bloc/nearby_posts_bloc/nearby_posts_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
@@ -43,7 +43,16 @@ class MyApp extends StatelessWidget {
               ))),
         BlocProvider<UpdateProfileBloc>(
             create: ((context) => UpdateProfileBloc())),
-        // BlocProvider(create: (_) => GetIt.instance<CommuneBuyTymPostsBloc>()..add(const NewPostsEvent())),
+        BlocProvider(
+          create: (context) => GetIt.instance<NearbyPostsBloc>()
+            ..add(
+              NearbyPostsEvent(
+                latitude: context.read<AppUserBloc>().appUserModel!.latitude!,
+                longitude: context.read<AppUserBloc>().appUserModel!.longitude!,
+                location: context.read<AppUserBloc>().appUserModel!.location!,
+              ),
+            ),
+        ),
       ],
       child: const MyAppView(),
     );

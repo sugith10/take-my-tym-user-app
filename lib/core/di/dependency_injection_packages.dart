@@ -28,7 +28,7 @@ import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/social_auth_usecase.dart';
 import 'package:take_my_tym/features/auth/domain/usecases/verify_user_usecase.dart';
 import 'package:take_my_tym/features/home/domain/usecases/new_posts_use_case.dart';
-import 'package:take_my_tym/features/home/presentation/bloc/commune_buy_tym_post_bloc/commune_buy_tym_posts_bloc.dart';
+import 'package:take_my_tym/features/home/presentation/bloc/nearby_posts_bloc/nearby_posts_bloc.dart';
 import 'package:take_my_tym/features/location/data/datasources/location_position_name_remote.dart';
 import 'package:take_my_tym/features/location/data/datasources/location_position_remote.dart';
 import 'package:take_my_tym/features/location/data/datasources/search_location_remote.dart';

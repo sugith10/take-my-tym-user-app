@@ -58,6 +58,7 @@ flutter:
     - asset/img/test/
     - asset/img/icons/
     - asset/img/snackbar/
+    - asset/img/ad/
 
   fonts:
     - family: Poppins

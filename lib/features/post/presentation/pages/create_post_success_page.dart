@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
-import 'package:take_my_tym/features/post/presentation/pages/scale_up.dart';
+import 'package:take_my_tym/features/post/presentation/widgets/scale_up.dart';
 
 class CreatePostSuccessPage extends StatelessWidget {
   const CreatePostSuccessPage({super.key});

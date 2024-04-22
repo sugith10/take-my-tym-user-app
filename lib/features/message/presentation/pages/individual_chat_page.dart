@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/widgets/chat_text_field.dart';
@@ -63,6 +66,20 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                 ),
               ),
             ],
+            onSelected: (value) {
+              switch (value) {
+                case 'Block':
+                  AppDialog.show(
+                    context: context,
+                    title: 'Block User',
+                    subtitle: 'Are you sure you want to block this user?',
+                    action: 'Block',
+                    actionCall: () {},
+                  );
+                case 'Report':
+                  log('report');
+              }
+            },
           )
         ],
       ),
@@ -77,6 +94,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         final messageData = snapshot.data!.docs[index];

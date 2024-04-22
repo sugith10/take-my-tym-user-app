@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 
-class DletePost {
-  showDletePostDialog({
+class AppDialog {
+ static show({
     required BuildContext context,
-    required PostModel postModel,
+    required String title,
+    required String subtitle,
+    required String action,
+    required VoidCallback actionCall,
+    Color actionColor = const Color.fromRGBO(244, 67, 54, 1)
   }) {
     showDialog(
       barrierDismissible: false,
@@ -23,19 +24,19 @@ class DletePost {
               children: [
                 SizedBox(height: 25.h),
                 Text(
-                  'Delete confirmation',
+                  title,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  'Are you sure you want delete this post?',
+                  subtitle,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: MyAppDarkColor.instance.primaryTextBlur,
                       ),
                 ),
                 const Spacer(),
                 _MessageButton(
-                  action: const Text('CANCEL'),
+                  action: 'CANCEL',
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
                   callback: () {
@@ -44,22 +45,11 @@ class DletePost {
                 ),
                 SizedBox(height: 12.h),
                 _MessageButton(
-                  action: BlocBuilder<DeletePostBloc, DeletePostState>(
-                    builder: (context, state) {
-                      if (state is DeletePostLoading) {
-                        return const CircularProgressIndicator();
-                      }
-                      return const Text("Delete");
-                    },
-                  ),
-                  backgroundColor: Colors.red,
+                  action: action,
+                  backgroundColor: actionColor,
                   foregroundColor: Colors.white,
                   callback: () {
-                    context.read<DeletePostBloc>().add(
-                          DeletePersonalPostEvent(
-                            postModel: postModel,
-                          ),
-                        );
+                    actionCall();
                   },
                 ),
                 const Spacer(),
@@ -73,7 +63,7 @@ class DletePost {
 }
 
 class _MessageButton extends StatelessWidget {
-  final Widget action;
+  final String action;
   final VoidCallback callback;
   final Color backgroundColor;
   final Color foregroundColor;
@@ -90,14 +80,15 @@ class _MessageButton extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton(
-              onPressed: () {
-                callback();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(backgroundColor),
-                foregroundColor: MaterialStatePropertyAll(foregroundColor),
-              ),
-              child: action),
+            onPressed: () {
+              callback();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(backgroundColor),
+              foregroundColor: MaterialStatePropertyAll(foregroundColor),
+            ),
+            child: Text(action),
+          ),
         ),
       ],
     );

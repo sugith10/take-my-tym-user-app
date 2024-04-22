@@ -15,7 +15,7 @@ import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/del
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/chat_floating_action_button.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/delete_post_cofirm_dialog.dart';
+import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_description_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_owner_info_widget.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/post_service_widget.dart';
@@ -77,9 +77,18 @@ class ViewPostPage extends StatelessWidget {
                   );
                 },
                 delete: () {
-                  DletePost().showDletePostDialog(
+                  AppDialog.show(
                     context: context,
-                    postModel: postModel,
+                    title: 'Delete confirmation',
+                    subtitle: 'Are you sure you want delete this post?',
+                    action: 'Delete',
+                    actionCall: () {
+                      context.read<DeletePostBloc>().add(
+                            DeletePersonalPostEvent(
+                              postModel: postModel,
+                            ),
+                          );
+                    },
                   );
                 },
                 showMoreButton: postModel.uid ==

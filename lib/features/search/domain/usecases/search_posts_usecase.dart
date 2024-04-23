@@ -9,12 +9,12 @@ class SearchPostUseCase {
   SearchPostUseCase(this._searchPostRepo);
 
   Future<List<PostModel>> searchBuyTymPost(
-      {required String searchQuery}) async {
-    return await _searchPostRepo.searchBuyTymPost(searchQuery: searchQuery);
+      {required String searchQuery,required bool tymType}) async {
+    return await _searchPostRepo.searchBuyTymPost(searchQuery: searchQuery,tymType:tymType );
   }
 
   Future<List<PostModel>> searchSellTymPost(
-      {required String searchQuery}) async {
-    return await _searchPostRepo.searchSellTymPost(searchQuery: searchQuery);
+      {required String searchQuery, required bool tymType}) async {
+    return await _searchPostRepo.searchSellTymPost(searchQuery: searchQuery,tymType: tymType);
   }
 }

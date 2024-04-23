@@ -6,11 +6,15 @@ import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.d
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/drawer_navigation_menu.dart';
+import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 class NavigationMenu extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const NavigationMenu(),
+      );
   const NavigationMenu({super.key});
 
   @override
@@ -73,7 +77,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CreatePostFirstPage(),
+                          builder: (context) => const SuccessPage(),
                         ),
                       );
                     } else if (value == 3) {

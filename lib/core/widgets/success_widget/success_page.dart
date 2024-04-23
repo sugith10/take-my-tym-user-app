@@ -1,15 +1,34 @@
+import 'dart:developer';
 import 'package:animate_do/animate_do.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/scale_up.dart';
+import 'package:flutter/services.dart';
+import 'package:vibration/vibration.dart';
 
-class CreatePostSuccessPage extends StatelessWidget {
-  const CreatePostSuccessPage({super.key});
+part 'util/feedback.dart';
 
+class SuccessPage extends StatefulWidget {
+  const SuccessPage({super.key});
+
+  @override
+  State<SuccessPage> createState() => _SuccessPageState();
+}
+
+class _SuccessPageState extends State<SuccessPage> {
+  
+  @override
+  void initState() {
+    super.initState();
+    _Feedback().playSound();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +82,12 @@ class CreatePostSuccessPage extends StatelessWidget {
                     const SizedBox(height: 40),
                     CloseIconButton(
                       callback: () {
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          NavigationMenu.route(),
+                          (route) => false,
+                        );
                       },
                       child: Icon(
                         Icons.close_rounded,

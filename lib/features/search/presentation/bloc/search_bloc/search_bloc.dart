@@ -9,20 +9,21 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchPostsBloc extends Bloc<SearchPostsEvent, SearchPostsState> {
+  bool tymType = true;
   SearchPostsBloc() : super(SearchPostsInitial()) {
-   
     final SearchPostUseCase searchPostUseCase =
         GetIt.instance<SearchPostUseCase>();
 
     on<SwitchTymPostEvent>(((event, emit) {
-
       emit(SwitchTymPostState(tymType: event.tymType));
     }));
     on<SearchBuyTymPost>((event, emit) async {
       try {
         if (event.searchQuery.isNotEmpty) {
+          log(tymType.toString());
           await searchPostUseCase
-              .searchBuyTymPost(searchQuery: event.searchQuery)
+              .searchBuyTymPost(
+                  searchQuery: event.searchQuery, tymType: tymType)
               .then(
             (value) {
               if (value.isEmpty) {

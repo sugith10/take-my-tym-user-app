@@ -4,16 +4,20 @@ import 'package:take_my_tym/features/search/domain/repositories/search_posts_rep
 
 class SearchPostsRepoImpl implements SearchPostRepo {
   final SearchPostsRemoteData _searchRemoteData;
-  
+
   SearchPostsRepoImpl(this._searchRemoteData);
 
   @override
-  Future<List<PostModel>> searchBuyTymPost({required String searchQuery}) async {
-    return await _searchRemoteData.searchBuyTymPost(search: searchQuery);
+  Future<List<PostModel>> searchBuyTymPost(
+      {required String searchQuery, required bool tymType}) async {
+    return await _searchRemoteData.searchBuyTymPost(
+        search: searchQuery, tymType: tymType);
   }
 
   @override
-  Future<List<PostModel>> searchSellTymPost({required String searchQuery}) async {
-    return await _searchRemoteData.searchBuyTymPost(search: searchQuery);
+  Future<List<PostModel>> searchSellTymPost(
+      {required String searchQuery, required bool tymType}) async {
+    return await _searchRemoteData.searchBuyTymPost(
+        search: searchQuery, tymType: tymType);
   }
 }

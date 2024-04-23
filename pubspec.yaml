@@ -26,6 +26,7 @@ dependencies:
   geolocator: ^11.0.0
   geocoding: ^3.0.0
   vibration: ^1.8.4
+  audioplayers: ^6.0.0 
 
   hive: ^2.2.3
   firebase_auth: ^4.17.8
@@ -59,6 +60,7 @@ flutter:
     - asset/img/icons/
     - asset/img/snackbar/
     - asset/img/ad/
+    - assets/audio/
 
   fonts:
     - family: Poppins

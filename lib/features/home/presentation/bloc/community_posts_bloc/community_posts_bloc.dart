@@ -18,9 +18,16 @@ class CommunityPostsBloc
       tymType = true;
       emit(CommunityPostsLoadingState());
       try {
-        await communityPostsUseCase
-            .latestbuyTymPosts()
-            .then((value) => emit(CommunityPostsSuccessState(posts: value)));
+        final List<PostModel> posts =
+            await communityPostsUseCase.remoteBuyTymPosts();
+
+        final List<PostModel> onsitePosts =
+            await communityPostsUseCase.onsiteBuyTymPosts();
+        log("remote psost: $posts");
+
+        await communityPostsUseCase.latestbuyTymPosts().then((value) => emit(
+            CommunityPostsSuccessState(
+                onsitePosts: onsitePosts, posts: value, remotePosts: posts)));
       } catch (e) {
         log(e.toString());
       }
@@ -29,9 +36,19 @@ class CommunityPostsBloc
       tymType = false;
       emit(CommunityPostsLoadingState());
       try {
+        final List<PostModel> posts =
+            await communityPostsUseCase.remoteBuyTymPosts();
+        final List<PostModel> onsitePosts =
+            await communityPostsUseCase.onsiteBuyTymPosts();
+        log("remote psost: $posts");
+//TODO:fix error
         await communityPostsUseCase.sellTymPosts().then(
               (value) => emit(
-                CommunityPostsSuccessState(posts: value),
+                CommunityPostsSuccessState(
+                  onsitePosts: onsitePosts,
+                  posts: value,
+                  remotePosts: posts,
+                ),
               ),
             );
       } catch (e) {

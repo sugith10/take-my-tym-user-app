@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 
 class AboutWidget extends StatelessWidget {
@@ -24,7 +26,7 @@ class AboutWidget extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              "Hey there! I'm Sugith K, a 25-year-old Mobile App Developer from the bustling city of Mumbai. I’m all about bringing ideas to life through vibrant and meaningful designs. Creativity runs through my veins, and I'm committed to making every project a visual masterpiece.",
+             context.read<AppUserBloc>().appUserModel!.about!,
               style: Theme.of(context).textTheme.labelMedium,
               // maxLines: 5,
               textAlign: TextAlign.justify,

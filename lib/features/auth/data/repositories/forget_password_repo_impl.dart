@@ -9,4 +9,4 @@ final class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
   Future<void> resetPassword({required String email}) async {
     await _remoteData.resetPassword(email);
   }
-}
+} 

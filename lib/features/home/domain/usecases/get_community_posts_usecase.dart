@@ -10,6 +10,14 @@ final class CommunityPostsUseCase {
     return await _communityPostsRepo.latestbuyTymPosts();
   }
 
+    Future<List<PostModel>> remoteBuyTymPosts() async {
+    return await _communityPostsRepo.remoteBuyTymPosts();
+  }
+
+    Future<List<PostModel>> onsiteBuyTymPosts() async {
+    return await _communityPostsRepo.onsiteBuyTymPosts();
+  }
+
   Future<List<PostModel>> sellTymPosts() async {
     return await _communityPostsRepo.sellTymPosts();
   }

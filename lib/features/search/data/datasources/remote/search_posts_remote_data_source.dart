@@ -4,11 +4,13 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 
 class SearchPostsRemoteData {
-  Future<List<PostModel>> searchBuyTymPost({required String search}) async {
+  Future<List<PostModel>> searchBuyTymPost({required String search,required bool tymType}) async {
     log('Searching buy-tym posts for: $search');
+    String type = tymType ? "buyTymPost" : "sellTymPost";
+    log("remote data: $type");
     try {
       final querySnapshot = await FirebaseFirestore.instance
-          .collection('buyTymPost')
+          .collection(type)
           .orderBy('title')
           .startAt([search]).endAt([search + '\uf8ff']).get();
       final List<PostModel> posts = querySnapshot.docs

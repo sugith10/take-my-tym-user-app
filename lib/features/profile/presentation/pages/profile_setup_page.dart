@@ -61,7 +61,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           context
               .read<AppUserBloc>()
               .add(UpdateAppUserModelEvent(appUserModel: state.appUserModel));
-          
+
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -88,20 +88,8 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _WelcomeMessagewidget(
-                        firstName: widget.userModel.firstName,
-                      ),
-                      Lottie.asset(
-                        MyAppImages.welcomeLottie,
-                        height: 150.h,
-                        width: 150.h,
-                      ),
-                    ],
-                  ),
+                _WelcomeMessagewidget(
+                  firstName: widget.userModel.firstName,
                 ),
                 const Divider(),
                 const SizedBox(height: 25),
@@ -170,7 +158,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                             log("${userNameCntrl.text},${aboutCntrl.text},${professionCntrl.text}");
                           }
                           final locationState = locationBloc.state;
-
                           if (locationState is LocationResultState) {
                             updateProfileBloc.add(
                               ProfileSetupEvent(
@@ -211,44 +198,56 @@ class _WelcomeMessagewidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-       padding: const EdgeInsets.only(left: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
         children: [
-          SizedBox(height: 25.h),
-          Text(
-            "Welcome $firstName...",
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge
-                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: .5),
+          //welcome message
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 25.h),
+                Text(
+                  "Welcome $firstName...",
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      fontWeight: FontWeight.w800, letterSpacing: .5),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  "We are exited to on onboard you.",
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: .5,
+                      color: MyAppDarkColor.instance.primaryTextBlur),
+                ),
+                SizedBox(height: 3.5.h),
+                Text(
+                  "Before our journey begins,",
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: .5,
+                      color: MyAppDarkColor.instance.primaryTextBlur),
+                ),
+                SizedBox(height: 3.5.h),
+                Text(
+                  "Complete your profile.",
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: .5,
+                      color: MyAppDarkColor.instance.primaryTextBlur),
+                ),
+                const SizedBox(height: 25),
+              ],
+            ),
           ),
-          SizedBox(height: 10.h),
-          Text(
-            "We are exited to on onboard you.",
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-                letterSpacing: .5,
-                color: MyAppDarkColor.instance.primaryTextBlur),
+          //lottie asset
+          Lottie.asset(
+            MyAppImages.welcomeLottie,
+            height: 150.h,
+            width: 150.h,
           ),
-          SizedBox(height: 3.5.h),
-          Text(
-            "Before our journey begins,",
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-                letterSpacing: .5,
-                color: MyAppDarkColor.instance.primaryTextBlur),
-          ),
-          SizedBox(height: 3.5.h),
-          Text(
-            "Complete your profile.",
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-                letterSpacing: .5,
-                color: MyAppDarkColor.instance.primaryTextBlur),
-          ),
-          const SizedBox(height: 25),
         ],
       ),
     );

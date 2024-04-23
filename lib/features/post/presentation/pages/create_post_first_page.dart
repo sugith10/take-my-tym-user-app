@@ -175,49 +175,49 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                       controller: _titleController,
                       expands: false,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 150.h,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: MyAppDarkColor
-                                  .instance.bottomNavigationBarBackground,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: _image != null
-                                ? Image.file(
-                                    _image!,
-                                    fit: BoxFit.contain,
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
-                          Positioned(
-                            top: 10,
-                            right: 0,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                shape: const MaterialStatePropertyAll(
-                                  CircleBorder(),
-                                ),
-                                minimumSize:
-                                    MaterialStateProperty.all(Size(30.w, 30.h)),
-                                iconSize: const MaterialStatePropertyAll(18),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    MyAppDarkColor.instance.glassEffect),
-                              ),
-                              child: Icon(
-                                IconlyBold.delete,
-                                color: MyAppDarkColor.instance.primaryText,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    //   child: Stack(
+                    //     children: [
+                    //       Container(
+                    //         height: 150.h,
+                    //         width: double.infinity,
+                    //         decoration: BoxDecoration(
+                    //           color: MyAppDarkColor
+                    //               .instance.bottomNavigationBarBackground,
+                    //           borderRadius: BorderRadius.circular(20),
+                    //         ),
+                    //         child: _image != null
+                    //             ? Image.file(
+                    //                 _image!,
+                    //                 fit: BoxFit.contain,
+                    //               )
+                    //             : const SizedBox.shrink(),
+                    //       ),
+                    //       Positioned(
+                    //         top: 10,
+                    //         right: 0,
+                    //         child: ElevatedButton(
+                    //           onPressed: () {},
+                    //           style: ButtonStyle(
+                    //             shape: const MaterialStatePropertyAll(
+                    //               CircleBorder(),
+                    //             ),
+                    //             minimumSize:
+                    //                 MaterialStateProperty.all(Size(30.w, 30.h)),
+                    //             iconSize: const MaterialStatePropertyAll(18),
+                    //             backgroundColor: MaterialStatePropertyAll(
+                    //                 MyAppDarkColor.instance.glassEffect),
+                    //           ),
+                    //           child: Icon(
+                    //             IconlyBold.delete,
+                    //             color: MyAppDarkColor.instance.primaryText,
+                    //           ),
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     Expanded(
                       child: CreatePostTextField(
                         hintText: 'Start typing here...',

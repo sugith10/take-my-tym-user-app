@@ -12,6 +12,7 @@ import 'package:take_my_tym/features/post/presentation/bloc/create_post_bloc/cre
 import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 import 'package:take_my_tym/features/post/presentation/widgets/create_post_title_widget.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
@@ -93,7 +94,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const NavigationMenu(),
+                builder: (context) => const SuccessPage(),
               ),
               (route) => false,
             );

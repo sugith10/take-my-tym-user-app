@@ -41,7 +41,7 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
             SizedBox(height: 20.h),
             AccountInfoContentWidget(
               title: "Username",
-              subtitle: "${userModel.firstName} ${userModel.lastName}",
+              subtitle: userModel.userName,
             ),
             AccountInfoContentWidget(
               title: "Email address",
@@ -51,9 +51,9 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               title: "Phone",
               subtitle: "7907603014",
             ),
-            const AccountInfoContentWidget(
+             AccountInfoContentWidget(
               title: "Location",
-              subtitle: "Calicut Kerala, India",
+              subtitle: userModel.location!,
             ),
             BlocListener<SignOutBloc,SignOutState>(
          

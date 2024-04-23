@@ -17,20 +17,20 @@ final class CommunityPostsRepoImpl implements CommunityPostsRepo {
     required double longitude,
     required double range,
   }) async {
-    return await _communityPostsRemoteData.nearbyBuyTymPosts(
+    return await _communityPostsRemoteData.getNearbyBuyTymPosts(
         latitude: latitude, longitude: latitude, range: range);
   }
 
   @override
-  Future<List<PostModel>> onsiteBuyTymPosts() {
-    // TODO: implement onsiteBuyTymPosts
-    throw UnimplementedError();
+  Future<List<PostModel>> onsiteBuyTymPosts() async{
+    
+     return  await _communityPostsRemoteData.getOnsiteBuyTymPosts();
   }
 
   @override
-  Future<List<PostModel>> remoteBuyTymPosts() {
-    // TODO: implement remoteBuyTymPosts
-    throw UnimplementedError();
+  Future<List<PostModel>> remoteBuyTymPosts()async {
+   
+   return await _communityPostsRemoteData.getRemoteBuyTymPosts();
   }
 
   @override

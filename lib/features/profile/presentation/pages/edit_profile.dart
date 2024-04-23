@@ -32,7 +32,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void initState() {
     super.initState();
     final AppUserModel appUserModel = context.read<AppUserBloc>().appUserModel!;
-    _nameCntrl.text = appUserModel.firstName;
+    _nameCntrl.text = appUserModel.userName;
+    _aboutCntrl.text = appUserModel.about ?? '';
   }
 
   @override
@@ -76,11 +77,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   if (_formKey.currentState!.validate()) {
                     context.read<UpdateProfileBloc>().add(
                           CollectUpdateDataEvent(
-                              userName: _nameCntrl.text,
-                              about: _aboutCntrl.text,
-                              location: _locationCntrl.text,
-                              image: _image,
-                              userModel: context.read<AppUserBloc>().appUserModel!),
+                            userName: _nameCntrl.text,
+                            about: _aboutCntrl.text,
+                            location: _locationCntrl.text,
+                            image: _image,
+                            userModel:
+                                context.read<AppUserBloc>().appUserModel!,
+                          ),
                         );
                   }
                 },
@@ -101,7 +104,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: () {
-                    // ImagePick().getImage();
                     _pickImage(ImageSource.gallery);
                   },
                   child: CircleProfilePicWidget(

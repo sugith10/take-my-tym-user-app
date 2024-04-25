@@ -31,9 +31,7 @@ class _SplashPageState extends State<SplashPage> {
         if (state is UserModelUpdatedState) {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-              builder: (_) => const NavigationMenu(),
-            ),
+            NavigationMenu.route(),
             (route) => false,
           );
         }

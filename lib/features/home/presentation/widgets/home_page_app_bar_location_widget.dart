@@ -27,11 +27,7 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => SelectLocationPage(
-                locationBloc: _locationBloc,
-              ),
-            ),
+           SelectLocationPage.route(locationBloc: _locationBloc),
           );
         },
         icon: Row(

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
@@ -38,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
         child: HomePadding(
           child: BlocBuilder<SearchPostsBloc, SearchPostsState>(
             builder: (context, state) {
-              log(state.toString());
+           
               if (state is SearchPostsInitial) {
                 return SearchPostsInitialWidget(message: _message);
               }
@@ -46,12 +45,11 @@ class _SearchPageState extends State<SearchPage> {
                 return const Text("No Data Found");
               }
               if (state is SearchPostsResultState) {
-                log(state.results.toString());
+            
                 return Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.results.length,
                     itemBuilder: (context, index) {
                       final postModel = state.results[index];

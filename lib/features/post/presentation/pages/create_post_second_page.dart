@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
@@ -23,13 +24,17 @@ import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;
   final CreatePostBloc bloc;
-  const CreatePostSecondPage({required  this.bloc,  this.postModel, super.key});
+  const CreatePostSecondPage({required this.bloc, this.postModel, super.key});
 
-  static route({required PostModel? postModel, required CreatePostBloc createPostBloc}) => MaterialPageRoute(
-                  builder: (_) => CreatePostSecondPage(
-                   bloc: createPostBloc,postModel: postModel,
-                  ),
-                );
+  static route(
+          {required PostModel? postModel,
+          required CreatePostBloc createPostBloc}) =>
+      rightToLeft(
+        CreatePostSecondPage(
+          bloc: createPostBloc,
+          postModel: postModel,
+        ),
+      );
   @override
   State<CreatePostSecondPage> createState() => _CreatePostSecondPageState();
 }
@@ -70,36 +75,34 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
     return MultiBlocListener(
       listeners: [
         BlocListener(
-          bloc: widget.bloc,
+            bloc: widget.bloc,
             listener: (context, state) {
-          if (state is CreatPostLoadingState) {
-            ShowLoadingDialog().showLoadingIndicator(context);
-          }
-          if (state is CreateSecondFailState) {
-            Navigator.pop(context);
-            SnackBarMessenger().showSnackBar(
-              context: context,
-              errorMessage: state.message,
-              errorDescription: state.description,
-            );
-          }
-          if (state is CreatePostSuccessState) {
-            state.refreshType
-                ? context
-                    .read<GetPostsBloc>()
-                    .add(GetBuyTymPostsEvent(userId: state.uid))
-                : context
-                    .read<GetPostsBloc>()
-                    .add(GetSellTymPostsEvent(userId: state.uid));
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SuccessPage(),
-              ),
-              (route) => false,
-            );
-          }
-        }),
+              if (state is CreatPostLoadingState) {
+                ShowLoadingDialog().showLoadingIndicator(context);
+              }
+              if (state is CreateSecondFailState) {
+                Navigator.pop(context);
+                SnackBarMessenger().showSnackBar(
+                  context: context,
+                  errorMessage: state.message,
+                  errorDescription: state.description,
+                );
+              }
+              if (state is CreatePostSuccessState) {
+                state.refreshType
+                    ? context
+                        .read<GetPostsBloc>()
+                        .add(GetBuyTymPostsEvent(userId: state.uid))
+                    : context
+                        .read<GetPostsBloc>()
+                        .add(GetSellTymPostsEvent(userId: state.uid));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  SuccessPage.route(),
+                  (route) => false,
+                );
+              }
+            }),
         BlocListener<UpdatePostBloc, UpdatePostState>(
           listener: (context, state) {
             if (state is UpdatePostLoadingState) {
@@ -143,15 +146,15 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                     if (locationState is LocationResultState) {
                       if (widget.postModel == null) {
                         widget.bloc.add(
-                              CreateSecondPageEvent(
-                                experience: _experienceCntrl.text,
-                                location: locationState.placeName,
-                                remuneration: _remunerationCntrl.text,
-                                skills: createSkillState.skills,
-                                latitude: locationState.latitude,
-                                longitude: locationState.longitude,
-                              ),
-                            );
+                          CreateSecondPageEvent(
+                            experience: _experienceCntrl.text,
+                            location: locationState.placeName,
+                            remuneration: _remunerationCntrl.text,
+                            skills: createSkillState.skills,
+                            latitude: locationState.latitude,
+                            longitude: locationState.longitude,
+                          ),
+                        );
                       } else {
                         context.read<UpdatePostBloc>().add(
                               UpdateSecondPageEvent(

@@ -1,20 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/features/post/presentation/pages/create_post_first_page.dart';
 import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
 import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.dart';
 import 'package:take_my_tym/features/money/presentation/pages/money_page.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/drawer_navigation_menu.dart';
-import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 class NavigationMenu extends StatefulWidget {
-  static route() => MaterialPageRoute(
-        builder: (context) => const NavigationMenu(),
-      );
+  static route() => noMovement(const NavigationMenu());
   const NavigationMenu({super.key});
 
   @override
@@ -22,7 +20,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  final GlobalKey<ScaffoldState> drawerKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   final _screen = [
     const HomePage(),
@@ -42,7 +40,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
           return BlocProvider(
             create: (context) => NavigationBloc(),
             child: Scaffold(
-              key: drawerKey,
+              key: _scaffoldKey,
               drawer: const DrawerNavBar(),
               body: BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (context, state) {
@@ -76,9 +74,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                     } else if (value == 2) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const SuccessPage(),
-                        ),
+                        CreatePostFirstPage.route(),
                       );
                     } else if (value == 3) {
                       _index = value;

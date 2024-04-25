@@ -11,7 +11,7 @@ final class MyAppDarkTheme {
     borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
   );
 
-  final ThemeData darkTheme = ThemeData(
+final ThemeData darkTheme = ThemeData(
     fontFamily: 'Poppins',
     colorScheme: ColorScheme.light(
       background: _color.background,

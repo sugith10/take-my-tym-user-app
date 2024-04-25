@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
 import 'package:take_my_tym/core/utils/post_types.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
@@ -23,6 +22,9 @@ import 'package:take_my_tym/features/post/presentation/widgets/work_type_widget.
 class CreatePostFirstPage extends StatefulWidget {
   final PostModel? postModel;
   const CreatePostFirstPage({this.postModel, super.key});
+
+  static route({PostModel? postModel}) =>
+      bottomToTop(CreatePostFirstPage(postModel: postModel));
 
   @override
   State<CreatePostFirstPage> createState() => _CreatePostFirstPageState();
@@ -93,6 +95,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               );
             }
             if (state is CreateFirstSuccessState) {
+              FocusManager.instance.primaryFocus?.unfocus();
               Navigator.push(
                   context,
                   CreatePostSecondPage.route(
@@ -112,7 +115,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               );
             }
             if (state is UpdateFirstSuccessState) {
-              log('correct positon');
               Navigator.push(
                 context,
                 CreatePostSecondPage.route(

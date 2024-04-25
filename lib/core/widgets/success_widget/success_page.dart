@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_images.dart';
 import 'package:take_my_tym/core/utils/app_sound_player.dart';
@@ -16,6 +17,8 @@ part 'util/feedback.dart';
 
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});
+
+   static route() => noMovement(const SuccessPage());
 
   @override
   State<SuccessPage> createState() => _SuccessPageState();

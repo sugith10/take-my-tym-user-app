@@ -18,8 +18,6 @@ class WalletCard extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: 300.h,
         maxWidth: 600.h,
-        // minHeight: 150.h,
-        // maxHeight: 300.h,
       ),
       child: Container(
         height: 150.h,

@@ -42,3 +42,7 @@ final class MyAppSVG{
 final class MyAppAudio{
   static const success = 'assets/audio/succession.mp3';
 }
+
+final class MyAppFonst{
+  static const poppins = "Poppins";
+}

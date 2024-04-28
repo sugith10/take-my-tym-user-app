@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -11,8 +12,8 @@ final class MyAppDarkTheme {
     borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
   );
 
-final ThemeData darkTheme = ThemeData(
-    fontFamily: 'Poppins',
+  final ThemeData darkTheme = ThemeData(
+    fontFamily: MyAppFonst.poppins,
     colorScheme: ColorScheme.light(
       background: _color.background,
     ),
@@ -180,6 +181,21 @@ final ThemeData darkTheme = ThemeData(
       backgroundColor: _color.fillColor.withOpacity(0.8),
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
+    ),
+    tabBarTheme: TabBarTheme(
+      labelStyle: TextStyle(
+        color: _color.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.sp,
+      ),
+      unselectedLabelStyle: TextStyle(
+        color: _color.secondaryText,
+        fontSize: 16.sp,
+      ),
+      dividerColor: _color.secondaryBorder,
+      indicatorColor: _color.primaryBorder,
+      overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+      splashFactory: NoSplash.splashFactory,
     ),
   );
 }

@@ -34,6 +34,7 @@ dependencies:
   cloud_firestore: ^4.15.10
   google_sign_in: ^6.2.1
   firebase_storage: ^11.7.0
+  flutter_stripe: ^10.1.1
   
   loading_indicator: ^3.1.1
   flutter_svg: ^2.0.10+1
@@ -43,7 +44,7 @@ dependencies:
   animated_toggle_switch: ^0.8.2
   shimmer_pro: ^0.0.6
   button_animations: ^2.0.0+3
-  flutter_stripe: ^10.1.1
+  
 
 dev_dependencies:
   flutter_test:

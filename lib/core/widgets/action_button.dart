@@ -19,11 +19,9 @@ class ActionButton extends StatelessWidget {
         onPressed: () {
           callback();
         },
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
-            ),
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
           ),
         ),
         child: Text(action),

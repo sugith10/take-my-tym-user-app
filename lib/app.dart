@@ -6,11 +6,11 @@ import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/nearby_posts_bloc/nearby_posts_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
+import 'package:take_my_tym/features/view_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
+import 'package:take_my_tym/features/view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
-import 'package:take_my_tym/features/post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
+import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
 
 class MyApp extends StatelessWidget {

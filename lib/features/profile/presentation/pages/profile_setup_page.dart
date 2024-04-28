@@ -8,13 +8,13 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/reg_exp.dart';
-import 'package:take_my_tym/core/widgets/app_info_dailog.dart';
 import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/take_my_tym_info_dialog.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/create_post_location_widget.dart';
+import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_location_widget.dart';
 import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart';
@@ -70,7 +70,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             (route) => false,
           );
 
-          AppInfoDialog().showAppIntroDialog(context: context);
+          TakeyMyTymDailog().show(context: context);
         }
         if (state is UpdataProfileFailState) {
           SnackBarMessenger().showSnackBar(

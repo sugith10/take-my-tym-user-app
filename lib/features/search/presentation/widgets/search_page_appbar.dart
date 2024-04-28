@@ -4,7 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/features/post/presentation/widgets/search_text_field.dart';
+import 'package:take_my_tym/features/create_post/presentation/widgets/search_text_field.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 class SearchPageAppBar extends StatefulWidget implements PreferredSizeWidget {

@@ -3,6 +3,8 @@ import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'dart:async';
 
+import 'package:take_my_tym/core/widgets/take_my_tym_info_dialog.dart';
+
 class BannerWidget extends StatefulWidget {
   const BannerWidget({super.key});
 
@@ -61,57 +63,62 @@ class _BannerWidgetState extends State<BannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height / 6,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: images.length,
-            itemBuilder: (context, index) {
-              return pages[index];
-            },
-            onPageChanged: (value) {
-              setState(() {
-                activePage = value;
-              });
-            },
-          ),
-        ),
-        //code for page indicator
-        Positioned(
-          bottom: 10,
-          left: 0,
-          right: 0,
-          child: Container(
-            color: Colors.transparent,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                  pages.length,
-                  (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: InkWell(
-                          onTap: () {
-                            pageController.animateToPage(
-                              index,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeIn,
-                            );
-                          },
-                          child: CircleAvatar(
-                            radius: 4,
-                            backgroundColor: activePage == index
-                                ? const Color.fromARGB(255, 255, 255, 255)
-                                : const Color.fromARGB(255, 128, 128, 128),
-                          ),
-                        ),
-                      )),
+    return GestureDetector(
+      onTap: () {
+        TakeyMyTymDailog().show(context: context);
+      },
+      child: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height / 6,
+            child: PageView.builder(
+              controller: pageController,
+              itemCount: images.length,
+              itemBuilder: (context, index) {
+                return pages[index];
+              },
+              onPageChanged: (value) {
+                setState(() {
+                  activePage = value;
+                });
+              },
             ),
           ),
-        )
-      ],
+          //code for page indicator
+          Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                    pages.length,
+                    (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: InkWell(
+                            onTap: () {
+                              pageController.animateToPage(
+                                index,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeIn,
+                              );
+                            },
+                            child: CircleAvatar(
+                              radius: 4,
+                              backgroundColor: activePage == index
+                                  ? const Color.fromARGB(255, 255, 255, 255)
+                                  : const Color.fromARGB(255, 128, 128, 128),
+                            ),
+                          ),
+                        )),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

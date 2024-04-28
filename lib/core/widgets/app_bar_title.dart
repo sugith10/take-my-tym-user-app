@@ -11,7 +11,9 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.headlineLarge,
+      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+        fontWeight: FontWeight.w700
+      ),
     );
   }
 }

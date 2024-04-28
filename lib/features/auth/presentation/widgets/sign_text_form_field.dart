@@ -75,10 +75,6 @@ class _SignTextFieldState extends State<SignTextField> {
           fillColor: Colors.grey.shade200,
           filled: true,
           hintText: widget.hintText,
-          hintStyle: TextStyle(
-            color: Colors.grey[500],
-            fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
-          ),
           errorText: widget.errorMsg,
           errorStyle: Theme.of(context).textTheme.labelSmall,
         ),

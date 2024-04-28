@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:take_my_tym/core/utils/app_assets.dart';
 
 
 class WelcomePageAnimation extends StatelessWidget {
@@ -11,7 +12,7 @@ class WelcomePageAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.scale(
       scale: 2,
-      child:     SvgPicture.asset('asset/img/welcome.svg'),
+      child:     SvgPicture.asset(MyAppSVG.welcomeGraphics),
     );
   }
 }

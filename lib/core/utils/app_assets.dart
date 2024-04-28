@@ -33,3 +33,12 @@ final class MyAppImages {
   static const String adThree = 'asset/img/ad/Frame_3.png';
   static const String adFour = 'asset/img/ad/Frame_4.png';
 }
+
+
+final class MyAppSVG{
+  static const welcomeGraphics = 'asset/img/welcome.svg';
+}
+
+final class MyAppAudio{
+  static const success = 'assets/audio/succession.mp3';
+}

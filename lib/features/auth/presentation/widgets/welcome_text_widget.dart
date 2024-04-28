@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:take_my_tym/core/utils/app_responsive.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
 
 class WelcomeTextWidget extends StatelessWidget {
@@ -27,6 +30,7 @@ class WelcomeTextWidget extends StatelessWidget {
             duration: const Duration(milliseconds: 1000),
             child: SignBackButton(
               callback: () {
+                log('go ba ck');
                 Navigator.pop(context);
               },
             ),
@@ -62,9 +66,15 @@ class _Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (MobileResponsive.mobileSmall(context)) {
+      return Text(
+        line,
+        style: Theme.of(context).textTheme.headlineLarge,
+      );
+    }
     return Text(
       line,
-      style: Theme.of(context).textTheme.displayMedium,
+      style: Theme.of(context).textTheme.displayLarge,
     );
   }
 }

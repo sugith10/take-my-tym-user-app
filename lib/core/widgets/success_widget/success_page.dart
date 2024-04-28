@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_sound_player.dart';
 import 'package:take_my_tym/core/utils/app_vibration.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';

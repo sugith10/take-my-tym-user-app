@@ -4,6 +4,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/core/utils/app_responsive.dart';
 
 class PostedContentWidget extends StatelessWidget {
   final String? image;
@@ -74,23 +75,13 @@ class PostedContentWidget extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text(
-                    postModel.title,
-                    style: Theme.of(context).textTheme.titleSmall,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  child: _TitleText(title: postModel.title),
                 ),
                 if (image == null)
                   Column(
                     children: [
                       SizedBox(height: 15.h),
-                      Text(
-                        postModel.content,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        maxLines: 6,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      _ContentText(content: postModel.content),
                     ],
                   ),
                 SizedBox(height: 10.h),
@@ -99,6 +90,56 @@ class PostedContentWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _TitleText extends StatelessWidget {
+  final String title;
+  const _TitleText({
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (MobileResponsive.mobileMedium(context)) {
+      return Text(
+        title,
+        style: Theme.of(context).textTheme.labelLarge,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      );
+    }
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.titleSmall,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+}
+
+class _ContentText extends StatelessWidget {
+  final String content;
+  const _ContentText({
+    required this.content,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (MobileResponsive.mobileMedium(context)) {
+      return Text(
+        content,
+        style: Theme.of(context).textTheme.labelLarge,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      );
+    }
+    return Text(
+      content,
+      style: Theme.of(context).textTheme.bodyLarge,
+      maxLines: 6,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

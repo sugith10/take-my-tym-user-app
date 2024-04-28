@@ -15,7 +15,7 @@ class SignBackButton extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       child: IconButton(
         onPressed: () {
-          
+          callback();
         },
         icon: const Icon(
           IconlyBroken.arrow_left,

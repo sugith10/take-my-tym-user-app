@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_responsive.dart';
 
 class CategoryTitleWidget extends StatelessWidget {
   final String title;
@@ -17,10 +18,7 @@ class CategoryTitleWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          _Text(title: title),
           const SizedBox(width: 10),
           const Expanded(
             child: Divider(
@@ -29,6 +27,28 @@ class CategoryTitleWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _Text extends StatelessWidget {
+  const _Text({
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    if (MobileResponsive.mobileSmall(context)) {
+      return Text(
+        title,
+        style: Theme.of(context).textTheme.titleMedium,
+      );
+    }
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }

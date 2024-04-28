@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/app_responsive.dart';
 
 class SwitchCategoryWidget extends StatefulWidget {
   final Function(bool) getTymType;
@@ -42,7 +45,7 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
       current: current,
       first: true,
       second: false,
-      spacing: 50.0,
+      spacing: 60.0,
       style: ToggleStyle(
         borderColor: Colors.transparent,
         boxShadow: [
@@ -61,19 +64,38 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
         widget.getTymType(value);
       },
       textBuilder: (value) => value
-          ? Center(
-              child: Text(
-                'Buy Tym',
-                style: Theme.of(context).textTheme.labelMedium,
+          ? const Center(
+              child: _Text(
+                tymType: 'Buy Tym',
               ),
             )
-          : Center(
-              child: Text(
-                'Sell Tym',
-                style: Theme.of(context).textTheme.labelMedium,
+          : const Center(
+              child: _Text(
+                tymType: 'Sell Tym',
               ),
             ),
       indicatorSize: const Size.fromWidth(30.0),
+    );
+  }
+}
+
+class _Text extends StatelessWidget {
+  final String tymType;
+  const _Text({
+    required this.tymType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (MobileResponsive.mobileMedium(context)) {
+      return Text(
+        tymType,
+        style: Theme.of(context).textTheme.labelSmall,
+      );
+    }
+    return Text(
+      tymType,
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
@@ -19,7 +20,7 @@ import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigati
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SignInPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const SignInPage());
+  static route() => noMovement(const SignInPage());
   const SignInPage({super.key});
 
   @override
@@ -28,7 +29,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   String? _errorMsg;
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final SignInBloc _bloc = SignInBloc();
@@ -40,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
-    _formKey;
+    formKey;
     _emailController.dispose();
     _passwordController.dispose();
     _bloc;
@@ -109,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                     thirdLine: 'You\'ve been missed!',
                   ),
                   Form(
-                    key: _formKey,
+                    key: formKey,
                     child: Column(
                       children: [
                         SizedBox(height: 40.h),
@@ -156,10 +157,10 @@ class _SignInPageState extends State<SignInPage> {
                         const ForgotPasswordWidget(),
                         SizedBox(height: 25.h),
                         SignButtonWidget(
-                          title: 'Log In',
+                          title: 'LOG IN',
                           function: () {
                             FocusScope.of(context).unfocus();
-                            if (_formKey.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               FocusScope.of(context).unfocus();
                               submitCredentials();
                             }

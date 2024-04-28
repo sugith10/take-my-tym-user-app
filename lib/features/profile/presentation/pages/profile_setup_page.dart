@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/reg_exp.dart';
 import 'package:take_my_tym/core/widgets/app_info_dailog.dart';
 import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/utils/app_images.dart';
+import 'package:take_my_tym/core/utils/app_assets.dart';
 
 class SearchPostsInitialWidget extends StatelessWidget {
   final String message;

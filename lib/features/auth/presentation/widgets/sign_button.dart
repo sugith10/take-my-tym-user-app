@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class SignButtonWidget extends StatelessWidget {
   final String title;
@@ -42,7 +43,10 @@ class SignButtonWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: MyAppDarkColor.instance.softBackground,
+                    ),
               ),
             ],
           ),

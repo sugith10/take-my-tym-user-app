@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/app_logo.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions.dart';
@@ -6,6 +7,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/welcome_button.da
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_page_animation.dart';
 
 class WelcomePage extends StatelessWidget {
+  static route ()=> noMovement(const WelcomePage());
   const WelcomePage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class WelcomePage extends StatelessWidget {
                     Positioned(
                         child: Padding(
                       padding: EdgeInsets.only(top: 40),
-                      child: Hero(tag: 'AppLogo', child: AppLogo()),
+                      child: AppLogo(),
                     )),
                     Align(
                       alignment: Alignment.center,
@@ -39,7 +41,8 @@ class WelcomePage extends StatelessWidget {
                           WelcomeButton(),
                           SizedBox(height: 25),
                           TermsAndConditons(
-                            delay: 1900,
+                            delay: 0,
+                            duration: 0,
                           ),
                           SizedBox(height: 40),
                         ],

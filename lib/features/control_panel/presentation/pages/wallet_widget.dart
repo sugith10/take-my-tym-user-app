@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/contracts/presentation/widgets/transaction_tile.dart';
-import 'package:take_my_tym/features/contracts/presentation/widgets/transactions_view_setup_widget.dart';
-import 'package:take_my_tym/features/contracts/presentation/widgets/wallet_card_widget.dart';
+import 'package:take_my_tym/features/control_panel/presentation/widgets/transaction_tile.dart';
+import 'package:take_my_tym/features/control_panel/presentation/widgets/transactions_view_setup_widget.dart';
+import 'package:take_my_tym/features/control_panel/presentation/widgets/wallet_card_widget.dart';
 
 class WalletWidget extends StatelessWidget {
   const WalletWidget({

@@ -38,9 +38,7 @@ class _SplashPageState extends State<SplashPage> {
         if (state is UserModelNotFoundState) {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-              builder: (_) => const WelcomePage(),
-            ),
+            WelcomePage.route(),
             (route) => false,
           );
         }
@@ -51,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             Padding(
               padding: EdgeInsets.all(25),
-              child: Hero(tag: 'AppLogo', child: AppLogo()),
+              child: AppLogo(),
             ),
           ],
         ),

@@ -6,6 +6,7 @@ import 'package:take_my_tym/core/utils/app_radius.dart';
 
 final class MyAppDarkTheme {
   static final MyAppDarkColor _color = MyAppDarkColor.instance;
+  static final ScreenUtil _screenUtil = ScreenUtil();
 
   static final _outlineInputBorder = OutlineInputBorder(
     borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
@@ -89,7 +90,7 @@ final class MyAppDarkTheme {
       ),
       labelMedium: TextStyle(
         color: _color.primaryText,
-        fontSize: 14.sp,
+        fontSize: _screenUtil.setSp(14),
       ),
       labelSmall: TextStyle(
         color: _color.primaryText,
@@ -97,7 +98,7 @@ final class MyAppDarkTheme {
       ),
       bodyLarge: TextStyle(
         color: _color.secondaryText,
-        fontSize: 14.sp,
+        fontSize: _screenUtil.setSp(14),
       ),
       bodyMedium: TextStyle(
         color: _color.secondaryText,
@@ -178,6 +179,9 @@ final class MyAppDarkTheme {
       elevation: 10,
     ),
     bottomSheetTheme: BottomSheetThemeData(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
       backgroundColor: _color.fillColor.withOpacity(0.8),
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
@@ -196,6 +200,20 @@ final class MyAppDarkTheme {
       indicatorColor: _color.primaryBorder,
       overlayColor: const MaterialStatePropertyAll(Colors.transparent),
       splashFactory: NoSplash.splashFactory,
+    ),
+    expansionTileTheme: ExpansionTileThemeData(
+      textColor: _color.primaryText,
+      backgroundColor: _color.softBackground,
+      iconColor: _color.iconColor,
+      collapsedBackgroundColor: _color.softBackground,
+      collapsedTextColor: _color.primaryTextSoft,
+      collapsedIconColor: _color.primaryTextSoft,
+      collapsedShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
     ),
   );
 }

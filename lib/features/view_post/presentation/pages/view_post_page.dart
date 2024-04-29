@@ -7,6 +7,7 @@ import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
+import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
@@ -17,52 +18,67 @@ import 'package:take_my_tym/features/create_post/presentation/pages/create_post_
 import 'package:take_my_tym/features/view_post/presentation/widgets/chat_floating_action_button.dart';
 import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/post_description_widget.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/post_owner_info_widget.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/post_service_widget.dart';
+import 'package:take_my_tym/core/widgets/post_owner_info_widget.dart';
+import 'package:take_my_tym/features/view_post/presentation/widgets/post_service_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/post_specifications_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/post_title_widget.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/skills_widget.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/submit_button.dart';
+import 'package:take_my_tym/core/widgets/submit_button.dart';
 
-class ViewPostPage extends StatelessWidget {
+class ViewPostPage extends StatefulWidget {
   final PostModel postModel;
   const ViewPostPage({required this.postModel, super.key});
 
   static route({required PostModel postModel}) => MaterialPageRoute(
         builder: (_) => ViewPostPage(postModel: postModel),
       );
+
+  @override
+  State<ViewPostPage> createState() => _ViewPostPageState();
+}
+
+class _ViewPostPageState extends State<ViewPostPage> {
+  late final bool appUser;
+  @override
+  void initState() {
+    super.initState();
+    appUser =
+        widget.postModel.uid == context.read<AppUserBloc>().appUserModel?.uid;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<DeletePostBloc, DeletePostState>(
-              listener: (context, state) {
-            if (state is DeletPostSuccessState) {
-              state.refreshType
-                  ? context.read<GetPostsBloc>().add(
-                        GetBuyTymPostsEvent(
-                          userId: state.uid,
-                        ),
-                      )
-                  : context.read<GetPostsBloc>().add(
-                        GetSellTymPostsEvent(
-                          userId: state.uid,
-                        ),
-                      );
-              Navigator.pop(context);
-              Navigator.pop(context);
-            }
-            if (state is DeletPostFailState) {
-              SnackBarMessenger().showSnackBar(
-                context: context,
-                errorMessage: state.message,
-                errorDescription: state.description,
-              );
-            }
-          }),
-        ],
-        child: SafeArea(
+    return BlocListener<DeletePostBloc, DeletePostState>(
+      listener: (context, state) {
+        if (state is DeletPostSuccessState) {
+          state.refreshType
+              ? context.read<GetPostsBloc>().add(
+                    GetBuyTymPostsEvent(
+                      userId: state.uid,
+                    ),
+                  )
+              : context.read<GetPostsBloc>().add(
+                    GetSellTymPostsEvent(
+                      userId: state.uid,
+                    ),
+                  );
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.pop(context);
+        }
+        if (state is DeletePostLoading) {
+          ShowLoadingDialog().showLoadingIndicator(context);
+        }
+        if (state is DeletPostFailState) {
+          SnackBarMessenger().showSnackBar(
+            context: context,
+            errorMessage: state.message,
+            errorDescription: state.description,
+          );
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
           child: CustomScrollView(
             slivers: [
               ViewPostAppBar(
@@ -71,7 +87,7 @@ class ViewPostPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => CreatePostFirstPage(
-                        postModel: postModel,
+                        postModel: widget.postModel,
                       ),
                     ),
                   );
@@ -85,13 +101,13 @@ class ViewPostPage extends StatelessWidget {
                     actionCall: () {
                       context.read<DeletePostBloc>().add(
                             DeletePersonalPostEvent(
-                              postModel: postModel,
+                              postModel: widget.postModel,
                             ),
                           );
                     },
                   );
                 },
-                showMoreButton: postModel.uid ==
+                showMoreButton: widget.postModel.uid ==
                     context.read<AppUserBloc>().appUserModel!.uid,
               ),
               SliverList(
@@ -102,20 +118,20 @@ class ViewPostPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 10.h),
-                          ServiceTypeWidget(type: postModel.workType),
+                          ServiceTypeWidget(type: widget.postModel.workType),
                           SizedBox(height: 15.h),
                           PostTitleWidget(
-                            title: postModel.title,
+                            title: widget.postModel.title,
                           ),
                           SizedBox(height: 20.h),
                           PostOwnerInfoWidget(
-                            name: postModel.userName,
+                            name: widget.postModel.userName,
                             image: MyAppImages.testProfile,
-                            date: postModel.postDate,
+                            date: widget.postModel.postDate,
                           ),
                           SizedBox(height: 20.h),
                           PostDescriptionWidget(
-                            description: postModel.content,
+                            description: widget.postModel.content,
                           ),
                         ],
                       ),
@@ -125,16 +141,16 @@ class ViewPostPage extends StatelessWidget {
                     SizedBox(height: 20.h),
                     HomePadding(
                         child: SkillsWidget(
-                      skillList: postModel.skills,
+                      skillList: widget.postModel.skills,
                     )),
                     SizedBox(height: 20.h),
                     const Divider(),
                     SizedBox(height: 20.h),
                     HomePadding(
                       child: PostConstraintsWidget(
-                        location: postModel.location,
-                        level: postModel.skillLevel,
-                        amount: postModel.price,
+                        location: widget.postModel.location,
+                        level: widget.postModel.skillLevel,
+                        amount: widget.postModel.price,
                         flexible: true,
                       ),
                     ),
@@ -145,29 +161,32 @@ class ViewPostPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      floatingActionButton: postModel.uid !=
-              context.read<AppUserBloc>().appUserModel!.uid
-          ? ChatFloatingActionButton(
-              callBack: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => IndividualChatPage(
-                      currentUid: context.read<AppUserBloc>().appUserModel!.uid,
-                      senderName:
-                          context.read<AppUserBloc>().appUserModel!.userName,
-                      receiverUid: postModel.uid,
-                      receiverName: postModel.userName,
-                      individualMessageBloc: IndividualMessageBloc(),
+        floatingActionButton: appUser
+            ? null
+            : ChatFloatingActionButton(
+                callBack: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => IndividualChatPage(
+                        currentUid:
+                            context.read<AppUserBloc>().appUserModel!.uid,
+                        senderName:
+                            context.read<AppUserBloc>().appUserModel!.userName,
+                        receiverUid: widget.postModel.uid,
+                        receiverName: widget.postModel.userName,
+                        individualMessageBloc: IndividualMessageBloc(),
+                      ),
                     ),
-                  ),
-                );
-              },
-            )
-          : null,
-      bottomNavigationBar: SubmitButton(
-        callback: () {},
+                  );
+                },
+              ),
+        bottomNavigationBar: appUser
+            ? null
+            : SubmitButton(
+              text: "Submit Proposel",
+                callback: () {},
+              ),
       ),
     );
   }

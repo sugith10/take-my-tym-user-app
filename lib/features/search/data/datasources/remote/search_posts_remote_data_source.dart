@@ -12,7 +12,7 @@ class SearchPostsRemoteData {
       final querySnapshot = await FirebaseFirestore.instance
           .collection(type)
           .orderBy('title')
-          .startAt([search]).endAt([search + '\uf8ff']).get();
+          .startAt([search]).endAt(['$search\uf8ff']).get();
       final List<PostModel> posts = querySnapshot.docs
           .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
           .toList();

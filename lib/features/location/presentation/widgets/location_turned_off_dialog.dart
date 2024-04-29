@@ -22,7 +22,7 @@ final class LocationTurnedOff {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CloseIconButton(
-                callback: () {
+                onPressed: () {
                   enableLocation();
                 },
                 child: Padding(
@@ -34,7 +34,7 @@ final class LocationTurnedOff {
                 ),
               ),
               CloseIconButton(
-                callback: () {
+                onPressed: () {
                   cancel();
                 },
                 child: Padding(

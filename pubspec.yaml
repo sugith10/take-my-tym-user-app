@@ -18,7 +18,6 @@ dependencies:
   equatable: ^2.0.5
   image_picker: ^1.0.7
   permission_handler:
-  emoji_picker_flutter: ^2.1.1
   back_button_interceptor: ^5.0.2
   url_launcher: ^6.2.5
   path_provider: ^2.1.2
@@ -44,6 +43,7 @@ dependencies:
   animated_toggle_switch: ^0.8.2
   shimmer_pro: ^0.0.6
   button_animations: ^2.0.0+3
+  timeline_tile: ^2.0.0
   
 
 dev_dependencies:

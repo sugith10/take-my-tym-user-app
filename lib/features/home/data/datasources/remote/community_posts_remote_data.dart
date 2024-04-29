@@ -1,9 +1,6 @@
-import 'dart:developer';
-import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:geolocator/geolocator.dart';
 
 class CommunityPostsRemoteData {
   Future<List<PostModel>> latestbuyTymPosts() async {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/utils/app_responsive.dart';
+import 'package:take_my_tym/core/widgets/app_card.dart';
 
 class PostedContentWidget extends StatelessWidget {
   final String? image;
@@ -24,71 +23,51 @@ class PostedContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        voidCallback();
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: MyAppPadding.homePadding,
-        ),
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: MyAppDarkColor.instance.secondaryBackground,
-            borderRadius: BorderRadius.circular(
-              MyAppRadius.borderRadius,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(
-              MyAppRadius.borderRadius,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return AppCard(
+      voidCallback: voidCallback,
+      width: width,
+      height: height,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (image != null)
+            Column(
               children: [
-                if (image != null)
-                  Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          MyAppRadius.borderRadius,
-                        ),
-                        child: Image.asset(
-                          image!,
-                          fit: BoxFit.fill,
-                          width: MediaQuery.of(context).size.width,
-                          height: height,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    MyAppRadius.borderRadius,
                   ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    'Service Type: ${postModel.workType}',
-                    style: Theme.of(context).textTheme.bodySmall,
+                  child: Image.asset(
+                    image!,
+                    fit: BoxFit.fill,
+                    width: MediaQuery.of(context).size.width,
+                    height: height,
                   ),
                 ),
-                SizedBox(height: 10.h),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: _TitleText(title: postModel.title),
-                ),
-                if (image == null)
-                  Column(
-                    children: [
-                      SizedBox(height: 15.h),
-                      _ContentText(content: postModel.content),
-                    ],
-                  ),
-                SizedBox(height: 10.h),
+                const SizedBox(height: 20),
               ],
             ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'Service Type: ${postModel.workType}',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
-        ),
+          SizedBox(height: 10.h),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: _TitleText(title: postModel.title),
+          ),
+          if (image == null)
+            Column(
+              children: [
+                SizedBox(height: 15.h),
+                _ContentText(content: postModel.content),
+              ],
+            ),
+          SizedBox(height: 10.h),
+        ],
       ),
     );
   }

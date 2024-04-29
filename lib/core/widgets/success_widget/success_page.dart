@@ -104,7 +104,7 @@ class _SuccessPageState extends State<SuccessPage> {
                       ),
                       const SizedBox(height: 40),
                       CloseIconButton(
-                        callback: () {
+                        onPressed: () {
                           Navigator.pushAndRemoveUntil(
                             context,
                             NavigationMenu.route(),

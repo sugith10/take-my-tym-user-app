@@ -4,8 +4,10 @@ import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
 
 class TermsAndConditons extends StatelessWidget {
   final int delay;
+  final int duration;
   const TermsAndConditons({
     this.delay = 800,
+    this.duration = 900,
     super.key,
   });
 
@@ -15,6 +17,7 @@ class TermsAndConditons extends StatelessWidget {
       children: [
         NavigationText(
           delay: delay,
+          duration: duration,
           leadingText: "By proceeding, I accept TakeMyTym's",
           buttonText: 'T&C',
           function: () {
@@ -23,6 +26,7 @@ class TermsAndConditons extends StatelessWidget {
         ),
         NavigationText(
           delay: delay,
+          duration: duration,
           leadingText: "and",
           buttonText: 'Privacy Policy.',
           function: () {

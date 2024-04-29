@@ -32,7 +32,7 @@ class AppInfoDialog {
                 ),
                 SizedBox(height: 20.h),
                 CloseIconButton(
-                  callback: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Icon(Icons.close_rounded),

@@ -36,7 +36,7 @@ class AppDialog {
                 ),
                 const Spacer(),
                 _MessageButton(
-                  action: 'CANCEL',
+                  action: 'Cancel',
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
                   callback: () {

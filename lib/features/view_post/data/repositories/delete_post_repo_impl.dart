@@ -2,7 +2,7 @@ import 'package:take_my_tym/features/view_post/data/datasources/delete_post_data
 import 'package:take_my_tym/features/view_post/domain/repositories/delete_post_repo.dart';
 
 final class DeletePostRepoImp implements DeletePostRepo {
-  DeletePostRemoteData _deletePostRemoteData;
+  final DeletePostRemoteData _deletePostRemoteData;
   DeletePostRepoImp(this._deletePostRemoteData);
 
   @override

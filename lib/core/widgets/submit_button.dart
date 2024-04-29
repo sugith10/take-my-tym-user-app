@@ -3,8 +3,14 @@ import 'package:take_my_tym/core/utils/app_padding.dart';
 
 class SubmitButton extends StatelessWidget {
   final VoidCallback callback;
+  final String text;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
   const SubmitButton({
     required this.callback,
+    required this.text,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   });
 
@@ -16,7 +22,11 @@ class SubmitButton extends StatelessWidget {
         onPressed: () {
           callback();
         },
-        child: const Text('Submit Proposel'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+        ),
+        child: Text(text,),
       ),
     );
   }

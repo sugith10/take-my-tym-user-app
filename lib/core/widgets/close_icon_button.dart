@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class CloseIconButton extends StatelessWidget {
-  final VoidCallback callback;
+  final Function onPressed;
   final  Widget child;
   const CloseIconButton({
     required this.child,
-    required this.callback,
+    required this.onPressed,
     super.key,
   });
 
@@ -20,7 +20,7 @@ class CloseIconButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-       callback();
+       onPressed();
       },
       icon: child,
     );

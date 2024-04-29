@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/features/contracts/presentation/widgets/transaction_dialog.dart';
+import 'package:take_my_tym/features/control_panel/presentation/widgets/transaction_dialog.dart';
 
 class TransactionTile extends StatelessWidget {
   final String amount;

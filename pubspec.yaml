@@ -64,6 +64,7 @@ flutter:
     - asset/img/snackbar/
     - asset/img/ad/
     - assets/audio/
+    - assets/svg/
 
   fonts:
     - family: Poppins

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
@@ -44,27 +43,28 @@ class ProposalsTab extends StatelessWidget {
   }
 
   void _showBottomSheet(BuildContext context) {
-    AppBottomSheet.show(context: context, children: [
-      Divider(),
-      Padding(
-        padding: const EdgeInsets.only(top: 25),
-        child: Text(
+    AppBottomSheet.show(
+      context: context,
+      children: [
+        Text(
           'Proposal status',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-      ),
-      const TimeLineTileWidget(
-        isFirst: true,
-        isLast: false,
-        isPast: true,
-        text: 'Succefully submited',
-      ),
-      const TimeLineTileWidget(
-        isFirst: false,
-        isLast: true,
-        isPast: false,
-        text: "Waiting for confirmation",
-      ),
-    ]);
+        SizedBox(height: 2.h),
+        const TimeLineTileWidget(
+          isFirst: true,
+          isLast: false,
+          isPast: true,
+          text: 'Succefully submited',
+        ),
+        const TimeLineTileWidget(
+          isFirst: false,
+          isLast: true,
+          isPast: false,
+          text: "Waiting for confirmation",
+        ),
+        SizedBox(height: 8.h),
+      ],
+    );
   }
 }

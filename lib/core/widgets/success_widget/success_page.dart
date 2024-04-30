@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_audio.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_sound_player.dart';

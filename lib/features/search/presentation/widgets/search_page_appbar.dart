@@ -68,12 +68,9 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
     AppBottomSheet.show(
       context: context,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 25),
-          child: Text(
-            'Select Post Type',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
+        Text(
+          'Select Post Type',
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 30),

@@ -26,6 +26,7 @@ interface class AppColor {
   final Color userChatColor;
   final Color recipientChatColor;
   final Color success;
+  final Color bottomSheet;
   AppColor({
     required this.background,
     required this.softBackground,
@@ -52,6 +53,7 @@ interface class AppColor {
     required this.userChatColor,
     required this.recipientChatColor,
     required this.success,
+    required this.bottomSheet,
   });
 }
 
@@ -90,5 +92,6 @@ final class MyAppDarkColor extends AppColor {
           userChatColor: const Color.fromRGBO(129, 199, 132, 1),
           recipientChatColor: const Color.fromARGB(255, 30, 110, 186),
           success: const Color.fromRGBO(76, 175, 80, 1),
+          bottomSheet: const Color(0xFF2C2C2C),
         );
 }

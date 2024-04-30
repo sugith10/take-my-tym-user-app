@@ -35,14 +35,7 @@ final class MyAppImages {
 }
 
 
-final class MyAppSVG{
-  static const welcomeGraphics = 'asset/img/welcome.svg';
-}
 
-final class MyAppAudio{
-  static const success = 'assets/audio/succession.mp3';
-}
 
-final class MyAppFonst{
-  static const poppins = "Poppins";
-}
+
+

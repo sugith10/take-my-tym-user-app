@@ -4,12 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/features/checkout/presentation/pages/submit_proposel_page.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 import 'package:take_my_tym/features/view_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
@@ -184,10 +187,78 @@ class _ViewPostPageState extends State<ViewPostPage> {
         bottomNavigationBar: appUser
             ? null
             : SubmitButton(
-              text: "Submit Proposel",
-                callback: () {},
+                text: "Submit Proposel",
+                callback: () {
+                  _showBottomSheet(context);
+                },
               ),
       ),
+    );
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    AppBottomSheet.show(
+      context: context,
+      header: false,
+      children: [
+        SizedBox(height: 20.h),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Great! 🎉",
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Thanks for showing your intrest...",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ),
+        SizedBox(height: 16.h),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Before you forward, Please confirm that you read the description and make sure you are fit for the role.",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.white,
+                ),
+          ),
+        ),
+        SizedBox(height: 15.h),
+        Row(
+          children: [
+            Expanded(
+              child: SubmitButton(
+                callback: () {
+                  Navigator.push(context, SubmitProposelPage.route());
+                },
+                text: 'Continue',
+                backgroundColor: MyAppDarkColor.instance.success,
+                foregroundColor: MyAppDarkColor.instance.primaryText,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: SubmitButton(
+                callback: () {
+                  Navigator.pop(context);
+                },
+                text: 'Cancel',
+                backgroundColor: MyAppDarkColor.instance.danger,
+                foregroundColor: MyAppDarkColor.instance.primaryText,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 15.h),
+      ],
     );
   }
 }
@@ -214,11 +285,12 @@ class ViewPostAppBar extends StatelessWidget {
             ? PopupMenuButton(
                 itemBuilder: (context) => [
                   const PopupMenuItem(
-                      value: ("Update"),
-                      child: PopupMenuItemChildWidget(
-                        value: 'Update',
-                        icon: IconlyLight.edit,
-                      )),
+                    value: ("Update"),
+                    child: PopupMenuItemChildWidget(
+                      value: 'Update',
+                      icon: IconlyLight.edit,
+                    ),
+                  ),
                   const PopupMenuItem(
                     value: ("Delete"),
                     child: PopupMenuItemChildWidget(

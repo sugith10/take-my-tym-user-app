@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_font.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -182,7 +182,7 @@ final class MyAppDarkTheme {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      backgroundColor: _color.fillColor.withOpacity(0.8),
+      backgroundColor: _color.bottomSheet,
       shadowColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
     ),

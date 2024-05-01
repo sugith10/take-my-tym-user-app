@@ -11,9 +11,9 @@ final class SignOutRemoteData {
       });
       log('Signed out successfully!');
     } catch (e) {
-      throw const MyAppException(
-        title: 'Something Went Wrong',
-        message: 'Google auth went wrong',
+      throw const AppException(
+        alert: 'Something Went Wrong',
+        details: 'Google auth went wrong',
       );
     }
   }

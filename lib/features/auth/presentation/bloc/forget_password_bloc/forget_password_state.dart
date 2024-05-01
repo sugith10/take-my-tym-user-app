@@ -7,9 +7,8 @@ sealed class ForgetPasswordState {
 final class ForgetPasswordInitial extends ForgetPasswordState {}
 
 final class ForgetPasswordFailState extends ForgetPasswordState {
-  final String message;
-  final String description;
-  ForgetPasswordFailState({required this.message, required this.description});
+final AppErrorMsg error;
+  ForgetPasswordFailState({required this.error,});
 }
 
 final class ForgetPasswordLoadingState extends ForgetPasswordState {}

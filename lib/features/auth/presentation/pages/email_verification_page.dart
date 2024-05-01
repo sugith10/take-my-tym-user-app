@@ -32,7 +32,7 @@ class EmailVerificationPage extends StatelessWidget {
       listener: (context, state) {
         log(state.toString());
         if (state is EmailSendSuccessState) {
-          SnackBarMessenger().successSnackBar(
+          AppSnackBar().successSnackBar(
             context: context,
             title: "Email Send Succesfully",
             message:
@@ -40,19 +40,16 @@ class EmailVerificationPage extends StatelessWidget {
           );
         }
         if (state is VerificationFailedState) {
-          SnackBarMessenger().showSnackBar(
+          AppSnackBar.failSnackBar (
             context: context,
-            errorMessage: state.title,
-            errorDescription: state.message,
+           error: state.error
           );
         }
 
         if (state is UserNotVerifiedState) {
-          SnackBarMessenger().showSnackBar(
+          AppSnackBar.failSnackBar (
             context: context,
-            errorMessage: "The user Not Verified",
-            errorDescription:
-                "We send a email verifcation to user given email id. Please verify the email.",
+           error: state.error,
           );
         }
 

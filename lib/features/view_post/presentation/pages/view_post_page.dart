@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
@@ -12,7 +12,7 @@ import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/checkout/presentation/pages/submit_proposel_page.dart';
+import 'package:take_my_tym/features/checkout/presentation/pages/proposel_page.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/pages/individual_chat_page.dart';
 import 'package:take_my_tym/features/view_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
@@ -73,11 +73,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
           ShowLoadingDialog().showLoadingIndicator(context);
         }
         if (state is DeletPostFailState) {
-          SnackBarMessenger().showSnackBar(
-            context: context,
-            errorMessage: state.message,
-            errorDescription: state.description,
-          );
+          AppSnackBar.failSnackBar(context: context);
         }
       },
       child: Scaffold(

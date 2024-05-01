@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/create_post/domain/usecases/update_post_usecase.dart';
 
@@ -33,20 +34,22 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
         title = event.title.trim();
         content = event.content.trim();
         if (title!.length <= 3) {
+          final AppErrorMsg error = AppErrorMsg(
+              title: 'Give proper title',
+              content:
+                  'Gave a proper title, Other wise its harder for other to understand it');
           emit(
-            UpdateFirstFailState(
-              message: 'Give proper title',
-              description:
-                  'Gave a proper title, Other wise its harder for other to understand it',
-            ),
+            UpdateFirstFailState(error: error),
           );
           return;
         } else if (content!.length <= 10) {
+          final AppErrorMsg error = AppErrorMsg(
+              title: 'Give proper decription',
+              content:
+                  'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
             UpdateFirstFailState(
-              message: 'Give proper decription',
-              description:
-                  'Gave a proper decription, Other wise its harder for other to understand it',
+              error: error,
             ),
           );
           return;
@@ -129,30 +132,36 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
               await updatePostUseCase
                   .updateBuyTymPost(
                       postModel: PostModel(
-                          postId: postId,
-                          tymType: tymType!,
-                          uid: uid!,
-                          workType: workType!,
-                          title: title!,
-                          content: content!,
-                          userName: userName!,
-                          postDate: postDate!,
-                          location: location!,
-                          skillLevel: experience!,
-                          price: remuneration!,
-                          skills: skills!,
-                          latitude: event.latitude,
-                          longitude: event.longitude,
-                          ))
+                postId: postId,
+                tymType: tymType!,
+                uid: uid!,
+                workType: workType!,
+                title: title!,
+                content: content!,
+                userName: userName!,
+                postDate: postDate!,
+                location: location!,
+                skillLevel: experience!,
+                price: remuneration!,
+                skills: skills!,
+                latitude: event.latitude,
+                longitude: event.longitude,
+              ))
                   .then((value) {
                 emit(UpdatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
-            } on MyAppException catch (e) {
-              emit(UpdatePostFailState(
-                  message: e.toString(), description: e.toString()));
+            } on AppException catch (e) {
+              emit(
+                UpdatePostFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
             } catch (e) {
-              emit(UpdatePostFailState(
-                  message: e.toString(), description: e.toString()));
+              emit(
+                UpdatePostFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
             }
           } else if (tymType != null && tymType == false) {
             try {
@@ -178,12 +187,14 @@ class UpdatePostBloc extends Bloc<UpdatePostEvent, UpdatePostState> {
                   .then((value) {
                 emit(UpdatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
-            } on MyAppException catch (e) {
-              emit(UpdatePostFailState(
-                  message: e.toString(), description: e.toString()));
+            } on AppException catch (e) {
+              emit(UpdatePostFailState(error: AppErrorMsg()));
             } catch (e) {
-              emit(UpdatePostFailState(
-                  message: e.toString(), description: e.toString()));
+              emit(
+                UpdatePostFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
             }
           } else {
             log("something went wrong come to bloc line 177");

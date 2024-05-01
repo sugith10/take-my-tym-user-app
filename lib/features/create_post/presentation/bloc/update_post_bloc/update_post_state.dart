@@ -11,10 +11,9 @@ final class UpdatePostLoadingState extends UpdatePostState {}
 final class UpdateFirstSuccessState extends UpdatePostState {}
 
 final class UpdateFirstFailState extends UpdatePostState {
-  final String message;
-  final String description;
+final AppErrorMsg error;
 
-  UpdateFirstFailState({required this.description, required this.message});
+  UpdateFirstFailState({required this.error});
 }
 
 final class UpdateSecondFailState extends UpdatePostState {
@@ -34,8 +33,7 @@ final class UpdatePostSuccessState extends UpdatePostState {
 }
 
 final class UpdatePostFailState extends UpdatePostState {
-  final String message;
-  final String description;
+final AppErrorMsg error;
 
-  UpdatePostFailState({required this.message, required this.description});
+  UpdatePostFailState({required this.error});
 }

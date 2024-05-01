@@ -20,18 +20,19 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
               .userSignOutFromLocal();
           emit(UserSignOutSuccessState());
         });
-      } on MyAppException catch (e) {
+      } on AppException catch (e) {
+        final AppErrorMsg error = AppErrorMsg(
+          title: e.alert,
+          content: e.details,
+        );
         emit(
-          UserSignOutFailState(
-            title: e.title,
-            message: e.message,
-          ),
+          UserSignOutFailState(error: error),
         );
       } catch (e) {
+      
         emit(
-          const UserSignOutFailState(
-            title: MyAppErrorMsg.errorMessage,
-            message: MyAppErrorMsg.errorDescription,
+          UserSignOutFailState(
+            error: AppErrorMsg(),
           ),
         );
       }

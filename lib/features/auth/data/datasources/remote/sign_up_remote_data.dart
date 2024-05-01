@@ -18,9 +18,9 @@ final class SignUpRemoteData {
       final user = credential.user;
 
       if (user == null) {
-        throw const MyAppException(
-          title: 'Sign Up Failed',
-          message: 'An error occurred during user creation. Please try again.',
+        throw const AppException(
+          alert: 'Sign Up Failed',
+          details: 'An error occurred during user creation. Please try again.',
         );
       }
 
@@ -50,33 +50,33 @@ final class SignUpRemoteData {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
-        throw const MyAppException(
-          title: 'Network Error',
-          message: "Please check your internet connection and try again.",
+        throw const AppException(
+          alert: 'Network Error',
+          details: "Please check your internet connection and try again.",
         );
       } else if (e.code == 'weak-password') {
         log('The password provided is too weak.');
-        throw const MyAppException(
-            title: 'user-not-found',
-            message: 'The password provided is too weak.');
+        throw const AppException(
+            alert: 'user-not-found',
+            details: 'The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         log('The account already exists for that email.');
-        throw const MyAppException(
-          title: 'Account Already Exists',
-          message: 'An account with this email already exists.',
+        throw const AppException(
+          alert: 'Account Already Exists',
+          details: 'An account with this email already exists.',
         );
       } else {
         log('excpetion occured');
         log(e.toString());
-        throw const MyAppException(
-            title: 'check firebase exception',
-            message: 'Check RemoteDataSource');
+        throw const AppException(
+            alert: 'check firebase exception',
+            details: 'Check RemoteDataSource');
       }
     } on Exception catch (e) {
       log(e.toString());
-      throw const MyAppException(
-        title: 'Something went wrong',
-        message: 'Check RemoteDataSource',
+      throw const AppException(
+        alert: 'Something went wrong',
+        details: 'Check RemoteDataSource',
       );
     }
   }

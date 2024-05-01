@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/social_auth_bloc.dart';
@@ -56,20 +56,18 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                   bloc: _bloc,
                   listener: (context, state) {
                     if (state is SocialAuthFailState) {
-                      SnackBarMessenger().showSnackBar(
+                      AppSnackBar.failSnackBar(
                         context: context,
-                        errorMessage: state.errorMessage,
-                        errorDescription: state.errorDescription,
+                        error: state.error,
                       );
                     }
                     if (state is SocialAuthSuccessState) {
-                    
                       if (state.profileSetupComp) {
-                          context.read<AppUserBloc>().add(
-                            UpdateAppUserModelEvent(
-                              appUserModel: state.userModel,
-                            ),
-                          );
+                        context.read<AppUserBloc>().add(
+                              UpdateAppUserModelEvent(
+                                appUserModel: state.userModel,
+                              ),
+                            );
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
@@ -79,7 +77,8 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => ProfileSetupPage(userModel: state.userModel)),
+                                builder: (_) => ProfileSetupPage(
+                                    userModel: state.userModel)),
                             (route) => false);
                       }
                     }

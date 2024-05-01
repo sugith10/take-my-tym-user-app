@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
@@ -15,7 +15,8 @@ import 'package:take_my_tym/features/auth/presentation/widgets/account_info_cont
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
 
 class AccountInfoPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context)=>  const AccountInfoPage());
+  static route() =>
+      MaterialPageRoute(builder: (context) => const AccountInfoPage());
   const AccountInfoPage({super.key});
 
   @override
@@ -23,7 +24,6 @@ class AccountInfoPage extends StatefulWidget {
 }
 
 class _AccountInfoPageState extends State<AccountInfoPage> {
-  
   @override
   Widget build(BuildContext context) {
     AppUserModel userModel = context.read<AppUserBloc>().appUserModel!;
@@ -51,18 +51,16 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               title: "Phone",
               subtitle: "7907603014",
             ),
-             AccountInfoContentWidget(
+            AccountInfoContentWidget(
               title: "Location",
               subtitle: userModel.location!,
             ),
-            BlocListener<SignOutBloc,SignOutState>(
-         
+            BlocListener<SignOutBloc, SignOutState>(
               listener: (context, state) {
                 if (state is UserSignOutFailState) {
-                  SnackBarMessenger().showSnackBar(
+                  AppSnackBar.failSnackBar(
                     context: context,
-                    errorMessage: state.title,
-                    errorDescription: state.message,
+                    error: state.error,
                   );
                 }
                 if (state is UserSignOutLoadingState) {

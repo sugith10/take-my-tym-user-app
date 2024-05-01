@@ -82,10 +82,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               }
               if (state is CreateSecondFailState) {
                 Navigator.pop(context);
-                SnackBarMessenger().showSnackBar(
+                AppSnackBar.failSnackBar(
                   context: context,
-                  errorMessage: state.message,
-                  errorDescription: state.description,
+                  error: state.error,
                 );
               }
               if (state is CreatePostSuccessState) {
@@ -109,10 +108,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               ShowLoadingDialog().showLoadingIndicator(context);
             } else if (state is UpdatePostFailState) {
               Navigator.pop(context);
-              SnackBarMessenger().showSnackBar(
+              AppSnackBar.failSnackBar(
                 context: context,
-                errorMessage: state.message,
-                errorDescription: state.description,
+                error: state.error,
               );
             } else if (state is UpdatePostSuccessState) {
               state.refreshType
@@ -168,19 +166,10 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                             );
                       }
                     } else {
-                      SnackBarMessenger().showSnackBar(
-                        context: context,
-                        errorMessage: "Location is Missing",
-                        errorDescription: "Please Provide a location.",
-                      );
+                      AppSnackBar.failSnackBar(context: context);
                     }
                   } else {
-                    SnackBarMessenger().showSnackBar(
-                      context: context,
-                      errorMessage: "Required Skills Missing",
-                      errorDescription:
-                          "Please add at least one item in the Skills and Expertise section.",
-                    );
+                    AppSnackBar.failSnackBar(context: context);
                   }
                 }
               },

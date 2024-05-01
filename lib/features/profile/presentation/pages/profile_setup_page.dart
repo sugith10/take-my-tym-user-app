@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
@@ -73,10 +73,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           TakeyMyTymDailog().show(context: context);
         }
         if (state is UpdataProfileFailState) {
-          SnackBarMessenger().showSnackBar(
-              context: context,
-              errorMessage: "Error",
-              errorDescription: "Error");
+          AppSnackBar.failSnackBar(context: context);
         }
       },
       child: Scaffold(
@@ -171,11 +168,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                               ),
                             );
                           } else {
-                            SnackBarMessenger().showSnackBar(
-                              context: context,
-                              errorMessage: "Please select location...",
-                              errorDescription: "Please select location",
-                            );
+                            AppSnackBar.failSnackBar(context: context);
                           }
                         },
                       ),

@@ -25,7 +25,7 @@ final class LocalUserData {
         return AppUserModel.fromMap(userDataMap);
       }
     } catch (e) {
-      throw MyAppException(message: e.toString(), title: e.toString());
+      throw AppException(details: e.toString(), alert: e.toString());
     }
     return null;
   }
@@ -37,7 +37,7 @@ final class LocalUserData {
       await userBox.clear();
       userBox.close();
     } catch (e) {
-      throw MyAppException(message: e.toString(), title: e.toString());
+      throw AppException(details: e.toString(), alert: e.toString());
     }
   }
 }

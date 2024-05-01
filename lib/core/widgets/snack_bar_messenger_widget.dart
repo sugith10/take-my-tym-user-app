@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
-final class SnackBarMessenger {
-  showSnackBar({
+final class AppSnackBar {
+   static failSnackBar({
     required BuildContext context,
-    required String errorMessage,
-    required String errorDescription,
+     AppErrorMsg? error,
   }) {
+    error = error ?? AppErrorMsg();
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: _SnackBarContentWidget(
-          message: errorMessage,
-          description: errorDescription,
+          message: error.title,
+          description: error.title,
           backgroundColor: const Color(0xFFC72c41),
           assetColor: const Color(0xFF801336),
           icon: MyAppImages.snackBarFail,

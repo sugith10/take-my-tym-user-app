@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -23,7 +24,6 @@ class CommunityPostsBloc
 
         final List<PostModel> onsitePosts =
             await communityPostsUseCase.onsiteBuyTymPosts();
-        log("remote psost: $posts");
 
         await communityPostsUseCase.latestbuyTymPosts().then((value) => emit(
             CommunityPostsSuccessState(
@@ -40,7 +40,7 @@ class CommunityPostsBloc
             await communityPostsUseCase.remoteBuyTymPosts();
         final List<PostModel> onsitePosts =
             await communityPostsUseCase.onsiteBuyTymPosts();
-        log("remote psost: $posts");
+
 //TODO:fix error
         await communityPostsUseCase.sellTymPosts().then(
               (value) => emit(

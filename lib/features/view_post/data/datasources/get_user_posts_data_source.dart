@@ -32,16 +32,16 @@ final class GetUserPostsRemoteData {
 
             return buyTymPosts;
           } else {
-            throw const MyAppException();
+            throw const AppException();
           }
         } else {
-          throw const MyAppException();
+          throw const AppException();
         }
       } else {
-        throw const MyAppException();
+        throw const AppException();
       }
     } catch (e) {
-      throw MyAppException(title: e.toString(), message: e.toString());
+      throw AppException(alert: e.toString(), details: e.toString());
     }
   }
 
@@ -82,16 +82,16 @@ final class GetUserPostsRemoteData {
 
             return sellTymPosts;
           } else {
-            throw const MyAppException();
+            throw const AppException();
           }
         } else {
-          throw const MyAppException();
+          throw const AppException();
         }
       } else {
-        throw const MyAppException();
+        throw const AppException();
       }
     } catch (e) {
-      throw MyAppException(message: e.toString(), title: e.toString());
+      throw AppException(alert: e.toString(), details: e.toString());
     }
   }
 }

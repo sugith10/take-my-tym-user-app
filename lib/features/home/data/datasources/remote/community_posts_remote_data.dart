@@ -18,9 +18,9 @@ class CommunityPostsRemoteData {
       return result;
     } catch (e) {
       print(e.toString());
-      throw MyAppException(
-        title: toString(),
-        message: toString(),
+      throw AppException(
+        alert: toString(),
+        details: toString(),
       );
     }
   }
@@ -45,20 +45,17 @@ class CommunityPostsRemoteData {
       final List<PostModel> result = snapshot.docs
           .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
           .toList();
-          print(result);
+      print(result);
 
       return result;
     } catch (e) {
       print(e.toString());
-      throw MyAppException(
-        title: 'Error fetching nearby buyTymPosts',
-        message: e.toString(),
+      throw AppException(
+        alert: 'Error fetching nearby buyTymPosts',
+        details: e.toString(),
       );
     }
   }
-
-
-
 
   Future<List<PostModel>> sellTymPosts() async {
     try {
@@ -76,60 +73,58 @@ class CommunityPostsRemoteData {
       return result;
     } catch (e) {
       print(e.toString());
-      throw MyAppException(
-        title: toString(),
-        message: toString(),
+      throw AppException(
+        alert: toString(),
+        details: toString(),
       );
     }
   }
 
   Future<List<PostModel>> getRemoteBuyTymPosts() async {
-  try {
-    final query = FirebaseFirestore.instance
-        .collection('buyTymPost')
-        .where('workType', isEqualTo: 'Remote')
-        .orderBy("postDate", descending: true);
+    try {
+      final query = FirebaseFirestore.instance
+          .collection('buyTymPost')
+          .where('workType', isEqualTo: 'Remote')
+          .orderBy("postDate", descending: true);
 
-    final snapshot = await query.get();
+      final snapshot = await query.get();
 
-    final List<PostModel> result = snapshot.docs
-        .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
-        .toList();
+      final List<PostModel> result = snapshot.docs
+          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
+          .toList();
 
-    return result;
-  } catch (e) {
-    print(e.toString());
-    throw MyAppException(
-      title: 'Error fetching remote buyTymPosts',
-      message: e.toString(),
-    );
+      return result;
+    } catch (e) {
+      print(e.toString());
+      throw AppException(
+        alert: 'Error fetching remote buyTymPosts',
+        details: e.toString(),
+      );
+    }
   }
-}
 
- Future<List<PostModel>> getOnsiteBuyTymPosts() async {
-  try {
-    final query = FirebaseFirestore.instance
-        .collection('buyTymPost')
-        .where('workType', isEqualTo: 'On-ite')
-        .orderBy("postDate", descending: true);
+  Future<List<PostModel>> getOnsiteBuyTymPosts() async {
+    try {
+      final query = FirebaseFirestore.instance
+          .collection('buyTymPost')
+          .where('workType', isEqualTo: 'On-ite')
+          .orderBy("postDate", descending: true);
 
-    final snapshot = await query.get();
+      final snapshot = await query.get();
 
-    final List<PostModel> result = snapshot.docs
-        .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
-        .toList();
+      final List<PostModel> result = snapshot.docs
+          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
+          .toList();
 
-    return result;
-  } catch (e) {
-    print(e.toString());
-    throw MyAppException(
-      title: 'Error fetching remote buyTymPosts',
-      message: e.toString(),
-    );
+      return result;
+    } catch (e) {
+      print(e.toString());
+      throw AppException(
+        alert: 'Error fetching remote buyTymPosts',
+        details: e.toString(),
+      );
+    }
   }
-}
-
-
 }
 
 class Distance {

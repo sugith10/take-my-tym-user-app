@@ -13,9 +13,9 @@ final class SocailAuthRemoteData {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
-        throw const MyAppException(
-          title: 'Sign In Cancelled',
-          message: 'The user cancelled the Google sign-in process.',
+        throw const AppException(
+          alert: 'Sign In Cancelled',
+          details: 'The user cancelled the Google sign-in process.',
         );
       }
 
@@ -54,21 +54,21 @@ final class SocailAuthRemoteData {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'network-request-failed') {
-        throw const MyAppException(
-            title: 'Network Error',
-            message: "Please check your internet connection and try again.");
+        throw const AppException(
+            alert: 'Network Error',
+            details: "Please check your internet connection and try again.");
       } else {
-        throw const MyAppException(
-          title: 'Authentication Failed',
-          message:
+        throw const AppException(
+          alert: 'Authentication Failed',
+          details:
               'Failed to authenticate with Google. Please try again later.',
         );
       }
     } on Exception catch (e) {
       log(e.toString());
-      throw const MyAppException(
-        title: 'Authentication Failed',
-        message: 'Failed to authenticate with Google. Please try again later.',
+      throw const AppException(
+        alert: 'Authentication Failed',
+        details: 'Failed to authenticate with Google. Please try again later.',
       );
     }
   }

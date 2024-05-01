@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  logger: ^2.2.0
   flutter_screenutil: ^5.9.0
   get_it: ^7.6.7
   flutter_bloc: ^8.1.4

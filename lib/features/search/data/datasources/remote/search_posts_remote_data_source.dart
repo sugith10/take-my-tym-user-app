@@ -19,7 +19,7 @@ class SearchPostsRemoteData {
       return posts;
     } catch (e) {
       log(e.toString());
-      throw const MyAppException();
+      throw const AppException();
     }
   }
 }

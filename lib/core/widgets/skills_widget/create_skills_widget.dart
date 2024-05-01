@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
@@ -43,11 +44,13 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
                 final state = widget.createSkillBloc.state;
                 if (state is UpdateSkillSuccessState) {
                   if (state.skills.length >= 5) {
-                    SnackBarMessenger().showSnackBar(
+                    AppSnackBar.failSnackBar(
                       context: context,
-                      errorMessage: "Exceeded the limit",
-                      errorDescription:
-                          "Only five items can be added in the skills section.",
+                      
+                      //TODO:do proper App Error 
+                      // errorMessage: "Exceeded the limit",
+                      // errorDescription:
+                      //     "Only five items can be added in the skills section.",
                     );
                   } else {
                     widget.createSkillBloc.add(

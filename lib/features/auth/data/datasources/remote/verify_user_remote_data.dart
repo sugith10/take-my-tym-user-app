@@ -11,18 +11,18 @@ final class VerifyUserRemote {
       return;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw const MyAppException(
-          title: "The user does not exist.",
-          message: "Please recheck email.",
+        throw const AppException(
+          alert: "The user does not exist.",
+          details: "Please recheck email.",
         );
       } else {
-        throw const MyAppException(
-          title: "The user does not exist.",
-          message: "Please recheck email.",
+        throw const AppException(
+          alert: "The user does not exist.",
+          details: "Please recheck email.",
         );
       }
     } catch (e) {
-      throw const MyAppException();
+      throw const AppException();
     }
   }
 
@@ -41,7 +41,7 @@ final class VerifyUserRemote {
       return verified;
     } catch (e) {
       log(e.toString());
-      throw MyAppException(title: e.toString(), message: e.toString());
+      throw AppException(alert: e.toString(), details: e.toString());
     }
   }
 }

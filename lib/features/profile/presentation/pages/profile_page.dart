@@ -6,7 +6,7 @@ import 'package:take_my_tym/features/profile/presentation/pages/edit_profile.dar
 import 'package:take_my_tym/features/profile/presentation/widgets/about_widget.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/profile_card_widget.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_options_widget.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/profile_posts/profile_posts_widget.dart';
+import 'package:take_my_tym/features/profile/presentation/widgets/profile_posts_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

@@ -43,7 +43,7 @@ final class UpdateProfileRemote {
       }
     } catch (e) {
       log(e.toString());
-      throw (MyAppException(message: e.toString()));
+      throw (AppException(alert: e.toString()));
     }
   }
 }

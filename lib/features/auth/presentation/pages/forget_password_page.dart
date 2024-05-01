@@ -42,10 +42,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
           Navigator.pop(context);
         } else if (state is ForgetPasswordFailState) {
           Navigator.pop(context);
-          SnackBarMessenger().showSnackBar(
+          AppSnackBar.  failSnackBar(
             context: context,
-            errorMessage: state.message,
-            errorDescription: state.description,
+            error:state.error
           );
         }
       },

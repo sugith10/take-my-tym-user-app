@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
 import 'package:take_my_tym/core/utils/post_types.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
@@ -88,10 +88,9 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           bloc: _bloc,
           listener: (context, state) {
             if (state is CreateFirstFailState) {
-              SnackBarMessenger().showSnackBar(
+              AppSnackBar.failSnackBar  (
                 context: context,
-                errorMessage: state.message,
-                errorDescription: state.description,
+              error: state.error
               );
             }
             if (state is CreateFirstSuccessState) {
@@ -108,10 +107,8 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
         BlocListener<UpdatePostBloc, UpdatePostState>(
           listener: (context, state) {
             if (state is UpdateFirstFailState) {
-              SnackBarMessenger().showSnackBar(
-                context: context,
-                errorMessage: state.message,
-                errorDescription: state.description,
+              AppSnackBar.failSnackBar(context: context,
+              error: state.error
               );
             }
             if (state is UpdateFirstSuccessState) {

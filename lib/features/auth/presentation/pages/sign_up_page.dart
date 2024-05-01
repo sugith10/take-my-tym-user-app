@@ -66,10 +66,9 @@ class _SignUpPageState extends State<SignUpPage> {
           }
           if (state is SignUpFailState) {
             Navigator.pop(context);
-            SnackBarMessenger().showSnackBar(
+            AppSnackBar.failSnackBar(
               context: context,
-              errorDescription: state.message,
-              errorMessage: state.title,
+              error: state.error,
             );
           }
         },

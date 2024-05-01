@@ -24,15 +24,15 @@ final class LocationPositionRemote {
           double lng = decodedResponse['result']['geometry']['location']['lng'];
           return {'latitude': lat, 'longitude': lng};
         } else {
-          throw MyAppException(
-              message:
+          throw AppException(
+              details:
                   'Failed to fetch place details: ${decodedResponse['error_message']}');
         }
       } else {
         throw Exception('Failed to fetch place details');
       }
     } catch (e) {
-      throw MyAppException(title: e.toString());
+      throw AppException(alert: e.toString());
     }
   }
 }

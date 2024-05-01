@@ -9,8 +9,8 @@ final class ForgetPasswordRemoteData {
       log("on resetPassword -> $email");
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } catch (e) {
-      log(const MyAppException().toString());
-      throw MyAppException(message: e.toString(), title: e.toString());
+      log(const AppException().toString());
+      throw AppException(details: e.toString(), alert: e.toString());
     }
   }
 }

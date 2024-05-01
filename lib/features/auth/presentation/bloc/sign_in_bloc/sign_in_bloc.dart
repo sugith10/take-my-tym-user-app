@@ -34,17 +34,19 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             userModel: authUserModel,
           ));
         }
-      } on MyAppException catch (e) {
+      } on AppException catch (e) {
+        final AppErrorMsg error = AppErrorMsg(
+          title: e.alert,
+          content: e.details,
+        );
         emit(
-          SignInErrorState(errorMessage: e.title, errorDescription: e.message),
+          SignInErrorState(error: error),
         );
       } catch (e) {
         log(e.toString());
+
         emit(
-          const SignInErrorState(
-            errorMessage: MyAppErrorMsg.errorMessage,
-            errorDescription: MyAppErrorMsg.errorDescription,
-          ),
+          SignInErrorState(error: AppErrorMsg()),
         );
       }
     });

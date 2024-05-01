@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/create_post/domain/usecases/create_post_usecase.dart';
@@ -28,21 +29,23 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     on<CreateFirstPageEvent>(
       (event, emit) {
         if (event.title.length <= 3) {
+          final error = AppErrorMsg(
+              title: 'Give proper title',
+              content:
+                  'Gave a proper title, Other wise its harder for other to understand it');
           emit(
             CreateFirstFailState(
-              message: 'Give proper title',
-              description:
-                  'Gave a proper title, Other wise its harder for other to understand it',
+              error: error,
             ),
           );
           return;
         } else if (event.content.length <= 10) {
+          final error = AppErrorMsg(
+              title: 'Give proper decription',
+              content:
+                  'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
-            CreateFirstFailState(
-              message: 'Give proper decription',
-              description:
-                  'Gave a proper decription, Other wise its harder for other to understand it',
-            ),
+            CreateFirstFailState(error: error),
           );
           return;
         } else {
@@ -62,20 +65,20 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         emit(CreatPostLoadingState());
         if (event.location.length <= 2) {
           log(event.location);
+          final AppErrorMsg error = AppErrorMsg(
+              title:
+                  "Its very important to gave your location when you make a post");
           emit(
             CreateSecondFailState(
-              message: event.location,
-              description:
-                  "Its very important to gave your location when you make a post",
+              error: error,
             ),
           );
           return;
         } else if (event.experience.length <= 2) {
           log("2");
-          emit(CreateSecondFailState(
-              message: "Gave Proper Experience",
-              description:
-                  "Its very important what kind of experience you're expecting when you make a post"));
+          emit(
+            CreateSecondFailState(error: AppErrorMsg()),
+          );
           return;
         } else {
           try {
@@ -84,17 +87,18 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             log("3");
             emit(
               CreateSecondFailState(
-                message: "No text allowed in Remuneration",
-                description: "Only numbers can added in the Remuneration",
+                error: AppErrorMsg(),
               ),
             );
             return;
           }
           if (remuneration! >= 1000000) {
             log("4");
-            emit(CreateSecondFailState(
-                message: "Remuneration limited under 10,00,000.",
-                description: "Kindly ensure you entered with the limit"));
+            emit(
+              CreateSecondFailState(
+                error: AppErrorMsg(),
+              ),
+            );
             return;
           } else {
             log("data adding success");
@@ -141,17 +145,20 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 log("success buy");
                 emit(CreatePostSuccessState(refreshType: true, uid: uid!));
               } else {
-                emit(RemoteDataAddFailState(
-                    message: "Failed to add data",
-                    description:
-                        "Lorem Ipsum is simply dummy typesetting industry"));
+                emit(
+                  RemoteDataAddFailState(
+                    error: AppErrorMsg(),
+                  ),
+                );
               }
-            } on MyAppException catch (e) {
-              emit(RemoteDataAddFailState(
-                  message: e.toString(), description: e.toString()));
+            } on AppException catch (e) {
+              emit(
+                RemoteDataAddFailState(error: AppErrorMsg()),
+              );
             } catch (e) {
-              emit(RemoteDataAddFailState(
-                  message: e.toString(), description: e.toString()));
+              emit(
+                RemoteDataAddFailState(error: AppErrorMsg()),
+              );
             }
           } else if (tymType != null && tymType == false) {
             try {
@@ -176,17 +183,16 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
               if (res) {
                 emit(CreatePostSuccessState(refreshType: false, uid: uid!));
               } else {
-                emit(RemoteDataAddFailState(
-                    message: "Failed to add data",
-                    description:
-                        "Lorem Ipsum is simply dummy typesetting industry"));
+                emit(
+                  RemoteDataAddFailState(error: AppErrorMsg()),
+                );
               }
-            } on MyAppException catch (e) {
-              emit(RemoteDataAddFailState(
-                  message: e.toString(), description: e.toString()));
+            } on AppException catch (e) {
+              emit(
+                RemoteDataAddFailState(error: AppErrorMsg()),
+              );
             } catch (e) {
-              emit(RemoteDataAddFailState(
-                  message: e.toString(), description: e.toString()));
+              RemoteDataAddFailState(error: AppErrorMsg());
             }
           } else {
             log("something went wrong come to bloc line 163");

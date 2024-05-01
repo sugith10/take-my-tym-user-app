@@ -31,7 +31,7 @@ final class DeletePostRemoteData {
       });
     } catch (e) {
       log(e.toString());
-      throw MyAppException;
+      throw AppException;
     }
   }
 
@@ -63,7 +63,7 @@ final class DeletePostRemoteData {
       });
     } catch (e) {
       log(e.toString());
-      throw MyAppException;
+      throw AppException;
     }
   }
 }

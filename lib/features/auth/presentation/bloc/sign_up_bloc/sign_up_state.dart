@@ -17,10 +17,8 @@ final class SignUpSuccessState extends SignUpState {
 }
 
 final class SignUpFailState extends SignUpState {
-  final String title;
-  final String message;
+  final AppErrorMsg error;
   const SignUpFailState({
-    required this.title,
-    required this.message,
+    required this.error,
   });
 }

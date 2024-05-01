@@ -8,18 +8,20 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class ProposelTimeLine extends StatelessWidget {
-  const ProposelTimeLine({super.key});
+  const ProposelTimeLine({
+    super.key,
+  });
+   final String stepOne =
+        'The creator reviews your profile and proposal, then accepts or rejects it.';
+    final  String stepTwo =
+        'If accepted, the contract begins, and payment is debited from the creator.';
+    final  String stepThree =
+        'The creator reviews your profile and proposal, then accepts or rejects it.';
+    final  String stepFour =
+        'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!!';
 
   @override
   Widget build(BuildContext context) {
-    const String stepOne =
-        'The creator reviews your profile and proposal, then accepts or rejects it.';
-    const String stepTwo =
-        'If accepted, the contract begins, and payment is debited from the creator.';
-    const String stepThree =
-        'The creator reviews your profile and proposal, then accepts or rejects it.';
-    const String stepFour =
-        'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!!';
     return SingleChildScrollView(
       child: HomePadding(
         child: Column(
@@ -47,7 +49,7 @@ class ProposelTimeLine extends StatelessWidget {
                       color: MyAppDarkColor.instance.success,
                       thickness: 6,
                     ),
-                    endChild: const EventCard(
+                    endChild:  EventCard(
                       isPast: true,
                       title: stepOne,
                     ),
@@ -70,7 +72,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(MyAppSVG.numberTwo),
-                    startChild: const EventCard(
+                    startChild:  EventCard(
                       isPast: true,
                       title: stepTwo,
                     ),
@@ -89,7 +91,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(MyAppSVG.numberThree),
-                    endChild: const EventCard(
+                    endChild:  EventCard(
                       isPast: true,
                       title: stepThree,
                     ),
@@ -109,7 +111,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(MyAppSVG.numberFour),
-                    startChild: const EventCard(
+                    startChild:  EventCard(
                       isPast: true,
                       title: stepFour,
                     ),

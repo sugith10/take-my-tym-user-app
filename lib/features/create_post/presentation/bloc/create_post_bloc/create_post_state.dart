@@ -13,20 +13,16 @@ final class CreateFirstSuccessState extends CreatePostState {
 }
 
 final class CreateFirstFailState extends CreatePostState {
-  final String message;
-  final String description;
+  final AppErrorMsg error;
   CreateFirstFailState({
-    required this.message,
-    required this.description,
+    required this.error,
   });
 }
 
 final class CreateSecondFailState extends CreatePostState {
-  final String message;
-  final String description;
+  final AppErrorMsg error;
   CreateSecondFailState({
-    required this.message,
-    required this.description,
+    required this.error,
   });
 }
 
@@ -40,10 +36,8 @@ final class CreatePostSuccessState extends CreatePostState {
 }
 
 final class RemoteDataAddFailState extends CreatePostState {
-  final String message;
-  final String description;
+  final AppErrorMsg error;
   RemoteDataAddFailState({
-    required this.message,
-    required this.description,
+required this.error,
   });
 }

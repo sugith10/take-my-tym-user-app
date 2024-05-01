@@ -19,10 +19,8 @@ final class SignInSuccessState extends SignInState {
 }
 
 final class SignInErrorState extends SignInState {
-  final String errorMessage;
-  final String errorDescription;
+final AppErrorMsg error;
   const SignInErrorState({
-    required this.errorMessage,
-    required this.errorDescription,
+    required this.error
   });
 }

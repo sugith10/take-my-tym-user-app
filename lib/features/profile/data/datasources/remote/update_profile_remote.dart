@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
@@ -8,19 +9,15 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 final class UpdateProfileRemote {
   Future<void> updateProfile({
     required AppUserModel appUserModel,
-    required File? profilePicture,
+    required XFile? image,
   }) async {
     log("on remote update profile");
     try {
-      if (profilePicture != null) {
-        FirebaseStorage storage = FirebaseStorage.instance;
-        Reference storageRef =
-            storage.ref().child('profilePictures/${DateTime.now().toString()}');
-        UploadTask uploadTask = storageRef.putFile(profilePicture);
-        TaskSnapshot storageSnapshot =
-            await uploadTask.whenComplete(() => null);
+      if (image != null) {
+        final ref = FirebaseStorage.instance.ref('users/profile/image').child(image.name);
+        await ref.putFile(File(image.path));
 
-        await storageSnapshot.ref.getDownloadURL().then((value) async {
+        await ref.getDownloadURL().then((value) async {
           appUserModel.picture = value;
           FirebaseFirestore firestore = FirebaseFirestore.instance;
           await firestore

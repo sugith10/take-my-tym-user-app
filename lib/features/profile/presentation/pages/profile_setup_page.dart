@@ -40,7 +40,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
   final TextEditingController professionCntrl = TextEditingController();
   List<dynamic>? skills;
   final LocationBloc locationBloc = LocationBloc();
-  final UpdateProfileBloc updateProfileBloc = UpdateProfileBloc();
+  final ProfileBloc updateProfileBloc = ProfileBloc();
   final CreateSkillBloc _createSkillBloc = CreateSkillBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

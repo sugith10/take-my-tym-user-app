@@ -47,7 +47,6 @@ class ShimmerEffectWidget extends StatelessWidget {
           scaffoldBackgroundColor: MyAppDarkColor.instance.background,
         ),
         SizedBox(height: 10.h),
-      
       ],
     );
   }

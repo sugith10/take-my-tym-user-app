@@ -31,7 +31,7 @@ final class CollectUpdateDataEvent extends UpdateProfileEvent {
   final String userName;
   final String about;
   final String location;
-  final File? image;
+  final XFile? image;
   final AppUserModel userModel;
 
   const CollectUpdateDataEvent({

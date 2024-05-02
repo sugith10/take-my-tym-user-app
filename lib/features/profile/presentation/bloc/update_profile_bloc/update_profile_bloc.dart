@@ -3,14 +3,15 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/features/profile/domain/usecases/update_profile_usecase.dart';
 
 part 'update_profile_event.dart';
 part 'update_profile_state.dart';
 
-class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
-  UpdateProfileBloc() : super(UpdateProfileInitial()) {
+class ProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
+  ProfileBloc() : super(UpdateProfileInitial()) {
     on<ProfileSetupEvent>(
       ((event, emit) async {
         log('profile setup event');
@@ -26,7 +27,9 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
           event.appUserModel.longitude = event.longitude;
           // log(event.appUserModel.toString());
           await useCase.updateUserProfileInfo(
-              userModel: event.appUserModel, photo: null);
+            userModel: event.appUserModel,
+            profilePicture: null,
+          );
           emit(UpdateProfileSuccessState(appUserModel: event.appUserModel));
         } catch (e) {
           log(e.toString());
@@ -39,6 +42,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
       event.userModel.about = event.about;
       event.userModel.userName = event.userName;
       event.userModel.location = event.location;
+      
       try {
         // await UpdateProfileRemoteData()
         //     .updateProfile(

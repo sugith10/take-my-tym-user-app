@@ -46,6 +46,7 @@ class ProposalsTab extends StatelessWidget {
     AppBottomSheet.show(
       context: context,
       children: [
+         SizedBox(height: 7.5.h),
         Text(
           'Proposal status',
           style: Theme.of(context).textTheme.headlineSmall,

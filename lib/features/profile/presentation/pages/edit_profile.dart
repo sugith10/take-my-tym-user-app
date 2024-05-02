@@ -1,4 +1,6 @@
+
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +22,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  final ProfileBloc profileBloc = ProfileBloc();
   final TextEditingController _nameCntrl = TextEditingController();
   final TextEditingController _aboutCntrl = TextEditingController();
   final TextEditingController _locationCntrl = TextEditingController();
@@ -43,7 +46,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.dispose();
   }
 
-  File? _image;
+  XFile? _image;
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -51,7 +54,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     setState(() {
       if (pickedImage != null) {
-        _image = File(pickedImage.path);
+        _image = pickedImage;
       } else {
         // print('No image selected.');
       }
@@ -75,7 +78,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             child: IconButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    context.read<UpdateProfileBloc>().add(
+                    profileBloc.add(
                           CollectUpdateDataEvent(
                             userName: _nameCntrl.text,
                             about: _aboutCntrl.text,

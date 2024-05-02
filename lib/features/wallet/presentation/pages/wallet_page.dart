@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer_pro/shimmer_pro.dart';
@@ -20,21 +22,41 @@ class WalletPage extends StatelessWidget {
     return BlocBuilder<WalletBloc, WalletState>(
       builder: (context, state) {
         if (state is WalletLoadedState) {
-          return HomePadding(
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                ShimmerPro.sized(
+          return ListView(
+            children: [
+              const SizedBox(height: 20),
+              HomePadding(
+                child: ShimmerPro.sized(
                   light: ShimmerProLight.lighter,
                   scaffoldBackgroundColor: MyAppDarkColor.instance.background,
                   height: 150.h,
                   width: double.infinity,
                 ),
-                const SizedBox(height: 20),
-                const Divider(),
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+              const SizedBox(height: 20),
+              const Divider(),
+              const SizedBox(height: 20),
+              ShimmerPro.generated(
+                light: ShimmerProLight.lighter,
+                scaffoldBackgroundColor:
+                    Colors.transparent,
+                child: Column(
+                  children: List.generate(
+                    3,
+                    (index) => Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: ShimmerPro.text(
+                        maxLine: 3,
+                        light: ShimmerProLight.lighter,
+                        width: 450,
+                        scaffoldBackgroundColor:
+                            MyAppDarkColor.instance.background,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
         }
         if (state is WalletLoadingState) {
@@ -59,8 +81,7 @@ class WalletPage extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: 25,
                         itemBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.only(bottom: 10),
+                          return const HomePadding(
                             child: TransactionTile(
                               name: 'Fletcher',
                               image: MyAppImages.testProfile,

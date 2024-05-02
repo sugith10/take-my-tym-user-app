@@ -11,7 +11,7 @@ import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_title_widget.dart';

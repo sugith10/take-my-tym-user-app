@@ -13,7 +13,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/post_owner_info_widget.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
-import 'package:take_my_tym/features/control_panel/presentation/widgets/offer_subtitle_widget.dart';
+import 'package:take_my_tym/features/work/presentation/widgets/offer_subtitle_widget.dart';
 
 class AcceptOfferPage extends StatelessWidget {
   static route() => leftToRight(const AcceptOfferPage());

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/search_text_field.dart';
+import 'package:take_my_tym/features/search/presentation/widgets/search_text_field.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 class SearchPageAppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextEditingController searchEditingController;
+  final SearchPostsBloc bloc;
 
   const SearchPageAppBar({
     super.key,
     required this.searchEditingController,
+    required this.bloc,
   });
 
   @override
@@ -32,6 +33,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
         children: [
           Expanded(
             child: SearchTextField(
+              searchBloc: widget.bloc,
               searchEditingController: widget.searchEditingController,
             ),
           ),
@@ -39,7 +41,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
             padding: const EdgeInsets.only(right: 5),
             child: InkWell(
               onTap: () {
-                _showBottomSheet(context);
+                _showBottomSheet(context, widget.bloc);
               },
               borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
               child: Container(
@@ -64,7 +66,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(BuildContext context, SearchPostsBloc bloc) {
     AppBottomSheet.show(
       context: context,
       children: [
@@ -88,7 +90,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
                   onChanged: (value) {
                     setState(() {
                       tymType = value!;
-                      context.read<SearchPostsBloc>().tymType = tymType;
+                      bloc.tymType = tymType;
                     });
                     Navigator.pop(context);
                   },
@@ -106,7 +108,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
                   onChanged: (value) {
                     setState(() {
                       tymType = value!;
-                      context.read<SearchPostsBloc>().tymType = tymType;
+                      bloc.tymType = tymType;
                     });
                     Navigator.pop(context);
                   },

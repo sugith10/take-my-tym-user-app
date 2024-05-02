@@ -125,7 +125,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
       ],
       child: Scaffold(
           appBar: AppBar(
-            leading: const BackButtonWidget(),
+            leading: const BackButtonWidget(normal: false),
             actions: [
               ActionButton(
                 callback: () {

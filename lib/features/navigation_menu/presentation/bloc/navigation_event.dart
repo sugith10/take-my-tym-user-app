@@ -7,7 +7,7 @@ sealed class NavigationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class HomePageNavigation extends NavigationEvent{}
+final class NavigationHomeEvent extends NavigationEvent{}
 
 final class MessagePageNavigation extends NavigationEvent{}
 

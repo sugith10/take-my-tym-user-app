@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/post_types.dart';
 
@@ -24,6 +25,7 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
     super.initState();
     _selection.add(widget.selectedWorkType);
   }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -32,23 +34,30 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
         segments: const <ButtonSegment<String>>[
           ButtonSegment<String>(
             value: MyAppPostType.remote,
-            label: Text(MyAppPostType.remote),
+            label: Padding(
+              padding: EdgeInsets.only(right: 5.0),
+              child: Text(MyAppPostType.remote),
+            ),
           ),
           ButtonSegment<String>(
             value: MyAppPostType.onsite,
             label: Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.only(right: 5.0),
               child: Text(MyAppPostType.onsite),
             ),
           ),
         ],
         selected: _selection,
+        selectedIcon: const Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Icon(IconlyBold.bookmark),
+        ),
         onSelectionChanged: (Set<String> newSelection) {
           setState(
             () {
               _selection = newSelection;
-             widget.function(newSelection.first);
-             log(newSelection.first);
+              widget.function(newSelection.first);
+              log(newSelection.first);
             },
           );
         },

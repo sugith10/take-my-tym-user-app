@@ -144,5 +144,12 @@ final class DependencyInject {
           () => UpdateProfileRepoImpl(UpdateProfileRemote()))
       ..registerLazySingleton<UpdateProfileUseCase>(
           () => UpdateProfileUseCase(_getIt<UpdateProfileRepo>()));
+
+    ///Wallet
+    _getIt
+      ..registerLazySingleton<WalletRepo>(
+          () => WalletRepoImpl(WalletRemoteData()))
+      ..registerLazySingleton<WalletUseCase>(
+          () => WalletUseCase(_getIt<WalletRepo>()));
   }
 }

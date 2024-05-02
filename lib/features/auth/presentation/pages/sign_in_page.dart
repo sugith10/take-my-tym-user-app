@@ -16,7 +16,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditi
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SignInPage extends StatefulWidget {

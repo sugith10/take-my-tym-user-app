@@ -16,6 +16,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final SearchPostsBloc searchBloc = SearchPostsBloc();
   final TextEditingController _searchEditingController =
       TextEditingController();
 
@@ -31,13 +32,15 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          SearchPageAppBar(searchEditingController: _searchEditingController),
+      appBar: SearchPageAppBar(
+        searchEditingController: _searchEditingController,
+        bloc: searchBloc,
+      ),
       body: SafeArea(
         child: HomePadding(
-          child: BlocBuilder<SearchPostsBloc, SearchPostsState>(
+          child: BlocBuilder(
+            bloc: searchBloc,
             builder: (context, state) {
-           
               if (state is SearchPostsInitial) {
                 return SearchPostsInitialWidget(message: _message);
               }
@@ -45,7 +48,6 @@ class _SearchPageState extends State<SearchPage> {
                 return const Text("No Data Found");
               }
               if (state is SearchPostsResultState) {
-            
                 return Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(

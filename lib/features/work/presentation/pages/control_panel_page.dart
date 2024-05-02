@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
-import 'package:take_my_tym/features/control_panel/presentation/pages/contracts_tab.dart';
-import 'package:take_my_tym/features/control_panel/presentation/pages/proposals_tab.dart';
-import 'package:take_my_tym/features/control_panel/presentation/pages/wallet_widget.dart';
+import 'package:take_my_tym/features/work/presentation/pages/contracts_tab.dart';
+import 'package:take_my_tym/features/work/presentation/pages/proposals_tab.dart';
+import 'package:take_my_tym/features/wallet/presentation/pages/wallet_page.dart';
 
 class ControlPanelPage extends StatelessWidget {
   const ControlPanelPage({super.key});
@@ -35,7 +35,7 @@ class ControlPanelPage extends StatelessWidget {
             //Contracts
             ContractsTab(),
             //Wallet
-            WalletWidget(),
+            WalletPage(),
           ],
         ),
       ),

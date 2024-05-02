@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 20.h),
                 const WelcomeUser(),
                 SizedBox(
-                  height: 10.h,
+                  height: 10.h
                 ),
                 const HomePageFilterWidget(),
                 SizedBox(height: 20.h),

@@ -39,89 +39,101 @@ class _NavigationMenuState extends State<NavigationMenu> {
         if (state is UserModelUpdatedState) {
           return BlocProvider(
             create: (context) => NavigationBloc(),
-            child: Scaffold(
-              key: _scaffoldKey,
-              drawer: const DrawerNavBar(),
-              body: BlocBuilder<NavigationBloc, NavigationState>(
-                builder: (context, state) {
-                  switch (state) {
-                    case HomeState():
-                      return SafeArea(child: _screen[0]);
-                    case MessageState():
-                      return SafeArea(child: _screen[1]);
-                    case MoneyState():
-                      return SafeArea(child: _screen[3]);
-                    case ProfileState():
-                      return SafeArea(child: _screen[4]);
-                    default:
-                      return SafeArea(child: _screen[0]);
-                  }
-                },
-              ),
-              bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationState>(
+            child: PopScope(
+              onPopInvoked: (didPop) {},
+              child: Scaffold(
+                key: _scaffoldKey,
+                drawer: const DrawerNavBar(),
+                body: BlocBuilder<NavigationBloc, NavigationState>(
                   builder: (context, state) {
-                return NavigationBar(
-                  selectedIndex: _index,
-                  onDestinationSelected: (value) {
-                    final navigationBloc =
-                        BlocProvider.of<NavigationBloc>(context);
-                    if (value == 0) {
-                      _index = value;
-                      navigationBloc.add(HomePageNavigation());
-                    } else if (value == 1) {
-                      _index = value;
-                      navigationBloc.add(MessagePageNavigation());
-                    } else if (value == 2) {
-                      Navigator.push(
-                        context,
-                        CreatePostFirstPage.route(),
-                      );
-                    } else if (value == 3) {
-                      _index = value;
-                      navigationBloc.add(MoneyPageNavigation());
-                    } else if (value == 4) {
-                      _index = value;
-                      navigationBloc.add(ProfilePageNavigation());
+                    switch (state) {
+                      case HomeState():
+                        return SafeArea(child: _screen[0]);
+                      case MessageState():
+                        return SafeArea(child: _screen[1]);
+                      case MoneyState():
+                        return SafeArea(child: _screen[3]);
+                      case ProfileState():
+                        return SafeArea(child: _screen[4]);
                     }
                   },
-                  destinations: [
-                    NavigationDestination(
-                      icon: Icon(
-                          _index == 0 ? IconlyBold.home : IconlyLight.home),
-                      label: 'Home',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 1 ? IconlyBold.message : IconlyLight.message,
+                ),
+                bottomNavigationBar:
+                    BlocBuilder<NavigationBloc, NavigationState>(
+                        builder: (context, state) {
+                  return NavigationBar(
+                    selectedIndex: _index,
+                    onDestinationSelected: (value) {
+                      final navigationBloc =
+                          BlocProvider.of<NavigationBloc>(context);
+                      switch (value) {
+                        case 0:
+                          _index = value;
+                          navigationBloc.add(HomePageNavigation());
+                          break;
+                        case 1:
+                          _index = value;
+                          navigationBloc.add(MessagePageNavigation());
+                          break;
+                        case 2:
+                          Navigator.push(
+                            context,
+                            CreatePostFirstPage.route(),
+                          );
+                          break;
+                        case 3:
+                          _index = value;
+                          navigationBloc.add(MoneyPageNavigation());
+                          break;
+                        case 4:
+                          _index = value;
+                          navigationBloc.add(ProfilePageNavigation());
+                          break;
+                      }
+                    },
+                    destinations: [
+                      NavigationDestination(
+                        icon: Icon(
+                            _index == 0 ? IconlyBold.home : IconlyLight.home),
+                        label: 'Home',
                       ),
-                      label: 'Message',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 2 ? IconlyBold.plus : IconlyLight.plus,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 1
+                              ? IconlyBold.message
+                              : IconlyLight.message,
+                        ),
+                        label: 'Message',
                       ),
-                      label: 'Create',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 3 ? IconlyBold.work : IconlyLight.work,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 2 ? IconlyBold.plus : IconlyLight.plus,
+                        ),
+                        label: 'Create',
                       ),
-                      label: 'Work',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 4 ? IconlyBold.profile : IconlyLight.profile,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 3 ? IconlyBold.work : IconlyLight.work,
+                        ),
+                        label: 'Work',
                       ),
-                      label: 'Profile',
-                    ),
-                  ],
-                );
-              }),
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 4
+                              ? IconlyBold.profile
+                              : IconlyLight.profile,
+                        ),
+                        label: 'Profile',
+                      ),
+                    ],
+                  );
+                }),
+              ),
             ),
           );
         }
         return const Scaffold(
-          body: Center(child: Text("null")),
+          body: Center(child: Text("Something went wrong")),
         );
       },
     );

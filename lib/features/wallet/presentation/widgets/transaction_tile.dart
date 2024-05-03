@@ -1,7 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_dialog.dart';
 
@@ -15,7 +16,7 @@ class TransactionTile extends StatelessWidget {
     required this.name,
     required this.time,
     required this.amount,
-    this.image = MyAppImages.profileIcon,
+    this.image = AppPng.profileIcon,
     super.key,
   });
 

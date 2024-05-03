@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'dart:async';
 
@@ -16,10 +16,10 @@ Timer? _timer;
 
 class _BannerWidgetState extends State<BannerWidget> {
   final images = <String>[
-    MyAppImages.adOne,
-    MyAppImages.adTwo,
-    MyAppImages.adThree,
-    MyAppImages.adFour,
+    AppPng.adOne,
+    AppPng.adTwo,
+    AppPng.adThree,
+    AppPng.adFour,
   ];
 
   late List<Widget> pages;

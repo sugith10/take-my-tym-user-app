@@ -26,7 +26,7 @@ class CreatePostBottomBar extends StatelessWidget {
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         height: 50.h,
-        color: MyAppDarkColor.instance.bottomNavigationBarBackground,
+        color: MyAppDarkColor.instance.bottomBar,
         child: Padding(
           padding: const EdgeInsets.only(
             left: MyAppPadding.homePadding,

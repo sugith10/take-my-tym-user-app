@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';

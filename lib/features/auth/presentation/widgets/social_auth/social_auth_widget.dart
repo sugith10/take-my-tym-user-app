@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
 import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/social_auth_bloc/social_auth_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
@@ -113,7 +113,7 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                             color: const Color.fromRGBO(238, 238, 238, 1)),
                         child: Center(
                           child: Image.asset(
-                            MyAppImages.google,
+                            AppPng.google,
                             height: 35,
                           ),
                         ),

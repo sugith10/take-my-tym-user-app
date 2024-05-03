@@ -13,7 +13,7 @@ class WelcomePageAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.scale(
       scale: 2,
-      child:     SvgPicture.asset(MyAppSVG.welcomeGraphics),
+      child:     SvgPicture.asset(AppSvg.welcomeGraphics),
     );
   }
 }

@@ -60,10 +60,10 @@ flutter:
   assets:
     - asset/img/auth/
     - asset/img/
-    - asset/json/
+    - assets/lottie/
     - asset/img/test/
     - asset/img/icons/
-    - asset/img/snackbar/
+    - assets/svg/snackbar/
     - asset/img/ad/
     - assets/audio/
     - assets/svg/
@@ -71,22 +71,14 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: asset/font/Poppins/Poppins-Regular.ttf
-        - asset: asset/font/Poppins/Poppins-Medium.ttf
+        - asset: assets/font/Poppins/Poppins-Regular.ttf
+        - asset: assets/font/Poppins/Poppins-Medium.ttf
           weight: 500
-        - asset: asset/font/Poppins/Poppins-SemiBold.ttf
+        - asset: assets/font/Poppins/Poppins-SemiBold.ttf
           weight: 600
-        - asset: asset/font/Poppins/Poppins-Bold.ttf
+        - asset: assets/font/Poppins/Poppins-Bold.ttf
           weight: 700
-        - asset: asset/font/Poppins/Poppins-ExtraBold.ttf
+        - asset: assets/font/Poppins/Poppins-ExtraBold.ttf
           weight: 800
-        - asset: asset/font/Poppins/Poppins-Black.ttf
-          weight: 900
-
-    - family: Denton Condensed
-      fonts:
-        - asset: asset/font/Denton Condensed/DentonCondensedTest-Regular.otf
-        - asset: asset/font/Denton Condensed/DentonCondensedTest-Black.otf
-          weight: 800
-        - asset: asset/font/Denton Condensed/DentonCondensedTest-Medium.otf
+        - asset: assets/font/Poppins/Poppins-Black.ttf
           weight: 900

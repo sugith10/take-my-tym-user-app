@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
 import 'package:take_my_tym/core/widgets/svg_image_widget.dart';
 
 class AppLogo extends StatelessWidget {
@@ -16,7 +16,7 @@ class AppLogo extends StatelessWidget {
     ),
     const SizedBox(height: 20),
     const SVGImageWidget(
-      asset: MyAppImages.onboarding,
+      asset: AppSvg.logo,
       height: 40,
     ),
     ],);

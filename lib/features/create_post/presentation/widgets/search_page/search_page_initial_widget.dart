@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_lottie.dart';
 
 class SearchPostsInitialWidget extends StatelessWidget {
   final String message;
@@ -16,7 +16,7 @@ class SearchPostsInitialWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Lottie.asset(MyAppImages.searchIntialLottie),
+          Lottie.asset(AppLottie.search),
           const SizedBox(height: 20),
           Text(
             '"$message"',

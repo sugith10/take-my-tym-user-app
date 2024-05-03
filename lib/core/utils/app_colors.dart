@@ -11,7 +11,7 @@ interface class AppColor {
   final Color secondaryText;
   final Color buttonBackground;
   final Color buttonForground;
-  final Color bottomNavigationBarBackground;
+  final Color bottomBar;
   final Color iconColor;
   final Color gradientPrimary;
   final Color gradientSecondary;
@@ -38,7 +38,7 @@ interface class AppColor {
     required this.secondaryText,
     required this.buttonBackground,
     required this.buttonForground,
-    required this.bottomNavigationBarBackground,
+    required this.bottomBar,
     required this.iconColor,
     required this.gradientPrimary,
     required this.gradientSecondary,
@@ -77,7 +77,7 @@ final class MyAppDarkColor extends AppColor {
           secondaryText: const Color.fromARGB(222, 160, 160, 160),
           buttonBackground: const Color.fromRGBO(255, 255, 255, 1),
           buttonForground: const Color.fromRGBO(0, 0, 0, 1),
-          bottomNavigationBarBackground: const Color.fromRGBO(35, 35, 35, 35),
+          bottomBar: const Color(0xFF202020),
           iconColor: const Color.fromARGB(255, 255, 255, 255),
           gradientPrimary: const Color.fromRGBO(78, 78, 78, 1),
           gradientSecondary: const Color.fromRGBO(0, 0, 0, 1),
@@ -92,6 +92,6 @@ final class MyAppDarkColor extends AppColor {
           userChatColor: const Color.fromRGBO(129, 199, 132, 1),
           recipientChatColor: const Color.fromARGB(255, 30, 110, 186),
           success: const Color.fromRGBO(76, 175, 80, 1),
-          bottomSheet: const Color(0xFF2C2C2C),
+          bottomSheet: const Color.fromARGB(255, 28, 28, 28),
         );
 }

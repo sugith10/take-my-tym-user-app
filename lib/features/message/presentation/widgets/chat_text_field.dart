@@ -61,7 +61,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     hintText: "Message",
                     hintStyle: Theme.of(context).textTheme.bodyLarge,
                     filled: true,
-                    fillColor: _appDarkColor.bottomNavigationBarBackground,
+                    fillColor: _appDarkColor.bottomBar,
                   ),
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
@@ -110,7 +110,7 @@ class _ChatIconButton extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: MyAppDarkColor.instance.secondaryText),
         borderRadius: BorderRadius.circular(100),
-        color: MyAppDarkColor.instance.bottomNavigationBarBackground,
+        color: MyAppDarkColor.instance.bottomBar,
       ),
       child: IconButton(
         onPressed: () {

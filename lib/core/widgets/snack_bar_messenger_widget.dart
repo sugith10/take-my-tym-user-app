@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -18,7 +18,7 @@ final class AppSnackBar {
           description: error.title,
           backgroundColor: const Color(0xFFC72c41),
           assetColor: const Color(0xFF801336),
-          icon: MyAppImages.snackBarFail,
+          icon: AppSvg.snackBarFail,
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
@@ -40,7 +40,7 @@ final class AppSnackBar {
           description: message,
           backgroundColor: const Color(0xff2D6A4F),
           assetColor: const Color.fromARGB(255, 31, 63, 49),
-          icon: MyAppImages.snackBarSuccess,
+          icon: AppSvg.snackBarSuccess,
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
@@ -111,7 +111,7 @@ class _SnackBarContentWidget extends StatelessWidget {
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(MyAppRadius.borderRadius)),
             child: SvgPicture.asset(
-              MyAppImages.snackBarBubbles,
+              AppSvg.snackBarBubbles,
               height: 48,
               width: 40,
               // ignore: deprecated_member_use
@@ -126,7 +126,7 @@ class _SnackBarContentWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(
-                 MyAppImages.snackBarIconSpace,
+                 AppSvg.snackBarIconSpace,
                 height: 40,
                 // ignore: deprecated_member_use
                 color: assetColor,

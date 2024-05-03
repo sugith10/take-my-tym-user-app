@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
+import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/widgets/image_icon.dart';
 import 'package:take_my_tym/features/home/presentation/bloc/nearby_posts_bloc/nearby_posts_bloc.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
@@ -34,7 +35,7 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
           children: [
             SizedBox(
                 child: CoustomImageIcon(
-              image: MyAppImages.locationIcon,
+              image: AppPng.locationIcon,
               height: 25.h,
               width: 25.h,
             )),

@@ -117,7 +117,7 @@ final class MyAppDarkTheme {
       foregroundColor: _color.primaryText,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: _color.bottomNavigationBarBackground,
+      backgroundColor: _color.bottomBar,
       elevation: 0,
       labelTextStyle: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {

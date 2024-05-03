@@ -5,8 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_assets/app_audio.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_lottie.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/utils/app_sound_player.dart';
 import 'package:take_my_tym/core/utils/app_vibration.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
@@ -19,7 +20,7 @@ part 'util/feedback.dart';
 class SuccessPage extends StatefulWidget {
   const SuccessPage({super.key});
 
-   static route() => noMovement(const SuccessPage());
+  static route() => noMovement(const SuccessPage());
 
   @override
   State<SuccessPage> createState() => _SuccessPageState();
@@ -56,7 +57,7 @@ class _SuccessPageState extends State<SuccessPage> {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    Lottie.asset(MyAppImages.successLottie,
+                    Lottie.asset(AppLottie.success,
                         repeat: false, height: 500, width: 500),
                     FadeIn(
                       delay: const Duration(milliseconds: 1500),

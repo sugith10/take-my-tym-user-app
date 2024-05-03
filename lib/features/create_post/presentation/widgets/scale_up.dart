@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
+import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 
 class ZoomAnimationWidget extends StatefulWidget {
   const ZoomAnimationWidget({super.key});
@@ -46,7 +47,7 @@ class _ZoomAnimationWidgetState extends State<ZoomAnimationWidget>
         );
       },
       child: Image.asset(
-        MyAppImages.successImage,
+        AppPng.successImage,
       ),
     );
   }

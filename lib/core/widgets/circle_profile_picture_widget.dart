@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/utils/app_assets.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
 
 class CircleProfilePicWidget extends StatelessWidget {
   final double width;
@@ -41,7 +41,7 @@ class CircleProfilePicWidget extends StatelessWidget {
               )
             : Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ClipOval(child: Image.asset(MyAppImages.profileIcon)),
+                child: ClipOval(child: Image.asset(AppPng.profileIcon)),
               ),
       ),
     );

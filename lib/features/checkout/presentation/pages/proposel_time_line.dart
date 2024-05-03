@@ -44,7 +44,7 @@ class ProposelTimeLine extends StatelessWidget {
                     alignment: TimelineAlign.manual,
                     lineXY: 0.1,
                     isFirst: true,
-                    indicatorStyle: _indicator(MyAppSVG.numberOne),
+                    indicatorStyle: _indicator(AppSvg.numberOne),
                     beforeLineStyle: LineStyle(
                       color: MyAppDarkColor.instance.success,
                       thickness: 6,
@@ -71,7 +71,7 @@ class ProposelTimeLine extends StatelessWidget {
                       color: MyAppDarkColor.instance.success,
                       thickness: 6,
                     ),
-                    indicatorStyle: _indicator(MyAppSVG.numberTwo),
+                    indicatorStyle: _indicator(AppSvg.numberTwo),
                     startChild:  EventCard(
                       isPast: true,
                       title: stepTwo,
@@ -90,7 +90,7 @@ class ProposelTimeLine extends StatelessWidget {
                       color: MyAppDarkColor.instance.success,
                       thickness: 6,
                     ),
-                    indicatorStyle: _indicator(MyAppSVG.numberThree),
+                    indicatorStyle: _indicator(AppSvg.numberThree),
                     endChild:  EventCard(
                       isPast: true,
                       title: stepThree,
@@ -110,7 +110,7 @@ class ProposelTimeLine extends StatelessWidget {
                       color: MyAppDarkColor.instance.success,
                       thickness: 6,
                     ),
-                    indicatorStyle: _indicator(MyAppSVG.numberFour),
+                    indicatorStyle: _indicator(AppSvg.numberFour),
                     startChild:  EventCard(
                       isPast: true,
                       title: stepFour,

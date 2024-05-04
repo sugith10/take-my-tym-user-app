@@ -50,8 +50,8 @@ class _SignTextFieldState extends State<SignTextField> {
       delay: Duration(milliseconds: widget.fadeInDelay),
       duration: Duration(milliseconds: widget.fadeInDuration),
       child: TextFormField(
-        cursorColor:  MyAppDarkColor.instance.pure,
-        cursorErrorColor:  MyAppDarkColor.instance.pure,
+        cursorColor:  AppDarkColor.instance.pure,
+        cursorErrorColor:  AppDarkColor.instance.pure,
         validator: widget.validator,
         controller: widget.controller,
         obscureText: _obsecureText,
@@ -68,7 +68,7 @@ class _SignTextFieldState extends State<SignTextField> {
                   },
                   icon: Icon(_obsecureText
                       ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined, color: MyAppDarkColor.instance.pure),
+                      : Icons.visibility_off_outlined, color: AppDarkColor.instance.pure),
                 )
               : null,
           prefixIcon: widget.prefixIcon,

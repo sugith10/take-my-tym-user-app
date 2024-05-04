@@ -46,7 +46,7 @@ class ProposelTimeLine extends StatelessWidget {
                     isFirst: true,
                     indicatorStyle: _indicator(AppSvg.numberOne),
                     beforeLineStyle: LineStyle(
-                      color: MyAppDarkColor.instance.success,
+                      color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
                     endChild:  EventCard(
@@ -58,17 +58,17 @@ class ProposelTimeLine extends StatelessWidget {
                     begin: 0.1,
                     end: 0.9,
                     thickness: 6,
-                    color: MyAppDarkColor.instance.success,
+                    color: AppDarkColor.instance.success,
                   ),
                   TimelineTile(
                     alignment: TimelineAlign.manual,
                     lineXY: 0.9,
                     beforeLineStyle: LineStyle(
-                      color: MyAppDarkColor.instance.success,
+                      color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
                     afterLineStyle: LineStyle(
-                      color: MyAppDarkColor.instance.success,
+                      color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberTwo),
@@ -81,13 +81,13 @@ class ProposelTimeLine extends StatelessWidget {
                     begin: 0.1,
                     end: 0.9,
                     thickness: 6,
-                    color: MyAppDarkColor.instance.success,
+                    color: AppDarkColor.instance.success,
                   ),
                   TimelineTile(
                     alignment: TimelineAlign.manual,
                     lineXY: 0.1,
                     beforeLineStyle: LineStyle(
-                      color: MyAppDarkColor.instance.success,
+                      color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberThree),
@@ -100,14 +100,14 @@ class ProposelTimeLine extends StatelessWidget {
                     begin: 0.1,
                     end: 0.9,
                     thickness: 6,
-                    color: MyAppDarkColor.instance.success,
+                    color: AppDarkColor.instance.success,
                   ),
                   TimelineTile(
                     alignment: TimelineAlign.manual,
                     lineXY: 0.9,
                     isLast: true,
                     beforeLineStyle: LineStyle(
-                      color: MyAppDarkColor.instance.success,
+                      color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberFour),
@@ -129,7 +129,7 @@ class ProposelTimeLine extends StatelessWidget {
     return IndicatorStyle(
       width: 20,
       indicator: CircleAvatar(
-        backgroundColor: MyAppDarkColor.instance.success,
+        backgroundColor: AppDarkColor.instance.success,
         child: SvgPicture.asset(
           image,
           height: 10,

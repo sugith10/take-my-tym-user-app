@@ -29,7 +29,7 @@ class LocationTextField extends StatelessWidget {
       },
       autofocus: true,
       textCapitalization: TextCapitalization.sentences,
-      cursorColor: MyAppDarkColor.instance.primaryText,
+      cursorColor: AppDarkColor.instance.primaryText,
       decoration: InputDecoration(
         prefixIcon: const Padding(
           padding: EdgeInsets.only(left: 5),
@@ -39,7 +39,7 @@ class LocationTextField extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: MyAppDarkColor.instance.fillColor,
+        fillColor: AppDarkColor.instance.fillColor,
         hintText: 'Search for area...',
         hintStyle: Theme.of(context).textTheme.labelLarge,
       ),

@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
@@ -16,7 +16,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditi
 import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class SignInPage extends StatefulWidget {

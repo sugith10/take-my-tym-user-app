@@ -15,7 +15,7 @@ class SignButtonText extends StatelessWidget {
       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w700,
             letterSpacing: 2,
-            color: MyAppDarkColor.instance.softBackground,
+            color: AppDarkColor.instance.softBackground,
           ),
     );
   }

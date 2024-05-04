@@ -9,7 +9,7 @@ import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dar
 import 'package:take_my_tym/core/utils/post_types.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
@@ -182,7 +182,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                     //         height: 150.h,
                     //         width: double.infinity,
                     //         decoration: BoxDecoration(
-                    //           color: MyAppDarkColor
+                    //           color: AppDarkColor
                     //               .instance.bottomNavigationBarBackground,
                     //           borderRadius: BorderRadius.circular(20),
                     //         ),
@@ -206,11 +206,11 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                     //                 MaterialStateProperty.all(Size(30.w, 30.h)),
                     //             iconSize: const MaterialStatePropertyAll(18),
                     //             backgroundColor: MaterialStatePropertyAll(
-                    //                 MyAppDarkColor.instance.glassEffect),
+                    //                 AppDarkColor.instance.glassEffect),
                     //           ),
                     //           child: Icon(
                     //             IconlyBold.delete,
-                    //             color: MyAppDarkColor.instance.primaryText,
+                    //             color: AppDarkColor.instance.primaryText,
                     //           ),
                     //         ),
                     //       )

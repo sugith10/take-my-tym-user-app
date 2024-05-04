@@ -100,8 +100,8 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    MyAppDarkColor.instance.gradientPrimary,
-                    MyAppDarkColor.instance.gradientSecondary,
+                    AppDarkColor.instance.gradientPrimary,
+                    AppDarkColor.instance.gradientSecondary,
                   ],
                   begin: _topAlignmentAnimation.value,
                   end: _bottomAlignmentAnimation.value,
@@ -111,7 +111,7 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: MyAppDarkColor.instance.boxShadow,
+                    color: AppDarkColor.instance.boxShadow,
                     spreadRadius: 1,
                     blurRadius: 1,
                     offset: const Offset(0, 1.5),

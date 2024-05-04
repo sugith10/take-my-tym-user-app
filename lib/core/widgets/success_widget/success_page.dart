@@ -7,12 +7,11 @@ import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart'
 import 'package:take_my_tym/core/utils/app_assets/app_audio.dart';
 import 'package:take_my_tym/core/utils/app_assets/app_lottie.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/utils/app_sound_player.dart';
 import 'package:take_my_tym/core/utils/app_vibration.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 import 'package:take_my_tym/core/widgets/success_widget/bloc/success_page_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/scale_up.dart';
 
 part 'util/feedback.dart';
@@ -84,7 +83,7 @@ class _SuccessPageState extends State<SuccessPage> {
                   child: Text(
                     "Your tym post now accessible to the world...",
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: MyAppDarkColor.instance.primaryTextSoft),
+                        color: AppDarkColor.instance.primaryTextSoft),
                   ),
                 ),
                 SizedBox(height: 60.h),
@@ -115,7 +114,7 @@ class _SuccessPageState extends State<SuccessPage> {
                         },
                         child: Icon(
                           Icons.close_rounded,
-                          color: MyAppDarkColor.instance.secondaryText,
+                          color: AppDarkColor.instance.secondaryText,
                         ),
                       ),
                     ],

@@ -22,7 +22,7 @@ class AppBoxWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 0.5,
-          color: MyAppDarkColor.instance.secondaryBorder,
+          color: AppDarkColor.instance.secondaryBorder,
         ),
         borderRadius: BorderRadius.circular(
           MyAppRadius.borderRadius,

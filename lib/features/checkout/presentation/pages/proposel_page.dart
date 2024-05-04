@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
-import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/checkout/presentation/bloc/proposal_bloc/proposal_bloc.dart';
 import 'package:take_my_tym/features/checkout/presentation/pages/proposal_message.dart';
 import 'package:take_my_tym/features/checkout/presentation/pages/proposel_time_line.dart';

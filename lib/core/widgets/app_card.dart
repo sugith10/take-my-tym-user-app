@@ -30,7 +30,7 @@ class AppCard extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: MyAppDarkColor.instance.secondaryBackground,
+            color: AppDarkColor.instance.secondaryBackground,
             borderRadius: BorderRadius.circular(
               MyAppRadius.borderRadius,
             ),

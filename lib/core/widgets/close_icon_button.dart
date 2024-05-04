@@ -16,7 +16,7 @@ class CloseIconButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(Theme.of(context).scaffoldBackgroundColor),
         side: MaterialStatePropertyAll(
-          BorderSide(color: MyAppDarkColor.instance.primaryBorder),
+          BorderSide(color: AppDarkColor.instance.primaryBorder),
         ),
       ),
       onPressed: () {

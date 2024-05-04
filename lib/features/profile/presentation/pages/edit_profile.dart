@@ -28,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _locationCntrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late final style = Theme.of(context).textTheme.labelMedium?.copyWith(
-        color: MyAppDarkColor.instance.primaryTextSoft,
+        color: AppDarkColor.instance.primaryTextSoft,
       );
 
   @override

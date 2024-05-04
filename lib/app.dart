@@ -19,8 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppUserBloc>(create: (context) => AppUserBloc()),
-        BlocProvider<NavigationBloc>(
-            create: (context) => NavigationBloc()..add(NavigationHomeEvent())),
+
         BlocProvider<GetPostsBloc>(
             create: (context) => GetPostsBloc()
               ..add(GetBuyTymPostsEvent(

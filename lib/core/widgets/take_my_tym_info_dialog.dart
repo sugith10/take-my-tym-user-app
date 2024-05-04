@@ -67,7 +67,7 @@ class _HeadLineWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .labelSmall
-              ?.copyWith(color: MyAppDarkColor.instance.primaryTextSoft),
+              ?.copyWith(color: AppDarkColor.instance.primaryTextSoft),
           textAlign: TextAlign.center,
         ),
       ],
@@ -114,7 +114,7 @@ class _ExplainWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodySmall
-              ?.copyWith(color: MyAppDarkColor.instance.primaryTextSoft),
+              ?.copyWith(color: AppDarkColor.instance.primaryTextSoft),
           textAlign: TextAlign.justify,
         ),
       ],

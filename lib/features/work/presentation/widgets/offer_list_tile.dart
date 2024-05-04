@@ -22,7 +22,7 @@ class OfferListTile extends StatelessWidget {
         icon: Icon(
           IconlyLight.arrow_right_circle,
           size: 35,
-          color: MyAppDarkColor.instance.primaryTextSoft,
+          color: AppDarkColor.instance.primaryTextSoft,
         ),
       ),
       enableFeedback: true,

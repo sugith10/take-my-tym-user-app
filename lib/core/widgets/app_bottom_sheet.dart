@@ -27,7 +27,7 @@ class AppBottomSheet {
                         height: 5,
                         width: MediaQuery.of(context).size.width / 6,
                         decoration: BoxDecoration(
-                          color: MyAppDarkColor.instance.primaryTextSoft,
+                          color: AppDarkColor.instance.primaryTextSoft,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),

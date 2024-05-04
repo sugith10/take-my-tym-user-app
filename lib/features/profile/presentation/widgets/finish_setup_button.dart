@@ -30,7 +30,7 @@ class FinishSetupButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
-                color: MyAppDarkColor.instance.boxShadow.withOpacity(0.2),
+                color: AppDarkColor.instance.boxShadow.withOpacity(0.2),
                 spreadRadius: .5,
                 blurRadius: .5,
                 offset: const Offset(.2, .2),
@@ -44,7 +44,7 @@ class FinishSetupButton extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w900,
                 letterSpacing: .5,
-                color: MyAppDarkColor.instance.primaryText),
+                color: AppDarkColor.instance.primaryText),
           ),
         ),
       ),

@@ -23,7 +23,7 @@ class ChatTextField extends StatefulWidget {
 }
 
 class _ChatTextFieldState extends State<ChatTextField> {
-  final MyAppDarkColor _appDarkColor = MyAppDarkColor.instance;
+  final AppDarkColor _appDarkColor = AppDarkColor.instance;
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -100,7 +100,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
 class _ChatIconButton extends StatelessWidget {
   final VoidCallback callback;
   final IconData icon;
-  final MyAppDarkColor darkColor;
+  final AppDarkColor darkColor;
   const _ChatIconButton(
       {required this.icon, required this.callback, required this.darkColor});
 
@@ -108,9 +108,9 @@ class _ChatIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: MyAppDarkColor.instance.secondaryText),
+        border: Border.all(color: AppDarkColor.instance.secondaryText),
         borderRadius: BorderRadius.circular(100),
-        color: MyAppDarkColor.instance.bottomBar,
+        color: AppDarkColor.instance.bottomBar,
       ),
       child: IconButton(
         onPressed: () {
@@ -119,7 +119,7 @@ class _ChatIconButton extends StatelessWidget {
         icon: Icon(
           icon,
           size: 25,
-          color: MyAppDarkColor.instance.primaryText,
+          color: AppDarkColor.instance.primaryText,
         ),
       ),
     );

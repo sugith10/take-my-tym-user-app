@@ -60,8 +60,8 @@ class ProposalMessage extends StatelessWidget {
               children: [
                 Expanded(
                   child: SubmitButton(
-                    backgroundColor: MyAppDarkColor.instance.success,
-                    foregroundColor: MyAppDarkColor.instance.primaryText,
+                    backgroundColor: AppDarkColor.instance.success,
+                    foregroundColor: AppDarkColor.instance.primaryText,
                     callback: () {
                       proposalBloc.add(
                         ProposalSubmitEvent(message: controller.text),

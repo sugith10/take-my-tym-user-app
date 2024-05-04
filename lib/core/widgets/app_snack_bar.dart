@@ -95,7 +95,7 @@ class _SnackBarContentWidget extends StatelessWidget {
                     Text(
                       description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: MyAppDarkColor.instance.primaryTextBlur),
+                          color: AppDarkColor.instance.primaryTextBlur),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -31,7 +31,7 @@ class AppDialog {
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: MyAppDarkColor.instance.primaryTextBlur,
+                        color: AppDarkColor.instance.primaryTextBlur,
                       ),
                 ),
                 const Spacer(),

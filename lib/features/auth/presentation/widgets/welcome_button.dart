@@ -30,7 +30,7 @@ class WelcomeButton extends StatelessWidget {
         shadowHeightLeft: 4,
         width: 300.w,
         borderRadius: 2,
-        color: MyAppDarkColor.instance.buttonBackground,
+        color: AppDarkColor.instance.buttonBackground,
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

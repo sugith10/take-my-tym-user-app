@@ -67,7 +67,7 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
         style: ButtonStyle(
           visualDensity: VisualDensity.comfortable,
           side: MaterialStatePropertyAll(
-              BorderSide(color: MyAppDarkColor.instance.primarySoftBorder)),
+              BorderSide(color: AppDarkColor.instance.primarySoftBorder)),
           padding: const MaterialStatePropertyAll(EdgeInsets.all(5)),
           backgroundColor: const MaterialStatePropertyAll(
             Colors.transparent,

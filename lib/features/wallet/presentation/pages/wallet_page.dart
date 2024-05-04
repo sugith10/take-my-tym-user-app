@@ -26,7 +26,7 @@ class WalletPage extends StatelessWidget {
               HomePadding(
                 child: ShimmerPro.sized(
                   light: ShimmerProLight.lighter,
-                  scaffoldBackgroundColor: MyAppDarkColor.instance.background,
+                  scaffoldBackgroundColor: AppDarkColor.instance.background,
                   height: 150.h,
                   width: double.infinity,
                 ),
@@ -48,7 +48,7 @@ class WalletPage extends StatelessWidget {
                         light: ShimmerProLight.lighter,
                         width: 450,
                         scaffoldBackgroundColor:
-                            MyAppDarkColor.instance.background,
+                            AppDarkColor.instance.background,
                       ),
                     ),
                   ),

@@ -73,7 +73,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                 children: [
                   Icon(
                     Icons.location_on_rounded,
-                    color: MyAppDarkColor.instance.danger,
+                    color: AppDarkColor.instance.danger,
                   ),
                   const SizedBox(width: 10),
                   const Text("Use current location")

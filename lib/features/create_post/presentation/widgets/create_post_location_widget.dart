@@ -41,7 +41,7 @@ class CreatePostLocationWidget extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border.all(
-                color: MyAppDarkColor.instance.secondaryBorder,
+                color: AppDarkColor.instance.secondaryBorder,
               ),
               borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
             ),

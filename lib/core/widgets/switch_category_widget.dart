@@ -34,8 +34,8 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
           borderColor: Colors.transparent,
           backgroundGradient: LinearGradient(
             colors: [
-              MyAppDarkColor.instance.gradientPrimary,
-              MyAppDarkColor.instance.gradientSecondary,
+              AppDarkColor.instance.gradientPrimary,
+              AppDarkColor.instance.gradientSecondary,
             ],
           ),
           indicatorColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -49,7 +49,7 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
         borderColor: Colors.transparent,
         boxShadow: [
           BoxShadow(
-            color: MyAppDarkColor.instance.boxShadow,
+            color: AppDarkColor.instance.boxShadow,
             spreadRadius: 1,
             blurRadius: 1,
             offset: const Offset(0, 1.5),

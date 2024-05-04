@@ -48,7 +48,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
                   border: Border.all(
-                    color: MyAppDarkColor.instance.primarySoftBorder,
+                    color: AppDarkColor.instance.primarySoftBorder,
                   ),
                 ),
                 child: const Padding(

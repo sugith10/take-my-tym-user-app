@@ -16,9 +16,9 @@ class MyAppView extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return MaterialApp(
-            title: "Take My Tym",
+            title: "Take My Tym", 
             home: const SplashPage(),
-            theme: MyAppDarkTheme().darkTheme,
+            theme: AppDarkTheme().darkTheme,
             debugShowCheckedModeBanner: false,
           );
         }

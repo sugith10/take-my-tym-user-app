@@ -27,7 +27,7 @@ class SearchTextField extends StatelessWidget {
         },
         autofocus: true,
         textCapitalization: TextCapitalization.sentences,
-        cursorColor: MyAppDarkColor.instance.primaryText,
+        cursorColor: AppDarkColor.instance.primaryText,
         decoration: InputDecoration(
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 5),
@@ -57,7 +57,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
           filled: true,
-          fillColor: MyAppDarkColor.instance.fillColor,
+          fillColor: AppDarkColor.instance.fillColor,
           hintText: 'Search',
           hintStyle: Theme.of(context).textTheme.labelLarge,
         ),

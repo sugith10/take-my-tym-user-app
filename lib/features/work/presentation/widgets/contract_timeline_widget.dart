@@ -23,18 +23,18 @@ class TimeLineTileWidget extends StatelessWidget {
       isLast: isLast,
       beforeLineStyle: LineStyle(
         color: isPast
-            ? MyAppDarkColor.instance.success
+            ? AppDarkColor.instance.success
             : const Color.fromARGB(255, 192, 192, 192),
       ),
       indicatorStyle: IndicatorStyle(
         width: 25,
         color: isPast
-            ? MyAppDarkColor.instance.success
+            ? AppDarkColor.instance.success
             : const Color.fromARGB(255, 192, 192, 192),
         iconStyle: IconStyle(
           iconData: Icons.done_rounded,
           color: isPast
-              ? MyAppDarkColor.instance.primaryText
+              ? AppDarkColor.instance.primaryText
               : Colors.transparent,
           fontSize: 20,
         ),

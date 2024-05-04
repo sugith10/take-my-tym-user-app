@@ -17,14 +17,14 @@ class EventCard extends StatelessWidget {
       margin: const EdgeInsets.all(25),
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-          color: MyAppDarkColor.instance.secondaryBackground,
+          color: AppDarkColor.instance.secondaryBackground,
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius)),
       child: Text(
         title,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: isPast
-                  ? MyAppDarkColor.instance.primaryTextSoft
-                  : MyAppDarkColor.instance.secondaryText,
+                  ? AppDarkColor.instance.primaryTextSoft
+                  : AppDarkColor.instance.secondaryText,
             ),
       ),
     );

@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/snack_bar_messenger_widget.dart';
+import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_title_widget.dart';
 
@@ -99,11 +99,11 @@ class _SkillsTextField extends StatelessWidget {
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
-          borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
+          borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
-          borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
+          borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         hintText: "Skills",
         hintStyle: Theme.of(context).textTheme.bodyLarge,
@@ -113,7 +113,7 @@ class _SkillsTextField extends StatelessWidget {
           },
           icon: const Icon(Icons.add),
         ),
-        suffixIconColor: MyAppDarkColor.instance.primaryText,
+        suffixIconColor: AppDarkColor.instance.primaryText,
       ),
       style: Theme.of(context).textTheme.labelLarge,
     );
@@ -143,11 +143,11 @@ class _SkillsWidget extends StatelessWidget {
                       label: Text(
                         skill,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: MyAppDarkColor.instance.primaryTextSoft),
+                            color: AppDarkColor.instance.primaryTextSoft),
                       ),
                       shape: const StadiumBorder(side: BorderSide(width: 0.5)),
                       side: BorderSide(
-                        color: MyAppDarkColor.instance.primarySoftBorder,
+                        color: AppDarkColor.instance.primarySoftBorder,
                       ),
                       onDeleted: () {
                         createSkillBloc.add(RemoveSkillEvent(

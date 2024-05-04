@@ -16,8 +16,8 @@ class AnimatedDot extends StatelessWidget {
       width: isActive ? 20 : 10,
       decoration: BoxDecoration(
         color: isActive
-            ? MyAppDarkColor.instance.primaryText
-            : MyAppDarkColor.instance.secondaryText,
+            ? AppDarkColor.instance.primaryText
+            : AppDarkColor.instance.secondaryText,
         borderRadius: BorderRadius.circular(10),
       ),
     );

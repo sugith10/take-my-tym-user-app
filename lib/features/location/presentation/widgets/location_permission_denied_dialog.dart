@@ -9,13 +9,13 @@ final class LocationPermissionDenied {
         title: Center(
             child: Text(
           'Location Permission Denied',
-          style: TextStyle(color: MyAppDarkColor.instance.danger),
+          style: TextStyle(color: AppDarkColor.instance.danger),
         )),
         content: Text(
           "Please enable the location permission in your application settings to use this feature.",
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: MyAppDarkColor.instance.primaryTextSoft,
+                color: AppDarkColor.instance.primaryTextSoft,
               ),
         ),
       ),

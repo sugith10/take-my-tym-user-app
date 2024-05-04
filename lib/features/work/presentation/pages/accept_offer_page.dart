@@ -13,6 +13,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/post_owner_info_widget.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
+import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_subtitle_widget.dart';
 
 class AcceptOfferPage extends StatelessWidget {
@@ -53,8 +54,6 @@ class AcceptOfferPage extends StatelessWidget {
   }
 }
 
-
-
 class AcceptOfferWidget extends StatelessWidget {
   const AcceptOfferWidget({
     super.key,
@@ -68,8 +67,8 @@ class AcceptOfferWidget extends StatelessWidget {
         Expanded(
           child: SubmitButton(
             text: "Reject",
-            backgroundColor: MyAppDarkColor.instance.danger,
-            foregroundColor: MyAppDarkColor.instance.primaryText,
+            backgroundColor: AppDarkColor.instance.danger,
+            foregroundColor: AppDarkColor.instance.primaryText,
             callback: () {
               AppDialog.show(
                 context: context,
@@ -85,15 +84,19 @@ class AcceptOfferWidget extends StatelessWidget {
           child: SubmitButton(
             text: "Accept",
             backgroundColor: Colors.green,
-            foregroundColor: MyAppDarkColor.instance.primaryText,
+            foregroundColor: AppDarkColor.instance.primaryText,
             callback: () {
               AppDialog.show(
-                  context: context,
-                  title: "Accept Offer",
-                  subtitle: "Lorem Ipsum is simply dummy text",
-                  action: "Accept",
-                  actionCall: () {},
-                  actionColor: Colors.green);
+                context: context,
+                title: "Accept Offer",
+                subtitle: "Lorem Ipsum is simply dummy text",
+                action: "Accept",
+                actionCall: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, PaymentPage.route());
+                },
+                actionColor: AppDarkColor.instance.success,
+              );
             },
           ),
         ),

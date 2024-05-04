@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
 
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
+
 
 class AppBlocObserver extends BlocObserver {
   ///We can run something, when we create our Bloc
@@ -13,9 +11,9 @@ class AppBlocObserver extends BlocObserver {
 
     ///We can check, if the BlocBase is a Bloc or a Cubit
     if (bloc is Cubit) {
-      logger.i("This is a Cubit");
+      appLogger.i("This is a Cubit");
     } else {
-      logger.i("This is a Bloc");
+      appLogger.i("This is a Bloc");
     }
   }
 
@@ -23,14 +21,14 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    logger.i("An event Happened in $bloc the event is $event");
+    appLogger.i("An event Happened in $bloc the event is $event");
   }
 
   ///We can react to states
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    logger.i('A new state from $bloc the state is $change');
+    appLogger.i('A new state from $bloc the state is $change');
   }
 
   ///We can even react to transitions
@@ -39,7 +37,7 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
 
     /// With this we can specifically know, when and what changed in our Bloc
-    logger.i(
+    appLogger.i(
         "There was a transition from ${transition.currentState} to ${transition.nextState}");
   }
 
@@ -47,7 +45,7 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    logger.i(
+    appLogger.i(
         "Error happened in $bloc with error $error and the stacktrace is $stackTrace");
   }
 
@@ -55,6 +53,6 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
-    logger.i("$bloc is closed");
+    appLogger.i("$bloc is closed");
   }
 }

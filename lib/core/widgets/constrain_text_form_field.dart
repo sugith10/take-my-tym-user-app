@@ -69,13 +69,13 @@ class _ConstrainTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             MyAppRadius.borderRadius - 2,
           ),
-          borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
+          borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             MyAppRadius.borderRadius - 2,
           ),
-          borderSide: BorderSide(color: MyAppDarkColor.instance.boxShadow),
+          borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         hintText: hintText,
         hintStyle: Theme.of(context).textTheme.bodyLarge,

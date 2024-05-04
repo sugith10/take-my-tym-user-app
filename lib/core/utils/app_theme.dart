@@ -4,8 +4,8 @@ import 'package:take_my_tym/core/utils/app_assets/app_font.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
-final class MyAppDarkTheme {
-  static final MyAppDarkColor _color = MyAppDarkColor.instance;
+final class AppDarkTheme {
+  static final AppDarkColor _color = AppDarkColor.instance;
   static final ScreenUtil _screenUtil = ScreenUtil();
 
   static final _outlineInputBorder = OutlineInputBorder(

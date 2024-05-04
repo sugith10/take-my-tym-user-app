@@ -28,7 +28,7 @@ class PanelTitleWidget extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 IconlyLight.info_circle,
-                color: MyAppDarkColor.instance.gradientPrimary,
+                color: AppDarkColor.instance.gradientPrimary,
               ),
             ),
           ],

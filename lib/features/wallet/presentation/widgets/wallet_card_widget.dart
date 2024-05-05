@@ -1,8 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
+import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
 
 class WalletCard extends StatelessWidget {
   final double balance;
@@ -21,17 +23,19 @@ class WalletCard extends StatelessWidget {
       child: Container(
         height: 150.h,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              colors: [
-                Color.fromARGB(255, 78, 78, 78),
-                Color.fromRGBO(0, 0, 0, 1),
-              ],
-              center: Alignment.topLeft,
-              radius: 0.9,
-            ),
-            borderRadius:
-                BorderRadius.all(Radius.circular(MyAppRadius.borderRadius))),
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            colors: [
+              AppDarkColor.instance.gradientPrimary,
+              AppDarkColor.instance.gradientSecondary,
+            ],
+            center: Alignment.topLeft,
+            radius: 0.9,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(MyAppRadius.borderRadius),
+          ),
+        ),
         child: Column(
           children: [
             const Spacer(),
@@ -51,8 +55,11 @@ class WalletCard extends StatelessWidget {
                 _TransactionButton(
                   icon: IconlyLight.arrow_up,
                   title: 'Top up',
-                  function: () {
-                    log('Top up');
+                  callback: () {
+                    Navigator.push(
+                      context,
+                      PaymentPage.route(type: WalletAction.topUp),
+                    );
                   },
                 ),
                 SizedBox(
@@ -62,21 +69,14 @@ class WalletCard extends StatelessWidget {
                 _TransactionButton(
                   icon: IconlyLight.arrow_down,
                   title: 'Withdraw',
-                  function: () {
-                    log('Withdraw');
+                  callback: () {
+                    Navigator.push(
+                        context,
+                        PaymentPage.route(
+                          type: WalletAction.widthdraw,
+                        ));
                   },
                 ),
-                SizedBox(
-                  height: 20.h,
-                  child: const VerticalDivider(),
-                ),
-                _TransactionButton(
-                  icon: IconlyLight.swap,
-                  title: 'Transfer',
-                  function: () {
-                    log('transfer');
-                  },
-                )
               ],
             ),
             const Spacer()
@@ -90,18 +90,18 @@ class WalletCard extends StatelessWidget {
 class _TransactionButton extends StatelessWidget {
   final IconData icon;
   final String title;
-  final Function function;
+  final VoidCallback callback;
   const _TransactionButton({
     required this.icon,
     required this.title,
-    required this.function,
+    required this.callback,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        function();
+        callback();
       },
       child: Column(
         children: [

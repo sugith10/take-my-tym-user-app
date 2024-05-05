@@ -51,13 +51,13 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
                             longitude: state.longitude,
                           ),
                         );
-                    context.read<NearbyPostsBloc>().add(
-                          NearbyPostsEvent(
-                            latitude: state.latitude,
-                            longitude: state.longitude,
-                            location: state.placeName,
-                          ),
-                        );
+                    // context.read<NearbyPostsBloc>().add(
+                    //       NearbyPostsEvent(
+                    //         latitude: state.latitude,
+                    //         longitude: state.longitude,
+                    //         location: state.placeName,
+                    //       ),
+                    //     );
                     return _LocationWidget(
                       location: state.placeName,
                     );

@@ -13,13 +13,13 @@ import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 import 'package:take_my_tym/core/widgets/success_widget/bloc/success_page_bloc.dart';
 import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/scale_up.dart';
-
 part 'util/feedback.dart';
 
 class SuccessPage extends StatefulWidget {
-  const SuccessPage({super.key});
+  final bool pop;
+  const SuccessPage({required this.pop, super.key});
 
-  static route() => noMovement(const SuccessPage());
+  static route({bool pop = false}) => noMovement(SuccessPage(pop: pop));
 
   @override
   State<SuccessPage> createState() => _SuccessPageState();
@@ -40,11 +40,12 @@ class _SuccessPageState extends State<SuccessPage> {
       bloc: _successPageBloc,
       listener: (context, state) {
         if (state is SuccessPageExistState) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            NavigationMenu.route(),
-            (route) => false,
-          );
+          if (widget.pop) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          } else {
+            Navigator.pushAndRemoveUntil(
+                context, NavigationMenu.route(), (route) => false);
+          }
         }
       },
       child: Scaffold(

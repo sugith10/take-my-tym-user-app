@@ -151,5 +151,12 @@ final class DependencyInject {
           () => WalletRepoImpl(WalletRemoteData()))
       ..registerLazySingleton<WalletUseCase>(
           () => WalletUseCase(_getIt<WalletRepo>()));
+
+    ///Payment
+    _getIt
+      ..registerLazySingleton<PaymentRepo>(
+          () => PaymentRepoImpl(StripePayment()))
+      ..registerLazySingleton<PaymentUseCase>(
+          () => PaymentUseCase(_getIt<PaymentRepo>()));
   }
 }

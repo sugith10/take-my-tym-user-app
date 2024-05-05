@@ -39,14 +39,14 @@ class _PostsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      primary: false,
-      itemCount: postModles.length,
-      itemBuilder: (context, index) {
-        final model = postModles[index];
-        return HomePadding(
-          child: PostedContentWidget(
+    return HomePadding(
+      child: ListView.builder(
+        shrinkWrap: true,
+        primary: false,
+        itemCount: postModles.length,
+        itemBuilder: (context, index) {
+          final model = postModles[index];
+          return PostedContentWidget(
             postModel: model,
             voidCallback: () {
               Navigator.push(
@@ -55,9 +55,9 @@ class _PostsBuilder extends StatelessWidget {
               );
             },
             width: MediaQuery.of(context).size.width,
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

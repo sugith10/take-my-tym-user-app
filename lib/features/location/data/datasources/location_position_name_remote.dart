@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:take_my_tym/core/secret/google_map_api_key.dart';
 
@@ -11,7 +12,7 @@ Future<String> locationPositionName({required  double latitude,required double l
     '/maps/api/geocode/json',
     {
       'latlng': '$latitude,$longitude',
-      'key': googleMapApiKey,
+      'key': dotenv.env["GOOGLE_MAP_API_KEY"]!,
     },
   );
 

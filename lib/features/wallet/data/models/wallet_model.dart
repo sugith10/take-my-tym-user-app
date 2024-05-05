@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 
 class WalletModel {
-  final double balance;
-  final List<TransactionModel> transactions;
+  double balance;
+  List<TransactionModel> transactions;
   WalletModel({
     required this.balance,
     required this.transactions,
@@ -31,24 +31,29 @@ class WalletModel {
   factory WalletModel.fromMap(Map<String, dynamic> map) {
     return WalletModel(
       balance: map['balance'] as double,
-      transactions: List<TransactionModel>.from((map['transactions'] as List<int>).map<TransactionModel>((x) => TransactionModel.fromMap(x as Map<String,dynamic>),),),
+      transactions: List<TransactionModel>.from(
+        (map['transactions'] as List<dynamic>).map<TransactionModel>(
+          (x) => TransactionModel.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory WalletModel.fromJson(String source) => WalletModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory WalletModel.fromJson(String source) =>
+      WalletModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'WalletModel(balance: $balance, transactions: $transactions)';
+  String toString() =>
+      'WalletModel(balance: $balance, transactions: $transactions)';
 
   @override
   bool operator ==(covariant WalletModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.balance == balance &&
-      listEquals(other.transactions, transactions);
+
+    return other.balance == balance &&
+        listEquals(other.transactions, transactions);
   }
 
   @override

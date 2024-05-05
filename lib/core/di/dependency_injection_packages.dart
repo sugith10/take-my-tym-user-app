@@ -76,9 +76,14 @@ import 'package:take_my_tym/features/home/data/datasources/remote/community_post
 import 'package:take_my_tym/features/home/data/repositories/community_posts_repo_impl.dart';
 import 'package:take_my_tym/features/home/domain/repositories/community_posts_repo.dart';
 import 'package:take_my_tym/features/home/domain/usecases/get_community_posts_usecase.dart';
+import 'package:take_my_tym/features/wallet/data/datasources/remote/stripe_payment.dart';
 import 'package:take_my_tym/features/wallet/data/datasources/remote/wallet_remote_data.dart';
+import 'package:take_my_tym/features/wallet/data/repositories/payment_repo_impl.dart';
 import 'package:take_my_tym/features/wallet/data/repositories/wallet_repo_impl.dart';
+import 'package:take_my_tym/features/wallet/domain/repositories/payment_repo.dart';
 import 'package:take_my_tym/features/wallet/domain/repositories/wallet_repo.dart';
+import 'package:take_my_tym/features/wallet/domain/usecases/payment_use_case.dart';
 import 'package:take_my_tym/features/wallet/domain/usecases/wallet_use_case.dart';
+import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
 
 part 'dependency_injection.dart';

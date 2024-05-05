@@ -18,6 +18,8 @@ final class WalletLoadedState extends WalletState {
     required this.balance,
     required this.transactions,
   });
+  @override
+  List<Object> get props => [balance, transactions];
 }
 
 final class WalletErrorState extends WalletState {}

@@ -14,6 +14,7 @@ import 'package:take_my_tym/core/widgets/post_owner_info_widget.dart';
 import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
 import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
+import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_subtitle_widget.dart';
 
 class AcceptOfferPage extends StatelessWidget {
@@ -93,7 +94,8 @@ class AcceptOfferWidget extends StatelessWidget {
                 action: "Accept",
                 actionCall: () {
                   Navigator.pop(context);
-                  Navigator.push(context, PaymentPage.route());
+                  Navigator.push(
+                      context, PaymentPage.route(type: WalletAction.transfer));
                 },
                 actionColor: AppDarkColor.instance.success,
               );

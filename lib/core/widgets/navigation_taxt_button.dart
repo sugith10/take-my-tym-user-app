@@ -20,8 +20,8 @@ class NavigationText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeInUp(
-      delay:  Duration(milliseconds: delay),
-      duration:  Duration(milliseconds: duration),
+      delay: Duration(milliseconds: delay),
+      duration: Duration(milliseconds: duration),
       child: GestureDetector(
         onTap: () {
           function();
@@ -32,11 +32,12 @@ class NavigationText extends StatelessWidget {
             style: Theme.of(context).textTheme.labelSmall,
             children: [
               TextSpan(
-                  text: buttonText,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        decorationColor: const Color.fromRGBO(255, 255, 255, 1),
-                        decoration: TextDecoration.underline,
-                      ))
+                text: buttonText,
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      decorationColor: const Color.fromRGBO(255, 255, 255, 1),
+                      decoration: TextDecoration.underline,
+                    ),
+              )
             ],
           ),
         ),

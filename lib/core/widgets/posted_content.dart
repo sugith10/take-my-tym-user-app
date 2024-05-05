@@ -23,51 +23,54 @@ class PostedContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      voidCallback: voidCallback,
-      width: width,
-      height: height,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (image != null)
-            Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    MyAppRadius.borderRadius,
+    return Padding(
+       padding: const EdgeInsets.only(bottom: 10),
+      child: AppCard(
+        voidCallback: voidCallback,
+        width: width,
+        height: height,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (image != null)
+              Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      MyAppRadius.borderRadius,
+                    ),
+                    child: Image.asset(
+                      image!,
+                      fit: BoxFit.fill,
+                      width: MediaQuery.of(context).size.width,
+                      height: height,
+                    ),
                   ),
-                  child: Image.asset(
-                    image!,
-                    fit: BoxFit.fill,
-                    width: MediaQuery.of(context).size.width,
-                    height: height,
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Service Type: ${postModel.workType}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              'Service Type: ${postModel.workType}',
-              style: Theme.of(context).textTheme.bodySmall,
+            SizedBox(height: 10.h),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: _TitleText(title: postModel.title),
             ),
-          ),
-          SizedBox(height: 10.h),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: _TitleText(title: postModel.title),
-          ),
-          if (image == null)
-            Column(
-              children: [
-                SizedBox(height: 15.h),
-                _ContentText(content: postModel.content),
-              ],
-            ),
-          SizedBox(height: 10.h),
-        ],
+            if (image == null)
+              Column(
+                children: [
+                  SizedBox(height: 15.h),
+                  _ContentText(content: postModel.content),
+                ],
+              ),
+            SizedBox(height: 10.h),
+          ],
+        ),
       ),
     );
   }

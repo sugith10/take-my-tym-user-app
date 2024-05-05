@@ -97,7 +97,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                         .add(GetSellTymPostsEvent(userId: state.uid));
                 Navigator.pushAndRemoveUntil(
                   context,
-                  SuccessPage.route(),
+                  SuccessPage.route(pop: false),
                   (route) => false,
                 );
               }

@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class TransactionModel {
   final Timestamp timestamp;
   final double amount;
-
   ///credit==true-debit==false
   final bool transactionType;
   TransactionModel({

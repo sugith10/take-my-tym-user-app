@@ -57,7 +57,6 @@ class WalletRemoteData {
 
       if (walletDocSnap.exists) {
         final wallet = WalletModel.fromMap(walletDocSnap.data()!);
-        //TODO - WHEN USER TRY TO WITHDRAW THE AMOUNT LESS THAN THE BALANCE RESTRICT IT
         if (transactionModel.amount <= wallet.balance) {
           wallet.balance -= transactionModel.amount;
           wallet.transactions.add(transactionModel);

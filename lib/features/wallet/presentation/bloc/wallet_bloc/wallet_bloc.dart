@@ -28,7 +28,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
     emit(
       WalletLoadedState(
         balance: walletModel.balance,
-        transactions: walletModel.transactions,
+        transactions: walletModel.transactions.reversed.toList(),
       ),
     );
   }
@@ -51,7 +51,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
     emit(
       WalletLoadedState(
         balance: walletModel.balance,
-        transactions: walletModel.transactions,
+        transactions: walletModel.transactions.reversed.toList(),
       ),
     );
   }
@@ -77,7 +77,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       emit(
         WalletLoadedState(
           balance: walletModel.balance,
-          transactions: walletModel.transactions,
+          transactions: walletModel.transactions.reversed.toList(),
         ),
       );
     } catch (e) {}

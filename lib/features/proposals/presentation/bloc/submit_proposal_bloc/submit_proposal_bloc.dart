@@ -34,9 +34,10 @@ class SubmitProposalBloc
               proposelDate: Timestamp.now(),
             );
             final submitModel = SubmitModel(
-                status: false,
-                postId: event.postModel.postId!,
-                timestamp: Timestamp.now());
+              status: false,
+              postId: event.postModel.postId!,
+              timestamp: Timestamp.now(),
+            );
 
             await ProposalRemote()
                 .submit(

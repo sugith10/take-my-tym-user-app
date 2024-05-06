@@ -30,6 +30,7 @@ class ProposalsStatusTab extends StatelessWidget {
                 },
               );
             },
+            
           ),
           SizedBox(height: 20.h),
           const PanelTitleWidget(

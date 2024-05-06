@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
 import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
+import 'package:take_my_tym/features/proposals/data/models/proposal_model.dart';
 import 'package:take_my_tym/features/proposals/data/models/submit_model.dart';
 
 class ProposalRemote {
@@ -42,14 +43,33 @@ class ProposalRemote {
     }
   }
 
-  Future<void> getProposels({required String uid}) async {
+  Future<ProposalModel> getProposels({required String uid}) async {
     try {
-      final snap = await _ref.get();
-      if (snap.docs.isNotEmpty) {
-        log("Success: ${snap.docs.length} proposals fetched");
-      } else {
-        log("No proposals found");
+      final submit = await _ref.doc(uid).collection("submit").get();
+      final offers = await _ref.doc(uid).collection("offers").get();
+      List<SubmitModel> submitList = [];
+      List<OfferModel> offerList = [];
+
+      if (submit.docs.isNotEmpty) {
+        submitList = submit.docs.map((map) {
+          return SubmitModel.fromMap(map.data());
+        }).toList();
       }
+
+      if (offers.docs.isNotEmpty) {
+        offerList = offers.docs
+            .map(
+              (map) => OfferModel.fromMap(map.data()),
+            )
+            .toList();
+      }
+
+      final proposalModel = ProposalModel(
+        submitList: submitList,
+        offerList: offerList,
+      );
+      appLogger.t(proposalModel);
+      return proposalModel;
     } catch (e) {
       appLogger.e("Error fetching proposals: $e");
       throw AppException(

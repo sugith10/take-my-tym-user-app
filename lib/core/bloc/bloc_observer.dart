@@ -11,7 +11,7 @@ class AppBlocObserver extends BlocObserver {
 
   //   ///We can check, if the BlocBase is a Bloc or a Cubit
   //   if (bloc is Cubit) {
-  //     appLogger.i("This is a Cubit");
+  //     appLogger.t("This is a Cubit");
   //   } else {
   //     appLogger.i("This is a Bloc");
   //   }
@@ -21,14 +21,14 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    appLogger.i("An event Happened in $bloc the event is $event");
+    appLogger.t("An event Happened in $bloc the event is $event");
   }
 
   ///We can react to states
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    appLogger.i('A new state from $bloc the state is $change');
+    appLogger.t('A new state from $bloc the state is $change');
   }
 
   ///We can even react to transitions
@@ -37,7 +37,7 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
 
     /// With this we can specifically know, when and what changed in our Bloc
-    appLogger.i(
+    appLogger.t(
         "There was a transition from ${transition.currentState} to ${transition.nextState}");
   }
 
@@ -45,7 +45,7 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    appLogger.i(
+    appLogger.t(
         "Error happened in $bloc with error $error and the stacktrace is $stackTrace");
   }
 
@@ -53,6 +53,6 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
-    appLogger.i("$bloc is closed");
+    appLogger.t("$bloc is closed");
   }
 }

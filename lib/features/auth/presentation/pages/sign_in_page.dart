@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
@@ -63,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
       bloc: _bloc,
       listener: (ctx, state) {
         if (state is SignInLoadingState) {
-          ShowLoadingDialog().showLoadingIndicator(context);
+          LoadingDialog().show(context);
         }
         if (state is SignInErrorState) {
           Navigator.pop(context);

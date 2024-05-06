@@ -38,7 +38,7 @@ class _SwitchCategoryWidgetState extends State<SwitchCategoryWidget> {
               AppDarkColor.instance.gradientSecondary,
             ],
           ),
-          indicatorColor: const Color.fromRGBO(255, 255, 255, 1),
+          indicatorColor: AppDarkColor.instance.primaryText,
         );
       },
       current: current,

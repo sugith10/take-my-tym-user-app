@@ -7,7 +7,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/widgets/app_bar/close_app_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
@@ -62,7 +62,7 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
                   );
                 }
                 if (state is UserSignOutLoadingState) {
-                  ShowLoadingDialog().showLoadingIndicator(context);
+                  LoadingDialog().show(context);
                 }
                 if (state is UserSignOutSuccessState) {
                   context.read<AppUserBloc>().add(UpdateUserSignOutEvent());

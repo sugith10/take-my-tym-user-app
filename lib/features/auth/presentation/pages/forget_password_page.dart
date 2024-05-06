@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/forget_password_bloc/forget_password_bloc.dart';
 import 'package:take_my_tym/core/utils/reg_exp.dart';
@@ -36,7 +36,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
       bloc: _forgetPasswordBloc,
       listener: (context, state) {
         if (state is ForgetPasswordLoadingState) {
-          ShowLoadingDialog().showLoadingIndicator(context);
+          LoadingDialog().show(context);
         } else if (state is ForgetPasswordSuccessState) {
           Navigator.pop(context);
           Navigator.pop(context);

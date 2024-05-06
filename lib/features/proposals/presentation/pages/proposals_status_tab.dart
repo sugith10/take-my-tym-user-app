@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/features/work/presentation/pages/accept_offer_page.dart';
+import 'package:take_my_tym/features/proposals/presentation/pages/accept_proposal_page.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/contract_timeline_widget.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_list_tile.dart';
-import 'package:take_my_tym/features/work/presentation/widgets/panel_title_widget.dart';
+import 'package:take_my_tym/core/widgets/panel_title_widget.dart';
 
-class ProposalsTab extends StatelessWidget {
-  const ProposalsTab({
+class ProposalsStatusTab extends StatelessWidget {
+  const ProposalsStatusTab({
     super.key,
   });
 
@@ -24,7 +24,7 @@ class ProposalsTab extends StatelessWidget {
           OfferListTile(
             text: 'Lorem Ipsum is simply dummy text of the',
             onPressed: () {
-              Navigator.push(context, AcceptOfferPage.route());
+              Navigator.push(context, AcceptProposalPage.route());
             },
           ),
           SizedBox(height: 20.h),

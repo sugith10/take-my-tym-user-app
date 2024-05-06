@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
@@ -78,7 +78,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             bloc: widget.bloc,
             listener: (context, state) {
               if (state is CreatPostLoadingState) {
-                ShowLoadingDialog().showLoadingIndicator(context);
+                LoadingDialog().show(context);
               }
               if (state is CreateSecondFailState) {
                 Navigator.pop(context);
@@ -105,7 +105,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
         BlocListener<UpdatePostBloc, UpdatePostState>(
           listener: (context, state) {
             if (state is UpdatePostLoadingState) {
-              ShowLoadingDialog().showLoadingIndicator(context);
+              LoadingDialog().show(context);
             } else if (state is UpdatePostFailState) {
               Navigator.pop(context);
               AppSnackBar.failSnackBar(

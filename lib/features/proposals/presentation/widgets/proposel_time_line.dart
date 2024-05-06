@@ -12,13 +12,13 @@ class ProposelTimeLine extends StatelessWidget {
     super.key,
   });
    final String stepOne =
-        'The creator reviews your profile and proposal, then accepts or rejects it.';
+        'The creator reviews your profile and proposal, then accepts or rejects it. 🔎';
     final  String stepTwo =
-        'If accepted, the contract begins, and payment is debited from the creator.';
+        'If accepted, the contract begins, and payment is debited from the creator. 💸';
     final  String stepThree =
-        'The creator reviews your profile and proposal, then accepts or rejects it.';
+        'Although the payment is debited from the creator, it remains locked. 🔐';
     final  String stepFour =
-        'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!!';
+        'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!! 🎊';
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,6 @@ class ProposelTimeLine extends StatelessWidget {
           image,
           height: 10,
           width: 10,
-          // color: Colors.white,
         ),
       ),
     );

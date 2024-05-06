@@ -39,6 +39,12 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _paymentCntrl.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [

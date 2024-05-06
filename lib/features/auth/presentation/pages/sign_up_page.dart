@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/pages/email_verification_page.dart';
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
         bloc: bloc,
         listener: (context, state) {
           if (state is SignUpLoadingState) {
-            ShowLoadingDialog().showLoadingIndicator(context);
+            LoadingDialog().show(context);
           }
           if (state is SignUpSuccessState) {
             Navigator.pushAndRemoveUntil(

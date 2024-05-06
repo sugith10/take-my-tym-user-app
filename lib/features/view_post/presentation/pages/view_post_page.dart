@@ -7,7 +7,7 @@ import 'package:take_my_tym/core/utils/app_assets/test/app_test_assets.dart';
 import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
-import 'package:take_my_tym/core/widgets/show_loading_dialog.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
@@ -68,7 +68,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
           Navigator.pop(context);
         }
         if (state is DeletePostLoading) {
-          ShowLoadingDialog().showLoadingIndicator(context);
+          LoadingDialog().show(context);
         }
         if (state is DeletPostFailState) {
           AppSnackBar.failSnackBar(context: context);
@@ -183,13 +183,15 @@ class _ViewPostPageState extends State<ViewPostPage> {
             : SubmitButton(
                 text: "Submit Proposel",
                 callback: () {
-                  ProposelBottomSheet().show(context);
+                  ProposelBottomSheet().show(
+                    context,
+                    postModel: widget.postModel,
+                  );
                 },
               ),
       ),
     );
   }
-
 }
 
 class ViewPostAppBar extends StatelessWidget {

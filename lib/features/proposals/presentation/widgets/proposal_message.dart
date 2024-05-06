@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_title_box_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
-import 'package:take_my_tym/features/checkout/presentation/bloc/proposal_bloc/proposal_bloc.dart';
+import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
 
 class ProposalMessage extends StatelessWidget {
   final TextEditingController controller;
-  final ProposalBloc proposalBloc;
+  final VoidCallback callback;
   final FocusNode focusNode;
+
   const ProposalMessage({
-    required this.proposalBloc,
+    required this.callback,
     required this.focusNode,
     required this.controller,
     super.key,
@@ -27,7 +29,7 @@ class ProposalMessage extends StatelessWidget {
           children: [
             SizedBox(height: 10.h),
             AppTitleBoxWidget(
-              title: "Why the creator want to hire you" ,
+              title: "Why hire you?",
               child: SizedBox(
                 height: 100.h,
                 child: SingleChildScrollView(
@@ -38,7 +40,7 @@ class ProposalMessage extends StatelessWidget {
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
-                      hintText: "Gave a message to creator",
+                      hintText: "Tell the hirer why you're a good fit.",
                       hintStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
                     maxLines: null,
@@ -63,10 +65,8 @@ class ProposalMessage extends StatelessWidget {
                     backgroundColor: AppDarkColor.instance.success,
                     foregroundColor: AppDarkColor.instance.primaryText,
                     callback: () {
-                      proposalBloc.add(
-                        ProposalSubmitEvent(message: controller.text),
-                      );
                       focusNode.unfocus();
+                      callback();
                     },
                     text: 'Submit',
                   ),

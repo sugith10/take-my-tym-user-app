@@ -48,9 +48,12 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
           ),
         ],
         selected: _selection,
-        selectedIcon: const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Icon(IconlyBold.bookmark),
+        selectedIcon: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Icon(
+            IconlyBold.bookmark,
+            color: AppDarkColor.instance.success,
+          ),
         ),
         onSelectionChanged: (Set<String> newSelection) {
           setState(

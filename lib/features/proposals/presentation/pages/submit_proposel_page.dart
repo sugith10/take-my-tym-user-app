@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/features/checkout/presentation/bloc/proposal_bloc/proposal_bloc.dart';
-import 'package:take_my_tym/features/checkout/presentation/pages/proposal_message.dart';
-import 'package:take_my_tym/features/checkout/presentation/pages/proposel_time_line.dart';
-import 'package:take_my_tym/features/checkout/presentation/widgets/animated_dot_widget.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
+import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
+import 'package:take_my_tym/features/proposals/presentation/widgets/proposal_message.dart';
+import 'package:take_my_tym/features/proposals/presentation/widgets/proposel_time_line.dart';
+import 'package:take_my_tym/features/proposals/presentation/widgets/animated_dot_widget.dart';
 
 class SubmitProposelPage extends StatefulWidget {
-  const SubmitProposelPage({super.key});
+  final PostModel postModel;
+  const SubmitProposelPage({required this.postModel, super.key});
 
-  static route() => bottomToTop(const SubmitProposelPage());
+  static route({required PostModel postModel}) =>
+      bottomToTop(SubmitProposelPage(postModel: postModel));
 
   @override
   State<SubmitProposelPage> createState() => _SubmitProposelPageState();
@@ -25,11 +30,13 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
   final ProposalBloc _proposalBloc = ProposalBloc();
   late PageController _pageController;
   int index = 0;
+  late final String userId;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
+    userId = context.read<AppUserBloc>().appUserModel!.uid;
   }
 
   @override
@@ -56,6 +63,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
       bloc: _proposalBloc,
       listener: (context, state) {
         if (state is ProposalErrorState) {
+          LoadingDialog.hide(context);
           AppSnackBar.failSnackBar(
             context: context,
             error: state.error,
@@ -69,6 +77,19 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
             index = state.pageNumber;
             _focusNode.requestFocus();
           }
+        }
+
+        if (state is ProposalSuccessState) {
+          Navigator.of(context);
+          AppSnackBar().successSnackBar(
+            context: context,
+            title: "Successfully Submitted",
+            message: "Loram Lispsum Loram Lispsum Loram Lispsum Loram Lispsum ",
+          );
+        }
+
+        if (state is ProposalLoadingState) {
+          LoadingDialog().show(context);
         }
       },
       child: Scaffold(
@@ -132,14 +153,22 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                   },
                   scrollBehavior: const ScrollBehavior(),
                   itemBuilder: (context, value) {
-                    if (value == 1) {
+                    if (value == 0) {
+                      return const ProposelTimeLine();
+                    } else {
                       return ProposalMessage(
-                        proposalBloc: _proposalBloc,
+                        callback: () {
+                          _proposalBloc.add(
+                            ProposalSubmitEvent(
+                              uid: userId,
+                              postModel: widget.postModel,
+                              message: _msgCntrl.text,
+                            ),
+                          );
+                        },
                         controller: _msgCntrl,
                         focusNode: _focusNode,
                       );
-                    } else {
-                      return const ProposelTimeLine();
                     }
                   },
                 ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ShowLoadingDialog {
-  showLoadingIndicator(BuildContext context) {
+class LoadingDialog {
+  show(BuildContext context) {
     showDialog(
-      barrierDismissible: false,
       context: context,
+      barrierDismissible: false,
+      useRootNavigator: false,
       builder: (context) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -12,4 +13,6 @@ class ShowLoadingDialog {
       },
     );
   }
+
+  static void hide(BuildContext context) => Navigator.pop(context);
 }

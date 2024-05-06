@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
@@ -11,15 +10,14 @@ import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/post_owner_info_widget.dart';
-import 'package:take_my_tym/core/widgets/posted_content.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
 import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
 import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_subtitle_widget.dart';
 
-class AcceptOfferPage extends StatelessWidget {
-  static route() => leftToRight(const AcceptOfferPage());
-  const AcceptOfferPage({super.key});
+class AcceptProposalPage extends StatelessWidget {
+  static route() => leftToRight(const AcceptProposalPage());
+  const AcceptProposalPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +37,11 @@ class AcceptOfferPage extends StatelessWidget {
                 name: 'Javad',
               ),
               SizedBox(height: 20.h),
-              PostedContentWidget(
-                voidCallback: () {},
-                postModel: postModel,
-                width: double.infinity,
-              ),
+              // PostedContentWidget(
+              //   voidCallback: () {},
+              //   postModel: postModel,
+              //   width: double.infinity,
+              // ),
               SizedBox(height: 20.h),
               const AcceptMessage(),
             ],
@@ -53,6 +51,7 @@ class AcceptOfferPage extends StatelessWidget {
       bottomNavigationBar: const AcceptOfferWidget(),
     );
   }
+
 }
 
 class AcceptOfferWidget extends StatelessWidget {
@@ -84,7 +83,7 @@ class AcceptOfferWidget extends StatelessWidget {
         Expanded(
           child: SubmitButton(
             text: "Accept",
-            backgroundColor: Colors.green,
+            backgroundColor: AppDarkColor.instance.success,
             foregroundColor: AppDarkColor.instance.primaryText,
             callback: () {
               AppDialog.show(
@@ -142,19 +141,4 @@ class _AcceptMessageState extends State<AcceptMessage> {
   }
 }
 
-final postModel = PostModel(
-  tymType: true,
-  uid: '123456789',
-  userName: 'javand',
-  postDate: Timestamp(10, 10),
-  workType: 'Remote',
-  title: 'Lorem Ipsum is simply dummy text of the printing',
-  content:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,",
-  location: "Kozhikode",
-  latitude: 134,
-  longitude: 135,
-  skillLevel: "Intermediate",
-  price: 1500.5,
-  skills: const ["Lorem", "Ipsum"],
-);
+

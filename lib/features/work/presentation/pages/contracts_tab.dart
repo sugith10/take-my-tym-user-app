@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/features/work/presentation/pages/view_contract_page.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_list_tile.dart';
-import 'package:take_my_tym/features/work/presentation/widgets/panel_title_widget.dart';
+import 'package:take_my_tym/core/widgets/panel_title_widget.dart';
 
 class ContractsTab extends StatelessWidget {
   const ContractsTab({

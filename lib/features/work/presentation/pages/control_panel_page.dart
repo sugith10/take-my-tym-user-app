@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 import 'package:take_my_tym/core/widgets/settings_button.dart';
 import 'package:take_my_tym/features/work/presentation/pages/contracts_tab.dart';
-import 'package:take_my_tym/features/work/presentation/pages/proposals_tab.dart';
+import 'package:take_my_tym/features/proposals/presentation/pages/proposals_status_tab.dart';
 import 'package:take_my_tym/features/wallet/presentation/pages/wallet_page.dart';
 
 class ControlPanelPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class ControlPanelPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const AppBarTitle(title: "Control Panel"),
+          title: const AppBarTitle(title: "Workspace"),
           actions: [SettingsButton(callback: () {})],
           bottom: const TabBar(
             tabs: [
@@ -31,7 +31,7 @@ class ControlPanelPage extends StatelessWidget {
         body: const TabBarView(
           children: [
             //Proposals
-            ProposalsTab(),
+            ProposalsStatusTab(),
             //Contracts
             ContractsTab(),
             //Wallet

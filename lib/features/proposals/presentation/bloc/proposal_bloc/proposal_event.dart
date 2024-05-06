@@ -17,9 +17,15 @@ final class ProposalPageNavEvent extends ProposalEvent {
 
 final class ProposalSubmitEvent extends ProposalEvent {
   final String message;
-  const ProposalSubmitEvent({required this.message});
+  final String uid;
 
+  final PostModel postModel;
+  const ProposalSubmitEvent(
+      {required this.uid,
   
+      required this.postModel,
+      required this.message});
+
   @override
   List<Object> get props => [message];
 }

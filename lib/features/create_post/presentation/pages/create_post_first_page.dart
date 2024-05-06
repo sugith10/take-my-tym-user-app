@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,13 +38,13 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
 
   void getTymType(bool select) {
     _tymType = select;
-    log("select $select, _tymType $_tymType");
+   
   }
 
   String _workType = MyAppPostType.remote;
   void getWorkType(String select) {
     _workType = select;
-    log("select $select workType $_workType");
+   
   }
 
   @override
@@ -140,7 +140,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                       ),
                     );
                   } else {
-                    log("update section");
+          
                     context.read<UpdatePostBloc>().add(
                           UpdateFirstPageEvent(
                             postModel: widget.postModel!,

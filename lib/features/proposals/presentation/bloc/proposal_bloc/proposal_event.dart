@@ -7,25 +7,7 @@ sealed class ProposalEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class ProposalPageNavEvent extends ProposalEvent {
-  final int index;
-  const ProposalPageNavEvent({required this.index});
-
-  @override
-  List<Object> get props => [index];
-}
-
-final class ProposalSubmitEvent extends ProposalEvent {
-  final String message;
+final class ProposalGetEvent extends ProposalEvent {
   final String uid;
-
-  final PostModel postModel;
-  const ProposalSubmitEvent(
-      {required this.uid,
-  
-      required this.postModel,
-      required this.message});
-
-  @override
-  List<Object> get props => [message];
+  const ProposalGetEvent({required this.uid});
 }

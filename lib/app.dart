@@ -5,6 +5,7 @@ import 'package:take_my_tym/app_view.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
+import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
 import 'package:take_my_tym/features/view_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'package:take_my_tym/features/view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
@@ -29,15 +30,23 @@ class MyApp extends StatelessWidget {
               CommunityPostsBloc()..add(BuyTymCommunityPostsEvent()),
         ),
         BlocProvider<ChatListBloc>(
-            create: (context) => ChatListBloc()
-              ..add(
-                GetChatList(
-                    currentUid: context.read<AppUserBloc>().appUserModel!.uid),
-              )),
+          create: (context) => ChatListBloc()
+            ..add(
+              GetChatList(
+                  currentUid: context.read<AppUserBloc>().appUserModel!.uid),
+            ),
+        ),
         BlocProvider<WalletBloc>(
           create: (context) => WalletBloc(GetIt.instance<WalletUseCase>())
             ..add(
               WalletBalanceEvent(
+                  uid: context.read<AppUserBloc>().appUserModel!.uid),
+            ),
+        ),
+        BlocProvider<ProposalBloc>(
+          create: (context) => ProposalBloc()
+            ..add(
+              ProposalGetEvent(
                   uid: context.read<AppUserBloc>().appUserModel!.uid),
             ),
         ),

@@ -10,7 +10,7 @@ import 'package:take_my_tym/app.dart';
 import 'package:take_my_tym/core/bloc/bloc_observer.dart';
 import 'package:take_my_tym/core/di/dependency_injection_packages.dart';
 import 'firebase_options.dart';
-
+       
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

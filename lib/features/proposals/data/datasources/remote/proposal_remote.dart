@@ -1,29 +1,34 @@
 import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
 import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
+import 'package:take_my_tym/features/proposals/data/models/submit_model.dart';
 
 class ProposalRemote {
-    final ref = FirebaseFirestore.instance.collection("proposals");
+  final _ref = FirebaseFirestore.instance.collection("proposals");
   Future<void> submit({
     required OfferModel offerModel,
+    required SubmitModel submitModel,
     required String hirerUid,
   }) async {
     try {
-  
       final applicantSubmitRef =
-          ref.doc(offerModel.applicantUid).collection("submit");
-      final querySnapshot = await applicantSubmitRef
-          .doc(offerModel.postId).get();
-      if (!querySnapshot.exists) {
+          _ref.doc(offerModel.applicantUid).collection("submit");
+
+      final snap = await applicantSubmitRef
+          .where("postId", isEqualTo: offerModel.postId)
+          .get();
+
+      if (snap.docs.isEmpty) {
         log("empty");
-        await ref.doc(hirerUid).collection("offers").add(offerModel.toMap());
-        await ref
+        await _ref.doc(hirerUid).collection("offers").add(offerModel.toMap());
+
+        await _ref
             .doc(offerModel.applicantUid)
             .collection("submit")
-            .doc(offerModel.postId)
-          .update({"status": false});
+            .add(submitModel.toMap());
         return;
       } else {
         throw AppException(
@@ -37,18 +42,20 @@ class ProposalRemote {
     }
   }
 
-  // Future<List<dynamic>> proposels({required String uid}) async {
-  //   try {
-  //     final data = await ref.doc(uid).get();
-
-  //     if(data.exists){
-  //      final Map<String, dynamic> collection = data.data()!;
-  //      if(collection.containsKey("submit")){
-  //       final Map<String
-  //      }
-  //     }
-  //   } catch (e) {
-
-  //   }
-  // }
+  Future<void> getProposels({required String uid}) async {
+    try {
+      final snap = await _ref.get();
+      if (snap.docs.isNotEmpty) {
+        log("Success: ${snap.docs.length} proposals fetched");
+      } else {
+        log("No proposals found");
+      }
+    } catch (e) {
+      appLogger.e("Error fetching proposals: $e");
+      throw AppException(
+        alert: "Error fetching proposals",
+        details: e.toString(),
+      );
+    }
+  }
 }

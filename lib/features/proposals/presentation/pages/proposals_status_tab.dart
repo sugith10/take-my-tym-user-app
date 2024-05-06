@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
+import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
 import 'package:take_my_tym/features/proposals/presentation/pages/accept_proposal_page.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/contract_timeline_widget.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_list_tile.dart';
 import 'package:take_my_tym/core/widgets/panel_title_widget.dart';
 
 class ProposalsStatusTab extends StatelessWidget {
-  const ProposalsStatusTab({
-    super.key,
-  });
+  const ProposalsStatusTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,14 @@ class ProposalsStatusTab extends StatelessWidget {
           const PanelTitleWidget(
             title: 'Offers',
           ),
-          OfferListTile(
-            text: 'Lorem Ipsum is simply dummy text of the',
-            onPressed: () {
-              Navigator.push(context, AcceptProposalPage.route());
+          BlocBuilder<ProposalBloc, ProposalState>(
+            builder: (context, state) {
+              return OfferListTile(
+                text: 'Lorem Ipsum is simply dummy text of the',
+                onPressed: () {
+                  Navigator.push(context, AcceptProposalPage.route());
+                },
+              );
             },
           ),
           SizedBox(height: 20.h),
@@ -46,7 +50,7 @@ class ProposalsStatusTab extends StatelessWidget {
     AppBottomSheet.show(
       context: context,
       children: [
-         SizedBox(height: 7.5.h),
+        SizedBox(height: 7.5.h),
         Text(
           'Proposal status',
           style: Theme.of(context).textTheme.headlineSmall,

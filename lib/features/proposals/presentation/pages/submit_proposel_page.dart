@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dar
 import 'package:take_my_tym/core/widgets/action_button.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
+import 'package:take_my_tym/features/proposals/presentation/bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
 import 'package:take_my_tym/features/proposals/presentation/widgets/proposal_message.dart';
 import 'package:take_my_tym/features/proposals/presentation/widgets/proposel_time_line.dart';
 import 'package:take_my_tym/features/proposals/presentation/widgets/animated_dot_widget.dart';
@@ -27,7 +27,7 @@ class SubmitProposelPage extends StatefulWidget {
 class _SubmitProposelPageState extends State<SubmitProposelPage> {
   final TextEditingController _msgCntrl = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  final ProposalBloc _proposalBloc = ProposalBloc();
+  final SubmitProposalBloc _SubmitProposalBloc = SubmitProposalBloc();
   late PageController _pageController;
   int index = 0;
   late final String userId;
@@ -60,16 +60,16 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener(
-      bloc: _proposalBloc,
+      bloc: _SubmitProposalBloc,
       listener: (context, state) {
-        if (state is ProposalErrorState) {
-          LoadingDialog.hide(context);
+        if (state is SubmitProposalErrorState) {
+          // LoadingDialog.hide(context);
           AppSnackBar.failSnackBar(
             context: context,
             error: state.error,
           );
         }
-        if (state is ProposalPageState) {
+        if (state is SubmitProposalPageState) {
           if (state.pageNumber == 0) {
             index = state.pageNumber;
             _focusNode.unfocus();
@@ -79,8 +79,8 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
           }
         }
 
-        if (state is ProposalSuccessState) {
-          Navigator.of(context);
+        if (state is SubmitProposalSuccessState) {
+          Navigator.pop(context);
           AppSnackBar().successSnackBar(
             context: context,
             title: "Successfully Submitted",
@@ -88,8 +88,8 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
           );
         }
 
-        if (state is ProposalLoadingState) {
-          LoadingDialog().show(context);
+        if (state is SubmitProposalLoadingState) {
+          // LoadingDialog().show(context);
         }
       },
       child: Scaffold(
@@ -106,9 +106,9 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                 ),
                 actions: [
                   BlocBuilder(
-                    bloc: _proposalBloc,
+                    bloc: _SubmitProposalBloc,
                     builder: (context, state) {
-                      if (state is ProposalPageState) {
+                      if (state is SubmitProposalPageState) {
                         if (state.pageNumber == 0) {
                           return ActionButton(
                               action: 'Next',
@@ -124,7 +124,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
               ),
               SliverToBoxAdapter(
                 child: BlocBuilder(
-                  bloc: _proposalBloc,
+                  bloc: _SubmitProposalBloc,
                   builder: (context, state) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 10.h),
@@ -149,7 +149,8 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                   controller: _pageController,
                   itemCount: 2,
                   onPageChanged: (value) {
-                    _proposalBloc.add(ProposalPageNavEvent(index: value));
+                    _SubmitProposalBloc.add(
+                        SubmitProposalPagEvent(index: value));
                   },
                   scrollBehavior: const ScrollBehavior(),
                   itemBuilder: (context, value) {
@@ -158,7 +159,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                     } else {
                       return ProposalMessage(
                         callback: () {
-                          _proposalBloc.add(
+                          _SubmitProposalBloc.add(
                             ProposalSubmitEvent(
                               uid: userId,
                               postModel: widget.postModel,

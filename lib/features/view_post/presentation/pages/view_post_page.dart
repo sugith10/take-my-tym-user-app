@@ -44,7 +44,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
   void initState() {
     super.initState();
     appUser =
-        widget.postModel.uid == context.read<AppUserBloc>().appUserModel?.uid;
+        widget.postModel.uid == context.read<AppUserBloc>().userModel?.uid;
   }
 
   @override
@@ -105,7 +105,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
                   );
                 },
                 showMoreButton: widget.postModel.uid ==
-                    context.read<AppUserBloc>().appUserModel!.uid,
+                    context.read<AppUserBloc>().userModel!.uid,
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
@@ -167,9 +167,9 @@ class _ViewPostPageState extends State<ViewPostPage> {
                     MaterialPageRoute(
                       builder: (_) => IndividualChatPage(
                         currentUid:
-                            context.read<AppUserBloc>().appUserModel!.uid,
+                            context.read<AppUserBloc>().userModel!.uid,
                         senderName:
-                            context.read<AppUserBloc>().appUserModel!.userName,
+                            context.read<AppUserBloc>().userModel!.userName,
                         receiverUid: widget.postModel.uid,
                         receiverName: widget.postModel.userName,
                         individualMessageBloc: IndividualMessageBloc(),

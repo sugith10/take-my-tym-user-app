@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<GetPostsBloc>(
             create: (context) => GetPostsBloc()
               ..add(GetBuyTymPostsEvent(
-                  userId: context.read<AppUserBloc>().appUserModel!.uid))),
+                  userId: context.read<AppUserBloc>().userModel!.uid))),
         BlocProvider<CommunityPostsBloc>(
           create: (context) =>
               CommunityPostsBloc()..add(BuyTymCommunityPostsEvent()),
@@ -33,21 +33,20 @@ class MyApp extends StatelessWidget {
           create: (context) => ChatListBloc()
             ..add(
               GetChatList(
-                  currentUid: context.read<AppUserBloc>().appUserModel!.uid),
+                  currentUid: context.read<AppUserBloc>().userModel!.uid),
             ),
         ),
         BlocProvider<WalletBloc>(
           create: (context) => WalletBloc(GetIt.instance<WalletUseCase>())
             ..add(
               WalletBalanceEvent(
-                  uid: context.read<AppUserBloc>().appUserModel!.uid),
+                  uid: context.read<AppUserBloc>().userModel!.uid),
             ),
         ),
         BlocProvider<ProposalBloc>(
           create: (context) => ProposalBloc()
             ..add(
-              ProposalGetEvent(
-                  uid: context.read<AppUserBloc>().appUserModel!.uid),
+              ProposalGetEvent(uid: context.read<AppUserBloc>().userModel!.uid),
             ),
         ),
         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),

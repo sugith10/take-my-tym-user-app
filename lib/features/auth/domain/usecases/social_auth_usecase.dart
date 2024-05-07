@@ -6,7 +6,7 @@ class SocialAuthUseCase{
 
   SocialAuthUseCase(this._socialAuthRepo);
 
-  Future<AppUserModel> googleSign()async{
+  Future<UserModel> googleSign()async{
     return _socialAuthRepo.googleSign();
   }
 }

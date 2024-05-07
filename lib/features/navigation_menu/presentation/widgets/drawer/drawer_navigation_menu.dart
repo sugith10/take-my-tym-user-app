@@ -35,13 +35,6 @@ class DrawerNavBar extends StatelessWidget {
                     icon: IconlyLight.profile,
                   ),
                   DrawerCustomButton(
-                    title: 'Your Orders',
-                    function: () {
-                      'print';
-                    },
-                    icon: IconlyLight.buy,
-                  ),
-                  DrawerCustomButton(
                     title: 'Notifications',
                     function: () {
                       'print';
@@ -58,7 +51,7 @@ class DrawerNavBar extends StatelessWidget {
                   DrawerCustomButton(
                     title: 'Service Center',
                     function: () {
-                      _makePhoneCall('7907603014');
+                      _makePhoneCall();
                     },
                     icon: IconlyLight.calling,
                   ),
@@ -77,6 +70,7 @@ class DrawerNavBar extends StatelessWidget {
                     icon: IconlyLight.document,
                   ),
                   const LogOutDrawerButton(), // Logout button for user convenience.
+
                   /// For user convenience, a logout option is provided in the app drawer.
                   /// This widget serves as the logout button.
                   ///
@@ -101,7 +95,7 @@ class DrawerNavBar extends StatelessWidget {
   }
 }
 
-void _makePhoneCall(String phoneNumber) async {
+void _makePhoneCall() async {
   final Uri uri = Uri(scheme: 'tel', path: "7907603014");
   try {
     if (await canLaunchUrl(uri)) {

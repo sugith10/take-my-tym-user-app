@@ -5,7 +5,7 @@ abstract class CreatePostEvent {
 }
 
 final class CreateFirstPageEvent extends CreatePostEvent {
-  final AppUserModel userModel;
+  final UserModel userModel;
   final bool tymType;
   final String workType;
   final String title;

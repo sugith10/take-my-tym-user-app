@@ -7,18 +7,18 @@ sealed class AppEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GetAppUserModelEvent extends AppEvent {}
+final class GetUserModelEvent extends AppEvent {}
 
-final class UpdateAppUserModelEvent extends AppEvent {
-  final AppUserModel appUserModel;
-  const UpdateAppUserModelEvent({required this.appUserModel});
+final class UpdateUserModelEvent extends AppEvent {
+  final UserModel userModel;
+  const UpdateUserModelEvent({required this.userModel});
   @override
-  List<Object> get props => [appUserModel];
+  List<Object> get props => [UserModel];
 }
 
 final class UpdateUserSignOutEvent extends AppEvent {}
 
-final class EnsureAppUserModelExistsEvent extends AppEvent {}
+final class EnsureUserModelExistsEvent extends AppEvent {}
 
 final class UpdateUserLocationEvent extends AppEvent {
   final String location;

@@ -55,7 +55,7 @@ final class DependencyInject {
     ///UserBuyTymPosts
     _getIt
       ..registerLazySingleton<GetUserPostsRepo>(
-          () => GetUserPostsRepoImp(GetUserPostsRemoteData()))
+          () => GetUserPostsRepoImp(UserPostsRemote()))
       ..registerLazySingleton<GetUserPostsUseCase>(
           () => GetUserPostsUseCase(_getIt<GetUserPostsRepo>()));
 

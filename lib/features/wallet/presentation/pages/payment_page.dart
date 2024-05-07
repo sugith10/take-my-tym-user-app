@@ -35,7 +35,7 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   void initState() {
     super.initState();
-    uid = context.read<AppUserBloc>().appUserModel!.uid;
+    uid = context.read<AppUserBloc>().userModel!.uid;
   }
 
   @override

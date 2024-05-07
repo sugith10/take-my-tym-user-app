@@ -64,8 +64,8 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                     if (state is SocialAuthSuccessState) {
                       if (state.profileSetupComp) {
                         context.read<AppUserBloc>().add(
-                              UpdateAppUserModelEvent(
-                                appUserModel: state.userModel,
+                              UpdateUserModelEvent(
+                                userModel: state.userModel,
                               ),
                             );
                         Navigator.pushAndRemoveUntil(

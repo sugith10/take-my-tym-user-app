@@ -65,7 +65,7 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
 
                   return _LocationWidget(
                     location:
-                        context.read<AppUserBloc>().appUserModel!.location!,
+                        context.read<AppUserBloc>().userModel!.location!,
                   );
                 }),
             SizedBox(width: 5.sp),

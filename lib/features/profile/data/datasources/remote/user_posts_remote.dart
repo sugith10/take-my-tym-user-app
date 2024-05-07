@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 
-final class GetUserPostsRemoteData {
+final class UserPostsRemote {
   Future<List<PostModel>> userBuyTymPosts(String uid) async {
     try {
       final postIds = await FirebaseFirestore.instance
@@ -20,7 +20,9 @@ final class GetUserPostsRemoteData {
             final buyTymPostsQuery = await FirebaseFirestore.instance
                 .collection('buyTymPost')
                 .where(FieldPath.documentId, whereIn: buyTymPostIds)
+                // .orderBy('postDate', descending: true)
                 .get();
+
             final buyTymPosts = buyTymPostsQuery.docs
                 .map(
                   (doc) => PostModel.fromMap(

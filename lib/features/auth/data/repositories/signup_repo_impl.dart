@@ -7,7 +7,7 @@ class SignUpRepoImpl implements SignUpRepo {
 
   SignUpRepoImpl(this._remoteDataSource);
   @override
-  Future<AppUserModel> createUser(
+  Future<UserModel> createUser(
       {required String firstName,
       required String lastName,
       required String email,

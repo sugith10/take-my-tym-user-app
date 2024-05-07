@@ -12,7 +12,7 @@ final class SignUpInitial extends SignUpState {}
 final class SignUpLoadingState extends SignUpState {}
 
 final class SignUpSuccessState extends SignUpState {
-  final AppUserModel userModel;
+  final UserModel userModel;
   const SignUpSuccessState(this.userModel);
 }
 

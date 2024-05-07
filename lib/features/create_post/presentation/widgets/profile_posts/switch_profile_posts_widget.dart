@@ -28,10 +28,10 @@ class _SwitchProfilePostsWidgetState extends State<SwitchProfilePostsWidget> {
       type
           ? context.read<GetPostsBloc>().add(
                 GetBuyTymPostsEvent(
-                    userId: context.read<AppUserBloc>().appUserModel!.uid),
+                    userId: context.read<AppUserBloc>().userModel!.uid),
               )
           : context.read<GetPostsBloc>().add(GetSellTymPostsEvent(
-              userId: context.read<AppUserBloc>().appUserModel!.uid));
+              userId: context.read<AppUserBloc>().userModel!.uid));
     }
 
     return HomePadding(

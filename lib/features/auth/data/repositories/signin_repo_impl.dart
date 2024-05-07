@@ -8,7 +8,7 @@ class SignInRepoImpl implements SignInRepo {
   SignInRepoImpl(this._remoteDataSource);
 
   @override
-  Future<AppUserModel> authenticateUser(String email, String password) {
+  Future<UserModel> authenticateUser(String email, String password) {
     return _remoteDataSource.emailSignIn(email, password);
   }
 }

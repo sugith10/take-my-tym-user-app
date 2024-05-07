@@ -8,11 +8,15 @@ class TimeLineTileWidget extends StatelessWidget {
   final bool isLast;
   final bool isPast;
   final String text;
+  final Color color;
+  final IconData icon;
   const TimeLineTileWidget({
     required this.isFirst,
     required this.isLast,
     required this.isPast,
     required this.text,
+    this.color = const Color.fromRGBO(76, 175, 80, 1),
+    this.icon = Icons.done_rounded,
     super.key,
   });
 
@@ -22,20 +26,15 @@ class TimeLineTileWidget extends StatelessWidget {
       isFirst: isFirst,
       isLast: isLast,
       beforeLineStyle: LineStyle(
-        color: isPast
-            ? AppDarkColor.instance.success
-            : const Color.fromARGB(255, 192, 192, 192),
+        color: isPast ? color : const Color.fromARGB(255, 192, 192, 192),
       ),
       indicatorStyle: IndicatorStyle(
         width: 25,
-        color: isPast
-            ? AppDarkColor.instance.success
-            : const Color.fromARGB(255, 192, 192, 192),
+        color: isPast ? color : const Color.fromARGB(255, 192, 192, 192),
         iconStyle: IconStyle(
-          iconData: Icons.done_rounded,
-          color: isPast
-              ? AppDarkColor.instance.primaryText
-              : Colors.transparent,
+          iconData: icon,
+          color:
+              isPast ? AppDarkColor.instance.primaryText : Colors.transparent,
           fontSize: 20,
         ),
       ),
@@ -46,4 +45,3 @@ class TimeLineTileWidget extends StatelessWidget {
     );
   }
 }
-

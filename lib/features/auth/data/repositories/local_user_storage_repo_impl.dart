@@ -9,13 +9,13 @@ final class LocalUserDataRepoImpl implements LocalUserDataRepo{
   LocalUserDataRepoImpl(this._localUserData);
   
   @override
-  Future<AppUserModel?> getUserDataFromLocal() async{
+  Future<UserModel?> getUserDataFromLocal() async{
     
    return await _localUserData.getUserDataFromLocal();
   }
 
   @override
-  Future<void> storeUserDataLocal(AppUserModel user) async{
+  Future<void> storeUserDataLocal(UserModel user) async{
     return await _localUserData.storeUserDataLocal(user);
   }
 

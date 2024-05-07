@@ -4,7 +4,7 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 
 final class LocalUserData {
   // Function to store user data in Hive after signing in
-  Future<void> storeUserDataLocal(AppUserModel user) async {
+  Future<void> storeUserDataLocal(UserModel user) async {
     final userBox = await Hive.openBox('userData');
 
     await userBox.put('user', user.toMap());
@@ -12,7 +12,7 @@ final class LocalUserData {
   }
 
 // Function to retrieve user data from Hive
-  Future<AppUserModel?> getUserDataFromLocal() async {
+  Future<UserModel?> getUserDataFromLocal() async {
     try {
       final userBox = await Hive.openBox('userData');
 
@@ -22,7 +22,7 @@ final class LocalUserData {
         final userDataMap = Map<String, dynamic>.from(userData);
 
         userBox.close();
-        return AppUserModel.fromMap(userDataMap);
+        return UserModel.fromMap(userDataMap);
       }
     } catch (e) {
       throw AppException(details: e.toString(), alert: e.toString());

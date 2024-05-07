@@ -11,11 +11,11 @@ final class UpdateProfileRepoImpl implements UpdateProfileRepo {
   UpdateProfileRepoImpl(this._updateProfileRemoteData);
   @override
   Future<void> updateProfileInfo({
-    required AppUserModel userModel,
+    required UserModel userModel,
     required XFile? image,
   }) async {
     return await _updateProfileRemoteData.updateProfile(
-      appUserModel: userModel,
+      UserModel: userModel,
       image: image,
     );
   }

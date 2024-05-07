@@ -6,11 +6,11 @@ final class LocalUserStorageUseCase {
 
   LocalUserStorageUseCase(this._localUserDataRepo);
 
-  Future<void> storeUserDataLocal(AppUserModel user) async {
+  Future<void> storeUserDataLocal(UserModel user) async {
     return await _localUserDataRepo.storeUserDataLocal(user);
   }
 
-  Future<AppUserModel?> getUserDataFromLocal() async {
+  Future<UserModel?> getUserDataFromLocal() async {
     return await _localUserDataRepo.getUserDataFromLocal();
   }
 

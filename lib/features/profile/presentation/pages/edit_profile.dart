@@ -34,9 +34,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    final AppUserModel appUserModel = context.read<AppUserBloc>().appUserModel!;
-    _nameCntrl.text = appUserModel.userName;
-    _aboutCntrl.text = appUserModel.about ?? '';
+    final UserModel userModel = context.read<AppUserBloc>().userModel!;
+    _nameCntrl.text = userModel.userName;
+    _aboutCntrl.text = userModel.about ?? '';
   }
 
   @override
@@ -85,7 +85,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             location: _locationCntrl.text,
                             image: _image,
                             userModel:
-                                context.read<AppUserBloc>().appUserModel!,
+                                context.read<AppUserBloc>().userModel!,
                           ),
                         );
                   }

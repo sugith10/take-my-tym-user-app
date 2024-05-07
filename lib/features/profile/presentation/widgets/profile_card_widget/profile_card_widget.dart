@@ -15,7 +15,7 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppUserModel appUserModel =   context.read<AppUserBloc>().appUserModel!;
+    UserModel userModel =   context.read<AppUserBloc>().userModel!;
     return SizedBox(
       height: 200,
       child: HomePadding(
@@ -29,7 +29,7 @@ class ProfileCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   ProfileNameWidget(name: appUserModel.userName),
+                   ProfileNameWidget(name: userModel.userName),
                   SizedBox(height: 10.h),
 
                   const RatingWidget(
@@ -43,7 +43,7 @@ class ProfileCard extends StatelessWidget {
                   //location start
 
                    ProfileLocationWidget(
-                    location: appUserModel.location,
+                    location: userModel.location,
                   ),
                   //location end
                 ],

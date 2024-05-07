@@ -7,7 +7,7 @@ class SignInUseCase {
 
   SignInUseCase(this._signInRepo);
 
-  Future<AppUserModel> authenticateUser(
+  Future<UserModel> authenticateUser(
     String email,
     String password,
   ) async {

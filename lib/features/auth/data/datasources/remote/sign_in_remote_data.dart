@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 
 class SignInRemoteData {
   ///EMAIL SIGNIN
-  Future<AppUserModel> emailSignIn(String email, String password) async {
+  Future<UserModel> emailSignIn(String email, String password) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -21,7 +21,7 @@ class SignInRemoteData {
 
       if (userSnapshot.exists) {
         final data = userSnapshot.data() as Map<String, dynamic>;
-        final authUser = AppUserModel.fromMap(data);
+        final authUser = UserModel.fromMap(data);
         log(authUser.toString());
         
         return authUser;

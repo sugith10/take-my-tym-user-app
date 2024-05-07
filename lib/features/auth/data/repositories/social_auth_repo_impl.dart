@@ -8,7 +8,7 @@ class SocialAuthRepoImpl implements SocialAuthRepo {
   SocialAuthRepoImpl(this._remoteDataSource);
 
   @override
-  Future<AppUserModel> googleSign() async {
+  Future<UserModel> googleSign() async {
     return _remoteDataSource.signInWithGoogle();
   }
 }

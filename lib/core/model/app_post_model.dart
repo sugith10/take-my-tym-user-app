@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class PostModel extends Equatable {
-  /// Determines the type of transaction: `true` for buying tym, `false` for selling tym.
+  /// Determines the type of transaction: `true` for buytym, `false` for selltym.
   final bool tymType;
 
   /// User ID of the post creator

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +25,7 @@ class AccountInfoPage extends StatefulWidget {
 class _AccountInfoPageState extends State<AccountInfoPage> {
   @override
   Widget build(BuildContext context) {
-    AppUserModel userModel = context.read<AppUserBloc>().appUserModel!;
+    UserModel userModel = context.read<AppUserBloc>().userModel!;
     return Scaffold(
       appBar: const CloseAppBar(),
       body: AuthPadding(
@@ -66,7 +65,7 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
                 }
                 if (state is UserSignOutSuccessState) {
                   context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-                  log(context.read<AppUserBloc>().appUserModel.toString());
+             
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (_) => const WelcomePage()),

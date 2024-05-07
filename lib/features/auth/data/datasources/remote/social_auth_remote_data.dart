@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 
 final class SocailAuthRemoteData {
   ///GOOGLE SIGNIN
-  Future<AppUserModel> signInWithGoogle() async {
+  Future<UserModel> signInWithGoogle() async {
     log('one socail auth');
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -35,7 +35,7 @@ final class SocailAuthRemoteData {
 
       final userDocSnapshot = await userDocRef.get();
       if (!userDocSnapshot.exists) {
-        final AppUserModel userModel = AppUserModel(
+        final UserModel userModel = UserModel(
           uid: userCredential.user!.uid,
           email: userCredential.user!.email ?? "",
           firstName: userCredential.user!.displayName?.split(' ').first ?? 'User',
@@ -48,7 +48,7 @@ final class SocailAuthRemoteData {
       } else {
         final Map<String, dynamic> userData =
             userDocSnapshot.data() as Map<String, dynamic>;
-        AppUserModel userModel = AppUserModel.fromMap(userData);
+        UserModel userModel = UserModel.fromMap(userData);
         log(userModel.toString());
         return userModel;
       }

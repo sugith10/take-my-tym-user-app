@@ -7,7 +7,7 @@ class SignUpUseCase {
 
   SignUpUseCase(this._signUpRepo);
 
-  Future<AppUserModel> createUser({
+  Future<UserModel> createUser({
     required String firstName,
     required String lastName,
     required String email,

@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 
 final class UpdateProfileRemote {
   Future<void> updateProfile({
-    required AppUserModel appUserModel,
+    required UserModel UserModel,
     required XFile? image,
   }) async {
     log("on remote update profile");
@@ -18,12 +18,12 @@ final class UpdateProfileRemote {
         await ref.putFile(File(image.path));
 
         await ref.getDownloadURL().then((value) async {
-          appUserModel.picture = value;
+          UserModel.picture = value;
           FirebaseFirestore firestore = FirebaseFirestore.instance;
           await firestore
               .collection('users')
-              .doc(appUserModel.uid)
-              .update(appUserModel.toMap())
+              .doc(UserModel.uid)
+              .update(UserModel.toMap())
               .then((value) async {
             log("success update");
           });
@@ -32,8 +32,8 @@ final class UpdateProfileRemote {
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         await firestore
             .collection('users')
-            .doc(appUserModel.uid)
-            .update(appUserModel.toMap())
+            .doc(UserModel.uid)
+            .update(UserModel.toMap())
             .then((value) async {
           log("success update without image");
         });

@@ -50,7 +50,7 @@ import 'package:take_my_tym/features/message/domain/usecases/chat_list_usecase.d
 import 'package:take_my_tym/features/message/domain/usecases/individual_message_usecase.dart';
 import 'package:take_my_tym/features/create_post/data/datasources/remote_data_source/create_post_remote_data.dart';
 import 'package:take_my_tym/features/view_post/data/datasources/delete_post_data_source.dart';
-import 'package:take_my_tym/features/view_post/data/datasources/get_user_posts_data_source.dart';
+import 'package:take_my_tym/features/profile/data/datasources/remote/user_posts_remote.dart';
 import 'package:take_my_tym/features/profile/data/datasources/remote/update_profile_remote.dart';
 import 'package:take_my_tym/features/profile/data/repositories/update_repo_impl.dart';
 import 'package:take_my_tym/features/profile/domain/repositories/update_profile_repo.dart';

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer_pro/shimmer_pro.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
+import 'package:take_my_tym/core/widgets/shimmer_common_widget.dart';
 
 class WalletShimmerWidget extends StatelessWidget {
   const WalletShimmerWidget({
@@ -31,15 +32,9 @@ class WalletShimmerWidget extends StatelessWidget {
           child: Column(
             children: List.generate(
               3,
-              (index) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: ShimmerPro.text(
-                  maxLine: 3,
-                  light: ShimmerProLight.lighter,
-                  width: 450,
-                  scaffoldBackgroundColor:
-                      AppDarkColor.instance.background,
-                ),
+              (index) => const Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: ShimmerCommonWidget(),
               ),
             ),
           ),

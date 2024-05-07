@@ -15,54 +15,7 @@ class SubmitProposalBloc
     extends Bloc<SubmitProposalEvent, SubmitProposalState> {
   SubmitProposalBloc() : super(SubmitProposalInitial()) {
     on<SubmitProposalPagEvent>(_onPageNav);
-    on<ProposalSubmitEvent>(
-      (event, emit) async {
-        emit(SubmitProposalLoadingState());
-        try {
-          final message = event.message.trim();
-          if (message.length < 5) {
-            final AppErrorMsg appError = AppErrorMsg(
-              title: 'Please provide a proper messsage.',
-              content: "Without proper message you can't a proposel...",
-            );
-            emit(SubmitProposalErrorState(error: appError));
-          } else {
-            final offermodel = OfferModel(
-              applicantUid: event.uid,
-              message: event.message,
-              postId: event.postModel.postId!,
-              proposelDate: Timestamp.now(),
-            );
-            final submitModel = SubmitModel(
-              status: false,
-              postId: event.postModel.postId!,
-              timestamp: Timestamp.now(),
-            );
-
-            await ProposalRemote()
-                .submit(
-              offerModel: offermodel,
-              submitModel: submitModel,
-              hirerUid: event.postModel.uid,
-            )
-                .then(
-              (value) {
-                emit(SubmitProposalSuccessState());
-              },
-            );
-          }
-        } catch (e) {
-          appLogger.d("proposel bloc  $e ");
-          emit(
-            SubmitProposalErrorState(
-              error: AppErrorMsg(
-                title: "Already Submitted",
-              ),
-            ),
-          );
-        }
-      },
-    );
+    on<ProposalSubmitEvent>(_onSubmit);
   }
 
   void _onPageNav(
@@ -70,8 +23,51 @@ class SubmitProposalBloc
     emit(SubmitProposalPageState(pageNumber: event.index));
   }
 
-  // void _onSubmit(
-  //   ProposalSubmitEvent event,
-  //   Emitter<SubmitProposalState> emit,
-  // ) async {}
+  void _onSubmit(
+    ProposalSubmitEvent event,
+    Emitter<SubmitProposalState> emit,
+  ) async {
+    emit(SubmitProposalLoadingState());
+    try {
+      final message = event.message.trim();
+      if (message.length < 5) {
+        final AppErrorMsg appError = AppErrorMsg(
+          title: 'Please provide a proper messsage.',
+          content: "Without proper message you can't a proposel...",
+        );
+        emit(SubmitProposalErrorState(error: appError));
+      } else {
+        final offermodel = OfferModel(
+          applicantUid: event.uid,
+          message: event.message,
+          postId: event.postModel.postId!,
+          tymType: event.postModel.tymType,
+          proposelDate: Timestamp.now(),
+        );
+        final submitModel = SubmitModel(
+          status: false,
+          postId: event.postModel.postId!,
+          postType: event.postModel.tymType,
+          timestamp: Timestamp.now(),
+        );
+
+        await ProposalRemote().submit(
+          offerModel: offermodel,
+          submitModel: submitModel,
+          hirerUid: event.postModel.uid,
+        );
+
+        emit(SubmitProposalSuccessState());
+      }
+    } catch (e) {
+      appLogger.d("proposel bloc  $e ");
+      emit(
+        SubmitProposalErrorState(
+          error: AppErrorMsg(
+            title: "Already Submitted",
+          ),
+        ),
+      );
+    }
+  }
 }

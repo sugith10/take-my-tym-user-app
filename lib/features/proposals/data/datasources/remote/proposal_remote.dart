@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
@@ -29,7 +28,8 @@ class ProposalRemote {
         await _ref
             .doc(offerModel.applicantUid)
             .collection("submit")
-            .add(submitModel.toMap());
+            .doc(offerModel.postId)
+            .set(submitModel.toMap());
         return;
       } else {
         throw AppException(
@@ -49,17 +49,20 @@ class ProposalRemote {
       final offers = await _ref.doc(uid).collection("offers").get();
       List<SubmitModel> submitList = [];
       List<OfferModel> offerList = [];
-
+      
       if (submit.docs.isNotEmpty) {
         submitList = submit.docs.map((map) {
-          return SubmitModel.fromMap(map.data());
+          return SubmitModel.fromMap(
+            map.data(),
+            map.id,
+          );
         }).toList();
       }
 
       if (offers.docs.isNotEmpty) {
         offerList = offers.docs
             .map(
-              (map) => OfferModel.fromMap(map.data()),
+              (map) => OfferModel.fromMap(map.data(), map.id),
             )
             .toList();
       }
@@ -68,7 +71,8 @@ class ProposalRemote {
         submitList: submitList,
         offerList: offerList,
       );
-      appLogger.t(proposalModel);
+      appLogger.f(proposalModel);
+
       return proposalModel;
     } catch (e) {
       appLogger.e("Error fetching proposals: $e");

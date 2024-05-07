@@ -14,7 +14,7 @@ final class ProfileSetupEvent extends UpdateProfileEvent {
   final double latitude;
   final double longitude;
   final String profession;
-  final AppUserModel appUserModel;
+  final UserModel userModel;
 
   const ProfileSetupEvent({
     required this.userName,
@@ -23,7 +23,7 @@ final class ProfileSetupEvent extends UpdateProfileEvent {
     required this.latitude,
     required this.longitude,
     required this.profession,
-    required this.appUserModel,
+    required this.userModel,
   });
 }
 
@@ -32,7 +32,7 @@ final class CollectUpdateDataEvent extends UpdateProfileEvent {
   final String about;
   final String location;
   final XFile? image;
-  final AppUserModel userModel;
+  final UserModel userModel;
 
   const CollectUpdateDataEvent({
     required this.userName,

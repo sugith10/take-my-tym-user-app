@@ -13,7 +13,7 @@ class WelcomeUser extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
       child: Text(
-        'Hi, ${context.read<AppUserBloc>().appUserModel!.userName}',
+        'Hi, ${context.read<AppUserBloc>().userModel!.userName}',
         style: Theme.of(context).textTheme.displayLarge,
       ),
     );

@@ -18,7 +18,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       try {
         SignInUseCase signInUseCase = GetIt.instance<SignInUseCase>();
 
-        AppUserModel authUserModel =
+        UserModel authUserModel =
             await signInUseCase.authenticateUser(event.email, event.password);
 
         await GetIt.instance<LocalUserStorageUseCase>()

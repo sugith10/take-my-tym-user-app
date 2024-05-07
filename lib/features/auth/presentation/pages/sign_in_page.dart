@@ -76,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
           if (state.profileSetupComp) {
             context
                 .read<AppUserBloc>()
-                .add(UpdateAppUserModelEvent(appUserModel: state.userModel));
+                .add(UpdateUserModelEvent(userModel: state.userModel));
 
             Navigator.pushAndRemoveUntil(
               context,

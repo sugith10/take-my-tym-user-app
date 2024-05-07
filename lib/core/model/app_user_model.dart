@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class AppUserModel {
+class UserModel {
   String uid;
   String email;
   bool verified;
@@ -14,7 +14,7 @@ class AppUserModel {
   double? latitude;
   double? longitude;
   String? profession;
-  AppUserModel({
+  UserModel({
     required this.uid,
     required this.email,
     required this.verified,
@@ -29,7 +29,7 @@ class AppUserModel {
     this.profession,
   });
 
-  AppUserModel copyWith({
+  UserModel copyWith({
     String? uid,
     String? email,
     bool? verified,
@@ -43,7 +43,7 @@ class AppUserModel {
     double? longitude,
     String? profession,
   }) {
-    return AppUserModel(
+    return UserModel(
       uid: uid ?? this.uid,
       email: email ?? this.email,
       verified: verified ?? this.verified,
@@ -76,8 +76,8 @@ class AppUserModel {
     };
   }
 
-  factory AppUserModel.fromMap(Map<String, dynamic> map) {
-    return AppUserModel(
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
       uid: map['uid'] as String,
       email: map['email'] as String,
       verified: map['verified'] as bool,
@@ -96,16 +96,16 @@ class AppUserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AppUserModel.fromJson(String source) =>
-      AppUserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'AppUserModel(uid: $uid, email: $email, verified: $verified, firstName: $firstName, lastName: $lastName, userName: $userName, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
+    return 'UserModel(uid: $uid, email: $email, verified: $verified, firstName: $firstName, lastName: $lastName, userName: $userName, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
   }
 
   @override
-  bool operator ==(covariant AppUserModel other) {
+  bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
 
     return other.uid == uid &&

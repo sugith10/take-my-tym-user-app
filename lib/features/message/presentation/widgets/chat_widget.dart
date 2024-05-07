@@ -17,12 +17,12 @@ class ChatWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 5),
       child: Wrap(
-        alignment: context.read<AppUserBloc>().appUserModel!.uid == senderId
+        alignment: context.read<AppUserBloc>().userModel!.uid == senderId
             ? WrapAlignment.end
             : WrapAlignment.start,
         children: [
           Container(
-              decoration: context.read<AppUserBloc>().appUserModel!.uid == senderId
+              decoration: context.read<AppUserBloc>().userModel!.uid == senderId
                   ? BoxDecoration(
                       color: AppDarkColor.instance.userChatColor,
                       borderRadius: const BorderRadius.only(

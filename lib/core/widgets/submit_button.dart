@@ -6,9 +6,11 @@ class SubmitButton extends StatelessWidget {
   final String text;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final Widget? child;
   const SubmitButton({
     required this.callback,
     required this.text,
+    this.child,
     this.backgroundColor,
     this.foregroundColor,
     super.key,
@@ -26,7 +28,7 @@ class SubmitButton extends StatelessWidget {
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
         ),
-        child: Text(text,),
+        child: child ?? Text(text),
       ),
     );
   }

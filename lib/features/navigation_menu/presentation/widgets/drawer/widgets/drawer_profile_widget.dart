@@ -27,12 +27,12 @@ class ProfileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.read<AppUserBloc>().appUserModel!.firstName,
+                    context.read<AppUserBloc>().userModel!.firstName,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    context.read<AppUserBloc>().appUserModel!.email,
+                    context.read<AppUserBloc>().userModel!.email,
                     style: Theme.of(context).textTheme.bodySmall,
                     overflow: TextOverflow.ellipsis,
                   )

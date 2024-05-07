@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 
 final class SignUpRemoteData {
-  Future<AppUserModel> createUserWithEmail({
+  Future<UserModel> createUserWithEmail({
     required String firstName,
     required String lastName,
     required String email,
@@ -27,7 +27,7 @@ final class SignUpRemoteData {
       final userDocRef =
           FirebaseFirestore.instance.collection('users').doc(user.uid);
 
-      AppUserModel userModel = AppUserModel(
+      UserModel userModel = UserModel(
         uid: user.uid,
         email: email,
         firstName: firstName,

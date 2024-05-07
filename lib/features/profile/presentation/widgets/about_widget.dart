@@ -26,7 +26,7 @@ class AboutWidget extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-             context.read<AppUserBloc>().appUserModel!.about!,
+             context.read<AppUserBloc>().userModel!.about!,
               style: Theme.of(context).textTheme.labelMedium,
               // maxLines: 5,
               textAlign: TextAlign.justify,

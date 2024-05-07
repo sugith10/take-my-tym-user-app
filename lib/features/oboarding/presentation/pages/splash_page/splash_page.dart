@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      context.read<AppUserBloc>().add(EnsureAppUserModelExistsEvent());
+      context.read<AppUserBloc>().add(EnsureUserModelExistsEvent());
     });
   }
 
@@ -29,6 +29,7 @@ class _SplashPageState extends State<SplashPage> {
       listener: (context, state) {
         log(state.toString());
         if (state is UserModelUpdatedState) {
+          log(state.toString());
           Navigator.pushAndRemoveUntil(
             context,
             NavigationMenu.route(),

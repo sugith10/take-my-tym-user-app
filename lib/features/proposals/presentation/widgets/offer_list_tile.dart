@@ -5,6 +5,7 @@ import 'package:take_my_tym/core/utils/app_colors.dart';
 class OfferListTile extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
+
   const OfferListTile({
     required this.text,
     required this.onPressed,
@@ -14,6 +15,12 @@ class OfferListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 40.0,
+      ),
+      onTap: () {
+        onPressed();
+      },
       title: Text(text, style: Theme.of(context).textTheme.labelLarge),
       trailing: IconButton(
         onPressed: () {

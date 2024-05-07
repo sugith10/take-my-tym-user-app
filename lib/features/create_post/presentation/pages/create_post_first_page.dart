@@ -132,7 +132,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                   if (widget.postModel == null) {
                     _bloc.add(
                       CreateFirstPageEvent(
-                        userModel: context.read<AppUserBloc>().appUserModel!,
+                        userModel: context.read<AppUserBloc>().userModel!,
                         tymType: _tymType,
                         title: _titleController.text.trim(),
                         content: _contentController.text.trim(),

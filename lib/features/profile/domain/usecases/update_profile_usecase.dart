@@ -8,7 +8,7 @@ final class UpdateProfileUseCase {
   UpdateProfileUseCase(this._updateProfileRepo);
 
   updateUserProfileInfo({
-    required AppUserModel userModel,
+    required UserModel userModel,
     required XFile? profilePicture,
   }) async {
     return await _updateProfileRepo.updateProfileInfo(

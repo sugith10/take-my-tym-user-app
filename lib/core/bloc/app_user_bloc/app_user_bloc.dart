@@ -9,14 +9,14 @@ part 'app_user_event.dart';
 part 'app_user_state.dart';
 
 class AppUserBloc extends Bloc<AppEvent, AppState> {
-  AppUserModel? appUserModel;
+  UserModel? userModel;
   AppUserBloc() : super(AppInitial()) {
-    on<UpdateAppUserModelEvent>(
+    on<UpdateUserModelEvent>(
       (event, emit) async {
-        appUserModel = event.appUserModel;
+        userModel = event.userModel;
         await GetIt.instance<LocalUserStorageUseCase>()
-            .storeUserDataLocal(event.appUserModel);
-        if (appUserModel != null) {
+            .storeUserDataLocal(event.userModel);
+        if (userModel != null) {
           emit(UserModelUpdatedState());
         }
       },
@@ -26,13 +26,13 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
       emit(UserExitState());
     });
 
-    on<EnsureAppUserModelExistsEvent>(
+    on<EnsureUserModelExistsEvent>(
       ((event, emit) async {
         try {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
-          appUserModel = await localUserData.getUserDataFromLocal();
+          userModel = await localUserData.getUserDataFromLocal();
 
-          if (appUserModel != null) {
+          if (userModel != null) {
             emit(UserModelUpdatedState());
           } else {
             emit(UserModelNotFoundState());
@@ -46,12 +46,12 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
 
     on<UpdateUserLocationEvent>(
       (event, emit) async {
-        if (appUserModel != null) {
+        if (userModel != null) {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
-          appUserModel!.location = event.location;
-          appUserModel!.longitude = event.longitude;
-          appUserModel!.latitude = event.latitude;
-          await localUserData.storeUserDataLocal(appUserModel!);
+          userModel!.location = event.location;
+          userModel!.longitude = event.longitude;
+          userModel!.latitude = event.latitude;
+          await localUserData.storeUserDataLocal(userModel!);
         }
       },
     );

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
-import 'package:take_my_tym/features/work/presentation/widgets/contract_timeline_widget.dart';
+import 'package:take_my_tym/core/widgets/contract_timeline_widget.dart';
 import 'package:take_my_tym/features/work/presentation/widgets/offer_subtitle_widget.dart';
 
 class ViewContractPage extends StatelessWidget {

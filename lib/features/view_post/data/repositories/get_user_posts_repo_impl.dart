@@ -1,9 +1,9 @@
-import 'package:take_my_tym/features/view_post/data/datasources/get_user_posts_data_source.dart';
+import 'package:take_my_tym/features/profile/data/datasources/remote/user_posts_remote.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/view_post/domain/repositories/get_user_posts_repo.dart';
 
 final class GetUserPostsRepoImp implements GetUserPostsRepo {
-  final GetUserPostsRemoteData _getUserPostsDataSource;
+  final UserPostsRemote _getUserPostsDataSource;
 
   GetUserPostsRepoImp(this._getUserPostsDataSource);
 

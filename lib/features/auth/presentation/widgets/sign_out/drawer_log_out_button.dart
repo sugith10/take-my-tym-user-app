@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
@@ -24,7 +24,7 @@ class LogOutDrawerButton extends StatelessWidget {
         }
         if (state is UserSignOutSuccessState) {
           context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-          log(context.read<AppUserBloc>().appUserModel.toString());
+
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const WelcomePage()),

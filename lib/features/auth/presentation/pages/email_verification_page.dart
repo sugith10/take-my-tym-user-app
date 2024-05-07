@@ -10,13 +10,13 @@ import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_wid
 import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
 
 class EmailVerificationPage extends StatelessWidget {
-  final AppUserModel userModel;
+  final UserModel userModel;
 
   EmailVerificationPage({
     super.key,
     required this.userModel,
   });
-  static route({required AppUserModel userModel}) => MaterialPageRoute(
+  static route({required UserModel userModel}) => MaterialPageRoute(
         builder: (context) => EmailVerificationPage(
           userModel: userModel,
         ),

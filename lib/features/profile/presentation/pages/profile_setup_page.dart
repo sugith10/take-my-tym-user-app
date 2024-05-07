@@ -21,10 +21,10 @@ import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart
 import 'package:take_my_tym/features/profile/presentation/widgets/finish_setup_button.dart';
 
 class ProfileSetupPage extends StatefulWidget {
-  final AppUserModel userModel;
+  final UserModel userModel;
   const ProfileSetupPage({required this.userModel, super.key});
 
-  static route({required AppUserModel userModel}) => MaterialPageRoute(
+  static route({required UserModel userModel}) => MaterialPageRoute(
         builder: (context) => ProfileSetupPage(
           userModel: userModel,
         ),
@@ -60,7 +60,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
         if (state is UpdateProfileSuccessState) {
           context
               .read<AppUserBloc>()
-              .add(UpdateAppUserModelEvent(appUserModel: state.appUserModel));
+              .add(UpdateUserModelEvent(userModel: state.userModel));
 
           Navigator.pushAndRemoveUntil(
             context,
@@ -164,7 +164,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                                 location: locationState.placeName,
                                 latitude: locationState.latitude,
                                 longitude: locationState.longitude,
-                                appUserModel: widget.userModel,
+                                userModel: widget.userModel,
                               ),
                             );
                           } else {

@@ -10,8 +10,8 @@ sealed class UpdateProfileState extends Equatable {
 final class UpdateProfileInitial extends UpdateProfileState {}
 
 final class UpdateProfileSuccessState extends UpdateProfileState {
-  final AppUserModel appUserModel;
-  const UpdateProfileSuccessState({required this.appUserModel});
+  final UserModel userModel;
+  const UpdateProfileSuccessState({required this.userModel});
 }
 
 final class UpdataProfileFailState extends UpdateProfileState {}

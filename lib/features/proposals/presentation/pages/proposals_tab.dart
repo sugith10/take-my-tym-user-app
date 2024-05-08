@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/shimmer_common_widget.dart';
 import 'package:take_my_tym/features/proposals/presentation/bloc/offer_bloc/offer_bloc.dart';
 import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
 import 'package:take_my_tym/features/proposals/presentation/bloc/submit_bloc/submit_bloc.dart';
 import 'package:take_my_tym/features/proposals/presentation/pages/accept_proposal_page.dart';
-import 'package:take_my_tym/core/widgets/contract_timeline_widget.dart';
 import 'package:take_my_tym/features/proposals/presentation/widgets/offer_list_tile.dart';
 import 'package:take_my_tym/core/widgets/panel_title_widget.dart';
 import 'package:take_my_tym/features/proposals/presentation/widgets/submit_proposal_widget.dart';

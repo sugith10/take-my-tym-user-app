@@ -9,6 +9,8 @@ sealed class PaymentState extends Equatable {
 
 final class PaymentInitial extends PaymentState {}
 
+final class PaymentLoadingState extends PaymentState {}
+
 final class PaymentSuccessState extends PaymentState {
   final double amount;
 

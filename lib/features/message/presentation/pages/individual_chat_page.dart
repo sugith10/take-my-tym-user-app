@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/utils/time_stamp_to_time.dart';
 import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
 import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
@@ -100,9 +101,12 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                         final messageData = snapshot.data!.docs[index];
                         final message = messageData['message'] ?? 'error';
                         final senderId = messageData['senderUid'] ?? 'error';
+                        final time =
+                            messageData['timestamp'] ?? Timestamp.now();
                         return ChatWidget(
                           message: message,
                           senderId: senderId,
+                          time: timestampToTime(time),
                         );
                       },
                     );

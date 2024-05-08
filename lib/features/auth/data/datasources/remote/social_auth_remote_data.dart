@@ -41,6 +41,7 @@ final class SocailAuthRemoteData {
           firstName: userCredential.user!.displayName?.split(' ').first ?? 'User',
           lastName: userCredential.user!.displayName?.split(' ').last ?? " ",
           verified: true,
+          blocked: false,
           userName: userCredential.user!.displayName?.split(' ').first ?? 'User',
         );
         await userDocRef.set(userModel.toMap());

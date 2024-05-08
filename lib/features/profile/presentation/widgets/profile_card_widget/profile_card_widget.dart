@@ -31,14 +31,13 @@ class ProfileCard extends StatelessWidget {
                 children: [
                    ProfileNameWidget(name: userModel.userName),
                   SizedBox(height: 10.h),
-
-                  const RatingWidget(
-                    firstStar: true,
-                    secondStar: true,
-                    thirdStar: true,
-                    fourthStar: true,
-                    fifthStar: true,
-                  ),
+                  // const RatingWidget(
+                  //   firstStar: true,
+                  //   secondStar: true,
+                  //   thirdStar: true,
+                  //   fourthStar: true,
+                  //   fifthStar: true,
+                  // ),
                   SizedBox(height: 10.h),
                   //location start
 

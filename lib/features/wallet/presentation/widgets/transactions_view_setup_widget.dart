@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TransactionsViewSetupWidget extends StatelessWidget {
-  final Function function;
+  final VoidCallback viewAll;
   const TransactionsViewSetupWidget({
-    required this.function,
+    required this.viewAll,
     super.key,
   });
 
@@ -17,8 +17,8 @@ class TransactionsViewSetupWidget extends StatelessWidget {
         ),
         const Spacer(),
         InkWell(
-          onTap: (){
-            function();
+          onTap: () {
+            viewAll();
           },
           child: Text(
             'View all',

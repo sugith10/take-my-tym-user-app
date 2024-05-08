@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/time_stamp_convert.dart';
+import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
+import 'package:take_my_tym/features/wallet/presentation/pages/all_transactions_page.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_tile.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transactions_view_setup_widget.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/wallet_card_widget.dart';
@@ -31,7 +32,13 @@ class WalletPage extends StatelessWidget {
                 const Divider(),
                 const SizedBox(height: 20),
                 TransactionsViewSetupWidget(
-                  function: () {},
+                  viewAll: () {
+                    Navigator.push(
+                        context,
+                        TransactionsPage.route(
+                          transactions: state.transactions,
+                        ));
+                  },
                 ),
                 const SizedBox(height: 20),
                 Expanded(
@@ -41,7 +48,7 @@ class WalletPage extends StatelessWidget {
                       maxWidth: 800.h,
                     ),
                     child: ListView.builder(
-                      itemCount: state.transactions.length,
+                      itemCount: state.transactions.length > 10 ? 10 : state.transactions.length,
                       itemBuilder: (context, index) {
                         final transactionModel = state.transactions[index];
                         return Padding(

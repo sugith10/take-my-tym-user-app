@@ -25,9 +25,7 @@ class ProfilePage extends StatelessWidget {
               [
                 const ProfileCard(),
                 const AboutWidget(),
-                SizedBox(
-                  height: 20.h,
-                ),
+                SizedBox(height: 20.h),
                 ProfileOptionsWidget(
                   editProfile: () {
                     Navigator.push(

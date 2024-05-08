@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:take_my_tym/core/secret/google_map_api_key.dart';
+
 
 final class CurrentLocationRemote{
   

@@ -18,6 +18,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     PaymentTopUpEvent event,
     Emitter<PaymentState> emit,
   ) async {
+    emit(PaymentLoadingState());
     try {
       double convertedAmount = double.parse(event.amount);
       int amount = convertedAmount.toInt();

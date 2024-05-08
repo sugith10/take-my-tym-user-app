@@ -5,6 +5,7 @@ class UserModel {
   String uid;
   String email;
   bool verified;
+  bool blocked;
   String firstName;
   String lastName;
   String userName;
@@ -18,6 +19,7 @@ class UserModel {
     required this.uid,
     required this.email,
     required this.verified,
+    required this.blocked,
     required this.firstName,
     required this.lastName,
     required this.userName,
@@ -33,6 +35,7 @@ class UserModel {
     String? uid,
     String? email,
     bool? verified,
+    bool? blocked,
     String? firstName,
     String? lastName,
     String? userName,
@@ -47,6 +50,7 @@ class UserModel {
       uid: uid ?? this.uid,
       email: email ?? this.email,
       verified: verified ?? this.verified,
+      blocked: blocked ?? this.blocked,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       userName: userName ?? this.userName,
@@ -64,6 +68,7 @@ class UserModel {
       'uid': uid,
       'email': email,
       'verified': verified,
+      'blocked' : blocked,
       'firstName': firstName,
       'lastName': lastName,
       'userName': userName,
@@ -81,6 +86,7 @@ class UserModel {
       uid: map['uid'] as String,
       email: map['email'] as String,
       verified: map['verified'] as bool,
+      blocked: map['blocked'] as bool,
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       userName: map['userName'] as String,
@@ -101,7 +107,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uid: $uid, email: $email, verified: $verified, firstName: $firstName, lastName: $lastName, userName: $userName, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
+    return 'UserModel(uid: $uid, email: $email, verified: $verified, blocked: $blocked, firstName: $firstName, lastName: $lastName, userName: $userName, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
   }
 
   @override

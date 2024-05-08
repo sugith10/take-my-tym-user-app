@@ -34,6 +34,7 @@ final class SignUpRemoteData {
         lastName: lastName,
         userName: firstName + lastName,
         verified: false,
+        blocked: false
       );
       try {
         await FirebaseFirestore.instance.runTransaction((transaction) async {

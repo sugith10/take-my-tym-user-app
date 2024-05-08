@@ -84,6 +84,5 @@ import 'package:take_my_tym/features/wallet/domain/repositories/payment_repo.dar
 import 'package:take_my_tym/features/wallet/domain/repositories/wallet_repo.dart';
 import 'package:take_my_tym/features/wallet/domain/usecases/payment_use_case.dart';
 import 'package:take_my_tym/features/wallet/domain/usecases/wallet_use_case.dart';
-import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
 
 part 'dependency_injection.dart';

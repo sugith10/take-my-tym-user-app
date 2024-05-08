@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_bar/close_app_bar.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
+import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/core/widgets/submit_button.dart';
 import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 import 'package:take_my_tym/features/wallet/presentation/bloc/payment_bloc/payment_bloc.dart';
@@ -64,6 +64,9 @@ class _PaymentPageState extends State<PaymentPage> {
                     WalletTopUpEvent(uid: uid, amount: state.amount),
                   );
             }
+            if (state is PaymentLoadingState) {
+              LoadingDialog().show(context);
+            }
           },
         ),
       ],
@@ -75,7 +78,9 @@ class _PaymentPageState extends State<PaymentPage> {
             children: [
               const Spacer(flex: 1),
               SizedBox(height: 20.h),
-              const Text("Paying Aswin P C"),
+              WalletMessage(
+                walletAction: widget.type,
+              ),
               SizedBox(height: 20.h),
               const Spacer(flex: 1),
               PaymentTextField(controller: _paymentCntrl),
@@ -97,6 +102,34 @@ class _PaymentPageState extends State<PaymentPage> {
           type: widget.type,
         ),
       ),
+    );
+  }
+}
+
+class WalletMessage extends StatelessWidget {
+  final WalletAction walletAction;
+  const WalletMessage({
+    required this.walletAction,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (walletAction == WalletAction.topUp) {
+      return _title(context,  "Add Money to Wallet");
+    } else if (walletAction == WalletAction.widthdraw) {
+      return _title(context,  "Withdraw Your Money");
+    } else {
+      return _title(context,  "");
+    }
+  }
+
+  Text _title(BuildContext context, String text) {
+    return Text(
+     text,
+      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: AppDarkColor.instance.primaryTextSoft,
+          ),
     );
   }
 }

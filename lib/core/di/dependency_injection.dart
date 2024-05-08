@@ -19,9 +19,9 @@ final class DependencyInject {
 
     ///SoialAuth
     _getIt
-      ..registerLazySingleton<SocialAuthRepo>(
+      ..registerFactory<SocialAuthRepo>(
           () => SocialAuthRepoImpl(SocailAuthRemoteData()))
-      ..registerLazySingleton<SocialAuthUseCase>(
+      ..registerFactory<SocialAuthUseCase>(
           () => SocialAuthUseCase(_getIt<SocialAuthRepo>()));
 
     ///SignOut
@@ -140,9 +140,9 @@ final class DependencyInject {
 
     ///UpdateProfile
     _getIt
-      ..registerLazySingleton<UpdateProfileRepo>(
+      ..registerFactory<UpdateProfileRepo>(
           () => UpdateProfileRepoImpl(UpdateProfileRemote()))
-      ..registerLazySingleton<UpdateProfileUseCase>(
+      ..registerFactory<UpdateProfileUseCase>(
           () => UpdateProfileUseCase(_getIt<UpdateProfileRepo>()));
 
     ///Wallet
@@ -154,9 +154,9 @@ final class DependencyInject {
 
     ///Payment
     _getIt
-      ..registerLazySingleton<PaymentRepo>(
+      ..registerFactory<PaymentRepo>(
           () => PaymentRepoImpl(StripePayment()))
-      ..registerLazySingleton<PaymentUseCase>(
+      ..registerFactory<PaymentUseCase>(
           () => PaymentUseCase(_getIt<PaymentRepo>()));
   }
 }

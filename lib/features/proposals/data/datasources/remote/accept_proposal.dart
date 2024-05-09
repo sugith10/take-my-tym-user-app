@@ -5,7 +5,12 @@ import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
 
 class AcceptProposalRemote {
   final ref = FirebaseFirestore.instance.collection("proposals");
-  Future<void> acceptProposal() async {}
+  Future<void> acceptProposal({
+    required OfferModel offerModel,
+    required String uid,
+  }) async {
+    
+  }
 
   Future<void> rejectProposal({
     required OfferModel offerModel,

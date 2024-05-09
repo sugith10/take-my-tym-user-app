@@ -1,9 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/post_category_widget.dart';
+
+import '../../../../core/utils/app_padding.dart';
+import '../../../../core/utils/app_radius.dart';
+import 'post_category_widget.dart';
+
 
 class SkillsWidget extends StatelessWidget {
   final List<dynamic> skillList;

@@ -17,7 +17,6 @@ class CommunityPostsRemoteData {
       // log(result.toString());
       return result;
     } catch (e) {
-      print(e.toString());
       throw AppException(
         alert: toString(),
         details: toString(),
@@ -72,7 +71,6 @@ class CommunityPostsRemoteData {
       // log(result.toString());
       return result;
     } catch (e) {
-      print(e.toString());
       throw AppException(
         alert: toString(),
         details: toString(),
@@ -95,7 +93,6 @@ class CommunityPostsRemoteData {
 
       return result;
     } catch (e) {
-      print(e.toString());
       throw AppException(
         alert: 'Error fetching remote buyTymPosts',
         details: e.toString(),
@@ -118,7 +115,6 @@ class CommunityPostsRemoteData {
 
       return result;
     } catch (e) {
-      print(e.toString());
       throw AppException(
         alert: 'Error fetching remote buyTymPosts',
         details: e.toString(),

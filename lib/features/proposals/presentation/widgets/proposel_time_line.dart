@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/widgets/event_card.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+
+import '../../../../core/utils/app_assets/app_svg.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/event_card.dart';
+import '../../../../core/widgets/home_padding.dart';
+
 
 class ProposelTimeLine extends StatelessWidget {
   const ProposelTimeLine({

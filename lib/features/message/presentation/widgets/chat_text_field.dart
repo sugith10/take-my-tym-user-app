@@ -7,12 +7,12 @@ class ChatTextField extends StatefulWidget {
   final String receiverUid;
   final String receiverName;
   final String currentUid;
-  final String senderName;
+
   final IndividualMessageBloc individualMessageBloc;
   const ChatTextField({
     required this.individualMessageBloc,
     required this.currentUid,
-    required this.senderName,
+    
     required this.receiverUid,
     required this.receiverName,
     super.key,

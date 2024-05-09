@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/close_icon_button.dart';
+
+import '../../../../core/widgets/close_icon_button.dart';
+
 
 final class LocationTurnedOff {
   dailog(

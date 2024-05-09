@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
+
+import '../../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../../core/widgets/circle_profile_picture_widget.dart';
+
 
 class ProfileWidget extends StatelessWidget {
   final String picture;

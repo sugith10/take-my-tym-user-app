@@ -6,7 +6,6 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/profile_location_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/widgets/rating_widget.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({

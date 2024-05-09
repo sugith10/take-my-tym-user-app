@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/widgets/default_silver_appbar.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/profile_posts/switch_profile_posts_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/pages/edit_profile.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/about_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_card_widget/profile_card_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_options_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/profile_posts_widget.dart';
+
+import '../../../../core/widgets/default_silver_appbar.dart';
+import '../../../create_post/presentation/widgets/profile_posts/switch_profile_posts_widget.dart';
+import '../widgets/about_widget.dart';
+import '../widgets/profile_card_widget/profile_card_widget.dart';
+import '../widgets/profile_options_widget.dart';
+import '../widgets/profile_posts_widget.dart';
+import 'edit_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -28,12 +29,7 @@ class ProfilePage extends StatelessWidget {
                 SizedBox(height: 20.h),
                 ProfileOptionsWidget(
                   editProfile: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const EditProfilePage(),
-                      ),
-                    );
+                    Navigator.push(context, EditProfilePage.route());
                   },
                 ),
                 SizedBox(

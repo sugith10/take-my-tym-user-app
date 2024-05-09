@@ -5,23 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/time_stamp_to_time.dart';
-import 'package:take_my_tym/core/widgets/app_dialog.dart';
-import 'package:take_my_tym/core/widgets/popup_menu_item_child_widget.dart';
-import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
-import 'package:take_my_tym/features/message/presentation/widgets/chat_text_field.dart';
-import 'package:take_my_tym/features/message/presentation/widgets/chat_widget.dart';
+
+import '../../../../core/utils/time_stamp_to_time.dart';
+import '../../../../core/widgets/app_dialog.dart';
+import '../../../../core/widgets/popup_menu_item_child_widget.dart';
+import '../bloc/individual_message_bloc/individual_message_bloc.dart';
+import '../widgets/chat_text_field.dart';
+import '../widgets/chat_widget.dart';
+
 
 class IndividualChatPage extends StatefulWidget {
   final String receiverUid;
   final String currentUid;
   final String receiverName;
-  final String senderName;
+ 
   final IndividualMessageBloc individualMessageBloc;
 
   const IndividualChatPage({
     required this.currentUid,
-    required this.senderName,
+   
     required this.receiverUid,
     required this.receiverName,
     required this.individualMessageBloc,
@@ -130,7 +132,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
         currentUid: widget.currentUid,
         receiverUid: widget.receiverUid,
         receiverName: widget.receiverName,
-        senderName: widget.senderName,
+    
       ),
     );
   }

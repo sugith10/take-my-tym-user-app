@@ -17,7 +17,6 @@ final class LocalUserData {
       final userBox = await Hive.openBox('userData');
 
       final userData = userBox.get('user');
-      print('User Data Type: ${userData.runtimeType}');
       if (userData != null) {
         final userDataMap = Map<String, dynamic>.from(userData);
 

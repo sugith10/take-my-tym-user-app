@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/widgets/app_title_box_widget.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/submit_button.dart';
-import 'package:take_my_tym/features/proposals/presentation/bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/app_title_box_widget.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/widgets/submit_button.dart';
+import '../bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
+
 
 class ProposalMessage extends StatelessWidget {
   final TextEditingController controller;

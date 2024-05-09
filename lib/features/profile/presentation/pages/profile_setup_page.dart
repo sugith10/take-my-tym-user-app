@@ -3,22 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_lottie.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/reg_exp.dart';
-import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/core/widgets/take_my_tym_info_dialog.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_location_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
-import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
-import 'package:take_my_tym/core/widgets/skills_widget/create_skills_widget.dart';
-import 'package:take_my_tym/features/profile/presentation/widgets/finish_setup_button.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_user_model.dart';
+import '../../../../core/utils/app_assets/app_lottie.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/reg_exp.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/constrain_text_form_field.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
+import '../../../../core/widgets/skills_widget/create_skills_widget.dart';
+import '../../../../core/widgets/take_my_tym_info_dialog.dart';
+import '../../../create_post/presentation/widgets/create_post_location_widget.dart';
+import '../../../location/presentation/bloc/location_bloc.dart';
+import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
+import '../bloc/update_profile_bloc/update_profile_bloc.dart';
+import '../widgets/finish_setup_button.dart';
+
 
 class ProfileSetupPage extends StatefulWidget {
   final UserModel userModel;

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/widgets/app_bar/close_app_bar.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/user_sign_out_dialog.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/account_info_content_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_user_model.dart';
+import '../../../../core/widgets/app_bar/close_app_bar.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/auth_padding.dart';
+import '../../../../core/widgets/loading_dialog.dart';
+import '../bloc/sign_out_bloc/sign_out_bloc.dart';
+import '../widgets/account_info_content_widget.dart';
+import '../widgets/sign_out/account_info_log_out_widget.dart';
+import '../widgets/user_sign_out_dialog.dart';
+import 'welcome_page.dart';
+
 
 class AccountInfoPage extends StatefulWidget {
   static route() =>

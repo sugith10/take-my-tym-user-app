@@ -54,17 +54,16 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                           builder: (context) => IndividualChatPage(
                             currentUid: widget.currentUserId,
                             receiverUid: widget.recipientUserId,
-                            receiverName: '',
-                            senderName: '',
+                            receiverName: name,
                             individualMessageBloc: _individualMessageBloc,
                           ),
                         ),
                       );
                     },
-                    leading: SizedBox(
+                    leading:const SizedBox(
                       height: 50,
                       child: Stack(alignment: Alignment.bottomRight, children: [
-                        const CircleProfilePicWidget(
+                         CircleProfilePicWidget(
                           height: 50,
                           width: 50,
                         ),

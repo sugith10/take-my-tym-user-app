@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'dart:async';
 
-import 'package:take_my_tym/core/widgets/take_my_tym_info_dialog.dart';
-
+import '../../../../core/utils/app_assets/app_png.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/widgets/take_my_tym_info_dialog.dart';
+//TODO; FIx the async
 class BannerWidget extends StatefulWidget {
   const BannerWidget({super.key});
 

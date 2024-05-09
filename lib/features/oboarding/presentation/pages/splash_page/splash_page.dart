@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/widgets/app_logo.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/welcome_page.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
+
+import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../core/widgets/app_logo.dart';
+import '../../../../auth/presentation/pages/welcome_page.dart';
+import '../../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

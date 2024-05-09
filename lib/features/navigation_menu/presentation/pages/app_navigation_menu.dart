@@ -1,15 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
-import 'package:take_my_tym/features/create_post/presentation/pages/create_post_first_page.dart';
-import 'package:take_my_tym/features/home/presentation/pages/home_page.dart';
-import 'package:take_my_tym/features/message/presentation/pages/chat_list_page.dart';
-import 'package:take_my_tym/features/work/presentation/pages/control_panel_page.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/bloc/navigation_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/widgets/drawer/drawer_navigation_menu.dart';
-import 'package:take_my_tym/features/profile/presentation/pages/profile_page.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/navigation/screen_transitions/no_movement.dart';
+import '../../../create_post/presentation/pages/create_post_first_page.dart';
+import '../../../home/presentation/pages/home_page.dart';
+import '../../../message/presentation/pages/chat_list_page.dart';
+import '../../../profile/presentation/pages/profile_page.dart';
+import '../../../work/presentation/pages/control_panel_page.dart';
+import '../bloc/navigation_bloc.dart';
+import '../widgets/drawer/drawer_navigation_menu.dart';
 
 class NavigationMenu extends StatefulWidget {
   static route() => noMovement(const NavigationMenu());
@@ -126,7 +127,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
           );
         }
         return const Scaffold(
-          body: Center(child: Text("Something went wrong")),
+          body: SizedBox(),
         );
       },
     );

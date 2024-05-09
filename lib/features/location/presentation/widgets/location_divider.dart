@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
+
+import '../../../../core/widgets/home_padding.dart';
+
 
 class LocationDivider extends StatelessWidget {
   const LocationDivider({

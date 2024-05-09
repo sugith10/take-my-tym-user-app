@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/shimmer_effect.dart';
-import 'package:take_my_tym/features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/all_commune_posts_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/banner_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/category_title_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/generate_feed_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/home_page_app_bar.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/home_page_filter_widget.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/welcome_user_widget.dart';
+
+import '../bloc/community_posts_bloc/community_posts_bloc.dart';
+import '../widgets/all_commune_posts_widget.dart';
+import '../widgets/banner_widget.dart';
+import '../widgets/category_title_widget.dart';
+import '../widgets/generate_feed_widget.dart';
+import '../widgets/home_page_app_bar.dart';
+import '../widgets/home_page_filter_widget.dart';
+import '../widgets/welcome_user_widget.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

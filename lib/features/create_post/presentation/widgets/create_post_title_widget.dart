@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/app_title_box_widget.dart';
+
+import '../../../../core/widgets/app_title_box_widget.dart';
+
 
 class CreatePostTitleWidget extends StatelessWidget {
   final String title;

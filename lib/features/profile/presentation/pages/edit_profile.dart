@@ -1,20 +1,24 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 
-import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/constrain_text_form_field.dart';
-import 'package:take_my_tym/features/profile/presentation/bloc/update_profile_bloc/update_profile_bloc.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_user_model.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/circle_profile_picture_widget.dart';
+import '../../../../core/widgets/constrain_text_form_field.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../bloc/update_profile_bloc/update_profile_bloc.dart';
+
+
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
+
+  static route ()=> leftToRight(const  EditProfilePage());
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();

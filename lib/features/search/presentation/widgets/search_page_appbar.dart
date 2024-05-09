@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/app_bottom_sheet.dart';
-import 'package:take_my_tym/features/search/presentation/widgets/search_text_field.dart';
-import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_radius.dart';
+import '../../../../core/widgets/app_bottom_sheet.dart';
+import '../bloc/search_bloc/search_bloc.dart';
+import 'search_text_field.dart';
 
 class SearchPageAppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextEditingController searchEditingController;

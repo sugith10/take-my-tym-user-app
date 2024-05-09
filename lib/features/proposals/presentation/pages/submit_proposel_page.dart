@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
-import 'package:take_my_tym/core/widgets/action_button.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
-import 'package:take_my_tym/features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
-import 'package:take_my_tym/features/proposals/presentation/bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
-import 'package:take_my_tym/features/proposals/presentation/widgets/proposal_message.dart';
-import 'package:take_my_tym/features/proposals/presentation/widgets/proposel_time_line.dart';
-import 'package:take_my_tym/features/proposals/presentation/widgets/animated_dot_widget.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_post_model.dart';
+import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
+import '../../../../core/widgets/action_button.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/success_widget/success_page.dart';
+import '../bloc/proposal_bloc/proposal_bloc.dart';
+import '../bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
+import '../widgets/animated_dot_widget.dart';
+import '../widgets/proposal_message.dart';
+import '../widgets/proposel_time_line.dart';
+
 
 class SubmitProposelPage extends StatefulWidget {
   final PostModel postModel;

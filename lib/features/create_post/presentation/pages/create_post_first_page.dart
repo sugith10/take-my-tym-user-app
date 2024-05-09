@@ -4,20 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
-import 'package:take_my_tym/core/utils/post_types.dart';
-import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/features/create_post/presentation/bloc/create_post_bloc/create_post_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/pages/create_post_second_page.dart';
-import 'package:take_my_tym/core/widgets/action_button.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_bottom_bar.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_text_field.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/work_type_widget.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_post_model.dart';
+import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
+import '../../../../core/utils/post_types.dart';
+import '../../../../core/widgets/action_button.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/back_navigation_button.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../bloc/create_post_bloc/create_post_bloc.dart';
+import '../bloc/update_post_bloc/update_post_bloc.dart';
+import '../widgets/create_post_bottom_bar.dart';
+import '../widgets/create_post_text_field.dart';
+import '../widgets/work_type_widget.dart';
+import 'create_post_second_page.dart';
 
 class CreatePostFirstPage extends StatefulWidget {
   final PostModel? postModel;

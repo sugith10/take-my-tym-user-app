@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/post_category_widget.dart';
+
+import 'post_category_widget.dart';
+
 
 
 class PostConstraintsWidget extends StatefulWidget {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_debouncer.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_debouncer.dart';
+import '../bloc/location_bloc.dart';
+
 
 class LocationTextField extends StatelessWidget {
   const LocationTextField({

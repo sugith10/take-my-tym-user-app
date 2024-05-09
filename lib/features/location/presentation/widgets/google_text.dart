@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+
+import '../../../../core/utils/app_padding.dart';
+
 
 class PoweredByGoogleText extends StatelessWidget {
   const PoweredByGoogleText({super.key});

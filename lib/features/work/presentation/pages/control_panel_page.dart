@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/app_bar_title.dart';
-import 'package:take_my_tym/core/widgets/settings_button.dart';
-import 'package:take_my_tym/features/work/presentation/pages/contracts_tab.dart';
-import 'package:take_my_tym/features/proposals/presentation/pages/proposals_tab.dart';
-import 'package:take_my_tym/features/wallet/presentation/pages/wallet_page.dart';
+
+import '../../../../core/widgets/app_bar_title.dart';
+import '../../../../core/widgets/settings_button.dart';
+import '../../../proposals/presentation/pages/proposals_tab.dart';
+import '../../../wallet/presentation/pages/wallet_page.dart';
+import 'contracts_tab.dart';
+
 
 class ControlPanelPage extends StatelessWidget {
   const ControlPanelPage({super.key});

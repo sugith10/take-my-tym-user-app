@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_png.dart';
-import 'package:take_my_tym/core/widgets/image_icon.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
-import 'package:take_my_tym/features/location/presentation/pages/select_location_page.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/utils/app_assets/app_png.dart';
+import '../../../../core/widgets/image_icon.dart';
+import '../../../location/presentation/bloc/location_bloc.dart';
+import '../../../location/presentation/pages/select_location_page.dart';
+
 
 class MyLocationWidget extends StatefulWidget {
   const MyLocationWidget({

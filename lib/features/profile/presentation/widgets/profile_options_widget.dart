@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
+
+import '../../../../core/utils/app_radius.dart';
+import '../../../../core/widgets/home_padding.dart';
 
 class ProfileOptionsWidget extends StatelessWidget {
   final VoidCallback editProfile;

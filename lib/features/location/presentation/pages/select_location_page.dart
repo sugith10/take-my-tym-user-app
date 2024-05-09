@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_debouncer.dart';
-import 'package:take_my_tym/features/location/data/models/auto_complete_prediction.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/google_text.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_divider.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_page_appbar.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_permission_denied_dialog.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_text_field.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/location_turned_off_dialog.dart';
-import 'package:take_my_tym/features/location/presentation/widgets/search_location_result_widget.dart';
+
+import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_debouncer.dart';
+import '../../../../core/utils/app_padding.dart';
+import '../../data/models/auto_complete_prediction.dart';
+import '../bloc/location_bloc.dart';
+import '../widgets/google_text.dart';
+import '../widgets/location_divider.dart';
+import '../widgets/location_page_appbar.dart';
+import '../widgets/location_permission_denied_dialog.dart';
+import '../widgets/location_text_field.dart';
+import '../widgets/location_turned_off_dialog.dart';
+import '../widgets/search_location_result_widget.dart';
+
 
 class SelectLocationPage extends StatefulWidget {
   final LocationBloc locationBloc;

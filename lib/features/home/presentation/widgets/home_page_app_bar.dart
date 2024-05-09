@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/features/home/presentation/widgets/home_page_app_bar_location_widget.dart';
+
+import 'home_page_app_bar_location_widget.dart';
 
 class HomePageAppBar extends StatelessWidget {
   final VoidCallback openDrawer;

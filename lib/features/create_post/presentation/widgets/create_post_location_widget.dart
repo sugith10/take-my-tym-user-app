@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
-import 'package:take_my_tym/features/location/presentation/pages/select_location_page.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_radius.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../../../location/presentation/bloc/location_bloc.dart';
+import '../../../location/presentation/pages/select_location_page.dart';
+
 
 class CreatePostLocationWidget extends StatelessWidget {
   final LocationBloc locationBloc;

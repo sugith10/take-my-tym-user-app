@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_bar/close_app_bar.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/submit_button.dart';
 import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
-import 'package:take_my_tym/features/wallet/presentation/bloc/payment_bloc/payment_bloc.dart';
-import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
-import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/feedback_text_field.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/payment_textfield.dart';
+
+import '../bloc/payment_bloc/payment_bloc.dart';
+import '../bloc/wallet_bloc/wallet_bloc.dart';
+import '../util/wallet_action_type.dart';
+import '../widgets/feedback_text_field.dart';
+import '../widgets/pay_button.dart';
+import '../widgets/payment_textfield.dart';
+import '../widgets/wallet_message.dart';
 
 class PaymentPage extends StatefulWidget {
   final WalletAction type;
@@ -90,7 +91,7 @@ class _PaymentPageState extends State<PaymentPage> {
             ],
           ),
         ),
-        bottomNavigationBar: _PayButton(
+        bottomNavigationBar: PayButton(
           callback: () {
             if (widget.type == WalletAction.topUp) {
               _paymentBloc.add(PaymentTopUpEvent(amount: _paymentCntrl.text));
@@ -101,60 +102,6 @@ class _PaymentPageState extends State<PaymentPage> {
           },
           type: widget.type,
         ),
-      ),
-    );
-  }
-}
-
-class WalletMessage extends StatelessWidget {
-  final WalletAction walletAction;
-  const WalletMessage({
-    required this.walletAction,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (walletAction == WalletAction.topUp) {
-      return _title(context,  "Add Money to Wallet");
-    } else if (walletAction == WalletAction.widthdraw) {
-      return _title(context,  "Withdraw Your Money");
-    } else {
-      return _title(context,  "");
-    }
-  }
-
-  Text _title(BuildContext context, String text) {
-    return Text(
-     text,
-      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            color: AppDarkColor.instance.primaryTextSoft,
-          ),
-    );
-  }
-}
-
-class _PayButton extends StatelessWidget {
-  final VoidCallback callback;
-  final WalletAction type;
-  const _PayButton({
-    required this.callback,
-    required this.type,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final String text = type == WalletAction.widthdraw ? 'Withdraw' : 'Pay Now';
-    return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: SubmitButton(
-        callback: () async {
-          callback();
-        },
-        text: "$text ➪",
-        foregroundColor: AppDarkColor.instance.primaryText,
-        backgroundColor: AppDarkColor.instance.success,
       ),
     );
   }

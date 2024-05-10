@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
 import 'package:take_my_tym/features/wallet/data/datasources/remote/wallet_remote_data.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 import 'package:take_my_tym/features/wallet/data/models/wallet_model.dart';
@@ -11,7 +13,7 @@ part 'wallet_state.dart';
 
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
   final WalletUseCase _useCase;
-  WalletBloc(this._useCase) : super(WalletLoadingState()) {
+  WalletBloc(this._useCase) : super(WalletInitialState()) {
     on<WalletBalanceEvent>(_onBalance);
     on<WalletTopUpEvent>(_onTopUp);
     on<WalletWithdrawEvent>(_onWithdraw);
@@ -22,15 +24,27 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
     WalletBalanceEvent event,
     Emitter<WalletState> emit,
   ) async {
-    emit(WalletLoadingState());
-    final WalletModel walletModel =
-        await _useCase.walletBalance(uid: event.uid);
-    emit(
-      WalletLoadedState(
-        balance: walletModel.balance,
-        transactions: walletModel.transactions.reversed.toList(),
-      ),
-    );
+    emit(WalletInitialState());
+    try {
+      final LocalAuthentication auth = LocalAuthentication();
+      final bool pass = await auth.authenticate(
+      
+        localizedReason: "Confirm your screen lock PIN, Password or Fingerprint",
+      );
+      if (pass) {
+        emit(WalletLoadingState());
+        final WalletModel walletModel =
+            await _useCase.walletBalance(uid: event.uid);
+        emit(
+          WalletLoadedState(
+            balance: walletModel.balance,
+            transactions: walletModel.transactions.reversed.toList(),
+          ),
+        );
+      }
+    } catch (e) {
+      appLogger.f(e.toString());
+    }
   }
 
   void _onTopUp(

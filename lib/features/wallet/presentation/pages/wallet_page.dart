@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/utils/time_stamp_to_date.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/wallet_bloc/wallet_bloc.dart';
@@ -19,8 +19,23 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WalletBloc, WalletState>(
+   
+    return BlocConsumer<WalletBloc, WalletState>(
+      listener: (context, state) {
+        if (state is WalletInitialState) {}
+      },
       builder: (context, state) {
+        if (state is WalletInitialState) {
+          return const HomePadding(
+            child: Column(
+              children: [
+                WalletCard(),
+                Divider(),
+                WalletMessageWidget(type: false)
+              ],
+            ),
+          );
+        }
         if (state is WalletLoadingState) {
           return const WalletShimmerWidget();
         }
@@ -28,9 +43,7 @@ class WalletPage extends StatelessWidget {
           return HomePadding(
             child: Column(
               children: [
-                const SizedBox(height: 20),
                 WalletCard(balance: state.balance),
-                const SizedBox(height: 20),
                 const Divider(),
                 if (state.transactions.isNotEmpty)
                   Column(
@@ -46,44 +59,34 @@ class WalletPage extends StatelessWidget {
                         },
                       ),
                       Expanded(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minWidth: 400.h,
-                            maxWidth: 800.h,
-                          ),
-                          child: ListView.builder(
-                            itemCount: state.transactions.length > 10
-                                ? 10
-                                : state.transactions.length,
-                            itemBuilder: (context, index) {
-                              final transactionModel =
-                                  state.transactions[index];
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                                child: TransactionTile(
-                                  type: transactionModel.transactionType,
-                                  time: timestampToDate(
-                                      transactionModel.timestamp),
-                                  amount: transactionModel.amount.toString(),
-                                ),
-                              );
-                            },
-                          ),
+                        child: ListView.builder(
+                          itemCount: state.transactions.length > 10
+                              ? 10
+                              : state.transactions.length,
+                          itemBuilder: (context, index) {
+                            final transactionModel = state.transactions[index];
+                            return Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                              child: TransactionTile(
+                                type: transactionModel.transactionType,
+                                time:
+                                    timestampToDate(transactionModel.timestamp),
+                                amount: transactionModel.amount.toString(),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
-                if (state.transactions.isEmpty) const NoTransactionWidget()
+                if (state.transactions.isEmpty)
+                  const WalletMessageWidget(type: true)
               ],
             ),
           );
         }
         return const SizedBox.shrink();
       },
-      // buildWhen: (previous, current) {
-      //   return  current is WalletLoadedState && previous != WalletLoadedState;
-      // },
     );
   }
 }

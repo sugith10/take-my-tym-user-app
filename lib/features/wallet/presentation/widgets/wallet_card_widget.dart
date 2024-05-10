@@ -7,82 +7,93 @@ import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart
 import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
 
 class WalletCard extends StatelessWidget {
-  final double balance;
+  final double? balance;
   const WalletCard({
-    required this.balance,
+    this.balance,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: 300.h,
-        maxWidth: 600.h,
-      ),
-      child: Container(
-        height: 150.h,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            colors: [
-              AppDarkColor.instance.gradientPrimary,
-              AppDarkColor.instance.gradientSecondary,
-            ],
-            center: Alignment.topLeft,
-            radius: 0.9,
+    return Column(
+      children: [
+        const SizedBox(height: 20),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 300.h,
+            maxWidth: 600.h,
           ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(MyAppRadius.borderRadius),
-          ),
-        ),
-        child: Column(
-          children: [
-            const Spacer(),
-            Text(
-              'Main Balance',
-              style: Theme.of(context).textTheme.labelSmall,
+          child: Container(
+            height: 150.h,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  AppDarkColor.instance.gradientPrimary,
+                  AppDarkColor.instance.gradientSecondary,
+                ],
+                center: Alignment.topLeft,
+                radius: 0.9,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(MyAppRadius.borderRadius),
+              ),
             ),
-            const SizedBox(height: 5),
-            Text(
-              '₹${balance.toString()}',
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
               children: [
-                _TransactionButton(
-                  icon: IconlyLight.arrow_up,
-                  title: 'Top up',
-                  callback: () {
-                    Navigator.push(
-                      context,
-                      PaymentPage.route(type: WalletAction.topUp),
-                    );
-                  },
+                const Spacer(),
+                Text(
+                  'Main Balance',
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
-                SizedBox(
-                  height: 20.h,
-                  child: const VerticalDivider(),
-                ),
-                _TransactionButton(
-                  icon: IconlyLight.arrow_down,
-                  title: 'Withdraw',
-                  callback: () {
-                    Navigator.push(
-                        context,
-                        PaymentPage.route(
-                          type: WalletAction.widthdraw,
-                        ));
-                  },
-                ),
+                const SizedBox(height: 5),
+                if (balance != null)
+                  Text(
+                    '₹${balance.toString()}',
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                if (balance == null)
+                  Text(
+                    '****',
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                const Spacer(),
+                if (balance != null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _TransactionButton(
+                        icon: IconlyLight.arrow_up,
+                        title: 'Top up',
+                        callback: () {
+                          Navigator.push(
+                            context,
+                            PaymentPage.route(type: WalletAction.topUp),
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                        child: const VerticalDivider(),
+                      ),
+                      _TransactionButton(
+                        icon: IconlyLight.arrow_down,
+                        title: 'Withdraw',
+                        callback: () {
+                          Navigator.push(context,
+                              PaymentPage.route(type: WalletAction.widthdraw));
+                        },
+                      ),
+                    ],
+                  ),
+                if (balance == null) const Text("Unlock Wallet"),
+                const Spacer()
               ],
             ),
-            const Spacer()
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 20),
+      ],
     );
   }
 }

@@ -30,7 +30,7 @@ void main() async {
   Stripe.publishableKey = dotenv.env["STRIPE_PUBLISH_KEY"]!;
   await Stripe.instance.applySettings();
 
-  // Bloc.observer = AppBlocObserver();
+  Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }

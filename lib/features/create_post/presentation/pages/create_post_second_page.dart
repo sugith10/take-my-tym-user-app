@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/navigation/screen_transitions/right_to_left.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/action_button.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
-import '../../../../core/widgets/back_navigation_button.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
@@ -134,7 +134,12 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          leading: const BackButtonWidget(),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(IconlyLight.arrow_left),
+          ),
           actions: [
             ActionButton(
               callback: () {

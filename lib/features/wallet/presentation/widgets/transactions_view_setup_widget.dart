@@ -9,22 +9,28 @@ class TransactionsViewSetupWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Text(
-          'Last Transactions',
-          style: Theme.of(context).textTheme.titleLarge,
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Text(
+              'Last Transactions',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                viewAll();
+              },
+              child: Text(
+                'View all',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            )
+          ],
         ),
-        const Spacer(),
-        InkWell(
-          onTap: () {
-            viewAll();
-          },
-          child: Text(
-            'View all',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        )
+        const SizedBox(height: 20),
       ],
     );
   }

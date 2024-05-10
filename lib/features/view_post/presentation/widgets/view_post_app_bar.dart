@@ -20,7 +20,12 @@ class ViewPostAppBar extends StatelessWidget {
     return SliverAppBar(
       automaticallyImplyLeading: false,
       floating: true,
-      leading: const BackButtonWidget(),
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(IconlyLight.arrow_left),
+      ),
       actions: [
         showMoreButton
             ? PopupMenuButton(

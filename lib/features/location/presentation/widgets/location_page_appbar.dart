@@ -11,10 +11,11 @@ class LocationPageAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(IconlyLight.arrow_down_2)),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(IconlyLight.arrow_down_2),
+      ),
       title: const Text("Select a location"),
     );
   }

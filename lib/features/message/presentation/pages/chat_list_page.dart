@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 
+import '../../../../core/widgets/app_bar_title.dart';
 import '../bloc/chat_list_bloc/chat_list_bloc.dart';
 import '../util/chat_list_item_model.dart';
 import '../widgets/chat_list_shimmer_widget.dart';

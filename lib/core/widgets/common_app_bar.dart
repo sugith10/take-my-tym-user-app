@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/back_navigation_button.dart';
+import 'package:iconly/iconly.dart';
 
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SimpleAppBar({
@@ -9,12 +9,15 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const BackButtonWidget(),
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(IconlyLight.arrow_left),
+      ),
     );
   }
-  
 
-  
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

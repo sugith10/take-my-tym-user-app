@@ -11,8 +11,6 @@ class AppPng {
   static const String profileIcon = 'asset/img/icons/user.png';
   static const String google = 'asset/img/auth/google.png';
 
-
-
   //TODO-convert asset to assets
   static const String msg = "assets/png/Inbox Empty.png";
 }

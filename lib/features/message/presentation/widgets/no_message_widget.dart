@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../core/utils/app_assets/app_lottie.dart';
+import '../../../../core/widgets/not_yet_widget.dart';
 
 class NoMessageWidget extends StatelessWidget {
   const NoMessageWidget({
@@ -15,14 +16,9 @@ class NoMessageWidget extends StatelessWidget {
       children: [
         const Spacer(flex: 1),
         Lottie.asset(AppLottie.msg),
-        Text(
-          "No messages yet",
-          style: Theme.of(context).textTheme.labelLarge,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          "You'll find your conversations all right here.",
-          style: Theme.of(context).textTheme.bodySmall,
+        const NotYetWidget(
+          title: "No messages yet",
+          subtitle: "You'll find your conversations all right here.",
         ),
         const Spacer(flex: 2),
       ],

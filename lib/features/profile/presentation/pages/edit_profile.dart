@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 
-
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/utils/app_colors.dart';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/features/message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../bloc/individual_message_bloc/individual_message_bloc.dart';
+
 
 class ChatTextField extends StatefulWidget {
   final String receiverUid;
@@ -39,21 +41,17 @@ class _ChatTextFieldState extends State<ChatTextField> {
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: SizedBox(
-                                                                                                                                         
           child: Row(
             children: [
               Expanded(
                 child: TextField(
                   keyboardType: TextInputType.text,
-                 
                   maxLines: 3,
                   maxLength: 100,
-                  minLines: 1                                                                                                                                     ,
+                  minLines: 1,
                   controller: _controller,
                   textCapitalization: TextCapitalization.sentences,
-            
                   decoration: InputDecoration(
-                  
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: _appDarkColor.secondaryText),
@@ -70,7 +68,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     fillColor: _appDarkColor.bottomBar,
                     prefix: const SizedBox(width: 10),
                     suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 5,left: 5),
+                      padding: const EdgeInsets.only(right: 5, left: 5),
                       child: _ChatIconButton(
                         callback: () {
                           widget.individualMessageBloc.add(
@@ -90,7 +88,6 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
-
             ],
           ),
         ),

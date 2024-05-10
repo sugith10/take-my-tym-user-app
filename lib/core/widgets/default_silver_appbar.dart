@@ -15,6 +15,7 @@ class DefaultSilverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
+      floating: true,
       title: AppBarTitle(title: title),
       actions: [
         SettingsButton(

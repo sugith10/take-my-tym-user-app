@@ -13,17 +13,15 @@ import '../bloc/individual_message_bloc/individual_message_bloc.dart';
 import '../widgets/chat_text_field.dart';
 import '../widgets/chat_widget.dart';
 
-
 class IndividualChatPage extends StatefulWidget {
   final String receiverUid;
   final String currentUid;
   final String receiverName;
- 
+
   final IndividualMessageBloc individualMessageBloc;
 
   const IndividualChatPage({
     required this.currentUid,
-   
     required this.receiverUid,
     required this.receiverName,
     required this.individualMessageBloc,
@@ -132,7 +130,6 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
         currentUid: widget.currentUid,
         receiverUid: widget.receiverUid,
         receiverName: widget.receiverName,
-    
       ),
     );
   }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
-import 'package:take_my_tym/core/widgets/home_padding.dart';
-import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
-import 'package:take_my_tym/features/wallet/presentation/pages/all_transactions_page.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_tile.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/transactions_view_setup_widget.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/wallet_card_widget.dart';
-import 'package:take_my_tym/features/wallet/presentation/widgets/wallet_shimmer_widget.dart';
+
+import '../../../../core/utils/time_stamp_to_date.dart';
+import '../../../../core/widgets/home_padding.dart';
+import '../bloc/wallet_bloc/wallet_bloc.dart';
+import '../widgets/transaction_tile.dart';
+import '../widgets/transactions_view_setup_widget.dart';
+import '../widgets/wallet_card_widget.dart';
+import '../widgets/wallet_shimmer_widget.dart';
+import 'all_transactions_page.dart';
+
 
 class WalletPage extends StatelessWidget {
   const WalletPage({

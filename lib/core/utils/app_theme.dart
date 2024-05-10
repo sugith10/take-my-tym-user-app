@@ -151,9 +151,9 @@ final class AppDarkTheme {
           color: _color.primaryTextSoft,
         )),
     textSelectionTheme: TextSelectionThemeData(
-      selectionColor: _color.primaryText,
-      cursorColor: _color.primaryText,
-    ),
+        selectionColor: _color.primaryText,
+        cursorColor: _color.primaryText,
+        selectionHandleColor: _color.primaryText),
     iconTheme: IconThemeData(
       color: _color.iconColor,
     ),

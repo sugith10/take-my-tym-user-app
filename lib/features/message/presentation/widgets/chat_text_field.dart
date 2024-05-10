@@ -12,7 +12,6 @@ class ChatTextField extends StatefulWidget {
   const ChatTextField({
     required this.individualMessageBloc,
     required this.currentUid,
-    
     required this.receiverUid,
     required this.receiverName,
     super.key,
@@ -40,14 +39,21 @@ class _ChatTextFieldState extends State<ChatTextField> {
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: SizedBox(
-          height: 50,
+                                                                                                                                         
           child: Row(
             children: [
               Expanded(
                 child: TextField(
+                  keyboardType: TextInputType.text,
+                 
+                  maxLines: 3,
+                  maxLength: 100,
+                  minLines: 1                                                                                                                                     ,
                   controller: _controller,
                   textCapitalization: TextCapitalization.sentences,
+            
                   decoration: InputDecoration(
+                  
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: _appDarkColor.secondaryText),
@@ -62,33 +68,29 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     hintStyle: Theme.of(context).textTheme.bodyLarge,
                     filled: true,
                     fillColor: _appDarkColor.bottomBar,
+                    prefix: const SizedBox(width: 10),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 5,left: 5),
+                      child: _ChatIconButton(
+                        callback: () {
+                          widget.individualMessageBloc.add(
+                            SendMessageEvent(
+                              message: _controller.text,
+                              currentUid: widget.currentUid,
+                              receiverUid: widget.receiverUid,
+                            ),
+                          );
+                          _controller.clear();
+                        },
+                        icon: IconlyBold.send,
+                        darkColor: _appDarkColor,
+                      ),
+                    ),
                   ),
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
-              // const SizedBox(width: 10),
-              // _ChatIconButton(
-              //   icon: IconlyBold.image_2,
-              //   callback: () {
-              //     ImagePick().getImage();
-              //   },
-              //   darkColor: _appDarkColor,
-              // ),
-              const SizedBox(width: 10),
-              _ChatIconButton(
-                callback: () {
-                  widget.individualMessageBloc.add(
-                    SendMessageEvent(
-                      message: _controller.text,
-                      currentUid: widget.currentUid,
-                      receiverUid: widget.receiverUid,
-                    ),
-                  );
-                  _controller.clear();
-                },
-                icon: IconlyBold.send,
-                darkColor: _appDarkColor,
-              )
+
             ],
           ),
         ),
@@ -113,12 +115,13 @@ class _ChatIconButton extends StatelessWidget {
         color: AppDarkColor.instance.bottomBar,
       ),
       child: IconButton(
+        tooltip: "Send",
         onPressed: () {
           callback();
         },
         icon: Icon(
           icon,
-          size: 25,
+          size: 30,
           color: AppDarkColor.instance.primaryText,
         ),
       ),

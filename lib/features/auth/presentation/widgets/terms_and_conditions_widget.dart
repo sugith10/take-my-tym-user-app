@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
+
+import '../../../../core/widgets/navigation_taxt_button.dart';
 
 class TermsAndConditionsWidget extends StatelessWidget {
   const TermsAndConditionsWidget({

@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:take_my_tym/core/utils/app_responsive.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
+
+import '../../../../core/utils/app_responsive.dart';
+import 'sign_back_button.dart';
+
 
 class WelcomeTextWidget extends StatelessWidget {
   final String firstLine;
@@ -30,7 +32,7 @@ class WelcomeTextWidget extends StatelessWidget {
             duration: const Duration(milliseconds: 1000),
             child: SignBackButton(
               callback: () {
-                log('go ba ck');
+               
                 Navigator.pop(context);
               },
             ),

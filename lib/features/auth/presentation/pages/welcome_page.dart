@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/app_logo.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/welcome_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/welcome_page_animation.dart';
+
+import '../../../../core/navigation/screen_transitions/no_movement.dart';
+import '../../../../core/utils/app_padding.dart';
+import '../../../../core/widgets/app_logo.dart';
+import '../widgets/terms_and_conditions.dart';
+import '../widgets/welcome_button.dart';
+import '../widgets/welcome_page_animation.dart';
 
 class WelcomePage extends StatelessWidget {
   static route ()=> noMovement(const WelcomePage());

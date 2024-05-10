@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/sign_up_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_in_bloc/sign_in_bloc.dart';
-import 'package:take_my_tym/core/utils/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/forgot_password_widget.dart';
-import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
-import 'package:take_my_tym/features/profile/presentation/pages/profile_setup_page.dart';
+
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/navigation/screen_transitions/no_movement.dart';
+import '../../../../core/utils/app_padding.dart';
+import '../../../../core/utils/reg_exp.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/loading_dialog.dart';
+import '../../../../core/widgets/navigation_taxt_button.dart';
+import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
+import '../../../profile/presentation/pages/profile_setup_page.dart';
+import '../bloc/sign_in_bloc/sign_in_bloc.dart';
+import '../widgets/forgot_password_widget.dart';
+import '../widgets/sign_button.dart';
+import '../widgets/sign_text_form_field.dart';
+import '../widgets/social_auth/social_auth_widget.dart';
+import '../widgets/terms_and_conditions_widget.dart';
+import '../widgets/welcome_text_widget.dart';
+import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
   static route() => noMovement(const SignInPage());

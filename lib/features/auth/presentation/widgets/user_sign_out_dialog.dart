@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+
+import '../../../../core/utils/app_colors.dart';
+import '../bloc/sign_out_bloc/sign_out_bloc.dart';
+
 
 class UserLogOut {
   void showLogOutDialog({

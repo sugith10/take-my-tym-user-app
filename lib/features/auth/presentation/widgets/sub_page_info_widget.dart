@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_back_button.dart';
+
+import '../pages/sign_in_page.dart';
+import 'sign_back_button.dart';
+
 
 class SubPageInfoWidget extends StatelessWidget {
   final String title;

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:take_my_tym/core/utils/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
+
+import '../../../../../core/utils/reg_exp.dart';
+import '../../bloc/sign_up_bloc/sign_up_bloc.dart';
+import '../sign_text_form_field.dart';
+
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({

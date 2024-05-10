@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/no_movement.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/widgets/navigation_taxt_button.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/email_verification_page.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/social_auth/social_auth_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/terms_and_conditions_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/welcome_text_widget.dart';
+
+import '../../../../core/navigation/screen_transitions/no_movement.dart';
+import '../../../../core/utils/app_padding.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/loading_dialog.dart';
+import '../../../../core/widgets/navigation_taxt_button.dart';
+import '../bloc/sign_up_bloc/sign_up_bloc.dart';
+import '../widgets/sign_button.dart';
+import '../widgets/sign_up/sign_up_form.dart';
+import '../widgets/social_auth/social_auth_widget.dart';
+import '../widgets/terms_and_conditions_widget.dart';
+import '../widgets/welcome_text_widget.dart';
+import 'email_verification_page.dart';
+import 'sign_in_page.dart';
+
 
 class SignUpPage extends StatefulWidget {
   static route() => noMovement(const SignUpPage());

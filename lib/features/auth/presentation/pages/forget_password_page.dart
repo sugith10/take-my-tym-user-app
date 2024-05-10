@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/features/auth/presentation/bloc/forget_password_bloc/forget_password_bloc.dart';
-import 'package:take_my_tym/core/utils/reg_exp.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_text_form_field.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sub_page_info_widget.dart';
+
+import '../../../../core/utils/reg_exp.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/auth_padding.dart';
+import '../../../../core/widgets/loading_dialog.dart';
+import '../bloc/forget_password_bloc/forget_password_bloc.dart';
+import '../widgets/sign_button.dart';
+import '../widgets/sign_text_form_field.dart';
+import '../widgets/sub_page_info_widget.dart';
+
 
 class ForgetPasswordPage extends StatefulWidget {
    static route() => MaterialPageRoute(builder: (context)=>  const ForgetPasswordPage());

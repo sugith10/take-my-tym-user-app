@@ -1,13 +1,14 @@
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:take_my_tym/core/widgets/app_bar_title.dart';
 
-import '../../../../core/widgets/default_silver_appbar.dart';
 import '../bloc/chat_list_bloc/chat_list_bloc.dart';
 import '../util/chat_list_item_model.dart';
 import '../widgets/chat_list_shimmer_widget.dart';
 import '../widgets/chat_tile_widget.dart';
-
+import '../widgets/no_message_widget.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -15,58 +16,57 @@ class ChatListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          DefaultSilverAppBar(
-            title: 'Inbox',
-            settings: () {},
-          ),
-          SliverToBoxAdapter(child: BlocBuilder<ChatListBloc, ChatListState>(
-            builder: (context, state) {
-              if (state is ChatListLoadingState) {
-                return const ChatListShimmerWidget();
-              }
-              if (state is ChatListLoadedState) {
-                return StreamBuilder<DocumentSnapshot>(
-                  stream: state.chatList,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data!.data() == null) {
-                        return const SizedBox.shrink();
-                      }
-                      final documentData =
-                          snapshot.data!.data() as Map<String, dynamic>;
-                      final chatListItems = documentData.entries
-                          .map(
-                            (i) => ChatListItemModel(
-                              chatId: i.key,
-                              recipientUserId: i.value,
-                            ),
-                          )
-                          .toList();
-
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: chatListItems.length,
-                        itemBuilder: ((context, index) {
-                          final chatListItem = chatListItems[index];
-                          final recipientUserId = chatListItem.recipientUserId;
-                          return ChatTileWidget(
-                            currentUserId: state.userId,
-                            recipientUserId: recipientUserId,
-                          );
-                        }),
-                      );
+      appBar: AppBar(
+        title: const AppBarTitle(title: "Inbox"),
+        automaticallyImplyLeading: false,
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: BlocBuilder<ChatListBloc, ChatListState>(
+          builder: (context, state) {
+            if (state is ChatListLoadingState) {
+              return const ChatListShimmerWidget();
+            }
+            if (state is ChatListLoadedState) {
+              return StreamBuilder<DocumentSnapshot>(
+                stream: state.chatList,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data!.data() == null) {
+                      return const NoMessageWidget();
                     }
-                    return const SizedBox.shrink();
-                  },
-                );
-              }
-              return const SizedBox.shrink();
-            },
-          )),
-        ],
+                    final documentData =
+                        snapshot.data!.data() as Map<String, dynamic>;
+                    final chatListItems = documentData.entries
+                        .map(
+                          (i) => ChatListItemModel(
+                            chatId: i.key,
+                            recipientUserId: i.value,
+                          ),
+                        )
+                        .toList();
+
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: chatListItems.length,
+                      itemBuilder: ((context, index) {
+                        log("no data");
+                        final chatListItem = chatListItems[index];
+                        final recipientUserId = chatListItem.recipientUserId;
+                        return ChatTileWidget(
+                          currentUserId: state.userId,
+                          recipientUserId: recipientUserId,
+                        );
+                      }),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              );
+            }
+            return const SizedBox.shrink();
+          },
+        ),
       ),
     );
   }

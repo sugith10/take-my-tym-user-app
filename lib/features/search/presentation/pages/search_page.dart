@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/posted_content.dart';
-import '../../../create_post/presentation/widgets/search_page/search_page_initial_widget.dart';
+import '../widgets/search_page_initial_widget.dart';
 import '../../../view_post/presentation/pages/view_post_page.dart';
 import '../bloc/search_bloc/search_bloc.dart';
 import '../widgets/search_page_appbar.dart';

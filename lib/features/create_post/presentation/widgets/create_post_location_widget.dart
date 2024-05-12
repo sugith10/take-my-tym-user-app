@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_radius.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 import '../../../location/presentation/pages/select_location_page.dart';
-
 
 class CreatePostLocationWidget extends StatelessWidget {
   final LocationBloc locationBloc;
@@ -50,20 +50,26 @@ class CreatePostLocationWidget extends StatelessWidget {
             child: HomePadding(
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: BlocBuilder(
-                  bloc: locationBloc,
-                  builder: (context, state) {
-                    if (state is LocationResultState) {
-                      return Text(
-                        state.placeName,
-                        style: Theme.of(context).textTheme.labelLarge,
-                      );
-                    }
-                    return Text(
-                      'Location',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    );
-                  },
+                child: Row(
+                  children: [
+                    const Icon(IconlyLight.location),
+                    SizedBox(width: 10.w),
+                    BlocBuilder(
+                      bloc: locationBloc,
+                      builder: (context, state) {
+                        if (state is LocationResultState) {
+                          return Text(
+                            state.placeName,
+                            style: Theme.of(context).textTheme.labelLarge,
+                          );
+                        }
+                        return Text(
+                          'Location',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

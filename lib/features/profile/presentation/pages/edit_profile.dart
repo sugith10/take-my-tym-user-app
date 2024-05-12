@@ -28,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _nameCntrl = TextEditingController();
   final TextEditingController _aboutCntrl = TextEditingController();
   final TextEditingController _locationCntrl = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+
   late final style = Theme.of(context).textTheme.labelMedium?.copyWith(
         color: AppDarkColor.instance.primaryTextSoft,
       );
@@ -79,7 +79,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             padding: const EdgeInsets.only(right: 5),
             child: IconButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+               
                     profileBloc.add(
                           CollectUpdateDataEvent(
                             userName: _nameCntrl.text,
@@ -90,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 context.read<AppUserBloc>().userModel!,
                           ),
                         );
-                  }
+             
                 },
                 icon: const Icon(Icons.check_rounded)),
           )
@@ -126,46 +126,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(height: 40.h),
               HomePadding(
                 child: Form(
-                  key: _formKey,
+                
                   child: Column(
                     children: [
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: _nameCntrl,
                         style: style,
                         hintText: "Name",
                         keyboardType: TextInputType.name,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          }
-                          return null;
-                        },
+                        
                       ),
                       SizedBox(height: 25.h),
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: _aboutCntrl,
                         style: style,
                         hintText: "About",
                         keyboardType: TextInputType.text,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          }
-                          return null;
-                        },
+                       
                       ),
                       SizedBox(height: 25.h),
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: _locationCntrl,
                         style: style,
                         hintText: "Location",
                         keyboardType: TextInputType.text,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          }
-                          return null;
-                        },
+                       
                       ),
                     ],
                   ),

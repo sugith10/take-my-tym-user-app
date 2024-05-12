@@ -8,7 +8,6 @@ import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/utils/app_assets/app_lottie.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/reg_exp.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -95,57 +94,40 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                 HomePadding(
                   child: Column(
                     children: [
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: userNameCntrl,
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "User Name",
                         keyboardType: TextInputType.text,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          } else if (!nameRexExp.hasMatch(val)) {
-                            return "Please enter a valid user name";
-                          }
-                          return null;
-                        },
-                        gap: 12.5.h,
+                       
+                     
                       ),
                       const SizedBox(height: 25),
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: aboutCntrl,
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "About",
                         keyboardType: TextInputType.text,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          }
-                          return null;
-                        },
-                        gap: 12.5.h,
+                       
+                     
                       ),
                       const SizedBox(height: 25),
                       CreatePostLocationWidget(
                         locationBloc: locationBloc,
-                        gap: 12.5.h,
+                        gap: 12.5,
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const SizedBox(height: 25),
-                      ConstrainTextFormField(
+                      CollectInfoTextField(
                         controller: professionCntrl,
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "Profession",
                         keyboardType: TextInputType.text,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please fill in this field";
-                          }
-                          return null;
-                        },
-                        gap: 12.5.h,
+                      
+                     
                       ),
                       SizedBox(height: 5.h),
-                      CreatePostSkillsWidget(
+                      CollectItemsWidget(
                         createSkillBloc: _createSkillBloc,
                       ),
                       SizedBox(height: 35.h),

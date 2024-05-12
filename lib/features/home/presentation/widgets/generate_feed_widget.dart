@@ -24,19 +24,24 @@ class GenerateFeedWidget extends StatelessWidget {
             final postModel = posts[index];
             return Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: PostedContentWidget(
-                voidCallback: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ViewPostPage(postModel: postModel),
-                    ),
-                  );
-                },
-                // image: image,
-                postModel: postModel,
-                width: 300,
-                height: 180.h,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight:  180.h,
+                ),
+                child: PostedContentWidget(
+                  voidCallback: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ViewPostPage(postModel: postModel),
+                      ),
+                    );
+                  },
+                  // image: image,
+                  postModel: postModel,
+                  width: 300,
+                 
+                ),
               ),
             );
           }),

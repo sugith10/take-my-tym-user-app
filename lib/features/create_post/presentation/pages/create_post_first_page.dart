@@ -14,6 +14,7 @@ import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/create_post_bloc/create_post_bloc.dart';
 import '../bloc/update_post_bloc/update_post_bloc.dart';
+import '../widgets/create_page_app_bar.dart';
 import '../widgets/create_post_bottom_bar.dart';
 import '../widgets/create_post_text_field.dart';
 import '../widgets/work_type_widget.dart';
@@ -80,6 +81,29 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
 
   @override
   Widget build(BuildContext context) {
+    void colletInfo() {
+      if (widget.postModel == null) {
+        _bloc.add(
+          CreateFirstPageEvent(
+            userModel: context.read<AppUserBloc>().userModel!,
+            tymType: _tymType,
+            title: _titleController.text.trim(),
+            content: _contentController.text.trim(),
+            workType: _workType,
+          ),
+        );
+      } else {
+        context.read<UpdatePostBloc>().add(
+              UpdateFirstPageEvent(
+                postModel: widget.postModel!,
+                title: _titleController.text,
+                content: _contentController.text,
+                workType: _workType,
+              ),
+            );
+      }
+    }
+
     return MultiBlocListener(
       listeners: [
         BlocListener(
@@ -117,40 +141,12 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
         )
       ],
       child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon( IconlyLight.arrow_down_2),
-            ),
-            actions: [
-              ActionButton(
-                callback: () {
-                  if (widget.postModel == null) {
-                    _bloc.add(
-                      CreateFirstPageEvent(
-                        userModel: context.read<AppUserBloc>().userModel!,
-                        tymType: _tymType,
-                        title: _titleController.text.trim(),
-                        content: _contentController.text.trim(),
-                        workType: _workType,
-                      ),
-                    );
-                  } else {
-                    context.read<UpdatePostBloc>().add(
-                          UpdateFirstPageEvent(
-                            postModel: widget.postModel!,
-                            title: _titleController.text,
-                            content: _contentController.text,
-                            workType: _workType,
-                          ),
-                        );
-                  }
-                },
-                action: 'Next',
-              ),
-            ],
+          appBar: CreatePageAppBar(
+            next: true,
+            actionCall: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              colletInfo();
+            },
           ),
           body: HomePadding(
               child: CustomScrollView(

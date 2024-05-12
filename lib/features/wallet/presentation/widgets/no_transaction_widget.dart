@@ -36,7 +36,7 @@ class WalletMessageWidget extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: NotYetWidget(
                   title: "Unlock TakeMyTym Wallet",
-                  subtitle: "Confirm your screen lock PIN, Pattern or Password",
+                  subtitle: "Click here to unlock your wallet",
                 ),
               ),
             ),

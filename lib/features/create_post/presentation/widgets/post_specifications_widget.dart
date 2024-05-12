@@ -1,59 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 import 'post_category_widget.dart';
 
-
-
-class PostConstraintsWidget extends StatefulWidget {
+class PostConstraintsWidget extends StatelessWidget {
+  final bool showTitle;
   final String location;
   final String level;
   final double amount;
-  final bool flexible;
 
   const PostConstraintsWidget({
+    required this.showTitle,
     required this.location,
     required this.level,
     required this.amount,
-    required this.flexible,
     super.key,
   });
 
   @override
-  State<PostConstraintsWidget> createState() =>
-      _PostConstraintsWidgetState();
-}
-
-class _PostConstraintsWidgetState extends State<PostConstraintsWidget> {
-  late String _flexible;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.flexible ? _flexible = 'Flexible' : _flexible = 'Fixed';
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         const PostCategoryTitle(title: 'Constraints'),
-        SizedBox(height: 15.h),
+        if (showTitle)
+          Column(
+            children: [
+              const PostCategoryTitle(title: 'Relevant Details'),
+              SizedBox(height: 15.h),
+            ],
+          ),
         _PostSpecificationWidget(
           icon: IconlyLight.location,
-          specification: widget.location,
+          specification: location,
         ),
         SizedBox(height: 15.h),
         _PostSpecificationWidget(
           icon: IconlyLight.work,
-          specification: widget.level,
+          specification: level,
         ),
         SizedBox(height: 15.h),
         _PostSpecificationWidget(
           icon: Icons.currency_rupee_rounded,
-          specification: "${widget.amount} ($_flexible)",
+          specification: "$amount",
         )
       ],
     );
@@ -74,7 +64,12 @@ class _PostSpecificationWidget extends StatelessWidget {
       children: [
         Icon(icon),
         SizedBox(width: 10.w),
-        Text(specification),
+        Expanded(
+          child: Text(
+            specification,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }

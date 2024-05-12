@@ -143,7 +143,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
                         location: widget.postModel.location,
                         level: widget.postModel.skillLevel,
                         amount: widget.postModel.price,
-                        flexible: true,
+                        showTitle: true,
                       ),
                     ),
                     SizedBox(height: 20.h),

@@ -2,25 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_title_widget.dart';
 
-class CreatePostSkillsWidget extends StatefulWidget {
+class CollectItemsWidget extends StatefulWidget {
   final CreateSkillBloc createSkillBloc;
-  const CreatePostSkillsWidget({
+  const CollectItemsWidget({
     required this.createSkillBloc,
     super.key,
   });
 
   @override
-  State<CreatePostSkillsWidget> createState() => _CreatePostSkillsWidgetState();
+  State<CollectItemsWidget> createState() => _CollectItemsWidgetState();
 }
 
-class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
+class _CollectItemsWidgetState extends State<CollectItemsWidget> {
   final TextEditingController _categoryCntrl = TextEditingController();
+  final AppErrorMsg _errorMsg = AppErrorMsg(
+      title: "Skill limit reached",
+      content: "You have reached the maximum number of skills allowed.");
   Set<String> skills = {};
   @override
   void dispose() {
@@ -44,13 +48,7 @@ class _CreatePostSkillsWidgetState extends State<CreatePostSkillsWidget> {
                 if (state is UpdateSkillSuccessState) {
                   if (state.skills.length >= 5) {
                     AppSnackBar.failSnackBar(
-                      context: context,
-                      
-                      //TODO:do proper App Error 
-                      // errorMessage: "Exceeded the limit",
-                      // errorDescription:
-                      //     "Only five items can be added in the skills section.",
-                    );
+                        context: context, error: _errorMsg);
                   } else {
                     widget.createSkillBloc.add(
                       AddSkillEvent(
@@ -108,6 +106,7 @@ class _SkillsTextField extends StatelessWidget {
         hintStyle: Theme.of(context).textTheme.bodyLarge,
         suffixIcon: IconButton(
           onPressed: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             callback();
           },
           icon: const Icon(Icons.add),

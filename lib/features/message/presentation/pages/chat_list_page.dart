@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/widgets/app_bar_title.dart';
+import '../../../../core/widgets/app_bar/app_bar_title.dart';
 import '../bloc/chat_list_bloc/chat_list_bloc.dart';
 import '../util/chat_list_item_model.dart';
 import '../widgets/chat_list_shimmer_widget.dart';
@@ -50,7 +50,7 @@ class ChatListPage extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: chatListItems.length,
                       itemBuilder: ((context, index) {
-                        log("no data");
+      
                         final chatListItem = chatListItems[index];
                         final recipientUserId = chatListItem.recipientUserId;
                         return ChatTileWidget(

@@ -63,40 +63,31 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     on<CreateSecondPageEvent>(
       ((event, emit) async {
         emit(CreatPostLoadingState());
-        if (event.location.length <= 2) {
-          log(event.location);
-          final AppErrorMsg error = AppErrorMsg(
-              title:
-                  "Its very important to gave your location when you make a post");
-          emit(
-            CreateSecondFailState(
-              error: error,
-            ),
-          );
-          return;
-        } else if (event.experience.length <= 2) {
-          log("2");
+        if (event.experience.length <= 2) {
           emit(
             CreateSecondFailState(error: AppErrorMsg()),
           );
           return;
         } else {
+          final error = AppErrorMsg(
+              title: "Invalid Remuneration",
+              content:
+                  "Please enter a remuneration amount that falls within the acceptable range.");
           try {
             remuneration = double.parse(event.remuneration);
           } catch (e) {
-            log("3");
             emit(
               CreateSecondFailState(
-                error: AppErrorMsg(),
+                error: error,
               ),
             );
             return;
           }
-          if (remuneration! >= 1000000) {
-            log("4");
+          if (remuneration! < 500 || remuneration! >= 100000) {
+            log("on error");
             emit(
               CreateSecondFailState(
-                error: AppErrorMsg(),
+                error: error,
               ),
             );
             return;
@@ -151,7 +142,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   ),
                 );
               }
-            } on AppException catch (e) {
+            } on AppException {
               emit(
                 RemoteDataAddFailState(error: AppErrorMsg()),
               );
@@ -187,7 +178,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   RemoteDataAddFailState(error: AppErrorMsg()),
                 );
               }
-            } on AppException catch (e) {
+            } on AppException {
               emit(
                 RemoteDataAddFailState(error: AppErrorMsg()),
               );

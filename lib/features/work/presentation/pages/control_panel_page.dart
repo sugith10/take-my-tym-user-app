@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/app_bar_title.dart';
-import '../../../../core/widgets/settings_button.dart';
+import '../../../../core/widgets/app_bar/app_bar_title.dart';
+import '../../../../core/widgets/app_bar/settings_button.dart';
 import '../../../proposals/presentation/pages/proposals_tab.dart';
 import '../../../wallet/presentation/pages/wallet_page.dart';
 import 'contracts_tab.dart';

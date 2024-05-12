@@ -99,24 +99,28 @@ class _SuccessPageState extends State<SuccessPage> {
                         bloc: _successPageBloc,
                         builder: (context, state) {
                           if (state is SuccessPageTimeLeftState) {
-                            return Text('${state.timeLeft} :  seconds');
+                            return Column(
+                              children: [
+                                Text('${state.timeLeft} :  seconds'),
+                                const SizedBox(height: 40),
+                                CloseIconButton(
+                                  onPressed: () {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      NavigationMenu.route(),
+                                      (route) => false,
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.close_rounded,
+                                    color: AppDarkColor.instance.secondaryText,
+                                  ),
+                                )
+                              ],
+                            );
                           }
                           return const SizedBox.shrink();
                         },
-                      ),
-                      const SizedBox(height: 40),
-                      CloseIconButton(
-                        onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            NavigationMenu.route(),
-                            (route) => false,
-                          );
-                        },
-                        child: Icon(
-                          Icons.close_rounded,
-                          color: AppDarkColor.instance.secondaryText,
-                        ),
                       ),
                     ],
                   ),

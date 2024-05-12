@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
+
+import 'package:take_my_tym/core/utils/app_error_msg.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/navigation/screen_transitions/right_to_left.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/widgets/action_button.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
-import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../../core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
@@ -19,8 +17,8 @@ import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import '../bloc/create_post_bloc/create_post_bloc.dart';
 import '../bloc/update_post_bloc/update_post_bloc.dart';
-import '../widgets/create_post_location_widget.dart';
-import '../widgets/create_post_title_widget.dart';
+import '../widgets/create_page_app_bar.dart';
+import '../widgets/create_post_form_widget.dart';
 
 class CreatePostSecondPage extends StatefulWidget {
   final PostModel? postModel;
@@ -41,38 +39,71 @@ class CreatePostSecondPage extends StatefulWidget {
 }
 
 class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
-  final TextEditingController _categoryCntrl = TextEditingController();
-  final TextEditingController _experienceCntrl = TextEditingController();
-  final TextEditingController _remunerationCntrl = TextEditingController();
-  final LocationBloc _locationBloc = LocationBloc();
-  final CreateSkillBloc _createSkillBloc = CreateSkillBloc();
+  final TextEditingController categoryCntrl = TextEditingController();
+  final TextEditingController experienceCntrl = TextEditingController();
+  final TextEditingController remunerationCntrl = TextEditingController();
+  final LocationBloc locationBloc = LocationBloc();
+  final CreateSkillBloc createSkillBloc = CreateSkillBloc();
   List<dynamic>? skills;
-  final _formKey = GlobalKey<FormState>();
+  final AppErrorMsg errorMsg = AppErrorMsg(
+      title: "Missing required fields",
+      content: "Please fill in all fields to create a post.");
 
   @override
   void initState() {
     super.initState();
     if (widget.postModel != null) {
-      _experienceCntrl.text = widget.postModel!.skillLevel;
-      _remunerationCntrl.text = widget.postModel!.price.toString();
+      experienceCntrl.text = widget.postModel!.skillLevel;
+      remunerationCntrl.text = widget.postModel!.price.toString();
       skills = widget.postModel!.skills;
     }
   }
 
   @override
   void dispose() {
-    _categoryCntrl.dispose();
-    _experienceCntrl.dispose();
-    _remunerationCntrl.dispose();
-    _formKey;
+    categoryCntrl.dispose();
+    experienceCntrl.dispose();
+    remunerationCntrl.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle? style = Theme.of(context).textTheme.labelMedium?.copyWith(
-          color: AppDarkColor.instance.primaryTextSoft,
-        );
+    void colletInfo() {
+      final createSkillState = createSkillBloc.state;
+      final locationState = locationBloc.state;
+      if (createSkillState is UpdateSkillSuccessState &&
+          locationState is LocationResultState) {
+        if (widget.postModel == null) {
+          widget.bloc.add(
+            CreateSecondPageEvent(
+              experience: experienceCntrl.text,
+              location: locationState.placeName,
+              remuneration: remunerationCntrl.text,
+              skills: createSkillState.skills,
+              latitude: locationState.latitude,
+              longitude: locationState.longitude,
+            ),
+          );
+        } else {
+          context.read<UpdatePostBloc>().add(
+                UpdateSecondPageEvent(
+                  experience: experienceCntrl.text,
+                  location: locationState.placeName,
+                  remuneration: remunerationCntrl.text,
+                  skills: createSkillState.skills,
+                  latitude: locationState.latitude,
+                  longitude: locationState.longitude,
+                ),
+              );
+        }
+      } else {
+        AppSnackBar.failSnackBar(context: context, error: errorMsg);
+      }
+    }
+
+   
     return MultiBlocListener(
       listeners: [
         BlocListener(
@@ -133,55 +164,12 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
         )
       ],
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(IconlyLight.arrow_left),
-          ),
-          actions: [
-            ActionButton(
-              callback: () {
-                if (_formKey.currentState!.validate()) {
-                  final createSkillState = _createSkillBloc.state;
-                  final locationState = _locationBloc.state;
-                  if (createSkillState is UpdateSkillSuccessState) {
-                    if (locationState is LocationResultState) {
-                      if (widget.postModel == null) {
-                        widget.bloc.add(
-                          CreateSecondPageEvent(
-                            experience: _experienceCntrl.text,
-                            location: locationState.placeName,
-                            remuneration: _remunerationCntrl.text,
-                            skills: createSkillState.skills,
-                            latitude: locationState.latitude,
-                            longitude: locationState.longitude,
-                          ),
-                        );
-                      } else {
-                        context.read<UpdatePostBloc>().add(
-                              UpdateSecondPageEvent(
-                                experience: _experienceCntrl.text,
-                                location: locationState.placeName,
-                                remuneration: _remunerationCntrl.text,
-                                skills: createSkillState.skills,
-                                latitude: locationState.latitude,
-                                longitude: locationState.longitude,
-                              ),
-                            );
-                      }
-                    } else {
-                      AppSnackBar.failSnackBar(context: context);
-                    }
-                  } else {
-                    AppSnackBar.failSnackBar(context: context);
-                  }
-                }
-              },
-              action: 'Next',
-            ),
-          ],
+        appBar: CreatePageAppBar(
+          next: false,
+          actionCall: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            colletInfo();
+          },
         ),
         body: HomePadding(
             child: CustomScrollView(
@@ -191,50 +179,15 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  CreatePostSkillsWidget(
-                    createSkillBloc: _createSkillBloc,
+                  CollectItemsWidget(
+                    createSkillBloc: createSkillBloc,
                   ),
                   SizedBox(height: 10.h),
-                  Form(
-                    key: _formKey,
-                    child: CreatePostTitleWidget(
-                      title: "Relevant Details",
-                      children: [
-                        SizedBox(height: 10.h),
-                        CreatePostLocationWidget(
-                          locationBloc: _locationBloc,
-                          style: style,
-                          gap: 8.h,
-                        ),
-                        SizedBox(height: 15.h),
-                        ConstrainTextFormField(
-                          controller: _experienceCntrl,
-                          keyboardType: TextInputType.text,
-                          hintText: "Experience",
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return "Please fill in this field";
-                            }
-                            return null;
-                          },
-                          style: style,
-                        ),
-                        SizedBox(height: 15.h),
-                        ConstrainTextFormField(
-                          controller: _remunerationCntrl,
-                          keyboardType: TextInputType.number,
-                          hintText: "Remuneration",
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return "Please fill in this field";
-                            }
-                            return null;
-                          },
-                          style: style,
-                        ),
-                        SizedBox(height: 10.h),
-                      ],
-                    ),
+                  CreatePostFormWidget(
+                    locationBloc: locationBloc,
+                   
+                    experienceCntrl: experienceCntrl,
+                    remunerationCntrl: remunerationCntrl,
                   ),
                 ],
               ),

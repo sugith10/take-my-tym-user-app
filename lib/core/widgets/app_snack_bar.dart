@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 final class AppSnackBar {
-   static failSnackBar({
+  static  failSnackBar({
     required BuildContext context,
      AppErrorMsg? error,
   }) {
@@ -15,7 +15,7 @@ final class AppSnackBar {
       SnackBar(
         content: _SnackBarContentWidget(
           message: error.title,
-          description: error.title,
+          description: error.content,
           backgroundColor: const Color(0xFFC72c41),
           assetColor: const Color(0xFF801336),
           icon: AppSvg.snackBarFail,

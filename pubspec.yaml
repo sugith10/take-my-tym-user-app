@@ -48,6 +48,7 @@ dependencies:
   timeline_tile: ^2.0.0
   rive: ^0.13.2
   flutter_dotenv: ^5.1.0
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

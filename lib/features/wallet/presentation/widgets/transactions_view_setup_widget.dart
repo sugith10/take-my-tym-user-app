@@ -24,7 +24,7 @@ class TransactionsViewSetupWidget extends StatelessWidget {
                 viewAll();
               },
               child: Text(
-                'View all',
+                'View all >',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             )

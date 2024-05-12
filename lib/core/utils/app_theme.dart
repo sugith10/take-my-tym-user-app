@@ -143,13 +143,20 @@ final class AppDarkTheme {
       indicatorColor: _color.primaryText,
     ),
     inputDecorationTheme: InputDecorationTheme(
-        enabledBorder: _outlineInputBorder,
-        focusedBorder: _outlineInputBorder,
-        errorBorder: _outlineInputBorder,
-        focusedErrorBorder: _outlineInputBorder,
-        errorStyle: TextStyle(
-          color: _color.primaryTextSoft,
-        )),
+      enabledBorder: _outlineInputBorder,
+      focusedBorder: _outlineInputBorder,
+      errorBorder: _outlineInputBorder,
+      focusedErrorBorder: _outlineInputBorder,
+      errorStyle: TextStyle(
+        color: _color.primaryTextSoft,
+      ),
+      counterStyle: TextStyle(
+        color: _color.primaryTextBlur,
+      ),
+      hintStyle: TextStyle(
+        color: _color.secondaryText
+      )
+    ),
     textSelectionTheme: TextSelectionThemeData(
         selectionColor: _color.primaryText,
         cursorColor: _color.primaryText,

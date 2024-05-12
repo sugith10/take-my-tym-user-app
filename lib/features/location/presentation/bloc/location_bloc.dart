@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
@@ -16,7 +15,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   String? location;
   LocationBloc() : super(LocationInitialState()) {
     on<CurrentLocationEvent>((event, emit) async {
-      log("on current location blox");
       emit(LocationLoadingState());
       await Geolocator.checkPermission();
       await Geolocator.requestPermission();
@@ -39,21 +37,21 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
             // Android's shouldShowRequestPermissionRationale
             // returned true. According to Android guidelines
             // your App should show an explanatory UI now.
-            log("location denied");
+
             return;
           }
         }
 
         if (permission == LocationPermission.deniedForever) {
           // Permissions are denied forever, handle appropriately.
-          log("location  permently denied");
+
           emit(LocationPermissionDeniedForeverState());
           return;
         }
 
         Position position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.low);
-        log("position:- $position");
+
         // final CurrentLocationUseCase currentLocationUseCase =
         //     GetIt.instance<CurrentLocationUseCase>();
         // String address = await currentLocationUseCase.locationPositionName(
@@ -75,8 +73,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
         formattedPlaceName = capitalizePlaces(formattedPlaceName);
 
-        log(formattedPlaceName);
-
         location = formattedPlaceName;
         emit(
           LocationResultState(
@@ -84,13 +80,10 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
               longitude: position.longitude,
               placeName: formattedPlaceName),
         );
-      } catch (e) {
-        log("Exception-come to location vloc ${e.toString()}");
-      }
+      } catch (e) {}
     });
 
     on<SearchLocationsEvent>((event, emit) async {
-      log("on search location");
       emit(LocationLoadingState());
       List<AutoCompletePrediction> placePrdictions = [];
       final SearchLocationUseCase searchLocationUseCase =
@@ -112,13 +105,10 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
             );
           }
         }
-      } catch (e) {
-        log(e.toString());
-      }
+      } catch (e) {}
     });
 
     on<LocationPositonEvent>((event, emit) async {
-      log("on location position bloc");
       emit(LocationLoadingState());
       LocationPositionUseCase locationPositionUseCase =
           GetIt.instance<LocationPositionUseCase>();
@@ -129,10 +119,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         double latitude = placePosition['latitude'];
         double longitude = placePosition['longitude'];
 
-        log('Selected place name: ${event.place.description}');
-        log('Selected place reference: ${event.place.reference}');
-        log('Selected place: Latitude: $latitude, Longitude: $longitude');
-
         location = event.place.description!;
         emit(
           LocationResultState(
@@ -141,9 +127,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
             placeName: event.place.description!,
           ),
         );
-      } catch (e) {
-        log(e.toString());
-      }
+      } catch (e) {}
     });
   }
 

@@ -19,6 +19,7 @@ class PaymentTextField extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
         decoration: InputDecoration(
+          counterText: '',
           prefixIcon: Icon(
             Icons.currency_rupee_rounded,
             color: Theme.of(context).iconTheme.color,

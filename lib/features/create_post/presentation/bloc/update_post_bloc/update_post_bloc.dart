@@ -7,6 +7,8 @@ import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/features/create_post/domain/usecases/update_post_usecase.dart';
 
+import '../../../../location/presentation/bloc/location_bloc.dart';
+
 part 'update_post_event.dart';
 part 'update_post_state.dart';
 

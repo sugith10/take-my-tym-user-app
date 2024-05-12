@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 class AppDialog {
- static show({
+  static show({
     required BuildContext context,
     required String title,
     required String subtitle,
     required String action,
     required VoidCallback actionCall,
-    Color actionColor = const Color.fromRGBO(244, 67, 54, 1)
+    Color actionColor = const Color.fromRGBO(244, 67, 54, 1),
+    bool actionPop = false,
   }) {
     showDialog(
       barrierDismissible: false,
@@ -49,6 +50,9 @@ class AppDialog {
                   backgroundColor: actionColor,
                   foregroundColor: Colors.white,
                   callback: () {
+                    if (actionPop) {
+                      Navigator.pop(context);
+                    }
                     actionCall();
                   },
                 ),

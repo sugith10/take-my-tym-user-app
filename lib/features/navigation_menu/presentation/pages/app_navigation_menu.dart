@@ -3,6 +3,7 @@ import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/model/app_user_model.dart';
 import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../create_post/presentation/pages/create_post_first_page.dart';
 import '../../../home/presentation/pages/home_page.dart';
@@ -21,6 +22,7 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   bool pop = false;
 
@@ -29,7 +31,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
     const ChatListPage(),
     const CreatePostFirstPage(),
     const ControlPanelPage(),
-    const ProfilePage(),
+   const  ProfilePage(),
   ];
 
   int _index = 0;

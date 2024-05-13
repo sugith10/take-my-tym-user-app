@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/widgets/home_padding.dart';
 
-
 class AboutWidget extends StatelessWidget {
-  const AboutWidget({
-    super.key,
-  });
+  final String about;
+  const AboutWidget({super.key, required this.about});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +18,15 @@ class AboutWidget extends StatelessWidget {
           children: [
             Text(
               "About",
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 5.h),
             Text(
-             context.read<AppUserBloc>().userModel!.about!,
-              style: Theme.of(context).textTheme.labelMedium,
-              // maxLines: 5,
+              about,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall
+                  ?.copyWith(color: AppDarkColor.instance.primaryTextSoft),
               textAlign: TextAlign.justify,
             )
           ],

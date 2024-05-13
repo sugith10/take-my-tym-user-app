@@ -9,9 +9,8 @@ class AuthPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: MyAppPadding.authPadding,
-        right: MyAppPadding.authPadding,
+      padding: const EdgeInsets.symmetric(
+        horizontal: MyAppPadding.authPadding,
       ),
       child: child,
     );

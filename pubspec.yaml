@@ -37,7 +37,6 @@ dependencies:
   firebase_storage: ^11.7.0
   flutter_stripe: ^10.1.1
 
-  loading_indicator: ^3.1.1
   flutter_svg: ^2.0.10+1
   animate_do: ^3.3.4
   iconly: ^1.0.1
@@ -46,7 +45,7 @@ dependencies:
   shimmer_pro: ^0.0.6
   button_animations: ^2.0.0+3
   timeline_tile: ^2.0.0
-  rive: ^0.13.2
+  rive_animated_icon: ^1.0.2
   flutter_dotenv: ^5.1.0
   intl: ^0.19.0
 

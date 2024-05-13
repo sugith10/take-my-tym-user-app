@@ -7,10 +7,10 @@ class CollectInfoTextField extends StatelessWidget {
   final String hintText;
   final TextInputType keyboardType;
   final TextEditingController controller;
-
   final TextStyle? style;
   final double gap;
   final Widget? prefixIcon;
+  final TextStyle? controllerStyle;
   const CollectInfoTextField({
     required this.controller,
     required this.keyboardType,
@@ -18,6 +18,7 @@ class CollectInfoTextField extends StatelessWidget {
     required this.style,
     this.gap = 12.5,
     this.prefixIcon,
+    this.controllerStyle,
     super.key,
   });
 
@@ -36,6 +37,7 @@ class CollectInfoTextField extends StatelessWidget {
           keyboardType: keyboardType,
           hintText: hintText,
           prefixIcon: prefixIcon,
+          controllerStyle: controllerStyle,
         ),
       ],
     );
@@ -44,7 +46,7 @@ class CollectInfoTextField extends StatelessWidget {
 
 class _CollectInfoTextField extends StatelessWidget {
   final TextEditingController controller;
-
+   final TextStyle? controllerStyle;
   final TextInputType keyboardType;
   final String hintText;
   final Widget? prefixIcon;
@@ -53,6 +55,7 @@ class _CollectInfoTextField extends StatelessWidget {
     required this.controller,
     required this.keyboardType,
     required this.hintText,
+    this.controllerStyle,
   });
 
   @override
@@ -76,7 +79,7 @@ class _CollectInfoTextField extends StatelessWidget {
         hintText: hintText,
   
       ),
-      style: Theme.of(context).textTheme.labelLarge,
+      style: controllerStyle ?? Theme.of(context).textTheme.labelLarge,
     );
   }
 }

@@ -8,18 +8,22 @@ import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/features/create_post/domain/usecases/create_post_usecase.dart';
 
+import '../../../domain/usecases/update_post_usecase.dart';
+
 part 'create_post_event.dart';
 part 'create_post_state.dart';
 
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   CreatePostBloc() : super(CreatePostInitial()) {
     // First page data
+    String? postId;
     String? uid;
     String? userName;
     bool? tymType;
     String? workType;
     String? title;
     String? content;
+      Timestamp? postDate;
     // Second page data
     List<String>? skills;
     String? location;
@@ -187,6 +191,163 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             }
           } else {
             log("something went wrong come to bloc line 163");
+          }
+        }
+      }),
+    );
+  
+     on<UpdateFirstPageEvent>(
+      (event, emit) {
+        log("update first bloc");
+        emit(CreatPostLoadingState());
+        title = event.title.trim();
+        content = event.content.trim();
+        if (title!.length <= 3) {
+          final AppErrorMsg error = AppErrorMsg(
+              title: 'Give proper title',
+              content:
+                  'Gave a proper title, Other wise its harder for other to understand it');
+          emit(
+            CreateFirstFailState(error: error),
+          );
+          return;
+        } else if (content!.length <= 10) {
+          final AppErrorMsg error = AppErrorMsg(
+              title: 'Give proper decription',
+              content:
+                  'Gave a proper decription, Other wise its harder for other to understand it');
+          emit(
+            CreateFirstFailState(
+              error: error,
+            ),
+          );
+          return;
+        } else {
+          postId = event.postModel.postId!;
+          uid = event.postModel.uid;
+          userName = event.postModel.userName;
+          postDate = event.postModel.postDate;
+          tymType = event.postModel.tymType;
+          workType = event.workType;
+          log("update success");
+          emit(CreateFirstSuccessState());
+        }
+      },
+    );
+  
+    
+    on<UpdateSecondPageEvent>(
+      ((event, emit) async {
+        log("update second bloc");
+        emit(CreatPostLoadingState());
+       
+          try {
+            remuneration = double.parse(event.remuneration);
+          } catch (e) {
+            log("3");
+            emit(
+              CreateSecondFailState(
+                error: AppErrorMsg()
+              ),
+            );
+            return;
+          }
+          if (remuneration! >= 1000000) {
+            log("4");
+            emit(CreateSecondFailState(error: AppErrorMsg()));
+            return;
+          } else {
+            log("data adding success");
+            skills = event.skills;
+            location = event.location;
+            experience = event.experience;
+          }
+        
+        //Post Data
+        if (postId != null &&
+            uid != null &&
+            userName != null &&
+            tymType != null &&
+            workType != null &&
+            title != null &&
+            content != null &&
+            skills != null &&
+            location != null &&
+            experience != null &&
+            remuneration != null) {
+          UpdatePostUseCase updatePostUseCase =
+              GetIt.instance<UpdatePostUseCase>();
+          if (tymType != null && tymType == true) {
+            try {
+              await updatePostUseCase
+                  .updateBuyTymPost(
+                      postModel: PostModel(
+                postId: postId,
+                tymType: tymType!,
+                uid: uid!,
+                workType: workType!,
+                title: title!,
+                content: content!,
+                userName: userName!,
+                postDate: postDate!,
+                location: location!,
+                skillLevel: experience!,
+                price: remuneration!,
+                skills: skills!,
+                latitude: event.latitude,
+                longitude: event.longitude,
+              ))
+                  .then((value) {
+                emit(UpdatePostSuccessState(refreshType: tymType!, uid: uid!));
+              });
+            } on AppException catch (e) {
+              emit(
+                RemoteDataAddFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
+            } catch (e) {
+              emit(
+                RemoteDataAddFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
+            }
+          } else if (tymType != null && tymType == false) {
+            try {
+              await updatePostUseCase
+                  .updateSellTymPost(
+                postModel: PostModel(
+                  postId: postId,
+                  tymType: tymType!,
+                  uid: uid!,
+                  workType: workType!,
+                  title: title!,
+                  content: content!,
+                  userName: userName!,
+                  postDate: postDate!,
+                  location: location!,
+                  skillLevel: experience!,
+                  price: remuneration!,
+                  skills: skills!,
+                  latitude: event.latitude,
+                  longitude: event.longitude,
+                ),
+              )
+                  .then((value) {
+                emit(CreatePostSuccessState(refreshType: tymType!, uid: uid!));
+              });
+            } on AppException catch (e) {
+              emit(CreateSecondFailState(error: AppErrorMsg()));
+            } catch (e) {
+              emit(
+                CreateSecondFailState(
+                  error: AppErrorMsg(),
+                ),
+              );
+            }
+          } else {
+            log("something went wrong come to bloc line 177");
           }
         }
       }),

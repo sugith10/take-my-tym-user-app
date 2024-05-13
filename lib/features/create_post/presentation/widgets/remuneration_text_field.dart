@@ -7,11 +7,10 @@ import '../../../../core/widgets/constrain_text_form_field.dart';
 class RemunerationWidget extends StatefulWidget {
   final TextEditingController controller;
   final TextStyle? style;
- 
+
   const RemunerationWidget({
     required this.controller,
     required this.style,
-
     super.key,
   });
 
@@ -38,7 +37,10 @@ class _RemunerationWidgetState extends State<RemunerationWidget> {
           keyboardType: TextInputType.number,
           hintText: "Remuneration",
           style: widget.style,
-     
+          controllerStyle: Theme.of(context)
+              .textTheme
+              .labelLarge
+              ?.copyWith(letterSpacing: 1),
           prefixIcon: Icon(
             Icons.currency_rupee_rounded,
             color: AppDarkColor.instance.primaryTextSoft,

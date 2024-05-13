@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,12 +20,12 @@ import '../bloc/proposal_bloc/proposal_bloc.dart';
 import '../widgets/accept_message.dart';
 import '../widgets/accept_offer_widget.dart';
 
-
 class AcceptProposalPage extends StatelessWidget {
   final UserModel userModel;
   final PostModel postModel;
-  final OfferBloc offerBloc;
   final OfferModel offerModel;
+  final OfferBloc offerBloc;
+
   const AcceptProposalPage({
     required this.offerBloc,
     required this.postModel,
@@ -76,11 +75,15 @@ class AcceptProposalPage extends StatelessWidget {
                 const OfferSubtitleWidget(title: "Proposed by"),
                 SizedBox(height: 15.h),
                 PostOwnerInfoWidget(
-                    date: Timestamp(10, 10),
-                    image: '',
-                    name: postModel.userName),
+                  date: offerModel.proposelDate,
+                  image: '',
+                  name: postModel.userName,
+                ),
                 SizedBox(height: 25.h),
-                const AcceptMessage(),
+                AcceptMessage(
+                  name: postModel.userName,
+                  msg: offerModel.message,
+                ),
                 SizedBox(height: 25.h),
                 PostedContentWidget(
                   voidCallback: () {},

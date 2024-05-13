@@ -11,7 +11,7 @@ class ServiceTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Service Type: $type',
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Theme.of(context).textTheme.bodyMedium,
     );
   }
 }

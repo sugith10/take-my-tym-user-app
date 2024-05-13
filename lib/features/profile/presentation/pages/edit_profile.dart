@@ -58,7 +58,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       if (pickedImage != null) {
         _image = pickedImage;
       } else {
-        // print('No image selected.');
+       
       }
     });
   }

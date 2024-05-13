@@ -11,12 +11,9 @@ import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../../core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import '../../../../core/widgets/skills_widget/create_skills_widget.dart';
-import '../../../../core/widgets/success_widget/success_page.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
-import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import '../bloc/create_post_bloc/create_post_bloc.dart';
-import '../bloc/update_post_bloc/update_post_bloc.dart';
 import '../widgets/create_page_app_bar.dart';
 import '../widgets/create_post_form_widget.dart';
 
@@ -87,82 +84,56 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
             ),
           );
         } else {
-          context.read<UpdatePostBloc>().add(
-                UpdateSecondPageEvent(
-                  experience: experienceCntrl.text,
-                  location: locationState.placeName,
-                  remuneration: remunerationCntrl.text,
-                  skills: createSkillState.skills,
-                  latitude: locationState.latitude,
-                  longitude: locationState.longitude,
-                ),
-              );
+          widget.bloc.add(
+            UpdateSecondPageEvent(
+              experience: experienceCntrl.text,
+              location: locationState.placeName,
+              remuneration: remunerationCntrl.text,
+              skills: createSkillState.skills,
+              latitude: locationState.latitude,
+              longitude: locationState.longitude,
+            ),
+          );
         }
       } else {
         AppSnackBar.failSnackBar(context: context, error: errorMsg);
       }
     }
 
-   
-    return MultiBlocListener(
-      listeners: [
-        BlocListener(
-            bloc: widget.bloc,
-            listener: (context, state) {
-              if (state is CreatPostLoadingState) {
-                LoadingDialog().show(context);
-              }
-              if (state is CreateSecondFailState) {
-                Navigator.pop(context);
-                AppSnackBar.failSnackBar(
-                  context: context,
-                  error: state.error,
-                );
-              }
-              if (state is CreatePostSuccessState) {
-                state.refreshType
-                    ? context
-                        .read<GetPostsBloc>()
-                        .add(GetBuyTymPostsEvent(userId: state.uid))
-                    : context
-                        .read<GetPostsBloc>()
-                        .add(GetSellTymPostsEvent(userId: state.uid));
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  SuccessPage.route(pop: false),
-                  (route) => false,
-                );
-              }
-            }),
-        BlocListener<UpdatePostBloc, UpdatePostState>(
-          listener: (context, state) {
-            if (state is UpdatePostLoadingState) {
-              LoadingDialog().show(context);
-            } else if (state is UpdatePostFailState) {
-              Navigator.pop(context);
-              AppSnackBar.failSnackBar(
-                context: context,
-                error: state.error,
-              );
-            } else if (state is UpdatePostSuccessState) {
-              state.refreshType
-                  ? context
-                      .read<GetPostsBloc>()
-                      .add(GetBuyTymPostsEvent(userId: state.uid))
-                  : context
-                      .read<GetPostsBloc>()
-                      .add(GetSellTymPostsEvent(userId: state.uid));
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NavigationMenu(),
-                ),
-                (route) => false,
-              );
-            }
-          },
-        )
-      ],
+    return BlocListener(
+      bloc: widget.bloc,
+      listener: (context, state) {
+        if (state is CreatPostLoadingState) {
+          LoadingDialog().show(context);
+        }
+        if (state is CreateSecondFailState) {
+          Navigator.pop(context);
+          AppSnackBar.failSnackBar(
+            context: context,
+            error: state.error,
+          );
+        }
+        if (state is CreatePostSuccessState) {
+          state.refreshType
+              ? context
+                  .read<GetPostsBloc>()
+                  .add(GetBuyTymPostsEvent(userId: state.uid))
+              : context
+                  .read<GetPostsBloc>()
+                  .add(GetSellTymPostsEvent(userId: state.uid));
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        }
+        if (state is UpdatePostSuccessState) {
+          state.refreshType
+              ? context
+                  .read<GetPostsBloc>()
+                  .add(GetBuyTymPostsEvent(userId: state.uid))
+              : context
+                  .read<GetPostsBloc>()
+                  .add(GetSellTymPostsEvent(userId: state.uid));
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        }
+      },
       child: Scaffold(
         appBar: CreatePageAppBar(
           next: false,
@@ -185,7 +156,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   SizedBox(height: 10.h),
                   CreatePostFormWidget(
                     locationBloc: locationBloc,
-                   
                     experienceCntrl: experienceCntrl,
                     remunerationCntrl: remunerationCntrl,
                   ),

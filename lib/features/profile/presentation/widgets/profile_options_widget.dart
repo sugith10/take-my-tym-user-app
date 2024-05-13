@@ -13,26 +13,29 @@ class ProfileOptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomePadding(
-      child: Row(
-        children: [
-          _ProfileOptionButton(
-            action: 'Edit Profile',
-            callback: () {
-              editProfile();
-            },
-          ),
-          const Spacer(),
-          _ProfileOptionButton(
-            action: 'Share Profile',
-            callback: () {},
-          ),
-          const Spacer(),
-          _ProfileOptionButton(
-            action: 'Contact',
-            callback: () {},
-          )
-        ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20.h),
+      child: HomePadding(
+        child: Row(
+          children: [
+            _ProfileOptionButton(
+              action: 'Edit Profile',
+              callback: () {
+                editProfile();
+              },
+            ),
+            const Spacer(),
+            _ProfileOptionButton(
+              action: 'Share Profile',
+              callback: () {},
+            ),
+            const Spacer(),
+            _ProfileOptionButton(
+              action: 'Contact',
+              callback: () {},
+            )
+          ],
+        ),
       ),
     );
   }

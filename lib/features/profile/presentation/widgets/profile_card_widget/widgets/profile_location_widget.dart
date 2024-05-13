@@ -12,7 +12,7 @@ class ProfileLocationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(IconlyLight.location),
+        const Icon(IconlyLight.location, size: 15,),
         const SizedBox(width: 5),
         Expanded(
           child: Text(

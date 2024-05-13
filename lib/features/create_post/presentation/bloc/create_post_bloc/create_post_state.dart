@@ -35,6 +35,15 @@ final class CreatePostSuccessState extends CreatePostState {
   });
 }
 
+final class UpdatePostSuccessState extends CreatePostState {
+  final bool refreshType;
+  final String uid;
+  UpdatePostSuccessState({
+    required this.refreshType,
+    required this.uid,
+  });
+}
+
 final class RemoteDataAddFailState extends CreatePostState {
   final AppErrorMsg error;
   RemoteDataAddFailState({

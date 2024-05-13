@@ -744,14 +744,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  loading_indicator:
-    dependency: "direct main"
-    description:
-      name: loading_indicator
-      sha256: a101ffb2aa3e646137d7810bfa90b50525dd3f72c01235b6df7491cf6af6f284
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.1"
   local_auth:
     dependency: "direct main"
     description:
@@ -1001,21 +993,29 @@ packages:
     source: hosted
     version: "6.1.2"
   rive:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rive
-      sha256: "95690a0fb4f6e195c53b217ab3cc0e0b0f443c670adbdee9d57d636a36b82b18"
+      sha256: ae75a6e9cfbf146630bfb1feba97ee582d935508be6b362e4bd197b9c55a6dd3
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.2"
+    version: "0.12.4"
+  rive_animated_icon:
+    dependency: "direct main"
+    description:
+      name: rive_animated_icon
+      sha256: "81ed5441620346623ce8ded08e2c5864028d77f762fa33df04d70370d1bd8981"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   rive_common:
     dependency: transitive
     description:
       name: rive_common
-      sha256: "3eee68fcab3e0882090cea5a8cf7acea7967f469a34a2580322575603b094435"
+      sha256: f4e20d0a99c5040c85624a3eb2b0b6b19e614d93a693c3bb25cf6e7bb2d3d6d3
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "0.2.8"
   shimmer_pro:
     dependency: "direct main"
     description:

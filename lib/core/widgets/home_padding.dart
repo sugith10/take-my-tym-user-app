@@ -9,9 +9,8 @@ class HomePadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: MyAppPadding.homePadding,
-        right: MyAppPadding.homePadding,
+      padding: const EdgeInsets.symmetric(
+        horizontal: MyAppPadding.homePadding,
       ),
       child: child,
     );

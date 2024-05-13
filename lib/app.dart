@@ -5,15 +5,12 @@ import 'package:get_it/get_it.dart';
 import 'app_view.dart';
 import 'core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
-import 'features/create_post/presentation/bloc/update_post_bloc/update_post_bloc.dart';
 import 'features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
 import 'features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
 import 'features/proposals/presentation/bloc/proposal_bloc/proposal_bloc.dart';
-import 'features/view_post/presentation/bloc/delete_post_bloc/delete_post_bloc.dart';
 import 'features/view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'features/wallet/domain/usecases/wallet_use_case.dart';
 import 'features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -52,8 +49,6 @@ class MyApp extends StatelessWidget {
             ),
         ),
         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
-        BlocProvider<DeletePostBloc>(create: (context) => DeletePostBloc()),
-        BlocProvider<UpdatePostBloc>(create: (context) => UpdatePostBloc()),
       ],
       child: const MyAppView(),
     );

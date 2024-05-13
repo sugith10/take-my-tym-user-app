@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
@@ -29,15 +30,16 @@ class ViewPostPage extends StatefulWidget {
   final PostModel postModel;
   const ViewPostPage({required this.postModel, super.key});
 
-  static route({required PostModel postModel}) => MaterialPageRoute(
-        builder: (_) => ViewPostPage(postModel: postModel),
-      );
+  static route({required PostModel postModel}) =>
+      rightToLeft(ViewPostPage(postModel: postModel));
 
   @override
   State<ViewPostPage> createState() => _ViewPostPageState();
 }
 
 class _ViewPostPageState extends State<ViewPostPage> {
+  final DeletePostBloc _deletePostBloc = DeletePostBloc();
+
   late final bool appUser;
   @override
   void initState() {
@@ -48,7 +50,8 @@ class _ViewPostPageState extends State<ViewPostPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<DeletePostBloc, DeletePostState>(
+    return BlocListener(
+      bloc: _deletePostBloc,
       listener: (context, state) {
         if (state is DeletPostSuccessState) {
           state.refreshType
@@ -58,9 +61,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
               : context.read<GetPostsBloc>().add(
                     GetSellTymPostsEvent(userId: state.uid),
                   );
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
+          Navigator.of(context).popUntil((route) => route.isFirst);
         }
         if (state is DeletePostLoading) {
           LoadingDialog().show(context);
@@ -91,11 +92,11 @@ class _ViewPostPageState extends State<ViewPostPage> {
                     subtitle: 'Are you sure you want delete this post?',
                     action: 'Delete',
                     actionCall: () {
-                      context.read<DeletePostBloc>().add(
-                            DeletePersonalPostEvent(
-                              postModel: widget.postModel,
-                            ),
-                          );
+                      _deletePostBloc.add(
+                        DeletePersonalPostEvent(
+                          postModel: widget.postModel,
+                        ),
+                      );
                     },
                   );
                 },

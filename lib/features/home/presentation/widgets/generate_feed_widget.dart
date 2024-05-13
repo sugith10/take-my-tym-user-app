@@ -26,21 +26,16 @@ class GenerateFeedWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  minHeight:  180.h,
+                  minHeight: 180.h,
                 ),
                 child: PostedContentWidget(
                   voidCallback: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ViewPostPage(postModel: postModel),
-                      ),
-                    );
+                        context, ViewPostPage.route(postModel: postModel));
                   },
                   // image: image,
                   postModel: postModel,
                   width: 300,
-                 
                 ),
               ),
             );

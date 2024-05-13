@@ -54,7 +54,7 @@ final class AppDarkTheme {
       ),
       displaySmall: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         fontSize: 23.sp,
       ),
       headlineLarge: TextStyle(

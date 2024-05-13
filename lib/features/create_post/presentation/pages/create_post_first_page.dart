@@ -2,18 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
 import '../../../../core/utils/post_types.dart';
-import '../../../../core/widgets/action_button.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/create_post_bloc/create_post_bloc.dart';
-import '../bloc/update_post_bloc/update_post_bloc.dart';
 import '../widgets/create_page_app_bar.dart';
 import '../widgets/create_post_bottom_bar.dart';
 import '../widgets/create_post_text_field.dart';
@@ -93,53 +90,33 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
           ),
         );
       } else {
-        context.read<UpdatePostBloc>().add(
-              UpdateFirstPageEvent(
-                postModel: widget.postModel!,
-                title: _titleController.text,
-                content: _contentController.text,
-                workType: _workType,
-              ),
-            );
+        _bloc.add(
+          UpdateFirstPageEvent(
+            postModel: widget.postModel!,
+            title: _titleController.text,
+            content: _contentController.text,
+            workType: _workType,
+          ),
+        );
       }
     }
 
-    return MultiBlocListener(
-      listeners: [
-        BlocListener(
-          bloc: _bloc,
-          listener: (context, state) {
-            if (state is CreateFirstFailState) {
-              AppSnackBar.failSnackBar(context: context, error: state.error);
-            }
-            if (state is CreateFirstSuccessState) {
-              FocusManager.instance.primaryFocus?.unfocus();
-              Navigator.push(
-                  context,
-                  CreatePostSecondPage.route(
-                    postModel: widget.postModel,
-                    createPostBloc: _bloc,
-                  ));
-            }
-          },
-        ),
-        BlocListener<UpdatePostBloc, UpdatePostState>(
-          listener: (context, state) {
-            if (state is UpdateFirstFailState) {
-              AppSnackBar.failSnackBar(context: context, error: state.error);
-            }
-            if (state is UpdateFirstSuccessState) {
-              Navigator.push(
-                context,
-                CreatePostSecondPage.route(
-                  postModel: widget.postModel,
-                  createPostBloc: _bloc,
-                ),
-              );
-            }
-          },
-        )
-      ],
+    return BlocListener(
+      bloc: _bloc,
+      listener: (context, state) {
+        if (state is CreateFirstFailState) {
+          AppSnackBar.failSnackBar(context: context, error: state.error);
+        }
+        if (state is CreateFirstSuccessState) {
+          FocusManager.instance.primaryFocus?.unfocus();
+          Navigator.push(
+              context,
+              CreatePostSecondPage.route(
+                postModel: widget.postModel,
+                createPostBloc: _bloc,
+              ));
+        }
+      },
       child: Scaffold(
           appBar: CreatePageAppBar(
             next: true,

@@ -11,7 +11,7 @@ class PostTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.displayMedium,
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }

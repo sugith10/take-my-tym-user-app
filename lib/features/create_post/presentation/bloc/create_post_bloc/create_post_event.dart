@@ -36,3 +36,36 @@ final class CreateSecondPageEvent extends CreatePostEvent {
     required this.longitude,
   });
 }
+
+final class UpdateFirstPageEvent extends CreatePostEvent {
+  final PostModel postModel;
+
+  final String workType;
+  final String title;
+  final String content;
+  const UpdateFirstPageEvent({
+    required this.postModel,
+    required this.workType,
+    required this.title,
+    required this.content,
+  });
+}
+
+
+final class UpdateSecondPageEvent extends CreatePostEvent {
+  final List<String> skills;
+  final String location;
+  final String experience;
+  final String remuneration;
+  final double latitude;
+  final double longitude;  
+
+  UpdateSecondPageEvent({
+    required this.experience,
+    required this.location,
+    required this.remuneration,
+    required this.skills,
+    required this.latitude,
+    required this.longitude,
+  });
+}

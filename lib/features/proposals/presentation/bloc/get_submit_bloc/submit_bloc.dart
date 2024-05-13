@@ -8,8 +8,8 @@ import 'package:take_my_tym/features/proposals/data/models/submit_model.dart';
 part 'submit_event.dart';
 part 'submit_state.dart';
 
-class SubmitBloc extends Bloc<SubmitEvent, SubmitState> {
-  SubmitBloc() : super(SubmitLoading()) {
+class GetSubmitBloc extends Bloc<SubmitEvent, SubmitState> {
+  GetSubmitBloc() : super(SubmitLoading()) {
     on<SubmitDetailsEvent>(_onDetails);
   }
 

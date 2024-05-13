@@ -11,15 +11,23 @@ final class OfferDetailsEvent extends OfferEvent {
   final OfferModel offerModel;
 
   const OfferDetailsEvent({
-
     required this.offerModel,
   });
 }
 
 final class OfferRejectEvent extends OfferEvent {
   final OfferModel offerModel;
-    final String userId;
-  const OfferRejectEvent({
-        required this.userId,
-    required this.offerModel});
+  final String userId;
+  const OfferRejectEvent({required this.userId, required this.offerModel});
+}
+
+final class OfferAcceptEvent extends OfferEvent {
+  final String userId;
+  final OfferModel offerModel;
+  final double amount;
+  
+  const OfferAcceptEvent(
+      {required this.userId,
+    required this.amount,
+      required this.offerModel});
 }

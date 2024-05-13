@@ -5,15 +5,17 @@ import 'package:take_my_tym/core/utils/name_capitalize.dart';
 import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
-class PostOwnerInfoWidget extends StatelessWidget {
+class UserInfoWidget extends StatelessWidget {
   final String image;
   final String name;
   final Timestamp date;
+  final String description;
 
-  const PostOwnerInfoWidget({
+  const UserInfoWidget({
     required this.image,
     required this.name,
     required this.date,
+    required this.description,
     super.key,
   });
 
@@ -39,7 +41,7 @@ class PostOwnerInfoWidget extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               Text(
-                timestampToDate(date),
+                "$description: ${timestampToDate(date)}",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

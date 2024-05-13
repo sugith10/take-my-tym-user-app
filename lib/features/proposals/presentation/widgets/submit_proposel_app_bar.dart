@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../core/widgets/action_button.dart';
-import '../bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
+import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
 
 class SubmitPageAppBar extends StatelessWidget {
   final SubmitProposalBloc submitProposalBloc;
@@ -28,16 +28,17 @@ class SubmitPageAppBar extends StatelessWidget {
           bloc: submitProposalBloc,
           builder: (context, state) {
             if (state is SubmitProposalPageState) {
-              if (state.pageNumber == 1) {
-                return const SizedBox.shrink();
-              }
-            }
-            return ActionButton(
+              if (state.pageNumber == 0) {
+                return ActionButton(
               action: 'Next',
               callback: () {
                 callback();
               },
             );
+             
+              }
+            }
+               return const SizedBox.shrink();
           },
         ),
       ],

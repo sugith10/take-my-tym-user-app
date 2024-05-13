@@ -10,7 +10,7 @@ import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
-import '../../../../core/widgets/post_owner_info_widget.dart';
+import '../../../profile/presentation/widgets/post_owner_info_widget/post_owner_info_widget.dart';
 import '../../../../core/widgets/submit_button.dart';
 import '../../../create_post/presentation/pages/create_post_first_page.dart';
 import '../../../create_post/presentation/widgets/post_description_widget.dart';
@@ -117,10 +117,11 @@ class _ViewPostPageState extends State<ViewPostPage> {
                             title: widget.postModel.title,
                           ),
                           SizedBox(height: 20.h),
-                          PostOwnerInfoWidget(
+                          UserInfoWidget(
                             name: widget.postModel.userName,
                             image: MyAppImages.testProfile,
                             date: widget.postModel.postDate,
+                            description: "Posted on",
                           ),
                           SizedBox(height: 20.h),
                           PostDescriptionWidget(

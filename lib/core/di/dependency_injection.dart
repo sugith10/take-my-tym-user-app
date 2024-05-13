@@ -141,9 +141,9 @@ final class DependencyInject {
     ///UpdateProfile
     _getIt
       ..registerFactory<UpdateProfileRepo>(
-          () => UpdateProfileRepoImpl(UpdateProfileRemote()))
-      ..registerFactory<UpdateProfileUseCase>(
-          () => UpdateProfileUseCase(_getIt<UpdateProfileRepo>()));
+          () => UpdateProfileRepoImpl(ProfileRemote()))
+      ..registerFactory<ProfileUseCase>(
+          () => ProfileUseCase(_getIt<UpdateProfileRepo>()));
 
     ///Wallet
     _getIt

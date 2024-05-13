@@ -9,7 +9,9 @@ import '../../../wallet/presentation/util/wallet_action_type.dart';
 
 class AcceptOfferWidget extends StatelessWidget {
   final VoidCallback reject;
+  final VoidCallback accept;
   const AcceptOfferWidget({
+    required this.accept,
     required this.reject,
     super.key,
   });
@@ -33,7 +35,6 @@ class AcceptOfferWidget extends StatelessWidget {
                 actionCall: () {
                   Navigator.pop(context);
                   reject();
-               
                 },
               );
             },
@@ -52,8 +53,7 @@ class AcceptOfferWidget extends StatelessWidget {
                 action: "Accept",
                 actionCall: () {
                   Navigator.pop(context);
-                  Navigator.push(
-                      context, PaymentPage.route(type: WalletAction.transfer));
+                  accept();
                 },
                 actionColor: AppDarkColor.instance.success,
               );

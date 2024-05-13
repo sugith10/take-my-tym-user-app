@@ -44,16 +44,10 @@ class ProfileCard extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 5.h),
+                  //username
                   Text("@ ${userModel.userName.toLowerCase()}"),
-                  // const RatingWidget(
-                  //   firstStar: true,
-                  //   secondStar: true,
-                  //   thirdStar: true,
-                  //   fourthStar: true,
-                  //   fifthStar: true,
-                  // ),
-                  SizedBox(height: 10.h),
-                  //location start
+                  SizedBox(height: 5.h),
+                  //location
                   ProfileLocationWidget(location: userModel.location),
                   //location end
                 ],

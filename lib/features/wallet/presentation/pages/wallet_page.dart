@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +26,14 @@ class WalletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WalletBloc, WalletState>(
+      listenWhen: (previousState, currentState) {
+        if (currentState is WalletErrorState ||
+            previousState is WalletErrorState) {
+          return false;
+        }
+        log("current state $currentState");
+        return true;
+      },
       listener: (context, state) {
         if (state is WalletInitialState) {
           if (state.show) {
@@ -42,6 +52,14 @@ class WalletPage extends StatelessWidget {
                 actionColor: AppDarkColor.instance.success);
           }
         }
+      },
+      buildWhen: (previousState, currentState) {
+        if (currentState is WalletErrorState ||
+            previousState is WalletErrorState) {
+          return false;
+        }
+        log("current state $currentState");
+        return true;
       },
       builder: (context, state) {
         if (state is WalletInitialState) {
@@ -104,7 +122,8 @@ class WalletPage extends StatelessWidget {
             ),
           );
         }
-        return const SizedBox.shrink();
+
+        return Center(child: Text(state.toString()));
       },
     );
   }

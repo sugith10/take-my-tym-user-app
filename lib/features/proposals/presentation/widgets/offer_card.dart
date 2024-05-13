@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/shimmer_common_widget.dart';
-import '../bloc/offer_bloc/offer_bloc.dart';
+import '../../data/models/offer_model.dart';
+import '../bloc/accept_proposal_bloc/offer_bloc.dart';
 import '../pages/accept_proposal_page.dart';
 import 'offer_list_tile.dart';
 
-
-class OfferProposalWidget extends StatelessWidget {
-  final OfferBloc offerBloc;
-  const OfferProposalWidget({
-    required this.offerBloc,
+class OfferCard extends StatelessWidget {
+  final AcceptProposalBloc acceptProposalBloc;
+  final OfferModel offerModel;
+  const OfferCard({
+    required this.acceptProposalBloc,
+    required this.offerModel,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: offerBloc,
+      bloc: acceptProposalBloc
+        ..add(
+          OfferDetailsEvent(offerModel: offerModel),
+        ),
       builder: (context, state) {
         if (state is OfferLoaded) {
           return OfferListTile(
@@ -28,7 +33,7 @@ class OfferProposalWidget extends StatelessWidget {
                 AcceptProposalPage.route(
                   postModel: state.postModel,
                   userModel: state.userModel,
-                  offerBloc: offerBloc,
+                  acceptProposalBloc: acceptProposalBloc,
                   offerModel: state.offerModel,
                 ),
               );

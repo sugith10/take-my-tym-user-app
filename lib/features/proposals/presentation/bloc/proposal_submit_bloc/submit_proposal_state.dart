@@ -4,8 +4,6 @@ sealed class SubmitProposalState {
   const SubmitProposalState();
 }
 
-final class SubmitProposalInitial extends SubmitProposalState {}
-
 final class SubmitProposalLoadingState extends SubmitProposalState {}
 
 final class SubmitProposalErrorState extends SubmitProposalState {

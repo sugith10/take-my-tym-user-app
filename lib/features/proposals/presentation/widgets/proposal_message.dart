@@ -6,8 +6,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_title_box_widget.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/submit_button.dart';
-import '../bloc/submit_proposal_bloc/submit_proposal_bloc.dart';
-
+import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
 
 class ProposalMessage extends StatelessWidget {
   final TextEditingController controller;
@@ -73,13 +72,14 @@ class ProposalMessage extends StatelessWidget {
                       callback();
                     },
                     text: 'Submit',
-                    child: BlocBuilder(bloc: bloc,
-                    builder: (context,state){
-                      if(state is SubmitProposalLoadingState){
-                        return const CircularProgressIndicator();
-                      }
-                      return const Text("Submit");
-                    },
+                    child: BlocBuilder(
+                      bloc: bloc,
+                      builder: (context, state) {
+                        if (state is SubmitProposalLoadingState) {
+                          return const CircularProgressIndicator();
+                        }
+                        return const Text("Submit");
+                      },
                     ),
                   ),
                 ),

@@ -4,10 +4,8 @@ import 'package:iconly/iconly.dart';
 import '../../../../core/widgets/app_card.dart';
 
 class AcceptMessage extends StatefulWidget {
-  final String name;
   final String msg;
   const AcceptMessage({
-    required this.name,
     required this.msg,
     super.key,
   });
@@ -24,7 +22,7 @@ class _AcceptMessageState extends State<AcceptMessage> {
       enabled: true,
       initiallyExpanded: true,
       enableFeedback: false,
-      title: Text('Message from ${widget.name}'),
+      title: const Text('Message :'),
       trailing: _icon
           ? const Icon(IconlyLight.arrow_up_circle)
           : const Icon(IconlyLight.arrow_down_circle),

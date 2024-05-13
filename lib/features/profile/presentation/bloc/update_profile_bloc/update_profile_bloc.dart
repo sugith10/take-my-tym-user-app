@@ -14,10 +14,9 @@ class ProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
   ProfileBloc() : super(UpdateProfileInitial()) {
     on<ProfileSetupEvent>(
       ((event, emit) async {
-        log('profile setup event');
-        log(event.location);
-        final UpdateProfileUseCase useCase =
-            GetIt.instance<UpdateProfileUseCase>();
+
+        final ProfileUseCase useCase =
+            GetIt.instance<ProfileUseCase>();
         try {
           event.userModel.userName = event.userName;
           event.userModel.about = event.about;
@@ -25,7 +24,6 @@ class ProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
           event.userModel.location = event.location;
           event.userModel.latitude = event.latitude;
           event.userModel.longitude = event.longitude;
-          // log(event.UserModel.toString());
           await useCase.updateUserProfileInfo(
             userModel: event.userModel,
             profilePicture: null,

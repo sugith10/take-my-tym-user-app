@@ -32,4 +32,14 @@ final class WalletLoadedState extends WalletState {
   List<Object> get props => [balance, transactions];
 }
 
-final class WalletErrorState extends WalletState {}
+final class WalletErrorState extends WalletState {
+  final AppErrorMsg errorMsg;
+
+  const WalletErrorState({required this.errorMsg});
+}
+
+final class WalletTransferSuccessState extends WalletState {
+  final String transactionId;
+
+  const WalletTransferSuccessState({required this.transactionId});
+}

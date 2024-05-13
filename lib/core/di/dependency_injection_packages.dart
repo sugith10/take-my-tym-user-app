@@ -52,8 +52,8 @@ import 'package:take_my_tym/features/create_post/data/datasources/remote_data_so
 import 'package:take_my_tym/features/view_post/data/datasources/delete_post_data_source.dart';
 import 'package:take_my_tym/features/profile/data/datasources/remote/user_posts_remote.dart';
 import 'package:take_my_tym/features/profile/data/datasources/remote/update_profile_remote.dart';
-import 'package:take_my_tym/features/profile/data/repositories/update_repo_impl.dart';
-import 'package:take_my_tym/features/profile/domain/repositories/update_profile_repo.dart';
+import 'package:take_my_tym/features/profile/data/repositories/profile_repo_impl.dart';
+import 'package:take_my_tym/features/profile/domain/repositories/profile_repo.dart';
 import 'package:take_my_tym/features/profile/domain/usecases/update_profile_usecase.dart';
 import 'package:take_my_tym/features/search/data/datasources/remote/search_posts_remote_data_source.dart';
 import 'package:take_my_tym/features/create_post/data/datasources/remote_data_source/update_post_remote_data_source.dart';

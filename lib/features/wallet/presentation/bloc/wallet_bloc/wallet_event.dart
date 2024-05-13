@@ -32,5 +32,9 @@ final class WalletWithdrawEvent extends WalletEvent {
 
 final class WalletTransferEvent extends WalletEvent {
   final String uid;
-  const WalletTransferEvent({required this.uid});
+  final String amount;
+  const WalletTransferEvent({
+    required this.uid,
+    required this.amount,
+  });
 }

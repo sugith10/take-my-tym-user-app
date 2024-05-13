@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaymentTextField extends StatelessWidget {
   final TextEditingController controller;
+  final bool readOnly;
   const PaymentTextField({
     required this.controller,
+    required this.readOnly,
     super.key,
   });
 
@@ -33,6 +35,7 @@ class PaymentTextField extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
         ),
+        readOnly: readOnly,
         keyboardType: TextInputType.number,
         maxLength: 6,
       ),

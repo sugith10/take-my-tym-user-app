@@ -7,30 +7,30 @@ import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_til
 
 class TransactionsPage extends StatelessWidget {
   final List<TransactionModel> transactios;
-  const TransactionsPage({
-    required this.transactios,
-    
-    super.key});
-  static route ({required List<TransactionModel> transactions})=> rightToLeft( TransactionsPage(transactios: transactions,));
+  const TransactionsPage({required this.transactios, super.key});
+  static route({required List<TransactionModel> transactions}) =>
+      rightToLeft(TransactionsPage(
+        transactios: transactions,
+      ));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const SimpleAppBar(),
       body: ListView.builder(
-                      itemCount: transactios.length,
-                      itemBuilder: (context, index) {
-                        final transactionModel = transactios[index];
-                        return Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                          child: TransactionTile(
-                            type: transactionModel.transactionType,
-                            time: timestampToDate(transactionModel.timestamp),
-                            amount: transactionModel.amount.toString(),
-                          ),
-                        );
-                      },
-                    ),
+        itemCount: transactios.length,
+        itemBuilder: (context, index) {
+          final transactionModel = transactios[index];
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: TransactionTile(
+              type: transactionModel.transactionType,
+              time: timestampToDate(transactionModel.timestamp),
+              amount: transactionModel.amount.toString(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

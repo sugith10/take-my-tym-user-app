@@ -23,3 +23,5 @@ final class OfferLoaded extends OfferState {
 }
 
 final class OfferSuccess extends OfferState{}
+
+final class ProopsalFailedState extends OfferState{}

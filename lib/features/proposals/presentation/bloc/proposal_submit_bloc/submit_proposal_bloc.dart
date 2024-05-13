@@ -13,7 +13,7 @@ part 'submit_proposal_state.dart';
 
 class SubmitProposalBloc
     extends Bloc<SubmitProposalEvent, SubmitProposalState> {
-  SubmitProposalBloc() : super(SubmitProposalInitial()) {
+  SubmitProposalBloc() : super(SubmitProposalPageState(pageNumber: 0)) {
     on<SubmitProposalPagEvent>(_onPageNav);
     on<ProposalSubmitEvent>(_onSubmit);
   }
@@ -64,7 +64,7 @@ class SubmitProposalBloc
       emit(
         SubmitProposalErrorState(
           error: AppErrorMsg(
-            title: "Already Submitted",
+            title: "Already submitted",
           ),
         ),
       );

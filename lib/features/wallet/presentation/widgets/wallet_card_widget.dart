@@ -66,6 +66,7 @@ class WalletCard extends StatelessWidget {
                         icon: IconlyLight.arrow_up,
                         title: 'Top up',
                         callback: () {
+                          
                           Navigator.push(
                             context,
                             PaymentPage.route(type: WalletAction.topUp),

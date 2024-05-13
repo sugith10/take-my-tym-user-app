@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/panel_title_widget.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
-import '../bloc/offer_bloc/offer_bloc.dart';
-import '../bloc/proposal_bloc/proposal_bloc.dart';
-import '../bloc/submit_bloc/submit_bloc.dart';
-import '../widgets/offer_proposal_widget.dart';
+import '../bloc/accept_proposal_bloc/offer_bloc.dart';
+import '../bloc/get_offer_bloc/proposal_bloc.dart';
+import '../bloc/get_submit_bloc/submit_bloc.dart';
+import '../widgets/offer_card.dart';
 import '../widgets/submit_proposal_widget.dart';
 
 class ProposalsStatusTab extends StatelessWidget {
@@ -35,11 +35,9 @@ class ProposalsStatusTab extends StatelessWidget {
                     itemCount: state.proposalModel.offerList.length,
                     itemBuilder: (context, index) {
                       final offerModel = state.proposalModel.offerList[index];
-                      return OfferProposalWidget(
-                        offerBloc: OfferBloc()
-                          ..add(
-                            OfferDetailsEvent(offerModel: offerModel),
-                          ),
+                      return OfferCard(
+                        acceptProposalBloc: AcceptProposalBloc(),
+                        offerModel: offerModel,
                       );
                     },
                   );
@@ -69,7 +67,7 @@ class ProposalsStatusTab extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final submitModel = state.proposalModel.submitList[index];
                       return SubmitProposalWidget(
-                        submitBloc: SubmitBloc()
+                        getSubmitBloc: GetSubmitBloc()
                           ..add(SubmitDetailsEvent(submitModel: submitModel)),
                       );
                     },

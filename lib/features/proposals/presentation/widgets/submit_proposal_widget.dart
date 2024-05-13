@@ -6,22 +6,22 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../../../core/widgets/contract_timeline_widget.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
-import '../bloc/submit_bloc/submit_bloc.dart';
+import '../bloc/get_submit_bloc/submit_bloc.dart';
 import 'offer_list_tile.dart';
 
 
 class SubmitProposalWidget extends StatelessWidget {
-  final SubmitBloc submitBloc;
+  final GetSubmitBloc getSubmitBloc;
 
   const SubmitProposalWidget({
-    required this.submitBloc,
+    required this.getSubmitBloc,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: submitBloc,
+      bloc: getSubmitBloc,
       builder: (context, state) {
         if (state is SubmitLoaded) {
           return OfferListTile(

@@ -1,9 +1,9 @@
 part of 'get_profile_bloc.dart';
 
-sealed class GetProfileEvent extends Equatable {
-  
-  const GetProfileEvent();
+class GetProfileEvent extends Equatable {
+  final String userId;
+  const GetProfileEvent({required this.userId});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [userId];
 }

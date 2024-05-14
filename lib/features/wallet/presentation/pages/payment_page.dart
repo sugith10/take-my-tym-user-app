@@ -58,12 +58,10 @@ class _PaymentPageState extends State<PaymentPage> {
       listeners: [
         BlocListener<WalletBloc, WalletState>(
           listener: (context, state) {
-            if (state is WalletLoadedState &&
-                widget.type != WalletAction.transfer) {
+            if (state is WalletLoadedState) {
               Navigator.push(context, SuccessPage.route(pop: true));
             }
-            if (state is WalletLoadedState &&
-                widget.type == WalletAction.transfer) {
+            if (state is WalletTransferSuccessState) {
               Navigator.pop(context);
             }
             if (state is WalletLoadingState) {
@@ -71,9 +69,6 @@ class _PaymentPageState extends State<PaymentPage> {
             }
             if (state is WalletErrorState) {
               AppSnackBar.failSnackBar(context: context);
-            }
-            if (state is WalletTransferSuccessState) {
-              Navigator.pop(context);
             }
           },
         ),

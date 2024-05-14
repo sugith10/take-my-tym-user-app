@@ -49,7 +49,7 @@ class ProposalRemote {
       final offers = await _ref.doc(uid).collection("offers").get();
       List<SubmitModel> submitList = [];
       List<OfferModel> offerList = [];
-      
+
       if (submit.docs.isNotEmpty) {
         submitList = submit.docs.map((map) {
           return SubmitModel.fromMap(

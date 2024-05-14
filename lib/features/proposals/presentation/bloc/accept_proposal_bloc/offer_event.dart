@@ -24,10 +24,13 @@ final class OfferRejectEvent extends OfferEvent {
 final class OfferAcceptEvent extends OfferEvent {
   final String userId;
   final OfferModel offerModel;
-  final double amount;
-  
-  const OfferAcceptEvent(
-      {required this.userId,
-    required this.amount,
-      required this.offerModel});
+
+  final String paymentId;
+  final PostModel postModel;
+  const OfferAcceptEvent({
+    required this.userId,
+    required this.postModel,
+    required this.paymentId,
+    required this.offerModel,
+  });
 }

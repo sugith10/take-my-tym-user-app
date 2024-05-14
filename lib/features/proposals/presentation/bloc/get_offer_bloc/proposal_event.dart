@@ -1,4 +1,4 @@
-part of 'proposal_bloc.dart';
+part of 'get_proposal_bloc.dart';
 
 sealed class ProposalEvent extends Equatable {
   const ProposalEvent();

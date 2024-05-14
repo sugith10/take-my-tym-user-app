@@ -3,26 +3,24 @@ import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/model/app_user_model.dart';
 import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../create_post/presentation/pages/create_post_first_page.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../message/presentation/pages/chat_list_page.dart';
 import '../../../profile/presentation/pages/profile_page.dart';
-import '../../../work/presentation/pages/control_panel_page.dart';
+import 'work_tab_bar_menu.dart';
 import '../bloc/navigation_bloc.dart';
-import '../widgets/drawer/drawer_navigation_menu.dart';
+import 'drawer_navigation_menu.dart';
 
-class NavigationMenu extends StatefulWidget {
-  static route() => noMovement(const NavigationMenu());
-  const NavigationMenu({super.key});
+class HomeNavigationMenu extends StatefulWidget {
+  static route() => noMovement(const HomeNavigationMenu());
+  const HomeNavigationMenu({super.key});
 
   @override
-  State<NavigationMenu> createState() => _NavigationMenuState();
+  State<HomeNavigationMenu> createState() => _HomeNavigationMenuState();
 }
 
-class _NavigationMenuState extends State<NavigationMenu> {
-
+class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   bool pop = false;
 
@@ -30,8 +28,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
     const HomePage(),
     const ChatListPage(),
     const CreatePostFirstPage(),
-    const ControlPanelPage(),
-   const  ProfilePage(),
+    const WorkTabBar(),
+    const ProfilePage(),
   ];
 
   int _index = 0;

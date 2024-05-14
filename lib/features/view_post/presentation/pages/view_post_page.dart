@@ -113,9 +113,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
                           SizedBox(height: 10.h),
                           ServiceTypeWidget(type: widget.postModel.workType),
                           SizedBox(height: 15.h),
-                          PostTitleWidget(
-                            title: widget.postModel.title,
-                          ),
+                          PostTitleWidget(title: widget.postModel.title),
                           SizedBox(height: 20.h),
                           UserInfoWidget(
                             name: widget.postModel.userName,

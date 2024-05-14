@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class DrawerCustomButton extends StatelessWidget {
   final String title;
-  final Function function;
+  final VoidCallback callback;
   final IconData  icon;
   const DrawerCustomButton({
     required this.icon,
     required this.title,
-    required this.function,
+    required this.callback,
     super.key,
   });
 
@@ -15,7 +15,7 @@ class DrawerCustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        function();
+        callback();
       },
       child: ListTile(
         leading: Icon(

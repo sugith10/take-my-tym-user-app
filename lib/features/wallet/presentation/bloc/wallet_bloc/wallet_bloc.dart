@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
@@ -17,8 +18,8 @@ part 'wallet_event.dart';
 part 'wallet_state.dart';
 
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
-  final WalletUseCase _useCase;
-  WalletBloc(this._useCase) : super(const WalletInitialState(show: false)) {
+
+   WalletBloc() : super(const WalletInitialState(show: false)) {
     on<WalletBalanceEvent>(_onBalance);
     on<WalletTopUpEvent>(_onTopUp);
     on<WalletWithdrawEvent>(_onWithdraw);
@@ -39,7 +40,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       if (pass) {
         emit(WalletLoadingState());
         final WalletModel walletModel =
-            await _useCase.walletBalance(uid: event.uid);
+            await GetIt.instance<WalletUseCase>().walletBalance(uid: event.uid);
         final now = DateTime.now();
         emit(
           WalletLoadedState(

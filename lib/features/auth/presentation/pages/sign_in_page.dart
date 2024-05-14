@@ -9,7 +9,7 @@ import '../../../../core/utils/reg_exp.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../../core/widgets/navigation_taxt_button.dart';
-import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
+import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../../../profile/presentation/pages/profile_setup_page.dart';
 import '../bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../widgets/forgot_password_widget.dart';
@@ -81,7 +81,7 @@ class _SignInPageState extends State<SignInPage> {
 
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (_) => const NavigationMenu()),
+              MaterialPageRoute(builder: (_) => const HomeNavigationMenu()),
               (route) => false,
             );
           } else {

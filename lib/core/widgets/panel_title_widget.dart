@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
+import 'package:take_my_tym/core/utils/app_padding.dart';
+
+import '../utils/app_colors.dart';
 
 class PanelTitleWidget extends StatelessWidget {
   final String title;
+
+  final bool padding;
   const PanelTitleWidget({
     required this.title,
+    this.padding = true,
+    
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return AuthPadding(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: padding ? MyAppPadding.authPadding : 0),
       child: Column(
         children: [
-          const SizedBox(height: 25),
+          SizedBox(height: padding ? 25 : 20),
           Row(
             children: [
               Text(

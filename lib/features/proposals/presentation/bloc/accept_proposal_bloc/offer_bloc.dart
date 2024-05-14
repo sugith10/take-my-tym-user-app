@@ -8,7 +8,7 @@ import 'package:take_my_tym/features/proposals/data/datasources/remote/accept_pr
 import 'package:take_my_tym/features/proposals/data/datasources/remote/get_user_data.dart';
 import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
 
-import '../../../data/models/contract_model.dart';
+import '../../../../contract/data/models/contract_model.dart';
 
 part 'offer_event.dart';
 part 'offer_state.dart';
@@ -62,17 +62,21 @@ class AcceptProposalBloc extends Bloc<OfferEvent, OfferState> {
   ) async {
     try {
       final contractModel = ContractModel(
-          date: Timestamp.now(),
-          amount: event.amount,
-          clientId: event.userId,
-          serviceProviderId: event.offerModel.applicantUid,
-          contractStrated: true,
-          contractFail: false,
-          contractEnded: false);
+        date: Timestamp.now(),
+        amount: event.postModel .price,
+        clientId: event.userId,
+        serviceProviderId: event.offerModel.applicantUid,
+        contractStrated: true,
+        contractFail: false,
+        contractEnded: false,
+        paymentId: event.paymentId,
+        contractName: event.postModel.title,
+      );
       await AcceptProposalRemote().acceptProposal(
         offerModel: event.offerModel,
         contractModel: contractModel,
       );
+      emit(OfferSuccess());
     } catch (e) {
       emit(ProopsalFailedState());
     }

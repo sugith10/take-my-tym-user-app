@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../../core/widgets/app_logo.dart';
 import '../../../../auth/presentation/pages/welcome_page.dart';
-import '../../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
+import '../../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -33,7 +33,7 @@ class _SplashPageState extends State<SplashPage> {
           log(state.toString());
           Navigator.pushAndRemoveUntil(
             context,
-            NavigationMenu.route(),
+            HomeNavigationMenu.route(),
             (route) => false,
           );
         }

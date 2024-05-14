@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,14 +15,14 @@ import '../../../profile/presentation/widgets/post_owner_info_widget/get_user_in
 import '../../../../core/widgets/posted_content.dart';
 import '../../../wallet/presentation/pages/payment_page.dart';
 import '../../../wallet/presentation/util/wallet_action_type.dart';
-import '../../../work/presentation/widgets/offer_subtitle_widget.dart';
+import '../../../../core/widgets/offer_subtitle_widget.dart';
 import '../../data/models/offer_model.dart';
 import '../bloc/accept_proposal_bloc/offer_bloc.dart';
-import '../bloc/get_offer_bloc/proposal_bloc.dart';
+import '../bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../widgets/accept_message.dart';
 import '../widgets/accept_offer_widget.dart';
 
-class AcceptProposalPage extends StatefulWidget {
+class AcceptProposalPage extends StatelessWidget {
   final UserModel userModel;
   final PostModel postModel;
   final OfferModel offerModel;
@@ -54,22 +52,17 @@ class AcceptProposalPage extends StatefulWidget {
       );
 
   @override
-  State<AcceptProposalPage> createState() => _AcceptProposalPageState();
-}
-
-class _AcceptProposalPageState extends State<AcceptProposalPage> {
-  @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
         BlocListener(
-          bloc: widget.acceptProposalBloc,
+          bloc: acceptProposalBloc,
           listener: (context, state) {
             if (state is OfferLoading) {
               LoadingDialog().show(context);
             }
             if (state is OfferSuccess) {
-              context.read<ProposalBloc>().add(ProposalGetEvent(
+              context.read<GetProposalBloc>().add(ProposalGetEvent(
                   uid: context.read<AppUserBloc>().userModel!.uid));
               Navigator.pop(context);
             }
@@ -78,12 +71,13 @@ class _AcceptProposalPageState extends State<AcceptProposalPage> {
         BlocListener<WalletBloc, WalletState>(
           listener: (context, state) {
             if (state is WalletTransferSuccessState) {
-              widget.acceptProposalBloc.add(
+              acceptProposalBloc.add(
                 OfferAcceptEvent(
-                    offerModel: widget.offerModel,
-                    userId: context.read<AppUserBloc>().userModel!.uid,
-                    amount: widget.postModel.price,
-                    ),
+                  paymentId: state.transactionId,
+                  offerModel: offerModel,
+                  userId: context.read<AppUserBloc>().userModel!.uid,
+                  postModel: postModel,
+                ),
               );
             }
           },
@@ -100,15 +94,15 @@ class _AcceptProposalPageState extends State<AcceptProposalPage> {
                 const OfferSubtitleWidget(title: "Proposed by"),
                 SizedBox(height: 10.h),
                 GetUserInfoWidget(
-                  offerModel: widget.offerModel,
+                  offerModel: offerModel,
                   getProfileBloc: GetProfileBloc(),
                 ),
                 SizedBox(height: 25.h),
-                AcceptMessage(msg: widget.offerModel.message),
+                AcceptMessage(msg: offerModel.message),
                 SizedBox(height: 25.h),
                 PostedContentWidget(
                   voidCallback: () {},
-                  postModel: widget.postModel,
+                  postModel: postModel,
                   width: double.infinity,
                 ),
               ],
@@ -117,9 +111,9 @@ class _AcceptProposalPageState extends State<AcceptProposalPage> {
         ),
         bottomNavigationBar: AcceptOfferWidget(
           reject: () {
-            widget.acceptProposalBloc.add(
+            acceptProposalBloc.add(
               OfferRejectEvent(
-                offerModel: widget.offerModel,
+                offerModel: offerModel,
                 userId: context.read<AppUserBloc>().userModel!.uid,
               ),
             );
@@ -129,7 +123,7 @@ class _AcceptProposalPageState extends State<AcceptProposalPage> {
                 context,
                 PaymentPage.route(
                     type: WalletAction.transfer,
-                    amount: widget.postModel.price));
+                    amount: postModel.price));
           },
         ),
       ),

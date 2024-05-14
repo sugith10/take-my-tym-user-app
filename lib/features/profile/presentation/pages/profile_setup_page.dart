@@ -16,7 +16,7 @@ import '../../../../core/widgets/skills_widget/create_skills_widget.dart';
 import '../../../../core/widgets/take_my_tym_info_dialog.dart';
 import '../../../create_post/presentation/widgets/create_post_location_widget.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
-import '../../../navigation_menu/presentation/pages/app_navigation_menu.dart';
+import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
 import '../widgets/finish_setup_button.dart';
 
@@ -66,7 +66,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (_) => const NavigationMenu(),
+              builder: (_) => const HomeNavigationMenu(),
             ),
             (route) => false,
           );

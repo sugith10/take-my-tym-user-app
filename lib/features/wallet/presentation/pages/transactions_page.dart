@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dart';
+import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
@@ -9,7 +9,7 @@ class TransactionsPage extends StatelessWidget {
   final List<TransactionModel> transactios;
   const TransactionsPage({required this.transactios, super.key});
   static route({required List<TransactionModel> transactions}) =>
-      rightToLeft(TransactionsPage(
+      leftToRight(TransactionsPage(
         transactios: transactions,
       ));
 

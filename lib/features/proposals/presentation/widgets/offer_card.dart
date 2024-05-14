@@ -5,7 +5,7 @@ import '../../../../core/widgets/shimmer_common_widget.dart';
 import '../../data/models/offer_model.dart';
 import '../bloc/accept_proposal_bloc/offer_bloc.dart';
 import '../pages/accept_proposal_page.dart';
-import 'offer_list_tile.dart';
+import '../../../../core/widgets/offer_list_tile.dart';
 
 class OfferCard extends StatelessWidget {
   final AcceptProposalBloc acceptProposalBloc;
@@ -13,7 +13,7 @@ class OfferCard extends StatelessWidget {
   const OfferCard({
     required this.acceptProposalBloc,
     required this.offerModel,
-    super.key,
+    super.key, 
   });
 
   @override

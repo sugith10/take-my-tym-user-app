@@ -24,12 +24,12 @@ class AppBlocObserver extends BlocObserver {
     appLogger.t("An event Happened in $bloc the event is $event");
   }
 
-  // /We can react to states
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    appLogger.t('A new state from $bloc the state is $change');
-  }
+  // // /We can react to states
+  // @override
+  // void onChange(BlocBase bloc, Change change) {
+  //   super.onChange(bloc, change);
+  //   appLogger.t('A new state from $bloc the state is $change');
+  // }
 
   ///We can even react to transitions
   @override

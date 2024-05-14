@@ -11,7 +11,7 @@ import 'package:take_my_tym/core/utils/app_sound_player.dart';
 import 'package:take_my_tym/core/utils/app_vibration.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 import 'package:take_my_tym/core/widgets/success_widget/bloc/success_page_bloc.dart';
-import 'package:take_my_tym/features/navigation_menu/presentation/pages/app_navigation_menu.dart';
+import 'package:take_my_tym/features/navigation_menu/presentation/pages/home_navigation_menu.dart';
 import 'package:take_my_tym/features/create_post/presentation/widgets/scale_up.dart';
 part 'util/feedback.dart';
 
@@ -44,7 +44,7 @@ class _SuccessPageState extends State<SuccessPage> {
             Navigator.of(context).popUntil((route) => route.isFirst);
           } else {
             Navigator.pushAndRemoveUntil(
-                context, NavigationMenu.route(), (route) => false);
+                context, HomeNavigationMenu.route(), (route) => false);
           }
         }
       },
@@ -107,7 +107,7 @@ class _SuccessPageState extends State<SuccessPage> {
                                   onPressed: () {
                                     Navigator.pushAndRemoveUntil(
                                       context,
-                                      NavigationMenu.route(),
+                                      HomeNavigationMenu.route(),
                                       (route) => false,
                                     );
                                   },

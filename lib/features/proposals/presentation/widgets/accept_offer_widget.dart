@@ -4,8 +4,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/submit_button.dart';
-import '../../../wallet/presentation/pages/payment_page.dart';
-import '../../../wallet/presentation/util/wallet_action_type.dart';
 
 class AcceptOfferWidget extends StatelessWidget {
   final VoidCallback reject;
@@ -34,6 +32,7 @@ class AcceptOfferWidget extends StatelessWidget {
                 action: "Reject",
                 actionCall: () {
                   Navigator.pop(context);
+                  Navigator.pop(context);
                   reject();
                 },
               );
@@ -52,7 +51,6 @@ class AcceptOfferWidget extends StatelessWidget {
                 subtitle: "Lorem Ipsum is simply dummy text",
                 action: "Accept",
                 actionCall: () {
-                  Navigator.pop(context);
                   accept();
                 },
                 actionColor: AppDarkColor.instance.success,

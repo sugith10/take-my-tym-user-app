@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../../core/widgets/app_snack_bar.dart';
-import '../../../../navigation_menu/presentation/widgets/drawer/widgets/drawer_button.dart';
+import '../../../../navigation_menu/presentation/widgets/widgets/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
 import '../../pages/welcome_page.dart';
 import '../user_sign_out_dialog.dart';
@@ -35,7 +35,7 @@ class LogOutDrawerButton extends StatelessWidget {
       },
       child: DrawerCustomButton(
         title: 'Log Out',
-        function: () {
+        callback: () {
           UserLogOut().showLogOutDialog(
             context: context,
           );

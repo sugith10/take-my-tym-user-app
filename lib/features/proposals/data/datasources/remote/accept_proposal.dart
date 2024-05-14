@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
-import 'package:take_my_tym/features/proposals/data/models/contract_model.dart';
+import 'package:take_my_tym/features/contract/data/models/contract_model.dart';
 import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
 
 class AcceptProposalRemote {
   final _ref = FirebaseFirestore.instance.collection("proposals");
   Future<void> acceptProposal({
     required OfferModel offerModel,
-    required ContractModel  contractModel,
+    required ContractModel contractModel,
   }) async {
     await _ref
         .doc(contractModel.clientId)
@@ -20,14 +20,15 @@ class AcceptProposalRemote {
         .collection("submit")
         .doc(offerModel.postId)
         .delete();
-     await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("buyTymPost")
         .doc(offerModel.postId)
         .delete();
-    appLogger.d("success");
+
     await FirebaseFirestore.instance
         .collection("contracts")
         .add(contractModel.toMap());
+    appLogger.d("data add success success");
   }
 
   Future<void> rejectProposal({

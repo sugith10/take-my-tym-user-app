@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/core/utils/app_responsive.dart';
-import 'package:take_my_tym/core/widgets/app_card.dart';
 
 import '../../features/create_post/presentation/widgets/post_specifications_widget.dart';
+import '../model/app_post_model.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_responsive.dart';
+import '../utils/time_stamp_to_date.dart';
+import 'app_card.dart';
 
 class PostedContentWidget extends StatelessWidget {
   final String? image;
@@ -32,24 +32,8 @@ class PostedContentWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (image != null)
-              Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      MyAppRadius.borderRadius,
-                    ),
-                    child: Image.asset(
-                      image!,
-                      fit: BoxFit.fill,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
             Text(
-              'Service Type: ${postModel.workType}',
+              'Posted on: ${timestampToDate(postModel.postDate)}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
             SizedBox(height: 10.h),

@@ -7,8 +7,8 @@ import 'package:take_my_tym/features/proposals/data/models/proposal_model.dart';
 part 'proposal_event.dart';
 part 'proposal_state.dart';
 
-class ProposalBloc extends Bloc<ProposalEvent, ProposalState> {
-  ProposalBloc() : super(ProposalLoadingState()) {
+class GetProposalBloc extends Bloc<ProposalEvent, ProposalState> {
+  GetProposalBloc() : super(ProposalLoadingState()) {
     on<ProposalGetEvent>(_onGet);
   }
 

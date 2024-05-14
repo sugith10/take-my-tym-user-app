@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:take_my_tym/features/contract/presentation/pages/contracts_page.dart';
 
 import '../../../../core/widgets/app_bar/app_bar_title.dart';
 import '../../../../core/widgets/app_bar/settings_button.dart';
-import '../../../proposals/presentation/pages/proposals_tab.dart';
+import '../../../proposals/presentation/pages/proposals_page.dart';
 import '../../../wallet/presentation/pages/wallet_page.dart';
-import 'contracts_tab.dart';
 
-
-class ControlPanelPage extends StatelessWidget {
-  const ControlPanelPage({super.key});
+class WorkTabBar extends StatelessWidget {
+  const WorkTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +32,8 @@ class ControlPanelPage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            //Proposals
-            ProposalsStatusTab(),
-            //Contracts
-            ContractsTab(),
-            //Wallet
+            ProposalPage(),
+            ContractsPage(),
             WalletPage(),
           ],
         ),

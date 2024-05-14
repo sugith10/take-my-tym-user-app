@@ -7,7 +7,7 @@ import '../../../../core/model/app_post_model.dart';
 import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/success_widget/success_page.dart';
-import '../bloc/get_offer_bloc/proposal_bloc.dart';
+import '../bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
 import '../widgets/animated_dot_widget.dart';
 import '../widgets/proposal_message.dart';
@@ -77,7 +77,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
         }
 
         if (state is SubmitProposalSuccessState) {
-          context.read<ProposalBloc>().add(ProposalGetEvent(uid: userId));
+          context.read<GetProposalBloc>().add(ProposalGetEvent(uid: userId));
           Navigator.push(context, SuccessPage.route(pop: true));
         }
       },

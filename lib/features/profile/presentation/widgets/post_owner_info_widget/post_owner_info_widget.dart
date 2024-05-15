@@ -6,15 +6,15 @@ import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
 class UserInfoWidget extends StatelessWidget {
-  final String image;
+  final String? image;
   final String name;
-  final Timestamp date;
+  final Timestamp? date;
   final String description;
 
   const UserInfoWidget({
-    required this.image,
+     this.image,
     required this.name,
-    required this.date,
+     this.date,
     required this.description,
     super.key,
   });
@@ -28,7 +28,6 @@ class UserInfoWidget extends StatelessWidget {
           const CircleProfilePicWidget(
             height: 60,
             width: 60,
-           
           ),
           SizedBox(width: 10.w),
           Column(
@@ -40,8 +39,9 @@ class UserInfoWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               SizedBox(height: 5.h),
+              if(date != null)
               Text(
-                "$description: ${timestampToDate(date)}",
+                "$description: ${timestampToDate(date!)}",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

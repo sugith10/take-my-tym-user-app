@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/app_logger.dart';
-import '../../data/datasources/contract_remote_data.dart';
-import '../../data/models/contract_model.dart';
+import '../../../../../core/utils/app_logger.dart';
+import '../../../data/datasources/contract_remote_data.dart';
+import '../../../data/models/contract_model.dart';
 
 part 'contracts_event.dart';
 part 'contracts_state.dart';

@@ -121,6 +121,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               : context
                   .read<GetPostsBloc>()
                   .add(GetSellTymPostsEvent(userId: state.uid));
+          Navigator.of(context).popUntil((route) => route.isFirst);
         }
         if (state is UpdatePostSuccessState) {
           state.refreshType

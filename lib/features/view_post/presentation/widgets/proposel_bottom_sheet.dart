@@ -5,7 +5,7 @@ import '../../../../core/model/app_post_model.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../../../core/widgets/submit_button.dart';
-import '../../../proposals/presentation/pages/submit_proposel_page.dart';
+import '../../../proposal/presentation/pages/submit_proposel_page.dart';
 
 
 class ProposelBottomSheet {

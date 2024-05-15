@@ -11,9 +11,11 @@ class CircleProfilePicWidget extends StatelessWidget {
   final double height;
   final XFile? image;
   final bool animation;
+  final bool loopAnimation;
   const CircleProfilePicWidget({
     super.key,
     this.animation = true,
+    this.loopAnimation = false,
     required this.width,
     required this.height,
     this.image,
@@ -43,7 +45,7 @@ class CircleProfilePicWidget extends StatelessWidget {
                 width: width / 1.5,
                 height: height / 1.5,
                 color: AppDarkColor.instance.primaryText,
-                loopAnimation: false,
+                loopAnimation: loopAnimation,
               )
             : const Icon(IconlyBroken.profile);
   }

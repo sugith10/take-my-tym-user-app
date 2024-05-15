@@ -6,14 +6,12 @@ import '../../../../core/widgets/empty_list_text.dart';
 import '../../../../core/widgets/panel_title_widget.dart';
 import '../../../../core/widgets/offer_list_tile.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
-import '../contracts_bloc/contracts_bloc.dart';
+import '../bloc/contracts_bloc/contracts_bloc.dart';
 import '../widgets/contract_tab_buttons.dart';
 import 'view_contract_page.dart';
 
 class ContractsPage extends StatelessWidget {
-  const ContractsPage({
-    super.key,
-  });
+  const ContractsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +36,21 @@ class ContractsPage extends StatelessWidget {
                       return const EmptyListText(padding: 50);
                     } else {
                       return ListView.builder(
-                          itemCount: state.contractList.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            final contract = state.contractList[index];
-                            return OfferListTile(
-                              text: contract.contractName,
-                              onPressed: () {
-                                Navigator.push(
-                                    context, ViewContractPage.route());
-                              },
-                            );
-                          });
+                        itemCount: state.contractList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final contract = state.contractList[index];
+                          return OfferListTile(
+                            text: contract.contractName,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  ViewContractPage.route(
+                                      contractModel: contract));
+                            },
+                          );
+                        },
+                      );
                     }
                   }
                   if (state is ContractsLoadingState) {
@@ -62,7 +63,7 @@ class ContractsPage extends StatelessWidget {
               ),
               const AuthPadding(
                 child: PanelTitleWidget(
-                  title: 'Provider Contracts',
+                  title: 'Service Provider Contracts',
                   padding: false,
                 ),
               ),
@@ -81,7 +82,9 @@ class ContractsPage extends StatelessWidget {
                               text: contract.contractName,
                               onPressed: () {
                                 Navigator.push(
-                                    context, ViewContractPage.route());
+                                    context,
+                                    ViewContractPage.route(
+                                        contractModel: contract));
                               },
                             );
                           });

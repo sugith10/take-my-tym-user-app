@@ -5,7 +5,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_radius.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 
-
 class ChatFloatingActionButton extends StatefulWidget {
   final VoidCallback callBack;
 
@@ -21,7 +20,6 @@ class ChatFloatingActionButton extends StatefulWidget {
 
 class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
     with SingleTickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<Alignment> _topAlignmentAnimation;
   late Animation<Alignment> _bottomAlignmentAnimation;
@@ -30,10 +28,9 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this,
-        duration: const Duration(
-          seconds: 20,
-        ));
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    );
 
     _topAlignmentAnimation = TweenSequence<Alignment>([
       TweenSequenceItem<Alignment>(
@@ -86,7 +83,6 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
 
   @override
   void dispose() {
-
     _controller.dispose();
     _topAlignmentAnimation;
     _bottomAlignmentAnimation;
@@ -130,16 +126,11 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                     width: 30,
                     animation: false,
                   ),
-
                   SizedBox(width: 10.w),
                   const Text("Chat"),
                 ],
               ),
               backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                MyAppRadius.borderRound,
-              )),
             ),
           );
         });

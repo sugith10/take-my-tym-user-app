@@ -10,7 +10,7 @@ import '../../../../core/widgets/success_widget/success_page.dart';
 import '../bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
 import '../widgets/animated_dot_widget.dart';
-import '../widgets/proposal_message.dart';
+import '../../../../core/widgets/contct_form.dart';
 import '../widgets/proposel_time_line.dart';
 import '../widgets/submit_proposel_app_bar.dart';
 
@@ -75,7 +75,6 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
             _focusNode.requestFocus();
           }
         }
-
         if (state is SubmitProposalSuccessState) {
           context.read<GetProposalBloc>().add(ProposalGetEvent(uid: userId));
           Navigator.push(context, SuccessPage.route(pop: true));
@@ -127,7 +126,11 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                     if (value == 0) {
                       return const ProposelTimeLine();
                     } else {
-                      return ProposalMessage(
+                      return ContactForm(
+                        title: "Why hire you?",
+                        subtitle: "Tell the hirer why you're a good fit.",
+                        note:
+                            "Before commit with any contract make sure you reachout contracter and verified the source.",
                         callback: () {
                           submitProposalBloc.add(
                             ProposalSubmitEvent(
@@ -139,7 +142,15 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                         },
                         controller: _msgCntrl,
                         focusNode: _focusNode,
-                        bloc: submitProposalBloc,
+                        child: BlocBuilder(
+                          bloc: submitProposalBloc,
+                          builder: (context, state) {
+                            if (state is SubmitProposalLoadingState) {
+                              return const CircularProgressIndicator();
+                            }
+                            return const Text("Submit");
+                          },
+                        ),
                       );
                     }
                   },

@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
-import 'package:take_my_tym/features/proposals/data/datasources/remote/accept_proposal.dart';
-import 'package:take_my_tym/features/proposals/data/datasources/remote/get_user_data.dart';
-import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
+import 'package:take_my_tym/features/proposal/data/datasources/remote/accept_proposal.dart';
+import 'package:take_my_tym/features/proposal/data/datasources/remote/get_user_data.dart';
+import 'package:take_my_tym/features/proposal/data/models/offer_model.dart';
 
 import '../../../../contract/data/models/contract_model.dart';
 

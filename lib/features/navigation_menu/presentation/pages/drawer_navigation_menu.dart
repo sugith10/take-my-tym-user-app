@@ -21,6 +21,7 @@ class DrawerNavBar extends StatelessWidget {
         children: [
           const ProfileWidget(
             picture: MyAppImages.testProfile,
+            
           ),
           Expanded(
             child: ListView(

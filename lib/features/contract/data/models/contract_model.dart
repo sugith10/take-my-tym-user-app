@@ -68,7 +68,7 @@ class ContractModel {
     };
   }
 
-  factory ContractModel.fromMap(Map<String, dynamic> map) {
+  factory ContractModel.fromMap(Map<String, dynamic> map, String contractId) {
     return ContractModel(
       date: map['date'] as Timestamp, 
       amount: map['amount'] as double,
@@ -79,14 +79,14 @@ class ContractModel {
       contractEnded: map['contractEnded'] as bool,
       paymentId: map['paymentId'] as String,
       contractName: map['contractName'] as String,
-      contractId: map['contractId'] != null ? map['contractId'] as String : null,
+      contractId: contractId,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ContractModel.fromJson(String source) =>
-      ContractModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  // factory ContractModel.fromJson(String source) =>
+  //     ContractModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

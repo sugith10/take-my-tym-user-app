@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
@@ -12,7 +10,9 @@ final class UserPostsRemote {
           .where("uid", isEqualTo: uid)
           .orderBy('postDate', descending: true)
           .get();
-      log("query completerd");
+      if (posts.docs.isEmpty) {
+        throw const AppException(alert: "No data found");
+      }
       final buyTymPosts = posts.docs
           .map(
             (doc) => PostModel.fromMap(
@@ -32,10 +32,12 @@ final class UserPostsRemote {
     try {
       final posts = await FirebaseFirestore.instance
           .collection('sellTymPost')
-          .where("uid",
-              isEqualTo: uid).orderBy('postDate', descending: false)
+          .where("uid", isEqualTo: uid)
+          .orderBy('postDate', descending: false)
           .get();
-      log("query completerd");
+      if (posts.docs.isEmpty) {
+        throw const AppException(alert: "No data found");
+      }
       final buyTymPosts = posts.docs
           .map(
             (doc) => PostModel.fromMap(

@@ -34,6 +34,7 @@ class AppDialog {
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppDarkColor.instance.primaryTextBlur,
                       ),
+                      textAlign: TextAlign.center,
                 ),
                 const Spacer(),
                 _MessageButton(

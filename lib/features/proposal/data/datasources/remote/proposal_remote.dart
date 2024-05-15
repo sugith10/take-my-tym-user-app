@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
-import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
-import 'package:take_my_tym/features/proposals/data/models/proposal_model.dart';
-import 'package:take_my_tym/features/proposals/data/models/submit_model.dart';
+import 'package:take_my_tym/features/proposal/data/models/offer_model.dart';
+import 'package:take_my_tym/features/proposal/data/models/proposal_model.dart';
+import 'package:take_my_tym/features/proposal/data/models/submit_model.dart';
 
 class ProposalRemote {
   final _ref = FirebaseFirestore.instance.collection("proposals");

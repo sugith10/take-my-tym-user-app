@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app_view.dart';
 import 'core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'features/auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
-import 'features/contract/presentation/contracts_bloc/contracts_bloc.dart';
+import 'features/contract/presentation/bloc/contracts_bloc/contracts_bloc.dart';
 import 'features/home/presentation/bloc/community_posts_bloc/community_posts_bloc.dart';
 import 'features/message/presentation/bloc/chat_list_bloc/chat_list_bloc.dart';
-import 'features/proposals/presentation/bloc/get_offer_bloc/get_proposal_bloc.dart';
+import 'features/proposal/presentation/bloc/get_offer_bloc/get_proposal_bloc.dart';
 import 'features/view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import 'features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
 

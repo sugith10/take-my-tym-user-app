@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
-import 'package:take_my_tym/features/proposals/data/datasources/remote/proposal_remote.dart';
-import 'package:take_my_tym/features/proposals/data/models/offer_model.dart';
-import 'package:take_my_tym/features/proposals/data/models/submit_model.dart';
+import 'package:take_my_tym/features/proposal/data/datasources/remote/proposal_remote.dart';
+import 'package:take_my_tym/features/proposal/data/models/offer_model.dart';
+import 'package:take_my_tym/features/proposal/data/models/submit_model.dart';
 
 part 'submit_proposal_event.dart';
 part 'submit_proposal_state.dart';
@@ -32,8 +32,8 @@ class SubmitProposalBloc
       final message = event.message.trim();
       if (message.length < 5) {
         final AppErrorMsg appError = AppErrorMsg(
-          title: 'Please provide a proper messsage.',
-          content: "Without proper message you can't a proposel...",
+          title: 'Provide a proper messsage.',
+          content: "Without proper message you can't submit a proposel.",
         );
         emit(SubmitProposalErrorState(error: appError));
       } else {

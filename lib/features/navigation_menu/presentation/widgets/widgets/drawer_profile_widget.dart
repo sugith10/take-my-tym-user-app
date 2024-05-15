@@ -21,6 +21,7 @@ class ProfileWidget extends StatelessWidget {
             const CircleProfilePicWidget(
               height: 80,
               width: 80,
+              loopAnimation: true,
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -29,7 +30,7 @@ class ProfileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.read<AppUserBloc>().userModel!.firstName,
+                    context.read<AppUserBloc>().userModel!.userName,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: 10),

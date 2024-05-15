@@ -94,8 +94,10 @@ class AcceptProposalPage extends StatelessWidget {
                 const OfferSubtitleWidget(title: "Proposed by"),
                 SizedBox(height: 10.h),
                 GetUserInfoWidget(
-                  offerModel: offerModel,
+                  dateDescription: "Proposed on",
                   getProfileBloc: GetProfileBloc(),
+                  timestamp: offerModel.proposelDate,
+                  userId: offerModel.applicantUid,
                 ),
                 SizedBox(height: 25.h),
                 AcceptMessage(msg: offerModel.message),
@@ -122,8 +124,7 @@ class AcceptProposalPage extends StatelessWidget {
             Navigator.push(
                 context,
                 PaymentPage.route(
-                    type: WalletAction.transfer,
-                    amount: postModel.price));
+                    type: WalletAction.transfer, amount: postModel.price));
           },
         ),
       ),

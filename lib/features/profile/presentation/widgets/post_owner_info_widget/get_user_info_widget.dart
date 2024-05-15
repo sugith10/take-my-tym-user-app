@@ -1,18 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../proposals/data/models/offer_model.dart';
 import '../../bloc/get_profile_bloc/get_profile_bloc.dart';
 import 'post_owner_info_widget.dart';
 
 class GetUserInfoWidget extends StatelessWidget {
-  final OfferModel offerModel;
-
+  final String userId;
+  final String dateDescription;
+  final Timestamp? timestamp;
   final GetProfileBloc getProfileBloc;
   const GetUserInfoWidget({
     required this.getProfileBloc,
-    required this.offerModel,
-    super.key,
+     this.timestamp,
+    required this.dateDescription,
+    super.key, required this.userId,
   });
 
   @override
@@ -20,22 +21,20 @@ class GetUserInfoWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: getProfileBloc
         ..add(
-          GetProfileEvent(userId: offerModel.applicantUid),
+          GetProfileEvent(userId: userId),
         ),
       builder: (context, state) {
         if (state is GetProfileLoaded) {
           return UserInfoWidget(
             description: "Proposed on",
-            date: offerModel.proposelDate,
-            image: '',
+            date: timestamp,
             name: state.userModel.userName,
           );
         }
 
         return UserInfoWidget(
           description: "Proposed on",
-          date: offerModel.proposelDate,
-          image: '',
+          date: timestamp,
           name: "...",
         );
       },

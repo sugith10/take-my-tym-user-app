@@ -10,7 +10,6 @@ class ContractRemoteData {
 
   Future<(List<ContractModel>, List<ContractModel>)> activeContracts(
       {required String userId}) async {
-    log("user id: $userId");
     try {
       List<ContractModel> contractList = [];
       List<ContractModel> serviceProviderList = [];
@@ -25,12 +24,12 @@ class ContractRemoteData {
 
       if (clientContracts.docs.isNotEmpty) {
         contractList = clientContracts.docs.map((map) {
-          return ContractModel.fromMap(map.data());
+          return ContractModel.fromMap(map.data(), map.id);
         }).toList();
       }
       if (serviceProviderContracts.docs.isNotEmpty) {
         serviceProviderList = serviceProviderContracts.docs.map((map) {
-          return ContractModel.fromMap(map.data());
+          return ContractModel.fromMap(map.data(), map.id);
         }).toList();
       }
       log("loading done: $userId");
@@ -57,18 +56,44 @@ class ContractRemoteData {
 
       if (clientContracts.docs.isNotEmpty) {
         contractList = clientContracts.docs.map((map) {
-          return ContractModel.fromMap(map.data());
+          return ContractModel.fromMap(map.data(), map.id);
         }).toList();
       }
       if (serviceProviderContracts.docs.isNotEmpty) {
         serviceProviderList = serviceProviderContracts.docs.map((map) {
-          return ContractModel.fromMap(map.data());
+          return ContractModel.fromMap(map.data(), map.id);
         }).toList();
       }
       return (contractList, serviceProviderList);
     } catch (e) {
       appLogger.e("Error fetching contracts: $e");
       throw AppException(alert: e.toString(), details: e.toString());
+    }
+  }
+
+  Future<void> finishContract({
+    required ContractModel contractModel,
+  }) async {
+    try {
+      await _ref.doc(contractModel.contractId).set(contractModel.toMap());
+           appLogger.i(contractModel);
+      return;
+    } catch (e) {
+      throw AppException(alert: e.toString());
+    }
+  }
+
+  Future<void> contractCustomerService({
+    required ContractModel contractModel,
+    required String msg,
+  }) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("contracts")
+          .add({"message": msg});
+      return;
+    } catch (e) {
+      throw AppException(alert: e.toString());
     }
   }
 }

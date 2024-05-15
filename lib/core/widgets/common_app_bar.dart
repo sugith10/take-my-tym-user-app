@@ -15,6 +15,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
         icon: const Icon(IconlyLight.arrow_left),
       ),
+      automaticallyImplyLeading: false,
     );
   }
 

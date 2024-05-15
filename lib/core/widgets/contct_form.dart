@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/widgets/app_title_box_widget.dart';
-import '../../../../core/widgets/home_padding.dart';
-import '../../../../core/widgets/submit_button.dart';
-import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
+import '../utils/app_colors.dart';
+import 'app_title_box_widget.dart';
+import 'home_padding.dart';
+import 'submit_button.dart';
 
-class ProposalMessage extends StatelessWidget {
+class ContactForm extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback callback;
   final FocusNode focusNode;
-  final SubmitProposalBloc bloc;
+  final Widget child;
+  final String title;
+  final String subtitle;
+  final String note;
 
-  const ProposalMessage({
+  const ContactForm({
     required this.callback,
     required this.focusNode,
     required this.controller,
-    required this.bloc,
+    required this.child,
+    required this.title,
+    required this.subtitle,
+    required this.note,
     super.key,
   });
 
@@ -32,7 +36,7 @@ class ProposalMessage extends StatelessWidget {
           children: [
             SizedBox(height: 10.h),
             AppTitleBoxWidget(
-              title: "Why hire you?",
+              title: title,
               child: SizedBox(
                 height: 100.h,
                 child: SingleChildScrollView(
@@ -43,7 +47,7 @@ class ProposalMessage extends StatelessWidget {
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
-                      hintText: "Tell the hirer why you're a good fit.",
+                      hintText: subtitle,
                       hintStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
                     maxLines: null,
@@ -56,7 +60,7 @@ class ProposalMessage extends StatelessWidget {
             ),
             SizedBox(height: 40.h),
             Text(
-              "Note: Before commit with any contract make sure you reachout contracter and verified the source.",
+              "Note: $note",
               style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),
@@ -72,15 +76,7 @@ class ProposalMessage extends StatelessWidget {
                       callback();
                     },
                     text: 'Submit',
-                    child: BlocBuilder(
-                      bloc: bloc,
-                      builder: (context, state) {
-                        if (state is SubmitProposalLoadingState) {
-                          return const CircularProgressIndicator();
-                        }
-                        return const Text("Submit");
-                      },
-                    ),
+                    child: child,
                   ),
                 ),
               ],

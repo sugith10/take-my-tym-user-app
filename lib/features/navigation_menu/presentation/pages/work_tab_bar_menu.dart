@@ -3,7 +3,7 @@ import 'package:take_my_tym/features/contract/presentation/pages/contracts_page.
 
 import '../../../../core/widgets/app_bar/app_bar_title.dart';
 import '../../../../core/widgets/app_bar/settings_button.dart';
-import '../../../proposals/presentation/pages/proposals_page.dart';
+import '../../../proposal/presentation/pages/proposals_page.dart';
 import '../../../wallet/presentation/pages/wallet_page.dart';
 
 class WorkTabBar extends StatelessWidget {

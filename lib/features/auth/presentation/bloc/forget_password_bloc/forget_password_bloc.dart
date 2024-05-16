@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
@@ -9,25 +10,31 @@ part 'forget_password_state.dart';
 class ForgetPasswordBloc
     extends Bloc<ForgetPasswordEvent, ForgetPasswordState> {
   ForgetPasswordBloc() : super(ForgetPasswordInitial()) {
-    on<ForgetPasswordEvent>((event, emit) async {
-      emit(ForgetPasswordLoadingState());
-      try {
-        ForgetPasswordUseCase forgetPasswordUseCase =
-            GetIt.instance<ForgetPasswordUseCase>();
-        await forgetPasswordUseCase
-            .resetPassword(email: event.email.trim())
-            .then(
-              (value) => emit(
-                ForgetPasswordSuccessState(),
-              ),
-            );
-      } catch (e) {
-        emit(
-          ForgetPasswordFailState(
-           error: AppErrorMsg()
-          ),
-        );
-      }
-    });
+    on<ForgetPasswordEvent>(_onForgetPassword);
+  }
+
+  /// Handles the forget password process, including showing loading state,
+  /// calling the use case to reset the password, and emitting success or failure states.
+  void _onForgetPassword(
+      ForgetPasswordEvent event, Emitter<ForgetPasswordState> emit) async {
+    // Emit the ForgetPasswordLoadingState to show that the action is in progress
+    emit(ForgetPasswordLoadingState());
+    try {
+      // Get the ForgetPasswordUseCase from the GetIt.instance
+      ForgetPasswordUseCase forgetPasswordUseCase =
+          GetIt.instance<ForgetPasswordUseCase>();
+      // Call the resetPassword method with the email from the event
+      await forgetPasswordUseCase.resetPassword(email: event.email.trim()).then(
+            // If the password is reset successfully, emit the ForgetPasswordSuccessState
+            (value) => emit(
+              ForgetPasswordSuccessState(),
+            ),
+          );
+    } catch (e) {
+      // If an error occurs, emit the ForgetPasswordFailState with the error message
+      emit(
+        ForgetPasswordFailState(error: AppAlert ()),
+      );
+    }
   }
 }

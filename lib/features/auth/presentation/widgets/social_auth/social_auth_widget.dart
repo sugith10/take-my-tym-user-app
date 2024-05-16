@@ -7,7 +7,7 @@ import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../../core/utils/app_assets/app_png.dart';
 import '../../../../../core/widgets/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
-import '../../../../profile/presentation/pages/profile_setup_page.dart';
+import '../../../../profile/presentation/page/profile_setup_page.dart';
 import '../../bloc/social_auth_bloc/social_auth_bloc.dart';
 
 

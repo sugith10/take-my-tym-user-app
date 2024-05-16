@@ -14,4 +14,6 @@ final class UpdateProfileSuccessState extends UpdateProfileState {
   const UpdateProfileSuccessState({required this.userModel});
 }
 
+final class UpdateProfileLoadingState extends UpdateProfileState {}
+
 final class UpdataProfileFailState extends UpdateProfileState {}

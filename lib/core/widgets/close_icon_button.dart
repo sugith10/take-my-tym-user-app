@@ -17,8 +17,8 @@ class CloseIconButton extends StatelessWidget {
     return IconButton.outlined(
       style: ButtonStyle(
         backgroundColor:
-            MaterialStatePropertyAll(Theme.of(context).scaffoldBackgroundColor),
-        side: MaterialStatePropertyAll(
+            WidgetStatePropertyAll(Theme.of(context).scaffoldBackgroundColor),
+        side: WidgetStatePropertyAll(
           BorderSide(
             color: borderColor != null
                 ? borderColor!

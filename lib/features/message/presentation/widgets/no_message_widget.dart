@@ -15,7 +15,7 @@ class NoMessageWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(flex: 1),
-        Lottie.asset(AppLottie.msg),
+        Lottie.asset(AppLottie.message),
         const NotYetWidget(
           title: "No messages yet",
           subtitle: "You'll find your conversations all right here.",

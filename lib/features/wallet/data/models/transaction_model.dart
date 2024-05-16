@@ -36,7 +36,7 @@ class TransactionModel {
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
       timestamp: map['timestamp'] as Timestamp,
-      amount: map['amount'] as double,
+      amount: (map['amount'] is int) ? (map['amount'] as int).toDouble() : map['amount'] as double,
       transactionType: map['transactionType'] as bool,
     );
   }

@@ -40,7 +40,7 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
 
   void _onCompleted(
     GetCompletedContractsEvent event,
-    Emitter<ContractsState> state,
+    Emitter<ContractsState> emit,
   ) async {
     type = false;
     try {

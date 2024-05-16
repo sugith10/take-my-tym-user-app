@@ -11,7 +11,7 @@ import '../../../../core/widgets/common_app_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../profile/presentation/bloc/get_profile_bloc/get_profile_bloc.dart';
-import '../../../profile/presentation/widgets/post_owner_info_widget/get_user_info_widget.dart';
+import '../../../profile/presentation/widget/post_owner_info_widget/get_user_info_widget.dart';
 import '../../../../core/widgets/posted_content.dart';
 import '../../../wallet/presentation/pages/payment_page.dart';
 import '../../../wallet/presentation/util/wallet_action_type.dart';

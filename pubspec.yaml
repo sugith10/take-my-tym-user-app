@@ -48,6 +48,7 @@ dependencies:
   rive_animated_icon: ^1.0.2
   flutter_dotenv: ^5.1.0
   intl: ^0.19.0
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -60,16 +61,15 @@ flutter:
 
   assets:
     - .env
-    - asset/img/auth/
-    - asset/img/
     - assets/lottie/
-    - asset/img/test/
-    - asset/img/icons/
-    - assets/svg/snackbar/
-    - asset/img/ad/
     - assets/audio/
     - assets/svg/
+    - assets/svg/snackbar/
+    - assets/svg/icons/
     - assets/png/
+    - assets/png/ad/
+    - assets/png/auth/
+    - assets/png/icon/
 
   fonts:
     - family: Poppins

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/widgets/empty_list_text.dart';
 import '../../../../core/widgets/panel_title_widget.dart';
 import '../../../../core/widgets/offer_list_tile.dart';
@@ -10,9 +11,20 @@ import '../bloc/contracts_bloc/contracts_bloc.dart';
 import '../widgets/contract_tab_buttons.dart';
 import 'view_contract_page.dart';
 
-class ContractsPage extends StatelessWidget {
+class ContractsPage extends StatefulWidget {
   const ContractsPage({super.key});
 
+  @override
+  State<ContractsPage> createState() => _ContractsPageState();
+}
+
+class _ContractsPageState extends State<ContractsPage> {
+  @override
+  void initState() {
+        super.initState();
+        context.read<ContractsBloc>().add( GetActiveContractsEvent(
+                  userId: context.read<AppUserBloc>().userModel!.uid),);
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

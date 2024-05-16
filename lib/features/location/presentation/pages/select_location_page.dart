@@ -68,7 +68,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                 widget.locationBloc.add(CurrentLocationEvent());
               },
               style: const ButtonStyle(
-                  fixedSize: MaterialStatePropertyAll(
+                  fixedSize: WidgetStatePropertyAll(
                       Size(double.infinity, kToolbarHeight))),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

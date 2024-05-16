@@ -83,8 +83,8 @@ class _MessageButton extends StatelessWidget {
                 callback();
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(backgroundColor),
-                foregroundColor: MaterialStatePropertyAll(foregroundColor),
+                backgroundColor: WidgetStatePropertyAll(backgroundColor),
+                foregroundColor: WidgetStatePropertyAll(foregroundColor),
               ),
               child: action),
         ),

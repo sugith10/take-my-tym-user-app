@@ -49,10 +49,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ContractsBloc>(
           create: (context) => ContractsBloc()
-            ..add(
-              GetActiveContractsEvent(
-                  userId: context.read<AppUserBloc>().userModel!.uid),
-            ),
+           
         ),
         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
       ],

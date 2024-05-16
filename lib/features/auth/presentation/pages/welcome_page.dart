@@ -8,8 +8,8 @@ import '../widgets/welcome_button.dart';
 import '../widgets/welcome_page_animation.dart';
 
 class WelcomePage extends StatelessWidget {
-  static route ()=> noMovement(const WelcomePage());
   const WelcomePage({super.key});
+  static route() => noMovement(const WelcomePage());
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

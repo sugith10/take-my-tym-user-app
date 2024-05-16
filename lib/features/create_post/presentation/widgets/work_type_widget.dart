@@ -71,13 +71,13 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
         showSelectedIcon: true,
         style: ButtonStyle(
           visualDensity: VisualDensity.comfortable,
-          side: MaterialStatePropertyAll(
+          side: WidgetStatePropertyAll(
               BorderSide(color: AppDarkColor.instance.primarySoftBorder)),
-          padding: const MaterialStatePropertyAll(EdgeInsets.all(5)),
-          backgroundColor: const MaterialStatePropertyAll(
+          padding: const WidgetStatePropertyAll(EdgeInsets.all(5)),
+          backgroundColor: const WidgetStatePropertyAll(
             Colors.transparent,
           ),
-          foregroundColor: const MaterialStatePropertyAll(
+          foregroundColor: const WidgetStatePropertyAll(
             Color.fromARGB(255, 254, 254, 254),
           ),
         ),

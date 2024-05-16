@@ -12,14 +12,14 @@ class PanelTitleWidget extends StatelessWidget {
   const PanelTitleWidget({
     required this.title,
     this.padding = true,
-    
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: padding ? MyAppPadding.authPadding : 0),
+      padding: EdgeInsets.symmetric(
+          horizontal: padding ? MyAppPadding.authPadding : 0),
       child: Column(
         children: [
           SizedBox(height: padding ? 25 : 20),
@@ -37,6 +37,9 @@ class PanelTitleWidget extends StatelessWidget {
                 icon: Icon(
                   IconlyLight.info_circle,
                   color: AppDarkColor.instance.gradientPrimary,
+                ),
+                style: IconButton.styleFrom(
+                  backgroundColor:  AppDarkColor.instance.softBackground,
                 ),
               ),
             ],

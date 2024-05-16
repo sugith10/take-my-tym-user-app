@@ -27,21 +27,32 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   }
 
   void _onBalance(
+    // Receives the balance event
     WalletBalanceEvent event,
+    // Emits a wallet state
     Emitter<WalletState> emit,
   ) async {
+    // Emit an initial state with show set to false
     emit(const WalletInitialState(show: false));
     try {
+      // Create an instance of local authentication
       final LocalAuthentication auth = LocalAuthentication();
+      // Authenticate with the device
       final bool pass = await auth.authenticate(
+        // Provide a localized reason for the authentication request
         localizedReason:
             "Confirm your screen lock PIN, Password or Fingerprint",
       );
+      // If the authentication is successful
       if (pass) {
+        // Emit a loading state
         emit(WalletLoadingState());
+        // Get the wallet balance and transactions
         final WalletModel walletModel =
             await GetIt.instance<WalletUseCase>().walletBalance(uid: event.uid);
+        // Get the current date and time
         final now = DateTime.now();
+        // Emit a loaded state with the balance, transactions, and current date and time
         emit(
           WalletLoadedState(
             balance: walletModel.balance,
@@ -51,9 +62,11 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
           ),
         );
       } else {
+        // If the authentication is unsuccessful, emit an initial state with show set to true
         emit(const WalletInitialState(show: true));
       }
     } catch (e) {
+      // Log any errors
       appLogger.f(e.toString());
     }
   }
@@ -63,17 +76,21 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
     Emitter<WalletState> emit,
   ) async {
     try {
+      // Create a new transaction model with the given amount and type
       final transactionModel = TransactionModel(
         timestamp: Timestamp.now(),
         amount: event.amount,
         transactionType: true,
       );
 
+      // Top up the user's wallet with the given UID
       final walletModel = await WalletRemoteData().walletTopUp(
         uid: event.uid,
         transactionModel: transactionModel,
       );
+      // Get the current date and time
       final now = DateTime.now();
+      // Emit the updated wallet state with the new balance and transactions
       emit(
         WalletLoadedState(
           balance: walletModel.balance,
@@ -83,10 +100,10 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
         ),
       );
     } catch (e) {
-      emit(WalletErrorState(errorMsg: AppErrorMsg(title: e.toString())));
+      // Emit an error state if an exception is thrown
+      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
     }
   }
-
   void _onWithdraw(
     WalletWithdrawEvent event,
     Emitter<WalletState> emit,
@@ -114,9 +131,9 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
         ),
       );
     } on AppException catch (e) {
-      emit(WalletErrorState(errorMsg: AppErrorMsg(title: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
     } catch (e) {
-      emit(WalletErrorState(errorMsg: AppErrorMsg(title: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
     }
   }
 
@@ -148,7 +165,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       ));
     } catch (e) {
      log( "error: ${e.toString()}");
-      emit(WalletErrorState(errorMsg: AppErrorMsg(title: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
     }
   }
 }

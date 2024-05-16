@@ -4,18 +4,7 @@ import 'package:take_my_tym/core/utils/app_logger.dart';
 
 
 class AppBlocObserver extends BlocObserver {
-  // ///We can run something, when we create our Bloc
-  // @override
-  // void onCreate(BlocBase bloc) {
-  //   super.onCreate(bloc);
-
-  //   ///We can check, if the BlocBase is a Bloc or a Cubit
-  //   if (bloc is Cubit) {
-  //     appLogger.t("This is a Cubit");
-  //   } else {
-  //     appLogger.i("This is a Bloc");
-  //   }
-  // }
+ 
 
   ///We can react to events
   @override

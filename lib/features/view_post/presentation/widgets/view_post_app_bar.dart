@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/widgets/back_navigation_button.dart';
 import '../../../../core/widgets/popup_menu_item_child_widget.dart';
 
 class ViewPostAppBar extends StatelessWidget {

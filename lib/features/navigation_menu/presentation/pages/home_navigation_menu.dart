@@ -7,7 +7,7 @@ import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../create_post/presentation/pages/create_post_first_page.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../message/presentation/pages/chat_list_page.dart';
-import '../../../profile/presentation/pages/profile_page.dart';
+import '../../../profile/presentation/page/profile_page.dart';
 import 'work_tab_bar_menu.dart';
 import '../bloc/navigation_bloc.dart';
 import 'drawer_navigation_menu.dart';

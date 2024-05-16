@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/time_stamp_to_time.dart';
+import '../../../../core/utils/name_capitalize.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/popup_menu_item_child_widget.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
@@ -33,6 +33,8 @@ class IndividualChatPage extends StatefulWidget {
 }
 
 class _IndividualChatPageState extends State<IndividualChatPage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +44,18 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
         recipientUserId: widget.receiverUid,
       ),
     );
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,8 +91,10 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                     action: 'Block',
                     actionCall: () {},
                   );
+                  break;
                 case 'Report':
                   log('report');
+                  break;
               }
             },
           )
@@ -94,19 +110,23 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                 stream: state.messages,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      _scrollToBottom();
+                    });
+
                     return ListView.builder(
+                      controller: _scrollController,
                       physics: const AlwaysScrollableScrollPhysics(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         final messageData = snapshot.data!.docs[index];
                         final message = messageData['message'] ?? 'error';
                         final senderId = messageData['senderUid'] ?? 'error';
-                        final time =
-                            messageData['timestamp'] ?? Timestamp.now();
+                        final time = messageData['timestamp'] ?? Timestamp.now();
                         return ChatWidget(
                           message: message,
                           senderId: senderId,
-                          time: timestampToTime(time),
+                          time: TextManipulator.timestampToTime(time),
                         );
                       },
                     );

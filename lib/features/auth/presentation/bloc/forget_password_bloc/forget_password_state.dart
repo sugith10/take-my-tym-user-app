@@ -7,7 +7,7 @@ sealed class ForgetPasswordState {
 final class ForgetPasswordInitial extends ForgetPasswordState {}
 
 final class ForgetPasswordFailState extends ForgetPasswordState {
-final AppErrorMsg error;
+final AppAlert  error;
   ForgetPasswordFailState({required this.error,});
 }
 

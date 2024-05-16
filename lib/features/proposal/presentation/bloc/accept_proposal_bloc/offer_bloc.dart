@@ -67,7 +67,7 @@ class AcceptProposalBloc extends Bloc<OfferEvent, OfferState> {
         clientId: event.userId,
         serviceProviderId: event.offerModel.applicantUid,
         contractStrated: true,
-        contractFail: false,
+        paymentApproved: false,
         contractEnded: false,
         paymentId: event.paymentId,
         contractName: event.postModel.title,

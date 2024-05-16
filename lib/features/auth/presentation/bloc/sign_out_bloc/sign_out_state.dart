@@ -12,7 +12,7 @@ final class SignOutInitial extends SignOutState {}
 final class UserSignOutLoadingState extends SignOutState {}
 
 final class UserSignOutFailState extends SignOutState {
-  final AppErrorMsg error;
+  final AppAlert  error;
 
   const UserSignOutFailState({
     required this.error,

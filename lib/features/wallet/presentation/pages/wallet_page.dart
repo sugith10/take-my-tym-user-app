@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/utils/time_stamp_to_date.dart';
+import '../../../../core/utils/name_capitalize.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/wallet_bloc/wallet_bloc.dart';
@@ -109,7 +109,8 @@ class WalletPage extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                         child: TransactionTile(
                           type: transactionModel.transactionType,
-                          time: timestampToDate(transactionModel.timestamp),
+                          time: TextManipulator.timestampToDate(
+                              transactionModel.timestamp),
                           amount: transactionModel.amount.toString(),
                         ),
                       );

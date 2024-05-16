@@ -8,14 +8,14 @@ import 'package:take_my_tym/core/utils/app_radius.dart';
 final class AppSnackBar {
   static  failSnackBar({
     required BuildContext context,
-     AppErrorMsg? error,
+     AppAlert ? error,
   }) {
-    error = error ?? AppErrorMsg();
+    error = error ?? AppAlert ();
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: _SnackBarContentWidget(
-          message: error.title,
-          description: error.content,
+          message: error.alert,
+          description: error.details,
           backgroundColor: const Color(0xFFC72c41),
           assetColor: const Color(0xFF801336),
           icon: AppSvg.snackBarFail,

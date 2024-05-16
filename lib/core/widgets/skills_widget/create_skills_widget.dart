@@ -22,9 +22,9 @@ class CollectItemsWidget extends StatefulWidget {
 
 class _CollectItemsWidgetState extends State<CollectItemsWidget> {
   final TextEditingController _categoryCntrl = TextEditingController();
-  final AppErrorMsg _errorMsg = AppErrorMsg(
-      title: "Skill limit reached",
-      content: "You have reached the maximum number of skills allowed.");
+  final AppAlert  _errorMsg = AppAlert (
+      alert: "Skill limit reached",
+      details: "You have reached the maximum number of skills allowed.");
   Set<String> skills = {};
   @override
   void dispose() {

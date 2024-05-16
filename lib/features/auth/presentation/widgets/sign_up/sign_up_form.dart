@@ -84,7 +84,7 @@ class SignUpForm extends StatelessWidget {
             fadeInDelay: 675,
             fadeInDuration: 750,
             controller: emailCntrl,
-            prefixIcon: const Icon(Icons.mail_outline_rounded),
+            prefixIcon: Icons.mail_outline_rounded,
             hintText: "Email",
             obsecureText: false,
             showSuffixIcon: false,
@@ -109,7 +109,7 @@ class SignUpForm extends StatelessWidget {
             showSuffixIcon: true,
             errorMsg: errorMsg,
             keyboardType: TextInputType.visiblePassword,
-            prefixIcon: const Icon(Icons.password_rounded),
+            prefixIcon: Icons.password_rounded,
             validator: (val) {
               if (val!.isEmpty) {
                 return "Please fill in this Field.";
@@ -129,7 +129,7 @@ class SignUpForm extends StatelessWidget {
             showSuffixIcon: true,
             errorMsg: errorMsg,
             keyboardType: TextInputType.visiblePassword,
-            prefixIcon: const Icon(Icons.password_rounded),
+            prefixIcon: Icons.password_rounded,
             validator: (val) {
               if (val!.isEmpty) {
                 return "Please fill in this Field.";

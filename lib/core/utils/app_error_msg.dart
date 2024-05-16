@@ -1,9 +1,17 @@
-final class AppErrorMsg {
-  String title;
-  String content;
+/// Represents an alert message to be displayed in the UI, used in the custom SnacBar Widget.
+class AppAlert {
+  /// The title of the alert.
+  ///
+  /// Defaults to 'Oops! Something went wrong'.
+  final String alert;
 
-  AppErrorMsg({
-    this.title = 'Oops! Something went wrong',
-    this.content = 'An unexpected error occured. Please try again...',
+  /// Details or description of the alert.
+  ///
+  /// Defaults to 'An unexpected error occurred. Please try again...'.
+  final String details;
+
+  AppAlert({
+    this.alert = 'Oops! Something went wrong',
+    this.details = 'An unexpected error occurred. Please try again...',
   });
 }

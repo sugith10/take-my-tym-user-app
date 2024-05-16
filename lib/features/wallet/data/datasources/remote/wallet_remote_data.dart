@@ -16,7 +16,6 @@ class WalletRemoteData {
         await walletDocRef.set(
           WalletModel(balance: 0.0, transactions: []).toMap(),
         );
-
         return WalletModel(balance: 0.0, transactions: []);
       } else {
         final WalletModel walletModel =

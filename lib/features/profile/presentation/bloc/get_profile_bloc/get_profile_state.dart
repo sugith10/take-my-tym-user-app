@@ -18,6 +18,6 @@ const  GetProfileLoaded({required this.userModel});
 
 
 final class GetProfileFail extends GetProfileState {
-  final AppErrorMsg errorMsg;
+  final AppAlert  errorMsg;
   const GetProfileFail({required this.errorMsg});
 }

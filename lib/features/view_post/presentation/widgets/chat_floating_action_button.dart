@@ -127,7 +127,7 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                     animation: false,
                   ),
                   SizedBox(width: 10.w),
-                  const Text("Chat"),
+                  Text("Chat", style: Theme.of(context).textTheme.labelMedium),
                 ],
               ),
               backgroundColor: Colors.transparent,

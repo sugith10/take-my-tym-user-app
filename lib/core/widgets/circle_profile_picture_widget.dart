@@ -47,7 +47,10 @@ class CircleProfilePicWidget extends StatelessWidget {
                 color: AppDarkColor.instance.primaryText,
                 loopAnimation: loopAnimation,
               )
-            : const Icon(IconlyBroken.profile);
+            : Icon(
+                IconlyBroken.profile,
+                color: AppDarkColor.instance.iconColor,
+              );
   }
 }
 

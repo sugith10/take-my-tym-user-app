@@ -22,29 +22,40 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
           (value) async {
             // The condition `userModel == null` occurs when the user has not set up their profile yet,
             // indicating that the user is a new user who hasn't completed the profile setup process.
-            if (value.about != null) {
-              await GetIt.instance<LocalUserStorageUseCase>()
-                  .storeUserDataLocal(value);
-              emit(SocialAuthSuccessState(
-                  userModel: value, profileSetupComp: true));
+            if (value.blocked) {
+              emit(SocialAuthFailState(
+                  error: AppAlert (
+                      alert:
+                          "Your account has been blocked.", 
+                          details: "Please contact the service center for more details."
+                          )));
             } else {
-              emit(SocialAuthSuccessState(
-                  userModel: value, profileSetupComp: false));
+              if (value.about != null) {
+                await GetIt.instance<LocalUserStorageUseCase>()
+                    .storeUserDataLocal(value);
+                emit(SocialAuthSuccessState(
+                    userModel: value, profileSetupComp: true));
+              } else {
+                emit(SocialAuthSuccessState(
+                    userModel: value, profileSetupComp: false));
+              }
             }
           },
         );
       } on AppException catch (e) {
         log(e.toString());
-        final AppErrorMsg appError = AppErrorMsg(
-          title: e.alert,content: e.details,
+        final AppAlert  appError = AppAlert (
+          alert: e.alert,
+          details: e.details,
         );
         emit(
           SocialAuthFailState(
-             error: appError,),
+            error: appError,
+          ),
         );
       } catch (e) {
         log(e.toString());
-        final AppErrorMsg appError = AppErrorMsg();
+        final AppAlert  appError = AppAlert ();
         SocialAuthFailState(error: appError);
       }
     });

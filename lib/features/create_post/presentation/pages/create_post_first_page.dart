@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
@@ -12,7 +10,6 @@ import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/create_post_bloc/create_post_bloc.dart';
 import '../widgets/create_page_app_bar.dart';
-import '../widgets/create_post_bottom_bar.dart';
 import '../widgets/create_post_text_field.dart';
 import '../widgets/work_type_widget.dart';
 import 'create_post_second_page.dart';
@@ -61,21 +58,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
     super.dispose();
   }
 
-  File? _image;
-
-  Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedImage != null) {
-        _image = File(pickedImage.path);
-      } else {
-        // print('No image selected.');
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     void colletInfo() {
@@ -102,22 +84,22 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
     }
 
     return BlocListener(
-      bloc: _bloc,
-      listener: (context, state) {
-        if (state is CreateFirstFailState) {
-          AppSnackBar.failSnackBar(context: context, error: state.error);
-        }
-        if (state is CreateFirstSuccessState) {
-          FocusManager.instance.primaryFocus?.unfocus();
-          Navigator.push(
-              context,
-              CreatePostSecondPage.route(
-                postModel: widget.postModel,
-                createPostBloc: _bloc,
-              ));
-        }
-      },
-      child: Scaffold(
+        bloc: _bloc,
+        listener: (context, state) {
+          if (state is CreateFirstFailState) {
+            AppSnackBar.failSnackBar(context: context, error: state.error);
+          }
+          if (state is CreateFirstSuccessState) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            Navigator.push(
+                context,
+                CreatePostSecondPage.route(
+                  postModel: widget.postModel,
+                  createPostBloc: _bloc,
+                ));
+          }
+        },
+        child: Scaffold(
           appBar: CreatePageAppBar(
             next: true,
             actionCall: () {
@@ -144,49 +126,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
                       controller: _titleController,
                       expands: false,
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    //   child: Stack(
-                    //     children: [
-                    //       Container(
-                    //         height: 150.h,
-                    //         width: double.infinity,
-                    //         decoration: BoxDecoration(
-                    //           color: AppDarkColor
-                    //               .instance.bottomNavigationBarBackground,
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: _image != null
-                    //             ? Image.file(
-                    //                 _image!,
-                    //                 fit: BoxFit.contain,
-                    //               )
-                    //             : const SizedBox.shrink(),
-                    //       ),
-                    //       Positioned(
-                    //         top: 10,
-                    //         right: 0,
-                    //         child: ElevatedButton(
-                    //           onPressed: () {},
-                    //           style: ButtonStyle(
-                    //             shape: const MaterialStatePropertyAll(
-                    //               CircleBorder(),
-                    //             ),
-                    //             minimumSize:
-                    //                 MaterialStateProperty.all(Size(30.w, 30.h)),
-                    //             iconSize: const MaterialStatePropertyAll(18),
-                    //             backgroundColor: MaterialStatePropertyAll(
-                    //                 AppDarkColor.instance.glassEffect),
-                    //           ),
-                    //           child: Icon(
-                    //             IconlyBold.delete,
-                    //             color: AppDarkColor.instance.primaryText,
-                    //           ),
-                    //         ),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
                     Expanded(
                       child: CreatePostTextField(
                         hintText: 'Start typing here...',
@@ -200,14 +139,6 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
               ),
             ],
           )),
-          bottomNavigationBar: CreatePostBottomBar(
-            getTymType: getTymType,
-            postModel: widget.postModel,
-            tymType: _tymType,
-            pickImage: () {
-              _pickImage();
-            },
-          )),
-    );
+        ));
   }
 }

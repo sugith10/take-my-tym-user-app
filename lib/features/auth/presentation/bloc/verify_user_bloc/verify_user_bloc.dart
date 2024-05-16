@@ -28,9 +28,9 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
           if (status) {
           emit(const UserVerificationSuccessState());
           }else{
-            final error = AppErrorMsg(
-              title: "The user Not Verified",
-              content: "We send a email verifcation to user given email id. Please verify the email."
+            final error = AppAlert (
+              alert: "The user Not Verified",
+              details: "We send a email verifcation to user given email id. Please verify the email."
             );
              emit( UserNotVerifiedState(
               error: error
@@ -38,9 +38,9 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
           }
         } on AppException catch (e) {
           log(e.toString());
-          final AppErrorMsg error = AppErrorMsg(
-            title: e.alert,
-            content: e.details,
+          final AppAlert  error = AppAlert (
+            alert: e.alert,
+            details: e.details,
           );
           emit(
             VerificationFailedState(
@@ -50,7 +50,7 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
         } catch (e) {
           emit(
             VerificationFailedState(
-             error: AppErrorMsg()
+             error: AppAlert ()
             ),
           );
         }

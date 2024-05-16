@@ -17,7 +17,7 @@ final class SignUpSuccessState extends SignUpState {
 }
 
 final class SignUpFailState extends SignUpState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   const SignUpFailState({
     required this.error,
   });

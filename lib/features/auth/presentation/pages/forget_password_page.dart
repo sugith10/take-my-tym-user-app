@@ -29,6 +29,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   void dispose() {
     _emailController.dispose();
     _formKey;
+    _forgetPasswordBloc.close();
     super.dispose();
   }
 
@@ -73,7 +74,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     showSuffixIcon: false,
                     errorMsg: _errorMsg,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(Icons.mail_outline_rounded),
+                    prefixIcon: Icons.mail_outline_rounded,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return "Please fill in this Field";

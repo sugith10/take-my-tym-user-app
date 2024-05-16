@@ -1,6 +1,10 @@
 part of 'forget_password_bloc.dart';
 
-final class ForgetPasswordEvent {
+final class ForgetPasswordEvent extends Equatable{
   final String email;
-  ForgetPasswordEvent({required this.email});
+ const  ForgetPasswordEvent({required this.email});
+  
+  @override
+
+  List<Object?> get props => [email];
 }

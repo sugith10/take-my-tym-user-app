@@ -4,6 +4,7 @@ import 'package:take_my_tym/core/utils/app_assets/app_font.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
+/// Defines the dark theme for the application.
 final class AppDarkTheme {
   static final AppDarkColor _color = AppDarkColor.instance;
   static final ScreenUtil _screenUtil = ScreenUtil();
@@ -13,10 +14,11 @@ final class AppDarkTheme {
     borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
   );
 
+  /// Dark theme configuration.
   final ThemeData darkTheme = ThemeData(
-    fontFamily: MyAppFonst.poppins,
-    colorScheme: ColorScheme.light(
-      background: _color.background,
+    fontFamily: MyAppFont.poppins,
+    colorScheme: ColorScheme.dark(
+      surface: _color.background,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -32,10 +34,10 @@ final class AppDarkTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        foregroundColor: MaterialStatePropertyAll(
+        foregroundColor: WidgetStatePropertyAll(
           _color.primaryTextSoft,
         ),
-        overlayColor: MaterialStatePropertyAll(
+        overlayColor: WidgetStatePropertyAll(
           _color.glassEffect,
         ),
       ),
@@ -119,8 +121,8 @@ final class AppDarkTheme {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: _color.bottomBar,
       elevation: 0,
-      labelTextStyle: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      labelTextStyle: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return TextStyle(color: _color.primaryText, fontSize: 14.sp);
         } else {
           return TextStyle(
@@ -129,8 +131,8 @@ final class AppDarkTheme {
           );
         }
       }),
-      iconTheme: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      iconTheme: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return IconThemeData(
             color: _color.background,
           );
@@ -202,7 +204,7 @@ final class AppDarkTheme {
       ),
       dividerColor: _color.secondaryBorder,
       indicatorColor: _color.primaryBorder,
-      overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       splashFactory: NoSplash.splashFactory,
     ),
     expansionTileTheme: ExpansionTileThemeData(

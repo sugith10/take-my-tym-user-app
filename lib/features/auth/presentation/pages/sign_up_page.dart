@@ -16,7 +16,6 @@ import '../widgets/welcome_text_widget.dart';
 import 'email_verification_page.dart';
 import 'sign_in_page.dart';
 
-
 class SignUpPage extends StatefulWidget {
   static route() => noMovement(const SignUpPage());
   const SignUpPage({super.key});
@@ -33,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final emailCntrl = TextEditingController();
   final passwordCntrl = TextEditingController();
   final confirmPasswordCntrl = TextEditingController();
-  final SignUpBloc bloc = SignUpBloc();
+  final SignUpBloc _signUpBloc = SignUpBloc();
 
   @override
   void initState() {
@@ -47,14 +46,14 @@ class _SignUpPageState extends State<SignUpPage> {
     emailCntrl.dispose();
     passwordCntrl.dispose();
     confirmPasswordCntrl.dispose();
-    bloc;
+    _signUpBloc.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener(
-        bloc: bloc,
+        bloc: _signUpBloc,
         listener: (context, state) {
           if (state is SignUpLoadingState) {
             LoadingDialog().show(context);
@@ -98,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       emailCntrl: emailCntrl,
                       passwordCntrl: passwordCntrl,
                       confirmPasswordCntrl: confirmPasswordCntrl,
-                      bloc: bloc,
+                      bloc: _signUpBloc,
                     ),
                     SignButtonWidget(
                       title: 'SIGN UP',
@@ -110,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         confirmPasswordCntrl.text.trim();
                         if (_formKey.currentState!.validate()) {
                           if (_formKey.currentState!.validate()) {
-                            bloc.add(
+                            _signUpBloc.add(
                               CreateUserEvent(
                                 firstName: firstNameCntrl.text,
                                 lastName: lastNameCntrl.text,

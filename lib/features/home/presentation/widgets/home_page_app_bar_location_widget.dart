@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/utils/app_assets/app_png.dart';
-import '../../../../core/widgets/image_icon.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 import '../../../location/presentation/pages/select_location_page.dart';
-
 
 class MyLocationWidget extends StatefulWidget {
   const MyLocationWidget({
@@ -28,16 +27,17 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
         onPressed: () {
           Navigator.push(
             context,
-           SelectLocationPage.route(locationBloc: _locationBloc),
+            SelectLocationPage.route(locationBloc: _locationBloc),
           );
         },
         icon: Row(
           children: [
             SizedBox(
-                child: CoustomImageIcon(
-              image: AppPng.locationIcon,
-              height: 25.h,
-              width: 25.h,
+                child: SvgPicture.asset(
+              AppSvg.location,
+              fit: BoxFit.contain,
+              height: 40,
+              width: 40,
             )),
             SizedBox(width: 10.sp),
             BlocBuilder(
@@ -51,21 +51,13 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
                             longitude: state.longitude,
                           ),
                         );
-                    // context.read<NearbyPostsBloc>().add(
-                    //       NearbyPostsEvent(
-                    //         latitude: state.latitude,
-                    //         longitude: state.longitude,
-                    //         location: state.placeName,
-                    //       ),
-                    //     );
                     return _LocationWidget(
                       location: state.placeName,
                     );
                   }
 
                   return _LocationWidget(
-                    location:
-                        context.read<AppUserBloc>().userModel!.location!,
+                    location: context.read<AppUserBloc>().userModel!.location!,
                   );
                 }),
             SizedBox(width: 5.sp),

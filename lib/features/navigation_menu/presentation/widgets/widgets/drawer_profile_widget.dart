@@ -6,9 +6,9 @@ import '../../../../../core/widgets/circle_profile_picture_widget.dart';
 
 
 class ProfileWidget extends StatelessWidget {
-  final String picture;
+
   const ProfileWidget({
-    required this.picture,
+    
     super.key,
   });
 

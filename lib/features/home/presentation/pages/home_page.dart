@@ -12,7 +12,6 @@ import '../widgets/home_page_app_bar.dart';
 import '../widgets/home_page_filter_widget.dart';
 import '../widgets/welcome_user_widget.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -33,27 +32,17 @@ class _HomePageState extends State<HomePage> {
             delegate: SliverChildListDelegate(
               [
                 SizedBox(height: 20.h),
-                const WelcomeUser(),
-                SizedBox(
-                  height: 10.h
+                const Row(
+                  children: [
+                    WelcomeUser(),
+                    HomePageFilterWidget(),
+                  ],
                 ),
-                const HomePageFilterWidget(),
+                // SizedBox(height: 10.h),
+
                 SizedBox(height: 20.h),
                 const BannerWidget(),
-                // SizedBox(height: 35.h),
-                // const CategoryTitleWidget(
-                //   title: "Nearby Offers",
-                // ),
                 SizedBox(height: 20.h),
-                // BlocBuilder<NearbyPostsBloc, NearbyPostsState>(
-                //     builder: (context, state) {
-                //   if (state is NearbyPostsResult) {
-                //     return GenerateFeedWidget(
-                //       posts: state.posts,
-                //     );
-                //   }
-                //   return const CircularProgressIndicator();
-                // }),
                 SingleChildScrollView(
                   child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
                     builder: (context, state) {

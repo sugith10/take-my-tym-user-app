@@ -19,7 +19,7 @@ class GetProfileBloc extends Bloc<GetProfileEvent, GetProfileState> {
      final profile = await GetIt.instance<ProfileUseCase>().getProfile(userId: event.userId);
      emit(GetProfileLoaded(userModel: profile));
     }catch(e){
-      emit(GetProfileFail(errorMsg: AppErrorMsg()));
+      emit(GetProfileFail(errorMsg: AppAlert ()));
     }
   }
 }

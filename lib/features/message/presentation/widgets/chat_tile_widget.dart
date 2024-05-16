@@ -69,17 +69,7 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                           height: 50,
                           width: 50,
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(bottom: 10),
-                        //   child: CircleAvatar(
-                        //     radius: 5,
-                        //     child: Container(
-                        //       decoration: BoxDecoration(
-                        //           color: Colors.green,
-                        //           borderRadius: BorderRadius.circular(100)),
-                        //     ),
-                        //   ),
-                        // )
+                  
                       ]),
                     ),
                     title: Text(
@@ -87,11 +77,11 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     subtitle: Text(
-                      "Sample message",
+                      "new message",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     trailing: Text(
-                      "Time",
+                      "4:09 PM",
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   );

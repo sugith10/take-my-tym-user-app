@@ -31,9 +31,9 @@ class SubmitProposalBloc
     try {
       final message = event.message.trim();
       if (message.length < 5) {
-        final AppErrorMsg appError = AppErrorMsg(
-          title: 'Provide a proper messsage.',
-          content: "Without proper message you can't submit a proposel.",
+        final AppAlert  appError = AppAlert (
+          alert: 'Provide a proper messsage.',
+          details: "Without proper message you can't submit a proposel.",
         );
         emit(SubmitProposalErrorState(error: appError));
       } else {
@@ -63,8 +63,8 @@ class SubmitProposalBloc
       appLogger.d("proposel bloc  $e ");
       emit(
         SubmitProposalErrorState(
-          error: AppErrorMsg(
-            title: "Already submitted",
+          error: AppAlert (
+            alert: "Already submitted",
           ),
         ),
       );

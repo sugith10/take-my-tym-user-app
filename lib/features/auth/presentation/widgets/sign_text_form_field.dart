@@ -3,14 +3,13 @@ import 'package:animate_do/animate_do.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
-
 class SignTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final TextInputType keyboardType;
   final bool obsecureText;
   final bool showSuffixIcon;
-  final Widget? prefixIcon;
+  final IconData? prefixIcon;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final String? errorMsg;
@@ -38,7 +37,6 @@ class SignTextField extends StatefulWidget {
 
 class _SignTextFieldState extends State<SignTextField> {
   late bool _obsecureText;
-  
 
   @override
   void initState() {
@@ -52,8 +50,8 @@ class _SignTextFieldState extends State<SignTextField> {
       delay: Duration(milliseconds: widget.fadeInDelay),
       duration: Duration(milliseconds: widget.fadeInDuration),
       child: TextFormField(
-        cursorColor:  AppDarkColor.instance.pure,
-        cursorErrorColor:  AppDarkColor.instance.pure,
+        cursorColor: AppDarkColor.instance.pure,
+        cursorErrorColor: AppDarkColor.instance.pure,
         validator: widget.validator,
         controller: widget.controller,
         obscureText: _obsecureText,
@@ -68,20 +66,28 @@ class _SignTextFieldState extends State<SignTextField> {
                       _obsecureText = !_obsecureText;
                     });
                   },
-                  icon: Icon(_obsecureText
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined, color: AppDarkColor.instance.pure),
+                  icon: Icon(
+                    _obsecureText
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppDarkColor.instance.pure,
+                  ),
                 )
               : null,
-          prefixIcon: widget.prefixIcon,
+          prefixIcon: widget.prefixIcon != null
+              ? Icon(
+                  widget.prefixIcon,
+                  color: AppDarkColor.instance.pure,
+                )
+              : null,
           fillColor: Colors.grey.shade200,
           filled: true,
           hintText: widget.hintText,
           errorText: widget.errorMsg,
           errorStyle: Theme.of(context).textTheme.labelSmall,
         ),
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-              color: Colors.black,
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: AppDarkColor.instance.pure,
               fontWeight: FontWeight.w600,
             ),
       ),

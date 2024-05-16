@@ -10,7 +10,7 @@ import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../../core/widgets/navigation_taxt_button.dart';
 import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
-import '../../../profile/presentation/pages/profile_setup_page.dart';
+import '../../../profile/presentation/page/profile_setup_page.dart';
 import '../bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../widgets/forgot_password_widget.dart';
 import '../widgets/sign_button.dart';
@@ -33,7 +33,7 @@ class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final SignInBloc _bloc = SignInBloc();
+  final SignInBloc _signInBloc = SignInBloc();
 
   @override
   void initState() {
@@ -45,12 +45,12 @@ class _SignInPageState extends State<SignInPage> {
     formKey;
     _emailController.dispose();
     _passwordController.dispose();
-    _bloc;
+    _signInBloc.close();
     super.dispose();
   }
 
   void submitCredentials() {
-    _bloc.add(
+    _signInBloc.add(
       LogInEvent(
         email: _emailController.text,
         password: _passwordController.text,
@@ -61,7 +61,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
-      bloc: _bloc,
+      bloc: _signInBloc,
       listener: (ctx, state) {
         if (state is SignInLoadingState) {
           LoadingDialog().show(context);
@@ -123,7 +123,7 @@ class _SignInPageState extends State<SignInPage> {
                           showSuffixIcon: false,
                           errorMsg: _errorMsg,
                           keyboardType: TextInputType.emailAddress,
-                          prefixIcon: const Icon(Icons.mail_outline_rounded),
+                          prefixIcon: Icons.mail_outline_rounded,
                           validator: (val) {
                             if (val!.isEmpty) {
                               return "Please fill in this Field";
@@ -142,7 +142,7 @@ class _SignInPageState extends State<SignInPage> {
                           obsecureText: true,
                           errorMsg: _errorMsg,
                           keyboardType: TextInputType.visiblePassword,
-                          prefixIcon: const Icon(Icons.password_rounded),
+                          prefixIcon: Icons.password_rounded,
                           showSuffixIcon: true,
                           validator: (val) {
                             if (val!.isEmpty) {

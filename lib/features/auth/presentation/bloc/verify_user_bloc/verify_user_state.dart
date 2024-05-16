@@ -14,14 +14,14 @@ final class VerifyUserLoadingState extends VerifyUserState {}
 final class EmailSendSuccessState extends VerifyUserState {}
 
 final class VerificationFailedState extends VerifyUserState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   const VerificationFailedState({
     required this.error,
   });
 }
 
 final class UserNotVerifiedState extends VerifyUserState {
-    final AppErrorMsg error;
+    final AppAlert  error;
      const UserNotVerifiedState({
     required this.error,
   });

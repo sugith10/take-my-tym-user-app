@@ -52,6 +52,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   controller: _controller,
                   textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(
+                     counterText: '',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: _appDarkColor.secondaryText),

@@ -15,16 +15,11 @@ import '../widgets/user_sign_out_dialog.dart';
 import 'welcome_page.dart';
 
 
-class AccountInfoPage extends StatefulWidget {
+class AccountInfoPage extends StatelessWidget {
   static route() =>
       MaterialPageRoute(builder: (context) => const AccountInfoPage());
   const AccountInfoPage({super.key});
 
-  @override
-  State<AccountInfoPage> createState() => _AccountInfoPageState();
-}
-
-class _AccountInfoPageState extends State<AccountInfoPage> {
   @override
   Widget build(BuildContext context) {
     UserModel userModel = context.read<AppUserBloc>().userModel!;

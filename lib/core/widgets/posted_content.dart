@@ -5,7 +5,7 @@ import '../../features/create_post/presentation/widgets/post_specifications_widg
 import '../model/app_post_model.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_responsive.dart';
-import '../utils/time_stamp_to_date.dart';
+import '../utils/name_capitalize.dart';
 import 'app_card.dart';
 
 class PostedContentWidget extends StatelessWidget {
@@ -33,7 +33,7 @@ class PostedContentWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Posted on: ${timestampToDate(postModel.postDate)}',
+              'Posted on: ${TextManipulator.timestampToDate(postModel.postDate)}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
             SizedBox(height: 10.h),

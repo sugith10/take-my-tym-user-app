@@ -42,9 +42,9 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final LocationBloc locationBloc = LocationBloc();
   final CreateSkillBloc createSkillBloc = CreateSkillBloc();
   List<dynamic>? skills;
-  final AppErrorMsg errorMsg = AppErrorMsg(
-      title: "Missing required fields",
-      content: "Please fill in all fields to create a post.");
+  final AppAlert  errorMsg = AppAlert (
+      alert: "Missing required fields",
+      details: "Please fill in all fields to create a post.");
 
   @override
   void initState() {
@@ -122,6 +122,11 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   .read<GetPostsBloc>()
                   .add(GetSellTymPostsEvent(userId: state.uid));
           Navigator.of(context).popUntil((route) => route.isFirst);
+          AppSnackBar().successSnackBar(
+            context: context,
+            title: "Create Successfully",
+            message: "Your post now accessible to the world...",
+          );
         }
         if (state is UpdatePostSuccessState) {
           state.refreshType
@@ -132,6 +137,11 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
                   .read<GetPostsBloc>()
                   .add(GetSellTymPostsEvent(userId: state.uid));
           Navigator.of(context).popUntil((route) => route.isFirst);
+          AppSnackBar().successSnackBar(
+            context: context,
+            title: "Create Successfully",
+            message: "Your post now accessible to the world...",
+          );
         }
       },
       child: Scaffold(

@@ -5,12 +5,11 @@ import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dar
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_assets/test/app_test_assets.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
-import '../../../profile/presentation/widgets/post_owner_info_widget/post_owner_info_widget.dart';
+import '../../../profile/presentation/widget/post_owner_info_widget/post_owner_info_widget.dart';
 import '../../../../core/widgets/submit_button.dart';
 import '../../../create_post/presentation/pages/create_post_first_page.dart';
 import '../../../create_post/presentation/widgets/post_description_widget.dart';
@@ -117,7 +116,6 @@ class _ViewPostPageState extends State<ViewPostPage> {
                           SizedBox(height: 20.h),
                           UserInfoWidget(
                             name: widget.postModel.userName,
-                            image: MyAppImages.testProfile,
                             date: widget.postModel.postDate,
                             description: "Posted on",
                           ),

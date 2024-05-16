@@ -33,9 +33,9 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     on<CreateFirstPageEvent>(
       (event, emit) {
         if (event.title.length <= 3) {
-          final error = AppErrorMsg(
-              title: 'Give proper title',
-              content:
+          final error = AppAlert (
+              alert: 'Give proper title',
+              details:
                   'Gave a proper title, Other wise its harder for other to understand it');
           emit(
             CreateFirstFailState(
@@ -44,9 +44,9 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           );
           return;
         } else if (event.content.length <= 10) {
-          final error = AppErrorMsg(
-              title: 'Give proper decription',
-              content:
+          final error = AppAlert (
+              alert: 'Give proper decription',
+              details:
                   'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
             CreateFirstFailState(error: error),
@@ -69,13 +69,13 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         emit(CreatPostLoadingState());
         if (event.experience.length <= 2) {
           emit(
-            CreateSecondFailState(error: AppErrorMsg()),
+            CreateSecondFailState(error: AppAlert ()),
           );
           return;
         } else {
-          final error = AppErrorMsg(
-              title: "Invalid Remuneration",
-              content:
+          final error = AppAlert (
+              alert: "Invalid Remuneration",
+              details:
                   "Please enter a remuneration amount that falls within the acceptable range.");
           try {
             remuneration = double.parse(event.remuneration);
@@ -142,17 +142,17 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
               } else {
                 emit(
                   RemoteDataAddFailState(
-                    error: AppErrorMsg(),
+                    error: AppAlert (),
                   ),
                 );
               }
             } on AppException {
               emit(
-                RemoteDataAddFailState(error: AppErrorMsg()),
+                RemoteDataAddFailState(error: AppAlert ()),
               );
             } catch (e) {
               emit(
-                RemoteDataAddFailState(error: AppErrorMsg()),
+                RemoteDataAddFailState(error: AppAlert ()),
               );
             }
           } else if (tymType != null && tymType == false) {
@@ -179,15 +179,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 emit(CreatePostSuccessState(refreshType: false, uid: uid!));
               } else {
                 emit(
-                  RemoteDataAddFailState(error: AppErrorMsg()),
+                  RemoteDataAddFailState(error: AppAlert ()),
                 );
               }
             } on AppException {
               emit(
-                RemoteDataAddFailState(error: AppErrorMsg()),
+                RemoteDataAddFailState(error: AppAlert ()),
               );
             } catch (e) {
-              RemoteDataAddFailState(error: AppErrorMsg());
+              RemoteDataAddFailState(error: AppAlert ());
             }
           } else {
             log("something went wrong come to bloc line 163");
@@ -203,18 +203,18 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         title = event.title.trim();
         content = event.content.trim();
         if (title!.length <= 3) {
-          final AppErrorMsg error = AppErrorMsg(
-              title: 'Give proper title',
-              content:
+          final AppAlert  error = AppAlert (
+              alert: 'Give proper title',
+              details:
                   'Gave a proper title, Other wise its harder for other to understand it');
           emit(
             CreateFirstFailState(error: error),
           );
           return;
         } else if (content!.length <= 10) {
-          final AppErrorMsg error = AppErrorMsg(
-              title: 'Give proper decription',
-              content:
+          final AppAlert  error = AppAlert (
+              alert: 'Give proper decription',
+              details:
                   'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
             CreateFirstFailState(
@@ -247,14 +247,14 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             log("3");
             emit(
               CreateSecondFailState(
-                error: AppErrorMsg()
+                error: AppAlert ()
               ),
             );
             return;
           }
           if (remuneration! >= 1000000) {
             log("4");
-            emit(CreateSecondFailState(error: AppErrorMsg()));
+            emit(CreateSecondFailState(error: AppAlert ()));
             return;
           } else {
             log("data adding success");
@@ -300,16 +300,16 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   .then((value) {
                 emit(UpdatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
-            } on AppException catch (e) {
+            } on AppException {
               emit(
                 RemoteDataAddFailState(
-                  error: AppErrorMsg(),
+                  error: AppAlert (),
                 ),
               );
             } catch (e) {
               emit(
                 RemoteDataAddFailState(
-                  error: AppErrorMsg(),
+                  error: AppAlert (),
                 ),
               );
             }
@@ -337,12 +337,12 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                   .then((value) {
                 emit(CreatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
-            } on AppException catch (e) {
-              emit(CreateSecondFailState(error: AppErrorMsg()));
+            } on AppException {
+              emit(CreateSecondFailState(error: AppAlert ()));
             } catch (e) {
               emit(
                 CreateSecondFailState(
-                  error: AppErrorMsg(),
+                  error: AppAlert (),
                 ),
               );
             }

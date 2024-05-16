@@ -1,16 +1,17 @@
+/// Class defining PNG image files used in the application.
 class AppPng {
-  //images
-  static const String successImage = 'asset/img/SUCCESSFULL (2).png';
-  //Ad banner
-  static const String adOne = 'asset/img/ad/Frame_1.png';
-  static const String adTwo = 'asset/img/ad/Frame_2.png';
-  static const String adThree = 'asset/img/ad/Frame_3.png';
-  static const String adFour = 'asset/img/ad/Frame_4.png';
-  //Coustom icons
-  static const String locationIcon = 'asset/img/location_icon.png';
-  static const String profileIcon = 'asset/img/icons/user.png';
-  static const String google = 'asset/img/auth/google.png';
+  // PNG image file path for success icon.
+  static const String success = 'assets/png/successfull.png';
 
-  //TODO-convert asset to assets
-  static const String msg = "assets/png/Inbox Empty.png";
+  // PNG image file paths for ad banners.
+  static const String adOne = 'assets/png/ad/Frame_1.png';
+  static const String adTwo = 'assets/png/ad/Frame_2.png';
+  static const String adThree = 'assets/png/ad/Frame_3.png';
+  static const String adFour = 'assets/png/ad/Frame_4.png';
+
+  // PNG image file path for profile icon.
+  static const String profileIcon = 'assets/png/icon/user.png';
+
+  // PNG image file path for Google icon.
+  static const String google = 'assets/png/auth/google.png';
 }

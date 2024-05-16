@@ -33,7 +33,7 @@ final class WalletLoadedState extends WalletState {
 }
 
 final class WalletErrorState extends WalletState {
-  final AppErrorMsg errorMsg;
+  final AppAlert  errorMsg;
 
   const WalletErrorState({required this.errorMsg});
 }

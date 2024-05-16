@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
-import 'package:take_my_tym/core/utils/time_stamp_to_date.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_tile.dart';
+
+import '../../../../core/utils/name_capitalize.dart';
 
 class TransactionsPage extends StatelessWidget {
   final List<TransactionModel> transactios;
@@ -25,7 +26,7 @@ class TransactionsPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
             child: TransactionTile(
               type: transactionModel.transactionType,
-              time: timestampToDate(transactionModel.timestamp),
+              time:TextManipulator.timestampToDate(transactionModel.timestamp),
               amount: transactionModel.amount.toString(),
             ),
           );

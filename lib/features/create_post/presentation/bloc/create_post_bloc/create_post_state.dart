@@ -13,14 +13,14 @@ final class CreateFirstSuccessState extends CreatePostState {
 }
 
 final class CreateFirstFailState extends CreatePostState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   CreateFirstFailState({
     required this.error,
   });
 }
 
 final class CreateSecondFailState extends CreatePostState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   CreateSecondFailState({
     required this.error,
   });
@@ -45,7 +45,7 @@ final class UpdatePostSuccessState extends CreatePostState {
 }
 
 final class RemoteDataAddFailState extends CreatePostState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   RemoteDataAddFailState({
 required this.error,
   });

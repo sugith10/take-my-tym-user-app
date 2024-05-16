@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/utils/app_colors.dart';
 
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/switch_category_widget.dart';
@@ -20,16 +21,19 @@ class HomePageFilterWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
         child: Row(
           children: [
-            const _HomePostSwitch(),
-            SizedBox(width: 5.w),
+            // const _HomePostSwitch(),
+            // SizedBox(width: 5.w),
             IconButton(
               onPressed: () {
                 Navigator.push(context, SearchPage.route());
               },
               icon: CircleAvatar(
                 radius: 20.h,
-                backgroundColor: const Color.fromARGB(255, 40, 40, 40),
-                child: const Icon(IconlyLight.search),
+                backgroundColor: AppDarkColor.instance.lightBackground,
+                child: Icon(
+                 IconlyBroken.search,
+                  color: Theme.of(context).iconTheme.color,
+                ),
               ),
             ),
           ],

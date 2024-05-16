@@ -1,5 +1,6 @@
 import 'package:logger/logger.dart';
 
+/// Logger instance for logging messages with customizable output format.
 final appLogger = Logger(
   printer: PrettyPrinter(
       methodCount: 2, // Number of method calls to be displayed
@@ -8,5 +9,5 @@ final appLogger = Logger(
       colors: true, // Colorful log messages
       printEmojis: true, // Print an emoji for each log message
       printTime: true // Should each log print contain a timestamp
-  ),
+      ),
 );

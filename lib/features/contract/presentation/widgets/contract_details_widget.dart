@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/time_stamp_to_date.dart';
+import '../../../../core/utils/name_capitalize.dart';
 import '../../../../core/widgets/app_title_box_widget.dart';
 import '../../../profile/presentation/bloc/get_profile_bloc/get_profile_bloc.dart';
-import '../../../profile/presentation/widgets/post_owner_info_widget/get_user_info_widget.dart';
+import '../../../profile/presentation/widget/post_owner_info_widget/get_user_info_widget.dart';
 import '../../data/models/contract_model.dart';
 
 class ContractDetailsWidget extends StatelessWidget {
@@ -27,7 +26,7 @@ class ContractDetailsWidget extends StatelessWidget {
           SizedBox(height: 20.h),
           _title(context: context, title: "Contract started"),
           SizedBox(height: 10.h),
-          Text(timestampToDate(contractModel.date)),
+          Text(TextManipulator.timestampToDate(contractModel.date)),
           SizedBox(height: 20.h),
           _title(context: context, title: "Client details"),
           GetUserInfoWidget(
@@ -36,7 +35,7 @@ class ContractDetailsWidget extends StatelessWidget {
             dateDescription: "",
           ),
           SizedBox(height: 5.h),
-           _title(context: context, title: "Service provider details"),
+          _title(context: context, title: "Service provider details"),
           GetUserInfoWidget(
             userId: contractModel.serviceProviderId,
             getProfileBloc: GetProfileBloc(),

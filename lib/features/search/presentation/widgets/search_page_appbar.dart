@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_radius.dart';
-import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../bloc/search_bloc/search_bloc.dart';
 import 'search_text_field.dart';
 
@@ -38,87 +34,87 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
               searchEditingController: widget.searchEditingController,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 5),
-            child: InkWell(
-              onTap: () {
-                _showBottomSheet(context, widget.bloc);
-              },
-              borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
-                  border: Border.all(
-                    color: AppDarkColor.instance.primarySoftBorder,
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Icon(
-                    IconlyLight.filter,
-                    size: 28,
-                  ),
-                ),
-              ),
-            ),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 5),
+          //   child: InkWell(
+          //     onTap: () {
+          //       _showBottomSheet(context, widget.bloc);
+          //     },
+          //     borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          //     child: Container(
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          //         border: Border.all(
+          //           color: AppDarkColor.instance.primarySoftBorder,
+          //         ),
+          //       ),
+          //       child: const Padding(
+          //         padding: EdgeInsets.all(15),
+          //         child: Icon(
+          //           IconlyLight.filter,
+          //           size: 28,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
   }
 
-  void _showBottomSheet(BuildContext context, SearchPostsBloc bloc) {
-    AppBottomSheet.show(
-      context: context,
-      children: [
-        Text(
-          'Select Post Type',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 30),
-          child: Row(
-            children: [
-              Expanded(
-                child: RadioListTile<bool>(
-                  activeColor: Colors.white,
-                  title: Text(
-                    'BuyTymPost',
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  value: true,
-                  groupValue: tymType,
-                  onChanged: (value) {
-                    setState(() {
-                      tymType = value!;
-                      bloc.tymType = tymType;
-                    });
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-              Expanded(
-                child: RadioListTile<bool>(
-                  activeColor: Colors.white,
-                  title: Text(
-                    'SellTymPost',
-                    style: Theme.of(context).textTheme.labelSmall,
-                  ),
-                  value: false,
-                  groupValue: tymType,
-                  onChanged: (value) {
-                    setState(() {
-                      tymType = value!;
-                      bloc.tymType = tymType;
-                    });
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+  // void _showBottomSheet(BuildContext context, SearchPostsBloc bloc) {
+  //   AppBottomSheet.show(
+  //     context: context,
+  //     children: [
+  //       Text(
+  //         'Select Post Type',
+  //         style: Theme.of(context).textTheme.headlineSmall,
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.only(top: 20, bottom: 30),
+  //         child: Row(
+  //           children: [
+  //             Expanded(
+  //               child: RadioListTile<bool>(
+  //                 activeColor: Colors.white,
+  //                 title: Text(
+  //                   'BuyTymPost',
+  //                   style: Theme.of(context).textTheme.labelSmall,
+  //                 ),
+  //                 value: true,
+  //                 groupValue: tymType,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     tymType = value!;
+  //                     bloc.tymType = tymType;
+  //                   });
+  //                   Navigator.pop(context);
+  //                 },
+  //               ),
+  //             ),
+  //             Expanded(
+  //               child: RadioListTile<bool>(
+  //                 activeColor: Colors.white,
+  //                 title: Text(
+  //                   'SellTymPost',
+  //                   style: Theme.of(context).textTheme.labelSmall,
+  //                 ),
+  //                 value: false,
+  //                 groupValue: tymType,
+  //                 onChanged: (value) {
+  //                   setState(() {
+  //                     tymType = value!;
+  //                     bloc.tymType = tymType;
+  //                   });
+  //                   Navigator.pop(context);
+  //                 },
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

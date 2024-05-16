@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ContractModel {
@@ -9,7 +8,7 @@ class ContractModel {
   final String clientId;
   final String serviceProviderId;
   final bool contractStrated;
-  final bool contractFail;
+  final bool paymentApproved;
   final bool contractEnded;
   final String paymentId;
   final String contractName;
@@ -20,11 +19,11 @@ class ContractModel {
     required this.clientId,
     required this.serviceProviderId,
     required this.contractStrated,
-    required this.contractFail,
+    required this.paymentApproved,
     required this.contractEnded,
     required this.paymentId,
     required this.contractName,
-     this.contractId,
+    this.contractId,
   });
 
   ContractModel copyWith({
@@ -33,7 +32,7 @@ class ContractModel {
     String? clientId,
     String? serviceProviderId,
     bool? contractStrated,
-    bool? contractFail,
+    bool? paymentApproved,
     bool? contractEnded,
     String? paymentId,
     String? contractName,
@@ -45,7 +44,7 @@ class ContractModel {
       clientId: clientId ?? this.clientId,
       serviceProviderId: serviceProviderId ?? this.serviceProviderId,
       contractStrated: contractStrated ?? this.contractStrated,
-      contractFail: contractFail ?? this.contractFail,
+      paymentApproved: paymentApproved ?? this.paymentApproved,
       contractEnded: contractEnded ?? this.contractEnded,
       paymentId: paymentId ?? this.paymentId,
       contractName: contractName ?? this.contractName,
@@ -60,7 +59,7 @@ class ContractModel {
       'clientId': clientId,
       'serviceProviderId': serviceProviderId,
       'contractStrated': contractStrated,
-      'contractFail': contractFail,
+      'paymentApproved': paymentApproved,
       'contractEnded': contractEnded,
       'paymentId': paymentId,
       'contractName': contractName,
@@ -70,12 +69,12 @@ class ContractModel {
 
   factory ContractModel.fromMap(Map<String, dynamic> map, String contractId) {
     return ContractModel(
-      date: map['date'] as Timestamp, 
+      date: map['date'] as Timestamp,
       amount: map['amount'] as double,
       clientId: map['clientId'] as String,
       serviceProviderId: map['serviceProviderId'] as String,
       contractStrated: map['contractStrated'] as bool,
-      contractFail: map['contractFail'] as bool,
+      paymentApproved: map['paymentApproved'] as bool,
       contractEnded: map['contractEnded'] as bool,
       paymentId: map['paymentId'] as String,
       contractName: map['contractName'] as String,
@@ -90,37 +89,36 @@ class ContractModel {
 
   @override
   String toString() {
-    return 'ContractModel(date: $date, amount: $amount, clientId: $clientId, serviceProviderId: $serviceProviderId, contractStrated: $contractStrated, contractFail: $contractFail, contractEnded: $contractEnded, paymentId: $paymentId, contractName: $contractName, contractId: $contractId)';
+    return 'ContractModel(date: $date, amount: $amount, clientId: $clientId, serviceProviderId: $serviceProviderId, contractStrated: $contractStrated, paymentApproved: $paymentApproved, contractEnded: $contractEnded, paymentId: $paymentId, contractName: $contractName, contractId: $contractId)';
   }
 
   @override
   bool operator ==(covariant ContractModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.date == date &&
-      other.amount == amount &&
-      other.clientId == clientId &&
-      other.serviceProviderId == serviceProviderId &&
-      other.contractStrated == contractStrated &&
-      other.contractFail == contractFail &&
-      other.contractEnded == contractEnded &&
-      other.paymentId == paymentId &&
-      other.contractName == contractName &&
-      other.contractId == contractId;
+
+    return other.date == date &&
+        other.amount == amount &&
+        other.clientId == clientId &&
+        other.serviceProviderId == serviceProviderId &&
+        other.contractStrated == contractStrated &&
+        other.paymentApproved == paymentApproved &&
+        other.contractEnded == contractEnded &&
+        other.paymentId == paymentId &&
+        other.contractName == contractName &&
+        other.contractId == contractId;
   }
 
   @override
   int get hashCode {
     return date.hashCode ^
-      amount.hashCode ^
-      clientId.hashCode ^
-      serviceProviderId.hashCode ^
-      contractStrated.hashCode ^
-      contractFail.hashCode ^
-      contractEnded.hashCode ^
-      paymentId.hashCode ^
-      contractName.hashCode ^
-      contractId.hashCode;
+        amount.hashCode ^
+        clientId.hashCode ^
+        serviceProviderId.hashCode ^
+        contractStrated.hashCode ^
+        paymentApproved.hashCode ^
+        contractEnded.hashCode ^
+        paymentId.hashCode ^
+        contractName.hashCode ^
+        contractId.hashCode;
   }
 }

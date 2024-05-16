@@ -7,7 +7,7 @@ sealed class SubmitProposalState {
 final class SubmitProposalLoadingState extends SubmitProposalState {}
 
 final class SubmitProposalErrorState extends SubmitProposalState {
-  final AppErrorMsg error;
+  final AppAlert  error;
   const SubmitProposalErrorState({required this.error});
 }
 

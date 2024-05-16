@@ -18,7 +18,7 @@ final class SocialAuthSuccessState extends SocialAuthState {
 }
 
 final class SocialAuthFailState extends SocialAuthState {
-   final AppErrorMsg error;
+   final AppAlert  error;
 
   const SocialAuthFailState({
     required this.error,

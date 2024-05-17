@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
-
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/navigation/screen_transitions/right_to_left.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
@@ -41,10 +39,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
   final TextEditingController remunerationCntrl = TextEditingController();
   final LocationBloc locationBloc = LocationBloc();
   final CreateSkillBloc createSkillBloc = CreateSkillBloc();
-  List<dynamic>? skills;
-  final AppAlert  errorMsg = AppAlert (
-      alert: "Missing required fields",
-      details: "Please fill in all fields to create a post.");
+  // List<dynamic>? skills;
 
   @override
   void initState() {
@@ -52,7 +47,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
     if (widget.postModel != null) {
       experienceCntrl.text = widget.postModel!.skillLevel;
       remunerationCntrl.text = widget.postModel!.price.toString();
-      skills = widget.postModel!.skills;
+      // skills = widget.postModel!.skills;
     }
   }
 
@@ -61,7 +56,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
     categoryCntrl.dispose();
     experienceCntrl.dispose();
     remunerationCntrl.dispose();
-
     super.dispose();
   }
 
@@ -96,7 +90,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
           );
         }
       } else {
-        AppSnackBar.failSnackBar(context: context, error: errorMsg);
+        widget.bloc.add(CreatPostFailEvent());
       }
     }
 
@@ -105,13 +99,6 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
       listener: (context, state) {
         if (state is CreatPostLoadingState) {
           LoadingDialog().show(context);
-        }
-        if (state is CreateSecondFailState) {
-          Navigator.pop(context);
-          AppSnackBar.failSnackBar(
-            context: context,
-            error: state.error,
-          );
         }
         if (state is CreatePostSuccessState) {
           state.refreshType
@@ -160,9 +147,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  CollectItemsWidget(
-                    createSkillBloc: createSkillBloc,
-                  ),
+                  CollectItemsWidget(createSkillBloc: createSkillBloc),
                   SizedBox(height: 10.h),
                   CreatePostFormWidget(
                     locationBloc: locationBloc,

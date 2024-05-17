@@ -15,6 +15,8 @@ final class SocialAuthSuccessState extends SocialAuthState {
   final UserModel userModel;
   final bool profileSetupComp;
   const SocialAuthSuccessState({required this.profileSetupComp, required this.userModel});
+    @override
+  List<Object> get props => [userModel,profileSetupComp];
 }
 
 final class SocialAuthFailState extends SocialAuthState {

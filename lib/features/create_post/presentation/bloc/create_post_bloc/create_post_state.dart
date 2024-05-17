@@ -12,16 +12,9 @@ final class CreateFirstSuccessState extends CreatePostState {
   CreateFirstSuccessState();
 }
 
-final class CreateFirstFailState extends CreatePostState {
+final class CreatePostFailState extends CreatePostState {
   final AppAlert  error;
-  CreateFirstFailState({
-    required this.error,
-  });
-}
-
-final class CreateSecondFailState extends CreatePostState {
-  final AppAlert  error;
-  CreateSecondFailState({
+  CreatePostFailState({
     required this.error,
   });
 }

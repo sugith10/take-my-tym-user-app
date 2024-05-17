@@ -21,6 +21,7 @@ class NearbyPostsBloc extends Bloc<NearbyPostsEvent, NearbyPostsState> {
             latitude: 0.025,
             longitude: event.longitude,
             range: event.latitude,
+            userId: event.userId,
           );
           log('nearbyposts ${posts.toString()}');
           emit(NearbyPostsResult(posts: posts));

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/utils/app_assets/app_png.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 import '../../../location/presentation/pages/select_location_page.dart';
 
@@ -33,11 +32,11 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
         icon: Row(
           children: [
             SizedBox(
-                child: SvgPicture.asset(
-              AppSvg.location,
+                child: Image.asset(
+              AppPng.location,
               fit: BoxFit.contain,
-              height: 40,
-              width: 40,
+             height: 25.sp,
+              width: 25.sp,
             )),
             SizedBox(width: 10.sp),
             BlocBuilder(

@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
 
 class CommunityPostsRemoteData {
-  Future<List<PostModel>> latestbuyTymPosts() async {
+  Future<List<PostModel>> latestbuyTymPosts({
+    required String uid,
+  }) async {
     try {
       final data = await FirebaseFirestore.instance
           .collection("buyTymPost")
+          .where("uid", isNotEqualTo: uid)
+          .orderBy("uid")
           .orderBy("postDate", descending: true)
           .get();
       final List<PostModel> result = data.docs
@@ -14,12 +19,62 @@ class CommunityPostsRemoteData {
             (doc) => PostModel.fromMap(doc.data(), postId: doc.id),
           )
           .toList();
-      // log(result.toString());
       return result;
     } catch (e) {
+      appLogger.e(e);
       throw AppException(
         alert: toString(),
         details: toString(),
+      );
+    }
+  }
+
+  Future<List<PostModel>> getRemoteBuyTymPosts({
+    required String uid,
+  }) async {
+    try {
+      final query = FirebaseFirestore.instance
+          .collection('buyTymPost')
+          .where('workType', isEqualTo: 'Remote')
+           .where("uid", isNotEqualTo: uid)
+          .orderBy("uid")
+          .orderBy("postDate", descending: true);
+
+      final snapshot = await query.get();
+
+      final List<PostModel> result = snapshot.docs
+          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
+          .toList();
+
+      return result;
+    } catch (e) {
+      throw AppException(
+        alert: 'Error fetching remote buyTymPosts',
+        details: e.toString(),
+      );
+    }
+  }
+
+  Future<List<PostModel>> getOnsiteBuyTymPosts({
+    required String uid,
+  }) async {
+    try {
+      final query = FirebaseFirestore.instance
+          .collection('buyTymPost')
+          .where('workType', isEqualTo: 'On-site')
+          .orderBy("postDate", descending: true);
+
+      final snapshot = await query.get();
+
+      final List<PostModel> result = snapshot.docs
+          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
+          .toList();
+
+      return result;
+    } catch (e) {
+      throw AppException(
+        alert: 'Error fetching remote buyTymPosts',
+        details: e.toString(),
       );
     }
   }
@@ -74,50 +129,6 @@ class CommunityPostsRemoteData {
       throw AppException(
         alert: toString(),
         details: toString(),
-      );
-    }
-  }
-
-  Future<List<PostModel>> getRemoteBuyTymPosts() async {
-    try {
-      final query = FirebaseFirestore.instance
-          .collection('buyTymPost')
-          .where('workType', isEqualTo: 'Remote')
-          .orderBy("postDate", descending: true);
-
-      final snapshot = await query.get();
-
-      final List<PostModel> result = snapshot.docs
-          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
-          .toList();
-
-      return result;
-    } catch (e) {
-      throw AppException(
-        alert: 'Error fetching remote buyTymPosts',
-        details: e.toString(),
-      );
-    }
-  }
-
-  Future<List<PostModel>> getOnsiteBuyTymPosts() async {
-    try {
-      final query = FirebaseFirestore.instance
-          .collection('buyTymPost')
-          .where('workType', isEqualTo: 'On-site')
-          .orderBy("postDate", descending: true);
-
-      final snapshot = await query.get();
-
-      final List<PostModel> result = snapshot.docs
-          .map((doc) => PostModel.fromMap(doc.data(), postId: doc.id))
-          .toList();
-
-      return result;
-    } catch (e) {
-      throw AppException(
-        alert: 'Error fetching remote buyTymPosts',
-        details: e.toString(),
       );
     }
   }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/utils/app_padding.dart';
-import '../../../../core/widgets/posted_content.dart';
+import '../../../../core/widgets/post_card.dart';
 import '../../../view_post/presentation/pages/view_post_page.dart';
 
 class GenerateFeedWidget extends StatelessWidget {

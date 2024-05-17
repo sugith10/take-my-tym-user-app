@@ -59,70 +59,75 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
                 },
               ),
               bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationState>(
-                  builder: (context, state) {
-                return NavigationBar(
-                  selectedIndex: _index,
-                  onDestinationSelected: (value) {
-                    final navigationBloc =
-                        BlocProvider.of<NavigationBloc>(context);
-                    switch (value) {
-                      case 0:
-                        _index = value;
-                        navigationBloc.add(NavigationHomeEvent());
-                        break;
-                      case 1:
-                        _index = value;
-                        navigationBloc.add(MessagePageNavigation());
-                        break;
-                      case 2:
-                        Navigator.push(
-                          context,
-                          CreatePostFirstPage.route(),
-                        );
-                        break;
-                      case 3:
-                        _index = value;
-                        navigationBloc.add(MoneyPageNavigation());
-                        break;
-                      case 4:
-                        _index = value;
-                        navigationBloc.add(ProfilePageNavigation());
-                        break;
-                    }
-                  },
-                  destinations: [
-                    NavigationDestination(
-                      icon: Icon(
-                          _index == 0 ? IconlyBold.home : IconlyLight.home),
-                      label: 'Home',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 1 ? IconlyBold.message : IconlyLight.message,
+                builder: (context, state) {
+                  return NavigationBar(
+                    selectedIndex: _index,
+                    onDestinationSelected: (value) {
+                      final navigationBloc =
+                          BlocProvider.of<NavigationBloc>(context);
+                      switch (value) {
+                        case 0:
+                          _index = value;
+                          navigationBloc.add(NavigationHomeEvent());
+                          break;
+                        case 1:
+                          _index = value;
+                          navigationBloc.add(MessagePageNavigation());
+                          break;
+                        case 2:
+                          Navigator.push(
+                            context,
+                            CreatePostFirstPage.route(),
+                          );
+                          break;
+                        case 3:
+                          _index = value;
+                          navigationBloc.add(MoneyPageNavigation());
+                          break;
+                        case 4:
+                          _index = value;
+                          navigationBloc.add(ProfilePageNavigation());
+                          break;
+                      }
+                    },
+                    destinations: [
+                      NavigationDestination(
+                        icon: Icon(
+                            _index == 0 ? IconlyBold.home : IconlyLight.home),
+                        label: 'Home',
                       ),
-                      label: 'Message',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 2 ? IconlyBold.plus : IconlyLight.plus,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 1
+                              ? IconlyBold.message
+                              : IconlyLight.message,
+                        ),
+                        label: 'Message',
                       ),
-                      label: 'Create',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 3 ? IconlyBold.work : IconlyLight.work,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 2 ? IconlyBold.plus : IconlyLight.plus,
+                        ),
+                        label: 'Create',
                       ),
-                      label: 'Work',
-                    ),
-                    NavigationDestination(
-                      icon: Icon(
-                        _index == 4 ? IconlyBold.profile : IconlyLight.profile,
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 3 ? IconlyBold.work : IconlyLight.work,
+                        ),
+                        label: 'Work',
                       ),
-                      label: 'Profile',
-                    ),
-                  ],
-                );
-              }),
+                      NavigationDestination(
+                        icon: Icon(
+                          _index == 4
+                              ? IconlyBold.profile
+                              : IconlyLight.profile,
+                        ),
+                        label: 'Profile',
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           );
         }

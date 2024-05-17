@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/widgets/home_padding.dart';
-import '../../../../core/widgets/posted_content.dart';
+import '../../../../core/widgets/post_card.dart';
 import '../../../../core/widgets/shimmer_effect.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import '../../../view_post/presentation/pages/view_post_page.dart';

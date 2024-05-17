@@ -9,18 +9,14 @@ sealed class SignOutState extends Equatable {
 
 final class SignOutInitial extends SignOutState {}
 
-final class UserSignOutLoadingState extends SignOutState {}
+final class SignOutLoadingState extends SignOutState {}
 
-final class UserSignOutFailState extends SignOutState {
-  final AppAlert  error;
+final class SignOutFailState extends SignOutState {
+  final AppAlert error;
 
-  const UserSignOutFailState({
+  const SignOutFailState({
     required this.error,
   });
-
 }
 
-final class UserSignOutSuccessState extends SignOutState {
-
-  
-}
+final class SignOutSuccessState extends SignOutState {}

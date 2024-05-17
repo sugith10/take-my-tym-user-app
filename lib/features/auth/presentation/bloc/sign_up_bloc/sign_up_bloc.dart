@@ -16,7 +16,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<CreateUserEvent>(_onSingUp);
   }
 
-  /// Handles user sign-up process, emitting loading state and managing error handling.
+  /// Manages the user sign-up process, including handling loading, success, and error states.
+  /// Creates a new user with provided details and emits the corresponding states.
   void _onSingUp(CreateUserEvent event, Emitter<SignUpState> emit) async {
     // Emit a SignUpLoadingState indicating that the sign up process is beginning
     emit(SignUpLoadingState());

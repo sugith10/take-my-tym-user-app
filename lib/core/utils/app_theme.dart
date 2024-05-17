@@ -229,5 +229,12 @@ final class AppDarkTheme {
       ),
       backgroundColor: _color.bottomBar,
     ),
+    sliderTheme: SliderThemeData(
+      activeTickMarkColor: _color.success,
+      activeTrackColor: _color.success,
+      inactiveTrackColor: _color.secondaryBorder,
+      thumbColor: _color.success,
+      allowedInteraction: SliderInteraction.tapAndSlide,
+    ),
   );
 }

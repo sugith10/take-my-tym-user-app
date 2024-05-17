@@ -7,8 +7,8 @@ final class CommunityPostsRepoImpl implements CommunityPostsRepo {
   CommunityPostsRepoImpl(this._communityPostsRemoteData);
 
   @override
-  Future<List<PostModel>> latestbuyTymPosts() async {
-    return await _communityPostsRemoteData.latestbuyTymPosts();
+  Future<List<PostModel>> latestbuyTymPosts({required String userId}) async {
+    return await _communityPostsRemoteData.latestbuyTymPosts(uid: userId);
   }
 
   @override
@@ -16,25 +16,24 @@ final class CommunityPostsRepoImpl implements CommunityPostsRepo {
     required double latitude,
     required double longitude,
     required double range,
+    required String userId,
   }) async {
     return await _communityPostsRemoteData.getNearbyBuyTymPosts(
         latitude: latitude, longitude: latitude, range: range);
   }
 
   @override
-  Future<List<PostModel>> onsiteBuyTymPosts() async{
-    
-     return  await _communityPostsRemoteData.getOnsiteBuyTymPosts();
+  Future<List<PostModel>> onsiteBuyTymPosts({required String userId}) async {
+    return await _communityPostsRemoteData.getOnsiteBuyTymPosts(uid: userId);
   }
 
   @override
-  Future<List<PostModel>> remoteBuyTymPosts()async {
-   
-   return await _communityPostsRemoteData.getRemoteBuyTymPosts();
+  Future<List<PostModel>> remoteBuyTymPosts({required String userId}) async {
+    return await _communityPostsRemoteData.getRemoteBuyTymPosts(uid: userId);
   }
 
   @override
-  Future<List<PostModel>> sellTymPosts() async {
+  Future<List<PostModel>> sellTymPosts({required String userId}) async {
     return await _communityPostsRemoteData.sellTymPosts();
   }
 }

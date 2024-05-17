@@ -86,7 +86,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
     return BlocListener(
         bloc: _bloc,
         listener: (context, state) {
-          if (state is CreateFirstFailState) {
+          if (state is CreatePostFailState) {
             AppSnackBar.failSnackBar(context: context, error: state.error);
           }
           if (state is CreateFirstSuccessState) {

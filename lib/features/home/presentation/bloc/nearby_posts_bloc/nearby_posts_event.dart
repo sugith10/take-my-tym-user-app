@@ -4,8 +4,9 @@ class NearbyPostsEvent extends Equatable {
   final double latitude;
   final double longitude;
   final String location;
+  final String userId;
 
-  const NearbyPostsEvent({
+  const NearbyPostsEvent(this.userId, {
     required this.latitude,
     required this.longitude,
     required this.location,

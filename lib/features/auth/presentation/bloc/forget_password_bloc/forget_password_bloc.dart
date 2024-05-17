@@ -13,10 +13,12 @@ class ForgetPasswordBloc
     on<ForgetPasswordEvent>(_onForgetPassword);
   }
 
-  /// Handles the forget password process, including showing loading state,
-  /// calling the use case to reset the password, and emitting success or failure states.
+  /// Manages the forget password process, including loading state indication, success, and error handling.
+  /// Resets the user's password and emits the corresponding success or failure states.
   void _onForgetPassword(
-      ForgetPasswordEvent event, Emitter<ForgetPasswordState> emit) async {
+    ForgetPasswordEvent event,
+    Emitter<ForgetPasswordState> emit,
+  ) async {
     // Emit the ForgetPasswordLoadingState to show that the action is in progress
     emit(ForgetPasswordLoadingState());
     try {
@@ -33,7 +35,7 @@ class ForgetPasswordBloc
     } catch (e) {
       // If an error occurs, emit the ForgetPasswordFailState with the error message
       emit(
-        ForgetPasswordFailState(error: AppAlert ()),
+        ForgetPasswordFailState(error: AppAlert()),
       );
     }
   }

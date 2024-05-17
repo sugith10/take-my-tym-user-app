@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/core/utils/app_colors.dart';
 
 import '../../../../core/utils/app_padding.dart';
@@ -31,7 +32,7 @@ class HomePageFilterWidget extends StatelessWidget {
                 radius: 20.h,
                 backgroundColor: AppDarkColor.instance.lightBackground,
                 child: Icon(
-                 IconlyBroken.search,
+                  IconlyBroken.search,
                   color: Theme.of(context).iconTheme.color,
                 ),
               ),
@@ -64,11 +65,11 @@ class __HomePostSwitchState extends State<_HomePostSwitch> {
     void getCategory(bool tymType) {
       tymType
           ? context.read<CommunityPostsBloc>().add(
-                (BuyTymCommunityPostsEvent()),
+                (BuyTymCommunityPostsEvent(
+                    userId: context.read<AppUserBloc>().userModel!.uid)),
               )
-          : context
-              .read<CommunityPostsBloc>()
-              .add(SellTymCommunityPostsEvent());
+          : context.read<CommunityPostsBloc>().add(SellTymCommunityPostsEvent(
+              userId: context.read<AppUserBloc>().userModel!.uid));
     }
 
     return BlocBuilder<CommunityPostsBloc, CommunityPostsState>(

@@ -9,14 +9,15 @@ part 'app_user_event.dart';
 part 'app_user_state.dart';
 
 class AppUserBloc extends Bloc<AppEvent, AppState> {
-  UserModel? userModel;
+  UserModel? _userModel;
+  UserModel? get userModel => _userModel;
   AppUserBloc() : super(AppInitial()) {
     on<UpdateUserModelEvent>(
       (event, emit) async {
-        userModel = event.userModel;
+        _userModel = event.userModel;
         await GetIt.instance<LocalUserStorageUseCase>()
             .storeUserDataLocal(event.userModel);
-        if (userModel != null) {
+        if (_userModel != null) {
           emit(UserModelUpdatedState());
         }
       },
@@ -30,9 +31,9 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
       ((event, emit) async {
         try {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
-          userModel = await localUserData.getUserDataFromLocal();
+          _userModel = await localUserData.getUserDataFromLocal();
 
-          if (userModel != null) {
+          if (_userModel != null) {
             emit(UserModelUpdatedState());
           } else {
             emit(UserModelNotFoundState());
@@ -46,12 +47,12 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
 
     on<UpdateUserLocationEvent>(
       (event, emit) async {
-        if (userModel != null) {
+        if (_userModel != null) {
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
-          userModel!.location = event.location;
-          userModel!.longitude = event.longitude;
-          userModel!.latitude = event.latitude;
-          await localUserData.storeUserDataLocal(userModel!);
+          _userModel!.location = event.location;
+          _userModel!.longitude = event.longitude;
+          _userModel!.latitude = event.latitude;
+          await localUserData.storeUserDataLocal(_userModel!);
         }
       },
     );

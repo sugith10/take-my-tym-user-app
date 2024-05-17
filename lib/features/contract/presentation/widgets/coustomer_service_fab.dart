@@ -22,7 +22,10 @@ class CoustomerServiceFab extends StatelessWidget {
         children: [
           SvgPicture.asset(AppSvg.customerSupport),
           SizedBox(width: 10.w),
-          const Text("Customer Service"),
+          Text(
+            "Customer Service",
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
         ],
       ),
     );

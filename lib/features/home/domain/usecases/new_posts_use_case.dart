@@ -9,11 +9,13 @@ class NearbyPostsUseCase {
     required double latitude,
     required double longitude,
     required double range,
+    required String userId,
   }) async {
     return await _communityPostsRepo.nearbyBuyTymPosts(
       latitude: latitude,
       longitude: longitude,
       range: range,
+      userId: userId,
     );
   }
 }

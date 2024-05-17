@@ -23,33 +23,35 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     String? workType;
     String? title;
     String? content;
-      Timestamp? postDate;
+    Timestamp? postDate;
     // Second page data
     List<String>? skills;
     String? location;
     String? experience;
     double? remuneration;
 
+    on<CreatPostFailEvent>(_failEvent);
+
     on<CreateFirstPageEvent>(
       (event, emit) {
         if (event.title.length <= 3) {
-          final error = AppAlert (
+          final error = AppAlert(
               alert: 'Give proper title',
               details:
                   'Gave a proper title, Other wise its harder for other to understand it');
           emit(
-            CreateFirstFailState(
+            CreatePostFailState(
               error: error,
             ),
           );
           return;
         } else if (event.content.length <= 10) {
-          final error = AppAlert (
+          final error = AppAlert(
               alert: 'Give proper decription',
               details:
                   'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
-            CreateFirstFailState(error: error),
+            CreatePostFailState(error: error),
           );
           return;
         } else {
@@ -69,11 +71,11 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         emit(CreatPostLoadingState());
         if (event.experience.length <= 2) {
           emit(
-            CreateSecondFailState(error: AppAlert ()),
+            CreatePostFailState(error: AppAlert()),
           );
           return;
         } else {
-          final error = AppAlert (
+          final error = AppAlert(
               alert: "Invalid Remuneration",
               details:
                   "Please enter a remuneration amount that falls within the acceptable range.");
@@ -81,7 +83,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             remuneration = double.parse(event.remuneration);
           } catch (e) {
             emit(
-              CreateSecondFailState(
+              CreatePostFailState(
                 error: error,
               ),
             );
@@ -90,7 +92,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           if (remuneration! < 500 || remuneration! >= 100000) {
             log("on error");
             emit(
-              CreateSecondFailState(
+              CreatePostFailState(
                 error: error,
               ),
             );
@@ -142,17 +144,17 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
               } else {
                 emit(
                   RemoteDataAddFailState(
-                    error: AppAlert (),
+                    error: AppAlert(),
                   ),
                 );
               }
             } on AppException {
               emit(
-                RemoteDataAddFailState(error: AppAlert ()),
+                RemoteDataAddFailState(error: AppAlert()),
               );
             } catch (e) {
               emit(
-                RemoteDataAddFailState(error: AppAlert ()),
+                RemoteDataAddFailState(error: AppAlert()),
               );
             }
           } else if (tymType != null && tymType == false) {
@@ -179,15 +181,15 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 emit(CreatePostSuccessState(refreshType: false, uid: uid!));
               } else {
                 emit(
-                  RemoteDataAddFailState(error: AppAlert ()),
+                  RemoteDataAddFailState(error: AppAlert()),
                 );
               }
             } on AppException {
               emit(
-                RemoteDataAddFailState(error: AppAlert ()),
+                RemoteDataAddFailState(error: AppAlert()),
               );
             } catch (e) {
-              RemoteDataAddFailState(error: AppAlert ());
+              RemoteDataAddFailState(error: AppAlert());
             }
           } else {
             log("something went wrong come to bloc line 163");
@@ -195,29 +197,29 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         }
       }),
     );
-  
-     on<UpdateFirstPageEvent>(
+
+    on<UpdateFirstPageEvent>(
       (event, emit) {
         log("update first bloc");
         emit(CreatPostLoadingState());
         title = event.title.trim();
         content = event.content.trim();
         if (title!.length <= 3) {
-          final AppAlert  error = AppAlert (
+          final AppAlert error = AppAlert(
               alert: 'Give proper title',
               details:
                   'Gave a proper title, Other wise its harder for other to understand it');
           emit(
-            CreateFirstFailState(error: error),
+            CreatePostFailState(error: error),
           );
           return;
         } else if (content!.length <= 10) {
-          final AppAlert  error = AppAlert (
+          final AppAlert error = AppAlert(
               alert: 'Give proper decription',
               details:
                   'Gave a proper decription, Other wise its harder for other to understand it');
           emit(
-            CreateFirstFailState(
+            CreatePostFailState(
               error: error,
             ),
           );
@@ -234,35 +236,32 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
         }
       },
     );
-  
-    
+
     on<UpdateSecondPageEvent>(
       ((event, emit) async {
         log("update second bloc");
         emit(CreatPostLoadingState());
-       
-          try {
-            remuneration = double.parse(event.remuneration);
-          } catch (e) {
-            log("3");
-            emit(
-              CreateSecondFailState(
-                error: AppAlert ()
-              ),
-            );
-            return;
-          }
-          if (remuneration! >= 1000000) {
-            log("4");
-            emit(CreateSecondFailState(error: AppAlert ()));
-            return;
-          } else {
-            log("data adding success");
-            skills = event.skills;
-            location = event.location;
-            experience = event.experience;
-          }
-        
+
+        try {
+          remuneration = double.parse(event.remuneration);
+        } catch (e) {
+          log("3");
+          emit(
+            CreatePostFailState(error: AppAlert()),
+          );
+          return;
+        }
+        if (remuneration! >= 1000000) {
+          log("4");
+          emit(CreatePostFailState(error: AppAlert()));
+          return;
+        } else {
+          log("data adding success");
+          skills = event.skills;
+          location = event.location;
+          experience = event.experience;
+        }
+
         //Post Data
         if (postId != null &&
             uid != null &&
@@ -303,13 +302,13 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
             } on AppException {
               emit(
                 RemoteDataAddFailState(
-                  error: AppAlert (),
+                  error: AppAlert(),
                 ),
               );
             } catch (e) {
               emit(
                 RemoteDataAddFailState(
-                  error: AppAlert (),
+                  error: AppAlert(),
                 ),
               );
             }
@@ -338,11 +337,11 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
                 emit(CreatePostSuccessState(refreshType: tymType!, uid: uid!));
               });
             } on AppException {
-              emit(CreateSecondFailState(error: AppAlert ()));
+              emit(CreatePostFailState(error: AppAlert()));
             } catch (e) {
               emit(
-                CreateSecondFailState(
-                  error: AppAlert (),
+                CreatePostFailState(
+                  error: AppAlert(),
                 ),
               );
             }
@@ -351,6 +350,18 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
           }
         }
       }),
+    );
+  }
+
+  void _failEvent(CreatPostFailEvent event, Emitter<CreatePostState> emit) {
+    emit(
+      CreatePostFailState(
+        error: AppAlert(
+          alert: "Relevant Details Are Missing",
+          details:
+              "It seems like you missed something. Please make sure to fill in all fields.",
+        ),
+      ),
     );
   }
 }

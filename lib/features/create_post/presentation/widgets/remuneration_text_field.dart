@@ -51,7 +51,8 @@ class _RemunerationWidgetState extends State<RemunerationWidget> {
           activeColor: AppDarkColor.instance.success,
           value: currentValue,
           min: 500,
-          max: 100000,
+          max: 50000,
+          
           onChanged: (value) {
             setState(
               () {

@@ -44,7 +44,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
       bloc: _verifyUserBloc,
       listener: (context, state) {
         log(state.toString());
-        if (state is EmailSendSuccessState) {
+        if (state is VerifyUserEmailSendState) {
           AppSnackBar().successSnackBar(
             context: context,
             title: "Email Send Succesfully",
@@ -52,21 +52,21 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                 "We send a email verifcation to user given email id. Please verify the email.",
           );
         }
-        if (state is VerificationFailedState) {
+        if (state is VerifyUserFailedState) {
           AppSnackBar.failSnackBar (
             context: context,
            error: state.error
           );
         }
 
-        if (state is UserNotVerifiedState) {
+        if (state is VerifyUserNotFoundState) {
           AppSnackBar.failSnackBar (
             context: context,
            error: state.error,
           );
         }
 
-        if (state is UserVerificationSuccessState) {
+        if (state is VerifyUserSuccessState) {
           widget.userModel.verified = true;
           Navigator.pushAndRemoveUntil(
             context,

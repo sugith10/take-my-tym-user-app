@@ -18,13 +18,13 @@ class LogOutDrawerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignOutBloc, SignOutState>(
       listener: (context, state) {
-        if (state is UserSignOutFailState) {
+        if (state is SignOutFailState) {
           AppSnackBar.failSnackBar(
             context: context,
             error: state.error,
           );
         }
-        if (state is UserSignOutSuccessState) {
+        if (state is SignOutSuccessState) {
           context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
 
           Navigator.pushAndRemoveUntil(

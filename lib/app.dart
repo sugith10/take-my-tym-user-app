@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
               ..add(GetBuyTymPostsEvent(
                   userId: context.read<AppUserBloc>().userModel!.uid))),
         BlocProvider<CommunityPostsBloc>(
-          create: (context) =>
-              CommunityPostsBloc()..add(BuyTymCommunityPostsEvent()),
+          create: (context) => CommunityPostsBloc()
+            ..add(BuyTymCommunityPostsEvent(
+                userId: context.read<AppUserBloc>().userModel!.uid)),
         ),
         BlocProvider<ChatListBloc>(
           create: (context) => ChatListBloc()
@@ -47,10 +48,7 @@ class MyApp extends StatelessWidget {
               ProposalGetEvent(uid: context.read<AppUserBloc>().userModel!.uid),
             ),
         ),
-        BlocProvider<ContractsBloc>(
-          create: (context) => ContractsBloc()
-           
-        ),
+        BlocProvider<ContractsBloc>(create: (context) => ContractsBloc()),
         BlocProvider<SignOutBloc>(create: (context) => SignOutBloc()),
       ],
       child: const MyAppView(),

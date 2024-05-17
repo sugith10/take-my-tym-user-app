@@ -20,12 +20,12 @@ class CommunityPostsBloc
       emit(CommunityPostsLoadingState());
       try {
         final List<PostModel> posts =
-            await communityPostsUseCase.remoteBuyTymPosts();
+            await communityPostsUseCase.remoteBuyTymPosts(userId: event.userId);
 
         final List<PostModel> onsitePosts =
-            await communityPostsUseCase.onsiteBuyTymPosts();
+            await communityPostsUseCase.onsiteBuyTymPosts(userId: event.userId);
 
-        await communityPostsUseCase.latestbuyTymPosts().then((value) => emit(
+        await communityPostsUseCase.latestbuyTymPosts(userId: event.userId).then((value) => emit(
             CommunityPostsSuccessState(
                 onsitePosts: onsitePosts, posts: value, remotePosts: posts)));
       } catch (e) {
@@ -37,12 +37,12 @@ class CommunityPostsBloc
       emit(CommunityPostsLoadingState());
       try {
         final List<PostModel> posts =
-            await communityPostsUseCase.remoteBuyTymPosts();
+            await communityPostsUseCase.remoteBuyTymPosts(userId: event.userId);
         final List<PostModel> onsitePosts =
-            await communityPostsUseCase.onsiteBuyTymPosts();
+            await communityPostsUseCase.onsiteBuyTymPosts(userId: event.userId);
 
 //TODO:fix error
-        await communityPostsUseCase.sellTymPosts().then(
+        await communityPostsUseCase.sellTymPosts(userId: event.userId).then(
               (value) => emit(
                 CommunityPostsSuccessState(
                   onsitePosts: onsitePosts,

@@ -11,50 +11,58 @@ part 'verify_user_state.dart';
 
 class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
   VerifyUserBloc() : super(VerifyUserInitial()) {
-    final VerifyUserUseCase verifyUserUseCase =
-        GetIt.instance<VerifyUserUseCase>();
+    on<SendVerificationEmailEvent>(_sendVerificationEmail);
+    on<CheckVerificationEvent>(_checkVerification);
+  }
 
-    on<SendVerificationEmailEvent>(
-      (event, emit) async {
-        await verifyUserUseCase.verifyUserEmail();
-        emit(EmailSendSuccessState());
-      },
-    );
+  /// Handles sending verification email.
+  void _sendVerificationEmail(
+    SendVerificationEmailEvent event,
+    Emitter<VerifyUserState> emit,
+  ) async {
+    // Call the VerifyUserUseCase to verify the user's email
+    await GetIt.instance<VerifyUserUseCase>().verifyUserEmail();
+    // Emit the VerifyUserEmailSendState, indicating the email was sent successfully
+    emit(VerifyUserEmailSendState());
+  }
 
-    on<CheckVerificationEvent>(
-      (event, emit) async {
-        try {
-          bool status = await verifyUserUseCase.checkUserVerified();
-          if (status) {
-          emit(const UserVerificationSuccessState());
-          }else{
-            final error = AppAlert (
-              alert: "The user Not Verified",
-              details: "We send a email verifcation to user given email id. Please verify the email."
-            );
-             emit( UserNotVerifiedState(
-              error: error
-             ));
-          }
-        } on AppException catch (e) {
-          log(e.toString());
-          final AppAlert  error = AppAlert (
-            alert: e.alert,
-            details: e.details,
-          );
-          emit(
-            VerificationFailedState(
-            error: error
-            ),
-          );
-        } catch (e) {
-          emit(
-            VerificationFailedState(
-             error: AppAlert ()
-            ),
-          );
-        }
-      },
-    );
+/// Manages the email verification check process, including handling loading, success, and error states.
+/// Verifies user status, emits corresponding success or failure states, and manages exceptions.
+  void _checkVerification(
+    CheckVerificationEvent event,
+    Emitter<VerifyUserState> emit,
+  ) async {
+    try {
+      // Calls the VerifyUserUseCase to check if the user is verified
+      bool status =
+          await GetIt.instance<VerifyUserUseCase>().checkUserVerified();
+      // If the user is verified, emit a success state
+      if (status) {
+        emit(const VerifyUserSuccessState());
+      } else {
+        // If the user is not verified, emit an alert
+        final error = AppAlert(
+            alert: "The user Not Verified",
+            details:
+                "We send a email verifcation to user given email id. Please verify the email.");
+        emit(VerifyUserNotFoundState(error: error));
+      }
+    } on AppException catch (e) {
+      // Logs any exceptions
+      log(e.toString());
+      // Creates an alert based on the exception, and emits a failed state
+      final AppAlert error = AppAlert(
+        alert: e.alert,
+        details: e.details,
+      );
+      emit(
+        VerifyUserFailedState(error: error),
+      );
+    } catch (e) {
+      // If any other exception is thrown, emit a failed state with a generic alert
+      emit(
+        VerifyUserFailedState(error: AppAlert()),
+      );
+    }
   }
 }

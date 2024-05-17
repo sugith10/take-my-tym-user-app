@@ -1,8 +1,8 @@
-part of 'home_page_posts_bloc.dart';
+// part of 'home_page_posts_bloc.dart';
 
- class HomePagePostsEvent extends Equatable {
-  const HomePagePostsEvent();
+//  class HomePagePostsEvent extends Equatable {
+//   const HomePagePostsEvent();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }

@@ -6,28 +6,30 @@ final class CommunityPostsUseCase {
 
   CommunityPostsUseCase(this._communityPostsRepo);
 
-  Future<List<PostModel>> latestbuyTymPosts() async {
-    return await _communityPostsRepo.latestbuyTymPosts();
+  Future<List<PostModel>> latestbuyTymPosts({required String userId}) async {
+    return await _communityPostsRepo.latestbuyTymPosts(userId: userId);
   }
 
-    Future<List<PostModel>> remoteBuyTymPosts() async {
-    return await _communityPostsRepo.remoteBuyTymPosts();
+  Future<List<PostModel>> remoteBuyTymPosts({required String userId}) async {
+    return await _communityPostsRepo.remoteBuyTymPosts(userId: userId);
   }
 
-    Future<List<PostModel>> onsiteBuyTymPosts() async {
-    return await _communityPostsRepo.onsiteBuyTymPosts();
+  Future<List<PostModel>> onsiteBuyTymPosts({required String userId}) async {
+    return await _communityPostsRepo.onsiteBuyTymPosts(userId: userId);
   }
 
-  Future<List<PostModel>> sellTymPosts() async {
-    return await _communityPostsRepo.sellTymPosts();
+  Future<List<PostModel>> sellTymPosts({required String userId}) async {
+    return await _communityPostsRepo.sellTymPosts(userId: userId);
   }
 
   Future<List<PostModel>> nearbyBuyTymPosts({
     required double latitude,
     required double longitude,
     required double range,
+    required String userId,
   }) async {
     return await _communityPostsRepo.nearbyBuyTymPosts(
+      userId: userId,
         latitude: latitude, longitude: longitude, range: range);
   }
 }

@@ -14,4 +14,5 @@ class AppPng {
 
   // PNG image file path for Google icon.
   static const String google = 'assets/png/auth/google.png';
+   static const String location = 'assets/png/icon/location.png';
 }

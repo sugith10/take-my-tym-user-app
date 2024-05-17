@@ -7,8 +7,20 @@ sealed class CommunityPostsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class BuyTymCommunityPostsEvent extends CommunityPostsEvent{}
+final class BuyTymCommunityPostsEvent extends CommunityPostsEvent{
+  final String userId;
+  const BuyTymCommunityPostsEvent({required this.userId});
 
-final class SellTymCommunityPostsEvent extends CommunityPostsEvent{}
+  @override
+  List<Object> get props => [userId];
+}
+
+final class SellTymCommunityPostsEvent extends CommunityPostsEvent{
+   final String userId;
+  const SellTymCommunityPostsEvent({required this.userId});
+
+  @override
+  List<Object> get props => [userId];
+}
 
 

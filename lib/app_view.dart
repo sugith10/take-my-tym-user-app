@@ -14,16 +14,14 @@ class MyAppView extends StatelessWidget {
       splitScreenMode: true,
       minTextAdapt: false,
       fontSizeResolver: FontSizeResolvers.radius,
-      child: Builder(
-        builder: (context) {
-          return MaterialApp(
-            title: "Take My Tym", 
-            home: const SplashPage(),
-            theme: AppDarkTheme().darkTheme,
-            debugShowCheckedModeBanner: false,
-          );
-        }
-      ),
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          title: "Take My Tym",
+          home: const SplashPage(),
+          theme: AppDarkTheme().darkTheme,
+          debugShowCheckedModeBanner: false,
+        );
+      }),
     );
   }
 }

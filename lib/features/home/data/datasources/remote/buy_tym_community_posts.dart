@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
-final class BuyTymCommunityPostsRepo {
-  Stream<QuerySnapshot> newPosts() {
-    return FirebaseFirestore.instance
-        .collection("buyTymPost")
-        .orderBy("postDate", descending: false)
-        .snapshots();
-  }
-}
+// final class BuyTymCommunityPostsRepo {
+//   Stream<QuerySnapshot> newPosts() {
+//     return FirebaseFirestore.instance
+//         .collection("buyTymPost")
+//         .orderBy("postDate", descending: false)
+//         .snapshots();
+//   }
+// }

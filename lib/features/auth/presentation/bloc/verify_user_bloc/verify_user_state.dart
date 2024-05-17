@@ -11,22 +11,22 @@ final class VerifyUserInitial extends VerifyUserState {}
 
 final class VerifyUserLoadingState extends VerifyUserState {}
 
-final class EmailSendSuccessState extends VerifyUserState {}
+final class VerifyUserEmailSendState extends VerifyUserState {}
 
-final class VerificationFailedState extends VerifyUserState {
+final class VerifyUserFailedState extends VerifyUserState {
   final AppAlert  error;
-  const VerificationFailedState({
+  const VerifyUserFailedState({
     required this.error,
   });
 }
 
-final class UserNotVerifiedState extends VerifyUserState {
+final class VerifyUserNotFoundState extends VerifyUserState {
     final AppAlert  error;
-     const UserNotVerifiedState({
+     const VerifyUserNotFoundState({
     required this.error,
   });
 }
 
-final class UserVerificationSuccessState extends VerifyUserState {
-  const UserVerificationSuccessState();
+final class VerifyUserSuccessState extends VerifyUserState {
+  const VerifyUserSuccessState();
 }

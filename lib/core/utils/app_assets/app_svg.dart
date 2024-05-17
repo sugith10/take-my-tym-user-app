@@ -14,11 +14,10 @@ class AppSvg {
   static const String logo = 'assets/svg/takemytym-logo.svg';
 
   // Custom Icons
-  static const String numberOne = 'assets/svg/number-one.svg';
-  static const String numberTwo = 'assets/svg/number-two.svg';
-  static const String numberThree = 'assets/svg/number-three.svg';
-  static const String numberFour = 'assets/svg/number-four.svg';
-  static const String customerSupport = 'assets/svg/hugeicons_customer-service.svg';
-  static const String location = 'assets/svg/icons/location_icon.svg';
-  static const String search = 'assets/svg/icons/search.svg';
+  static const String numberOne = 'assets/svg/icons/number-one.svg';
+  static const String numberTwo = 'assets/svg/icons/number-two.svg';
+  static const String numberThree = 'assets/svg/icons/number-three.svg';
+  static const String numberFour = 'assets/svg/icons/number-four.svg';
+  static const String customerSupport = 'assets/svg/icons/customer-service.svg';
+  static const String location = 'assets/svg/icons/location.svg';
 }

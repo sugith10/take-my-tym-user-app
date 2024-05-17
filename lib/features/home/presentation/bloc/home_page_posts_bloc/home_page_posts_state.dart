@@ -1,18 +1,18 @@
-part of 'home_page_posts_bloc.dart';
+// part of 'home_page_posts_bloc.dart';
 
-sealed class HomePagePostsState extends Equatable {
-  const HomePagePostsState();
+// sealed class HomePagePostsState extends Equatable {
+//   const HomePagePostsState();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-final class HomePagePostsLoadingState extends HomePagePostsState {}
+// final class HomePagePostsLoadingState extends HomePagePostsState {}
 
-class HomePagePostsLoadedState extends HomePagePostsState {
-  final Stream<List<PostModel>> posts;
+// class HomePagePostsLoadedState extends HomePagePostsState {
+//   final Stream<List<PostModel>> posts;
 
-  const HomePagePostsLoadedState({required this.posts});
-    @override
-  List<Object> get props => [posts];
-}
+//   const HomePagePostsLoadedState({required this.posts});
+//     @override
+//   List<Object> get props => [posts];
+// }

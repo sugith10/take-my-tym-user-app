@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
 
+//class to manage remote data for sign up
 final class SignUpRemoteData {
+  ///Create a user with email
   Future<UserModel> createUserWithEmail({
     required String firstName,
     required String lastName,
@@ -12,11 +14,14 @@ final class SignUpRemoteData {
     required String password,
   }) async {
     try {
+      //Firebase Auth API to create user with email and password
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
+      //get user from credential
       final user = credential.user;
 
+      //check if user is null
       if (user == null) {
         throw const AppException(
           alert: 'Sign Up Failed',
@@ -24,19 +29,21 @@ final class SignUpRemoteData {
         );
       }
 
+      //get user doc ref
       final userDocRef =
           FirebaseFirestore.instance.collection('users').doc(user.uid);
 
+      //create user model
       UserModel userModel = UserModel(
-        uid: user.uid,
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        userName: firstName + lastName,
-        verified: false,
-        blocked: false
-      );
+          uid: user.uid,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          userName: firstName + lastName,
+          verified: false,
+          blocked: false);
       try {
+        //run transaction to set user model
         await FirebaseFirestore.instance.runTransaction((transaction) async {
           transaction.set(
             userDocRef,
@@ -44,41 +51,14 @@ final class SignUpRemoteData {
           );
         });
 
+        //return user model
         return userModel;
       } catch (e) {
         log(e.toString());
         throw Exception();
       }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'network-request-failed') {
-        throw const AppException(
-          alert: 'Network Error',
-          details: "Please check your internet connection and try again.",
-        );
-      } else if (e.code == 'weak-password') {
-        log('The password provided is too weak.');
-        throw const AppException(
-            alert: 'user-not-found',
-            details: 'The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        log('The account already exists for that email.');
-        throw const AppException(
-          alert: 'Account Already Exists',
-          details: 'An account with this email already exists.',
-        );
-      } else {
-        log('excpetion occured');
-        log(e.toString());
-        throw const AppException(
-            alert: 'check firebase exception',
-            details: 'Check RemoteDataSource');
-      }
-    } on Exception catch (e) {
-      log(e.toString());
-      throw const AppException(
-        alert: 'Something went wrong',
-        details: 'Check RemoteDataSource',
-      );
+    } on Exception {
+      throw Exception();
     }
   }
 }

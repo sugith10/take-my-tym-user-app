@@ -4,6 +4,8 @@ abstract class CreatePostEvent {
   const CreatePostEvent();
 }
 
+final class CreatPostFailEvent extends CreatePostEvent{}
+
 final class CreateFirstPageEvent extends CreatePostEvent {
   final UserModel userModel;
   final bool tymType;

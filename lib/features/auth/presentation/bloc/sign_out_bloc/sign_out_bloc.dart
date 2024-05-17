@@ -17,8 +17,8 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
   /// Manages the password reset process, displaying loading state and emitting success or failure states.
   /// This includes invoking the reset password use case and handling the corresponding outcomes.
   void _onSignOut(UserSignOutEvent event, Emitter<SignOutState> emit) async {
-    // Emit the UserSignOutLoadingState to indicate that the sign-out process has started
-    emit(UserSignOutLoadingState());
+    // Emit the SignOutLoadingState to indicate that the sign-out process has started
+    emit(SignOutLoadingState());
     try {
       // Get the SignOutUseCase from the GetIt library
       final SignOutUseCase signOutUseCase = GetIt.instance<SignOutUseCase>();
@@ -26,8 +26,8 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
       await signOutUseCase.signOutUser().then((value) async {
         // Call the userSignOutFromLocal() method on the LocalUserStorageUseCase
         await GetIt.instance<LocalUserStorageUseCase>().userSignOutFromLocal();
-        // Emit the UserSignOutSuccessState to indicate that the sign-out process was successful
-        emit(UserSignOutSuccessState());
+        // Emit the SignOutSuccessState to indicate that the sign-out process was successful
+        emit(SignOutSuccessState());
       });
     } on AppException catch (e) {
       // Create an AppAlert from the AppException
@@ -35,14 +35,14 @@ class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
         alert: e.alert,
         details: e.details,
       );
-      // Emit the UserSignOutFailState with the AppAlert
+      // Emit the SignOutFailState with the AppAlert
       emit(
-        UserSignOutFailState(error: error),
+        SignOutFailState(error: error),
       );
     } catch (e) {
-      // Emit the UserSignOutFailState with an empty AppAlert
+      // Emit the SignOutFailState with an empty AppAlert
       emit(
-        UserSignOutFailState(
+        SignOutFailState(
           error: AppAlert(),
         ),
       );

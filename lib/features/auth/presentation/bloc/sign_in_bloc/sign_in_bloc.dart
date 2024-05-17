@@ -16,7 +16,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<LogInEvent>(_onSignIn);
   }
 
-  /// Manages user sign-in, including loading state indication and error handling.
+  /// Manages user sign-in process, including loading state indication, checking if user is blocked, and error handling.
+  /// Authenticates user, stores user data locally, and emits corresponding success or failure states.
   _onSignIn(
     LogInEvent event,
     Emitter<SignInState> emit,

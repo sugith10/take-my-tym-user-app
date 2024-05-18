@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
@@ -16,7 +16,6 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(MyAppPadding.homePadding),
       child: TextField(
@@ -46,7 +45,7 @@ class SearchTextField extends StatelessWidget {
           prefixIcon: Padding(
             padding: const EdgeInsets.only(left: 5),
             child: InkWell(
-               borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(5),
               onTap: () {
                 Navigator.pop(context);
               },

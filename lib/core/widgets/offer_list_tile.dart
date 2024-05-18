@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../utils/app_colors.dart';
+import '../utils/theme/app_colors.dart';
 
 class OfferListTile extends StatelessWidget {
   final String text;

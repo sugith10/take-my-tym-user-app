@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
-
 
 class ChatTextField extends StatefulWidget {
   final String receiverUid;
@@ -52,7 +51,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   controller: _controller,
                   textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(
-                     counterText: '',
+                    counterText: '',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: _appDarkColor.secondaryText),

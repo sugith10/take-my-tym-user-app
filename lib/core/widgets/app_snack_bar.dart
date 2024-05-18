@@ -1,16 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:take_my_tym/core/utils/app_assets/app_svg.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/assets/app_svg.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 final class AppSnackBar {
-  static  failSnackBar({
+  static failSnackBar({
     required BuildContext context,
-     AppAlert ? error,
+    AppAlert? error,
   }) {
-    error = error ?? AppAlert ();
+    error = error ?? AppAlert();
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: _SnackBarContentWidget(
@@ -75,8 +77,12 @@ class _SnackBarContentWidget extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(MyAppRadius.borderRadius),
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                Platform.isIOS
+                    ? MyAppRadius.borderRadius + MyAppRadius.borderRadius
+                    : MyAppRadius.borderRadius,
+              ),
             ),
           ),
           child: Row(
@@ -87,17 +93,21 @@ class _SnackBarContentWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      message,
-                      style: Theme.of(context).textTheme.titleSmall,
+                    FittedBox(
+                      child: Text(
+                        message,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
-                      description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppDarkColor.instance.primaryTextBlur),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Expanded(
+                      child: Text(
+                        description,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppDarkColor.instance.primaryTextBlur),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -108,8 +118,12 @@ class _SnackBarContentWidget extends StatelessWidget {
         Positioned(
           bottom: 0,
           child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(MyAppRadius.borderRadius)),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(
+              Platform.isIOS
+                  ? MyAppRadius.borderRadius + MyAppRadius.borderRadius
+                  : MyAppRadius.borderRadius,
+            )),
             child: SvgPicture.asset(
               AppSvg.snackBarBubbles,
               height: 48,
@@ -126,7 +140,7 @@ class _SnackBarContentWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(
-                 AppSvg.snackBarIconSpace,
+                AppSvg.snackBarIconSpace,
                 height: 40,
                 // ignore: deprecated_member_use
                 color: assetColor,
@@ -134,7 +148,7 @@ class _SnackBarContentWidget extends StatelessWidget {
               Positioned(
                 top: 10,
                 child: SvgPicture.asset(
-                 icon,
+                  icon,
                   height: 16,
                 ),
               ),

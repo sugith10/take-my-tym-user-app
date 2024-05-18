@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/submit_button.dart';

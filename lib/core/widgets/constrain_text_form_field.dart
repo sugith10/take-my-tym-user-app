@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class CollectInfoTextField extends StatelessWidget {
@@ -46,7 +46,7 @@ class CollectInfoTextField extends StatelessWidget {
 
 class _CollectInfoTextField extends StatelessWidget {
   final TextEditingController controller;
-   final TextStyle? controllerStyle;
+  final TextStyle? controllerStyle;
   final TextInputType keyboardType;
   final String hintText;
   final Widget? prefixIcon;
@@ -77,7 +77,6 @@ class _CollectInfoTextField extends StatelessWidget {
         enabledBorder: border,
         focusedBorder: border,
         hintText: hintText,
-  
       ),
       style: controllerStyle ?? Theme.of(context).textTheme.labelLarge,
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
@@ -22,7 +22,7 @@ class CollectItemsWidget extends StatefulWidget {
 
 class _CollectItemsWidgetState extends State<CollectItemsWidget> {
   final TextEditingController _categoryCntrl = TextEditingController();
-  final AppAlert  _errorMsg = AppAlert (
+  final AppAlert _errorMsg = AppAlert(
       alert: "Skill limit reached",
       details: "You have reached the maximum number of skills allowed.");
   Set<String> skills = {};

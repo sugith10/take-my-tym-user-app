@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/name_capitalize.dart';
 import '../../../../core/widgets/app_title_box_widget.dart';
 import '../../../profile/presentation/bloc/get_profile_bloc/get_profile_bloc.dart';

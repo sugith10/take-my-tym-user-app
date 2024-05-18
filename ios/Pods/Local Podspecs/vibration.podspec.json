@@ -1,0 +1,32 @@
+{
+  "name": "vibration",
+  "version": "1.7.5",
+  "summary": "A plugin for handling Vibration API on iOS and Android devices",
+  "description": "Handle vibration on iOS and Android",
+  "homepage": "https://github.com/benjamindean/flutter_vibration",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Benjamin Dean": "benjaminabel.cellardoor@gmail.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+  },
+  "swift_versions": "5.3",
+  "swift_version": "5.3"
+}

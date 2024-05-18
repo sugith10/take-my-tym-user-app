@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,12 +25,18 @@ class ProfileCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //Section 1 begin
+            if (Platform.isAndroid)
+              Column(
+                children: [
+                  SizedBox(width: 15.h),
+                  const CircleProfilePicWidget(
+                    height: 100,
+                    width: 100,
+                  ),
+                  SizedBox(width: 25.h),
+                ],
+              ),
             SizedBox(width: 15.h),
-            const CircleProfilePicWidget(
-              height: 100,
-              width: 100,
-            ),
-            SizedBox(width: 25.h),
             //Section 1 end
             SizedBox(
               width: MediaQuery.of(context).size.width / 2,
@@ -56,7 +64,25 @@ class ProfileCard extends StatelessWidget {
                 ],
               ),
             ),
-
+            if (Platform.isIOS)
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 35),
+                        child: const CircleProfilePicWidget(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 15.h),
+                  ],
+                ),
+              ),
             SizedBox(width: 15.h),
           ],
         ),

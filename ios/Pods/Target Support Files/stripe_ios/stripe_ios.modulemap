@@ -1,0 +1,6 @@
+framework module stripe_ios {
+  umbrella header "stripe_ios-umbrella.h"
+
+  export *
+  module * { export * }
+}

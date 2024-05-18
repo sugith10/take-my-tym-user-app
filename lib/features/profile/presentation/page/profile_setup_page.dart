@@ -6,8 +6,8 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/app_assets/app_lottie.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/assets/app_lottie.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -19,7 +19,6 @@ import '../../../location/presentation/bloc/location_bloc.dart';
 import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
 import '../widget/finish_setup_button.dart';
-
 
 class ProfileSetupPage extends StatefulWidget {
   final UserModel userModel;
@@ -99,8 +98,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "User Name",
                         keyboardType: TextInputType.text,
-                       
-                     
                       ),
                       const SizedBox(height: 25),
                       CollectInfoTextField(
@@ -108,8 +105,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "About",
                         keyboardType: TextInputType.text,
-                       
-                     
                       ),
                       const SizedBox(height: 25),
                       CreatePostLocationWidget(
@@ -123,8 +118,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                         style: Theme.of(context).textTheme.titleSmall,
                         hintText: "Profession",
                         keyboardType: TextInputType.text,
-                      
-                     
                       ),
                       SizedBox(height: 5.h),
                       CollectItemsWidget(

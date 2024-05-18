@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_info_dailog.dart';
 
-class TakeyMyTymDailog{
- void show({required BuildContext context}){
-  AppInfoDialog.show(context: context, widget:const _AppInfoContents());
- }
+class TakeyMyTymDailog {
+  void show({required BuildContext context}) {
+    AppInfoDialog.show(context: context, widget: const _AppInfoContents());
+  }
 }
 
 class _AppInfoContents extends StatelessWidget {

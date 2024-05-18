@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 
 class AppDialog {
   static show({
@@ -34,7 +34,7 @@ class AppDialog {
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: AppDarkColor.instance.primaryTextBlur,
                       ),
-                      textAlign: TextAlign.center,
+                  textAlign: TextAlign.center,
                 ),
                 const Spacer(),
                 _MessageButton(

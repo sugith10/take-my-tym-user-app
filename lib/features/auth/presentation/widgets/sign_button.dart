@@ -1,8 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_colors.dart';
-
+import '../../../../core/utils/theme/app_colors.dart';
 
 class SignButtonWidget extends StatelessWidget {
   final String title;
@@ -37,6 +36,7 @@ class SignButtonWidget extends StatelessWidget {
         ),
         child: ElevatedButton(
           onPressed: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             function();
           },
           style: ElevatedButton.styleFrom(minimumSize: Size(width, height)),

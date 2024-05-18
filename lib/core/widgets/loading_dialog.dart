@@ -8,7 +8,7 @@ class LoadingDialog {
       useRootNavigator: false,
       builder: (context) {
         return const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator.adaptive(),
         );
       },
     );

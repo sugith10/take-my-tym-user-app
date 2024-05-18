@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
 import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
@@ -66,7 +66,6 @@ class WalletCard extends StatelessWidget {
                         icon: IconlyLight.arrow_up,
                         title: 'Top up',
                         callback: () {
-                          
                           Navigator.push(
                             context,
                             PaymentPage.route(type: WalletAction.topUp),

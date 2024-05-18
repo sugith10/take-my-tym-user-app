@@ -2,9 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/post_types.dart';
-
 
 class WorkTypeWidget extends StatefulWidget {
   final Function(String) function;

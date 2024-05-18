@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class EventCard extends StatelessWidget {
@@ -22,10 +23,10 @@ class EventCard extends StatelessWidget {
       child: Text(
         title,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: isPast
-                  ? AppDarkColor.instance.primaryTextSoft
-                  : AppDarkColor.instance.secondaryText,
-            ),
+            color: isPast
+                ? AppDarkColor.instance.primaryTextSoft
+                : AppDarkColor.instance.secondaryText,
+            fontSize: MediaQuery.of(context).size.width * 0.028.sp),
       ),
     );
   }

@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:animate_do/animate_do.dart';
 
-import '../../../../core/utils/app_responsive.dart';
 import 'sign_back_button.dart';
-
 
 class WelcomeTextWidget extends StatelessWidget {
   final String firstLine;
@@ -31,7 +28,6 @@ class WelcomeTextWidget extends StatelessWidget {
             duration: const Duration(milliseconds: 1000),
             child: SignBackButton(
               callback: () {
-               
                 Navigator.pop(context);
               },
             ),
@@ -67,15 +63,12 @@ class _Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MobileResponsive.mobileSmall(context)) {
-      return Text(
-        line,
-        style: Theme.of(context).textTheme.headlineLarge,
-      );
-    }
     return Text(
       line,
-      style: Theme.of(context).textTheme.displayLarge,
+      style: Theme.of(context)
+          .textTheme
+          .displayLarge
+          ?.copyWith(fontSize: MediaQuery.of(context).size.width * 0.055.sp),
     );
   }
 }

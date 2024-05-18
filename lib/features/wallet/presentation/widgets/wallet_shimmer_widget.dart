@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer_pro/shimmer_pro.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 import 'package:take_my_tym/core/widgets/shimmer_common_widget.dart';

@@ -3,24 +3,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-import '../../../../core/utils/app_assets/app_svg.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/assets/app_svg.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/event_card.dart';
 import '../../../../core/widgets/home_padding.dart';
-
 
 class ProposelTimeLine extends StatelessWidget {
   const ProposelTimeLine({
     super.key,
   });
-   final String stepOne =
-        'The creator reviews your profile and proposal, then accepts or rejects it. 🔎';
-    final  String stepTwo =
-        'If accepted, the contract begins, and payment is debited from the creator. 💸';
-    final  String stepThree =
-        'Although the payment is debited from the creator, it remains locked. 🔐';
-    final  String stepFour =
-        'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!! 🎊';
+  final String stepOne =
+      'The creator reviews your profile and proposal, then accepts or rejects it. 🔎';
+  final String stepTwo =
+      'If accepted, the contract begins, and payment is debited from the creator. 💸';
+  final String stepThree =
+      'Although the payment is debited from the creator, it remains locked. 🔐';
+  final String stepFour =
+      'Complete the work, and upon verification by the creator, payment is credited to your wallet. Wooh!! 🎊';
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,7 @@ class ProposelTimeLine extends StatelessWidget {
                       color: AppDarkColor.instance.success,
                       thickness: 6,
                     ),
-                    endChild:  EventCard(
+                    endChild: EventCard(
                       isPast: true,
                       title: stepOne,
                     ),
@@ -74,7 +73,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberTwo),
-                    startChild:  EventCard(
+                    startChild: EventCard(
                       isPast: true,
                       title: stepTwo,
                     ),
@@ -93,7 +92,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberThree),
-                    endChild:  EventCard(
+                    endChild: EventCard(
                       isPast: true,
                       title: stepThree,
                     ),
@@ -113,7 +112,7 @@ class ProposelTimeLine extends StatelessWidget {
                       thickness: 6,
                     ),
                     indicatorStyle: _indicator(AppSvg.numberFour),
-                    startChild:  EventCard(
+                    startChild: EventCard(
                       isPast: true,
                       title: stepFour,
                     ),

@@ -25,14 +25,12 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Positioned(
-                        child: Padding(
-                      padding: EdgeInsets.only(top: 40),
-                      child: AppLogo(),
-                    )),
                     Align(
                       alignment: Alignment.center,
                       child: WelcomePageAnimation(),
+                    ),
+                    SafeArea(
+                      child: AppLogo(),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,

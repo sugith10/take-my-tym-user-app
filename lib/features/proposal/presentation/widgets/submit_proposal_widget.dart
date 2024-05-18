@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../../../core/widgets/contract_timeline_widget.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
 import '../bloc/get_submit_bloc/submit_bloc.dart';
 import '../../../../core/widgets/offer_list_tile.dart';
-
 
 class SubmitProposalWidget extends StatelessWidget {
   final GetSubmitBloc getSubmitBloc;

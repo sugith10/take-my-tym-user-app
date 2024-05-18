@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 
 class RemunerationWidget extends StatefulWidget {
@@ -52,7 +52,6 @@ class _RemunerationWidgetState extends State<RemunerationWidget> {
           value: currentValue,
           min: 500,
           max: 50000,
-          
           onChanged: (value) {
             setState(
               () {

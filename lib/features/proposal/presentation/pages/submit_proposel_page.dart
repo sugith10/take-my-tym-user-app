@@ -146,7 +146,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                           bloc: submitProposalBloc,
                           builder: (context, state) {
                             if (state is SubmitProposalLoadingState) {
-                              return const CircularProgressIndicator();
+                              return const CircularProgressIndicator.adaptive();
                             }
                             return const Text("Submit");
                           },

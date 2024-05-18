@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-
 import '../../features/create_post/presentation/widgets/post_specifications_widget.dart';
 import '../bloc/app_user_bloc/app_user_bloc.dart';
 import '../model/app_post_model.dart';
-import '../utils/app_colors.dart';
+import '../utils/theme/app_colors.dart';
 import '../utils/app_radius.dart';
 import '../utils/app_responsive.dart';
 import '../utils/name_capitalize.dart';

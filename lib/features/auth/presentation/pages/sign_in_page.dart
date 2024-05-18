@@ -159,7 +159,6 @@ class _SignInPageState extends State<SignInPage> {
                         SignButtonWidget(
                           title: 'LOG IN',
                           function: () {
-                            FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
                               FocusScope.of(context).unfocus();
                               submitCredentials();

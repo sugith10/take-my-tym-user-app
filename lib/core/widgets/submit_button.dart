@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class SubmitButton extends StatelessWidget {
   final VoidCallback callback;
@@ -7,6 +10,7 @@ class SubmitButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Widget? child;
+
   const SubmitButton({
     required this.callback,
     required this.text,
@@ -27,6 +31,11 @@ class SubmitButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
+          shape: Platform.isIOS
+              ? RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
+                )
+              : null,
         ),
         child: child ?? Text(text),
       ),

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../../../core/widgets/submit_button.dart';
 import '../../../proposal/presentation/pages/submit_proposel_page.dart';
-
 
 class ProposelBottomSheet {
   void show(BuildContext context, {required PostModel postModel}) {

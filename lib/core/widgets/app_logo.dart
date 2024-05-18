@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../utils/app_assets/app_svg.dart';
-
+import '../utils/assets/app_svg.dart';
 
 class AppLogo extends StatelessWidget {
   const AppLogo({
@@ -11,16 +10,18 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [ 
+    return Column(
+      children: [
         Text(
-      "Where Time Meets Oppurtunity",
-      style: Theme.of(context).textTheme.titleSmall,
-    ),
-    const SizedBox(height: 20),
-     SvgPicture.asset(
-      AppSvg.logo,
-      height: 40,
-    ),
-    ],);
+          "Where Time Meets Oppurtunity",
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        const SizedBox(height: 20),
+        SvgPicture.asset(
+          AppSvg.logo,
+          height: 40,
+        ),
+      ],
+    );
   }
 }

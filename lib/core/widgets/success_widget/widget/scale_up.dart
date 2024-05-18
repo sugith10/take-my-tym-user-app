@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../utils/app_assets/app_png.dart';
-
+import '../../../utils/assets/app_png.dart';
 
 class ZoomAnimationWidget extends StatefulWidget {
   const ZoomAnimationWidget({super.key});

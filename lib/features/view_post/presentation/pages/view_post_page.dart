@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dart';
+import 'package:take_my_tym/core/utils/app_padding.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
@@ -127,14 +128,14 @@ class _ViewPostPageState extends State<ViewPostPage> {
                       ),
                     ),
                     SizedBox(height: 20.h),
-                    const Divider(),
+                    const HomePadding(child: Divider()),
                     SizedBox(height: 20.h),
                     HomePadding(
                         child: SkillsWidget(
                       skillList: widget.postModel.skills,
                     )),
                     SizedBox(height: 20.h),
-                    const Divider(),
+                    const HomePadding(child: Divider()),
                     SizedBox(height: 20.h),
                     HomePadding(
                       child: PostConstraintsWidget(
@@ -170,14 +171,17 @@ class _ViewPostPageState extends State<ViewPostPage> {
               ),
         bottomNavigationBar: appUser
             ? null
-            : SubmitButton(
-                text: "Submit Proposel",
-                callback: () {
-                  ProposelBottomSheet().show(
-                    context,
-                    postModel: widget.postModel,
-                  );
-                },
+            : Padding(
+                padding: const EdgeInsets.all(MyAppPadding.homePadding),
+                child: SubmitButton(
+                  text: "Submit Proposal",
+                  callback: () {
+                    ProposelBottomSheet().show(
+                      context,
+                      postModel: widget.postModel,
+                    );
+                  },
+                ),
               ),
       ),
     );

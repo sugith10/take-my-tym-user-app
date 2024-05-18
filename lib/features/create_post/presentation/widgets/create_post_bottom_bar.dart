@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/theme/app_colors.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/switch_category_widget.dart';
-
 
 class CreatePostBottomBar extends StatelessWidget {
   final PostModel? postModel;

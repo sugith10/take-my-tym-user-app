@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/app_colors.dart';
 
 class ProfileLocationWidget extends StatelessWidget {
   final String? location;
@@ -24,7 +24,7 @@ class ProfileLocationWidget extends StatelessWidget {
             location != null ? location! : '',
             style: Theme.of(context).textTheme.bodyMedium,
             overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            maxLines: 1,
           ),
         ),
       ],

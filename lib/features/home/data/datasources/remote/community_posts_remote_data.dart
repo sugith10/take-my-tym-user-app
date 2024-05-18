@@ -62,6 +62,8 @@ class CommunityPostsRemoteData {
       final query = FirebaseFirestore.instance
           .collection('buyTymPost')
           .where('workType', isEqualTo: 'On-site')
+          .where("uid", isNotEqualTo: uid)
+          .orderBy("uid")
           .orderBy("postDate", descending: true);
 
       final snapshot = await query.get();

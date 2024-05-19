@@ -6,6 +6,7 @@ import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.
 import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../profile/presentation/page/profile_setup_page.dart';
 import '../bloc/sign_up_bloc/sign_up_bloc.dart';
 import '../widgets/animate_navigation_text.dart';
 import '../widgets/auth_progress_widget.dart';
@@ -69,11 +70,16 @@ class _SignUpPageState extends State<SignUpPage> {
         bloc: _signUpBloc,
         listener: (context, state) {
           if (state is SignUpSuccessState) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              EmailVerificationPage.route(userModel: state.userModel),
-              (route) => false,
-            );
+             Navigator.pushAndRemoveUntil(
+            context,
+            ProfileSetupPage.route(userModel: state.userModel),
+            (route) => false,
+          );
+            // Navigator.pushAndRemoveUntil(
+            //   context,
+            //   EmailVerificationPage.route(userModel: state.userModel),
+            //   (route) => false,
+            // );
           }
           if (state is SignUpFailState) {
             AppSnackBar.failSnackBar(

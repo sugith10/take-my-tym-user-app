@@ -44,7 +44,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
     return BlocListener(
       bloc: _verifyUserBloc,
       listener: (context, state) {
-        log(state.toString());
+        
         if (state is VerifyUserEmailSendState) {
           AppSnackBar().successSnackBar(
             context: context,

@@ -22,7 +22,6 @@ class WelcomeTextWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10.h),
           FadeInDown(
             delay: const Duration(milliseconds: 900),
             duration: const Duration(milliseconds: 1000),

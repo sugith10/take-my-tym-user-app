@@ -28,7 +28,7 @@ class GenerateFeedWidget extends StatelessWidget {
                 constraints: BoxConstraints(
                   minHeight: 180.h,
                 ),
-                child: PostedContentWidget(
+                child: PostCard(
                   voidCallback: () {
                     Navigator.push(
                         context, ViewPostPage.route(postModel: postModel));

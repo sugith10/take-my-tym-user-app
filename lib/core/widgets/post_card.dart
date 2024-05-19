@@ -12,13 +12,13 @@ import '../utils/app_responsive.dart';
 import '../utils/name_capitalize.dart';
 import 'app_card.dart';
 
-class PostedContentWidget extends StatelessWidget {
+class PostCard extends StatelessWidget {
   final String? image;
   final PostModel postModel;
   final double width;
   final VoidCallback voidCallback;
 
-  const PostedContentWidget({
+  const PostCard({
     this.image,
     required this.voidCallback,
     required this.postModel,
@@ -66,26 +66,26 @@ class PostedContentWidget extends StatelessWidget {
               ],
             ),
           ),
-          if (context.read<AppUserBloc>().userModel!.uid != postModel.uid)
-            Positioned(
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppDarkColor.instance.lightBackground,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    topRight: Radius.circular(MyAppRadius.borderRadius),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(
-                    IconlyLight.bookmark,
-                    color: AppDarkColor.instance.iconColor,
-                  ),
-                ),
-              ),
-            ),
+          // if (context.read<AppUserBloc>().userModel!.uid != postModel.uid)
+          //   Positioned(
+          //     right: 0,
+          //     child: Container(
+          //       decoration: BoxDecoration(
+          //         color: AppDarkColor.instance.lightBackground,
+          //         borderRadius: const BorderRadius.only(
+          //           bottomLeft: Radius.circular(15),
+          //           topRight: Radius.circular(MyAppRadius.borderRadius),
+          //         ),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(10.0),
+          //         child: Icon(
+          //           IconlyLight.bookmark,
+          //           color: AppDarkColor.instance.iconColor,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
         ],
       ),
     );

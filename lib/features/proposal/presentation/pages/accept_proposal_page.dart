@@ -102,7 +102,7 @@ class AcceptProposalPage extends StatelessWidget {
                 SizedBox(height: 25.h),
                 AcceptMessage(msg: offerModel.message),
                 SizedBox(height: 25.h),
-                PostedContentWidget(
+                PostCard(
                   voidCallback: () {},
                   postModel: postModel,
                   width: double.infinity,

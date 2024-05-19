@@ -58,7 +58,7 @@ class _PostsBuilder extends StatelessWidget {
         itemCount: postModles.length,
         itemBuilder: (context, index) {
           final model = postModles[index];
-          return PostedContentWidget(
+          return PostCard(
             postModel: model,
             voidCallback: () {
               Navigator.push(

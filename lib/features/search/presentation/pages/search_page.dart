@@ -56,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: state.results.length,
                     itemBuilder: (context, index) {
                       final postModel = state.results[index];
-                      return PostedContentWidget(
+                      return PostCard(
                         postModel: postModel,
                         voidCallback: () {
                           Navigator.push(

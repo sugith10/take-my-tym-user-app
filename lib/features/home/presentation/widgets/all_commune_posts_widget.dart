@@ -21,7 +21,7 @@ class AllCommunePostsWidget extends StatelessWidget {
           (index) {
             final PostModel postModel =
                 posts[index];
-            return PostedContentWidget(
+            return PostCard(
               voidCallback: () {
                 Navigator.push(
                     context,

@@ -24,9 +24,11 @@ class LocationTextField extends StatelessWidget {
       keyboardType: TextInputType.text,
       controller: _locationController,
       onChanged: (value) {
-        _debouncer.run(() => locationBloc.add(
-              SearchLocationsEvent(query: value),
-            ));
+        _debouncer.run(
+          () => locationBloc.add(
+            SearchLocationsEvent(query: value),
+          ),
+        );
       },
       autofocus: true,
       textCapitalization: TextCapitalization.sentences,

@@ -16,7 +16,7 @@ class SignInRepoImpl implements SignInRepo {
   @override
   Future<UserModel> authenticateUser(String email, String password) {
     try {
-      // Attempt to authenticate the user
+      // Method to authenticate the user
       return _remoteDataSource.emailSignIn(email, password);
     } on FirebaseAuthException catch (e) {
       // Check the FirebaseAuthException code

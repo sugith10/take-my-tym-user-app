@@ -36,7 +36,7 @@ class WelcomeButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SignButtonText(
-              text: "LOGIN",
+              title: "LOGIN",
             )
           ],
         ),

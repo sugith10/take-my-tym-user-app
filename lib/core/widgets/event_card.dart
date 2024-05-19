@@ -18,15 +18,17 @@ class EventCard extends StatelessWidget {
       margin: const EdgeInsets.all(25),
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-          color: AppDarkColor.instance.secondaryBackground,
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius)),
+        color: AppDarkColor.instance.lightBackground,
+        borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+      ),
       child: Text(
         title,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: isPast
-                ? AppDarkColor.instance.primaryTextSoft
-                : AppDarkColor.instance.secondaryText,
-            fontSize: MediaQuery.of(context).size.width * 0.028.sp),
+              color: isPast
+                  ? AppDarkColor.instance.primaryTextSoft
+                  : AppDarkColor.instance.secondaryText,
+              fontSize: MediaQuery.of(context).size.width * 0.0325.sp,
+            ),
       ),
     );
   }

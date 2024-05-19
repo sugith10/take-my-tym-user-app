@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
@@ -13,68 +14,72 @@ part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
-    on<LogInEvent>(_onSignIn);
+    on<SignInEvent>(_onSignIn);
   }
 
   /// Manages user sign-in process, including loading state indication, checking if user is blocked, and error handling.
   /// Authenticates user, stores user data locally, and emits corresponding success or failure states.
   _onSignIn(
-    LogInEvent event,
+    SignInEvent event,
     Emitter<SignInState> emit,
   ) async {
-    // The SignInLoadingState is emitted to indicate that the sign in process is loading
     emit(SignInLoadingState());
-    // try is used to handle exceptions
-    try {
-      // SignInUseCase is retrieved from the GetIt instance
-      SignInUseCase signInUseCase = GetIt.instance<SignInUseCase>();
 
-      // authUserModel is set to the result of the authenticateUser method, which takes the email and password as arguments
-      UserModel authUserModel =
-          await signInUseCase.authenticateUser(event.email, event.password);
+    // Check if the form is valid
+    if (event.formKey.currentState!.validate()) {
+      try {
+        // SignInUseCase is retrieved from the GetIt instance
+        final signInUseCase = GetIt.instance<SignInUseCase>();
 
-      // storeUserDataLocal is called with the authUserModel as an argument, which stores the user data locally
-      await GetIt.instance<LocalUserStorageUseCase>()
-          .storeUserDataLocal(authUserModel);
-      // if the authUserModel is blocked, a SignInErrorState with an AppAlert is emitted
-      if (authUserModel.blocked) {
-        emit(SignInErrorState(
-            error: AppAlert(
-                alert:
-                    "Due to unusual activity, your account has been blocked.")));
-        // else, if the authUserModel has a about, a SignInSuccessState with a profileSetupComp set to true is emitted
-      } else {
-        if (authUserModel.about != null) {
-          emit(SignInSuccessState(
-            profileSetupComp: true,
-            userModel: authUserModel,
-          ));
+        // authUserModel is set to the result of the authenticateUser method, which takes the email and password as arguments
+        UserModel authUserModel =
+            await signInUseCase.authenticateUser(event.email, event.password);
+
+        // storeUserDataLocal is called with the authUserModel as an argument, which stores the user data locally
+        await GetIt.instance<LocalUserStorageUseCase>()
+            .storeUserDataLocal(authUserModel);
+        // if the authUserModel is blocked, a SignInErrorState with an AppAlert is emitted
+        if (authUserModel.blocked) {
+          emit(SignInErrorState(
+              error: AppAlert(
+                  alert:
+                      "Due to unusual activity, your account has been blocked.")));
+          // else, if the authUserModel has a about, a SignInSuccessState with a profileSetupComp set to true is emitted
         } else {
-          // else, a SignInSuccessState with a profileSetupComp set to false is emitted
-          emit(SignInSuccessState(
-            profileSetupComp: false,
-            userModel: authUserModel,
-          ));
+          if (authUserModel.about != null) {
+            emit(SignInSuccessState(
+              profileSetupComp: true,
+              userModel: authUserModel,
+            ));
+          } else {
+            // else, a SignInSuccessState with a profileSetupComp set to false is emitted
+            emit(SignInSuccessState(
+              profileSetupComp: false,
+              userModel: authUserModel,
+            ));
+          }
         }
-      }
-    } on AppException catch (e) {
-      // An AppAlert is created with the alert and details from the exception
-      final AppAlert error = AppAlert(
-        alert: e.alert,
-        details: e.details,
-      );
-      // a SignInErrorState with the AppAlert is emitted
-      emit(
-        SignInErrorState(error: error),
-      );
-    } catch (e) {
-      // log the error
-      appLogger.e(e);
+      } on AppException catch (e) {
+        // An AppAlert is created with the alert and details from the exception
+        final AppAlert error = AppAlert(
+          alert: e.alert,
+          details: e.details,
+        );
+        // a SignInErrorState with the AppAlert is emitted
+        emit(
+          SignInErrorState(error: error),
+        );
+      } catch (e) {
+        // log the error
+        appLogger.e(e);
 
-      // a SignInErrorState with AppAlert is emitted
-      emit(
-        SignInErrorState(error: AppAlert()),
-      );
+        // a SignInErrorState with AppAlert is emitted
+        emit(
+          SignInErrorState(error: AppAlert()),
+        );
+      }
+    } else {
+      emit(SignInErrorState(error: AppAlert()));
     }
   }
 }

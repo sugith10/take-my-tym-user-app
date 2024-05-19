@@ -43,6 +43,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
   @override
   void dispose() {
     _locationController.dispose();
+    _debouncer.dispose();
     super.dispose();
   }
 

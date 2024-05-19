@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 class SignBackButton extends StatelessWidget {
@@ -11,17 +12,22 @@ class SignBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomLeft,
-      child: IconButton(
-        onPressed: () {
-          callback();
-        },
-        icon: const Icon(
-          IconlyBroken.arrow_left,
-          color: Colors.white,
+    return Column(
+      children: [
+         SizedBox(height: 10.h),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: IconButton(
+            onPressed: () {
+              callback();
+            },
+            icon: const Icon(
+              IconlyBroken.arrow_left,
+              color: Colors.white,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

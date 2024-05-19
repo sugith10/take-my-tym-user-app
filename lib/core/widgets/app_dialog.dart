@@ -9,8 +9,9 @@ class AppDialog {
     required String subtitle,
     required String action,
     required VoidCallback actionCall,
-    Color actionColor = const Color.fromRGBO(244, 67, 54, 1),
+    Color? actionColor,
     bool actionPop = false,
+    String canecel = "Cancel",
   }) {
     showDialog(
       barrierDismissible: false,
@@ -38,18 +39,16 @@ class AppDialog {
                 ),
                 const Spacer(),
                 _MessageButton(
-                  action: 'Cancel',
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  callback: () {
-                    Navigator.pop(context);
-                  },
+                  action: canecel,
+                  backgroundColor: AppDarkColor.instance.buttonBackground,
+                  foregroundColor: AppDarkColor.instance.buttonForground,
+                  callback: () => Navigator.pop(context),
                 ),
                 SizedBox(height: 12.h),
                 _MessageButton(
                   action: action,
-                  backgroundColor: actionColor,
-                  foregroundColor: Colors.white,
+                  backgroundColor: actionColor ?? AppDarkColor.instance.danger,
+                  foregroundColor: AppDarkColor.instance.buttonBackground,
                   callback: () {
                     if (actionPop) {
                       Navigator.pop(context);

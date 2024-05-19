@@ -1,15 +1,14 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/safwanpulisseri/Documents/flutter
-FLUTTER_APPLICATION_PATH=/Users/safwanpulisseri/Documents/Git Clones/take-my-tym-user-app
+FLUTTER_ROOT=C:\flutter
+FLUTTER_APPLICATION_PATH=C:\Users\DELL\take_my_tym
 COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=/Users/safwanpulisseri/Documents/Git Clones/take-my-tym-user-app/lib/main.dart
+FLUTTER_TARGET=lib\main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
-EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
+EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386 arm64
 EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
-DART_DEFINES=RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9mNjM0NGI3NWRjZjg2MWQ4YmYxZjEzMjI3ODBiODgxMWY5ODJlMzFhLw==
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=/Users/safwanpulisseri/Documents/Git Clones/take-my-tym-user-app/.dart_tool/package_config.json
+PACKAGE_CONFIG=.dart_tool/package_config.json

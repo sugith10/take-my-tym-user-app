@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/reg_exp.dart';
-import '../../bloc/sign_up_bloc/sign_up_bloc.dart';
 import '../sign_text_form_field.dart';
 
-
 class SignUpForm extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+  final TextEditingController firstNameCntrl;
+  final String? errorMsg;
+  final TextEditingController lastNameCntrl;
+  final TextEditingController emailCntrl;
+  final TextEditingController passwordCntrl;
+  final TextEditingController confirmPasswordCntrl;
+
   const SignUpForm({
     super.key,
     required this.formKey,
@@ -16,17 +22,8 @@ class SignUpForm extends StatelessWidget {
     required this.emailCntrl,
     required this.passwordCntrl,
     required this.confirmPasswordCntrl,
-    required this.bloc,
-  });
 
-  final GlobalKey<FormState> formKey;
-  final TextEditingController firstNameCntrl;
-  final String? errorMsg;
-  final TextEditingController lastNameCntrl;
-  final TextEditingController emailCntrl;
-  final TextEditingController passwordCntrl;
-  final TextEditingController confirmPasswordCntrl;
-  final SignUpBloc bloc;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +138,6 @@ class SignUpForm extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 25.h),
         ],
       ),
     );

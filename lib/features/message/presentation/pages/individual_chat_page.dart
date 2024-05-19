@@ -123,10 +123,15 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                         final message = messageData['message'] ?? 'error';
                         final senderId = messageData['senderUid'] ?? 'error';
                         final time = messageData['timestamp'] ?? Timestamp.now();
-                        return ChatWidget(
-                          message: message,
-                          senderId: senderId,
-                          time: TextManipulator.timestampToTime(time),
+                        return ConstrainedBox(
+                          constraints: BoxConstraints( 
+                            maxWidth: 50
+                          ),
+                          child: ChatWidget(
+                            message: message,
+                            senderId: senderId,
+                            time: TextManipulator.timestampToTime(time),
+                          ),
                         );
                       },
                     );

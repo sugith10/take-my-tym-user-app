@@ -30,6 +30,7 @@ class AppUserBloc extends Bloc<AppEvent, AppState> {
     on<EnsureUserModelExistsEvent>(
       ((event, emit) async {
         try {
+          await Future.delayed(const Duration(seconds: 2));
           final localUserData = GetIt.instance<LocalUserStorageUseCase>();
           _userModel = await localUserData.getUserDataFromLocal();
 

@@ -1,9 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/features/auth/presentation/pages/forget_password_page.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {
+  final VoidCallback callback;
   const ForgotPasswordWidget({
+    required this.callback,
     super.key,
   });
 
@@ -16,10 +17,7 @@ class ForgotPasswordWidget extends StatelessWidget {
         duration: const Duration(milliseconds: 800),
         child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              ForgetPasswordPage.route(),
-            );
+           callback();
           },
           child: Text(
             "Forgot password?",

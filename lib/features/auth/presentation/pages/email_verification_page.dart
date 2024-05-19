@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/auth_progress_widget.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
@@ -10,11 +12,10 @@ import '../bloc/verify_user_bloc/verify_user_bloc.dart';
 import '../widgets/sign_button.dart';
 import '../widgets/sub_page_info_widget.dart';
 
-
 class EmailVerificationPage extends StatefulWidget {
   final UserModel userModel;
 
- const EmailVerificationPage({
+  const EmailVerificationPage({
     super.key,
     required this.userModel,
   });
@@ -32,7 +33,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   final VerifyUserBloc _verifyUserBloc = VerifyUserBloc()
     ..add((SendVerificationEmailEvent()));
 
-    @override
+  @override
   void dispose() {
     _verifyUserBloc.close();
     super.dispose();
@@ -53,24 +54,19 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
           );
         }
         if (state is VerifyUserFailedState) {
-          AppSnackBar.failSnackBar (
-            context: context,
-           error: state.error
-          );
+          AppSnackBar.failSnackBar(context: context, error: state.error);
         }
-
         if (state is VerifyUserNotFoundState) {
-          AppSnackBar.failSnackBar (
+          AppSnackBar.failSnackBar(
             context: context,
-           error: state.error,
+            error: state.error,
           );
         }
-
         if (state is VerifyUserSuccessState) {
           widget.userModel.verified = true;
           Navigator.pushAndRemoveUntil(
             context,
-           ProfileSetupPage.route(userModel: widget.userModel),
+            ProfileSetupPage.route(userModel: widget.userModel),
             (route) => false,
           );
         }
@@ -89,11 +85,19 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                   ),
                   SignButtonWidget(
                     title: 'Continue',
-                    delay: 0,
-                    duration: 0,
-                    function: () {
+                    animate: false,
+                    callback: () {
                       _verifyUserBloc.add(CheckVerificationEvent());
                     },
+                    buttonChild: BlocBuilder(
+                        bloc: _verifyUserBloc,
+                        builder: (context, state) {
+                          if (state is VerifyUserLoadingState) {
+                            return const AuthProgressWidget();
+                          }
+                          return const SignButtonText(
+                              title: "Please Verify Account");
+                        }),
                   ),
                 ],
               ),

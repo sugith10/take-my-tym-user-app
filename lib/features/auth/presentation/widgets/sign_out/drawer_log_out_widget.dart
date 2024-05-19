@@ -8,7 +8,7 @@ import '../../../../../core/widgets/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/widgets/widgets/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
 import '../../pages/welcome_page.dart';
-import '../user_sign_out_dialog.dart';
+import 'log_out_dialog.dart';
 
 
 class LogOutDrawerButton extends StatelessWidget {
@@ -26,7 +26,6 @@ class LogOutDrawerButton extends StatelessWidget {
         }
         if (state is SignOutSuccessState) {
           context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const WelcomePage()),
@@ -36,7 +35,7 @@ class LogOutDrawerButton extends StatelessWidget {
       child: DrawerCustomButton(
         title: 'Log Out',
         callback: () {
-          UserLogOut().showLogOutDialog(
+          LogOutWidget().showLogOutDialog(
             context: context,
           );
         },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../auth/presentation/pages/account_info_page.dart';
-import '../../../auth/presentation/widgets/sign_out/drawer_log_out_button.dart';
+import '../../../auth/presentation/widgets/sign_out/drawer_log_out_widget.dart';
 import '../utils/app_policy.dart';
 import '../utils/service_center.dart';
 import '../utils/share_app.dart';

@@ -16,18 +16,19 @@ void main() async {
 
   DependencyInject().setupDependencies();
 
-  await dotenv.load(fileName: ".env");
+  await Future.wait([
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
+    dotenv.load(fileName: ".env"),
+  ]);
+
+  Stripe.publishableKey = dotenv.env["STRIPE_PUBLISH_KEY"]!;
+  Stripe.instance.applySettings();
 
   final Directory appDocumentDirectory =
       await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  Stripe.publishableKey = dotenv.env["STRIPE_PUBLISH_KEY"]!;
-  await Stripe.instance.applySettings();
 
   Bloc.observer = AppBlocObserver();
 

@@ -31,7 +31,7 @@ class ProfileOptionsWidget extends StatelessWidget {
             ),
             const Spacer(),
             _ProfileOptionButton(
-              action: 'Contact',
+              action: 'Bookmark',
               callback: () {},
             )
           ],

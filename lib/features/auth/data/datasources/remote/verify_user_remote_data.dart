@@ -9,19 +9,7 @@ final class VerifyUserRemote {
     try {
       await FirebaseAuth.instance.currentUser!.sendEmailVerification();
       return;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw const AppException(
-          alert: "The user does not exist.",
-          details: "Please recheck email.",
-        );
-      } else {
-        throw const AppException(
-          alert: "The user does not exist.",
-          details: "Please recheck email.",
-        );
-      }
-    } catch (e) {
+    }  catch (e) {
       throw const AppException();
     }
   }

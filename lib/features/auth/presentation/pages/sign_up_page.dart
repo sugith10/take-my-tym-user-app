@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
 import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
-import '../../../../core/widgets/loading_dialog.dart';
-import '../../../../core/widgets/navigation_taxt_button.dart';
 import '../bloc/sign_up_bloc/sign_up_bloc.dart';
+import '../widgets/animate_navigation_text.dart';
+import '../widgets/auth_progress_widget.dart';
 import '../widgets/sign_button.dart';
 import '../widgets/sign_up/sign_up_form.dart';
 import '../widgets/social_auth/social_auth_widget.dart';
@@ -25,13 +26,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String? errorMsg;
+  String? _errorMsg;
   final _formKey = GlobalKey<FormState>();
-  final firstNameCntrl = TextEditingController();
-  final lastNameCntrl = TextEditingController();
-  final emailCntrl = TextEditingController();
-  final passwordCntrl = TextEditingController();
-  final confirmPasswordCntrl = TextEditingController();
+  final __firstNameCntrl = TextEditingController();
+  final _lastNameCntrl = TextEditingController();
+  final _emailCntrl = TextEditingController();
+  final _passwordCntrl = TextEditingController();
+  final _confirmPasswordCntrl = TextEditingController();
   final SignUpBloc _signUpBloc = SignUpBloc();
 
   @override
@@ -41,13 +42,25 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
-    firstNameCntrl.dispose();
-    lastNameCntrl.dispose();
-    emailCntrl.dispose();
-    passwordCntrl.dispose();
-    confirmPasswordCntrl.dispose();
+    __firstNameCntrl.dispose();
+    _lastNameCntrl.dispose();
+    _emailCntrl.dispose();
+    _passwordCntrl.dispose();
+    _confirmPasswordCntrl.dispose();
     _signUpBloc.close();
     super.dispose();
+  }
+
+  void submitCredentials() {
+    _signUpBloc.add(
+      CreateUserEvent(
+        formKey: _formKey,
+        firstName: __firstNameCntrl.text,
+        lastName: _lastNameCntrl.text,
+        email: _emailCntrl.text,
+        password: _passwordCntrl.text,
+      ),
+    );
   }
 
   @override
@@ -55,9 +68,6 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocListener(
         bloc: _signUpBloc,
         listener: (context, state) {
-          if (state is SignUpLoadingState) {
-            LoadingDialog().show(context);
-          }
           if (state is SignUpSuccessState) {
             Navigator.pushAndRemoveUntil(
               context,
@@ -66,7 +76,6 @@ class _SignUpPageState extends State<SignUpPage> {
             );
           }
           if (state is SignUpFailState) {
-            Navigator.pop(context);
             AppSnackBar.failSnackBar(
               context: context,
               error: state.error,
@@ -91,41 +100,35 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(height: 25.h),
                     SignUpForm(
                       formKey: _formKey,
-                      firstNameCntrl: firstNameCntrl,
-                      errorMsg: errorMsg,
-                      lastNameCntrl: lastNameCntrl,
-                      emailCntrl: emailCntrl,
-                      passwordCntrl: passwordCntrl,
-                      confirmPasswordCntrl: confirmPasswordCntrl,
-                      bloc: _signUpBloc,
+                      firstNameCntrl: __firstNameCntrl,
+                      errorMsg: _errorMsg,
+                      lastNameCntrl: _lastNameCntrl,
+                      emailCntrl: _emailCntrl,
+                      passwordCntrl: _passwordCntrl,
+                      confirmPasswordCntrl: _confirmPasswordCntrl,
                     ),
+                    SizedBox(height: 25.h),
                     SignButtonWidget(
                       title: 'SIGN UP',
-                      function: () {
-                        firstNameCntrl.text.trim();
-                        lastNameCntrl.text.trim();
-                        emailCntrl.text.trim();
-                        passwordCntrl.text.trim();
-                        confirmPasswordCntrl.text.trim();
-                        if (_formKey.currentState!.validate()) {
-                          if (_formKey.currentState!.validate()) {
-                            _signUpBloc.add(
-                              CreateUserEvent(
-                                firstName: firstNameCntrl.text,
-                                lastName: lastNameCntrl.text,
-                                email: emailCntrl.text,
-                                password: passwordCntrl.text,
-                              ),
-                            );
-                          }
-                        }
+                      callback: () {
+                        submitCredentials();
                       },
+                      buttonChild: BlocBuilder(
+                          bloc: _signUpBloc,
+                          builder: (context, state) {
+                            if (state is SignUpLoadingState) {
+                              return const AuthProgressWidget();
+                            } else if (state is SignUpSuccessState) {
+                              return const AuthProgressWidget();
+                            }
+                            return const SignButtonText(title: 'SIGN UP');
+                          }),
                     ),
                     SizedBox(height: 15.h),
-                    NavigationText(
+                    AnimatedNavigationText(
                       leadingText: 'Have an account?',
                       buttonText: 'Login',
-                      function: () {
+                      callback: () {
                         Navigator.push(
                           context,
                           SignInPage.route(),

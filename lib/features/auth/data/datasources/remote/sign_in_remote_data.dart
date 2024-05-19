@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
 
 import '../../../../../core/model/app_user_model.dart';
 
@@ -26,15 +27,17 @@ class SignInRemoteData {
         final data = userSnapshot.data() as Map<String, dynamic>;
         // Create a user model from the data
         final authUser = UserModel.fromMap(data);
-
+        appLogger.d('User signed in successfully');
         // Return the user model
         return authUser;
       } else {
         // Throw an exception if the user does not exist
+        appLogger.d("User does not exist");
         throw Exception();
       }
     } catch (e) {
       // Throw an exception if any error occurs
+      appLogger.d("Error signing in: $e");
       throw Exception(e);
     }
   }

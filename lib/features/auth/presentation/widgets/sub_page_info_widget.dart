@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/sign_in_page.dart';
 import 'sign_back_button.dart';
 
-
 class SubPageInfoWidget extends StatelessWidget {
   final String title;
   final String content;
@@ -18,11 +17,6 @@ class SubPageInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 10.h),
-      SignBackButton(callback: () {
-        Navigator.pushAndRemoveUntil(context, SignInPage.route(), (route) => false);
-      },),
-        SizedBox(height: 120.h),
         Text(
           title,
           style: Theme.of(context).textTheme.displayMedium,

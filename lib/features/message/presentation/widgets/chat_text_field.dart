@@ -68,7 +68,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
                     fillColor: _appDarkColor.bottomBar,
                     prefix: const SizedBox(width: 10),
                     suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 5, left: 5),
+                      padding: const EdgeInsets.all(8),
                       child: _ChatIconButton(
                         callback: () {
                           widget.individualMessageBloc.add(

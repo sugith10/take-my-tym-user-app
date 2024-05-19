@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
+import '../utils/app_vibration.dart';
+
 class SubmitButton extends StatelessWidget {
   final VoidCallback callback;
   final String text;
@@ -26,6 +28,7 @@ class SubmitButton extends StatelessWidget {
       padding: const EdgeInsets.all(MyAppPadding.homePadding),
       child: ElevatedButton(
         onPressed: () {
+          HapticFeedbackVibration().vibrate();
           callback();
         },
         style: ElevatedButton.styleFrom(

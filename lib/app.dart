@@ -18,11 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AppUserBloc>(create: (context) => AppUserBloc()),
+        BlocProvider<AppUserBloc>(
+          create: (context) => AppUserBloc()..add(EnsureUserModelExistsEvent()),
+        ),
         BlocProvider<GetPostsBloc>(
-            create: (context) => GetPostsBloc()
-              ..add(GetBuyTymPostsEvent(
-                  userId: context.read<AppUserBloc>().userModel!.uid))),
+          create: (context) => GetPostsBloc()
+            ..add(GetBuyTymPostsEvent(
+                userId: context.read<AppUserBloc>().userModel!.uid)),
+        ),
         BlocProvider<CommunityPostsBloc>(
           create: (context) => CommunityPostsBloc()
             ..add(BuyTymCommunityPostsEvent(

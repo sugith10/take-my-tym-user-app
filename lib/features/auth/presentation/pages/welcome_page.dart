@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/navigation/screen_transitions/no_movement.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../../../core/widgets/app_logo.dart';
-import '../widgets/terms_and_conditions.dart';
+
+import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_button.dart';
 import '../widgets/welcome_page_animation.dart';
 
@@ -30,7 +31,10 @@ class WelcomePage extends StatelessWidget {
                       child: WelcomePageAnimation(),
                     ),
                     SafeArea(
-                      child: AppLogo(),
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: AppLogo(),
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -39,10 +43,7 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           WelcomeButton(),
                           SizedBox(height: 25),
-                          TermsAndConditons(
-                            delay: 0,
-                            duration: 0,
-                          ),
+                          TermsAndConditionsWidget(animate: false),
                           SizedBox(height: 40),
                         ],
                       ),

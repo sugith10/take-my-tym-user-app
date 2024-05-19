@@ -1,23 +1,15 @@
 part of 'sign_in_bloc.dart';
 
-sealed class SignInEvent extends Equatable {
-  const SignInEvent();
-
-  @override
-  List<Object> get props => [];
-}
-
-class LogInEvent extends SignInEvent {
+class SignInEvent extends Equatable {
   final String email;
   final String password;
-
-  const LogInEvent({
+  final GlobalKey<FormState> formKey;
+  const SignInEvent({
     required this.email,
     required this.password,
+    required this.formKey,
   });
-}
 
-class PasswordReset extends SignInEvent {
-  final String email;
-  const PasswordReset({required this.email});
+  @override
+  List<Object> get props => [email, password];
 }

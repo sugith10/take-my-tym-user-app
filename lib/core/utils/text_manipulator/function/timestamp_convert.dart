@@ -1,7 +1,11 @@
 part of '../taxt_manipulator.dart';
 
-
+/// A utility class for Firebase [Timestamp] type conversions.
+///
+/// Provides methods to convert [Timestamp] objects to human-readable
+/// date and time strings.
 final class _TimestampConvert {
+  /// Converts a [Timestamp] to a formatted time string (e.g., "3:45pm").
   static String timestampToTime(Timestamp timestamp) {
     //Convert the Timestamp object to a DateTime object
     DateTime dateTime = timestamp.toDate();
@@ -16,6 +20,7 @@ final class _TimestampConvert {
     return formattedTime;
   }
 
+  /// Converts a [Timestamp] to a formatted date string (e.g., "25 Dec 2024").
   static String timestampToDate(Timestamp timestamp) {
     // Convert the Timestamp to a DateTime
     DateTime dateTime = timestamp.toDate();

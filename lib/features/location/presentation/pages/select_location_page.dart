@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/utils/app_debouncer.dart';
 import '../../../../core/utils/app_padding.dart';
 import '../../data/models/auto_complete_prediction.dart';

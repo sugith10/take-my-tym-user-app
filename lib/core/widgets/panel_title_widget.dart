@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 
-import '../utils/theme/app_colors.dart';
+import '../utils/theme/color/app_colors.dart';
 
 class PanelTitleWidget extends StatelessWidget {
   final String title;

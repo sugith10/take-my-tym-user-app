@@ -50,7 +50,7 @@ class _SkillTypeWidget extends StatelessWidget {
           color: const Color.fromARGB(139, 255, 255, 255),
         ),
         borderRadius: const BorderRadius.all(
-          Radius.circular(MyAppRadius.borderRound),
+          Radius.circular(AppRadius.borderRound),
         ),
       ),
       child: Padding(

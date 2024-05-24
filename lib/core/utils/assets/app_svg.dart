@@ -1,5 +1,7 @@
 /// Class defining SVG assets used in the application.
 class AppSvg {
+  AppSvg._();
+
   // App custom snackbar assets
   static const String snackBarBubbles = 'assets/svg/snackbar/bubbles.svg';
   static const String snackBarIconSpace = 'assets/svg/snackbar/icon_space.svg';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/model/app_user_model.dart';
-import '../../../../../core/utils/name_capitalize.dart';
+import '../../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../../../../../core/widgets/home_padding.dart';
 import 'widgets/profile_location_widget.dart';
@@ -69,11 +69,11 @@ class ProfileCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Align(
+                    const Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
                         padding: EdgeInsets.only(left: 35),
-                        child: const CircleProfilePicWidget(
+                        child: CircleProfilePicWidget(
                           height: 100,
                           width: 100,
                         ),

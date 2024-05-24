@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:take_my_tym/core/utils/assets/app_svg.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
@@ -80,8 +80,8 @@ class _SnackBarContentWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(
                 Platform.isIOS
-                    ? MyAppRadius.borderRadius + MyAppRadius.borderRadius
-                    : MyAppRadius.borderRadius,
+                    ? AppRadius.borderRadius + AppRadius.borderRadius
+                    : AppRadius.borderRadius,
               ),
             ),
           ),
@@ -121,8 +121,8 @@ class _SnackBarContentWidget extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(
               Platform.isIOS
-                  ? MyAppRadius.borderRadius + MyAppRadius.borderRadius
-                  : MyAppRadius.borderRadius,
+                  ? AppRadius.borderRadius + AppRadius.borderRadius
+                  : AppRadius.borderRadius,
             )),
             child: SvgPicture.asset(
               AppSvg.snackBarBubbles,

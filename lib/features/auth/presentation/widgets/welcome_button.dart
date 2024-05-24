@@ -2,7 +2,7 @@ import 'package:button_animations/button_animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/utils/app_vibration.dart';
 import '../pages/sign_in_page.dart';
 import 'sign_button_text.dart';

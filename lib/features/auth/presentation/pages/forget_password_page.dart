@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
 import '../../../../core/utils/reg_exp.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
-import '../../../../core/widgets/loading_dialog.dart';
 import '../bloc/forget_password_bloc/forget_password_bloc.dart';
 import '../widgets/auth_progress_widget.dart';
 import '../widgets/sign_back_button.dart';
@@ -85,7 +83,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please fill in this Field";
-                    } else if (!emailRexExp.hasMatch(val)) {
+                    } else if (RegExpUtil.emailRexExp.hasMatch(val)) {
                       return "Please enter a valid email";
                     }
                     return null;

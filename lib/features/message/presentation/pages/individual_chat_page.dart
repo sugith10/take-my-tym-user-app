@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/name_capitalize.dart';
+import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/popup_menu_item_child_widget.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
@@ -124,7 +124,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                         final senderId = messageData['senderUid'] ?? 'error';
                         final time = messageData['timestamp'] ?? Timestamp.now();
                         return ConstrainedBox(
-                          constraints: BoxConstraints( 
+                          constraints: const BoxConstraints( 
                             maxWidth: 50
                           ),
                           child: ChatWidget(

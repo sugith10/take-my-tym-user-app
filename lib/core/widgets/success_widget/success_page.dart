@@ -4,23 +4,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-import 'widget/scale_up.dart';
+import 'widget/scale_up_animation.dart';
 import '../../../features/navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../../navigation/screen_transitions/no_movement.dart';
 import '../../utils/assets/app_audio.dart';
 import '../../utils/assets/app_lottie.dart';
-import '../../utils/theme/app_colors.dart';
+import '../../utils/theme/color/app_colors.dart';
 import '../../utils/app_sound_player.dart';
 import '../../utils/app_vibration.dart';
 import '../close_icon_button.dart';
 import 'bloc/success_page_bloc.dart';
+
 part 'util/feedback.dart';
 
 class SuccessPage extends StatefulWidget {
   final bool pop;
-  const SuccessPage({required this.pop, super.key});
+  final String title;
+  final String subtitle;
+  const SuccessPage(
+      {required this.title,
+      required this.subtitle,
+      required this.pop,
+      super.key});
 
-  static route({bool pop = false}) => noMovement(SuccessPage(pop: pop));
+  static route(
+          {bool pop = false,
+          required String title,
+          required String subtitle}) =>
+      noMovement(
+        SuccessPage(title: title, subtitle: subtitle, pop: pop),
+      );
 
   @override
   State<SuccessPage> createState() => _SuccessPageState();
@@ -28,6 +41,7 @@ class SuccessPage extends StatefulWidget {
 
 class _SuccessPageState extends State<SuccessPage> {
   final SuccessPageBloc _successPageBloc = SuccessPageBloc();
+
   @override
   void initState() {
     super.initState();
@@ -64,7 +78,7 @@ class _SuccessPageState extends State<SuccessPage> {
                       delay: const Duration(milliseconds: 1500),
                       duration: const Duration(milliseconds: 1500),
                       child: const Center(
-                        child: ZoomAnimationWidget(),
+                        child: ScaleUpAnimationWidget(),
                       ),
                     ),
                   ],
@@ -72,23 +86,25 @@ class _SuccessPageState extends State<SuccessPage> {
                 FadeInDown(
                   delay: const Duration(milliseconds: 1500),
                   duration: const Duration(milliseconds: 1500),
-                  child: Text("Create Successfully",
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  child: Text(
+                    widget.title,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: AppDarkColor.instance.primaryTextSoft,
+                          letterSpacing: .5,
+                        ),
+                  ),
                 ),
                 SizedBox(height: 10.h),
                 FadeInDown(
                   delay: const Duration(milliseconds: 1500),
                   duration: const Duration(milliseconds: 1500),
                   child: Text(
-                    "Your tym post now accessible to the world...",
+                    widget.subtitle,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppDarkColor.instance.primaryTextSoft),
                   ),
                 ),
-                SizedBox(height: 60.h),
+                const Spacer(),
                 FadeIn(
                   delay: const Duration(milliseconds: 2550),
                   duration: const Duration(milliseconds: 2550),
@@ -126,6 +142,7 @@ class _SuccessPageState extends State<SuccessPage> {
                     ],
                   ),
                 ),
+                const Spacer(),
               ],
             ),
           ),

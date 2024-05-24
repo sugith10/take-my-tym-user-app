@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class TransactionTile extends StatelessWidget {
@@ -32,12 +32,12 @@ class TransactionTile extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           color: AppDarkColor.instance.secondaryBackground,
         ),
         child: ListTile(
           // leading: ClipRRect(
-          //   borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          //   borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           //   child: Image.asset(
           //     image,
           //     height: 50,

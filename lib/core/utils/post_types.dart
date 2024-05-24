@@ -1,5 +1,10 @@
 /// Defines common post types used in the application.
-class MyAppPostType {
+///
+/// This class provides static constants representing different types of posts
+/// that can be used throughout the application. It cannot be instantiated.
+final class PostType {
+  PostType._();
+  
   /// Represents a remote job post type.
   static const String remote = 'Remote';
 

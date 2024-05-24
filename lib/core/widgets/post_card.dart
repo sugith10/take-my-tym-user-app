@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 
 import '../../features/create_post/presentation/widgets/post_specifications_widget.dart';
-import '../bloc/app_user_bloc/app_user_bloc.dart';
 import '../model/app_post_model.dart';
-import '../utils/theme/app_colors.dart';
-import '../utils/app_radius.dart';
+import '../utils/text_manipulator/taxt_manipulator.dart';
+import '../utils/theme/color/app_colors.dart';
 import '../utils/app_responsive.dart';
-import '../utils/name_capitalize.dart';
 import 'app_card.dart';
 
 class PostCard extends StatelessWidget {
@@ -74,7 +70,7 @@ class PostCard extends StatelessWidget {
           //         color: AppDarkColor.instance.lightBackground,
           //         borderRadius: const BorderRadius.only(
           //           bottomLeft: Radius.circular(15),
-          //           topRight: Radius.circular(MyAppRadius.borderRadius),
+          //           topRight: Radius.circular(AppRadius.borderRadius),
           //         ),
           //       ),
           //       child: Padding(

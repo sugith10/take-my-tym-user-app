@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';

@@ -46,7 +46,7 @@ class SignUpForm extends StatelessWidget {
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please fill in this field";
-                    } else if (!nameRexExp.hasMatch(val)) {
+                    } else if (RegExpUtil.nameRexExp.hasMatch(val)) {
                       return "Please enter a valid email";
                     }
                     return null;
@@ -67,7 +67,7 @@ class SignUpForm extends StatelessWidget {
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "Please fill in this field";
-                    } else if (!nameRexExp.hasMatch(val)) {
+                    } else if (RegExpUtil.nameRexExp.hasMatch(val)) {
                       return "Please enter a valid email";
                     }
                     return null;
@@ -90,7 +90,7 @@ class SignUpForm extends StatelessWidget {
             validator: (val) {
               if (val!.isEmpty) {
                 return "Please fill in this Field";
-              } else if (!emailRexExp.hasMatch(val)) {
+              } else if (RegExpUtil.emailRexExp.hasMatch(val)) {
                 return "Please enter a valid email";
               }
               return null;

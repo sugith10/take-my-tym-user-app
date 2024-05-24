@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 
 class FeedbackTextField extends StatelessWidget {
   const FeedbackTextField({

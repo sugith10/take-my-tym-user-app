@@ -24,9 +24,11 @@ final class WalletTopUpEvent extends WalletEvent {
 final class WalletWithdrawEvent extends WalletEvent {
   final String uid;
   final String amount;
+  final WalletModel? walletModel;
   const WalletWithdrawEvent({
     required this.uid,
     required this.amount,
+     this.walletModel,
   });
 }
 

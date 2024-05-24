@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
 import 'package:take_my_tym/features/contract/presentation/bloc/contracts_bloc/contracts_bloc.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/widgets/close_icon_button.dart';
 
 class ContractTabButtons extends StatefulWidget {

@@ -26,7 +26,7 @@ class RatingWidget extends StatelessWidget {
           border: Border.all(
             color: const Color.fromRGBO(255, 235, 59, 1),
           ),
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius),),
       child: IntrinsicWidth(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

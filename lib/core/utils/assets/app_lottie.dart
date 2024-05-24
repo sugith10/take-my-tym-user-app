@@ -1,5 +1,7 @@
 /// Class defining Lottie animation files used in the application.
 class AppLottie {
+  AppLottie._();
+
   // Lottie animation file path for the welcome animation.
   static const String welcome = 'assets/lottie/onboarding_animation (1).json';
 

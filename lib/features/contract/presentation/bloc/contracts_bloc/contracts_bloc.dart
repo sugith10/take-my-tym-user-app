@@ -21,11 +21,18 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
   ) async {
     type = true;
     try {
+      // Emit a loading state indicating we are fetching active contracts
       emit(ContractsLoadingState());
+
+      // Fetch active contracts from the remote data source
       final data =
           await ContractRemoteData().activeContracts(userId: event.userId);
-      final contractList = data.$1;
-      final serviceProviderList = data.$2;
+
+      // Extract the contract and service provider lists from the data
+      final List<ContractModel> contractList = data.$1;
+      final List<ContractModel> serviceProviderList = data.$2;
+
+      // Emit a loaded state indicating we have fetched and loaded the contracts
       emit(
         ContractsLoadedState(
           contractList: contractList,
@@ -33,7 +40,10 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
         ),
       );
     } catch (e) {
+      // Log any errors that occur while fetching data
       appLogger.e(e.toString());
+
+      // Emit an error state indicating an error occurred while fetching data
       emit(ContractsErrorState());
     }
   }
@@ -44,11 +54,16 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
   ) async {
     type = false;
     try {
+      // Emit the loading state
       emit(ContractsLoadingState());
+      // Get the completed contracts from the remote data
       final data =
           await ContractRemoteData().completedContracts(userId: event.userId);
+      // Get the list of contracts
       final contractList = data.$1;
+      // Get the list of service providers
       final serviceProviderList = data.$2;
+      // Emit the loaded state
       emit(
         ContractsLoadedState(
           contractList: contractList,
@@ -56,7 +71,9 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
         ),
       );
     } catch (e) {
+      // Log the error
       appLogger.e(e.toString());
+      // Emit the error state
       emit(ContractsErrorState());
     }
   }

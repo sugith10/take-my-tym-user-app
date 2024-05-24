@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-/// Checking mobile responsiveness based on device height.
+/// Utility class for checking mobile responsiveness based on device height.
+///
+/// This class provides static methods to determine if the device has a small,
+/// medium, or large mobile screen based on its height. It cannot be instantiated.
 class MobileResponsive {
+  MobileResponsive._();
+
   /// Indicating a small mobile screen.
   static bool mobileSmall(BuildContext context) =>
       MediaQuery.of(context).size.height < 830;

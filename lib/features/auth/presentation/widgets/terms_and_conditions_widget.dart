@@ -22,14 +22,14 @@ class TermsAndConditionsWidget extends StatelessWidget {
             leadingText: "By proceeding, I accept TakeMyTym's",
             buttonText: 'T&C',
             callback: () {
-              AppPolicyUtil().launchConditions();
+              AppPolicyUtil.launchConditions();
             },
           ),
           NavigationText(
             leadingText: "and",
             buttonText: 'Privacy Policy.',
             callback: () {
-                AppPolicyUtil().launchPrivacyPolicy();
+                AppPolicyUtil.launchPrivacyPolicy();
             },
           ),
         ],

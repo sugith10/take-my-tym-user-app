@@ -1,5 +1,7 @@
 /// Class defining PNG image files used in the application.
 class AppPng {
+  AppPng._();
+
   // PNG image file path for success icon.
   static const String success = 'assets/png/successfull.png';
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../pages/sign_in_page.dart';
-import 'sign_back_button.dart';
 
 class SubPageInfoWidget extends StatelessWidget {
   final String title;

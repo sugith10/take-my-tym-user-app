@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/assets/app_png.dart';
 
-class ZoomAnimationWidget extends StatefulWidget {
-  const ZoomAnimationWidget({super.key});
+class ScaleUpAnimationWidget extends StatefulWidget {
+  const ScaleUpAnimationWidget({super.key});
 
   @override
-  State<ZoomAnimationWidget> createState() => _ZoomAnimationWidgetState();
+  State<ScaleUpAnimationWidget> createState() => _ScaleUpAnimationWidgetState();
 }
 
-class _ZoomAnimationWidgetState extends State<ZoomAnimationWidget>
+class _ScaleUpAnimationWidgetState extends State<ScaleUpAnimationWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -47,7 +46,7 @@ class _ZoomAnimationWidgetState extends State<ZoomAnimationWidget>
           child: child,
         );
       },
-      child: SvgPicture.asset(AppPng.success),
+      child: Image.asset(AppPng.success),
     );
   }
 }

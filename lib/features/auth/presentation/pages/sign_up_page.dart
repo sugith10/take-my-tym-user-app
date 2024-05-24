@@ -15,7 +15,6 @@ import '../widgets/sign_up/sign_up_form.dart';
 import '../widgets/social_auth/social_auth_widget.dart';
 import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_text_widget.dart';
-import 'email_verification_page.dart';
 import 'sign_in_page.dart';
 
 class SignUpPage extends StatefulWidget {

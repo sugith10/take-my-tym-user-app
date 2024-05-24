@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/utils/assets/app_lottie.dart';
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';

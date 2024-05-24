@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rive_animated_icon/rive_animated_icon.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 
 class CircleProfilePicWidget extends StatelessWidget {
   final double width;

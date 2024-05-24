@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 import 'create_post_location_widget.dart';
 import 'create_post_title_widget.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/core/widgets/home_padding.dart';
 
@@ -24,7 +24,7 @@ class AppBoxWidget extends StatelessWidget {
           color: AppDarkColor.instance.secondaryBorder,
         ),
         borderRadius: BorderRadius.circular(
-          MyAppRadius.borderRadius,
+          AppRadius.borderRadius,
         ),
       ),
       child: HomePadding(

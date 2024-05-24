@@ -30,9 +30,7 @@ final class VerifyUserRepoImpl implements VerifyUserRepo {
       }
     } 
     
-    catch(e){
 
-    };
     return await _verifyUserRemote.sendEmailVerification();
   }
   

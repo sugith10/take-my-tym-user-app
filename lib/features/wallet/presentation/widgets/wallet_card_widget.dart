@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 import 'package:take_my_tym/features/wallet/presentation/pages/payment_page.dart';
 import 'package:take_my_tym/features/wallet/presentation/util/wallet_action_type.dart';
 
+import '../../data/models/wallet_model.dart';
+
 class WalletCard extends StatelessWidget {
-  final double? balance;
+  final WalletModel? walletModel;
   const WalletCard({
-    this.balance,
+    this.walletModel,
     super.key,
   });
 
@@ -36,7 +38,7 @@ class WalletCard extends StatelessWidget {
                 radius: 0.9,
               ),
               borderRadius: const BorderRadius.all(
-                Radius.circular(MyAppRadius.borderRadius),
+                Radius.circular(AppRadius.borderRadius),
               ),
             ),
             child: Column(
@@ -47,18 +49,18 @@ class WalletCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox(height: 5),
-                if (balance != null)
+                if (walletModel != null)
                   Text(
-                    '₹${balance.toString()}',
+                    '₹${walletModel!.balance.toString()}',
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
-                if (balance == null)
+                if (walletModel == null)
                   Text(
                     '****',
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                 const Spacer(),
-                if (balance != null)
+                if (walletModel != null)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -80,13 +82,17 @@ class WalletCard extends StatelessWidget {
                         icon: IconlyLight.arrow_down,
                         title: 'Withdraw',
                         callback: () {
-                          Navigator.push(context,
-                              PaymentPage.route(type: WalletAction.widthdraw));
+                          Navigator.push(
+                            context,
+                            PaymentPage.route(
+                                type: WalletAction.widthdraw,
+                                walletModel: walletModel),
+                          );
                         },
                       ),
                     ],
                   ),
-                if (balance == null) const Text("Unlock Wallet"),
+                if (walletModel == null) const Text("Unlock Wallet"),
                 const Spacer()
               ],
             ),

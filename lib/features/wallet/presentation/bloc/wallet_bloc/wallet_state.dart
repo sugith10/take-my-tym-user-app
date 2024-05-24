@@ -18,18 +18,16 @@ final class WalletInitialState extends WalletState {
 final class WalletLoadingState extends WalletState {}
 
 final class WalletLoadedState extends WalletState {
-  final double balance;
-  final List<TransactionModel> transactions;
+  final WalletModel walletModel;
   final String date;
   final String time;
   const WalletLoadedState({
-    required this.balance,
-    required this.transactions,
+    required this.walletModel,
     required this.date,
     required this.time,
   });
   @override
-  List<Object> get props => [balance, transactions];
+  List<Object> get props => [walletModel];
 }
 
 final class WalletErrorState extends WalletState {

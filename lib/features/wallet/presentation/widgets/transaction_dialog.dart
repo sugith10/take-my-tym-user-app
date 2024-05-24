@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class TransactionDialog extends StatelessWidget {
@@ -24,7 +24,7 @@ class TransactionDialog extends StatelessWidget {
       elevation: 0.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          MyAppRadius.borderRadius,
+          AppRadius.borderRadius,
         ),
       ),
       backgroundColor: AppDarkColor.instance.glassEffect,
@@ -33,7 +33,7 @@ class TransactionDialog extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           border: Border.all(
             width: 1.5,
             color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.3),
@@ -63,7 +63,7 @@ class TransactionDialog extends StatelessWidget {
             const Text('Received From'),
             SizedBox(height: 10.h),
             ClipRRect(
-              borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+              borderRadius: BorderRadius.circular(AppRadius.borderRadius),
               child: Image.asset(
                 image,
                 height: 70,

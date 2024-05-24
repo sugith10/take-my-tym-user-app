@@ -31,12 +31,12 @@ class EmailVerifyTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderSide:
                 const BorderSide(color: Color.fromRGBO(255, 255, 255, 1)),
-            borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+            borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide:
                 const BorderSide(color: Color.fromRGBO(255, 255, 255, 1)),
-            borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+            borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           ),
           fillColor: const Color.fromARGB(17, 255, 255, 255),
           filled: true,

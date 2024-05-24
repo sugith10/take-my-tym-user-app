@@ -18,8 +18,7 @@ part 'wallet_event.dart';
 part 'wallet_state.dart';
 
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
-
-   WalletBloc() : super(const WalletInitialState(show: false)) {
+  WalletBloc() : super(const WalletInitialState(show: false)) {
     on<WalletBalanceEvent>(_onBalance);
     on<WalletTopUpEvent>(_onTopUp);
     on<WalletWithdrawEvent>(_onWithdraw);
@@ -27,9 +26,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   }
 
   void _onBalance(
-    // Receives the balance event
     WalletBalanceEvent event,
-    // Emits a wallet state
     Emitter<WalletState> emit,
   ) async {
     // Emit an initial state with show set to false
@@ -47,16 +44,20 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       if (pass) {
         // Emit a loading state
         emit(WalletLoadingState());
+
         // Get the wallet balance and transactions
-        final WalletModel walletModel =
+        WalletModel walletModel =
             await GetIt.instance<WalletUseCase>().walletBalance(uid: event.uid);
+
+        // Reverse the order of the transactions in the wallet model
+        walletModel.transactions = walletModel.transactions.reversed.toList();
+
         // Get the current date and time
         final now = DateTime.now();
         // Emit a loaded state with the balance, transactions, and current date and time
         emit(
           WalletLoadedState(
-            balance: walletModel.balance,
-            transactions: walletModel.transactions.reversed.toList(),
+            walletModel: walletModel,
             date: DateFormat('MMM dd, yyyy').format(now),
             time: DateFormat('h:mm a').format(now),
           ),
@@ -84,32 +85,47 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
       );
 
       // Top up the user's wallet with the given UID
-      final walletModel = await WalletRemoteData().walletTopUp(
+      WalletModel walletModel = await WalletRemoteData().walletTopUp(
         uid: event.uid,
         transactionModel: transactionModel,
       );
+
+      // Reverse the order of the transactions in the wallet model
+      walletModel.transactions = walletModel.transactions.reversed.toList();
+
       // Get the current date and time
       final now = DateTime.now();
       // Emit the updated wallet state with the new balance and transactions
       emit(
         WalletLoadedState(
-          balance: walletModel.balance,
-          transactions: walletModel.transactions.reversed.toList(),
+          walletModel: walletModel,
           date: DateFormat('MMM dd, yyyy').format(now),
           time: DateFormat('h:mm a').format(now),
         ),
       );
     } catch (e) {
       // Emit an error state if an exception is thrown
-      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert(alert: e.toString())));
     }
   }
+
   void _onWithdraw(
     WalletWithdrawEvent event,
     Emitter<WalletState> emit,
   ) async {
     try {
       double convertedAmount = double.parse(event.amount);
+      if (convertedAmount <= 0) {
+        emit(WalletErrorState(errorMsg: AppAlert(alert: 'Invalid amount')));
+        return;
+      }
+      if (event.walletModel != null) {
+        if (convertedAmount > event.walletModel!.balance) {
+          emit(WalletErrorState(
+              errorMsg: AppAlert(alert: 'Insufficient balance')));
+          return;
+        }
+      }
 
       final transactionModel = TransactionModel(
         timestamp: Timestamp.now(),
@@ -117,23 +133,27 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
         transactionType: false,
       );
 
-      final walletModel = await WalletRemoteData().walletWithdraw(
+      WalletModel walletModel = await WalletRemoteData().walletWithdraw(
         uid: event.uid,
         transactionModel: transactionModel,
       );
+
+      // Reverse the order of the transactions in the wallet model
+      walletModel.transactions = walletModel.transactions.reversed.toList();
+
       final now = DateTime.now();
+
       emit(
         WalletLoadedState(
-          balance: walletModel.balance,
-          transactions: walletModel.transactions.reversed.toList(),
+          walletModel: walletModel,
           date: DateFormat('MMM dd, yyyy').format(now),
           time: DateFormat('h:mm a').format(now),
         ),
       );
     } on AppException catch (e) {
-      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert(alert: e.toString())));
     } catch (e) {
-      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
+      emit(WalletErrorState(errorMsg: AppAlert(alert: e.toString())));
     }
   }
 
@@ -152,20 +172,23 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
         uid: event.uid,
         transactionModel: transactionModel,
       );
-      final walletModel = res.$1;
+
+      WalletModel walletModel = res.$1;
+
+      // Reverse the order of the transactions in the wallet model
+      walletModel.transactions = walletModel.transactions.reversed.toList();
       final transactionId = res.$2;
       emit(WalletTransferSuccessState(transactionId: transactionId));
       await Future.delayed(const Duration(seconds: 2));
       final now = DateTime.now();
       emit(WalletLoadedState(
-        balance: walletModel.balance,
-        transactions: walletModel.transactions,
+        walletModel: walletModel,
         date: DateFormat('MMM dd, yyyy').format(now),
         time: DateFormat('h:mm a').format(now),
       ));
     } catch (e) {
-     log( "error: ${e.toString()}");
-      emit(WalletErrorState(errorMsg: AppAlert (alert: e.toString())));
+      log("error: ${e.toString()}");
+      emit(WalletErrorState(errorMsg: AppAlert(alert: e.toString())));
     }
   }
 }

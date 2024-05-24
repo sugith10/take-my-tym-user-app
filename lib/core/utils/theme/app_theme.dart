@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/utils/assets/app_font.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 /// Defines the dark theme for the application.
 final class AppDarkTheme {
   static final AppDarkColor _color = AppDarkColor.instance;
   static final ScreenUtil _screenUtil = ScreenUtil();
-
+  
   static final _outlineInputBorder = OutlineInputBorder(
     borderSide: BorderSide(color: _color.primaryText.withOpacity(0.3)),
-    borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+    borderRadius: BorderRadius.circular(AppRadius.borderRadius),
   );
 
   /// Dark theme configuration.
   final ThemeData darkTheme = ThemeData(
-    fontFamily: MyAppFont.poppins,
+    fontFamily: AppFont.poppins,
     colorScheme: ColorScheme.dark(
       surface: _color.background,
     ),
@@ -224,7 +224,7 @@ final class AppDarkTheme {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          MyAppRadius.borderRound,
+          AppRadius.borderRound,
         ),
       ),
       backgroundColor: _color.bottomBar,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/bottom_to_top.dart';
-import 'package:take_my_tym/core/widgets/app_bar/close_app_bar.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
-import 'package:take_my_tym/core/widgets/success_widget/success_page.dart';
 
+import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
+import '../../../../core/widgets/app_bar/close_app_bar.dart';
+import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/loading_dialog.dart';
+import '../../../../core/widgets/success_widget/success_page.dart';
+import '../../data/models/wallet_model.dart';
 import '../bloc/payment_bloc/payment_bloc.dart';
 import '../bloc/wallet_bloc/wallet_bloc.dart';
 import '../util/wallet_action_type.dart';
@@ -19,10 +20,19 @@ import '../widgets/wallet_message.dart';
 class PaymentPage extends StatefulWidget {
   final WalletAction type;
   final double? amount;
-  const PaymentPage({required this.type, this.amount, super.key});
+  final WalletModel? walletModel;
+  const PaymentPage(
+      {this.walletModel, required this.type, this.amount, super.key});
 
-  static route({required WalletAction type, double? amount}) =>
-      bottomToTop(PaymentPage(type: type, amount: amount));
+  static route(
+          {required WalletAction type,
+          double? amount,
+          WalletModel? walletModel}) =>
+      bottomToTop(PaymentPage(
+        type: type,
+        amount: amount,
+        walletModel: walletModel,
+      ));
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -59,7 +69,15 @@ class _PaymentPageState extends State<PaymentPage> {
         BlocListener<WalletBloc, WalletState>(
           listener: (context, state) {
             if (state is WalletLoadedState) {
-              Navigator.push(context, SuccessPage.route(pop: true));
+              Navigator.push(
+                context,
+                SuccessPage.route(
+                  title: "Transaction Successful",
+                  subtitle:
+                      "Amount: ${state.walletModel.transactions.first.amount}",
+                  pop: true,
+                ),
+              );
             }
             if (state is WalletTransferSuccessState) {
               Navigator.pop(context);
@@ -76,6 +94,7 @@ class _PaymentPageState extends State<PaymentPage> {
           bloc: _paymentBloc,
           listener: (context, state) {
             if (state is PaymentFailState) {
+              LoadingDialog.hide(context);
               AppSnackBar.failSnackBar(context: context);
             }
             if (state is PaymentSuccessState) {
@@ -115,8 +134,10 @@ class _PaymentPageState extends State<PaymentPage> {
             if (widget.type == WalletAction.topUp) {
               _paymentBloc.add(PaymentTopUpEvent(amount: _paymentCntrl.text));
             } else if (widget.type == WalletAction.widthdraw) {
-              context.read<WalletBloc>().add(
-                  WalletWithdrawEvent(uid: uid, amount: _paymentCntrl.text));
+              context.read<WalletBloc>().add(WalletWithdrawEvent(
+                  uid: uid,
+                  amount: _paymentCntrl.text,
+                  walletModel: widget.walletModel));
             } else if (widget.type == WalletAction.transfer) {
               context.read<WalletBloc>().add(
                   WalletTransferEvent(uid: uid, amount: _paymentCntrl.text));

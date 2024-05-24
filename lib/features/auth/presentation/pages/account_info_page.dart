@@ -11,7 +11,6 @@ import '../../../../core/widgets/loading_dialog.dart';
 import '../bloc/sign_out_bloc/sign_out_bloc.dart';
 import '../widgets/account_info_content_widget.dart';
 import '../widgets/sign_out/account_info_log_out_widget.dart';
-import '../widgets/sign_out/log_out_dialog.dart';
 import 'welcome_page.dart';
 
 

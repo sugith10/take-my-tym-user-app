@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/utils/app_radius.dart';
 
 class ExperienceWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class ExperienceWidget extends StatelessWidget {
     controller.text = chosenModel;
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(
-        MyAppRadius.borderRadius - 2,
+        AppRadius.borderRadius - 2,
       ),
       borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
     );

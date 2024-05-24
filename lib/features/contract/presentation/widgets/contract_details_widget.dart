@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
-import '../../../../core/utils/name_capitalize.dart';
+import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/widgets/app_title_box_widget.dart';
 import '../../../profile/presentation/bloc/get_profile_bloc/get_profile_bloc.dart';
 import '../../../profile/presentation/widget/post_owner_info_widget/get_user_info_widget.dart';

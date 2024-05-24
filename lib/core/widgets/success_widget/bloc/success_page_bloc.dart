@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'success_page_event.dart';
 part 'success_page_state.dart';
 
-const int _initialTimeLeft = 5;
+const int _initialTimeLeft = 50;
 
 class SuccessPageBloc extends Bloc<SuccessPageEvent, SuccessPageState> {
   late Timer _timer;

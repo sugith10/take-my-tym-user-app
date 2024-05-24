@@ -36,7 +36,7 @@ class SubmitButton extends StatelessWidget {
           foregroundColor: foregroundColor,
           shape: Platform.isIOS
               ? RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(MyAppRadius.borderRound),
+                  borderRadius: BorderRadius.circular(AppRadius.borderRound),
                 )
               : null,
         ),

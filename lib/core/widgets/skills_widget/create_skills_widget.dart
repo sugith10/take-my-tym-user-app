@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_padding.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
@@ -95,11 +95,11 @@ class _SkillsTextField extends StatelessWidget {
       controller: categoryCntrl,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius - 2),
           borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 2),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius - 2),
           borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
         ),
         hintText: "Skills",

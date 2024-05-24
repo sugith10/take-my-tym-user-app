@@ -35,7 +35,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
     _tymType = select;
   }
 
-  String _workType = MyAppPostType.remote;
+  String _workType = PostType.remote;
   void getWorkType(String select) {
     _workType = select;
   }

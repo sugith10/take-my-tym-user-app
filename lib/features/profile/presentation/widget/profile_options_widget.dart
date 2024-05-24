@@ -57,7 +57,7 @@ class _ProfileOptionButton extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(MyAppRadius.borderRadius - 5),
+          borderRadius: BorderRadius.circular(AppRadius.borderRadius - 5),
           color: Colors.grey.withOpacity(0.2),
         ),
         child: Padding(

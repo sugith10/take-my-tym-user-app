@@ -40,10 +40,10 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
           //     onTap: () {
           //       _showBottomSheet(context, widget.bloc);
           //     },
-          //     borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          //     borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           //     child: Container(
           //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+          //         borderRadius: BorderRadius.circular(AppRadius.borderRadius),
           //         border: Border.all(
           //           color: AppDarkColor.instance.primarySoftBorder,
           //         ),

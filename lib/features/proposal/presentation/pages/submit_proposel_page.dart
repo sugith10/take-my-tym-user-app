@@ -77,7 +77,14 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
         }
         if (state is SubmitProposalSuccessState) {
           context.read<GetProposalBloc>().add(ProposalGetEvent(uid: userId));
-          Navigator.push(context, SuccessPage.route(pop: true));
+          Navigator.push(
+            context,
+            SuccessPage.route(
+              pop: true,
+              title: "Submitted Successfully.",
+              subtitle: "You will be notified when your proposal is approved.",
+            ),
+          );
         }
       },
       child: Scaffold(

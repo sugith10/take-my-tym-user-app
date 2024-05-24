@@ -26,8 +26,8 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
     emit(VerifyUserEmailSendState());
   }
 
-/// Manages the email verification check process, including handling loading, success, and error states.
-/// Verifies user status, emits corresponding success or failure states, and manages exceptions.
+  /// Manages the email verification check process, including handling loading, success, and error states.
+  /// Verifies user status, emits corresponding success or failure states, and manages exceptions.
   void _checkVerification(
     CheckVerificationEvent event,
     Emitter<VerifyUserState> emit,

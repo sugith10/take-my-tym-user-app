@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/app_colors.dart';
+import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
 class CollectInfoTextField extends StatelessWidget {
@@ -62,7 +62,7 @@ class _CollectInfoTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(
-        MyAppRadius.borderRadius - 2,
+        AppRadius.borderRadius - 2,
       ),
       borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
     );

@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/utils/post_types.dart';
 
 class WorkTypeWidget extends StatefulWidget {
@@ -34,17 +34,17 @@ class _WorkTypeWidgetState extends State<WorkTypeWidget> {
       child: SegmentedButton(
         segments: const <ButtonSegment<String>>[
           ButtonSegment<String>(
-            value: MyAppPostType.remote,
+            value: PostType.remote,
             label: Padding(
               padding: EdgeInsets.only(right: 5.0),
-              child: Text(MyAppPostType.remote),
+              child: Text(PostType.remote),
             ),
           ),
           ButtonSegment<String>(
-            value: MyAppPostType.onsite,
+            value: PostType.onsite,
             label: Padding(
               padding: EdgeInsets.only(right: 5.0),
-              child: Text(MyAppPostType.onsite),
+              child: Text(PostType.onsite),
             ),
           ),
         ],

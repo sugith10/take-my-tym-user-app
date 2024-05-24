@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/theme/app_colors.dart';
+import '../../../../core/utils/theme/color/app_colors.dart';
 import '../../../../core/utils/app_radius.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
@@ -36,7 +36,7 @@ class CreatePostLocationWidget extends StatelessWidget {
                 context, SelectLocationPage.route(locationBloc: locationBloc));
           },
           borderRadius: BorderRadius.circular(
-            MyAppRadius.borderRadius,
+            AppRadius.borderRadius,
           ),
           child: Container(
             height: 50.h,
@@ -45,7 +45,7 @@ class CreatePostLocationWidget extends StatelessWidget {
               border: Border.all(
                 color: AppDarkColor.instance.secondaryBorder,
               ),
-              borderRadius: BorderRadius.circular(MyAppRadius.borderRadius),
+              borderRadius: BorderRadius.circular(AppRadius.borderRadius),
             ),
             child: HomePadding(
               child: Align(

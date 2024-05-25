@@ -5,25 +5,25 @@ import '../../features/create_post/presentation/widgets/post_specifications_widg
 import '../model/app_post_model.dart';
 import '../utils/text_manipulator/taxt_manipulator.dart';
 import '../utils/theme/color/app_colors.dart';
-import '../utils/app_responsive.dart';
 import 'app_card.dart';
 
 class PostCard extends StatelessWidget {
-  final String? image;
   final PostModel postModel;
   final double width;
+  final bool constraints;
   final VoidCallback voidCallback;
 
   const PostCard({
-    this.image,
     required this.voidCallback,
     required this.postModel,
     required this.width,
+    this.constraints = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Stack(
@@ -39,15 +39,26 @@ class PostCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 SizedBox(height: 10.h),
-                _TitleText(title: postModel.title),
-                if (image == null)
-                  Column(
-                    children: [
-                      SizedBox(height: 15.h),
-                      _Content(content: postModel.content),
-                    ],
-                  ),
-                SizedBox(height: 10.h),
+                constraints
+                    ? ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: size.height * 0.062,
+                          maxHeight: size.height * 0.062,
+                        ),
+                        child: _TitleText(title: postModel.title),
+                      )
+                    : _TitleText(title: postModel.title),
+                if (!constraints) SizedBox(height: 10.h),
+                constraints
+                    ? ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: size.height * 0.052,
+                          maxHeight: size.height * 0.052,
+                        ),
+                        child: _Content(content: postModel.content),
+                      )
+                    : _Content(content: postModel.content),
+                if (!constraints) SizedBox(height: 10.h),
                 Divider(
                   color: AppDarkColor.instance.secondaryBorder,
                 ),
@@ -96,17 +107,9 @@ class _TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MobileResponsive.mobileMedium(context)) {
-      return Text(
-        title,
-        style: Theme.of(context).textTheme.labelLarge,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      );
-    }
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleSmall,
+      style: Theme.of(context).textTheme.labelLarge,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
     );
@@ -121,14 +124,11 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 35.h, maxHeight: 35.h),
-      child: Text(
-        content,
-        style: Theme.of(context).textTheme.bodyLarge,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      ),
+    return Text(
+      content,
+      style: Theme.of(context).textTheme.bodyMedium,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

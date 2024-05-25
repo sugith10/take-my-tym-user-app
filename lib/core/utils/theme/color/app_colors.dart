@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 part 'dark_mode_color.dart';
 
 /// Interface for defining colors used in the application's UI.
-class AppColor {
+interface class AppColor {
   final Color background; // Background color.
   final Color softBackground; // Soft background color.
   final Color secondaryBackground; // Secondary background color.

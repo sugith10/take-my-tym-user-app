@@ -30,6 +30,7 @@ class AllCommunePostsWidget extends StatelessWidget {
               },
               postModel: postModel,
               width: double.infinity,
+              constraints: false,
             );
           },
         ),

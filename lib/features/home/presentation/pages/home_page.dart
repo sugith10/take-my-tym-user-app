@@ -38,8 +38,6 @@ class _HomePageState extends State<HomePage> {
                     HomePageFilterWidget(),
                   ],
                 ),
-                // SizedBox(height: 10.h),
-
                 SizedBox(height: 20.h),
                 const BannerWidget(),
                 SizedBox(height: 20.h),

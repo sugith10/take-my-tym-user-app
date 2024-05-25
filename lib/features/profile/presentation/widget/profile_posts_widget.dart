@@ -9,7 +9,6 @@ import '../../../../core/widgets/shimmer_effect.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
 import '../../../view_post/presentation/pages/view_post_page.dart';
 
-
 class ProfilePostsWidget extends StatelessWidget {
   const ProfilePostsWidget({
     super.key,
@@ -28,7 +27,7 @@ class ProfilePostsWidget extends StatelessWidget {
         if (state is GotSellTymPostsState) {
           return _PostsBuilder(postModles: state.sellTymPostModels);
         }
-        if(state is UserPostError){
+        if (state is UserPostError) {
           return Column(
             children: [
               SizedBox(height: 50.h),
@@ -67,6 +66,7 @@ class _PostsBuilder extends StatelessWidget {
               );
             },
             width: MediaQuery.of(context).size.width,
+            constraints: false,
           );
         },
       ),

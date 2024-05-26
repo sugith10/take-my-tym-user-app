@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../auth/presentation/pages/account_info_page.dart';
+import '../../../profile/presentation/page/account_info_page.dart';
 import '../../../auth/presentation/widgets/sign_out/drawer_log_out_widget.dart';
 import '../utils/app_policy.dart';
 import '../utils/service_center.dart';
@@ -36,13 +36,13 @@ class DrawerNavBar extends StatelessWidget {
                   },
                   icon: IconlyLight.profile,
                 ),
-                // DrawerCustomButton(
-                //   title: 'Notifications',
-                //   callback: () {
-                //     'print';
-                //   },
-                //   icon: IconlyLight.notification,
-                // ),
+                DrawerCustomButton(
+                  title: 'Notifications',
+                  callback: () {
+                    'print';
+                  },
+                  icon: IconlyLight.notification,
+                ),
                 DrawerCustomButton(
                   title: 'Share the App',
                   callback: () {

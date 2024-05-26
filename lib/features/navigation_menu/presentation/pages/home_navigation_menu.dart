@@ -10,7 +10,7 @@ import '../../../message/presentation/pages/chat_list_page.dart';
 import '../../../profile/presentation/page/profile_page.dart';
 import 'work_tab_bar_menu.dart';
 import '../bloc/navigation_bloc.dart';
-import 'drawer_navigation_menu.dart';
+import 'drawer_menu.dart';
 
 class HomeNavigationMenu extends StatefulWidget {
   static route() => noMovement(const HomeNavigationMenu());

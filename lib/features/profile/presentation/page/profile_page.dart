@@ -5,6 +5,7 @@ import 'package:take_my_tym/core/widgets/home_padding.dart';
 
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/widgets/default_silver_appbar.dart';
+import '../../../proposal/presentation/bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../widget/about_widget.dart';
 import '../widget/profile_card_widget/profile_card_widget.dart';
 import '../widget/profile_options_widget.dart';
@@ -36,29 +37,35 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          DefaultSilverAppBar(title: 'My Tym', settings: () {}),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                ProfileCard(userModel: _userModel),
-                AboutWidget(about: _userModel.about!),
-                ProfileOptionsWidget(
-                  editProfile: () {
-                    Navigator.push(context, EditProfilePage.route());
-                  },
-                ),
-                const HomePadding(child: Divider()),
-                const SizedBox(height: 25),
-                // const SwitchProfilePostsWidget(),
-                // const SizedBox(height: 30),
-                const ProfilePostsWidget(),
-              ],
+    return BlocProvider(
+      create: (context) => GetProposalBloc()
+        ..add(
+          ProposalGetEvent(uid: context.read<AppUserBloc>().userModel!.uid),
+        ),
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            DefaultSilverAppBar(title: 'My Tym', settings: () {}),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  ProfileCard(userModel: _userModel),
+                  AboutWidget(about: _userModel.about!),
+                  ProfileOptionsWidget(
+                    editProfile: () {
+                      Navigator.push(context, EditProfilePage.route());
+                    },
+                  ),
+                  const HomePadding(child: Divider()),
+                  const SizedBox(height: 25),
+                  // const SwitchProfilePostsWidget(),
+                  // const SizedBox(height: 30),
+                  const ProfilePostsWidget(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

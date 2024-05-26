@@ -9,13 +9,14 @@ import 'package:take_my_tym/features/auth/domain/usecases/verify_user_usecase.da
 part 'verify_user_event.dart';
 part 'verify_user_state.dart';
 
+/// Manages account verification events and states.
 class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
   VerifyUserBloc() : super(VerifyUserInitial()) {
     on<SendVerificationEmailEvent>(_sendVerificationEmail);
     on<CheckVerificationEvent>(_checkVerification);
   }
 
-  /// Handles sending verification email.
+  /// Sends a verification email.
   void _sendVerificationEmail(
     SendVerificationEmailEvent event,
     Emitter<VerifyUserState> emit,
@@ -26,8 +27,7 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
     emit(VerifyUserEmailSendState());
   }
 
-  /// Manages the email verification check process, including handling loading, success, and error states.
-  /// Verifies user status, emits corresponding success or failure states, and manages exceptions.
+  /// Checks if the user is verified and emits the appropriate state.
   void _checkVerification(
     CheckVerificationEvent event,
     Emitter<VerifyUserState> emit,
@@ -48,7 +48,6 @@ class VerifyUserBloc extends Bloc<VerifyUserEvent, VerifyUserState> {
         emit(VerifyUserNotFoundState(error: error));
       }
     } on AppException catch (e) {
-      // Logs any exceptions
       log(e.toString());
       // Creates an alert based on the exception, and emits a failed state
       final AppAlert error = AppAlert(

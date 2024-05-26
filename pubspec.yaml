@@ -28,7 +28,7 @@ dependencies:
   audioplayers: ^6.0.0
   local_auth: ^2.2.0
   share_plus: ^9.0.0
-
+  flutter_local_notifications: ^17.1.2
 
   hive: ^2.2.3
   firebase_auth: ^4.17.8

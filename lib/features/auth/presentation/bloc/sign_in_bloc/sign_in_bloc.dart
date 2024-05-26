@@ -12,12 +12,13 @@ import 'package:take_my_tym/features/auth/domain/usecases/signin_usecase.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
+/// Manages user email sign-up process and its states.
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
     on<SignInEvent>(_onSignIn);
   }
 
-  /// Manages user sign-in process, including loading state indication, checking if user is blocked, and error handling.
+  /// Handles user sign-in.
   /// Authenticates user, stores user data locally, and emits corresponding success or failure states.
   _onSignIn(
     SignInEvent event,

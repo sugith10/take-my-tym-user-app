@@ -42,6 +42,6 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
-    appLogger.t("$bloc is closed");
+    appLogger.w("$bloc is closed");
   }
 }

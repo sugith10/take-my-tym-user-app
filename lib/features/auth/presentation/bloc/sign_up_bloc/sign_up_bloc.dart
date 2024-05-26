@@ -11,13 +11,13 @@ import 'package:take_my_tym/features/auth/domain/usecases/signup_usecase.dart';
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
+/// Manages user email sign-up process and its states.
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc() : super(SignUpInitial()) {
     on<CreateUserEvent>(_onSingUp);
   }
 
-  /// Manages the user sign-up process, including handling loading, success, and error states.
-  /// Creates a new user with provided details and emits the corresponding states.
+  /// Handles user email sign-up process and its states.
   void _onSingUp(CreateUserEvent event, Emitter<SignUpState> emit) async {
     emit(SignUpLoadingState());
     // Check if the form is valid
@@ -27,21 +27,14 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         final signUpUseCase = GetIt.instance<SignUpUseCase>();
 
         // Call the createUser method with the given event parameters
-        await signUpUseCase
-            .createUser(
+        final user = await signUpUseCase.createUser(
           email: event.email,
           password: event.password,
           firstName: event.firstName,
           lastName: event.lastName,
-        )
-            .then(
-          // If the user is created successfully, emit a SignUpSuccessState
-          (value) {
-            emit(SignUpSuccessState(value));
-          },
         );
+        emit(SignUpSuccessState(user));
       } on AppException catch (e) {
-        // Log the error
         appLogger.e(e);
         // Emit a SignUpFailState with the error
         emit(SignUpFailState(error: AppAlert()));

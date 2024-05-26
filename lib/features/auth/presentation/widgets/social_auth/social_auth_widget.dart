@@ -72,15 +72,18 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const HomeNavigationMenu()),
+                              builder: (_) => const HomeNavigationMenu(),
+                            ),
                             (route) => false);
                       } else {
                         Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ProfileSetupPage(
-                                    userModel: state.userModel)),
-                            (route) => false);
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                ProfileSetupPage(userModel: state.userModel),
+                          ),
+                          (route) => false,
+                        );
                       }
                     }
                   },

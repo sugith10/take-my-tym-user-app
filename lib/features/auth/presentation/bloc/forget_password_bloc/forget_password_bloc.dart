@@ -7,19 +7,18 @@ import 'package:take_my_tym/features/auth/domain/usecases/forget_password_usecas
 part 'forget_password_event.dart';
 part 'forget_password_state.dart';
 
+/// Manages the forget password process and its states.
 class ForgetPasswordBloc
     extends Bloc<ForgetPasswordEvent, ForgetPasswordState> {
   ForgetPasswordBloc() : super(ForgetPasswordInitial()) {
     on<ForgetPasswordEvent>(_onForgetPassword);
   }
 
-  /// Manages the forget password process, including loading state indication, success, and error handling.
-  /// Resets the user's password and emits the corresponding success or failure states.
+  /// Handles the forget password process.
   void _onForgetPassword(
     ForgetPasswordEvent event,
     Emitter<ForgetPasswordState> emit,
   ) async {
-    // Emit the ForgetPasswordLoadingState to show that the action is in progress
     emit(ForgetPasswordLoadingState());
     try {
       // Get the ForgetPasswordUseCase from the GetIt.instance

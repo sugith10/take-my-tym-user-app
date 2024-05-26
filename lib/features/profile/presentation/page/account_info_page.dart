@@ -8,10 +8,10 @@ import '../../../../core/widgets/app_bar/close_app_bar.dart';
 import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
-import '../bloc/sign_out_bloc/sign_out_bloc.dart';
-import '../widgets/account_info_content_widget.dart';
-import '../widgets/sign_out/account_info_log_out_widget.dart';
-import 'welcome_page.dart';
+import '../../../auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
+import '../../../auth/presentation/widgets/account_info_content_widget.dart';
+import '../../../auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
+import '../../../auth/presentation/pages/welcome_page.dart';
 
 
 class AccountInfoPage extends StatelessWidget {
@@ -48,32 +48,7 @@ class AccountInfoPage extends StatelessWidget {
               title: "Location",
               subtitle: userModel.location!,
             ),
-            BlocListener<SignOutBloc, SignOutState>(
-              listener: (context, state) {
-                if (state is SignOutFailState) {
-                  AppSnackBar.failSnackBar(
-                    context: context,
-                    error: state.error,
-                  );
-                }
-                if (state is SignOutLoadingState) {
-                  LoadingDialog().show(context);
-                }
-                if (state is SignOutSuccessState) {
-                  context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-             
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const WelcomePage()),
-                      (route) => false);
-                }
-              },
-              child: AccountInfoLogOutWidget(
-                callback: () {
-               
-                },
-              ),
-            )
+          
           ],
         ),
       ),

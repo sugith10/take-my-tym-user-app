@@ -12,17 +12,15 @@ import '../../../domain/usecases/social_auth_usecase.dart';
 part 'social_auth_event.dart';
 part 'social_auth_state.dart';
 
+/// Manages social authentication like Google auth and its events and states.
 class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
   SocialAuthBloc() : super(SocialAuthInitial()) {
     on<GoogleSignEvent>(_onGoogleSign);
   }
 
-  /// Manages the Google sign-in process, including handling loading, success, and error states.
-  /// Retrieves user data, checks profile setup status, and handles blocked accounts or exceptions.
+  /// Handles Google sign-in process.
   void _onGoogleSign(
-    // Receives the event emitted when the user clicks on the Google button.
     GoogleSignEvent event,
-    // Emits an instance of `SocialAuthState` to pass the state of the authentication process to the parent.
     Emitter<SocialAuthState> emit,
   ) async {
     // Emits a loading state to indicate that the authentication process has started.
@@ -71,11 +69,6 @@ class SocialAuthBloc extends Bloc<SocialAuthEvent, SocialAuthState> {
           error: appError,
         ),
       );
-    } catch (e) {
-      // Logs the exception and emits an error state with an empty alert and details.
-      appLogger.e(e);
-      final AppAlert appError = AppAlert();
-      SocialAuthFailState(error: appError);
     }
   }
 }

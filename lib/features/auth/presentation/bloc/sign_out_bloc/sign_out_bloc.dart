@@ -1,23 +1,23 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
-import 'package:take_my_tym/core/utils/app_exception.dart';
-import 'package:take_my_tym/features/auth/domain/usecases/local_user_storage_usecase.dart';
-import 'package:take_my_tym/features/auth/domain/usecases/signout_usecase.dart';
+
+import '../../../../../core/utils/app_error_msg.dart';
+import '../../../../../core/utils/app_exception.dart';
+import '../../../domain/usecases/local_user_storage_usecase.dart';
+import '../../../domain/usecases/signout_usecase.dart';
 
 part 'sign_out_event.dart';
 part 'sign_out_state.dart';
 
+/// Manages user sign-out process and its states.
 class SignOutBloc extends Bloc<SignOutEvent, SignOutState> {
   SignOutBloc() : super(SignOutInitial()) {
     on<UserSignOutEvent>(_onSignOut);
   }
 
-  /// Manages the password reset process, displaying loading state and emitting success or failure states.
-  /// This includes invoking the reset password use case and handling the corresponding outcomes.
+  /// Handles user sign-out process
   void _onSignOut(UserSignOutEvent event, Emitter<SignOutState> emit) async {
-    // Emit the SignOutLoadingState to indicate that the sign-out process has started
     emit(SignOutLoadingState());
     try {
       // Get the SignOutUseCase from the GetIt library

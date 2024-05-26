@@ -7,26 +7,51 @@ import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
 import 'package:take_my_tym/core/utils/app_radius.dart';
 
-final class AppSnackBar {
-  static failSnackBar({
+class AppSnackBar {
+  static void showSnackBar({
+    required BuildContext context,
+    required Widget content,
+    bool top = false,
+    Duration duration = const Duration(seconds: 3),
+  }) {
+    final overlay = Overlay.of(context);
+    final overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: top ? MediaQuery.of(context).viewInsets.top + 50 : null,
+        bottom: top ? null : 50,
+        left: 20,
+        right: 20,
+        child: Material(
+          color: Colors.transparent,
+          child: content,
+        ),
+      ),
+    );
+
+    overlay.insert(overlayEntry);
+
+    // Remove the snack bar after the specified duration
+    Future.delayed(duration, () {
+      overlayEntry.remove();
+    });
+  }
+
+  static void failSnackBar({
     required BuildContext context,
     AppAlert? error,
+    bool top = false,
   }) {
     error = error ?? AppAlert();
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: _SnackBarContentWidget(
-          message: error.alert,
-          description: error.details,
-          backgroundColor: const Color(0xFFC72c41),
-          assetColor: const Color(0xFF801336),
-          icon: AppSvg.snackBarFail,
-        ),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        duration: const Duration(seconds: 3),
+    showSnackBar(
+      context: context,
+      content: _SnackBarContentWidget(
+        message: error.alert,
+        description: error.details,
+        backgroundColor: const Color(0xFFC72c41),
+        assetColor: const Color(0xFF801336),
+        icon: AppSvg.snackBarFail,
       ),
+      top: top,
     );
   }
 

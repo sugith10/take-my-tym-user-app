@@ -8,12 +8,13 @@ import 'package:take_my_tym/features/wallet/domain/usecases/payment_use_case.dar
 part 'payment_event.dart';
 part 'payment_state.dart';
 
+/// Manages payment related events and states.
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   PaymentBloc() : super(PaymentInitial()) {
     on<PaymentTopUpEvent>(_onTopUp);
-    on<PaymentWithdrawEvent>(_onWithdraw);
   }
 
+  /// Handles the top-up payment event.
   void _onTopUp(
     PaymentTopUpEvent event,
     Emitter<PaymentState> emit,
@@ -23,7 +24,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       double convertedAmount = double.parse(event.amount);
       int amount = convertedAmount.toInt();
 
-      await initPaymentSheet(amount: amount.toString());
+      await _initPaymentSheet(amount: amount.toString());
       await Stripe.instance.presentPaymentSheet();
 
       emit(PaymentSuccessState(amount: convertedAmount));
@@ -32,16 +33,8 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     }
   }
 
-  void _onWithdraw(
-    PaymentWithdrawEvent event,
-    Emitter<PaymentState> emit,
-  ) async {
-    try {} catch (e) {
-      emit(PaymentFailState());
-    }
-  }
-
-  Future<void> initPaymentSheet({required String amount}) async {
+  /// Initializes the payment sheet with the given amount.
+  Future<void> _initPaymentSheet({required String amount}) async {
     try {
       // 1. create payment intent on the client side by calling stripe api
       final payment = GetIt.instance<PaymentUseCase>();

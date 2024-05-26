@@ -11,9 +11,3 @@ final class PaymentTopUpEvent extends PaymentEvent {
 
   const PaymentTopUpEvent({required this.amount});
 }
-
-final class PaymentWithdrawEvent extends PaymentEvent {
-  final String amount;
-
-  const PaymentWithdrawEvent({required this.amount});
-}

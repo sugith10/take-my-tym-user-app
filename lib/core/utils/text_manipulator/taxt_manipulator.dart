@@ -1,37 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 part 'function/name_capitalize.dart';
 part 'function/timestamp_convert.dart';
+part 'function/date_time_convert.dart';
 
-/// Utility class for manipulating text.
-///
-/// This class provides static methods for common text manipulation tasks,
-/// such as capitalizing names and converting timestamps to readable formats.
+/// Utility class for text manipulation.
 class TextManipulator {
   // Private constructor to prevent instantiation.
   TextManipulator._();
 
   /// Capitalizes the first letter of the given string.
-  ///
-  /// [name] The string to capitalize.
-  /// Returns the input string with the first letter capitalized.
   static String capitalize(String name) {
-    return _NameCapitalize.capitalize(name);
+    return _TextCapitalize.capitalize(name);
   }
 
-  /// Converts a [Timestamp] object to a string representing the time of day.
-  ///
-  /// [timestamp] The timestamp to convert.
-  /// Returns a string representing the time of day (e.g., "3:45pm").
+  /// Converts a [Timestamp] to a string representing the time (e.g., "3:45pm").
   static String timestampToTime(Timestamp timestamp) {
     return _TimestampConvert.timestampToTime(timestamp);
   }
 
-  /// Converts a [Timestamp] object to a string representing the date.
-  ///
-  /// [timestamp] The timestamp to convert.
-  /// Returns a string representing the date (e.g., "25 Dec 2024").
+  /// Converts a [Timestamp] to a string representing the date (e.g., "25 Dec 2024").
   static String timestampToDate(Timestamp timestamp) {
     return _TimestampConvert.timestampToDate(timestamp);
+  }
+
+  /// Converts a [DateTime] to a string formatted as 'MMM yyyy (e.g., "Dec 2024")'.
+  static String joinDate({required DateTime date}) {
+    return _DateTimeConvert._date(date: date);
   }
 }

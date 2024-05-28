@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 
 class AppBottomSheet {

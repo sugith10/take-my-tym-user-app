@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utils/theme/color/app_colors.dart';
-import '../utils/app_radius.dart';
+import '../theme/color/app_colors.dart';
+import '../const/app_radius.dart';
 
 class AppCard extends StatelessWidget {
   final VoidCallback voidCallback;

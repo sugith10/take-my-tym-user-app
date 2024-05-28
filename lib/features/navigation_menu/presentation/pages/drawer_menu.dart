@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
-import '../../../profile/presentation/page/account_info_page.dart';
 import '../../../auth/presentation/widgets/sign_out/drawer_log_out_widget.dart';
 import '../utils/app_policy.dart';
 import '../utils/service_center.dart';
@@ -18,10 +18,7 @@ class DrawerNavBar extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const ProfileWidget(
-            
-            
-          ),
+          const ProfileWidget(),
           Expanded(
             child: ListView(
               shrinkWrap: true,
@@ -29,10 +26,7 @@ class DrawerNavBar extends StatelessWidget {
                 DrawerCustomButton(
                   title: 'Account Info',
                   callback: () {
-                    Navigator.push(
-                      context,
-                      AccountInfoPage.route(),
-                    );
+                    Navigator.pushNamed(context, RouteName.accountInfo);
                   },
                   icon: IconlyLight.profile,
                 ),

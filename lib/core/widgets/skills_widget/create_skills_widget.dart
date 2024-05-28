@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/utils/app_error_msg.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
+import 'package:take_my_tym/core/const/app_radius.dart';
+import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
-import 'package:take_my_tym/features/create_post/presentation/widgets/create_post_title_widget.dart';
+import 'package:take_my_tym/features/create_post/presentation/widget/create_post_title_widget.dart';
 
 class CollectItemsWidget extends StatefulWidget {
   final CreateSkillBloc createSkillBloc;
@@ -48,7 +48,7 @@ class _CollectItemsWidgetState extends State<CollectItemsWidget> {
                 if (state is UpdateSkillSuccessState) {
                   if (state.skills.length >= 5) {
                     AppSnackBar.failSnackBar(
-                        context: context, error: _errorMsg);
+                        context: context, alert: _errorMsg);
                   } else {
                     widget.createSkillBloc.add(
                       AddSkillEvent(
@@ -132,7 +132,7 @@ class _SkillsWidget extends StatelessWidget {
             children: [
               SizedBox(height: 10.h),
               Wrap(
-                spacing: MyAppPadding.homePadding,
+                spacing: AppPading.homePadding,
                 children: List.generate(
                   state.skills.length,
                   (index) {

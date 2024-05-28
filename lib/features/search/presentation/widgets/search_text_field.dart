@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -17,7 +17,7 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(MyAppPadding.homePadding),
+      padding: const EdgeInsets.all(AppPading.homePadding),
       child: TextField(
         keyboardType: TextInputType.text,
         controller: searchEditingController,

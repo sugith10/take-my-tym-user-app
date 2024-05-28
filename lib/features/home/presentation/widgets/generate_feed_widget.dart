@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/post_card.dart';
 import '../../../view_post/presentation/pages/view_post_page.dart';
 
@@ -18,7 +18,7 @@ class GenerateFeedWidget extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(right: MyAppPadding.homePadding),
+        padding: const EdgeInsets.only(right: AppPading.homePadding),
         child: Row(
           children: List.generate(posts.length, (index) {
             final postModel = posts[index];

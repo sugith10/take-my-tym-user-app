@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
-import '../../../../core/utils/app_radius.dart';
-import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/const/app_radius.dart';
 
 class ProfileOptionsWidget extends StatelessWidget {
   final VoidCallback editProfile;
@@ -14,28 +14,26 @@ class ProfileOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20.h),
-      child: HomePadding(
-        child: Row(
-          children: [
-            _ProfileOptionButton(
-              action: 'Edit Profile',
-              callback: () {
-                editProfile();
-              },
-            ),
-            const Spacer(),
-            _ProfileOptionButton(
-              action: 'Share Profile',
-              callback: () {},
-            ),
-            const Spacer(),
-            _ProfileOptionButton(
-              action: 'Bookmark',
-              callback: () {},
-            )
-          ],
-        ),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      child: Row(
+        children: [
+          _ProfileOptionButton(
+            action: 'Edit Profile',
+            callback: () {
+              editProfile();
+            },
+          ),
+          const Spacer(),
+          _ProfileOptionButton(
+            action: 'Share Profile',
+            callback: () {},
+          ),
+          const Spacer(),
+          _ProfileOptionButton(
+            action: 'Bookmark',
+            callback: () {},
+          )
+        ],
       ),
     );
   }
@@ -61,11 +59,11 @@ class _ProfileOptionButton extends StatelessWidget {
           color: Colors.grey.withOpacity(0.2),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Text(
             action,
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontSize: 15.5.sp,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppDarkColor.instance.primaryTextSoft,
                 ),
           ),
         ),

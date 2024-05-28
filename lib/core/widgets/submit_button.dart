@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
+import 'package:take_my_tym/core/const/app_radius.dart';
 
 import '../utils/app_vibration.dart';
 
@@ -25,10 +25,10 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(MyAppPadding.homePadding),
+      padding: const EdgeInsets.all(AppPading.homePadding),
       child: ElevatedButton(
         onPressed: () {
-          HapticFeedbackVibration().vibrate();
+          AppVibration.hapticFeedbacklight();
           callback();
         },
         style: ElevatedButton.styleFrom(

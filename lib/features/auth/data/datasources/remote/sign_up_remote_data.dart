@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
+import 'package:take_my_tym/core/utils/text_manipulator/taxt_manipulator.dart';
 
 //class to manage remote data for sign up
 final class SignUpRemoteData {
@@ -41,7 +42,9 @@ final class SignUpRemoteData {
           lastName: lastName,
           userName: firstName + lastName,
           verified: false,
-          blocked: false);
+          blocked: false,
+          join: TextManipulator.joinDate(date: DateTime.now()),
+          );
       try {
         //run transaction to set user model
         await FirebaseFirestore.instance.runTransaction((transaction) async {

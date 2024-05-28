@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/const/app_padding.dart';
 
 
 class ChatDivider extends StatelessWidget {
@@ -12,8 +12,8 @@ class ChatDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.only(
-        left: MyAppPadding.homePadding,
-        right: MyAppPadding.homePadding,
+        left: AppPading.homePadding,
+        right: AppPading.homePadding,
       ),
       child: Divider(),
     );

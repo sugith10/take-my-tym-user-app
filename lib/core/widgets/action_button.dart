@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
+import 'package:take_my_tym/core/const/app_radius.dart';
 
 class ActionButton extends StatelessWidget {
   final String action;
@@ -14,7 +14,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(MyAppPadding.homePadding),
+      padding: const EdgeInsets.all(AppPading.homePadding),
       child: ElevatedButton(
         onPressed: () {
           callback();

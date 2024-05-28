@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../../../../core/model/app_user_model.dart';
 import '../../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../../core/widgets/circle_profile_picture_widget.dart';
-import '../../../../../core/widgets/home_padding.dart';
 import 'widgets/profile_location_widget.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -19,73 +17,56 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 25.h, bottom: 35.h),
-      child: HomePadding(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //Section 1 begin
-            if (Platform.isAndroid)
-              Column(
-                children: [
-                  SizedBox(width: 15.h),
-                  const CircleProfilePicWidget(
-                    height: 100,
-                    width: 100,
-                  ),
-                  SizedBox(width: 25.h),
-                ],
-              ),
-            SizedBox(width: 15.h),
-            //Section 1 end
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //Section 1 begin
+          const CircleProfilePicWidget(
+            height: 100,
+            width: 100,
+          ),
+          SizedBox(width: 15.h),
+          //Section 1 end
+    
+          //Section 2 begin
+          Expanded(
+            child: SizedBox(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //User full name
                   Row(
                     children: [
                       _ProfileNameWidget(
-                          name:
-                              TextManipulator.capitalize(userModel.firstName)),
+                          name: TextManipulator.capitalize(
+                              userModel.firstName)),
                       const SizedBox(width: 10),
                       _ProfileNameWidget(
-                          name: TextManipulator.capitalize(userModel.lastName)),
+                          name:
+                              TextManipulator.capitalize(userModel.lastName)),
                     ],
                   ),
                   SizedBox(height: 5.h),
                   //username
-                  Text("@ ${userModel.userName.toLowerCase()}"),
+                  Text("@${userModel.userName.toLowerCase()}"),
                   SizedBox(height: 5.h),
+                  const Divider(),
                   //location
-                  ProfileLocationWidget(location: userModel.location),
+                  ProfileInfoWidget(
+                      icon: IconlyLight.location, text: userModel.location),
+                  SizedBox(height: 5.h),
+                  ProfileInfoWidget(
+                      icon: IconlyBroken.calendar,
+                      text: "Joined ${userModel.join}"),
                   //location end
                 ],
               ),
             ),
-            if (Platform.isIOS)
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 35),
-                        child: CircleProfilePicWidget(
-                          height: 100,
-                          width: 100,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 15.h),
-                  ],
-                ),
-              ),
-            SizedBox(width: 15.h),
-          ],
-        ),
+          ),
+          //Section 2 begin
+        ],
       ),
     );
   }

@@ -6,15 +6,16 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
+import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/utils/assets/app_lottie.dart';
-import '../../../../core/utils/theme/color/app_colors.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/theme/color/app_colors.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/skills_widget/bloc/create_skill_bloc/create_skill_bloc.dart';
 import '../../../../core/widgets/skills_widget/create_skills_widget.dart';
 import '../../../../core/widgets/take_my_tym_info_dialog.dart';
-import '../../../create_post/presentation/widgets/create_post_location_widget.dart';
+import '../../../create_post/presentation/widget/create_post_location_widget.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
@@ -73,7 +74,14 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           TakeyMyTymDailog().show(context: context);
         }
         if (state is UpdataProfileFailState) {
-          AppSnackBar.failSnackBar(context: context);
+          AppSnackBar.failSnackBar(
+            context: context,
+            alert: AppAlert(
+              alert: "Profile Update Failed",
+              details:
+                  "An error occurred while updating your profile. Please try again.",
+            ),
+          );
         }
       },
       child: Scaffold(
@@ -129,23 +137,23 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                         callback: () {
                           FocusScope.of(context).unfocus();
                           if (_formKey.currentState!.validate()) {
-                            log("${userNameCntrl.text},${aboutCntrl.text},${professionCntrl.text}");
-                          }
-                          final locationState = locationBloc.state;
-                          if (locationState is LocationResultState) {
-                            updateProfileBloc.add(
-                              ProfileSetupEvent(
-                                about: aboutCntrl.text,
-                                userName: userNameCntrl.text,
-                                profession: professionCntrl.text,
-                                location: locationState.placeName,
-                                latitude: locationState.latitude,
-                                longitude: locationState.longitude,
-                                userModel: widget.userModel,
-                              ),
-                            );
-                          } else {
-                            AppSnackBar.failSnackBar(context: context);
+                            final locationState = locationBloc.state;
+                            if (locationState is LocationResultState) {
+                              updateProfileBloc.add(
+                                ProfileSetupEvent(
+                                  about: aboutCntrl.text,
+                                  userName: userNameCntrl.text,
+                                  profession: professionCntrl.text,
+                                  location: locationState.placeName,
+                                  latitude: locationState.latitude,
+                                  longitude: locationState.longitude,
+                                  userModel: widget.userModel,
+                                ),
+                              );
+                            } else {
+                              AppSnackBar.failSnackBar(
+                                  context: context, alert: AppAlert());
+                            }
                           }
                         },
                       ),

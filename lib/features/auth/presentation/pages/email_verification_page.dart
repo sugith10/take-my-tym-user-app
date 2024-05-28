@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/auth_progress_widget.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../profile/presentation/page/profile_setup_page.dart';
 import '../bloc/verify_user_bloc/verify_user_bloc.dart';
+import '../widgets/auth_progress_widget.dart';
 import '../widgets/sign_button.dart';
+import '../widgets/sign_button_text.dart';
 import '../widgets/sub_page_info_widget.dart';
 
 class EmailVerificationPage extends StatefulWidget {
@@ -18,11 +19,6 @@ class EmailVerificationPage extends StatefulWidget {
     super.key,
     required this.userModel,
   });
-  static route({required UserModel userModel}) => MaterialPageRoute(
-        builder: (context) => EmailVerificationPage(
-          userModel: userModel,
-        ),
-      );
 
   @override
   State<EmailVerificationPage> createState() => _EmailVerificationPageState();
@@ -43,22 +39,23 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
     return BlocListener(
       bloc: _verifyUserBloc,
       listener: (context, state) {
-        
         if (state is VerifyUserEmailSendState) {
-          AppSnackBar().successSnackBar(
+          AppSnackBar.successSnackBar(
             context: context,
-            title: "Email Send Succesfully",
-            message:
-                "We send a email verifcation to user given email id. Please verify the email.",
+            alert: AppAlert(
+              alert: "Email Send Succesfully",
+              details:
+                  "We send a email verifcation to user given email id. Please verify the email.",
+            ),
           );
         }
         if (state is VerifyUserFailedState) {
-          AppSnackBar.failSnackBar(context: context, error: state.error);
+          AppSnackBar.failSnackBar(context: context, alert: state.error);
         }
         if (state is VerifyUserNotFoundState) {
           AppSnackBar.failSnackBar(
             context: context,
-            error: state.error,
+            alert: state.error,
           );
         }
         if (state is VerifyUserSuccessState) {

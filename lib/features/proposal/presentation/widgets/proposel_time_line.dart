@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 import '../../../../core/utils/assets/app_svg.dart';
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/widgets/event_card.dart';
 import '../../../../core/widgets/home_padding.dart';
 

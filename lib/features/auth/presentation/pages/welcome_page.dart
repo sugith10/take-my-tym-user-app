@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/navigation/screen_transitions/no_movement.dart';
-import '../../../../core/utils/app_padding.dart';
+
+import '../../../../core/const/app_padding.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/widgets/app_logo.dart';
 
 import '../widgets/terms_and_conditions_widget.dart';
@@ -21,8 +22,8 @@ class WelcomePage extends StatelessWidget {
               hasScrollBody: false,
               child: Padding(
                 padding: EdgeInsets.only(
-                  left: MyAppPadding.authPadding,
-                  right: MyAppPadding.authPadding,
+                  left: AppPading.authPadding,
+                  right: AppPading.authPadding,
                 ),
                 child: Stack(
                   children: [

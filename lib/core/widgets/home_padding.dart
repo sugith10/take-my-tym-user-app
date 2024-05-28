@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
 
 class HomePadding extends StatelessWidget {
   final Widget child;
@@ -10,7 +10,7 @@ class HomePadding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: MyAppPadding.homePadding,
+        horizontal: AppPading.homePadding,
       ),
       child: child,
     );

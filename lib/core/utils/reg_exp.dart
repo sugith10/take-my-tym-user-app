@@ -1,7 +1,4 @@
 /// A utility class for commonly used regular expressions.
-///
-/// This class provides static regular expressions to validate email addresses,
-/// passwords, special characters, and names. It cannot be instantiated.
 final class RegExpUtil {
   RegExpUtil._();
 

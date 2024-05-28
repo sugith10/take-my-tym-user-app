@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/utils/assets/app_png.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
-import '../../../location/presentation/pages/select_location_page.dart';
 
 class MyLocationWidget extends StatefulWidget {
   const MyLocationWidget({
@@ -25,9 +25,10 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
     return FittedBox(
       child: IconButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              SelectLocationPage.route(locationBloc: _locationBloc),
+              RouteName.location,
+              arguments: _locationBloc,
             );
           },
           icon: Row(

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../../core/widgets/app_snack_bar.dart';
+import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/widgets/widgets/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
 import '../../pages/welcome_page.dart';
@@ -33,7 +33,7 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
         if (state is SignOutFailState) {
           AppSnackBar.failSnackBar(
             context: context,
-            error: state.error,
+            alert: state.error,
           );
         }
         if (state is SignOutSuccessState) {

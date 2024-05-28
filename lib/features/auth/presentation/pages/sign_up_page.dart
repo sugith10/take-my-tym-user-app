@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
-import '../../../../core/navigation/screen_transitions/no_movement.dart';
-import '../../../../core/utils/app_padding.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
-import '../../../profile/presentation/page/profile_setup_page.dart';
+import '../../../../core/const/app_padding.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../bloc/sign_up_bloc/sign_up_bloc.dart';
 import '../widgets/animate_navigation_text.dart';
 import '../widgets/auth_progress_widget.dart';
 import '../widgets/sign_button.dart';
+import '../widgets/sign_button_text.dart';
 import '../widgets/sign_up/sign_up_form.dart';
 import '../widgets/social_auth/social_auth_widget.dart';
 import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_text_widget.dart';
-import 'sign_in_page.dart';
 
 class SignUpPage extends StatefulWidget {
   static route() => noMovement(const SignUpPage());
@@ -69,21 +68,17 @@ class _SignUpPageState extends State<SignUpPage> {
         bloc: _signUpBloc,
         listener: (context, state) {
           if (state is SignUpSuccessState) {
-             Navigator.pushAndRemoveUntil(
-            context,
-            ProfileSetupPage.route(userModel: state.userModel),
-            (route) => false,
-          );
-            // Navigator.pushAndRemoveUntil(
-            //   context,
-            //   EmailVerificationPage.route(userModel: state.userModel),
-            //   (route) => false,
-            // );
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteName.profileSetup,
+              (route) => false,
+              arguments: state.userModel,
+            );
           }
           if (state is SignUpFailState) {
             AppSnackBar.failSnackBar(
               context: context,
-              error: state.error,
+              alert: state.error,
             );
           }
         },
@@ -93,8 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: MyAppPadding.authPadding,
-                    right: MyAppPadding.authPadding),
+                    left: AppPading.authPadding, right: AppPading.authPadding),
                 child: Column(
                   children: [
                     const WelcomeTextWidget(
@@ -134,10 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       leadingText: 'Have an account?',
                       buttonText: 'Login',
                       callback: () {
-                        Navigator.push(
-                          context,
-                          SignInPage.route(),
-                        );
+                        Navigator.pushNamed(context, RouteName.signIn);
                       },
                     ),
                     SizedBox(height: 35.h),

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_tile.dart';
 
+import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 
 class TransactionsPage extends StatelessWidget {
   final List<TransactionModel> transactios;
   const TransactionsPage({required this.transactios, super.key});
-  static route({required List<TransactionModel> transactions}) =>
-      leftToRight(TransactionsPage(
-        transactios: transactions,
-      ));
 
   @override
   Widget build(BuildContext context) {

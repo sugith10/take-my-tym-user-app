@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/switch_category_widget.dart';
 import '../../../search/presentation/pages/search_page.dart';
 import '../bloc/community_posts_bloc/community_posts_bloc.dart';
@@ -19,7 +19,7 @@ class HomePageFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Padding(
-        padding: const EdgeInsets.only(left: MyAppPadding.homePadding),
+        padding: const EdgeInsets.only(left: AppPading.homePadding),
         child: Row(
           children: [
             // const _HomePostSwitch(),

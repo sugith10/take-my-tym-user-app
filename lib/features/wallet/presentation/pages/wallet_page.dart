@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -14,8 +13,8 @@ import '../widgets/no_transaction_widget.dart';
 import '../widgets/transaction_tile.dart';
 import '../widgets/transactions_view_setup_widget.dart';
 import '../widgets/update_time_widget.dart';
-import '../widgets/wallet_card_widget.dart';
-import '../widgets/wallet_shimmer_widget.dart';
+import '../widgets/wallet_card.dart';
+import '../widgets/wallet_shimmer.dart';
 import 'transactions_page.dart';
 
 class WalletPage extends StatelessWidget {
@@ -26,13 +25,6 @@ class WalletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WalletBloc, WalletState>(
-      listenWhen: (previousState, currentState) {
-        if (currentState is WalletErrorState ||
-            previousState is WalletErrorState) {
-          return false;
-        }
-        return true;
-      },
       listener: (context, state) {
         if (state is WalletInitialState) {
           if (state.show) {
@@ -45,7 +37,8 @@ class WalletPage extends StatelessWidget {
               actionCall: () {
                 context.read<WalletBloc>().add(
                       WalletBalanceEvent(
-                          uid: context.read<AppUserBloc>().userModel!.uid),
+                        uid: context.read<AppUserBloc>().userModel!.uid,
+                      ),
                     );
               },
               actionColor: AppDarkColor.instance.success,
@@ -58,7 +51,7 @@ class WalletPage extends StatelessWidget {
             previousState is WalletErrorState) {
           return false;
         }
-        log("current state $currentState");
+
         return true;
       },
       builder: (context, state) {
@@ -74,7 +67,7 @@ class WalletPage extends StatelessWidget {
           );
         }
         if (state is WalletLoadingState) {
-          return const WalletShimmerWidget();
+          return const WalletShimmer();
         }
         if (state is WalletLoadedState) {
           return HomePadding(
@@ -90,11 +83,10 @@ class WalletPage extends StatelessWidget {
                 if (state.walletModel.transactions.isNotEmpty)
                   TransactionsViewSetupWidget(
                     viewAll: () {
-                      Navigator.push(
+                      Navigator.pushNamed(
                         context,
-                        TransactionsPage.route(
-                          transactions: state.walletModel.transactions,
-                        ),
+                        RouteName.transactions,
+                        arguments: state.walletModel.transactions,
                       );
                     },
                   ),

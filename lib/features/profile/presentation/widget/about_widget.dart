@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
 
-import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/theme/color/app_colors.dart';
 
 class AboutWidget extends StatelessWidget {
   final String about;
@@ -11,17 +9,16 @@ class AboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthPadding(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: SizedBox(
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomePadding(
-              child: Text(
-                "About",
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+            Text(
+              "About",
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             SizedBox(height: 5.h),
             Text(

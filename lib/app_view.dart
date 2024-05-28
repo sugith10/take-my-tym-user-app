@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/theme/app_theme.dart';
 
-import 'features/oboarding/presentation/pages/splash_page/splash_page.dart';
+import 'core/route/app_route_packages.dart';
+import 'core/route/route_name/app_route_name.dart';
+import 'core/theme/app_theme.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -17,7 +18,8 @@ class MyAppView extends StatelessWidget {
       child: Builder(builder: (context) {
         return MaterialApp(
           title: "Take My Tym",
-          home: const SplashPage(),
+          initialRoute: RouteName.initial,
+          onGenerateRoute: AppRoute.generateRoute,
           theme: AppDarkTheme().darkTheme,
           debugShowCheckedModeBanner: false,
         );

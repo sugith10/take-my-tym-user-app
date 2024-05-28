@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer_pro/shimmer_pro.dart';
 
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 
 class ChatListShimmerWidget extends StatelessWidget {
   const ChatListShimmerWidget({

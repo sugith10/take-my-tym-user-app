@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
-import '../../../../core/widgets/success_widget/success_page.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
+import '../../../success/presentation/model/success_page_arguments.dart';
 import '../bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../bloc/proposal_submit_bloc/submit_proposal_bloc.dart';
 import '../widgets/animated_dot_widget.dart';
@@ -64,7 +65,7 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
       bloc: submitProposalBloc,
       listener: (context, state) {
         if (state is SubmitProposalErrorState) {
-          AppSnackBar.failSnackBar(context: context, error: state.error);
+          AppSnackBar.failSnackBar(context: context, alert: state.error);
         }
         if (state is SubmitProposalPageState) {
           if (state.pageNumber == 0) {
@@ -77,9 +78,11 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
         }
         if (state is SubmitProposalSuccessState) {
           context.read<GetProposalBloc>().add(ProposalGetEvent(uid: userId));
-          Navigator.push(
+
+          Navigator.pushNamed(
             context,
-            SuccessPage.route(
+            RouteName.success,
+            arguments: SuccessPageArguments(
               pop: true,
               title: "Submitted Successfully.",
               subtitle: "You will be notified when your proposal is approved.",

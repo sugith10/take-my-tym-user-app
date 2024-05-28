@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/widgets/submit_button.dart';
 import '../util/wallet_action_type.dart';
 

@@ -3,8 +3,10 @@ import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/navigation/screen_transitions/no_movement.dart';
-import '../../../create_post/presentation/pages/create_post_first_page.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/utils/app_vibration.dart';
+import '../../../create_post/presentation/page/create_post_first_page.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../message/presentation/pages/chat_list_page.dart';
 import '../../../profile/presentation/page/profile_page.dart';
@@ -48,13 +50,13 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
                 builder: (context, state) {
                   switch (state) {
                     case HomeState():
-                      return SafeArea(child: _screen[0]);
+                      return _screen[0];
                     case MessageState():
-                      return SafeArea(child: _screen[1]);
+                      return _screen[1];
                     case MoneyState():
-                      return SafeArea(child: _screen[3]);
+                      return _screen[3];
                     case ProfileState():
-                      return SafeArea(child: _screen[4]);
+                      return _screen[4];
                   }
                 },
               ),
@@ -63,6 +65,7 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
                   return NavigationBar(
                     selectedIndex: _index,
                     onDestinationSelected: (value) {
+                      AppVibration.hapticFeedbacklight();
                       final navigationBloc =
                           BlocProvider.of<NavigationBloc>(context);
                       switch (value) {
@@ -75,9 +78,9 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
                           navigationBloc.add(MessagePageNavigation());
                           break;
                         case 2:
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            CreatePostFirstPage.route(),
+                            RouteName.createPostFirst,
                           );
                           break;
                         case 3:

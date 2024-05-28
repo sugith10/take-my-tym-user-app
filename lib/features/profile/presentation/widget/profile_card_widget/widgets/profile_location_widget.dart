@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
-class ProfileLocationWidget extends StatelessWidget {
-  final String? location;
-  const ProfileLocationWidget({
-    required this.location,
+class ProfileInfoWidget extends StatelessWidget {
+  final String? text;
+  final IconData icon;
+  const ProfileInfoWidget({
+    required this.text,
+    required this.icon,
     super.key,
   });
 
@@ -14,14 +15,14 @@ class ProfileLocationWidget extends StatelessWidget {
     return Row(
       children: [
         Icon(
-          IconlyLight.location,
+          icon,
           size: Theme.of(context).textTheme.bodyMedium?.fontSize,
           color: AppDarkColor.instance.secondaryText,
         ),
         const SizedBox(width: 5),
         Expanded(
           child: Text(
-            location != null ? location! : '',
+            text != null ? text! : '',
             style: Theme.of(context).textTheme.bodyMedium,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,

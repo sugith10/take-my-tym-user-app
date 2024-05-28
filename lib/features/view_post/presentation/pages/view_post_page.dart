@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/right_to_left.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/app_dialog.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../profile/presentation/widget/post_owner_info_widget/post_owner_info_widget.dart';
 import '../../../../core/widgets/submit_button.dart';
-import '../../../create_post/presentation/pages/create_post_first_page.dart';
-import '../../../create_post/presentation/widgets/post_description_widget.dart';
-import '../../../create_post/presentation/widgets/post_specifications_widget.dart';
-import '../../../create_post/presentation/widgets/post_title_widget.dart';
-import '../../../create_post/presentation/widgets/skills_widget.dart';
+import '../../../create_post/presentation/page/create_post_first_page.dart';
+import '../../../create_post/presentation/widget/post_description_widget.dart';
+import '../../../create_post/presentation/widget/post_specifications_widget.dart';
+import '../../../create_post/presentation/widget/post_title_widget.dart';
+import '../../../create_post/presentation/widget/skills_widget.dart';
 import '../../../message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import '../../../message/presentation/pages/individual_chat_page.dart';
 import '../bloc/delete_post_bloc/delete_post_bloc.dart';
@@ -67,7 +68,14 @@ class _ViewPostPageState extends State<ViewPostPage> {
           LoadingDialog().show(context);
         }
         if (state is DeletPostFailState) {
-          AppSnackBar.failSnackBar(context: context);
+          AppSnackBar.failSnackBar(
+            context: context,
+            alert: AppAlert(
+              alert: "Post Deletion Failed",
+              details:
+                  "An error occurred while trying to delete the post. Please try again.",
+            ),
+          );
         }
       },
       child: Scaffold(
@@ -172,7 +180,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
         bottomNavigationBar: appUser
             ? null
             : Padding(
-                padding: const EdgeInsets.all(MyAppPadding.homePadding),
+                padding: const EdgeInsets.all(AppPading.homePadding),
                 child: SubmitButton(
                   text: "Submit Proposal",
                   callback: () {

@@ -5,18 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/widgets/app_bar/close_app_bar.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
-import '../../../../core/widgets/loading_dialog.dart';
-import '../../../auth/presentation/bloc/sign_out_bloc/sign_out_bloc.dart';
 import '../../../auth/presentation/widgets/account_info_content_widget.dart';
-import '../../../auth/presentation/widgets/sign_out/account_info_log_out_widget.dart';
-import '../../../auth/presentation/pages/welcome_page.dart';
-
 
 class AccountInfoPage extends StatelessWidget {
-  static route() =>
-      MaterialPageRoute(builder: (context) => const AccountInfoPage());
   const AccountInfoPage({super.key});
 
   @override
@@ -29,9 +21,24 @@ class AccountInfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 15.h),
-            Text("Account Info",
-                style: Theme.of(context).textTheme.headlineLarge),
+            Text(
+              "Account Info",
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
             SizedBox(height: 20.h),
+            Row(
+              children: [
+                AccountInfoContentWidget(
+                  title: "First name",
+                  subtitle: userModel.firstName,
+                ),
+                const SizedBox(width: 20),
+                AccountInfoContentWidget(
+                  title: "Second name",
+                  subtitle: userModel.lastName,
+                ),
+              ],
+            ),
             AccountInfoContentWidget(
               title: "Username",
               subtitle: userModel.userName,
@@ -48,7 +55,6 @@ class AccountInfoPage extends StatelessWidget {
               title: "Location",
               subtitle: userModel.location!,
             ),
-          
           ],
         ),
       ),

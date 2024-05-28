@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/navigation/screen_transitions/left_to_right.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/widgets/common_app_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../profile/presentation/bloc/get_profile_bloc/get_profile_bloc.dart';
 import '../../../profile/presentation/widget/post_owner_info_widget/get_user_info_widget.dart';
 import '../../../../core/widgets/post_card.dart';
-import '../../../wallet/presentation/pages/payment_page.dart';
+import '../../../wallet/presentation/model/payment_page_arguments.dart';
 import '../../../wallet/presentation/util/wallet_action_type.dart';
 import '../../../../core/widgets/offer_subtitle_widget.dart';
 import '../../data/models/offer_model.dart';
@@ -121,10 +122,11 @@ class AcceptProposalPage extends StatelessWidget {
             );
           },
           accept: () {
-            Navigator.push(
-                context,
-                PaymentPage.route(
-                    type: WalletAction.transfer, amount: postModel.price));
+            Navigator.pushNamed(context, RouteName.payment,
+                arguments: PaymentPageArguments(
+                    amount: postModel.price,
+                    type: WalletAction.transfer,
+                    walletModel: null));
           },
         ),
       ),

@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class UserModel {
@@ -9,6 +8,7 @@ class UserModel {
   String firstName;
   String lastName;
   String userName;
+  String join;
   String? picture;
   String? about;
   String? location;
@@ -23,6 +23,7 @@ class UserModel {
     required this.firstName,
     required this.lastName,
     required this.userName,
+    required this.join,
     this.picture,
     this.about,
     this.location,
@@ -39,6 +40,7 @@ class UserModel {
     String? firstName,
     String? lastName,
     String? userName,
+    String? join,
     String? picture,
     String? about,
     String? location,
@@ -54,6 +56,7 @@ class UserModel {
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       userName: userName ?? this.userName,
+      join: join ?? this.join,
       picture: picture ?? this.picture,
       about: about ?? this.about,
       location: location ?? this.location,
@@ -68,10 +71,11 @@ class UserModel {
       'uid': uid,
       'email': email,
       'verified': verified,
-      'blocked' : blocked,
+      'blocked': blocked,
       'firstName': firstName,
       'lastName': lastName,
       'userName': userName,
+      'join': join,
       'picture': picture,
       'about': about,
       'location': location,
@@ -90,6 +94,7 @@ class UserModel {
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       userName: map['userName'] as String,
+      join: map['join'] as String,
       picture: map['picture'] != null ? map['picture'] as String : null,
       about: map['about'] != null ? map['about'] as String : null,
       location: map['location'] != null ? map['location'] as String : null,
@@ -107,7 +112,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uid: $uid, email: $email, verified: $verified, blocked: $blocked, firstName: $firstName, lastName: $lastName, userName: $userName, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
+    return 'UserModel(uid: $uid, email: $email, verified: $verified, blocked: $blocked, joined: $join, firstName: $firstName, lastName: $lastName, userName: $userName, join: $join, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
   }
 
   @override
@@ -117,9 +122,11 @@ class UserModel {
     return other.uid == uid &&
         other.email == email &&
         other.verified == verified &&
+        other.blocked == blocked &&
         other.firstName == firstName &&
         other.lastName == lastName &&
         other.userName == userName &&
+        other.join == join &&
         other.picture == picture &&
         other.about == about &&
         other.location == location &&
@@ -133,9 +140,11 @@ class UserModel {
     return uid.hashCode ^
         email.hashCode ^
         verified.hashCode ^
+        blocked.hashCode ^
         firstName.hashCode ^
         lastName.hashCode ^
         userName.hashCode ^
+        join.hashCode ^
         picture.hashCode ^
         about.hashCode ^
         location.hashCode ^

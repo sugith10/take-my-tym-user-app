@@ -1,7 +1,7 @@
 part of '../taxt_manipulator.dart';
 
 /// A utility class for capitalizing text.
-final class _NameCapitalize {
+final class _TextCapitalize {
   ///Capitalizes the first letter of the given string.
   static String capitalize(String name) {
     if (name.isEmpty) {

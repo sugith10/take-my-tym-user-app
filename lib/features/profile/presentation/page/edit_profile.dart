@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
+import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -16,8 +17,6 @@ import '../bloc/update_profile_bloc/update_profile_bloc.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
-
-  static route() => leftToRight(const EditProfilePage());
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -74,12 +73,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
           context
               .read<AppUserBloc>()
               .add(UpdateUserModelEvent(userModel: state.userModel));
-          Navigator.pop(context);
-          Navigator.pop(context);
-          AppSnackBar.failSnackBar(context: context);
+          Navigator.popUntil(context, ModalRoute.withName(RouteName.home));
+          AppSnackBar.successSnackBar(
+            context: context,
+            alert: AppAlert(
+              alert: "Profile Update Successful",
+              details: "Your profile has been updated successfully.",
+            ),
+          );
         }
         if (state is UpdataProfileFailState) {
-          AppSnackBar.failSnackBar(context: context);
+          AppSnackBar.failSnackBar(
+            context: context,
+            alert: AppAlert(
+              alert: "Profile Update Failed",
+              details:
+                  "An error occurred while updating your profile. Please try again.",
+            ),
+          );
         }
       },
       child: Scaffold(

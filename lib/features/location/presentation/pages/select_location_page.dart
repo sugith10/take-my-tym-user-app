@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../core/navigation/screen_transitions/bottom_to_top.dart';
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/utils/app_debouncer.dart';
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/const/app_padding.dart';
 import '../../data/models/auto_complete_prediction.dart';
 import '../bloc/location_bloc.dart';
 import '../widgets/google_text.dart';
@@ -23,11 +22,7 @@ class SelectLocationPage extends StatefulWidget {
     super.key,
   });
 
-  static route({required LocationBloc locationBloc}) => bottomToTop(
-        SelectLocationPage(
-          locationBloc: locationBloc,
-        ),
-      );
+  
 
   @override
   State<SelectLocationPage> createState() => _SelectLocationPageState();
@@ -54,7 +49,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(MyAppPadding.homePadding),
+            padding: const EdgeInsets.all(AppPading.homePadding),
             child: LocationTextField(
                 locationController: _locationController,
                 debouncer: _debouncer,
@@ -62,7 +57,7 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
           ),
           const LocationDivider(),
           Padding(
-            padding: const EdgeInsets.all(MyAppPadding.homePadding),
+            padding: const EdgeInsets.all(AppPading.homePadding),
             child: ElevatedButton(
               onPressed: () {
                 widget.locationBloc.add(CurrentLocationEvent());

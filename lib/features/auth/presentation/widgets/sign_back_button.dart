@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
-class SignBackButton extends StatelessWidget {
+class AuthBackButton extends StatelessWidget {
   final VoidCallback callback;
-  const SignBackButton(
-    {
-    required this. callback,
+  const AuthBackButton({
+    required this.callback,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-         SizedBox(height: 10.h),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: IconButton(
-            onPressed: () {
-              callback();
-            },
-            icon: const Icon(
-              IconlyBroken.arrow_left,
-              color: Colors.white,
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Align(
+        alignment: Alignment.bottomLeft,
+        child: IconButton(
+          onPressed: () {
+            callback();
+          },
+          icon: const Icon(
+            IconlyBroken.arrow_left,
+            color: Colors.white,
           ),
         ),
-      ],
+      ),
     );
   }
 }

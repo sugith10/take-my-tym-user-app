@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
+import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/utils/reg_exp.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../bloc/forget_password_bloc/forget_password_bloc.dart';
 import '../widgets/auth_progress_widget.dart';
 import '../widgets/sign_back_button.dart';
 import '../widgets/sign_button.dart';
+import '../widgets/sign_button_text.dart';
 import '../widgets/sign_text_form_field.dart';
 import '../widgets/sub_page_info_widget.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
-  static route() =>
-      MaterialPageRoute(builder: (context) => const ForgetPasswordPage());
   const ForgetPasswordPage({super.key});
 
   @override
@@ -41,14 +40,17 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
       bloc: _forgetPasswordBloc,
       listener: (context, state) {
         if (state is ForgetPasswordSuccessState) {
-          AppSnackBar().successSnackBar(
-              context: context,
-              title: "Successful",
-              message: "Please check your email to reset your password");
+          AppSnackBar.successSnackBar(
+            context: context,
+            alert: AppAlert(
+              alert: "Successful",
+              details: "Please check your email to reset your password",
+            ),
+          );
           Navigator.pop(context);
         } else if (state is ForgetPasswordFailState) {
           Navigator.pop(context);
-          AppSnackBar.failSnackBar(context: context, error: state.error);
+          AppSnackBar.failSnackBar(context: context, alert: state.error);
         }
       },
       child: Scaffold(
@@ -58,8 +60,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             key: _formKey,
             child: Column(
               children: [
-               
-                SignBackButton(
+                AuthBackButton(
                   callback: () {
                     Navigator.pop(context);
                   },

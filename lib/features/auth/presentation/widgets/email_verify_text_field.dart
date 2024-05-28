@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_radius.dart';
+import '../../../../core/const/app_radius.dart';
 
 
 class EmailVerifyTextField extends StatelessWidget {

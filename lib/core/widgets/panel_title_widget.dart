@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/utils/app_padding.dart';
+import 'package:take_my_tym/core/const/app_padding.dart';
 
-import '../utils/theme/color/app_colors.dart';
+import '../theme/color/app_colors.dart';
 
 class PanelTitleWidget extends StatelessWidget {
   final String title;
@@ -19,7 +19,7 @@ class PanelTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: padding ? MyAppPadding.authPadding : 0),
+          horizontal: padding ? AppPading.authPadding : 0),
       child: Column(
         children: [
           SizedBox(height: padding ? 25 : 20),

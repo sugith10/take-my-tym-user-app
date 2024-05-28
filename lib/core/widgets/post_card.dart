@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../features/create_post/presentation/widgets/post_specifications_widget.dart';
+import '../../features/create_post/presentation/widget/post_specifications_widget.dart';
 import '../model/app_post_model.dart';
 import '../utils/text_manipulator/taxt_manipulator.dart';
-import '../utils/theme/color/app_colors.dart';
+import '../theme/color/app_colors.dart';
 import 'app_card.dart';
 
 class PostCard extends StatelessWidget {

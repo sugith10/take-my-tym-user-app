@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/features/auth/presentation/widgets/sign_button_text.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/navigation/screen_transitions/no_movement.dart';
-import '../../../../core/widgets/app_snack_bar.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
-import '../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
-import '../../../profile/presentation/page/profile_setup_page.dart';
 import '../bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../widgets/animate_navigation_text.dart';
 import '../widgets/auth_progress_widget.dart';
 import '../widgets/forgot_password_widget.dart';
 import '../widgets/sign_button.dart';
+import '../widgets/sign_button_text.dart';
 import '../widgets/sign_in_form.dart';
 import '../widgets/social_auth/social_auth_widget.dart';
 import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_text_widget.dart';
-import 'forget_password_page.dart';
 import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
-  static route() => noMovement(const SignInPage());
   const SignInPage({super.key});
 
   @override
@@ -62,13 +58,13 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignInBloc, SignInState>(
+    return BlocListener(
       bloc: _signInBloc,
       listener: (ctx, state) {
         if (state is SignInErrorState) {
           AppSnackBar.failSnackBar(
             context: context,
-            error: state.error,
+            alert: state.error,
           );
         }
         if (state is SignInSuccessState) {
@@ -77,16 +73,14 @@ class _SignInPageState extends State<SignInPage> {
                 .read<AppUserBloc>()
                 .add(UpdateUserModelEvent(userModel: state.userModel));
 
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const HomeNavigationMenu()),
-              (route) => false,
-            );
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteName.home, (route) => false);
           } else {
-            Navigator.pushAndRemoveUntil(
+            Navigator.pushNamedAndRemoveUntil(
               context,
-              ProfileSetupPage.route(userModel: state.userModel),
+              RouteName.profileSetup,
               (route) => false,
+              arguments: state.userModel,
             );
           }
         }
@@ -112,7 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 15.h),
                   ForgotPasswordWidget(callback: () {
-                    Navigator.push(context, ForgetPasswordPage.route());
+                    Navigator.pushNamed(context, RouteName.forgotPassword);
                   }),
                   SizedBox(height: 25.h),
                   SignButtonWidget(

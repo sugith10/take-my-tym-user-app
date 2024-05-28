@@ -1,10 +1,10 @@
 import 'package:button_animations/button_animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/utils/app_vibration.dart';
-import '../pages/sign_in_page.dart';
 import 'sign_button_text.dart';
 
 class WelcomeButton extends StatelessWidget {
@@ -18,11 +18,8 @@ class WelcomeButton extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: AnimatedButton(
         onTap: () {
-          HapticFeedbackVibration().vibrate();
-          Navigator.push(
-            context,
-            SignInPage.route(),
-          );
+          AppVibration.hapticFeedbackHeavy();
+          Navigator.pushNamed(context, RouteName.signIn);
         },
         type: null,
         height: 55,

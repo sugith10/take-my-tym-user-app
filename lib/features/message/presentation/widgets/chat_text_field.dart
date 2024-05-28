@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../core/utils/theme/color/app_colors.dart';
+import '../../../../core/theme/color/app_colors.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
 
 class ChatTextField extends StatefulWidget {

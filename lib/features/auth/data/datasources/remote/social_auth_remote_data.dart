@@ -1,15 +1,14 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
+import 'package:take_my_tym/core/utils/text_manipulator/taxt_manipulator.dart';
 
 final class SocailAuthRemoteData {
   ///GOOGLE SIGNIN
   Future<UserModel> signInWithGoogle() async {
-    log('one socail auth');
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
@@ -38,11 +37,14 @@ final class SocailAuthRemoteData {
         final UserModel userModel = UserModel(
           uid: userCredential.user!.uid,
           email: userCredential.user!.email ?? "",
-          firstName: userCredential.user!.displayName?.split(' ').first ?? 'User',
+          join: TextManipulator.joinDate(date: DateTime.now()),
+          firstName:
+              userCredential.user!.displayName?.split(' ').first ?? 'User',
           lastName: userCredential.user!.displayName?.split(' ').last ?? " ",
           verified: true,
           blocked: false,
-          userName: userCredential.user!.displayName?.split(' ').first ?? 'User',
+          userName:
+              userCredential.user!.displayName?.split(' ').first ?? 'User',
         );
         await userDocRef.set(userModel.toMap());
         return userModel;
@@ -50,7 +52,7 @@ final class SocailAuthRemoteData {
         final Map<String, dynamic> userData =
             userDocSnapshot.data() as Map<String, dynamic>;
         UserModel userModel = UserModel.fromMap(userData);
-        log(userModel.toString());
+
         return userModel;
       }
     } on FirebaseAuthException catch (e) {
@@ -66,7 +68,7 @@ final class SocailAuthRemoteData {
         );
       }
     } on Exception catch (e) {
-      log(e.toString());
+      appLogger.e(e);
       throw const AppException(
         alert: 'Authentication Failed',
         details: 'Failed to authenticate with Google. Please try again later.',

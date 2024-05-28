@@ -25,7 +25,7 @@ class WelcomeTextWidget extends StatelessWidget {
           FadeInDown(
             delay: const Duration(milliseconds: 900),
             duration: const Duration(milliseconds: 1000),
-            child: SignBackButton(
+            child: AuthBackButton(
               callback: () {
                 Navigator.pop(context);
               },

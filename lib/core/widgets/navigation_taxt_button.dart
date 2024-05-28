@@ -27,7 +27,7 @@ class NavigationText extends StatelessWidget {
           children: [
             TextSpan(
               text: buttonText,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     decorationColor: const Color.fromRGBO(255, 255, 255, 1),
                     decoration: TextDecoration.underline,
                   ),

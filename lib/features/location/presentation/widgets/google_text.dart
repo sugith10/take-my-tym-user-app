@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/const/app_padding.dart';
 
 
 class PoweredByGoogleText extends StatelessWidget {
@@ -22,7 +22,7 @@ class PoweredByGoogleText extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
-          padding: const EdgeInsets.all(MyAppPadding.authPadding),
+          padding: const EdgeInsets.all(AppPading.authPadding),
           child: RichText(
             text: TextSpan(
               text: 'powerd by ',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:take_my_tym/core/navigation/screen_transitions/left_to_right.dart';
 import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 
+import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/widgets/contct_form.dart';
 
 class CoustomerServicePage extends StatefulWidget {

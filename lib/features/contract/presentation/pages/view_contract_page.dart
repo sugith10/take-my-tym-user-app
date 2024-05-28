@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
-import 'package:take_my_tym/core/utils/theme/color/app_colors.dart';
+import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_dialog.dart';
-import 'package:take_my_tym/core/widgets/app_snack_bar.dart';
+import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/features/contract/presentation/bloc/contract_service_bloc/contract_service_bloc.dart';
 
-import '../../../../core/navigation/screen_transitions/left_to_right.dart';
+import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/common_app_bar.dart';
 import '../../../../core/widgets/offer_subtitle_widget.dart';
@@ -44,10 +45,13 @@ class ViewContractPage extends StatelessWidget {
               );
           Navigator.pop(context);
           Navigator.pop(context);
-          AppSnackBar().successSnackBar(
+          //TODO: Add SnackBar
+          AppSnackBar.successSnackBar(
             context: context,
-            title: "Successfully Completed",
-            message: "Lorem Ipsum is simply dummy text of the printing",
+            alert: AppAlert(
+              alert: "Successfully Completed",
+              details: "Lorem Ipsum is simply dummy text of the printing",
+            ),
           );
         }
       },

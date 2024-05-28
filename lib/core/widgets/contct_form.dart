@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/theme/color/app_colors.dart';
+import '../theme/color/app_colors.dart';
 import 'app_title_box_widget.dart';
 import 'home_padding.dart';
 import 'submit_button.dart';

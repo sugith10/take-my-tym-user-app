@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/theme/color/app_colors.dart';
-import '../../../../core/utils/app_padding.dart';
+import '../../../../core/theme/color/app_colors.dart';
+import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/submit_button.dart';
 
@@ -18,7 +18,7 @@ class AcceptOfferWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(width: MyAppPadding.homePadding),
+        const SizedBox(width: AppPading.homePadding),
         Expanded(
           child: SubmitButton(
             text: "Reject",
@@ -58,7 +58,7 @@ class AcceptOfferWidget extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(width: MyAppPadding.homePadding),
+        const SizedBox(width: AppPading.homePadding),
       ],
     );
   }

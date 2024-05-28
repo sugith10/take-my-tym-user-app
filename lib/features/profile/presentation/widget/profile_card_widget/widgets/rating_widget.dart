@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/utils/app_radius.dart';
+import 'package:take_my_tym/core/const/app_radius.dart';
 
 class RatingWidget extends StatelessWidget {
   final bool firstStar;

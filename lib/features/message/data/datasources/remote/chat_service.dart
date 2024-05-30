@@ -10,7 +10,6 @@ class MessageRemoteData {
     // required String senderName,
     // required String receiverName,
   }) async {
-    log('on send message remote: $currentUid, $receiverUid');
 
     final Timestamp timestamp = Timestamp.now();
 
@@ -42,8 +41,6 @@ class MessageRemoteData {
         (value) async {
           final dataDoc =
               await fireStore.collection("chatList").doc(currentUid).get();
-
-          log("no datafound here : ${dataDoc.toString()}");
 
           final Map<String, dynamic>? data = dataDoc.data();
 

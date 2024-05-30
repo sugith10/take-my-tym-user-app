@@ -1,6 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:take_my_tym/core/utils/file_formatter.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 
 class WalletModel {
@@ -30,7 +30,7 @@ class WalletModel {
 
   factory WalletModel.fromMap(Map<String, dynamic> map) {
     return WalletModel(
-      balance: map['balance'] as double,
+      balance:firebaseNumberToDouble(map['balance']),
       transactions: List<TransactionModel>.from(
         (map['transactions'] as List<dynamic>).map<TransactionModel>(
           (x) => TransactionModel.fromMap(x as Map<String, dynamic>),

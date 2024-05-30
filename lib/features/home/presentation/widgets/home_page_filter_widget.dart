@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/switch_category_widget.dart';
-import '../../../search/presentation/pages/search_page.dart';
 import '../bloc/community_posts_bloc/community_posts_bloc.dart';
 
 class HomePageFilterWidget extends StatelessWidget {
@@ -22,11 +22,9 @@ class HomePageFilterWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: AppPading.homePadding),
         child: Row(
           children: [
-            // const _HomePostSwitch(),
-            // SizedBox(width: 5.w),
             IconButton(
               onPressed: () {
-                Navigator.push(context, SearchPage.route());
+                Navigator.pushNamed(context, RouteName.search);
               },
               icon: CircleAvatar(
                 radius: 20.h,

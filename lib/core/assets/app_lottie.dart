@@ -13,4 +13,10 @@ class AppLottie {
 
   // Lottie animation file path for the message animation.
   static const String message = 'assets/lottie/msg.json';
+
+  ///.lottie files
+  // Lottie animation file path for the message animation.
+  static const String noInternet = 'assets/lottie/no_internet.lottie';
+  // Lottie animation file path for the empty seach results.
+  static const String notFound = 'assets/lottie/no_items_found.lottie';
 }

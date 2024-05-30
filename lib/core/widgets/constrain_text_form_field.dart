@@ -11,12 +11,14 @@ class CollectInfoTextField extends StatelessWidget {
   final double gap;
   final Widget? prefixIcon;
   final TextStyle? controllerStyle;
+  final TextCapitalization textCapitalization;
   const CollectInfoTextField({
     required this.controller,
     required this.keyboardType,
     required this.hintText,
     required this.style,
     this.gap = 12.5,
+    this.textCapitalization = TextCapitalization.sentences,
     this.prefixIcon,
     this.controllerStyle,
     super.key,
@@ -38,6 +40,7 @@ class CollectInfoTextField extends StatelessWidget {
           hintText: hintText,
           prefixIcon: prefixIcon,
           controllerStyle: controllerStyle,
+          textCapitalization: textCapitalization,
         ),
       ],
     );
@@ -50,11 +53,13 @@ class _CollectInfoTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String hintText;
   final Widget? prefixIcon;
+  final TextCapitalization textCapitalization;
   const _CollectInfoTextField({
     this.prefixIcon,
     required this.controller,
     required this.keyboardType,
     required this.hintText,
+    required this.textCapitalization,
     this.controllerStyle,
   });
 
@@ -67,10 +72,9 @@ class _CollectInfoTextField extends StatelessWidget {
       borderSide: BorderSide(color: AppDarkColor.instance.boxShadow),
     );
     return TextField(
-      autofocus: true,
       maxLines: null,
       controller: controller,
-      textCapitalization: TextCapitalization.words,
+      textCapitalization: textCapitalization,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,

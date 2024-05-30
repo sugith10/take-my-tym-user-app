@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/const/app_padding.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/post_card.dart';
-import '../../../view_post/presentation/pages/view_post_page.dart';
 
 class GenerateFeedWidget extends StatelessWidget {
   final List<PostModel> posts;
@@ -30,12 +30,14 @@ class GenerateFeedWidget extends StatelessWidget {
                 ),
                 child: PostCard(
                   voidCallback: () {
-                    Navigator.push(
-                        context, ViewPostPage.route(postModel: postModel));
+                    Navigator.pushNamed(
+                      context,
+                      RouteName.viewPost,
+                      arguments: postModel,
+                    );
                   },
-                  // image: image,
                   postModel: postModel,
-                  width: 300,
+                  width: MediaQuery.of(context).size.width / 1.2,
                 ),
               ),
             );

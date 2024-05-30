@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/assets/app_png.dart';
+import '../../../../core/assets/app_png.dart';
 
 class ScaleUpAnimationWidget extends StatefulWidget {
   const ScaleUpAnimationWidget({super.key});

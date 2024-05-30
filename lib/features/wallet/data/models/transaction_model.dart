@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../../../core/utils/file_formatter.dart';
 
 class TransactionModel {
   final Timestamp timestamp;
@@ -34,9 +37,10 @@ class TransactionModel {
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
+    log("on convert function");
     return TransactionModel(
       timestamp: map['timestamp'] as Timestamp,
-      amount: (map['amount'] is int) ? (map['amount'] as int).toDouble() : map['amount'] as double,
+      amount: firebaseNumberToDouble(map['amount']),
       transactionType: map['transactionType'] as bool,
     );
   }

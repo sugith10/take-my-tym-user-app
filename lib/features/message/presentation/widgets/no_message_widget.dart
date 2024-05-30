@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../core/utils/assets/app_lottie.dart';
+import '../../../../core/assets/app_lottie.dart';
 import '../../../../core/widgets/not_yet_widget.dart';
 
 class NoMessageWidget extends StatelessWidget {

@@ -12,7 +12,7 @@ class ContactForm extends StatelessWidget {
   final FocusNode focusNode;
   final Widget child;
   final String title;
-  final String subtitle;
+  final String hint;
   final String note;
 
   const ContactForm({
@@ -21,7 +21,7 @@ class ContactForm extends StatelessWidget {
     required this.controller,
     required this.child,
     required this.title,
-    required this.subtitle,
+    required this.hint,
     required this.note,
     super.key,
   });
@@ -47,7 +47,7 @@ class ContactForm extends StatelessWidget {
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
-                      hintText: subtitle,
+                      hintText: hint,
                       hintStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
                     maxLines: null,

@@ -8,7 +8,7 @@ import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
 import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/features/contract/presentation/bloc/contract_service_bloc/contract_service_bloc.dart';
 
-import '../../../../core/route/page_transition/app_page_transition.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/common_app_bar.dart';
@@ -19,15 +19,11 @@ import '../bloc/contracts_bloc/contracts_bloc.dart';
 import '../widgets/contract_details_widget.dart';
 import '../widgets/contract_time_line.dart';
 import '../widgets/coustomer_service_fab.dart';
-import 'coustomer_service_page.dart';
 
 class ViewContractPage extends StatelessWidget {
   final ContractModel contractModel;
   ViewContractPage({required this.contractModel, super.key});
-  static route({required ContractModel contractModel}) =>
-      leftToRight(ViewContractPage(
-        contractModel: contractModel,
-      ));
+
   final _bloc = ContractServiceBloc();
 
   @override
@@ -36,7 +32,7 @@ class ViewContractPage extends StatelessWidget {
       bloc: _bloc,
       listener: (context, state) {
         if (state is ContractServiceLoading) {
-          LoadingDialog().show(context);
+          LoadingDialog.show(context);
         }
         if (state is ContractServiceFinish) {
           context.read<ContractsBloc>().add(
@@ -73,7 +69,8 @@ class ViewContractPage extends StatelessWidget {
           ),
         ),
         floatingActionButton: CoustomerServiceFab(
-          callback: () => Navigator.push(context, CoustomerServicePage.route()),
+          callback: () =>
+              Navigator.pushNamed(context, RouteName.coustomerService),
         ),
         bottomNavigationBar: ProjectCompleteButton(
           contractModel: contractModel,

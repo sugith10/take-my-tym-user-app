@@ -87,7 +87,7 @@ class _CreatePostSecondPageState extends State<CreatePostSecondPage> {
       bloc: widget.bloc,
       listener: (context, state) {
         if (state is CreatPostLoadingState) {
-          LoadingDialog().show(context);
+          LoadingDialog.show(context);
         }
         if (state is CreatePostSuccessState) {
           state.refreshType

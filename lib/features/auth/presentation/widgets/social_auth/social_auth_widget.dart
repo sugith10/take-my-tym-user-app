@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../../core/utils/assets/app_png.dart';
+import '../../../../../core/assets/app_png.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../../../../profile/presentation/page/profile_setup_page.dart';

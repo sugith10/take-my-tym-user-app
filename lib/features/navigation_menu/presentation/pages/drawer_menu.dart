@@ -30,13 +30,13 @@ class DrawerNavBar extends StatelessWidget {
                   },
                   icon: IconlyLight.profile,
                 ),
-                DrawerCustomButton(
-                  title: 'Notifications',
-                  callback: () {
-                    'print';
-                  },
-                  icon: IconlyLight.notification,
-                ),
+                // DrawerCustomButton(
+                //   title: 'Notifications',
+                //   callback: () {
+                //     'print';
+                //   },
+                //   icon: IconlyLight.notification,
+                // ),
                 DrawerCustomButton(
                   title: 'Share the App',
                   callback: () {

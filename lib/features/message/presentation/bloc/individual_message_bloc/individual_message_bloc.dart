@@ -18,7 +18,6 @@ class IndividualMessageBloc
         try {
           String message = event.message.trim();
           if (message.isNotEmpty) {
-            log("not empty");
             individualMessageUseCase.sendMessage(
               currentUid: event.currentUid,
               receiverUid: event.receiverUid,
@@ -33,13 +32,12 @@ class IndividualMessageBloc
 
     on<GetMessagesEvent>((event, emit) {
       try {
-        log("on getMessses =-");
         Stream<QuerySnapshot> chatSnapshot =
             individualMessageUseCase.getMessages(
           currentUid: event.currentUserId,
           receiverUid: event.recipientUserId,
         );
-        log(chatSnapshot.toString());
+       
         Stream<DocumentSnapshot> recipientUserInfoSnapshot =
             individualMessageUseCase.getChatPartnerInfoStream(
                 recipientUserId: event.recipientUserId);
@@ -49,7 +47,7 @@ class IndividualMessageBloc
             userInfo: recipientUserInfoSnapshot,
           ),
         );
-        log(chatSnapshot.toString());
+       
       } catch (e) {}
     });
   }

@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/widgets/app_bar/close_app_bar.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/widgets/action_button.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../auth/presentation/widgets/account_info_content_widget.dart';
 
@@ -15,7 +16,22 @@ class AccountInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     UserModel userModel = context.read<AppUserBloc>().userModel!;
     return Scaffold(
-      appBar: const CloseAppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.close_rounded),
+        ),
+        actions: [
+          ActionButton(
+            action: "Edit",
+            callback: () {
+                Navigator.pushNamed(context, RouteName.editProfile);
+            },
+          )
+        ],
+      ),
       body: AuthPadding(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,6 +71,7 @@ class AccountInfoPage extends StatelessWidget {
               title: "Location",
               subtitle: userModel.location!,
             ),
+            // LogOutDrawerButton()
           ],
         ),
       ),

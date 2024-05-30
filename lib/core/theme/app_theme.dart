@@ -123,11 +123,11 @@ final class AppDarkTheme {
       elevation: 0,
       labelTextStyle: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return TextStyle(color: _color.primaryText, fontSize: 14.sp);
+          return TextStyle(color: _color.primaryText, fontSize: 12.sp);
         } else {
           return TextStyle(
             color: _color.secondaryText,
-            fontSize: 14.sp,
+            fontSize: 12.sp,
           );
         }
       }),
@@ -157,7 +157,7 @@ final class AppDarkTheme {
         ),
         hintStyle: TextStyle(color: _color.secondaryText)),
     textSelectionTheme: TextSelectionThemeData(
-        selectionColor: _color.primaryText,
+        selectionColor: _color.boxShadow,
         cursorColor: _color.primaryText,
         selectionHandleColor: _color.primaryText),
     iconTheme: IconThemeData(

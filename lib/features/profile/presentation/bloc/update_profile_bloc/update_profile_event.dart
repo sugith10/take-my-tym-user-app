@@ -27,14 +27,18 @@ final class ProfileSetupEvent extends UpdateProfileEvent {
   });
 }
 
-final class CollectUpdateDataEvent extends UpdateProfileEvent {
+final class ProfileUpdateEvent extends UpdateProfileEvent {
   final String userName;
+  final String firstName;
+  final String lastName;
   final String about;
   final String location;
   final XFile? image;
   final UserModel userModel;
 
-  const CollectUpdateDataEvent({
+  const ProfileUpdateEvent({
+    required this.firstName,
+    required this.lastName,
     required this.userName,
     required this.about,
     required this.location,

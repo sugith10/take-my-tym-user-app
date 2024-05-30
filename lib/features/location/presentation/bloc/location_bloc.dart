@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
+import 'package:take_my_tym/core/utils/app_logger.dart';
 import 'package:take_my_tym/features/location/data/models/auto_complete_prediction.dart';
 import 'package:take_my_tym/features/location/data/models/place_auto_complete_response.dart';
 import 'package:take_my_tym/features/location/domain/usecases/location_position_use_case.dart';
@@ -80,7 +81,9 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
               longitude: position.longitude,
               placeName: formattedPlaceName),
         );
-      } catch (e) {}
+      } catch (e) {
+        appLogger.e(e);
+      }
     });
 
     on<SearchLocationsEvent>((event, emit) async {

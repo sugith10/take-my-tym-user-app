@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/observer/navigator_observer.dart';
 import 'core/route/app_route_packages.dart';
 import 'core/route/route_name/app_route_name.dart';
 import 'core/theme/app_theme.dart';
@@ -20,6 +21,7 @@ class MyAppView extends StatelessWidget {
           title: "Take My Tym",
           initialRoute: RouteName.initial,
           onGenerateRoute: AppRoute.generateRoute,
+          navigatorObservers: [AppNavigatorObserver()],
           theme: AppDarkTheme().darkTheme,
           debugShowCheckedModeBanner: false,
         );

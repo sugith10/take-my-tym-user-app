@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../utils/app_error_msg.dart';
 import '../../const/app_radius.dart';
-import '../../utils/assets/app_svg.dart';
+import '../../assets/app_svg.dart';
 import '../../theme/color/app_colors.dart';
 
 part 'snack_bar_content_widget.dart';

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/const/app_padding.dart';
 import '../../../../core/widgets/app_dialog.dart';
@@ -30,9 +29,6 @@ import '../widgets/view_post_app_bar.dart';
 class ViewPostPage extends StatefulWidget {
   final PostModel postModel;
   const ViewPostPage({required this.postModel, super.key});
-
-  static route({required PostModel postModel}) =>
-      rightToLeft(ViewPostPage(postModel: postModel));
 
   @override
   State<ViewPostPage> createState() => _ViewPostPageState();
@@ -65,7 +61,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
           Navigator.of(context).popUntil((route) => route.isFirst);
         }
         if (state is DeletePostLoading) {
-          LoadingDialog().show(context);
+          LoadingDialog.show(context);
         }
         if (state is DeletPostFailState) {
           AppSnackBar.failSnackBar(

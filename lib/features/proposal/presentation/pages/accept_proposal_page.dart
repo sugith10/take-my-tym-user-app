@@ -60,7 +60,7 @@ class AcceptProposalPage extends StatelessWidget {
           bloc: acceptProposalBloc,
           listener: (context, state) {
             if (state is OfferLoading) {
-              LoadingDialog().show(context);
+              LoadingDialog.show(context);
             }
             if (state is OfferSuccess) {
               context.read<GetProposalBloc>().add(ProposalGetEvent(

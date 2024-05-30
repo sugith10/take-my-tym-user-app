@@ -49,7 +49,6 @@ class ChatListPage extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: chatListItems.length,
                       itemBuilder: ((context, index) {
-      
                         final chatListItem = chatListItems[index];
                         final recipientUserId = chatListItem.recipientUserId;
                         return ChatTileWidget(

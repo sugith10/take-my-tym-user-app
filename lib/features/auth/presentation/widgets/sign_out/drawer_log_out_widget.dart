@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/widgets/widgets/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
-import '../../pages/welcome_page.dart';
 import 'log_out_dialog.dart';
 
 class LogOutDrawerButton extends StatefulWidget {
@@ -21,8 +21,8 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
 
   @override
   void dispose() {
-    super.dispose();
     _signOutBloc.close();
+    super.dispose();
   }
 
   @override
@@ -38,11 +38,7 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
         }
         if (state is SignOutSuccessState) {
           context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (_) => const WelcomePage()),
-            (route) => false,
-          );
+          Phoenix.rebirth(context);
         }
       },
       child: DrawerCustomButton(

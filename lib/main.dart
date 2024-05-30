@@ -6,9 +6,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'app.dart';
-import 'core/bloc/bloc_observer.dart';
+import 'core/observer/bloc_observer.dart';
 import 'core/di/dependency_injection_packages.dart';
 import 'firebase_options.dart';
 
@@ -33,5 +34,5 @@ void main() async {
 
   Bloc.observer = AppBlocObserver();
 
-  runApp(const MyApp());
+  runApp(Phoenix(child: const MyApp()));
 }

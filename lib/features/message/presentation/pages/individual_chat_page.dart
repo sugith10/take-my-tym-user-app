@@ -113,7 +113,6 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       _scrollToBottom();
                     });
-
                     return ListView.builder(
                       controller: _scrollController,
                       physics: const AlwaysScrollableScrollPhysics(),

@@ -60,22 +60,25 @@ class _PaymentPageState extends State<PaymentPage> {
         BlocListener<WalletBloc, WalletState>(
           listener: (context, state) {
             if (state is WalletLoadedState) {
-              Navigator.pushNamed(context, RouteName.home,
-                  arguments: SuccessPageArguments(
-                      pop: true,
-                      title: "Transaction Successful",
-                      subtitle:
-                          "Amount: ${state.walletModel.transactions.first.amount}"));
+              Navigator.pushNamed(
+                context,
+                RouteName.success,
+                arguments: SuccessPageArguments(
+                    pop: true,
+                    title: "Transaction Successful",
+                    subtitle:
+                        "Amount: ${state.walletModel.transactions.first.amount}"),
+              );
             }
             if (state is WalletTransferSuccessState) {
               Navigator.pop(context);
             }
             if (state is WalletLoadingState) {
-              LoadingDialog().show(context);
+              LoadingDialog.show(context);
             }
             if (state is WalletErrorState) {
               AppSnackBar.failSnackBar(
-                context: context,
+                context: context, 
                 alert: AppAlert(),
               );
             }
@@ -97,7 +100,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   );
             }
             if (state is PaymentLoadingState) {
-              LoadingDialog().show(context);
+              LoadingDialog.show(context);
             }
           },
         ),
@@ -137,7 +140,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   WalletTransferEvent(uid: uid, amount: _paymentCntrl.text));
             }
           },
-          type: widget.type,
+          walletAction: widget.type,
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/utils/assets/app_svg.dart';
+import '../../../../core/assets/app_svg.dart';
 
 class CoustomerServiceFab extends StatelessWidget {
   final VoidCallback callback;

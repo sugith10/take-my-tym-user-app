@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../utils/assets/app_svg.dart';
+import '../assets/app_svg.dart';
 
 class AppLogo extends StatelessWidget {
   const AppLogo({

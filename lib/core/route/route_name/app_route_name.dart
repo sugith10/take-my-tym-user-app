@@ -16,4 +16,9 @@ final class RouteName {
   static const String payment = '/payment';
   static const String success = '/success';
   static const String transactions = '/transactions';
+  static const String viewPost = '/viewPost';
+  static const String search = '/search';
+  static const String viewContract = '/viewContract';
+  static const String coustomerService = '/coustomerService';
+  static const String submitProposal = '/submitProposal';
 }

@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/post_card.dart';
 import '../../../../core/widgets/shimmer_effect.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
-import '../../../view_post/presentation/pages/view_post_page.dart';
 
 class ProfilePostsWidget extends StatelessWidget {
   const ProfilePostsWidget({
@@ -22,10 +22,10 @@ class ProfilePostsWidget extends StatelessWidget {
           return const ShimmerEffectWidget();
         }
         if (state is GotBuyTymPostsState) {
-          return _PostsBuilder(postModles: state.buyTymPostModel);
+          return _PostsBuilder(postModelList: state.buyTymPostModel);
         }
         if (state is GotSellTymPostsState) {
-          return _PostsBuilder(postModles: state.sellTymPostModels);
+          return _PostsBuilder(postModelList: state.sellTymPostModels);
         }
         if (state is UserPostError) {
           return Column(
@@ -43,9 +43,9 @@ class ProfilePostsWidget extends StatelessWidget {
 }
 
 class _PostsBuilder extends StatelessWidget {
-  final List<PostModel> postModles;
+  final List<PostModel> postModelList;
   const _PostsBuilder({
-    required this.postModles,
+    required this.postModelList,
   });
 
   @override
@@ -54,15 +54,16 @@ class _PostsBuilder extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         primary: false,
-        itemCount: postModles.length,
+        itemCount: postModelList.length,
         itemBuilder: (context, index) {
-          final model = postModles[index];
+          final postModel = postModelList[index];
           return PostCard(
-            postModel: model,
+            postModel: postModel,
             voidCallback: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                ViewPostPage.route(postModel: model),
+                RouteName.viewPost,
+                arguments: postModel,
               );
             },
             width: MediaQuery.of(context).size.width,

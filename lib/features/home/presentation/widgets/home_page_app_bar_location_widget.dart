@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-import '../../../../core/utils/assets/app_png.dart';
+import '../../../../core/assets/app_png.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 
 class MyLocationWidget extends StatefulWidget {

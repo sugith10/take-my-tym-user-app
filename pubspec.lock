@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  dotlottie_loader:
+    dependency: "direct main"
+    description:
+      name: dotlottie_loader
+      sha256: "77aad8861b8b85cba8b13aad89c944c881e64927a99f77f34bb8bbfa01af7d36"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   equatable:
     dependency: "direct main"
     description:
@@ -478,6 +486,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.1.0"
+  flutter_phoenix:
+    dependency: "direct main"
+    description:
+      name: flutter_phoenix
+      sha256: "39589dac934ea476d0e43fb60c1ddfba58f14960743640c8250dea11c4333378"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 import '../../../../core/const/app_radius.dart';
+import '../../../../core/theme/color/app_colors.dart';
 
 class ProfileOptionsWidget extends StatelessWidget {
   final VoidCallback editProfile;

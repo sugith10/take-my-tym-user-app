@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
-import '../bloc/search_bloc/search_bloc.dart';
+import '../../../../../core/utils/app_debouncer.dart';
+import '../../bloc/search_bloc/search_bloc.dart';
 import 'search_text_field.dart';
 
-class SearchPageAppBar extends StatefulWidget implements PreferredSizeWidget {
+class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   final TextEditingController searchEditingController;
   final SearchPostsBloc bloc;
+  final Debouncer debouncer;
 
-  const SearchPageAppBar({
-    super.key,
+  const SearchAppBar({
+    required this.debouncer,
     required this.searchEditingController,
     required this.bloc,
+    super.key,
   });
 
   @override
   Size get preferredSize => const Size.fromHeight(100.0);
 
   @override
-  State<StatefulWidget> createState() => _SearchPageAppBarState();
+  State<StatefulWidget> createState() => _SearchAppBarState();
 }
 
-class _SearchPageAppBarState extends State<SearchPageAppBar> {
+class _SearchAppBarState extends State<SearchAppBar> {
   bool tymType = true;
 
   @override
@@ -30,6 +33,7 @@ class _SearchPageAppBarState extends State<SearchPageAppBar> {
         children: [
           Expanded(
             child: SearchTextField(
+              debouncer: widget.debouncer,
               searchBloc: widget.bloc,
               searchEditingController: widget.searchEditingController,
             ),

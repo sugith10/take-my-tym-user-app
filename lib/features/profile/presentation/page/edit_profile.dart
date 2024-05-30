@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
-import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
-import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/utils/app_error_msg.dart';
 import '../../../../core/theme/color/app_colors.dart';
+import '../../../../core/widgets/action_button.dart';
+import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
-import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
+import '../../../../core/widgets/loading_dialog.dart';
 import '../bloc/update_profile_bloc/update_profile_bloc.dart';
+import '../widget/edit_profile_form.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -24,9 +24,11 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   final ProfileBloc _profileBloc = ProfileBloc();
-  final TextEditingController _nameCntrl = TextEditingController();
-  final TextEditingController _aboutCntrl = TextEditingController();
-  final TextEditingController _locationCntrl = TextEditingController();
+  final TextEditingController userNameCntrl = TextEditingController();
+  final TextEditingController aboutCntrl = TextEditingController();
+  final TextEditingController locationCntrl = TextEditingController();
+  final TextEditingController firstNameCntrl = TextEditingController();
+  final TextEditingController lastNameCntrl = TextEditingController();
 
   late final style = Theme.of(context).textTheme.labelMedium?.copyWith(
         color: AppDarkColor.instance.primaryTextSoft,
@@ -36,15 +38,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void initState() {
     super.initState();
     final UserModel userModel = context.read<AppUserBloc>().userModel!;
-    _nameCntrl.text = userModel.userName;
-    _aboutCntrl.text = userModel.about ?? '';
-    _locationCntrl.text = userModel.location ?? "";
+    firstNameCntrl.text = userModel.firstName;
+    lastNameCntrl.text = userModel.lastName;
+    userNameCntrl.text = userModel.userName;
+    aboutCntrl.text = userModel.about ?? '';
+    locationCntrl.text = userModel.location ?? "";
   }
 
   @override
   void dispose() {
-    _nameCntrl.dispose();
-    _aboutCntrl.dispose();
+    _profileBloc.close();
+    lastNameCntrl.dispose();
+    firstNameCntrl.dispose();
+    userNameCntrl.dispose();
+    aboutCntrl.dispose();
+    locationCntrl.dispose();
     super.dispose();
   }
 
@@ -67,13 +75,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
       bloc: _profileBloc,
       listener: (context, state) {
         if (state is UpdateProfileLoadingState) {
-          LoadingDialog().show(context);
+          LoadingDialog.show(context);
         }
         if (state is UpdateProfileSuccessState) {
           context
               .read<AppUserBloc>()
               .add(UpdateUserModelEvent(userModel: state.userModel));
-          Navigator.popUntil(context, ModalRoute.withName(RouteName.home));
+
+          LoadingDialog.hide(context, 2);
           AppSnackBar.successSnackBar(
             context: context,
             alert: AppAlert(
@@ -83,14 +92,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           );
         }
         if (state is UpdataProfileFailState) {
-          AppSnackBar.failSnackBar(
-            context: context,
-            alert: AppAlert(
-              alert: "Profile Update Failed",
-              details:
-                  "An error occurred while updating your profile. Please try again.",
-            ),
-          );
+          AppSnackBar.failSnackBar(context: context, alert: state.alert);
         }
       },
       child: Scaffold(
@@ -103,24 +105,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
           title: const Text("Edit Profile"),
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 5),
-              child: IconButton(
-                onPressed: () {
+            ActionButton(
+                action: "Update",
+                callback: () {
                   FocusManager.instance.primaryFocus?.unfocus();
                   _profileBloc.add(
-                    CollectUpdateDataEvent(
-                      userName: _nameCntrl.text,
-                      about: _aboutCntrl.text,
-                      location: _locationCntrl.text,
+                    ProfileUpdateEvent(
+                      userName: userNameCntrl.text,
+                      firstName: firstNameCntrl.text,
+                      lastName: lastNameCntrl.text,
+                      about: aboutCntrl.text,
+                      location: locationCntrl.text,
                       image: _image,
                       userModel: context.read<AppUserBloc>().userModel!,
                     ),
                   );
-                },
-                icon: const Icon(Icons.check_rounded),
-              ),
-            )
+                }),
           ],
         ),
         body: SingleChildScrollView(
@@ -135,9 +135,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Align(
                   alignment: Alignment.center,
                   child: GestureDetector(
-                    onTap: () {
-                      _pickImage(ImageSource.gallery);
-                    },
+                    onTap: () {},
                     child: CircleProfilePicWidget(
                       height: 130,
                       width: 130,
@@ -152,32 +150,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 SizedBox(height: 40.h),
                 HomePadding(
-                  child: Form(
-                    child: Column(
-                      children: [
-                        CollectInfoTextField(
-                          controller: _nameCntrl,
-                          style: style,
-                          hintText: "Name",
-                          keyboardType: TextInputType.name,
-                        ),
-                        SizedBox(height: 25.h),
-                        CollectInfoTextField(
-                          controller: _aboutCntrl,
-                          style: style,
-                          hintText: "About",
-                          keyboardType: TextInputType.text,
-                        ),
-                        SizedBox(height: 25.h),
-                        CollectInfoTextField(
-                          controller: _locationCntrl,
-                          style: style,
-                          hintText: "Location",
-                          keyboardType: TextInputType.text,
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: EditProfileForm(
+                      firstNameCntrl: firstNameCntrl,
+                      style: style,
+                      lastNameCntrl: lastNameCntrl,
+                      userNameCntrl: userNameCntrl,
+                      aboutCntrl: aboutCntrl,
+                      locationCntrl: locationCntrl),
                 )
               ],
             ),

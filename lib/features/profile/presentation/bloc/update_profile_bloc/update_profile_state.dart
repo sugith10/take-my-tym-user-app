@@ -16,4 +16,8 @@ final class UpdateProfileSuccessState extends UpdateProfileState {
 
 final class UpdateProfileLoadingState extends UpdateProfileState {}
 
-final class UpdataProfileFailState extends UpdateProfileState {}
+final class UpdataProfileFailState extends UpdateProfileState {
+  final AppAlert alert;
+
+  const UpdataProfileFailState({required this.alert});
+}

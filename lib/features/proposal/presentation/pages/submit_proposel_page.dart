@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../success/presentation/model/success_page_arguments.dart';
@@ -18,9 +17,6 @@ import '../widgets/submit_proposel_app_bar.dart';
 class SubmitProposelPage extends StatefulWidget {
   final PostModel postModel;
   const SubmitProposelPage({required this.postModel, super.key});
-
-  static route({required PostModel postModel}) =>
-      bottomToTop(SubmitProposelPage(postModel: postModel));
 
   @override
   State<SubmitProposelPage> createState() => _SubmitProposelPageState();
@@ -78,7 +74,6 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
         }
         if (state is SubmitProposalSuccessState) {
           context.read<GetProposalBloc>().add(ProposalGetEvent(uid: userId));
-
           Navigator.pushNamed(
             context,
             RouteName.success,
@@ -137,10 +132,10 @@ class _SubmitProposelPageState extends State<SubmitProposelPage> {
                       return const ProposelTimeLine();
                     } else {
                       return ContactForm(
-                        title: "Why hire you?",
-                        subtitle: "Tell the hirer why you're a good fit.",
+                        title: "Why Hire You?",
+                        hint: "Explain why you're a good fit for the role.",
                         note:
-                            "Before commit with any contract make sure you reachout contracter and verified the source.",
+                            "Before committing to any contract, make sure to contact the contractor and verify the source.",
                         callback: () {
                           submitProposalBloc.add(
                             ProposalSubmitEvent(

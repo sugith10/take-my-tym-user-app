@@ -1,24 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
 
-
-
 class AppBlocObserver extends BlocObserver {
- 
-
   ///We can react to events
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
     appLogger.t("An event Happened in $bloc the event is $event");
   }
-
-  // // /We can react to states
-  // @override
-  // void onChange(BlocBase bloc, Change change) {
-  //   super.onChange(bloc, change);
-  //   appLogger.t('A new state from $bloc the state is $change');
-  // }
 
   ///We can even react to transitions
   @override
@@ -34,7 +23,7 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    appLogger.t(
+    appLogger.e(
         "Error happened in $bloc with error $error and the stacktrace is $stackTrace");
   }
 

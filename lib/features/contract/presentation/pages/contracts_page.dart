@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/widgets/auth_padding.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/empty_list_text.dart';
 import '../../../../core/widgets/panel_title_widget.dart';
 import '../../../../core/widgets/offer_list_tile.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
 import '../bloc/contracts_bloc/contracts_bloc.dart';
 import '../widgets/contract_tab_buttons.dart';
-import 'view_contract_page.dart';
 
 class ContractsPage extends StatefulWidget {
   const ContractsPage({super.key});
@@ -55,14 +55,13 @@ class _ContractsPageState extends State<ContractsPage> {
                         itemCount: state.contractList.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          final contract = state.contractList[index];
+                          final contractModel = state.contractList[index];
                           return OfferListTile(
-                            text: contract.contractName,
+                            text: contractModel.contractName,
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  ViewContractPage.route(
-                                      contractModel: contract));
+                              Navigator.pushNamed(
+                                  context, RouteName.viewContract,
+                                  arguments: contractModel);
                             },
                           );
                         },
@@ -93,14 +92,14 @@ class _ContractsPageState extends State<ContractsPage> {
                           itemCount: state.serviceProviderList.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            final contract = state.serviceProviderList[index];
+                            final contractModel =
+                                state.serviceProviderList[index];
                             return OfferListTile(
-                              text: contract.contractName,
+                              text: contractModel.contractName,
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    ViewContractPage.route(
-                                        contractModel: contract));
+                                Navigator.pushNamed(
+                                    context, RouteName.viewContract,
+                                    arguments: contractModel);
                               },
                             );
                           });

@@ -41,8 +41,11 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
     return BlocBuilder<AppUserBloc, AppState>(
       builder: (context, state) {
         if (state is UserModelUpdatedState) {
-          return BlocProvider(
-            create: (context) => NavigationBloc(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => NavigationBloc()),
+             
+            ],
             child: Scaffold(
               key: _scaffoldKey,
               drawer: const DrawerNavBar(),

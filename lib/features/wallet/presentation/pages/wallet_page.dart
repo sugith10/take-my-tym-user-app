@@ -15,7 +15,6 @@ import '../widgets/transactions_view_setup_widget.dart';
 import '../widgets/update_time_widget.dart';
 import '../widgets/wallet_card.dart';
 import '../widgets/wallet_shimmer.dart';
-import 'transactions_page.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({

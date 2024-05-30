@@ -6,8 +6,8 @@ import 'package:lottie/lottie.dart';
 
 import 'widget/scale_up_animation.dart';
 import '../../navigation_menu/presentation/pages/home_navigation_menu.dart';
-import '../../../core/utils/assets/app_audio.dart';
-import '../../../core/utils/assets/app_lottie.dart';
+import '../../../core/assets/app_audio.dart';
+import '../../../core/assets/app_lottie.dart';
 import '../../../core/theme/color/app_colors.dart';
 import '../../../core/utils/app_sound_player.dart';
 import '../../../core/utils/app_vibration.dart';

@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/const/app_radius.dart';
 
+import '../assets/app_font.dart';
+
 /// Defines the dark theme for the application.
 final class AppDarkTheme {
   static final AppDarkColor _color = AppDarkColor.instance;
@@ -16,7 +18,7 @@ final class AppDarkTheme {
 
   /// Dark theme configuration.
   final ThemeData darkTheme = ThemeData(
-    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontFamily: AppFont.gilroy,
     colorScheme: ColorScheme.dark(
       surface: _color.background,
     ),
@@ -45,69 +47,78 @@ final class AppDarkTheme {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w900,
         fontSize: 28.sp,
       ),
       displayMedium: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w900,
         letterSpacing: .5,
         fontSize: 25.sp,
       ),
       displaySmall: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w900,
         fontSize: 23.sp,
       ),
       headlineLarge: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontSize: 22.sp,
       ),
       headlineMedium: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontSize: 20.sp,
       ),
       headlineSmall: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontSize: 19.sp,
       ),
       titleLarge: TextStyle(
         color: _color.primaryText,
+        fontWeight: FontWeight.w600,
         fontSize: 18.sp,
       ),
       titleMedium: TextStyle(
         color: _color.primaryText,
+        fontWeight: FontWeight.w600,
         fontSize: 17.sp,
       ),
       titleSmall: TextStyle(
         color: _color.primaryText,
+        fontWeight: FontWeight.w600,
         fontSize: 16.sp,
       ),
       labelLarge: TextStyle(
         color: _color.primaryText,
+        fontWeight: FontWeight.w600,
         fontSize: 15.sp,
       ),
       labelMedium: TextStyle(
         color: _color.primaryText,
         fontSize: _screenUtil.setSp(14),
+        fontWeight: FontWeight.w600,
       ),
       labelSmall: TextStyle(
         color: _color.primaryText,
         fontSize: 13.sp,
+        fontWeight: FontWeight.w600,
       ),
       bodyLarge: TextStyle(
         color: _color.secondaryText,
         fontSize: _screenUtil.setSp(14),
+        fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         color: _color.secondaryText,
         fontSize: 13.sp,
+        fontWeight: FontWeight.w600,
       ),
       bodySmall: TextStyle(
         color: _color.secondaryText,
+        fontWeight: FontWeight.w600,
         fontSize: 12.sp,
       ),
     ),

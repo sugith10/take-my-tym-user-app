@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/const/app_padding.dart';
 
 import '../theme/color/app_colors.dart';
+import 'app_info_dailog.dart';
 
 class PanelTitleWidget extends StatelessWidget {
   final String title;
@@ -18,8 +19,8 @@ class PanelTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: padding ? AppPading.authPadding : 0),
+      padding:
+          EdgeInsets.symmetric(horizontal: padding ? AppPading.authPadding : 0),
       child: Column(
         children: [
           SizedBox(height: padding ? 25 : 20),
@@ -33,7 +34,11 @@ class PanelTitleWidget extends StatelessWidget {
                 width: 5.w,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  PanelDailog.show(
+                    context,
+                  );
+                },
                 icon: Icon(
                   IconlyLight.info_circle,
                   color: AppDarkColor.instance.gradientPrimary,
@@ -48,5 +53,32 @@ class PanelTitleWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class PanelDailog {
+  PanelDailog._();
+
+  static show(BuildContext context) {
+    AppInfoDialog.show(
+        context: context,
+        widget: SizedBox(
+          width: double.infinity,
+          child: Column(children: [
+            Text(
+              "Client Contracts",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: 10.h),
+            Text("In this section you can see the contracts hired by you.",
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppDarkColor.instance.primaryTextSoft,
+                    )),
+            SizedBox(height: 10.h),
+            Text(
+                "You can see the details of the contract and the status of the contract."),
+            SizedBox(height: 10.h),
+          ]),
+        ));
   }
 }

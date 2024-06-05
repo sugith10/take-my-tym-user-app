@@ -3,11 +3,12 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
 import '../../../auth/presentation/widgets/sign_out/drawer_log_out_widget.dart';
-import '../utils/app_policy.dart';
-import '../utils/service_center.dart';
-import '../utils/share_app.dart';
-import '../widgets/widgets/drawer_button.dart';
-import '../widgets/widgets/drawer_profile_widget.dart';
+import '../utils/app_policy_util.dart';
+import '../utils/service_center_util.dart';
+import '../utils/share_app_util.dart';
+import '../widget/drawer_button.dart';
+import '../widget/drawer_profile_widget.dart';
+import '../widget/version_info_widget.dart';
 
 class DrawerNavBar extends StatelessWidget {
   const DrawerNavBar({super.key});
@@ -40,7 +41,7 @@ class DrawerNavBar extends StatelessWidget {
                 DrawerCustomButton(
                   title: 'Share the App',
                   callback: () {
-                    ShareApp().launchShare();
+                    ShareAppUtil().launchShare();
                   },
                   icon: IconlyLight.send,
                 ),
@@ -69,12 +70,9 @@ class DrawerNavBar extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+          const Align(
             alignment: Alignment.bottomCenter,
-            child: Text(
-              '© 2024 DayProduction® v1.0.0',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: VersionInfoWidget(),
           ),
           const SizedBox(height: 25),
         ],

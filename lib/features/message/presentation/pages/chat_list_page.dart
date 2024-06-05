@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/app_bar/app_bar_title.dart';
 import '../bloc/chat_list_bloc/chat_list_bloc.dart';
-import '../util/chat_list_item_model.dart';
+import '../model/chat_list_item_model.dart';
 import '../widgets/chat_list_shimmer_widget.dart';
 import '../widgets/chat_tile_widget.dart';
 import '../widgets/no_message_widget.dart';
@@ -38,13 +38,15 @@ class ChatListPage extends StatelessWidget {
                         snapshot.data!.data() as Map<String, dynamic>;
                     final chatListItems = documentData.entries
                         .map(
-                          (i) => ChatListItemModel(
+                          (i) => ChatListModel(
                             chatId: i.key,
                             recipientUserId: i.value,
                           ),
                         )
                         .toList();
-
+                    if (chatListItems.isEmpty) {
+                      return const NoMessageWidget();
+                    }
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: chatListItems.length,
@@ -58,11 +60,11 @@ class ChatListPage extends StatelessWidget {
                       }),
                     );
                   }
-                  return const SizedBox.shrink();
+                  return const ChatListShimmerWidget();
                 },
               );
             }
-            return const SizedBox.shrink();
+            return const NoMessageWidget(message: "Something went wrong");
           },
         ),
       ),

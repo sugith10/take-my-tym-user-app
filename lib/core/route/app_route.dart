@@ -16,7 +16,7 @@ class AppRoute {
       case RouteName.signUp:
         return noMovement(const SignInPage());
 
-      case RouteName.forgotPassword:       
+      case RouteName.forgotPassword:
         return noMovement(const ForgetPasswordPage());
 
       case RouteName.profileSetup:
@@ -46,7 +46,7 @@ class AppRoute {
         return rightToLeft(const AccountInfoPage());
 
       case RouteName.editProfile:
-        return leftToRight(const EditProfilePage());
+        return rightToLeft(const EditProfilePage());
 
       case RouteName.payment:
         final PaymentPageArguments arg =
@@ -83,7 +83,15 @@ class AppRoute {
         final PostModel postModel = settings.arguments as PostModel;
         return bottomToTop(SubmitProposelPage(postModel: postModel));
 
-      
+      case RouteName.message:
+        final IndividualChatPageArguments arg =
+            settings.arguments as IndividualChatPageArguments;
+        return rightToLeft(IndividualChatPage(
+          currentUid: arg.currentUid,
+          receiverUid: arg.receiverUid,
+          receiverName: arg.receiverName,
+          individualMessageBloc: arg.individualMessageBloc,
+        ));
     }
 
     return noMovement(const ErrorPage());

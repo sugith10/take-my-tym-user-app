@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../../core/const/app_icons.dart';
 import '../../../../core/widgets/action_button.dart';
 
 class CreatePageAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -19,7 +20,7 @@ class CreatePageAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon:  Icon(next ? IconlyLight.arrow_down_2 : IconlyLight.arrow_left),
+        icon:  Icon(next ? IconlyLight.arrow_down_2 : AppIcon.back),
       ),
       actions: [
         ActionButton(

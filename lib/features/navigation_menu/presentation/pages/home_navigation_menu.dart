@@ -44,24 +44,25 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => NavigationBloc()),
-             
             ],
             child: Scaffold(
               key: _scaffoldKey,
               drawer: const DrawerNavBar(),
-              body: BlocBuilder<NavigationBloc, NavigationState>(
-                builder: (context, state) {
-                  switch (state) {
-                    case HomeState():
-                      return _screen[0];
-                    case MessageState():
-                      return _screen[1];
-                    case MoneyState():
-                      return _screen[3];
-                    case ProfileState():
-                      return _screen[4];
-                  }
-                },
+              body: SafeArea(
+                child: BlocBuilder<NavigationBloc, NavigationState>(
+                  builder: (context, state) {
+                    switch (state) {
+                      case HomeState():
+                        return _screen[0];
+                      case MessageState():
+                        return _screen[1];
+                      case MoneyState():
+                        return _screen[3];
+                      case ProfileState():
+                        return _screen[4];
+                    }
+                  },
+                ),
               ),
               bottomNavigationBar: BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (context, state) {

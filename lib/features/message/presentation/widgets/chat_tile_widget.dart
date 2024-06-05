@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
-import '../pages/individual_chat_page.dart';
+import '../model/individual_chat_page_arguments.dart';
+import 'chat_list_shimmer_widget.dart';
 
 class ChatTileWidget extends StatefulWidget {
   final String currentUserId;
@@ -47,23 +49,22 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
           return StreamBuilder<QuerySnapshot>(
             stream: state.messages,
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const ChatShimmerWidget();
+              }
               if (snapshot.hasData) {
                 final messageData = snapshot.data!.docs.last;
                 final message = messageData['message'] ?? 'New message';
                 final time = messageData['timestamp'] ?? Timestamp.now();
                 return ListTile(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => IndividualChatPage(
+                    Navigator.pushNamed(context, RouteName.message,
+                        arguments: IndividualChatPageArguments(
                           currentUid: widget.currentUserId,
                           receiverUid: widget.recipientUserId,
                           receiverName: receiverName,
                           individualMessageBloc: _individualMessageBloc,
-                        ),
-                      ),
-                    );
+                        ));
                   },
                   leading: const CircleProfilePicWidget(
                     height: 50,
@@ -107,7 +108,7 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
             },
           );
         }
-        return SizedBox.fromSize();
+        return const SizedBox.shrink();
       },
     );
   }

@@ -53,7 +53,6 @@ dependencies:
   button_animations: ^2.0.0+3
   timeline_tile: ^2.0.0
   rive_animated_icon: ^1.0.2
-  google_fonts: ^6.2.1
   dotlottie_loader: ^0.0.3
 
 dev_dependencies:
@@ -80,6 +79,7 @@ flutter:
   fonts:
     - family: Gilroy
       fonts:
+        - asset: assets/font/gilroy/Gilroy-Medium.ttf
         - asset: assets/font/gilroy/Gilroy-UltraLight.ttf
           weight: 100
         - asset: assets/font/gilroy/Gilroy-Thin.ttf

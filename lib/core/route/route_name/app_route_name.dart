@@ -21,4 +21,6 @@ final class RouteName {
   static const String viewContract = '/viewContract';
   static const String coustomerService = '/coustomerService';
   static const String submitProposal = '/submitProposal';
+  static const String message = '/message';
+  
 }

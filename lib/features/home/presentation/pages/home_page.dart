@@ -23,77 +23,75 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            HomePageAppBar(
-              openDrawer: () => Scaffold.of(context).openDrawer(),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  SizedBox(height: 20.h),
-                  const Row(
-                    children: [
-                      WelcomeUser(),
-                      HomePageFilterWidget(),
-                    ],
-                  ),
-                  SizedBox(height: 20.h),
-                  const BannerWidget(),
-                  SizedBox(height: 20.h),
-                  SingleChildScrollView(
-                    child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
-                      builder: (context, state) {
-                        if (state is CommunityPostsLoadingState) {
-                          return const ShimmerEffectWidget();
-                        }
-                        if (state is CommunityPostsSuccessState) {
-                          return Column(
-                            children: [
-                              const CategoryTitleWidget(
-                                title: "Latest Offers",
-                              ),
-                              SizedBox(height: 20.h),
-                              GenerateFeedWidget(
-                                posts: state.posts,
-                              ),
-                              SizedBox(height: 20.h),
-                              const CategoryTitleWidget(
-                                title: "Remote Offers",
-                              ),
-                              SizedBox(height: 20.h),
-                              GenerateFeedWidget(
-                                posts: state.remotePosts,
-                              ),
-                              SizedBox(height: 20.h),
-                              const CategoryTitleWidget(
-                                title: "Onsite Offers",
-                              ),
-                              SizedBox(height: 20.h),
-                              GenerateFeedWidget(
-                                posts: state.onsitePosts,
-                              ),
-                              SizedBox(height: 20.h),
-                              const CategoryTitleWidget(
-                                title: "Grab it now...",
-                              ),
-                              SizedBox(height: 20.h),
-                              AllCommunePostsWidget(
-                                posts: state.posts,
-                              ),
-                            ],
-                          );
-                        }
+      body: CustomScrollView(
+        slivers: [
+          HomePageAppBar(
+            openDrawer: () => Scaffold.of(context).openDrawer(),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(height: 20.h),
+                const Row(
+                  children: [
+                    WelcomeUser(),
+                    HomePageFilterWidget(),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                const BannerWidget(),
+                SizedBox(height: 20.h),
+                SingleChildScrollView(
+                  child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(
+                    builder: (context, state) {
+                      if (state is CommunityPostsLoadingState) {
                         return const ShimmerEffectWidget();
-                      },
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+                      }
+                      if (state is CommunityPostsSuccessState) {
+                        return Column(
+                          children: [
+                            const CategoryTitleWidget(
+                              title: "Latest Offers",
+                            ),
+                            SizedBox(height: 20.h),
+                            GenerateFeedWidget(
+                              posts: state.posts,
+                            ),
+                            SizedBox(height: 20.h),
+                            const CategoryTitleWidget(
+                              title: "Remote Offers",
+                            ),
+                            SizedBox(height: 20.h),
+                            GenerateFeedWidget(
+                              posts: state.remotePosts,
+                            ),
+                            SizedBox(height: 20.h),
+                            const CategoryTitleWidget(
+                              title: "Onsite Offers",
+                            ),
+                            SizedBox(height: 20.h),
+                            GenerateFeedWidget(
+                              posts: state.onsitePosts,
+                            ),
+                            SizedBox(height: 20.h),
+                            const CategoryTitleWidget(
+                              title: "Grab it now...",
+                            ),
+                            SizedBox(height: 20.h),
+                            AllCommunePostsWidget(
+                              posts: state.posts,
+                            ),
+                          ],
+                        );
+                      }
+                      return const ShimmerEffectWidget();
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

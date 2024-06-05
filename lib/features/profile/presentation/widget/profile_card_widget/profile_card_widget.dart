@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconly/iconly.dart';
+import 'package:take_my_tym/core/assets/app_svg.dart';
 
 import '../../../../../core/model/app_user_model.dart';
 import '../../../../../core/utils/text_manipulator/taxt_manipulator.dart';
@@ -28,7 +30,7 @@ class ProfileCard extends StatelessWidget {
           ),
           SizedBox(width: 15.h),
           //Section 1 end
-    
+
           //Section 2 begin
           Expanded(
             child: SizedBox(
@@ -40,14 +42,18 @@ class ProfileCard extends StatelessWidget {
                   Row(
                     children: [
                       _ProfileNameWidget(
-                          name: TextManipulator.capitalize(
-                              userModel.firstName)),
-                      const SizedBox(width: 10),
-                      _ProfileNameWidget(
                           name:
-                              TextManipulator.capitalize(userModel.lastName)),
+                              '${TextManipulator.capitalize(userModel.firstName)} ${TextManipulator.capitalize(userModel.lastName)}'),
+                      SizedBox(width: 8.w),
+                      if (userModel.verified)
+                        SvgPicture.asset(AppSvg.verified,
+                            colorFilter: const ColorFilter.mode(
+                                Color(0xFF1D9AEF), BlendMode.srcIn))
                     ],
                   ),
+                  if (!userModel.verified)
+                    Text("(Verification Pending)",
+                        style: Theme.of(context).textTheme.bodySmall),
                   SizedBox(height: 5.h),
                   //username
                   Text("@${userModel.userName.toLowerCase()}"),
@@ -80,7 +86,10 @@ class _ProfileNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name,
-      style: Theme.of(context).textTheme.displaySmall,
+      style: Theme.of(context)
+          .textTheme
+          .displayMedium
+          ?.copyWith(fontWeight: FontWeight.w900, fontSize: 25),
       overflow: TextOverflow.fade,
       maxLines: 2,
     );

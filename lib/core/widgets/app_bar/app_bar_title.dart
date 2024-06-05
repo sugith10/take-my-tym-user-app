@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppBarTitle extends StatelessWidget {
   final String title;
@@ -11,9 +9,10 @@ class AppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: GoogleFonts.hind(fontSize: 22.sp, fontWeight: FontWeight.w600),
-    );
+    return Text(title,
+        style: Theme.of(context)
+            .textTheme
+            .headlineLarge
+            ?.copyWith(fontWeight: FontWeight.w900));
   }
 }

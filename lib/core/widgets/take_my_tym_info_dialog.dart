@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/theme/color/app_colors.dart';
-import 'package:take_my_tym/core/widgets/app_info_dailog.dart';
+
+import '../theme/color/app_colors.dart';
+import 'app_info_dailog.dart';
 
 class TakeyMyTymDailog {
   void show({required BuildContext context}) {
@@ -17,7 +18,9 @@ class _AppInfoContents extends StatelessWidget {
     return Column(
       children: [
         const _HeadLineWidget(),
-        SizedBox(height: 25.h),
+        SizedBox(height: 20.h),
+        const Divider(),
+        SizedBox(height: 20.h),
         const _ExplainWidget(
           number: 1,
           title: "What is TakeMyTym",
@@ -48,28 +51,20 @@ class _HeadLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Text("Its Time to Redifine",
+        Text("Its time to redifine",
             style: Theme.of(context)
                 .textTheme
-                .displaySmall
-                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: .5)),
+                .displayLarge
+                ?.copyWith(letterSpacing: .5, fontSize: size.width * 0.06)),
         const SizedBox(height: 10),
-        Text("How You Earn",
+        Text("how you earn...",
             style: Theme.of(context)
                 .textTheme
-                .displaySmall
-                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: .5)),
-        SizedBox(height: 15.h),
-        Text(
-          "Your skills are your currency in today's digital economy",
-          style: Theme.of(context)
-              .textTheme
-              .labelSmall
-              ?.copyWith(color: AppDarkColor.instance.primaryTextSoft),
-          textAlign: TextAlign.center,
-        ),
+                .displayLarge
+                ?.copyWith(letterSpacing: .5, fontSize: size.width * 0.06)),
       ],
     );
   }
@@ -87,6 +82,7 @@ class _ExplainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -94,15 +90,17 @@ class _ExplainWidget extends StatelessWidget {
           text: TextSpan(
             text: '$number.',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w900,
+                  fontSize: size.width * 0.04
                 ),
             children: [
               const TextSpan(text: '  '),
               TextSpan(
                 text: "$title ",
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
                       letterSpacing: .5,
+                      fontSize: size.width * 0.038
                     ),
               )
             ],
@@ -114,7 +112,9 @@ class _ExplainWidget extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodySmall
-              ?.copyWith(color: AppDarkColor.instance.primaryTextSoft),
+              ?.copyWith(
+                fontSize: size.width * 0.035,
+                color: AppDarkColor.instance.primaryTextSoft),
           textAlign: TextAlign.justify,
         ),
       ],

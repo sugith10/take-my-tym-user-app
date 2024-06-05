@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 
 class AppInfoDialog {
+  AppInfoDialog._();
   static void show(
       {required BuildContext context, required Widget widget}) {
     showDialog(

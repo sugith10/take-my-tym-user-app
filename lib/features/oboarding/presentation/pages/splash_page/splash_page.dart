@@ -10,6 +10,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocListener<AppUserBloc, AppState>(
       listener: (context, state) {
         if (state is UserModelUpdatedState) {
@@ -21,9 +22,12 @@ class SplashPage extends StatelessWidget {
               context, RouteName.welcome, (route) => false);
         }
       },
-      child: const Scaffold(
-        body: SafeArea(
-          child: Column(
+      child: Scaffold(
+        
+        body: SizedBox(
+          height: size.height,
+          width: size.width,
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(

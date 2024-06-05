@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../../core/const/app_icons.dart';
 import '../../../../core/widgets/popup_menu_item_child_widget.dart';
 
 class ViewPostAppBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class ViewPostAppBar extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: const Icon(IconlyLight.arrow_left),
+        icon: const Icon(AppIcon.back),
       ),
       actions: [
         showMoreButton

@@ -13,7 +13,7 @@ class AppSvg {
   static const String welcomeGraphics = 'assets/svg/welcome.svg';
 
   // App logo
-  static const String logo = 'assets/svg/takemytym-logo.svg';
+  static const String verified = 'assets/svg/icons/verified-icon-fill.svg';
 
   // Custom Icons
   static const String numberOne = 'assets/svg/icons/number-one.svg';

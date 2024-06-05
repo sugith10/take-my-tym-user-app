@@ -36,34 +36,32 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            DefaultSilverAppBar(title: 'My Tym', settings: () {}),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  SizedBox(height: 20.h),
-                  ProfileCard(userModel: _userModel),
-                  SizedBox(height: 20.h),
-                  AboutWidget(about: _userModel.about!),
-                  SizedBox(height: 15.h),
-                  // ProfileOptionsWidget(
-                  //   editProfile: () {
-                  //     Navigator.pushNamed(context, RouteName.editProfile);
-                  //   },
-                  // ),
-                  SizedBox(height: 15.h),
-                  const HomePadding(child: Divider()),
-                  const SizedBox(height: 25),
-                  // const SwitchProfilePostsWidget(),
-                  // const SizedBox(height: 30),
-                  const ProfilePostsWidget(),
-                ],
-              ),
+      body: CustomScrollView(
+        slivers: [
+          DefaultSilverAppBar(title: 'My Tym', settings: () {}),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(height: 20.h),
+                ProfileCard(userModel: _userModel),
+                SizedBox(height: 20.h),
+                AboutWidget(about: _userModel.about!),
+                SizedBox(height: 15.h),
+                // ProfileOptionsWidget(
+                //   editProfile: () {
+                //     Navigator.pushNamed(context, RouteName.editProfile);
+                //   },
+                // ),
+                SizedBox(height: 15.h),
+                const HomePadding(child: Divider()),
+                const SizedBox(height: 25),
+                // const SwitchProfilePostsWidget(),
+                // const SizedBox(height: 30),
+                const ProfilePostsWidget(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

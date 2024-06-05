@@ -44,30 +44,39 @@ class ChatShimmerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 10.h,
-              ),
-              ShimmerPro.text(
-                light: ShimmerProLight.lighter,
-                scaffoldBackgroundColor:
-                    Theme.of(context).scaffoldBackgroundColor,
-                width: 100,
-                maxLine: 1,
-                borderRadius: _borderRadius,
+                height: 2.h,
               ),
               SizedBox(
-                height: 10.h,
-              ),
-              ShimmerPro.text(
-                light: ShimmerProLight.lighter,
-                scaffoldBackgroundColor:
-                    Theme.of(context).scaffoldBackgroundColor,
-                width: 250,
-                maxLine: 1,
-                borderRadius: _borderRadius,
+                height: 25,
+                child: FittedBox(
+                  child: ShimmerPro.text(
+                  
+                    light: ShimmerProLight.lighter,
+                    scaffoldBackgroundColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    width: 100,
+                    maxLine: 1,
+                    borderRadius: 10,
+                  ),
+                ),
               ),
               SizedBox(
-                height: 10.h,
-              )
+                height: 5.h,
+              ),
+              SizedBox(
+                height: 25,
+                child: FittedBox(
+                  child: ShimmerPro.text(
+                    light: ShimmerProLight.lighter,
+                    scaffoldBackgroundColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    width: 250,
+              
+                    maxLine: 1,
+                    borderRadius: 10,
+                  ),
+                ),
+              ),
             ],
           )
         ],

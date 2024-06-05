@@ -17,6 +17,8 @@ import '../../features/create_post/presentation/page/create_post_second_page.dar
 import '../../features/error/presentation/page/error_page.dart';
 import '../../features/location/presentation/bloc/location_bloc.dart';
 import '../../features/location/presentation/pages/select_location_page.dart';
+import '../../features/message/presentation/model/individual_chat_page_arguments.dart';
+import '../../features/message/presentation/pages/individual_chat_page.dart';
 import '../../features/navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../../features/oboarding/presentation/pages/splash_page/splash_page.dart';
 import '../../features/profile/presentation/page/profile_setup_page.dart';

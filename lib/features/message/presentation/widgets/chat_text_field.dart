@@ -8,9 +8,10 @@ class ChatTextField extends StatefulWidget {
   final String receiverUid;
   final String receiverName;
   final String currentUid;
-
+  final FocusNode focusNode;
   final IndividualMessageBloc individualMessageBloc;
   const ChatTextField({
+    required this.focusNode,
     required this.individualMessageBloc,
     required this.currentUid,
     required this.receiverUid,
@@ -34,64 +35,50 @@ class _ChatTextFieldState extends State<ChatTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: SizedBox(
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  keyboardType: TextInputType.text,
-                  maxLines: 3,
-                  maxLength: 100,
-                  minLines: 1,
-                  controller: _controller,
-                  textCapitalization: TextCapitalization.sentences,
-                  decoration: InputDecoration(
-                    counterText: '',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: _appDarkColor.secondaryText),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: _appDarkColor.secondaryText),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    hintText: "Message",
-                    hintStyle: Theme.of(context).textTheme.bodyLarge,
-                    filled: true,
-                    fillColor: _appDarkColor.bottomBar,
-                    prefix: const SizedBox(width: 10),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: _ChatIconButton(
-                        callback: () {
-                          widget.individualMessageBloc.add(
-                            SendMessageEvent(
-                              message: _controller.text,
-                              currentUid: widget.currentUid,
-                              receiverUid: widget.receiverUid,
-                            ),
-                          );
-                          _controller.clear();
-                        },
-                        icon: IconlyBold.send,
-                        darkColor: _appDarkColor,
-                      ),
-                    ),
-                  ),
-                  style: Theme.of(context).textTheme.labelLarge,
+    return TextField(
+      focusNode: widget.focusNode,
+      keyboardType: TextInputType.text,
+      maxLines: 3,
+      maxLength: 100,
+      minLines: 1,
+      controller: _controller,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+        counterText: '',
+        enabledBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: _appDarkColor.secondaryText),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: _appDarkColor.secondaryText),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        hintText: "Message",
+        hintStyle: Theme.of(context).textTheme.bodyLarge,
+        filled: true,
+        fillColor: _appDarkColor.bottomBar,
+        prefix: const SizedBox(width: 10),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.all(8),
+          child: _ChatIconButton(
+            callback: () {
+              widget.individualMessageBloc.add(
+                SendMessageEvent(
+                  message: _controller.text,
+                  currentUid: widget.currentUid,
+                  receiverUid: widget.receiverUid,
                 ),
-              ),
-            ],
+              );
+              _controller.clear();
+            },
+            icon: IconlyBold.send,
+            darkColor: _appDarkColor,
           ),
         ),
       ),
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }

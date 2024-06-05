@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
-import '../../../../navigation_menu/presentation/widgets/widgets/drawer_button.dart';
+import '../../../../navigation_menu/presentation/widget/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
 import 'log_out_dialog.dart';
 

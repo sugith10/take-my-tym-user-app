@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+
+import '../const/app_icons.dart';
 
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SimpleAppBar({
@@ -13,7 +14,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: const Icon(IconlyLight.arrow_left),
+        icon: const Icon(AppIcon.back),
       ),
       automaticallyImplyLeading: false,
     );

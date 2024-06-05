@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/const/app_radius.dart';
 
@@ -52,28 +51,28 @@ final class AppDarkTheme {
       ),
       displayMedium: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w900,
+        fontWeight: FontWeight.w800,
         letterSpacing: .5,
         fontSize: 25.sp,
       ),
       displaySmall: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w900,
+        fontWeight: FontWeight.w800,
         fontSize: 23.sp,
       ),
       headlineLarge: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         fontSize: 22.sp,
       ),
       headlineMedium: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         fontSize: 20.sp,
       ),
       headlineSmall: TextStyle(
         color: _color.primaryText,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w600,
         fontSize: 19.sp,
       ),
       titleLarge: TextStyle(
@@ -108,18 +107,18 @@ final class AppDarkTheme {
       ),
       bodyLarge: TextStyle(
         color: _color.secondaryText,
-        fontSize: _screenUtil.setSp(14),
+        fontSize: _screenUtil.setSp(15),
         fontWeight: FontWeight.w600,
       ),
       bodyMedium: TextStyle(
         color: _color.secondaryText,
-        fontSize: 13.sp,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w600,
       ),
       bodySmall: TextStyle(
         color: _color.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 12.sp,
+        fontSize: 13.sp,
       ),
     ),
     dividerTheme: DividerThemeData(color: _color.secondaryText),

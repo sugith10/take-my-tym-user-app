@@ -6,10 +6,11 @@ import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/empty_list_text.dart';
-import '../../../../core/widgets/panel_title_widget.dart';
+import '../../../../core/widgets/panel_title_widget/panel_title_widget.dart';
 import '../../../../core/widgets/offer_list_tile.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
 import '../bloc/contracts_bloc/contracts_bloc.dart';
+import '../model/contract_panel_tile_model.dart';
 import '../widgets/contract_tab_buttons.dart';
 
 class ContractsPage extends StatefulWidget {
@@ -39,11 +40,15 @@ class _ContractsPageState extends State<ContractsPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AuthPadding(
-                child: PanelTitleWidget(
-                  title: 'Client Contracts',
-                  padding: false,
-                ),
+              AuthPadding(
+                child: BlocBuilder<ContractsBloc, ContractsState>(
+                    builder: (context, state) {
+                  return PanelTileWidget(
+                    panelTileModel: context.read<ContractsBloc>().type
+                        ? ContractPanelTileModel.activeClient
+                        : ContractPanelTileModel.completedClient,
+                  );
+                }),
               ),
               BlocBuilder<ContractsBloc, ContractsState>(
                 builder: (context, state) {
@@ -76,10 +81,11 @@ class _ContractsPageState extends State<ContractsPage> {
                   );
                 },
               ),
-              const AuthPadding(
-                child: PanelTitleWidget(
-                  title: 'Service Provider Contracts',
-                  padding: false,
+              AuthPadding(
+                child: PanelTileWidget(
+                  panelTileModel: context.read<ContractsBloc>().type
+                      ? ContractPanelTileModel.activeServiceProvider
+                      : ContractPanelTileModel.completedServiceProvider,
                 ),
               ),
               BlocBuilder<ContractsBloc, ContractsState>(

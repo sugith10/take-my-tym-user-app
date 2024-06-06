@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/empty_list_text.dart';
-import '../../../../core/widgets/panel_title_widget.dart';
+import '../../../../core/widgets/panel_title_widget/panel_title_widget.dart';
 import '../../../../core/widgets/shimmer_common_widget.dart';
 import '../bloc/accept_proposal_bloc/offer_bloc.dart';
 import '../bloc/get_offer_bloc/get_proposal_bloc.dart';
 import '../bloc/get_submit_bloc/submit_bloc.dart';
+import '../model/proposal_panel_tile_model.dart';
 import '../widgets/offer_card.dart';
 import '../widgets/submit_proposal_widget.dart';
 
@@ -20,7 +21,9 @@ class ProposalPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PanelTitleWidget(title: 'Offers'),
+          PanelTileWidget(
+            panelTileModel: ProposalPanelTileModel.offer,
+          ),
           BlocBuilder<GetProposalBloc, ProposalState>(
             builder: (context, state) {
               if (state is ProposalSucessSate) {
@@ -49,7 +52,9 @@ class ProposalPage extends StatelessWidget {
             },
           ),
           SizedBox(height: 20.h),
-          const PanelTitleWidget(title: 'Submitted proposals'),
+          PanelTileWidget(
+            panelTileModel: ProposalPanelTileModel.submitted,
+          ),
           BlocBuilder<GetProposalBloc, ProposalState>(
             builder: (context, state) {
               if (state is ProposalSucessSate) {

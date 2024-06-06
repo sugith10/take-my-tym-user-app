@@ -4,8 +4,7 @@ import 'package:take_my_tym/core/widgets/close_icon_button.dart';
 
 class AppInfoDialog {
   AppInfoDialog._();
-  static void show(
-      {required BuildContext context, required Widget widget}) {
+  static void show({required BuildContext context, required Widget widget}) {
     showDialog(
         context: context,
         builder: (context) {
@@ -16,7 +15,7 @@ class AppInfoDialog {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: Theme.of(context).bottomSheetTheme.backgroundColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Padding(

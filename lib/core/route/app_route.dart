@@ -77,7 +77,7 @@ class AppRoute {
         return leftToRight(ViewContractPage(contractModel: contractModel));
 
       case RouteName.coustomerService:
-        return leftToRight(const CoustomerServicePage());
+        return leftToRight(const CustomerServicePage());
 
       case RouteName.submitProposal:
         final PostModel postModel = settings.arguments as PostModel;

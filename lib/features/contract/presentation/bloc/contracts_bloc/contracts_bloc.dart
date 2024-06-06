@@ -8,20 +8,26 @@ import '../../../data/models/contract_model.dart';
 part 'contracts_event.dart';
 part 'contracts_state.dart';
 
+/// Bloc that handles fetching and managing contracts.
 class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
-  bool type = true;
+  /// [type] is a boolean variable that indicates,
+  /// Whether the bloc is handling active or completed contracts.
+  /// Used in the Contract Page's Active and Completed tabs to display relevant information.
+  bool _type = true;
+  bool get type => _type;
+
   ContractsBloc() : super(ContractsLoadingState()) {
     on<GetActiveContractsEvent>(_onGetActive);
     on<GetCompletedContractsEvent>(_onCompleted);
   }
 
+  /// Handles [GetActiveContractsEvent] to fetch active contracts.
   void _onGetActive(
     GetActiveContractsEvent event,
     Emitter<ContractsState> emit,
   ) async {
-    type = true;
+    _type = true;
     try {
-      // Emit a loading state indicating we are fetching active contracts
       emit(ContractsLoadingState());
 
       // Fetch active contracts from the remote data source
@@ -32,7 +38,6 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
       final List<ContractModel> contractList = data.$1;
       final List<ContractModel> serviceProviderList = data.$2;
 
-      // Emit a loaded state indicating we have fetched and loaded the contracts
       emit(
         ContractsLoadedState(
           contractList: contractList,
@@ -48,22 +53,22 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
     }
   }
 
+  /// Handles [GetCompletedContractsEvent] to fetch active contracts.
   void _onCompleted(
     GetCompletedContractsEvent event,
     Emitter<ContractsState> emit,
   ) async {
-    type = false;
+    _type = false;
     try {
-      // Emit the loading state
       emit(ContractsLoadingState());
-      // Get the completed contracts from the remote data
+      // Fetch completed contracts from the remote data
       final data =
           await ContractRemoteData().completedContracts(userId: event.userId);
       // Get the list of contracts
       final contractList = data.$1;
       // Get the list of service providers
       final serviceProviderList = data.$2;
-      // Emit the loaded state
+
       emit(
         ContractsLoadedState(
           contractList: contractList,

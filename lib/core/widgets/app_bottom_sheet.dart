@@ -3,6 +3,7 @@ import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/widgets/auth_padding.dart';
 
 class AppBottomSheet {
+  AppBottomSheet._();
   static void show({
     required BuildContext context,
     required List<Widget> children,

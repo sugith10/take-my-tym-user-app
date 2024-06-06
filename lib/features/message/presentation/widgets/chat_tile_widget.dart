@@ -8,6 +8,7 @@ import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
 import '../model/individual_chat_page_arguments.dart';
+import '../util/timestamp_time_util.dart';
 import 'chat_list_shimmer_widget.dart';
 
 class ChatTileWidget extends StatefulWidget {
@@ -53,56 +54,58 @@ class _ChatTileWidgetState extends State<ChatTileWidget> {
                 return const ChatShimmerWidget();
               }
               if (snapshot.hasData) {
-                final messageData = snapshot.data!.docs.last;
-                final message = messageData['message'] ?? 'New message';
-                final time = messageData['timestamp'] ?? Timestamp.now();
-                return ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteName.message,
-                        arguments: IndividualChatPageArguments(
-                          currentUid: widget.currentUserId,
-                          receiverUid: widget.recipientUserId,
-                          receiverName: receiverName,
-                          individualMessageBloc: _individualMessageBloc,
-                        ));
-                  },
-                  leading: const CircleProfilePicWidget(
-                    height: 50,
-                    width: 50,
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Text(
-                      message,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                if (snapshot.data!.docs.isNotEmpty) {
+                  final messageData = snapshot.data!.docs.last;
+                  final message = messageData['message'] ?? 'New message';
+                  final time = messageData['timestamp'] ?? Timestamp.now();
+                  return ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.message,
+                          arguments: IndividualChatPageArguments(
+                            currentUid: widget.currentUserId,
+                            receiverUid: widget.recipientUserId,
+                            receiverName: receiverName,
+                            individualMessageBloc: _individualMessageBloc,
+                          ));
+                    },
+                    leading: const CircleProfilePicWidget(
+                      height: 50,
+                      width: 50,
                     ),
-                  ),
-                  title: Row(
-                    children: [
-                      StreamBuilder<DocumentSnapshot>(
-                        stream: state.userInfo,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            final map = snapshot.data!;
-                            receiverName = map['userName'] ?? '....';
-                          }
-                          return Text(
-                            receiverName,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          );
-                        },
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text(
+                        message,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      const Spacer(),
-                      Text(
-                        TextManipulator.timestampToTime(time),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 10.5.sp),
-                      )
-                    ],
-                  ),
-                );
+                    ),
+                    title: Row(
+                      children: [
+                        StreamBuilder<DocumentSnapshot>(
+                          stream: state.userInfo,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              final map = snapshot.data!;
+                              receiverName = map['userName'] ?? '....';
+                            }
+                            return Text(
+                              receiverName,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            );
+                          },
+                        ),
+                        const Spacer(),
+                        Text(
+                          MessageTimeUtil.timestampToTime(time),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(fontSize: 10.5.sp),
+                        )
+                      ],
+                    ),
+                  );
+                }
               }
               return const SizedBox.shrink();
             },

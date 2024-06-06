@@ -39,17 +39,19 @@ class ProfileCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //User full name
-                  Row(
-                    children: [
-                      _ProfileNameWidget(
-                          name:
-                              '${TextManipulator.capitalize(userModel.firstName)} ${TextManipulator.capitalize(userModel.lastName)}'),
-                      SizedBox(width: 8.w),
-                      if (userModel.verified)
-                        SvgPicture.asset(AppSvg.verified,
-                            colorFilter: const ColorFilter.mode(
-                                Color(0xFF1D9AEF), BlendMode.srcIn))
-                    ],
+                  FittedBox(
+                    child: Row(
+                      children: [
+                        _ProfileNameWidget(
+                            name:
+                                '${TextManipulator.capitalize(userModel.firstName)} ${TextManipulator.capitalize(userModel.lastName)}'),
+                        SizedBox(width: 8.w),
+                        if (userModel.verified)
+                          SvgPicture.asset(AppSvg.verified,
+                              colorFilter: const ColorFilter.mode(
+                                  Color(0xFF1D9AEF), BlendMode.srcIn))
+                      ],
+                    ),
                   ),
                   if (!userModel.verified)
                     Text("(Verification Pending)",

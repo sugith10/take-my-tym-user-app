@@ -10,6 +10,8 @@ part 'contract_service_state.dart';
 
 class ContractServiceBloc
     extends Bloc<ContractServiceEvent, ContractServiceState> {
+  final bool contractType = true;
+   
   ContractServiceBloc() : super(ContractServiceInitial()) {
     on<FinishContractServiceEvent>(_onFinish);
   }

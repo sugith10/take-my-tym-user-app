@@ -3,14 +3,14 @@ import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 
 import '../../../../core/widgets/contct_form.dart';
 
-class CoustomerServicePage extends StatefulWidget {
-  const CoustomerServicePage({super.key});
+class CustomerServicePage extends StatefulWidget {
+  const CustomerServicePage({super.key});
 
   @override
-  State<CoustomerServicePage> createState() => _CoustomerServicePageState();
+  State<CustomerServicePage> createState() => _CustomerServicePageState();
 }
 
-class _CoustomerServicePageState extends State<CoustomerServicePage> {
+class _CustomerServicePageState extends State<CustomerServicePage> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 

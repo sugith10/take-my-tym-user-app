@@ -10,7 +10,6 @@ class MessageRemoteData {
     // required String senderName,
     // required String receiverName,
   }) async {
-
     final Timestamp timestamp = Timestamp.now();
 
     //create a new message
@@ -37,29 +36,35 @@ class MessageRemoteData {
           .collection("messages")
           .add(newMessage.toMap())
           .then(
-        //after the write succes saving the id inside another collection
+        //after the write succes saving the id inside chatList collection
         (value) async {
-          final dataDoc =
+          final currentUserChatList =
               await fireStore.collection("chatList").doc(currentUid).get();
 
-          final Map<String, dynamic>? data = dataDoc.data();
+          final Map<String, dynamic>? currentUserChatData =
+              currentUserChatList.data();
 
-          if (data == null) {
+          if (currentUserChatData == null) {
             await fireStore.collection("chatList").doc(currentUid).set({
               chatroomID: receiverUid,
             });
-
-            await fireStore.collection("chatList").doc(receiverUid).set({
-              chatroomID: currentUid,
-            });
-          } else if (data.containsKey(chatroomID)) {
-            log("chataRoom data already exists $chatroomID");
-          } else {
-            log("came here");
+          } else if (!currentUserChatData.containsKey(chatroomID)) {
             await fireStore.collection("chatList").doc(currentUid).update({
               chatroomID: receiverUid,
             });
+          }
 
+          final receiverChatList =
+              await fireStore.collection("chatList").doc(receiverUid).get();
+
+          final Map<String, dynamic>? receiverChatData =
+              receiverChatList.data();
+
+          if (receiverChatData == null) {
+            await fireStore.collection("chatList").doc(receiverUid).set({
+              chatroomID: currentUid,
+            });
+          } else if (!receiverChatData.containsKey(chatroomID)) {
             await fireStore.collection("chatList").doc(receiverUid).update({
               chatroomID: currentUid,
             });
@@ -105,7 +110,6 @@ class MessageRemoteData {
   //Chat Partner Info
   Stream<DocumentSnapshot> getChatPartnerInfoStream(
       {required String recipientUserId}) {
-    log('on Chat list message remote');
     return FirebaseFirestore.instance
         .collection("users")
         .doc(recipientUserId)

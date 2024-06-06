@@ -50,11 +50,11 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
     });
   }
 
-  void _scrollToBottomIntial() {
-    if (_scrollController.hasClients) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    }
-  }
+  // void _scrollToBottomIntial() {
+  //   if (_scrollController.hasClients) {
+  //     _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  //   }
+  // }
 
   void _scrollToBottom() {
     _scrollController.animateTo(_scrollController.position.maxScrollExtent,
@@ -85,7 +85,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      _scrollToBottomIntial();
+                     _scrollToBottom();
                     });
                     return Column(
                       children: [

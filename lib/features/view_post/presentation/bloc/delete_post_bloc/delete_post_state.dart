@@ -21,7 +21,6 @@ final class DeletPostSuccessState extends DeletePostState {
 }
 
 final class DeletPostFailState extends DeletePostState {
-  final String message;
-  final String description;
-  const DeletPostFailState({required this.message, required this.description});
+  final AppAlert appAlert;
+  const DeletPostFailState({required this.appAlert});
 }

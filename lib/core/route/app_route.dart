@@ -26,6 +26,7 @@ class AppRoute {
       case RouteName.home:
         return noMovement(const HomeNavigationMenu());
 
+      // Create post page
       case RouteName.createPostFirst:
         final PostModel? postModel = settings.arguments as PostModel?;
         return bottomToTop(CreatePostFirstPage(postModel: postModel));
@@ -38,6 +39,7 @@ class AppRoute {
               postModel: arg.postModel, bloc: arg.createPostBloc),
         );
 
+      // Location select page
       case RouteName.location:
         final LocationBloc locationBloc = settings.arguments as LocationBloc;
         return bottomToTop(SelectLocationPage(locationBloc: locationBloc));

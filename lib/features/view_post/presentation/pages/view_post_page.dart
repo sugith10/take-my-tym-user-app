@@ -4,24 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/const/app_padding.dart';
-import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';
+import '../../../message/presentation/model/individual_chat_page_arguments.dart';
 import '../../../profile/presentation/widget/post_owner_info_widget/post_owner_info_widget.dart';
 import '../../../../core/widgets/submit_button.dart';
-import '../../../create_post/presentation/page/create_post_first_page.dart';
 import '../../../create_post/presentation/widget/post_description_widget.dart';
 import '../../../create_post/presentation/widget/post_specifications_widget.dart';
 import '../../../create_post/presentation/widget/post_title_widget.dart';
 import '../../../create_post/presentation/widget/skills_widget.dart';
 import '../../../message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
-import '../../../message/presentation/pages/individual_chat_page.dart';
 import '../bloc/delete_post_bloc/delete_post_bloc.dart';
 import '../bloc/read_post_bloc/read_post_bloc.dart';
 import '../widgets/chat_floating_action_button.dart';
+import '../widgets/delete_confirmation_dialog.dart';
 import '../widgets/post_service_widget.dart';
 import '../widgets/proposel_bottom_sheet.dart';
 import '../widgets/view_post_app_bar.dart';
@@ -66,11 +65,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
         if (state is DeletPostFailState) {
           AppSnackBar.failSnackBar(
             context: context,
-            alert: AppAlert(
-              alert: "Post Deletion Failed",
-              details:
-                  "An error occurred while trying to delete the post. Please try again.",
-            ),
+            alert: state.appAlert,
           );
         }
       },
@@ -80,28 +75,20 @@ class _ViewPostPageState extends State<ViewPostPage> {
             slivers: [
               ViewPostAppBar(
                 update: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreatePostFirstPage(
-                        postModel: widget.postModel,
-                      ),
+                  DeleteConfirmationDialog().show(
+                    context: context,
+                    callBack: () => Navigator.pushNamed(
+                      context,
+                      RouteName.createPostFirst,
+                      arguments: widget.postModel,
                     ),
                   );
                 },
                 delete: () {
-                  AppDialog.show(
-                    context: context,
-                    title: 'Delete confirmation',
-                    subtitle: 'Are you sure you want delete this post?',
-                    action: 'Delete',
-                    actionCall: () {
-                      _deletePostBloc.add(
-                        DeletePersonalPostEvent(
-                          postModel: widget.postModel,
-                        ),
-                      );
-                    },
+                  _deletePostBloc.add(
+                    DeletePersonalPostEvent(
+                      postModel: widget.postModel,
+                    ),
                   );
                 },
                 showMoreButton: widget.postModel.uid ==
@@ -160,15 +147,14 @@ class _ViewPostPageState extends State<ViewPostPage> {
             ? null
             : ChatFloatingActionButton(
                 callBack: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => IndividualChatPage(
-                        currentUid: context.read<AppUserBloc>().userModel!.uid,
-                        receiverUid: widget.postModel.uid,
-                        receiverName: widget.postModel.userName,
-                        individualMessageBloc: IndividualMessageBloc(),
-                      ),
+                    RouteName.message,
+                    arguments: IndividualChatPageArguments(
+                      currentUid: context.read<AppUserBloc>().userModel!.uid,
+                      receiverUid: widget.postModel.uid,
+                      receiverName: widget.postModel.userName,
+                      individualMessageBloc: IndividualMessageBloc(),
                     ),
                   );
                 },

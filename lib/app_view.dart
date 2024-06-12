@@ -22,7 +22,7 @@ class MyAppView extends StatelessWidget {
           initialRoute: RouteName.initial,
           onGenerateRoute: AppRoute.generateRoute,
           navigatorObservers: [AppNavigatorObserver()],
-          theme: AppDarkTheme().darkTheme,
+          theme: AppDarkTheme.darkTheme,
           debugShowCheckedModeBanner: false,
         );
       }),

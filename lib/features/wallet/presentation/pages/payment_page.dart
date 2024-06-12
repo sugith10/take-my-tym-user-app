@@ -15,6 +15,7 @@ import '../bloc/wallet_bloc/wallet_bloc.dart';
 import '../util/wallet_action_type.dart';
 import '../widgets/feedback_text_field.dart';
 import '../widgets/pay_button.dart';
+import '../widgets/payment_confirmation_dialog.dart';
 import '../widgets/payment_textfield.dart';
 import '../widgets/wallet_message.dart';
 
@@ -78,7 +79,7 @@ class _PaymentPageState extends State<PaymentPage> {
             }
             if (state is WalletErrorState) {
               AppSnackBar.failSnackBar(
-                context: context, 
+                context: context,
                 alert: AppAlert(),
               );
             }
@@ -128,17 +129,14 @@ class _PaymentPageState extends State<PaymentPage> {
         bottomNavigationBar: PayButton(
           callback: () {
             FocusManager.instance.primaryFocus?.unfocus();
-            if (widget.type == WalletAction.topUp) {
-              _paymentBloc.add(PaymentTopUpEvent(amount: _paymentCntrl.text));
-            } else if (widget.type == WalletAction.widthdraw) {
-              context.read<WalletBloc>().add(WalletWithdrawEvent(
-                  uid: uid,
-                  amount: _paymentCntrl.text,
-                  walletModel: widget.walletModel));
-            } else if (widget.type == WalletAction.transfer) {
-              context.read<WalletBloc>().add(
-                  WalletTransferEvent(uid: uid, amount: _paymentCntrl.text));
-            }
+            PaymentDialog.show(
+              context: context,
+              uid: uid,
+              type: widget.type,
+              walletModel: widget.walletModel,
+              amount: _paymentCntrl.text,
+              paymentBloc: _paymentBloc,
+            );
           },
           walletAction: widget.type,
         ),

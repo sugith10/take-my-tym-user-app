@@ -23,43 +23,7 @@ To try out the application, you can go to the Amazon App Store and search for "T
 
 ## Features
 The project is done using a clean architecture, feature-first approach. Each feature is a separate module. Understanding the project structure is crucial:
-
-lib/
-│
-├── core/
-│ ├── assets/
-│ ├── bloc/
-│ ├── const /
-│ ├── di/
-│ ├── model/
-│ ├── observer/
-│ ├── route/
-│ ├── theme/
-│ ├── utils/
-│ └── widgets/
-│
-├── features/
-│ ├── auth/
-│ ├── contract/
-│ ├── create_post/
-│ ├── error/
-│ ├── home/
-│ ├── location/
-│ ├── message/
-│ ├── navigation_menu/
-│ ├── notification/
-│ ├── onboarding/
-│ ├── profile/
-│ ├── proposal/
-│ ├── search/
-│ ├── success/
-│ ├── view_post/
-│ └── wallet/
-│
-├── app_view.dart
-├── app.dart
-├── main.dart
-
+  
 ### Key Files
 - **main.dart**: Entry point of the project.
 - **app.dart**: Handles root-level bloc provider.
@@ -79,9 +43,20 @@ lib/
 
 ### Feature Modules
 Each module follows clean architecture (data, domain, presentation):
-- **presentation**: Contains blocs, pages, widgets.
-- **domain**: Contains use cases, repositories.
-- **data**: Contains repositories (domain implementation), API calls, URLs.
+- **auth**:
+- **contract**: 
+- **create_post**: 
+- **home**:
+- **message**: 
+- **navigation_menu**: 
+- **notification**:
+- **onboarding**: 
+- **profile**: 
+- **proposal**:
+- **search**: 
+- **success**: 
+- **view_post**: 
+- **wallet**: 
 
 ### Supporting Files
 - **firebase_options.dart**: Firebase configuration (git-ignored).
@@ -99,4 +74,4 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 Contributions are welcomed for the project. Create a git fork and follow the installation guide.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.

@@ -7,6 +7,7 @@ import 'color/app_colors.dart';
 
 /// Defines the dark theme for the application.
 final class AppDarkTheme {
+  AppDarkTheme._();
   static final AppDarkColor _color = AppDarkColor.instance;
   static final ScreenUtil _screenUtil = ScreenUtil();
 
@@ -16,7 +17,7 @@ final class AppDarkTheme {
   );
 
   /// Dark theme configuration.
-  final ThemeData darkTheme = ThemeData(
+  static final ThemeData darkTheme = ThemeData(
     fontFamily: AppFont.gilroy,
     colorScheme: ColorScheme.dark(
       surface: _color.background,

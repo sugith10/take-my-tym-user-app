@@ -124,7 +124,7 @@ class _ChatFloatingActionButtonState extends State<ChatFloatingActionButton>
                   const CircleProfilePicWidget(
                     height: 30,
                     width: 30,
-                    animation: false,
+                  
                   ),
                   SizedBox(width: 10.w),
                   Text("Chat", style: Theme.of(context).textTheme.labelMedium),

@@ -10,6 +10,7 @@ class AppDialog {
     required String action,
     required VoidCallback actionCall,
     Color? actionColor,
+    Widget? actionWidget,
     bool actionPop = false,
     String canecel = "Cancel",
   }) {
@@ -55,6 +56,7 @@ class AppDialog {
                     }
                     actionCall();
                   },
+                  actionWidget: actionWidget,
                 ),
                 const Spacer(),
               ],
@@ -71,11 +73,13 @@ class _MessageButton extends StatelessWidget {
   final VoidCallback callback;
   final Color backgroundColor;
   final Color foregroundColor;
+  final Widget? actionWidget;
   const _MessageButton({
     required this.action,
     required this.backgroundColor,
     required this.callback,
     required this.foregroundColor,
+    this.actionWidget,
   });
 
   @override
@@ -91,7 +95,7 @@ class _MessageButton extends StatelessWidget {
               backgroundColor: WidgetStatePropertyAll(backgroundColor),
               foregroundColor: WidgetStatePropertyAll(foregroundColor),
             ),
-            child: Text(action),
+            child: actionWidget ?? Text(action),
           ),
         ),
       ],

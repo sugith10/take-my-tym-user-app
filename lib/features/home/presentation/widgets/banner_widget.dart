@@ -13,9 +13,8 @@ class BannerWidget extends StatefulWidget {
   State<BannerWidget> createState() => _BannerWidgetState();
 }
 
-Timer? _timer;
-
 class _BannerWidgetState extends State<BannerWidget> {
+  Timer? _timer;
   final images = <String>[
     AppPng.adOne,
     AppPng.adTwo,

@@ -10,22 +10,21 @@ sealed class UpdateProfileEvent extends Equatable {
 final class ProfileSetupEvent extends UpdateProfileEvent {
   final String userName;
   final String about;
-  final String location;
-  final double latitude;
-  final double longitude;
+  final LocationBloc locationBloc;
+
   final String profession;
   final UserModel userModel;
 
   const ProfileSetupEvent({
     required this.userName,
     required this.about,
-    required this.location,
-    required this.latitude,
-    required this.longitude,
+    required this.locationBloc,
     required this.profession,
     required this.userModel,
   });
 }
+
+final class ProfileSetupFailEvent extends UpdateProfileEvent {}
 
 final class ProfileUpdateEvent extends UpdateProfileEvent {
   final String userName;

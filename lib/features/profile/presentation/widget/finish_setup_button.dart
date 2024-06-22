@@ -36,7 +36,7 @@ class FinishSetupButton extends StatelessWidget {
                 offset: const Offset(.2, .2),
               ),
             ]),
-        height: 50.h,
+        height: 45.h,
         width: double.infinity,
         child: Center(
           child: Text(

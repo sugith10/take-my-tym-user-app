@@ -24,9 +24,12 @@ class ProfileCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //Section 1 begin
-          const CircleProfilePicWidget(
-            height: 100,
-            width: 100,
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.2,
+            child: const CircleProfilePicWidget(
+              height: 100,
+              width: 100,
+            ),
           ),
           SizedBox(width: 15.h),
           //Section 1 end

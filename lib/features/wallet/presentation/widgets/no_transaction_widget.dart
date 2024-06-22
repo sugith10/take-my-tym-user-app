@@ -17,11 +17,14 @@ class WalletMessageWidget extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          const Spacer(flex: 1),
+          if (!type) const Spacer(flex: 2),
           if (type)
-            const NotYetWidget(
-              title: "No Transactions yet",
-              subtitle: "You'll find your transactions all right here",
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: NotYetWidget(
+                title: "No Transactions yet",
+                subtitle: "You'll find your transactions all right here",
+              ),
             ),
           if (!type)
             InkWell(

@@ -4,11 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 
-
 class ProfileWidget extends StatelessWidget {
-
   const ProfileWidget({
-    
     super.key,
   });
 
@@ -21,7 +18,6 @@ class ProfileWidget extends StatelessWidget {
             const CircleProfilePicWidget(
               height: 80,
               width: 80,
-              loopAnimation: true,
             ),
             const SizedBox(width: 10),
             Expanded(

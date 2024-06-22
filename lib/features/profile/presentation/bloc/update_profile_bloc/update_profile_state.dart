@@ -21,3 +21,5 @@ final class UpdataProfileFailState extends UpdateProfileState {
 
   const UpdataProfileFailState({required this.alert});
 }
+
+class UpdatingProfileState extends UpdateProfileState {}

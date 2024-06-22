@@ -3,19 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rive_animated_icon/rive_animated_icon.dart';
+import 'package:take_my_tym/core/assets/app_png.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 class CircleProfilePicWidget extends StatelessWidget {
   final double width;
   final double height;
   final XFile? image;
-  final bool animation;
-  final bool loopAnimation;
+
   const CircleProfilePicWidget({
     super.key,
-    this.animation = true,
-    this.loopAnimation = false,
     required this.width,
     required this.height,
     this.image,
@@ -27,6 +24,7 @@ class CircleProfilePicWidget extends StatelessWidget {
         ? _CircleContainer(
             width: width,
             height: height,
+            border: 2.5,
             child: Container(
               width: width,
               height: height,
@@ -39,18 +37,14 @@ class CircleProfilePicWidget extends StatelessWidget {
               ),
             ),
           )
-        : animation
-            ? RiveAnimatedIcon(
-                riveIcon: RiveIcon.profile,
-                width: width / 1.5,
-                height: height / 1.5,
-                color: AppDarkColor.instance.primaryText,
-                loopAnimation: loopAnimation,
-              )
-            : Icon(
-                IconlyBroken.profile,
-                color: AppDarkColor.instance.iconColor,
-              );
+        : Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            AppPng.profileIcon,
+            height: height /2,
+            width: width /2,
+          ),
+        );
   }
 }
 
@@ -59,10 +53,12 @@ class _CircleContainer extends StatelessWidget {
     required this.width,
     required this.height,
     required this.child,
+    required this.border,
   });
 
   final double width;
   final double height;
+  final double border;
   final Widget child;
 
   @override
@@ -71,7 +67,7 @@ class _CircleContainer extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.white,
-          width: 2.5,
+          width: border,
         ),
         shape: BoxShape.circle,
       ),

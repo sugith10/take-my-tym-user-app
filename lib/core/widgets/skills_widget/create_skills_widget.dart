@@ -89,7 +89,7 @@ class _SkillsTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      autofocus: true,
+      // autofocus: true,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.words,
       controller: categoryCntrl,

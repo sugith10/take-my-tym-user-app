@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/app_dialog.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
@@ -15,7 +16,19 @@ class LogOutWidget {
       action: "LOG OUT",
       canecel: "CANCEL",
       actionCall: () => signOutBloc.add(UserSignOutEvent()),
-      actionPop: true,
+      actionWidget: BlocBuilder(
+        bloc: signOutBloc,
+        builder: (context, state) {
+          if (state is SignOutLoadingState) {
+            return const SizedBox(
+              height: 30,
+              width: 30,
+              child: CircularProgressIndicator(),
+            );
+          }
+          return const Text("LOG OUT");
+        },
+      ),
     );
   }
 }

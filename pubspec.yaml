@@ -42,7 +42,7 @@ dependencies:
   firebase_storage: ^11.7.0
   firebase_analytics: ^10.10.5
   flutter_stripe: ^10.1.1
-  firebase_messaging: ^14.9.3
+  onesignal_flutter: ^5.2.1
 
   flutter_svg: ^2.0.10+1
   animate_do: ^3.3.4

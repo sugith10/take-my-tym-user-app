@@ -75,7 +75,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
             slivers: [
               ViewPostAppBar(
                 update: () {
-                  DeleteConfirmationDialog().show(
+                  PostDialog.update(
                     context: context,
                     callBack: () => Navigator.pushNamed(
                       context,
@@ -85,10 +85,15 @@ class _ViewPostPageState extends State<ViewPostPage> {
                   );
                 },
                 delete: () {
-                  _deletePostBloc.add(
-                    DeletePersonalPostEvent(
-                      postModel: widget.postModel,
-                    ),
+                  PostDialog.delete(
+                    context: context,
+                    callBack: () {
+                      _deletePostBloc.add(
+                        DeletePersonalPostEvent(
+                          postModel: widget.postModel,
+                        ),
+                      );
+                    },
                   );
                 },
                 showMoreButton: widget.postModel.uid ==

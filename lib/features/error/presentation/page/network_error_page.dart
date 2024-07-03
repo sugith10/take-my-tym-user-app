@@ -34,8 +34,10 @@ final class ErrorPage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(height: 10.h),
-            Text("check your internet connection and try again",
-                style: Theme.of(context).textTheme.bodyMedium),
+            Text(
+              "check your internet connection and try again",
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             const Spacer(flex: 1),
             ElevatedButton(
               onPressed: () {

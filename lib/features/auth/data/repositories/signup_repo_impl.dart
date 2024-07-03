@@ -7,10 +7,8 @@ import '../datasources/remote/sign_up_remote_data.dart';
 
 // Class to implement the SignUpRepo interface
 class SignUpRepoImpl implements SignUpRepo {
-  // Remote data source to be used for the implementation
   final SignUpRemoteData _remoteDataSource;
 
-  // Constructor for the SignUpRepoImpl class
   SignUpRepoImpl(this._remoteDataSource);
 
   // Override method to create a new user

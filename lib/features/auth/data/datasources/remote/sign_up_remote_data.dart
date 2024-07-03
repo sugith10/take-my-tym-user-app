@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/text_manipulator/taxt_manipulator.dart';
 
 //class to manage remote data for sign up
-final class SignUpRemoteData {
+class SignUpRemoteData {
   ///Create a user with email
   Future<UserModel> createUserWithEmail({
     required String firstName,
@@ -36,15 +36,15 @@ final class SignUpRemoteData {
 
       //create user model
       UserModel userModel = UserModel(
-          uid: user.uid,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          userName: firstName + lastName,
-          verified: false,
-          blocked: false,
-          join: TextManipulator.joinDate(date: DateTime.now()),
-          );
+        uid: user.uid,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        userName: firstName + lastName,
+        verified: false,
+        blocked: false,
+        join: TextManipulator.joinDate(date: DateTime.now()),
+      );
       try {
         //run transaction to set user model
         await FirebaseFirestore.instance.runTransaction((transaction) async {

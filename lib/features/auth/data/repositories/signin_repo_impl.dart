@@ -7,7 +7,6 @@ import '../datasources/remote/sign_in_remote_data.dart';
 
 // Implementation of SignInRepository
 class SignInRepoImpl implements SignInRepo {
-  // RemoteDataSource to be used for authentication
   final SignInRemoteData _remoteDataSource;
 
   SignInRepoImpl(this._remoteDataSource);

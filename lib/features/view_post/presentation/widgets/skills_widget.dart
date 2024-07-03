@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/const/app_padding.dart';
 import '../../../../core/const/app_radius.dart';
-import 'post_category_widget.dart';
+import '../../../create_post/presentation/widget/post_category_widget.dart';
+
 
 
 class SkillsWidget extends StatelessWidget {

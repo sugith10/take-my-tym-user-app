@@ -3,7 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
 
 /// Remote data source for handle sign-out operation
-final class SignOutRemoteData {
+class SignOutRemoteData {
   // A method to sign the user out of the application
   Future<void> signOut() async {
     try {

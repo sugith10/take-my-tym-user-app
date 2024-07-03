@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/utils/app_exception.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
@@ -23,11 +21,11 @@ final class CreatePostRemoteData {
 
   Future<bool> sellTymPost({required PostModel postModel}) async {
     try {
-       log("Data added successfully in sellTymPost - message from create post remote data");
+      //  log("Data added successfully in sellTymPost - message from create post remote data");
       final buyTymPost = FirebaseFirestore.instance.collection('sellTymPost');
       await buyTymPost.add(postModel.toMap());
 
-      log("Data added successfully in sellTymPost - message from create post remote data");
+      // log("Data added successfully in sellTymPost - message from create post remote data");
       return true;
     } on FirebaseException catch (e) {
       throw AppException(

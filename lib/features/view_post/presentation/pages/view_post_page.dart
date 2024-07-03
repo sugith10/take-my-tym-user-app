@@ -15,7 +15,7 @@ import '../../../../core/widgets/submit_button.dart';
 import '../../../create_post/presentation/widget/post_description_widget.dart';
 import '../../../create_post/presentation/widget/post_specifications_widget.dart';
 import '../../../create_post/presentation/widget/post_title_widget.dart';
-import '../../../create_post/presentation/widget/skills_widget.dart';
+import '../widgets/skills_widget.dart';
 import '../../../message/presentation/bloc/individual_message_bloc/individual_message_bloc.dart';
 import '../bloc/delete_post_bloc/delete_post_bloc.dart';
 import '../bloc/read_post_bloc/read_post_bloc.dart';

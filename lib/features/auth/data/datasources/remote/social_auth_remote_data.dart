@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/utils/app_logger.dart';
 import 'package:take_my_tym/core/utils/text_manipulator/taxt_manipulator.dart';
 
-final class SocailAuthRemoteData {
+ class SocailAuthRemoteData {
   ///GOOGLE SIGNIN
   Future<UserModel> signInWithGoogle() async {
     try {

@@ -4,7 +4,6 @@ import 'package:take_my_tym/features/auth/domain/repositories/social_auth_repo.d
 
 // Implementation of SocialAuthRepository
 class SocialAuthRepoImpl implements SocialAuthRepo {
-  // RemoteDataSource to be used for authentication
   final SocailAuthRemoteData _remoteDataSource;
 
   SocialAuthRepoImpl(this._remoteDataSource);

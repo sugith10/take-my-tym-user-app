@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_policy.dart';
+import '../../../../core/util/app_policy.dart';
 import '../../../../core/widgets/navigation_taxt_button.dart';
 
 class TermsAndConditionsWidget extends StatelessWidget {

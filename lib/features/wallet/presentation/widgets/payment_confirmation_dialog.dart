@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
+import 'package:take_my_tym/core/util/app_error_msg.dart';
 import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
 import 'package:take_my_tym/features/wallet/presentation/bloc/payment_bloc/payment_bloc.dart';
 import 'package:take_my_tym/features/wallet/presentation/util/wallet_utils.dart';

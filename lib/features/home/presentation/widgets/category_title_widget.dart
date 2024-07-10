@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/const/app_padding.dart';
-import '../../../../core/utils/app_responsive.dart';
+import '../../../../core/util/app_responsive.dart';
 
 class CategoryTitleWidget extends StatelessWidget {
   final String title;

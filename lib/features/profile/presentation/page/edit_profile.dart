@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/theme/color/app_colors.dart';
 import '../../../../core/widgets/action_button.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';

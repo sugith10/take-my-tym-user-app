@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/circle_profile_picture_widget.dart';
 
-import '../../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../../core/util/text_manipulator/taxt_manipulator.dart';
 
 class UserInfoWidget extends StatelessWidget {
   final String? image;

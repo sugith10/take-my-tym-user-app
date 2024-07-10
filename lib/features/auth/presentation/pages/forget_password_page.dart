@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/app_error_msg.dart';
-import '../../../../core/utils/reg_exp.dart';
+import '../../../../core/util/app_error_msg.dart';
+import '../../../../core/util/reg_exp.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../bloc/forget_password_bloc/forget_password_bloc.dart';

@@ -1,19 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
-
-
+import 'chat_date_card.dart';
 
 class ChatWidget extends StatelessWidget {
   final String message;
   final String senderId;
   final String time;
+  final Timestamp date;
+  final bool isFirstMessageOfDay; // Added boolean flag
   const ChatWidget({
+    required this.isFirstMessageOfDay,
     required this.message,
     required this.senderId,
     required this.time,
+    required this.date,
     super.key,
   });
 
@@ -30,6 +34,8 @@ class ChatWidget extends StatelessWidget {
         child: Wrap(
           alignment: uid == senderId ? WrapAlignment.end : WrapAlignment.start,
           children: [
+            if (isFirstMessageOfDay) // Show date if it's the first message of the day
+              ChatDateCard(date: date),
             Container(
               decoration: uid == senderId
                   ? const BoxDecoration(
@@ -47,7 +53,7 @@ class ChatWidget extends StatelessWidget {
                           topRight: Radius.circular(10)),
                     ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(15,8,15,8),
+                padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
                 child: Column(
                   crossAxisAlignment: uid == senderId
                       ? CrossAxisAlignment.end

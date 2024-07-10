@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../../core/model/app_user_model.dart';
-import '../../../../../core/utils/app_error_msg.dart';
-import '../../../../../core/utils/app_exception.dart';
-import '../../../../../core/utils/app_logger.dart';
+import '../../../../../core/util/app_error_msg.dart';
+import '../../../../../core/util/app_exception.dart';
+import '../../../../../core/util/app_logger.dart';
 import '../../../domain/usecases/local_user_storage_usecase.dart';
 import '../../../domain/usecases/social_auth_usecase.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:take_my_tym/core/const/app_padding.dart';
 import 'package:take_my_tym/core/const/app_radius.dart';
 
-import '../utils/app_vibration.dart';
+import '../util/app_vibration.dart';
 
 class SubmitButton extends StatelessWidget {
   final VoidCallback callback;

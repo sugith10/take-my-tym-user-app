@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
+import 'package:take_my_tym/core/util/app_error_msg.dart';
 import 'package:take_my_tym/features/profile/domain/usecases/update_profile_usecase.dart';
 
 part 'get_profile_event.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../profile/presentation/page/profile_setup_page.dart';

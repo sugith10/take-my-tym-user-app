@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:take_my_tym/core/utils/app_logger.dart';
+import 'package:take_my_tym/core/util/app_logger.dart';
 
 import '../../../../../core/model/app_user_model.dart';
 

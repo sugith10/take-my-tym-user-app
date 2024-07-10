@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../features/create_post/presentation/widget/post_specifications_widget.dart';
 import '../model/app_post_model.dart';
-import '../utils/text_manipulator/taxt_manipulator.dart';
+import '../util/text_manipulator/taxt_manipulator.dart';
 import '../theme/color/app_colors.dart';
 import 'app_card.dart';
 

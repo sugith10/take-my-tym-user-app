@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/core/util/app_exception.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_logger.dart';
-import 'package:take_my_tym/core/utils/text_manipulator/taxt_manipulator.dart';
+import 'package:take_my_tym/core/util/app_logger.dart';
+import 'package:take_my_tym/core/util/text_manipulator/taxt_manipulator.dart';
 
  class SocailAuthRemoteData {
   ///GOOGLE SIGNIN

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_my_tym/core/utils/app_logger.dart';
+import 'package:take_my_tym/core/util/app_logger.dart';
 
 class AppBlocObserver extends BlocObserver {
   ///We can react to events

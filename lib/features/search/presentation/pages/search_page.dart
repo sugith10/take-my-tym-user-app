@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
-import '../../../../core/utils/app_debouncer.dart';
+import '../../../../core/util/app_debouncer.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/post_card.dart';
 import '../widgets/search_empty_list_widget.dart';

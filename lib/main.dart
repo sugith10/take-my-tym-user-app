@@ -12,6 +12,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'app.dart';
 import 'core/observer/bloc_observer.dart';
 import 'core/di/dependency_injection_packages.dart';
+import 'core/util/restart_widget.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -39,5 +40,7 @@ void main() async {
 
   Bloc.observer = AppBlocObserver();
 
-  runApp(Phoenix(child: const MyApp()));
+  runApp(const RestartWidget(
+    child: MyApp(),
+  ));
 }

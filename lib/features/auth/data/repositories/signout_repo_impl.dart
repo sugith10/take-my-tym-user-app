@@ -1,7 +1,7 @@
 import 'package:take_my_tym/features/auth/data/datasources/remote/sign_out_remote_data.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/signout_repo.dart';
 
-import '../../../../core/utils/app_exception.dart';
+import '../../../../core/util/app_exception.dart';
 
 // Implementation of the SignOutRepository
 class SignOutRepoImp implements SignOutRepo {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_debouncer.dart';
+import '../../../../../core/util/app_debouncer.dart';
 import '../../bloc/search_bloc/search_bloc.dart';
 import 'search_text_field.dart';
 

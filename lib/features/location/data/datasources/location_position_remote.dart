@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/core/util/app_exception.dart';
 
 final class LocationPositionRemote {
   Future<Map<String, dynamic>> fetchLocationPosition({

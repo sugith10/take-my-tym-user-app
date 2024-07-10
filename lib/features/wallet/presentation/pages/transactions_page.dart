@@ -3,7 +3,7 @@ import 'package:take_my_tym/core/widgets/common_app_bar.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 import 'package:take_my_tym/features/wallet/presentation/widgets/transaction_tile.dart';
 
-import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 
 class TransactionsPage extends StatelessWidget {
   final List<TransactionModel> transactios;

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../utils/app_error_msg.dart';
+import '../../util/app_error_msg.dart';
 import '../../const/app_radius.dart';
 import '../../assets/app_svg.dart';
 import '../../theme/color/app_colors.dart';

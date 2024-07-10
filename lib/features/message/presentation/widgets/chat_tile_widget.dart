@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/route/route_name/app_route_name.dart';
-import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/circle_profile_picture_widget.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
 import '../model/individual_chat_page_arguments.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
 import '../../../../core/theme/color/app_colors.dart';
-import '../../../../core/utils/app_vibration.dart';
+import '../../../../core/util/app_vibration.dart';
 import 'sign_button_text.dart';
 
 class WelcomeButton extends StatelessWidget {

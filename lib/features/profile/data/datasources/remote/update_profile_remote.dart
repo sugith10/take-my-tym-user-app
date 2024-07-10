@@ -5,8 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/model/app_user_model.dart';
-import '../../../../../core/utils/app_exception.dart';
-import '../../../../../core/utils/app_logger.dart';
+import '../../../../../core/util/app_exception.dart';
+import '../../../../../core/util/app_logger.dart';
 
 final class ProfileRemote {
   Future<void> updateProfile({

@@ -4,6 +4,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../core/util/restart_widget.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/widget/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
@@ -38,7 +39,7 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
         }
         if (state is SignOutSuccessState) {
           context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
-          Phoenix.rebirth(context);
+          RestartWidget.restartApp(context);
         }
       },
       child: DrawerCustomButton(

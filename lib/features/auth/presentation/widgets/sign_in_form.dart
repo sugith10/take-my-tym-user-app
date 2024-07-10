@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/reg_exp.dart';
+import '../../../../core/util/reg_exp.dart';
 import 'sign_text_form_field.dart';
 
 class SignInForm extends StatelessWidget {

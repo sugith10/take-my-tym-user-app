@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../bloc/individual_message_bloc/individual_message_bloc.dart';
+import '../util/timestamp_time_util.dart';
 import '../widgets/chat_text_field.dart';
 import '../widgets/chat_widget.dart';
 import '../widgets/individual_chat_app_bar.dart';
@@ -85,7 +86,7 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                     _scrollToBottom();
+                      _scrollToBottom();
                     });
                     return Column(
                       children: [
@@ -99,15 +100,24 @@ class _IndividualChatPageState extends State<IndividualChatPage> {
                               final message = messageData['message'] ?? 'error';
                               final senderId =
                                   messageData['senderUid'] ?? 'error';
-                              final time =
+                              final Timestamp time =
                                   messageData['timestamp'] ?? Timestamp.now();
-                              return ConstrainedBox(
-                                constraints: const BoxConstraints(maxWidth: 50),
-                                child: ChatWidget(
-                                  message: message,
-                                  senderId: senderId,
-                                  time: TextManipulator.timestampToTime(time),
-                                ),
+
+                              // Check if the current message is the first message of a new day
+                              bool isFirstMessageOfDay = true;
+                              if (index > 0) {
+                                final previousTimestamp =
+                                    snapshot.data!.docs[index - 1]['timestamp'];
+                                final previousDate = previousTimestamp.toDate();
+                                isFirstMessageOfDay = MessageTimeUtil.isSameDay(
+                                    time.toDate(), previousDate);
+                              }
+                              return ChatWidget(
+                                isFirstMessageOfDay: isFirstMessageOfDay,
+                                date: time,
+                                message: message,
+                                senderId: senderId,
+                                time: TextManipulator.timestampToTime(time),
                               );
                             },
                           ),

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/app_bar/close_app_bar.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/loading_dialog.dart';

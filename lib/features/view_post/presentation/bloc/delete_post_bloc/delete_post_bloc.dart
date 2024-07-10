@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
+import 'package:take_my_tym/core/util/app_error_msg.dart';
 import 'package:take_my_tym/features/view_post/domain/usecases/delete_post_usecase.dart';
 
 part 'delete_post_event.dart';

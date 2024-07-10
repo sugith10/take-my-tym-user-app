@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/utils/app_exception.dart';
+import '../../../../core/util/app_exception.dart';
 import '../../domain/repositories/signin_repo.dart';
 import '../datasources/remote/sign_in_remote_data.dart';
 

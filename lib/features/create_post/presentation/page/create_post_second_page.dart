@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/loading_dialog.dart';

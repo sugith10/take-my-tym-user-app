@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
-import '../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/app_dialog.dart';
 import '../../../../core/widgets/home_padding.dart';
 import '../bloc/wallet_bloc/wallet_bloc.dart';

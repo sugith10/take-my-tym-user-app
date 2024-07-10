@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:take_my_tym/core/model/app_post_model.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/core/util/app_exception.dart';
 
 class GetUserData {
   Future<UserModel> get({required userId}) async {

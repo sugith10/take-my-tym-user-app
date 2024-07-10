@@ -9,7 +9,7 @@ import 'package:take_my_tym/core/widgets/loading_dialog.dart';
 import 'package:take_my_tym/features/contract/presentation/bloc/contract_service_bloc/contract_service_bloc.dart';
 
 import '../../../../core/route/route_name/app_route_name.dart';
-import '../../../../core/utils/app_error_msg.dart';
+import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/common_app_bar.dart';
 import '../../../../core/widgets/offer_subtitle_widget.dart';

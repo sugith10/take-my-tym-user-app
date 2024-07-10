@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../../core/utils/file_formatter.dart';
+import '../../../../core/util/file_formatter.dart';
 
 class TransactionModel {
   final Timestamp timestamp;

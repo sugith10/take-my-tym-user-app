@@ -9,8 +9,8 @@ import '../../navigation_menu/presentation/pages/home_navigation_menu.dart';
 import '../../../core/assets/app_audio.dart';
 import '../../../core/assets/app_lottie.dart';
 import '../../../core/theme/color/app_colors.dart';
-import '../../../core/utils/app_sound_player.dart';
-import '../../../core/utils/app_vibration.dart';
+import '../../../core/util/app_sound_player.dart';
+import '../../../core/util/app_vibration.dart';
 import '../../../core/widgets/close_icon_button.dart';
 import 'bloc/success_page_bloc.dart';
 

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/core/util/app_exception.dart';
 
 /// Remote data source for resetting the user's password
 class ForgetPasswordRemoteData {

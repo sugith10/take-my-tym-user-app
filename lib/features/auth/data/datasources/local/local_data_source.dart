@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:take_my_tym/core/model/app_user_model.dart';
-import 'package:take_my_tym/core/utils/app_exception.dart';
+import 'package:take_my_tym/core/util/app_exception.dart';
 
 final class LocalUserData {
   // Function to store user data in Hive after signing in

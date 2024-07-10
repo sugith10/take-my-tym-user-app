@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:take_my_tym/core/utils/file_formatter.dart';
+import 'package:take_my_tym/core/util/file_formatter.dart';
 import 'package:take_my_tym/features/wallet/data/models/transaction_model.dart';
 
 class WalletModel {

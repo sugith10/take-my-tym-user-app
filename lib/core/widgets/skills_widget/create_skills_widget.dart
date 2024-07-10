@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
-import 'package:take_my_tym/core/utils/app_error_msg.dart';
+import 'package:take_my_tym/core/util/app_error_msg.dart';
 import 'package:take_my_tym/core/const/app_padding.dart';
 import 'package:take_my_tym/core/const/app_radius.dart';
 import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';

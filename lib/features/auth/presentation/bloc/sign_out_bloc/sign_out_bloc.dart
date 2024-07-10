@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../core/utils/app_error_msg.dart';
-import '../../../../../core/utils/app_exception.dart';
+import '../../../../../core/util/app_error_msg.dart';
+import '../../../../../core/util/app_exception.dart';
 import '../../../domain/usecases/local_user_storage_usecase.dart';
 import '../../../domain/usecases/signout_usecase.dart';
 

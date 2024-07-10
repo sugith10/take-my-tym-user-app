@@ -5,7 +5,7 @@ import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/const/app_padding.dart';
 import 'package:take_my_tym/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 
-import '../../../../../core/utils/app_debouncer.dart';
+import '../../../../../core/util/app_debouncer.dart';
 
 class SearchTextField extends StatelessWidget {
   final TextEditingController searchEditingController;

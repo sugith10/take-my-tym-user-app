@@ -96,6 +96,6 @@ class AppRoute {
         ));
     }
 
-    return noMovement(const ErrorPage());
+    return noMovement(const SplashPage());
   }
 }

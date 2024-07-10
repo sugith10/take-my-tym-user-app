@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:take_my_tym/features/auth/data/datasources/remote/verify_user_remote_data.dart';
 import 'package:take_my_tym/features/auth/domain/repositories/verify_user_repo.dart';
 
-import '../../../../core/utils/app_exception.dart';
+import '../../../../core/util/app_exception.dart';
 
 // Implementation of VerifyUserRepository
 final class VerifyUserRepoImpl implements VerifyUserRepo {

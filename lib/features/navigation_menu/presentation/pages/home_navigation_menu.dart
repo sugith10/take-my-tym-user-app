@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
 import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
-import '../../../../core/utils/app_vibration.dart';
+import '../../../../core/util/app_vibration.dart';
 import '../../../create_post/presentation/page/create_post_first_page.dart';
 import '../../../home/presentation/pages/home_page.dart';
 import '../../../message/presentation/pages/chat_list_page.dart';

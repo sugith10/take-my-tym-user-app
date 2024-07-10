@@ -7,8 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/features/location/presentation/bloc/location_bloc.dart';
 
 import '../../../../../core/model/app_user_model.dart';
-import '../../../../../core/utils/app_error_msg.dart';
-import '../../../../../core/utils/app_logger.dart';
+import '../../../../../core/util/app_error_msg.dart';
+import '../../../../../core/util/app_logger.dart';
 import '../../../data/datasources/remote/update_profile_remote.dart';
 import '../../../domain/usecases/update_profile_usecase.dart';
 

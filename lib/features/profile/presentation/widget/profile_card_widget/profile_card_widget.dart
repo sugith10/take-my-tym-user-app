@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/assets/app_svg.dart';
 
 import '../../../../../core/model/app_user_model.dart';
-import '../../../../../core/utils/text_manipulator/taxt_manipulator.dart';
+import '../../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../../../../../core/widgets/circle_profile_picture_widget.dart';
 import 'widgets/profile_location_widget.dart';
 

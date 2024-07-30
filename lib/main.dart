@@ -7,7 +7,6 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive/hive.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'app.dart';
 import 'core/observer/bloc_observer.dart';
@@ -40,7 +39,9 @@ void main() async {
 
   Bloc.observer = AppBlocObserver();
 
-  runApp(const RestartWidget(
-    child: MyApp(),
-  ));
+  runApp(
+    const RestartWidget(
+      child: MyApp(),
+    ),
+  );
 }

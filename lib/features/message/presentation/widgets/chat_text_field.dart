@@ -35,50 +35,53 @@ class _ChatTextFieldState extends State<ChatTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      focusNode: widget.focusNode,
-      keyboardType: TextInputType.text,
-      maxLines: 3,
-      maxLength: 100,
-      minLines: 1,
-      controller: _controller,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        counterText: '',
-        enabledBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: _appDarkColor.secondaryText),
-          borderRadius: BorderRadius.circular(100),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: _appDarkColor.secondaryText),
-          borderRadius: BorderRadius.circular(100),
-        ),
-        hintText: "Message",
-        hintStyle: Theme.of(context).textTheme.bodyLarge,
-        filled: true,
-        fillColor: _appDarkColor.bottomBar,
-        prefix: const SizedBox(width: 10),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.all(8),
-          child: _ChatIconButton(
-            callback: () {
-              widget.individualMessageBloc.add(
-                SendMessageEvent(
-                  message: _controller.text,
-                  currentUid: widget.currentUid,
-                  receiverUid: widget.receiverUid,
-                ),
-              );
-              _controller.clear();
-            },
-            icon: IconlyBold.send,
-            darkColor: _appDarkColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: TextField(
+        focusNode: widget.focusNode,
+        keyboardType: TextInputType.text,
+        maxLines: 3,
+        maxLength: 100,
+        minLines: 1,
+        controller: _controller,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          counterText: '',
+          enabledBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: _appDarkColor.secondaryText),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: _appDarkColor.secondaryText),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          hintText: "Message",
+          hintStyle: Theme.of(context).textTheme.bodyLarge,
+          filled: true,
+          fillColor: _appDarkColor.bottomBar,
+          prefix: const SizedBox(width: 10),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.all(8),
+            child: _ChatIconButton(
+              callback: () {
+                widget.individualMessageBloc.add(
+                  SendMessageEvent(
+                    message: _controller.text,
+                    currentUid: widget.currentUid,
+                    receiverUid: widget.receiverUid,
+                  ),
+                );
+                _controller.clear();
+              },
+              icon: IconlyBold.send,
+              darkColor: _appDarkColor,
+            ),
           ),
         ),
+        style: Theme.of(context).textTheme.labelLarge,
       ),
-      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }

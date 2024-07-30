@@ -422,14 +422,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  flutter_phoenix:
-    dependency: "direct main"
-    description:
-      name: flutter_phoenix
-      sha256: "39589dac934ea476d0e43fb60c1ddfba58f14960743640c8250dea11c4333378"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1008,6 +1000,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  restart:
+    dependency: "direct main"
+    description:
+      name: restart
+      sha256: "70c12d26900b7c451b99eb012dea7b0d5f229f93e705c3915df41c5ddd0b97cd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   share_plus:
     dependency: "direct main"
     description:

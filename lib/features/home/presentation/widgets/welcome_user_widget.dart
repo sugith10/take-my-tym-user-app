@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/const/app_padding.dart';
 
 class WelcomeUser extends StatelessWidget {
@@ -14,7 +14,7 @@ class WelcomeUser extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: AppPading.homePadding),
       child: Text(
-        'Hi, ${context.read<AppUserBloc>().userModel!.userName}',
+        'Hi, ${context.read<UserBloc>().userModel!.userName}',
         style: Theme.of(context).textTheme.displayLarge,
       ),
     );

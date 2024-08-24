@@ -9,13 +9,13 @@ class SignUpUseCase {
 
   Future<UserModel> createUser({
     required String firstName,
-    required String lastName,
+
     required String email,
     required String password,
   }) async {
     return await _signUpRepo.createUser(
       firstName: firstName,
-      lastName: lastName,
+
       email: email,
       password: password,
     );

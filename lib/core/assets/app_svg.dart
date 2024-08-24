@@ -21,5 +21,5 @@ class AppSvg {
   static const String numberThree = 'assets/svg/icons/number-three.svg';
   static const String numberFour = 'assets/svg/icons/number-four.svg';
   static const String customerSupport = 'assets/svg/icons/customer-service.svg';
-  static const String location = 'assets/svg/icons/location.svg';
+
 }

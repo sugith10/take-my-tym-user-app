@@ -2,7 +2,7 @@
 class AppAlert {
   /// The title of the alert.
   ///
-  /// Defaults to 'Oops! Something went wrong'.
+  /// Defaults to 'Oops!'.
   final String alert;
 
   /// Details or description of the alert.
@@ -11,7 +11,7 @@ class AppAlert {
   final String details;
 
   AppAlert({
-    this.alert = 'Oops! Something went wrong',
+    this.alert = 'Oops!',
     this.details = 'An unexpected error occurred. Please try again...',
   });
 }

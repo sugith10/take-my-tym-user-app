@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/widgets/default_silver_appbar.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     if (widget.userModel == null) {
-      _userModel = context.read<AppUserBloc>().userModel!;
+      _userModel = context.read<UserBloc>().userModel!;
     } else {
       _userModel = widget.userModel!;
     }
@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(height: 15.h),
                 // ProfileOptionsWidget(
                 //   editProfile: () {
-                //     Navigator.pushNamed(context, RouteName.editProfile);
+                //     // Navigator.pushNamed(context, RouteName.editProfile);
                 //   },
                 // ),
                 SizedBox(height: 15.h),

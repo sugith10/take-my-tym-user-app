@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
@@ -8,6 +7,7 @@ import '../../../../core/widgets/home_padding.dart';
 import '../../../../core/widgets/post_card.dart';
 import '../../../../core/widgets/shimmer_effect.dart';
 import '../../../view_post/presentation/bloc/read_post_bloc/read_post_bloc.dart';
+import 'empty_post_widget.dart';
 
 class ProfilePostsWidget extends StatelessWidget {
   const ProfilePostsWidget({
@@ -28,19 +28,14 @@ class ProfilePostsWidget extends StatelessWidget {
           return _PostsBuilder(postModelList: state.sellTymPostModels);
         }
         if (state is UserPostError) {
-          return Column(
-            children: [
-              SizedBox(height: 50.h),
-              Center(child: Text(state.error)),
-              SizedBox(height: 50.h),
-            ],
-          );
+          return const EmptyPostWidget();
         }
         return const ShimmerEffectWidget();
       },
     );
   }
 }
+
 
 class _PostsBuilder extends StatelessWidget {
   final List<PostModel> postModelList;

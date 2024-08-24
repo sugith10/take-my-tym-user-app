@@ -1,5 +1,6 @@
 {
-    "Codegeex.Chat.LanguagePreference": "English",
-    "Codegeex.Comment.LanguagePreference": "English",
-    "Codegeex.SidebarUI.LanguagePreference": "English"
+  "Codegeex.Chat.LanguagePreference": "English",
+  "Codegeex.Comment.LanguagePreference": "English",
+  "Codegeex.SidebarUI.LanguagePreference": "English",
+  "dart.flutterSdkPath": ".fvm/versions/3.22.3"
 }

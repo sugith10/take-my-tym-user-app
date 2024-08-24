@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/app_dialog.dart';
@@ -36,7 +36,7 @@ class WalletPage extends StatelessWidget {
               actionCall: () {
                 context.read<WalletBloc>().add(
                       WalletBalanceEvent(
-                        uid: context.read<AppUserBloc>().userModel!.uid,
+                        uid: context.read<UserBloc>().userModel!.uid,
                       ),
                     );
               },

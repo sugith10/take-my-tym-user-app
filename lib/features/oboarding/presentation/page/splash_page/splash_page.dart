@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../../core/route/route_name/app_route_name.dart';
 import '../../../../../core/widgets/app_logo.dart';
 
@@ -11,13 +11,13 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return BlocListener<AppUserBloc, AppState>(
+    return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
-        if (state is UserModelUpdatedState) {
+        if (state is UserUpdatedState) {
           Navigator.pushNamedAndRemoveUntil(
               context, RouteName.home, (route) => false);
         }
-        if (state is UserModelNotFoundState) {
+        if (state is UserNotFoundState) {
           Navigator.pushNamedAndRemoveUntil(
               context, RouteName.welcome, (route) => false);
         }

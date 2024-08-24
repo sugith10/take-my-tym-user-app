@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/util/app_vibration.dart';
@@ -38,9 +38,9 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppUserBloc, AppState>(
+    return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        if (state is UserModelUpdatedState) {
+        if (state is UserUpdatedState) {
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => NavigationBloc()),

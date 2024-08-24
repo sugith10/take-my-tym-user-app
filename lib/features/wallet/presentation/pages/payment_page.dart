@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/app_bar/close_app_bar.dart';
@@ -38,7 +38,7 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   void initState() {
     super.initState();
-    uid = context.read<AppUserBloc>().userModel!.uid;
+    uid = context.read<UserBloc>().userModel!.uid;
 
     if (widget.amount != null) {
       _paymentCntrl.text = widget.amount.toString();

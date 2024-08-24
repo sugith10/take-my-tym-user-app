@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/widget/drawer_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
@@ -36,7 +36,7 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
           );
         }
         if (state is SignOutSuccessState) {
-          context.read<AppUserBloc>().add(UpdateUserSignOutEvent());
+          context.read<UserBloc>().add(UserExitEvent());
 
         }
       },
@@ -45,7 +45,7 @@ class _LogOutDrawerButtonState extends State<LogOutDrawerButton> {
         callback: () {
           LogOutWidget().showLogOutDialog(
             context: context,
-            signOutBloc: _signOutBloc,
+            // signOutBloc: _signOutBloc,
           );
         },
         icon: IconlyLight.logout,

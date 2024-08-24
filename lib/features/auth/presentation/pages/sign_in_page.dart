@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/auth_padding.dart';
@@ -16,7 +16,6 @@ import '../widgets/sign_in_form.dart';
 import '../widgets/social_auth/social_auth_widget.dart';
 import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_text_widget.dart';
-import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -70,8 +69,8 @@ class _SignInPageState extends State<SignInPage> {
         if (state is SignInSuccessState) {
           if (state.profileSetupComp) {
             context
-                .read<AppUserBloc>()
-                .add(UpdateUserModelEvent(userModel: state.userModel));
+                .read<UserBloc>()
+                .add(UserUpdateEvent(userModel: state.userModel));
 
             Navigator.pushNamedAndRemoveUntil(
                 context, RouteName.home, (route) => false);
@@ -110,31 +109,27 @@ class _SignInPageState extends State<SignInPage> {
                   }),
                   SizedBox(height: 25.h),
                   SignButtonWidget(
-                      title: 'LOG IN',
-                      callback: () {
-                        _submitCredentials();
+                    title: 'LOG IN',
+                    callback: () {
+                      _submitCredentials();
+                    },
+                    buttonChild: BlocBuilder(
+                      bloc: _signInBloc,
+                      builder: (context, state) {
+                        if (state is SignInLoadingState &&
+                            state is SignInSuccessState) {
+                          return const AuthProgressWidget();
+                        }
+                        return const SignButtonText(title: 'LOG IN');
                       },
-                      buttonChild: BlocBuilder(
-                        bloc: _signInBloc,
-                        builder: (context, state) {
-                          if (state is SignInLoadingState) {
-                            return const AuthProgressWidget();
-                          }
-                          if (state is SignInSuccessState) {
-                            return const AuthProgressWidget();
-                          }
-                          return const SignButtonText(title: 'LOG IN');
-                        },
-                      )),
+                    ),
+                  ),
                   SizedBox(height: 15.h),
                   AnimatedNavigationText(
                     leadingText: 'Don\'t have an account?',
                     buttonText: 'Register',
                     callback: () {
-                      Navigator.push(
-                        context,
-                        SignUpPage.route(),
-                      );
+                    Navigator.pushNamed(context, RouteName.signUp);
                     },
                   ),
                   SizedBox(height: 50.h),

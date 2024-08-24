@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../../core/assets/app_png.dart';
 import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../navigation_menu/presentation/pages/home_navigation_menu.dart';
@@ -64,8 +64,8 @@ class _SocialAuthWidgetState extends State<SocialAuthWidget> {
                     }
                     if (state is SocialAuthSuccessState) {
                       if (state.profileSetupComp) {
-                        context.read<AppUserBloc>().add(
-                              UpdateUserModelEvent(
+                        context.read<UserBloc>().add(
+                              UserUpdateEvent(
                                 userModel: state.userModel,
                               ),
                             );

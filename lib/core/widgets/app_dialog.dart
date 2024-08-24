@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
+import 'dialog_button.dart';
+
 class AppDialog {
   static show({
     required BuildContext context,
@@ -39,14 +41,14 @@ class AppDialog {
                   textAlign: TextAlign.center,
                 ),
                 const Spacer(),
-                _MessageButton(
+                DialogButton(
                   action: canecel,
                   backgroundColor: AppDarkColor.instance.buttonBackground,
                   foregroundColor: AppDarkColor.instance.buttonForground,
                   callback: () => Navigator.pop(context),
                 ),
                 SizedBox(height: 12.h),
-                _MessageButton(
+                DialogButton(
                   action: action,
                   backgroundColor: actionColor ?? AppDarkColor.instance.danger,
                   foregroundColor: AppDarkColor.instance.buttonBackground,
@@ -68,37 +70,3 @@ class AppDialog {
   }
 }
 
-class _MessageButton extends StatelessWidget {
-  final String action;
-  final VoidCallback callback;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final Widget? actionWidget;
-  const _MessageButton({
-    required this.action,
-    required this.backgroundColor,
-    required this.callback,
-    required this.foregroundColor,
-    this.actionWidget,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ElevatedButton(
-            onPressed: () {
-              callback();
-            },
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(backgroundColor),
-              foregroundColor: WidgetStatePropertyAll(foregroundColor),
-            ),
-            child: actionWidget ?? Text(action),
-          ),
-        ),
-      ],
-    );
-  }
-}

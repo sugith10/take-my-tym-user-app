@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 import 'package:take_my_tym/features/wallet/presentation/bloc/wallet_bloc/wallet_bloc.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/route/page_transition/app_page_transition.dart';
@@ -64,7 +64,7 @@ class AcceptProposalPage extends StatelessWidget {
             }
             if (state is OfferSuccess) {
               context.read<GetProposalBloc>().add(ProposalGetEvent(
-                  uid: context.read<AppUserBloc>().userModel!.uid));
+                  uid: context.read<UserBloc>().userModel!.uid));
               Navigator.pop(context);
             }
           },
@@ -76,7 +76,7 @@ class AcceptProposalPage extends StatelessWidget {
                 OfferAcceptEvent(
                   paymentId: state.transactionId,
                   offerModel: offerModel,
-                  userId: context.read<AppUserBloc>().userModel!.uid,
+                  userId: context.read<UserBloc>().userModel!.uid,
                   postModel: postModel,
                 ),
               );
@@ -117,7 +117,7 @@ class AcceptProposalPage extends StatelessWidget {
             acceptProposalBloc.add(
               OfferRejectEvent(
                 offerModel: offerModel,
-                userId: context.read<AppUserBloc>().userModel!.uid,
+                userId: context.read<UserBloc>().userModel!.uid,
               ),
             );
           },

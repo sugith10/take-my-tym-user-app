@@ -19,7 +19,6 @@ dependencies:
   equatable: ^2.0.5
   image_picker: ^1.0.7
   permission_handler:
-  back_button_interceptor: ^5.0.2
   url_launcher: ^6.2.5
   path_provider: ^2.1.2
   geolocator: ^11.0.0
@@ -31,7 +30,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   intl: ^0.19.0
   http: ^1.2.1
-  restart: ^1.0.0+1
+  form_validator: ^2.1.1
 
   hive: ^2.2.3
   firebase_auth: ^4.17.8

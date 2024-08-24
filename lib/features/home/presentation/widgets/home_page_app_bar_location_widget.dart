@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/assets/app_png.dart';
 import '../../../location/presentation/bloc/location_bloc.dart';
 
@@ -45,8 +45,8 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
                   bloc: _locationBloc,
                   builder: (context, state) {
                     if (state is LocationResultState) {
-                      context.read<AppUserBloc>().add(
-                            UpdateUserLocationEvent(
+                      context.read<UserBloc>().add(
+                            UserLocationUpdateEvent(
                               location: state.placeName,
                               latitude: state.latitude,
                               longitude: state.longitude,
@@ -59,7 +59,7 @@ class _MyLocationWidgetState extends State<MyLocationWidget> {
 
                     return _LocationWidget(
                       location:
-                          context.read<AppUserBloc>().userModel!.location!,
+                          context.read<UserBloc>().userModel!.location!,
                     );
                   }),
               SizedBox(width: 5.sp),

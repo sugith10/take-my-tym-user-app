@@ -8,13 +8,13 @@ import 'package:take_my_tym/features/view_post/presentation/pages/view_post_page
 
 import '../../features/auth/presentation/pages/forget_password_page.dart';
 import '../../features/auth/presentation/pages/sign_in_page.dart';
+import '../../features/auth/presentation/pages/sign_up_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/contract/presentation/pages/coustomer_service_page.dart';
 import '../../features/contract/presentation/pages/view_contract_page.dart';
 import '../../features/create_post/presentation/model/create_page_second_arguments.dart';
 import '../../features/create_post/presentation/page/create_post_first_page.dart';
 import '../../features/create_post/presentation/page/create_post_second_page.dart';
-import '../../features/error/presentation/page/network_error_page.dart';
 import '../../features/location/presentation/bloc/location_bloc.dart';
 import '../../features/location/presentation/pages/select_location_page.dart';
 import '../../features/message/presentation/model/individual_chat_page_arguments.dart';

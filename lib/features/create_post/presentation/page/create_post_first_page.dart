@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/const/post_type.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
@@ -61,7 +61,7 @@ class _CreatePostFirstPageState extends State<CreatePostFirstPage> {
       if (widget.postModel == null) {
         _bloc.add(
           CreateFirstPageEvent(
-            userModel: context.read<AppUserBloc>().userModel!,
+            userModel: context.read<UserBloc>().userModel!,
             tymType: _tymType,
             title: _titleController.text.trim(),
             content: _contentController.text.trim(),

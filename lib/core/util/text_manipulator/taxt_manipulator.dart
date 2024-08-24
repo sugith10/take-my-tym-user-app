@@ -4,11 +4,16 @@ import 'package:intl/intl.dart';
 part 'function/name_capitalize.dart';
 part 'function/timestamp_convert.dart';
 part 'function/date_time_convert.dart';
+part 'function/aggressive_trim.dart';
 
 /// Utility class for text manipulation.
 class TextManipulator {
-  // Private constructor to prevent instantiation.
   TextManipulator._();
+
+  /// Trims the leading and trailing whitespace from the given string.
+  static String aggressiveTrim(String input) {
+    return _AggressiveTrim.aggressiveTrim(input);
+  }
 
   /// Capitalizes the first letter of the given string.
   static String capitalize(String name) {

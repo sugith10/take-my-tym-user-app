@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
-import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../core/widgets/constrain_text_form_field.dart';
 import '../../../../core/widgets/home_padding.dart';
@@ -57,8 +56,8 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
       listener: (context, state) {
         if (state is UpdateProfileSuccessState) {
           context
-              .read<AppUserBloc>()
-              .add(UpdateUserModelEvent(userModel: state.userModel));
+              .read<UserBloc>()
+              .add(UserUpdateEvent(userModel: state.userModel));
 
           Navigator.pushAndRemoveUntil(
             context,
@@ -87,7 +86,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProfileSetupMessage(
-                  firstName: widget.userModel.firstName,
+                  firstName: widget.userModel.userName,
                 ),
                 const Divider(),
                 const SizedBox(height: 25),

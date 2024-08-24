@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:take_my_tym/core/assets/app_png.dart';
-import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
 class CircleProfilePicWidget extends StatelessWidget {
   final double width;

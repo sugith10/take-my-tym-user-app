@@ -31,7 +31,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           email: event.email,
           password: event.password,
           firstName: event.firstName,
-          lastName: event.lastName,
+     
         );
         emit(SignUpSuccessState(user));
       } on AppException catch (e) {
@@ -40,7 +40,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(SignUpFailState(error: AppAlert()));
       }
     } else {
-      emit(SignUpFailState(error: AppAlert()));
+      final alert = AppAlert(
+        details: "Make sure you entered all the required fields correctly",
+      );
+      emit(SignUpFailState(error: alert));
     }
   }
 }

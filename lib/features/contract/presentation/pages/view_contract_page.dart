@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/user_bloc/user_bloc.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 import 'package:take_my_tym/core/widgets/app_dialog.dart';
 import 'package:take_my_tym/core/widgets/app_snackbar/app_snack_bar.dart';
@@ -37,7 +37,7 @@ class ViewContractPage extends StatelessWidget {
         if (state is ContractServiceFinish) {
           context.read<ContractsBloc>().add(
                 GetActiveContractsEvent(
-                    userId: context.read<AppUserBloc>().userModel!.uid),
+                    userId: context.read<UserBloc>().userModel!.uid),
               );
           Navigator.pop(context);
           Navigator.pop(context);
@@ -96,7 +96,7 @@ class ProjectCompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.read<AppUserBloc>().userModel!.uid == contractModel.clientId &&
+    if (context.read<UserBloc>().userModel!.uid == contractModel.clientId &&
         contractModel.contractEnded != true) {
       return SubmitButton(
         text: "Project Completed",

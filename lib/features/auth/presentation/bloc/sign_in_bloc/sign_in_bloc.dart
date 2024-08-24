@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +30,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
     // Check if the form is valid
     if (event.formKey.currentState!.validate()) {
+      log("validated", name: "sign in");
       try {
         // SignInUseCase is retrieved from the GetIt instance
         final signInUseCase = GetIt.instance<SignInUseCase>();
@@ -62,6 +65,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         }
       } on AppException catch (e) {
         // An AppAlert is created with the alert and details from the exception
+
         final AppAlert error = AppAlert(
           alert: e.alert,
           details: e.details,
@@ -71,6 +75,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           SignInErrorState(error: error),
         );
       } catch (e) {
+         
         // log the error
         appLogger.e(e);
 

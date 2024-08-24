@@ -105,14 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
-  back_button_interceptor:
-    dependency: "direct main"
-    description:
-      name: back_button_interceptor
-      sha256: acd24e8b6fb985024426335761583902d5a9afefcc93785881896b406e1859ce
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.2"
   bloc:
     dependency: transitive
     description:
@@ -464,6 +456,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  form_validator:
+    dependency: "direct main"
+    description:
+      name: form_validator
+      sha256: "8cbe91b7d5260870d6fb9e23acd55d5d1d1fdf2397f0279a4931ac3c0c7bf8fb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   freezed_annotation:
     dependency: transitive
     description:
@@ -1000,14 +1000,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
-  restart:
-    dependency: "direct main"
-    description:
-      name: restart
-      sha256: "70c12d26900b7c451b99eb012dea7b0d5f229f93e705c3915df41c5ddd0b97cd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0+1"
   share_plus:
     dependency: "direct main"
     description:

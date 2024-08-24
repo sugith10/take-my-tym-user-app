@@ -18,8 +18,14 @@
   "public_header_files": "Classes/**/*.h",
   "module_map": "Classes/FLTGoogleSignInPlugin.modulemap",
   "dependencies": {
+    "AppAuth": [
+      ">= 1.7.4"
+    ],
+    "GTMSessionFetcher": [
+      ">= 3.4.0"
+    ],
     "GoogleSignIn": [
-      "~> 7.0"
+      "~> 7.1"
     ]
   },
   "static_framework": true,
@@ -44,9 +50,11 @@
   "pod_target_xcconfig": {
     "DEFINES_MODULE": "YES"
   },
+  "swift_versions": "5.0",
   "resource_bundles": {
     "google_sign_in_ios_privacy": [
       "Resources/PrivacyInfo.xcprivacy"
     ]
-  }
+  },
+  "swift_version": "5.0"
 }

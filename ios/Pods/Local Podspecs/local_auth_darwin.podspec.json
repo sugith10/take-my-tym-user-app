@@ -15,8 +15,8 @@
     "http": "https://github.com/flutter/packages/tree/main/packages/local_auth"
   },
   "documentation_url": "https://pub.dev/packages/local_auth_darwin",
-  "source_files": "Classes/**/*",
-  "public_header_files": "Classes/**/*.h",
+  "source_files": "local_auth_darwin/Sources/local_auth_darwin/**/*.{h,m}",
+  "public_header_files": "local_auth_darwin/Sources/local_auth_darwin/include/**/*.h",
   "dependencies": {
     "Flutter": [
 
@@ -30,7 +30,7 @@
   },
   "resource_bundles": {
     "local_auth_darwin_privacy": [
-      "Resources/PrivacyInfo.xcprivacy"
+      "local_auth_darwin/Sources/local_auth_darwin/Resources/PrivacyInfo.xcprivacy"
     ]
   }
 }

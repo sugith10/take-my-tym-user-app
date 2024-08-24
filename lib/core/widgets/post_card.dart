@@ -73,7 +73,7 @@ class PostCard extends StatelessWidget {
               ],
             ),
           ),
-          // if (context.read<AppUserBloc>().userModel!.uid != postModel.uid)
+          // if (context.read<UserBloc>().userModel!.uid != postModel.uid)
           //   Positioned(
           //     right: 0,
           //     child: Container(

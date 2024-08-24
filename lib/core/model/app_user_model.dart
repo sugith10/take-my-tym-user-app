@@ -5,8 +5,7 @@ class UserModel {
   String email;
   bool verified;
   bool blocked;
-  String firstName;
-  String lastName;
+
   String userName;
   String join;
   String? picture;
@@ -20,8 +19,8 @@ class UserModel {
     required this.email,
     required this.verified,
     required this.blocked,
-    required this.firstName,
-    required this.lastName,
+  
+  
     required this.userName,
     required this.join,
     this.picture,
@@ -53,8 +52,7 @@ class UserModel {
       email: email ?? this.email,
       verified: verified ?? this.verified,
       blocked: blocked ?? this.blocked,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
+  
       userName: userName ?? this.userName,
       join: join ?? this.join,
       picture: picture ?? this.picture,
@@ -72,8 +70,7 @@ class UserModel {
       'email': email,
       'verified': verified,
       'blocked': blocked,
-      'firstName': firstName,
-      'lastName': lastName,
+
       'userName': userName,
       'join': join,
       'picture': picture,
@@ -91,8 +88,7 @@ class UserModel {
       email: map['email'] as String,
       verified: map['verified'] as bool,
       blocked: map['blocked'] as bool,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
+    
       userName: map['userName'] as String,
       join: map['join'] as String,
       picture: map['picture'] != null ? map['picture'] as String : null,
@@ -112,7 +108,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uid: $uid, email: $email, verified: $verified, blocked: $blocked, joined: $join, firstName: $firstName, lastName: $lastName, userName: $userName, join: $join, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
+    return 'UserModel(uid: $uid, email: $email, verified: $verified, blocked: $blocked, joined: $join, userName: $userName, join: $join, picture: $picture, about: $about, location: $location, latitude: $latitude, longitude: $longitude, profession: $profession)';
   }
 
   @override
@@ -123,8 +119,7 @@ class UserModel {
         other.email == email &&
         other.verified == verified &&
         other.blocked == blocked &&
-        other.firstName == firstName &&
-        other.lastName == lastName &&
+    
         other.userName == userName &&
         other.join == join &&
         other.picture == picture &&
@@ -141,8 +136,7 @@ class UserModel {
         email.hashCode ^
         verified.hashCode ^
         blocked.hashCode ^
-        firstName.hashCode ^
-        lastName.hashCode ^
+       
         userName.hashCode ^
         join.hashCode ^
         picture.hashCode ^

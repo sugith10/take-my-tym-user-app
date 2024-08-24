@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_validator/form_validator.dart';
 
 import '../../../../../core/util/reg_exp.dart';
 import '../sign_text_form_field.dart';
 
 class SignUpForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  final TextEditingController firstNameCntrl;
+  final TextEditingController nameCntrl;
   final String? errorMsg;
-  final TextEditingController lastNameCntrl;
+
   final TextEditingController emailCntrl;
   final TextEditingController passwordCntrl;
   final TextEditingController confirmPasswordCntrl;
@@ -16,13 +17,11 @@ class SignUpForm extends StatelessWidget {
   const SignUpForm({
     super.key,
     required this.formKey,
-    required this.firstNameCntrl,
+    required this.nameCntrl,
     required this.errorMsg,
-    required this.lastNameCntrl,
     required this.emailCntrl,
     required this.passwordCntrl,
     required this.confirmPasswordCntrl,
-
   });
 
   @override
@@ -31,50 +30,22 @@ class SignUpForm extends StatelessWidget {
       key: formKey,
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: SignTextField(
-                  fadeInDelay: 700,
-                  fadeInDuration: 800,
-                  controller: firstNameCntrl,
-                  hintText: "First Name",
-                  obsecureText: false,
-                  showSuffixIcon: false,
-                  errorMsg: errorMsg,
-                  keyboardType: TextInputType.name,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "Please fill in this field";
-                    } else if (RegExpUtil.nameRexExp.hasMatch(val)) {
-                      return "Please enter a valid email";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(width: 10.w),
-              Expanded(
-                child: SignTextField(
-                  fadeInDelay: 700,
-                  fadeInDuration: 800,
-                  controller: lastNameCntrl,
-                  hintText: "Last Name",
-                  obsecureText: false,
-                  showSuffixIcon: false,
-                  errorMsg: errorMsg,
-                  keyboardType: TextInputType.name,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "Please fill in this field";
-                    } else if (RegExpUtil.nameRexExp.hasMatch(val)) {
-                      return "Please enter a valid email";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ],
+          SignTextField(
+            
+            fadeInDelay: 700,
+            fadeInDuration: 800,
+            controller: nameCntrl,
+            prefixIcon: Icons.person_2_outlined,
+            hintText: "User Name",
+            obsecureText: false,
+            showSuffixIcon: false,
+            errorMsg: errorMsg,
+            keyboardType: TextInputType.name,
+            validator: ValidationBuilder()
+                .minLength(3)
+                .maxLength(15)
+                .regExp(RegExpUtil.nameRexExp, "Please enter a valid name")
+                .build(),
           ),
           SizedBox(height: 10.h),
           SignTextField(
@@ -87,14 +58,7 @@ class SignUpForm extends StatelessWidget {
             showSuffixIcon: false,
             errorMsg: errorMsg,
             keyboardType: TextInputType.emailAddress,
-            validator: (val) {
-              if (val!.isEmpty) {
-                return "Please fill in this Field";
-              } else if (RegExpUtil.emailRexExp.hasMatch(val)) {
-                return "Please enter a valid email";
-              }
-              return null;
-            },
+            validator: ValidationBuilder().email().maxLength(50).build(),
           ),
           SizedBox(height: 10.h),
           SignTextField(
@@ -107,14 +71,7 @@ class SignUpForm extends StatelessWidget {
             errorMsg: errorMsg,
             keyboardType: TextInputType.visiblePassword,
             prefixIcon: Icons.password_rounded,
-            validator: (val) {
-              if (val!.isEmpty) {
-                return "Please fill in this Field.";
-              } else if (val.length < 6) {
-                return "Password should be at least 6 characters long.";
-              }
-              return null;
-            },
+           
           ),
           SizedBox(height: 10.h),
           SignTextField(
@@ -127,16 +84,7 @@ class SignUpForm extends StatelessWidget {
             errorMsg: errorMsg,
             keyboardType: TextInputType.visiblePassword,
             prefixIcon: Icons.password_rounded,
-            validator: (val) {
-              if (val!.isEmpty) {
-                return "Please fill in this Field.";
-              } else if (val.length < 6) {
-                return "Password should be at least 6 characters long.";
-              } else if (val != passwordCntrl.text) {
-                return "Password not matched.";
-              }
-              return null;
-            },
+          
           ),
         ],
       ),

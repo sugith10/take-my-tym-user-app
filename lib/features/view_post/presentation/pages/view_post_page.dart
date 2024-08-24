@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_post_model.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/const/app_padding.dart';
@@ -41,7 +41,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
   void initState() {
     super.initState();
     appUser =
-        widget.postModel.uid == context.read<AppUserBloc>().userModel?.uid;
+        widget.postModel.uid == context.read<UserBloc>().userModel?.uid;
   }
 
   @override
@@ -97,7 +97,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
                   );
                 },
                 showMoreButton: widget.postModel.uid ==
-                    context.read<AppUserBloc>().userModel!.uid,
+                    context.read<UserBloc>().userModel!.uid,
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
@@ -156,7 +156,7 @@ class _ViewPostPageState extends State<ViewPostPage> {
                     context,
                     RouteName.message,
                     arguments: IndividualChatPageArguments(
-                      currentUid: context.read<AppUserBloc>().userModel!.uid,
+                      currentUid: context.read<UserBloc>().userModel!.uid,
                       receiverUid: widget.postModel.uid,
                       receiverName: widget.postModel.userName,
                       individualMessageBloc: IndividualMessageBloc(),

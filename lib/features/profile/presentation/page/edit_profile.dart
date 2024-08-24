@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/util/app_error_msg.dart';
 import '../../../../core/theme/color/app_colors.dart';
@@ -37,9 +37,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    final UserModel userModel = context.read<AppUserBloc>().userModel!;
-    firstNameCntrl.text = userModel.firstName;
-    lastNameCntrl.text = userModel.lastName;
+    final UserModel userModel = context.read<UserBloc>().userModel!;
+    firstNameCntrl.text = userModel.userName;
+    lastNameCntrl.text = userModel.userName;
     userNameCntrl.text = userModel.userName;
     aboutCntrl.text = userModel.about ?? '';
     locationCntrl.text = userModel.location ?? "";
@@ -79,8 +79,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         }
         if (state is UpdateProfileSuccessState) {
           context
-              .read<AppUserBloc>()
-              .add(UpdateUserModelEvent(userModel: state.userModel));
+              .read<UserBloc>()
+              .add(UserUpdateEvent(userModel: state.userModel));
 
           LoadingDialog.hide(context, 2);
           AppSnackBar.successSnackBar(
@@ -117,7 +117,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       about: aboutCntrl.text,
                       location: locationCntrl.text,
                       image: _image,
-                      userModel: context.read<AppUserBloc>().userModel!,
+                      userModel: context.read<UserBloc>().userModel!,
                     ),
                   );
                 }),

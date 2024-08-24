@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'app.dart';
 import 'core/observer/bloc_observer.dart';
 import 'core/di/dependency_injection_packages.dart';
-import 'core/util/restart_widget.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -39,9 +38,5 @@ void main() async {
 
   Bloc.observer = AppBlocObserver();
 
-  runApp(
-    const RestartWidget(
-      child: MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/widgets/not_yet_widget.dart';
 import '../bloc/wallet_bloc/wallet_bloc.dart';
 
@@ -31,7 +31,7 @@ class WalletMessageWidget extends StatelessWidget {
               onTap: () {
                 context.read<WalletBloc>().add(
                       WalletBalanceEvent(
-                          uid: context.read<AppUserBloc>().userModel!.uid),
+                          uid: context.read<UserBloc>().userModel!.uid),
                     );
               },
               borderRadius: BorderRadius.circular(8),

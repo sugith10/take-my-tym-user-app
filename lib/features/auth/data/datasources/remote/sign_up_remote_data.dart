@@ -10,7 +10,6 @@ class SignUpRemoteData {
   ///Create a user with email
   Future<UserModel> createUserWithEmail({
     required String firstName,
-    required String lastName,
     required String email,
     required String password,
   }) async {
@@ -38,9 +37,7 @@ class SignUpRemoteData {
       UserModel userModel = UserModel(
         uid: user.uid,
         email: email,
-        firstName: firstName,
-        lastName: lastName,
-        userName: firstName + lastName,
+        userName: firstName,
         verified: false,
         blocked: false,
         join: TextManipulator.joinDate(date: DateTime.now()),
@@ -60,8 +57,28 @@ class SignUpRemoteData {
         log(e.toString());
         throw Exception();
       }
-    } on Exception {
-      throw Exception();
+    } on FirebaseAuthException catch (e) {
+      // Check if the error is due to a network request failure
+      if (e.code == 'network-request-failed') {
+        throw const AppException(
+          alert: 'Network Error',
+          details: "Please check your internet connection and try again.",
+        );
+        // Check if the error is due to a weak password
+      } else if (e.code == 'weak-password') {
+        throw const AppException(
+            alert: 'user-not-found',
+            details: 'The password provided is too weak.');
+        // Check if the error is due to an account already existing with the given email
+      } else if (e.code == 'email-already-in-use') {
+        throw const AppException(
+          alert: 'Account Already Exists',
+          details: 'An account with this email already exists.',
+        );
+        // Handle any other errors
+      } else {
+        throw const AppException();
+      }
     }
   }
 }

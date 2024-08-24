@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take_my_tym/core/widgets/shimmer_effect.dart';
+import 'package:take_my_tym/features/carousel/presentation/widget/carousel_widget.dart';
 
 import '../bloc/community_posts_bloc/community_posts_bloc.dart';
 import '../widgets/all_commune_posts_widget.dart';
-import '../widgets/banner_widget.dart';
 import '../widgets/category_title_widget.dart';
 import '../widgets/generate_feed_widget.dart';
 import '../widgets/home_page_app_bar.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 SizedBox(height: 20.h),
-                const BannerWidget(),
+             const BannerWidget(),
                 SizedBox(height: 20.h),
                 SingleChildScrollView(
                   child: BlocBuilder<CommunityPostsBloc, CommunityPostsState>(

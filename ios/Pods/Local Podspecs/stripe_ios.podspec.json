@@ -19,22 +19,22 @@
 
     ],
     "Stripe": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ],
     "StripePaymentSheet": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ],
     "StripePayments": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ],
     "StripePaymentsUI": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ],
     "StripeApplePay": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ],
     "StripeFinancialConnections": [
-      "~> 23.22.0"
+      "~> 23.27.0"
     ]
   },
   "platforms": {

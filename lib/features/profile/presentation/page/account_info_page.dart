@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/model/app_user_model.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/action_button.dart';
@@ -14,7 +14,7 @@ class AccountInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserModel userModel = context.read<AppUserBloc>().userModel!;
+    UserModel userModel = context.read<UserBloc>().userModel!;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -46,12 +46,12 @@ class AccountInfoPage extends StatelessWidget {
               children: [
                 AccountInfoContentWidget(
                   title: "First name",
-                  subtitle: userModel.firstName,
+                  subtitle: userModel.userName,
                 ),
                 const SizedBox(width: 20),
                 AccountInfoContentWidget(
                   title: "Second name",
-                  subtitle: userModel.lastName,
+                  subtitle: userModel.userName,
                 ),
               ],
             ),

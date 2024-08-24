@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/user_bloc/user_bloc.dart';
 import 'package:take_my_tym/core/route/route_name/app_route_name.dart';
 import 'package:take_my_tym/core/theme/color/app_colors.dart';
 
@@ -64,10 +64,10 @@ class __HomePostSwitchState extends State<_HomePostSwitch> {
       tymType
           ? context.read<CommunityPostsBloc>().add(
                 (BuyTymCommunityPostsEvent(
-                    userId: context.read<AppUserBloc>().userModel!.uid)),
+                    userId: context.read<UserBloc>().userModel!.uid)),
               )
           : context.read<CommunityPostsBloc>().add(SellTymCommunityPostsEvent(
-              userId: context.read<AppUserBloc>().userModel!.uid));
+              userId: context.read<UserBloc>().userModel!.uid));
     }
 
     return BlocBuilder<CommunityPostsBloc, CommunityPostsState>(

@@ -21,7 +21,7 @@ class EmptyListWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DotLottieLoader.fromAsset(
-              AppLottie.notFound,
+              AppLottie.searchFail,
               frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
                 if (dotlottie != null) {
                   return Lottie.memory(dotlottie.animations.values.single,

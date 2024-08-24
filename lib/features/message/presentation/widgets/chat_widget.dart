@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import 'chat_date_card.dart';
 
 class ChatWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class ChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid = context.read<AppUserBloc>().userModel!.uid;
+    final uid = context.read<UserBloc>().userModel!.uid;
     final width = MediaQuery.of(context).size.width;
     return ConstrainedBox(
       constraints: BoxConstraints(

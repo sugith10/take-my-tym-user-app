@@ -1,10 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/const/app_padding.dart';
-import '../../../../core/route/page_transition/app_page_transition.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
+import '../../../../core/util/text_manipulator/taxt_manipulator.dart';
 import '../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../bloc/sign_up_bloc/sign_up_bloc.dart';
 import '../widgets/animate_navigation_text.dart';
@@ -17,7 +18,7 @@ import '../widgets/terms_and_conditions_widget.dart';
 import '../widgets/welcome_text_widget.dart';
 
 class SignUpPage extends StatefulWidget {
-  static route() => noMovement(const SignUpPage());
+  
   const SignUpPage({super.key});
 
   @override
@@ -27,8 +28,8 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String? _errorMsg;
   final _formKey = GlobalKey<FormState>();
-  final __firstNameCntrl = TextEditingController();
-  final _lastNameCntrl = TextEditingController();
+  final _firstNameCntrl = TextEditingController();
+
   final _emailCntrl = TextEditingController();
   final _passwordCntrl = TextEditingController();
   final _confirmPasswordCntrl = TextEditingController();
@@ -41,8 +42,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
-    __firstNameCntrl.dispose();
-    _lastNameCntrl.dispose();
+    _firstNameCntrl.dispose();
+
     _emailCntrl.dispose();
     _passwordCntrl.dispose();
     _confirmPasswordCntrl.dispose();
@@ -50,14 +51,13 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void submitCredentials() {
+  void _submitCredentials() {
     _signUpBloc.add(
       CreateUserEvent(
         formKey: _formKey,
-        firstName: __firstNameCntrl.text,
-        lastName: _lastNameCntrl.text,
-        email: _emailCntrl.text,
-        password: _passwordCntrl.text,
+        firstName: TextManipulator.aggressiveTrim(_firstNameCntrl.text),
+        email: TextManipulator.aggressiveTrim(_emailCntrl.text),
+        password: TextManipulator.aggressiveTrim(_passwordCntrl.text),
       ),
     );
   }
@@ -99,9 +99,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(height: 25.h),
                     SignUpForm(
                       formKey: _formKey,
-                      firstNameCntrl: __firstNameCntrl,
+                      nameCntrl: _firstNameCntrl,
                       errorMsg: _errorMsg,
-                      lastNameCntrl: _lastNameCntrl,
                       emailCntrl: _emailCntrl,
                       passwordCntrl: _passwordCntrl,
                       confirmPasswordCntrl: _confirmPasswordCntrl,
@@ -110,7 +109,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     SignButtonWidget(
                       title: 'SIGN UP',
                       callback: () {
-                        submitCredentials();
+                        
+                        _submitCredentials();
                       },
                       buttonChild: BlocBuilder(
                           bloc: _signUpBloc,
@@ -128,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       leadingText: 'Have an account?',
                       buttonText: 'Login',
                       callback: () {
+                      
                         Navigator.pushNamed(context, RouteName.signIn);
                       },
                     ),

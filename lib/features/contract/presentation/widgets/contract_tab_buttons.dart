@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:take_my_tym/core/bloc/app_user_bloc/app_user_bloc.dart';
+import 'package:take_my_tym/core/bloc/user_bloc/user_bloc.dart';
 import 'package:take_my_tym/features/contract/presentation/bloc/contracts_bloc/contracts_bloc.dart';
 
 import '../../../../core/theme/color/app_colors.dart';
@@ -21,7 +21,7 @@ class _ContractTabButtonsState extends State<ContractTabButtons> {
   @override
   void initState() {
     activeTab = context.read<ContractsBloc>().type;
-    userId = context.read<AppUserBloc>().userModel!.uid;
+    userId = context.read<UserBloc>().userModel!.uid;
     super.initState();
   }
 

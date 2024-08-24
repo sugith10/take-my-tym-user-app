@@ -72,7 +72,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
     } else {
       // If the title and content are valid, store the data and proceed to the next page
       _uid = event.userModel.uid;
-      _userName = "${event.userModel.firstName} ${event.userModel.lastName}";
+      _userName = event.userModel.userName;
       _tymType = event.tymType;
       _workType = event.workType;
       _title = event.title;

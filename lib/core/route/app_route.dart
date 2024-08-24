@@ -14,7 +14,7 @@ class AppRoute {
         return noMovement(const SignInPage());
 
       case RouteName.signUp:
-        return noMovement(const SignInPage());
+        return noMovement(const SignUpPage());
 
       case RouteName.forgotPassword:
         return noMovement(const ForgetPasswordPage());

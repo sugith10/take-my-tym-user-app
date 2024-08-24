@@ -35,7 +35,7 @@ class SignInForm extends StatelessWidget {
             validator: (val) {
               if (val!.isEmpty) {
                 return "Please fill in this Field";
-              } else if (RegExpUtil.emailRexExp.hasMatch(val)) {
+              } else if (!RegExpUtil.emailRexExp.hasMatch(val)) {
                 return "Please enter a valid email";
               }
               return null;

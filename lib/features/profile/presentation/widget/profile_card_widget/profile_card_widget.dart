@@ -47,7 +47,7 @@ class ProfileCard extends StatelessWidget {
                       children: [
                         _ProfileNameWidget(
                             name:
-                                '${TextManipulator.capitalize(userModel.firstName)} ${TextManipulator.capitalize(userModel.lastName)}'),
+                                TextManipulator.capitalize(userModel.userName)),
                         SizedBox(width: 8.w),
                         if (userModel.verified)
                           SvgPicture.asset(AppSvg.verified,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/bloc/app_user_bloc/app_user_bloc.dart';
+import '../../../../core/bloc/user_bloc/user_bloc.dart';
 import '../../../../core/route/route_name/app_route_name.dart';
 import '../../../../core/widgets/auth_padding.dart';
 import '../../../../core/widgets/empty_list_text.dart';
@@ -26,7 +26,7 @@ class _ContractsPageState extends State<ContractsPage> {
     super.initState();
     context.read<ContractsBloc>().add(
           GetActiveContractsEvent(
-              userId: context.read<AppUserBloc>().userModel!.uid),
+              userId: context.read<UserBloc>().userModel!.uid),
         );
   }
 

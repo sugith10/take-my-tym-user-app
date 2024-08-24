@@ -6,7 +6,7 @@ import 'package:take_my_tym/core/model/app_user_model.dart';
 import 'package:take_my_tym/core/util/app_logger.dart';
 import 'package:take_my_tym/core/util/text_manipulator/taxt_manipulator.dart';
 
- class SocailAuthRemoteData {
+class SocailAuthRemoteData {
   ///GOOGLE SIGNIN
   Future<UserModel> signInWithGoogle() async {
     try {
@@ -38,13 +38,9 @@ import 'package:take_my_tym/core/util/text_manipulator/taxt_manipulator.dart';
           uid: userCredential.user!.uid,
           email: userCredential.user!.email ?? "",
           join: TextManipulator.joinDate(date: DateTime.now()),
-          firstName:
-              userCredential.user!.displayName?.split(' ').first ?? 'User',
-          lastName: userCredential.user!.displayName?.split(' ').last ?? " ",
           verified: true,
           blocked: false,
-          userName:
-              userCredential.user!.displayName?.split(' ').first ?? 'User',
+          userName: userCredential.user!.displayName ?? 'User',
         );
         await userDocRef.set(userModel.toMap());
         return userModel;

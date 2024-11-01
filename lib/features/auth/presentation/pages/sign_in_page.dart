@@ -116,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                     buttonChild: BlocBuilder(
                       bloc: _signInBloc,
                       builder: (context, state) {
-                        if (state is SignInLoadingState &&
+                        if (state is SignInLoadingState ||
                             state is SignInSuccessState) {
                           return const AuthProgressWidget();
                         }
@@ -129,7 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                     leadingText: 'Don\'t have an account?',
                     buttonText: 'Register',
                     callback: () {
-                    Navigator.pushNamed(context, RouteName.signUp);
+                      Navigator.pushNamed(context, RouteName.signUp);
                     },
                   ),
                   SizedBox(height: 50.h),

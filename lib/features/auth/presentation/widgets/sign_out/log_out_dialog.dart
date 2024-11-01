@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/bloc/user_bloc/user_bloc.dart';
+import '../../../../../core/route/route_name/app_route_name.dart';
 import '../../../../../core/theme/color/app_colors.dart';
+import '../../../../../core/widgets/app_snackbar/app_snack_bar.dart';
 import '../../../../../core/widgets/dialog_button.dart';
 import '../../bloc/sign_out_bloc/sign_out_bloc.dart';
 
@@ -35,59 +40,78 @@ class _LogOutDialogState extends State<LogOutDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 300,
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            SizedBox(height: 25.h),
-            FittedBox(
-              child: Text(
-                'Log Out Confirmation',
-                style: Theme.of(context).textTheme.displaySmall,
+    return BlocListener<SignOutBloc, SignOutState>(
+      bloc: signOutBloc,
+      listener: (context, state) {
+        if (state is SignOutFailState) {
+          AppSnackBar.failSnackBar(
+            context: context,
+            alert: state.error,
+          );
+        }
+        if (state is SignOutSuccessState) {
+          log('hello');
+          Navigator.pushNamedAndRemoveUntil(
+              context, RouteName.welcome, (_) => false);
+          context.read<UserBloc>().add(UserExitEvent());
+        }
+      },
+      child: Dialog(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 300,
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              SizedBox(height: 25.h),
+              FittedBox(
+                child: Text(
+                  'Log Out Confirmation',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
               ),
-            ),
-            SizedBox(height: 10.h),
-            FittedBox(
-              child: Text(
-                'Are you sure you want to log out?',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: AppDarkColor.instance.primaryTextBlur,
-                    ),
-                textAlign: TextAlign.center,
+              SizedBox(height: 10.h),
+              FittedBox(
+                child: Text(
+                  'Are you sure you want to log out?',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: AppDarkColor.instance.primaryTextBlur,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-            const Spacer(),
-            DialogButton(
-              action: "Cancel",
-              backgroundColor: AppDarkColor.instance.buttonBackground,
-              foregroundColor: AppDarkColor.instance.buttonForground,
-              callback: () => Navigator.pop(context),
-            ),
-            SizedBox(height: 12.h),
-            DialogButton(
-              action: "LOG OUT",
-              backgroundColor: AppDarkColor.instance.danger,
-              foregroundColor: AppDarkColor.instance.buttonBackground,
-              callback: () {},
-              actionWidget: BlocBuilder(
-                bloc: signOutBloc,
-                builder: (context, state) {
-                  if (state is SignOutLoadingState) {
-                    return const SizedBox(
-                      height: 30,
-                      width: 30,
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return const Text("LOG OUT");
+              const Spacer(),
+              DialogButton(
+                action: "Cancel",
+                backgroundColor: AppDarkColor.instance.buttonBackground,
+                foregroundColor: AppDarkColor.instance.buttonForground,
+                callback: () => Navigator.pop(context),
+              ),
+              SizedBox(height: 12.h),
+              DialogButton(
+                action: "LOG OUT",
+                backgroundColor: AppDarkColor.instance.danger,
+                foregroundColor: AppDarkColor.instance.buttonBackground,
+                callback: () {
+                  signOutBloc.add(UserSignOutEvent());
                 },
+                actionWidget: BlocBuilder(
+                  bloc: signOutBloc,
+                  builder: (context, state) {
+                    if (state is SignOutLoadingState) {
+                      return const SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return const Text("LOG OUT");
+                  },
+                ),
               ),
-            ),
-            const Spacer(),
-          ],
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

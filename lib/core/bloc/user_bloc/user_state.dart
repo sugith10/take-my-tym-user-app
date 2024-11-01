@@ -13,4 +13,4 @@ final class UserUpdatedState extends UserState {}
 
 final class UserNotFoundState extends UserState {}
 
-final class UserExitState extends UserState {}
+final class UserLoggedOutState extends UserState {}

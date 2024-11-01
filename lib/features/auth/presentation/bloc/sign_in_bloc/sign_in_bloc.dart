@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,11 +28,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
     // Check if the form is valid
     if (event.formKey.currentState!.validate()) {
-      log("validated", name: "sign in");
       try {
         // SignInUseCase is retrieved from the GetIt instance
         final signInUseCase = GetIt.instance<SignInUseCase>();
-
+        emit(SignInLoadingState());
         // authUserModel is set to the result of the authenticateUser method, which takes the email and password as arguments
         UserModel authUserModel =
             await signInUseCase.authenticateUser(event.email, event.password);
@@ -75,7 +72,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           SignInErrorState(error: error),
         );
       } catch (e) {
-         
         // log the error
         appLogger.e(e);
 

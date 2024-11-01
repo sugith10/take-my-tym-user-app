@@ -57,6 +57,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   _userSignOut(UserExitEvent event, Emitter<UserState> emit) async {
-    emit(UserExitState());
+    emit(UserLoggedOutState());
   }
 }
